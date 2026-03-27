@@ -23,7 +23,7 @@ Identity _$IdentityFromJson(Map<String, dynamic> json) => Identity(
           .fromJson(json['htmlSignature'] as String?),
       mayDelete: json['mayDelete'] as bool?,
       sortOrder: const UnsignedIntNullableConverter()
-          .fromJson(json['sortOrder'] as int?),
+          .fromJson((json['sortOrder'] as num?)?.toInt()),
     );
 
 Map<String, dynamic> _$IdentityToJson(Identity instance) {

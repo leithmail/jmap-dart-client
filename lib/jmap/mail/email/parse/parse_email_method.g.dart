@@ -23,12 +23,11 @@ ParseEmailMethod _$ParseEmailMethodFromJson(Map<String, dynamic> json) =>
       ..fetchHTMLBodyValues = json['fetchHTMLBodyValues'] as bool?
       ..fetchAllBodyValues = json['fetchAllBodyValues'] as bool?
       ..maxBodyValueBytes = const UnsignedIntNullableConverter()
-          .fromJson(json['maxBodyValueBytes'] as int?);
+          .fromJson((json['maxBodyValueBytes'] as num?)?.toInt());
 
 Map<String, dynamic> _$ParseEmailMethodToJson(ParseEmailMethod instance) {
   final val = <String, dynamic>{
     'accountId': const AccountIdConverter().toJson(instance.accountId),
-    'blobIds': instance.blobIds.map(const IdConverter().toJson).toList()
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -39,6 +38,7 @@ Map<String, dynamic> _$ParseEmailMethodToJson(ParseEmailMethod instance) {
 
   writeNotNull(
       'properties', const PropertiesConverter().toJson(instance.properties));
+  val['blobIds'] = instance.blobIds.map(const IdConverter().toJson).toList();
   writeNotNull('bodyProperties', instance.bodyProperties?.toJson());
   writeNotNull('fetchTextBodyValues', instance.fetchTextBodyValues);
   writeNotNull('fetchHTMLBodyValues', instance.fetchHTMLBodyValues);

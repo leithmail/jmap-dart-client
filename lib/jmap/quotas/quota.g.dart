@@ -11,15 +11,16 @@ Quota _$QuotaFromJson(Map<String, dynamic> json) => Quota(
       $enumDecode(_$ResourceTypeEnumMap, json['resourceType']),
       $enumDecode(_$ScopeEnumMap, json['scope']),
       json['name'] as String,
-      used: const UnsignedIntNullableConverter().fromJson(json['used'] as int?),
+      used: const UnsignedIntNullableConverter()
+          .fromJson((json['used'] as num?)?.toInt()),
       hardLimit: const UnsignedIntNullableConverter()
-          .fromJson(json['hardLimit'] as int?),
-      limit:
-          const UnsignedIntNullableConverter().fromJson(json['limit'] as int?),
+          .fromJson((json['hardLimit'] as num?)?.toInt()),
+      limit: const UnsignedIntNullableConverter()
+          .fromJson((json['limit'] as num?)?.toInt()),
       warnLimit: const UnsignedIntNullableConverter()
-          .fromJson(json['warnLimit'] as int?),
+          .fromJson((json['warnLimit'] as num?)?.toInt()),
       softLimit: const UnsignedIntNullableConverter()
-          .fromJson(json['softLimit'] as int?),
+          .fromJson((json['softLimit'] as num?)?.toInt()),
       description: json['description'] as String?,
       types: (json['types'] as List<dynamic>?)
           ?.map((e) => const DataTypeConverter().fromJson(e as String))
