@@ -1,5 +1,8 @@
 # JMAP Dart client
 
+[![CI](https://github.com/leithmail/jmap-dart-client/actions/workflows/ci.yml/badge.svg)](https://github.com/leithmail/jmap-dart-client/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/github/leithmail/jmap-dart-client/graph/badge.svg?token=SNE1L5DIIU)](https://codecov.io/github/leithmail/jmap-dart-client)
+
 A [JMAP](https://jmap.io/) client library to make JMAP method calls and process the responses.
 
 We most notably use it to write the [TMail Flutter application](https://github.com/linagora/tmail-flutter) but you might reuse this library to write your own JMAP application.

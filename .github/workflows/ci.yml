@@ -1,11 +1,22 @@
 name: CI
 
+permissions:
+  id-token: write
+
 on:
   workflow_dispatch:
   pull_request:
     branches: [main]
+    paths:
+      - "lib/**"
+      - "test/**"
+      - "pubspec.yaml"
   push:
     branches: [main]
+    paths:
+      - "lib/**"
+      - "test/**"
+      - "pubspec.yaml"
 
 jobs:
   quality-checks:
@@ -27,4 +38,13 @@ jobs:
         run: dart analyze
 
       - name: Run tests
-        run: dart test
+        run: dart test --coverage=coverage
+
+      - name: Collect coverage
+        run: dart run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.dart_tool/package_config.json --report-on=lib
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          use_oidc: true
+          files: coverage/lcov.info
