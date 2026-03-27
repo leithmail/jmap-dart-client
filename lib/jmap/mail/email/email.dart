@@ -50,7 +50,15 @@ class Email with EquatableMixin {
   final Map<PartId, EmailBodyValue>? bodyValues;
   final Map<IndividualHeaderIdentifier, String?>? headerUserAgent;
   final Map<IndividualHeaderIdentifier, String?>? headerMdn;
+  final Map<IndividualHeaderIdentifier, String?>? headerReturnPath;
   final Map<IndividualHeaderIdentifier, String?>? headerCalendarEvent;
+  final Map<IndividualHeaderIdentifier, String?>? sMimeStatusHeader;
+  final Map<IndividualHeaderIdentifier, String?>? identityHeader;
+  final Map<IndividualHeaderIdentifier, String?>? xPriorityHeader;
+  final Map<IndividualHeaderIdentifier, String?>? importanceHeader;
+  final Map<IndividualHeaderIdentifier, String?>? priorityHeader;
+  final Map<IndividualHeaderIdentifier, String?>? listPostHeader;
+  final Map<IndividualHeaderIdentifier, String?>? listUnsubscribeHeader;
 
   Email({
     this.id,
@@ -81,7 +89,15 @@ class Email with EquatableMixin {
     this.bodyValues,
     this.headerUserAgent,
     this.headerMdn,
-    this.headerCalendarEvent
+    this.headerReturnPath,
+    this.headerCalendarEvent,
+    this.sMimeStatusHeader,
+    this.identityHeader,
+    this.xPriorityHeader,
+    this.importanceHeader,
+    this.priorityHeader,
+    this.listPostHeader,
+    this.listUnsubscribeHeader,
   });
 
   factory Email.fromJson(Map<String, dynamic> json) {
@@ -116,7 +132,35 @@ class Email with EquatableMixin {
       bodyValues: (json['bodyValues'] as Map<String, dynamic>?)?.map((key, value) => EmailBodyValueConverter().parseEntry(key, value)),
       headerUserAgent: IndividualHeaderIdentifierNullableConverter().parseEntry(IndividualHeaderIdentifier.headerUserAgent.value, json[IndividualHeaderIdentifier.headerUserAgent.value] as String?),
       headerMdn: IndividualHeaderIdentifierNullableConverter().parseEntry(IndividualHeaderIdentifier.headerMdn.value, json[IndividualHeaderIdentifier.headerMdn.value] as String?),
+      headerReturnPath: IndividualHeaderIdentifierNullableConverter().parseEntry(IndividualHeaderIdentifier.headerReturnPath.value, json[IndividualHeaderIdentifier.headerReturnPath.value] as String?),
       headerCalendarEvent: IndividualHeaderIdentifierNullableConverter().parseEntry(IndividualHeaderIdentifier.headerCalendarEvent.value, json[IndividualHeaderIdentifier.headerCalendarEvent.value] as String?),
+      sMimeStatusHeader: IndividualHeaderIdentifierNullableConverter().parseEntry(IndividualHeaderIdentifier.sMimeStatusHeader.value, json[IndividualHeaderIdentifier.sMimeStatusHeader.value] as String?),
+      identityHeader: IndividualHeaderIdentifierNullableConverter().parseEntry(IndividualHeaderIdentifier.identityHeader.value, json[IndividualHeaderIdentifier.identityHeader.value] as String?),
+      xPriorityHeader: IndividualHeaderIdentifierNullableConverter()
+        .parseEntry(
+          IndividualHeaderIdentifier.xPriorityHeader.value,
+          json[IndividualHeaderIdentifier.xPriorityHeader.value] as String?,
+        ),
+      importanceHeader: IndividualHeaderIdentifierNullableConverter()
+        .parseEntry(
+          IndividualHeaderIdentifier.importanceHeader.value,
+          json[IndividualHeaderIdentifier.importanceHeader.value] as String?,
+        ),
+      priorityHeader: IndividualHeaderIdentifierNullableConverter()
+        .parseEntry(
+          IndividualHeaderIdentifier.priorityHeader.value,
+          json[IndividualHeaderIdentifier.priorityHeader.value] as String?,
+        ),
+      listPostHeader: IndividualHeaderIdentifierNullableConverter()
+        .parseEntry(
+          IndividualHeaderIdentifier.listPostHeader.value,
+          json[IndividualHeaderIdentifier.listPostHeader.value] as String?,
+        ),
+      listUnsubscribeHeader: IndividualHeaderIdentifierNullableConverter()
+        .parseEntry(
+          IndividualHeaderIdentifier.listUnsubscribeHeader.value,
+          json[IndividualHeaderIdentifier.listUnsubscribeHeader.value] as String?,
+        ),
     );
   }
 
@@ -157,7 +201,45 @@ class Email with EquatableMixin {
     writeNotNull('bodyValues', bodyValues?.map((key, value) => EmailBodyValueConverter().toJson(key, value)));
     writeNotNull(IndividualHeaderIdentifier.headerUserAgent.value, IndividualHeaderIdentifierNullableConverter().toJson(headerUserAgent, IndividualHeaderIdentifier.headerUserAgent));
     writeNotNull(IndividualHeaderIdentifier.headerMdn.value, IndividualHeaderIdentifierNullableConverter().toJson(headerMdn, IndividualHeaderIdentifier.headerMdn));
+    writeNotNull(IndividualHeaderIdentifier.headerReturnPath.value, IndividualHeaderIdentifierNullableConverter().toJson(headerReturnPath, IndividualHeaderIdentifier.headerReturnPath));
     writeNotNull(IndividualHeaderIdentifier.headerCalendarEvent.value, IndividualHeaderIdentifierNullableConverter().toJson(headerCalendarEvent, IndividualHeaderIdentifier.headerCalendarEvent));
+    writeNotNull(IndividualHeaderIdentifier.sMimeStatusHeader.value, IndividualHeaderIdentifierNullableConverter().toJson(sMimeStatusHeader, IndividualHeaderIdentifier.sMimeStatusHeader));
+    writeNotNull(IndividualHeaderIdentifier.identityHeader.value, IndividualHeaderIdentifierNullableConverter().toJson(identityHeader, IndividualHeaderIdentifier.identityHeader));
+    writeNotNull(
+      IndividualHeaderIdentifier.xPriorityHeader.value,
+      IndividualHeaderIdentifierNullableConverter().toJson(
+        xPriorityHeader,
+        IndividualHeaderIdentifier.xPriorityHeader,
+      ),
+    );
+    writeNotNull(
+      IndividualHeaderIdentifier.importanceHeader.value,
+      IndividualHeaderIdentifierNullableConverter().toJson(
+        importanceHeader,
+        IndividualHeaderIdentifier.importanceHeader,
+      ),
+    );
+    writeNotNull(
+      IndividualHeaderIdentifier.priorityHeader.value,
+      IndividualHeaderIdentifierNullableConverter().toJson(
+        priorityHeader,
+        IndividualHeaderIdentifier.priorityHeader,
+      ),
+    );
+    writeNotNull(
+      IndividualHeaderIdentifier.listPostHeader.value,
+      IndividualHeaderIdentifierNullableConverter().toJson(
+        listPostHeader,
+        IndividualHeaderIdentifier.listPostHeader,
+      ),
+    );
+    writeNotNull(
+      IndividualHeaderIdentifier.listUnsubscribeHeader.value,
+      IndividualHeaderIdentifierNullableConverter().toJson(
+        listUnsubscribeHeader,
+        IndividualHeaderIdentifier.listUnsubscribeHeader,
+      ),
+    );
     return val;
   }
 
@@ -191,7 +273,15 @@ class Email with EquatableMixin {
     bodyValues,
     headerUserAgent,
     headerMdn,
-    headerCalendarEvent
+    headerReturnPath,
+    headerCalendarEvent,
+    sMimeStatusHeader,
+    identityHeader,
+    xPriorityHeader,
+    importanceHeader,
+    priorityHeader,
+    listPostHeader,
+    listUnsubscribeHeader,
   ];
 }
 

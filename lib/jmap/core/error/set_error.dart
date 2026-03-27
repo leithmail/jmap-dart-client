@@ -15,7 +15,9 @@ class SetError with EquatableMixin {
   static final invalidPatch = ErrorType("invalidPatch");
   static final willDestroy = ErrorType("willDestroy");
   static final invalidProperties = ErrorType("invalidProperties");
+  static final invalidArguments = ErrorType("invalidArguments");
   static final singleton = ErrorType("singleton");
+  static final serverFail = ErrorType("serverFail");
 
   final ErrorType type;
   final String? description;
@@ -39,5 +41,6 @@ class SetError with EquatableMixin {
     SetError.willDestroy,
     SetError.invalidProperties,
     SetError.singleton,
+    SetError.serverFail,
   };
 }

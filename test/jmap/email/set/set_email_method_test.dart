@@ -103,7 +103,6 @@ void main() {
         },
         headers: {
           "accept": "application/json;jmapVersion=rfc-8621",
-          "content-length": 1755
         }
       );
 
@@ -221,7 +220,6 @@ void main() {
           },
           headers: {
             "accept": "application/json;jmapVersion=rfc-8621",
-            "content-length": 1870
           }
       );
 
@@ -325,7 +323,8 @@ void main() {
                           "isTruncated": false
                         }
                       },
-                      "header:Disposition-Notification-To:asText": "qkdo@linagora.com"
+                      "header:Disposition-Notification-To:asText": "qkdo@linagora.com",
+                      "header:Return-Path:asText": "qkdo@linagora.com"
                     }
                   }
                 },
@@ -335,7 +334,6 @@ void main() {
           },
           headers: {
             "accept": "application/json;jmapVersion=rfc-8621",
-            "content-length": 1316
           }
       );
 
@@ -352,7 +350,8 @@ void main() {
               bodyValues: {
                 PartId('abc123'): EmailBodyValue(value: '[POSTMAN] SEND EMAIL WITH MDN', isEncodingProblem: false, isTruncated: false)
               },
-              headerMdn: {IndividualHeaderIdentifier.headerMdn : "qkdo@linagora.com"}
+              headerMdn: {IndividualHeaderIdentifier.headerMdn : "qkdo@linagora.com"},
+              headerReturnPath: {IndividualHeaderIdentifier.headerReturnPath : "qkdo@linagora.com"},
             )
         );
 

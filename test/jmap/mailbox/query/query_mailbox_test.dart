@@ -132,11 +132,38 @@ void main() {
                     "c3"
                   ]
                 ]
-              },
-              headers: {
-                "accept": "application/json;jmapVersion=rfc-8621",
-                "content-length": 672
-              });
+              }),
+          data: {
+            "using": ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail"],
+            "methodCalls": [
+              [
+                "Mailbox/query",
+                {
+                  "accountId":
+                      "0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555",
+                  "filter": {"role": "Spam"},
+                  "limit": 1
+                },
+                "c2"
+              ],
+              [
+                "Mailbox/get",
+                {
+                  "accountId":
+                      "0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555",
+                  "#ids": {
+                    "resultOf": "c2",
+                    "name": "Mailbox/query",
+                    "path": "ids/*"
+                  }
+                },
+                "c3"
+              ]
+            ]
+          },
+          headers: {
+            "accept": "application/json;jmapVersion=rfc-8621",
+          });
 
           final httpClient = HttpClient(dio);
           final processingInvocation = ProcessingInvocation();

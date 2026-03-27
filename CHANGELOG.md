@@ -1,3 +1,42 @@
+## [0.3.6] - 2025-05-07
+- Fix incompatible `build_runner_core` with `logging 1.3.0` – missing `onLevelChanged`
+- Support `Mailbox/clear` method JMAP extension
+
+## [0.3.5] - 2025-04-28
+- Upgrade `build_runner` version to `2.4.10`
+
+## [0.3.4] - 2025-04-16
+- Add CalendarEventCounter/accept method
+- Add CalendarEventAttendance/get method
+
+## [0.3.3] - 2025-02-07
+- Add priority headers for email
+
+## [0.3.2] - 2024-01-10
+- Add Email/parse method
+
+## [0.3.1] - 2024-12-27
+- Add #destroy for set method 
+
+## [0.3.0] - 2024-11-08
+- Add SearchSnippet/get method
+
+## [0.2.3] - 2024-09-16
+- Add web socket ticket capability
+
+## [0.2.2] - 2024-09-16
+- Add X-JMAP-Identity header
+
+## [0.2.1] - 2024-08-28
+- Add X-SMIME-Status header parsed property for email
+
+## [0.2.0] - 2024-08-21
+- Add PublicAsset/get + PublicAsset/set methods
+- Add `overQuota` error type
+
+## [0.1.0] - 2024-08-06
+- Release new version `v0.1.0`
+
 ## 0.0.1
 
 * TODO: Describe initial release.
