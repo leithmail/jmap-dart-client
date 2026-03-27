@@ -1,4 +1,3 @@
-
 import 'package:jmap_dart_client/jmap/core/utc_date.dart';
 import 'package:jmap_dart_client/jmap/core/extensions/date_time_extension.dart';
 

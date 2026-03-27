@@ -8,13 +8,16 @@ class WebSocketTicketCapability extends CapabilityProperties {
   final Uri? generationEndpoint;
   final Uri? revocationEndpoint;
 
-  WebSocketTicketCapability({required this.generationEndpoint, required this.revocationEndpoint});
+  WebSocketTicketCapability(
+      {required this.generationEndpoint, required this.revocationEndpoint});
 
-  factory WebSocketTicketCapability.fromJson(Map<String, dynamic> json) => _$WebSocketTicketCapabilityFromJson(json);
+  factory WebSocketTicketCapability.fromJson(Map<String, dynamic> json) =>
+      _$WebSocketTicketCapabilityFromJson(json);
 
   Map<String, dynamic> toJson() => _$WebSocketTicketCapabilityToJson(this);
 
-  static WebSocketTicketCapability deserialize(Map<String, dynamic> json) => WebSocketTicketCapability.fromJson(json);
+  static WebSocketTicketCapability deserialize(Map<String, dynamic> json) =>
+      WebSocketTicketCapability.fromJson(json);
 
   @override
   List<Object?> get props => [generationEndpoint, revocationEndpoint];

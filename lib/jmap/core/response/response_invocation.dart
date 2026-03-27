@@ -1,6 +1,5 @@
 import 'package:jmap_dart_client/jmap/core/request/request_invocation.dart';
 
-
 class ResponseInvocation {
   final MethodName methodName;
   final ResponseArguments arguments;

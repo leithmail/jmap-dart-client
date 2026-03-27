@@ -7,7 +7,8 @@ part 'empty_capability.g.dart';
 class EmptyCapability extends CapabilityProperties {
   EmptyCapability();
 
-  factory EmptyCapability.fromJson(Map<String, dynamic> json) => _$EmptyCapabilityFromJson(json);
+  factory EmptyCapability.fromJson(Map<String, dynamic> json) =>
+      _$EmptyCapabilityFromJson(json);
 
   Map<String, dynamic> toJson() => _$EmptyCapabilityToJson(this);
 

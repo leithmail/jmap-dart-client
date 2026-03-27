@@ -12,7 +12,8 @@ class CollationIdentifier with EquatableMixin {
   @override
   List<Object> get props => [value];
 
-  factory CollationIdentifier.fromJson(Map<String, dynamic> json) => _$CollationIdentifierFromJson(json);
+  factory CollationIdentifier.fromJson(Map<String, dynamic> json) =>
+      _$CollationIdentifierFromJson(json);
 
   Map<String, dynamic> toJson() => _$CollationIdentifierToJson(this);
 }

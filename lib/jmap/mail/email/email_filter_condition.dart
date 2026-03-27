@@ -14,7 +14,6 @@ part 'email_filter_condition.g.dart';
 @MailboxIdNullableConverter()
 @JsonSerializable()
 class EmailFilterCondition extends FilterCondition {
-
   @JsonKey(includeIfNull: false)
   final MailboxId? inMailbox;
   @JsonKey(includeIfNull: false)
@@ -81,27 +80,27 @@ class EmailFilterCondition extends FilterCondition {
 
   @override
   List<Object?> get props => [
-    inMailbox,
-    inMailboxOtherThan,
-    before,
-    after,
-    minSize,
-    maxSize,
-    allInThreadHaveKeyword,
-    someInThreadHaveKeyword,
-    noneInThreadHaveKeyword,
-    hasKeyword,
-    notKeyword,
-    hasAttachment,
-    text,
-    from,
-    to,
-    cc,
-    bcc,
-    subject,
-    body,
-    header
-  ];
+        inMailbox,
+        inMailboxOtherThan,
+        before,
+        after,
+        minSize,
+        maxSize,
+        allInThreadHaveKeyword,
+        someInThreadHaveKeyword,
+        noneInThreadHaveKeyword,
+        hasKeyword,
+        notKeyword,
+        hasAttachment,
+        text,
+        from,
+        to,
+        cc,
+        bcc,
+        subject,
+        body,
+        header
+      ];
 
   factory EmailFilterCondition.fromJson(Map<String, dynamic> json) =>
       _$EmailFilterConditionFromJson(json);

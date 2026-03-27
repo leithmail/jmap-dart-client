@@ -7,8 +7,6 @@ abstract class SendResponse<T> extends ResponseRequiringAccountId {
   final Map<Id, T>? sent;
   final Map<Id, SetError>? notSent;
 
-  SendResponse(AccountId accountId, {
-    this.sent,
-    this.notSent
-  }) : super(accountId);
+  SendResponse(AccountId accountId, {this.sent, this.notSent})
+      : super(accountId);
 }

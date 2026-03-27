@@ -8,7 +8,8 @@ abstract class GetResponse<T> extends ResponseRequiringAccountId {
   final List<T> list;
   final List<Id>? notFound;
 
-  GetResponse(AccountId accountId, this.state, this.list, this.notFound) : super(accountId);
+  GetResponse(AccountId accountId, this.state, this.list, this.notFound)
+      : super(accountId);
 }
 
 abstract class GetResponseNoAccountId<T> extends MethodResponse {

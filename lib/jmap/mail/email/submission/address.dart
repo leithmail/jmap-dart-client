@@ -11,7 +11,8 @@ class Address with EquatableMixin {
 
   Address(this.email, {this.parameters});
 
-  factory Address.fromJson(Map<String, dynamic> json) => _$AddressFromJson(json);
+  factory Address.fromJson(Map<String, dynamic> json) =>
+      _$AddressFromJson(json);
 
   Map<String, dynamic> toJson() => _$AddressToJson(this);
 

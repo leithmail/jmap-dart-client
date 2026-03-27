@@ -1,4 +1,3 @@
-
 enum RecurrenceRuleSkip {
   omit,
   backward,

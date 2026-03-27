@@ -14,20 +14,20 @@ class CalendarEventCapability extends CapabilityProperties {
     this.supportFreeBusyQuery,
     this.counterSupport,
   });
-  
-  factory CalendarEventCapability.fromJson(Map<String, dynamic> json) 
-    => _$CalendarEventCapabilityFromJson(json);
+
+  factory CalendarEventCapability.fromJson(Map<String, dynamic> json) =>
+      _$CalendarEventCapabilityFromJson(json);
 
   Map<String, dynamic> toJson() => _$CalendarEventCapabilityToJson(this);
 
   static CalendarEventCapability deserialize(Map<String, dynamic> json) {
     return CalendarEventCapability.fromJson(json);
   }
-  
+
   @override
   List<Object?> get props => [
-    replySupportedLanguage,
-    supportFreeBusyQuery,
-    counterSupport,
-  ];
+        replySupportedLanguage,
+        supportFreeBusyQuery,
+        counterSupport,
+      ];
 }

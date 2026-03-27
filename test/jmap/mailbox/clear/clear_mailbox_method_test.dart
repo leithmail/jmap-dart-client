@@ -397,9 +397,8 @@ void main() {
     });
 
     test(
-      'should return serverFail error\n'
-      'when exceptions are encountered during the deletion',
-    () async {
+        'should return serverFail error\n'
+        'when exceptions are encountered during the deletion', () async {
       // Arrange
       final clearMailboxMethod = ClearMailboxMethod(bobAccountId, bobTrashId);
       final requestBuilder = JmapRequestBuilder(
@@ -477,9 +476,8 @@ void main() {
     });
 
     test(
-      'should succeed to clear team mailbox\n'
-      'when request has share capability',
-    () async {
+        'should succeed to clear team mailbox\n'
+        'when request has share capability', () async {
       // Arrange
       final teamMailboxId = MailboxId(Id('teamMailboxId'));
       final clearMailboxMethod =
@@ -530,7 +528,8 @@ void main() {
 
       // Act
       final responseObject = await (requestBuilder
-            ..usings(clearMailboxMethod.requiredCapabilitiesSupportTeamMailboxes))
+            ..usings(
+                clearMailboxMethod.requiredCapabilitiesSupportTeamMailboxes))
           .build()
           .execute();
 
@@ -551,9 +550,8 @@ void main() {
     });
 
     test(
-      'should fail to clear team mailbox\n'
-      'when missing share capability',
-    () async {
+        'should fail to clear team mailbox\n'
+        'when missing share capability', () async {
       // Arrange
       final teamMailboxId = MailboxId(Id('teamMailboxId'));
       final listCapabilitiesUsed = {
@@ -561,7 +559,8 @@ void main() {
         CapabilityIdentifier.jmapMail,
         CapabilityIdentifier.jmapMailboxClear,
       };
-      final clearMailboxMethod = ClearMailboxMethod(bobAccountId, teamMailboxId);
+      final clearMailboxMethod =
+          ClearMailboxMethod(bobAccountId, teamMailboxId);
       final requestBuilder = JmapRequestBuilder(
         HttpClient(dio),
         ProcessingInvocation(),

@@ -37,5 +37,6 @@ class GetCalendarEventAttendanceResponse extends ResponseRequiringAccountId {
 
   static GetCalendarEventAttendanceResponse deserialize(
     Map<String, dynamic> json,
-  ) => _$GetCalendarEventAttendanceResponseFromJson(json);
+  ) =>
+      _$GetCalendarEventAttendanceResponseFromJson(json);
 }

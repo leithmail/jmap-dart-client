@@ -8,8 +8,10 @@ class EmailComparatorProperty extends ComparatorProperty {
   static final subject = EmailComparatorProperty('subject');
   static final sentAt = EmailComparatorProperty('sentAt');
   static final hasKeyword = EmailComparatorProperty('hasKeyword');
-  static final allInThreadHaveKeyword = EmailComparatorProperty('allInThreadHaveKeyword');
-  static final someInThreadHaveKeyword = EmailComparatorProperty('someInThreadHaveKeyword');
+  static final allInThreadHaveKeyword =
+      EmailComparatorProperty('allInThreadHaveKeyword');
+  static final someInThreadHaveKeyword =
+      EmailComparatorProperty('someInThreadHaveKeyword');
 
   EmailComparatorProperty(String value) : super(value);
 

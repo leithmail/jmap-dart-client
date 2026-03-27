@@ -6,13 +6,22 @@ part 'email_body_properties.g.dart';
 @JsonSerializable()
 class EmailBodyProperties extends Properties {
   static EmailBodyProperties defaultEmailBodyProperties = EmailBodyProperties({
-    'partId', 'blobId', 'size', 'name', 'type', 'charset',
-    'disposition', 'cid', 'language', 'location'
+    'partId',
+    'blobId',
+    'size',
+    'name',
+    'type',
+    'charset',
+    'disposition',
+    'cid',
+    'language',
+    'location'
   });
 
   EmailBodyProperties(Set<String> value) : super(value);
 
-  factory EmailBodyProperties.fromJson(Map<String, dynamic> json) => _$EmailBodyPropertiesFromJson(json);
+  factory EmailBodyProperties.fromJson(Map<String, dynamic> json) =>
+      _$EmailBodyPropertiesFromJson(json);
 
   Map<String, dynamic> toJson() => _$EmailBodyPropertiesToJson(this);
 

@@ -23,16 +23,14 @@ class RequestObject with EquatableMixin {
 
   Map<String, dynamic> toJson() => _$RequestObjectToJson(this);
 
-  static RequestObjectBuilder builder()  {
+  static RequestObjectBuilder builder() {
     return RequestObjectBuilder();
   }
 }
 
 class RequestObjectBuilder with RequiredUsing, RequireMethodCall {
-
   RequestObject build() {
-    return RequestObject(
-      capabilitiesBuilder.build().asSet(),
-      invocationsBuilder.build().asList());
+    return RequestObject(capabilitiesBuilder.build().asSet(),
+        invocationsBuilder.build().asList());
   }
 }

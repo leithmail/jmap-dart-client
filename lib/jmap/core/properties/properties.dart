@@ -9,7 +9,8 @@ class Properties with EquatableMixin {
 
   Properties union(Properties other) => Properties(value.union(other.value));
 
-  Properties removeAll(Properties other) => Properties(value..removeAll(other.value));
+  Properties removeAll(Properties other) =>
+      Properties(value..removeAll(other.value));
 
   bool isEmpty() => value.isEmpty;
 

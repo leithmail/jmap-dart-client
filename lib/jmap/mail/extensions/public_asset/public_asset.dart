@@ -25,24 +25,25 @@ class PublicAsset with EquatableMixin {
   final PublicAssetIdentities? identityIds;
 
   PublicAsset({
-      this.id,
-      this.publicURI,
-      this.size,
-      this.contentType,
-      this.blobId,
-      this.identityIds,
+    this.id,
+    this.publicURI,
+    this.size,
+    this.contentType,
+    this.blobId,
+    this.identityIds,
   });
-  
+
   @override
   List<Object?> get props => [
-    id,
-    publicURI,
-    size,
-    contentType,
-    blobId,
-    identityIds,
-  ];
+        id,
+        publicURI,
+        size,
+        contentType,
+        blobId,
+        identityIds,
+      ];
 
-  factory PublicAsset.fromJson(Map<String, dynamic> json) => _$PublicAssetFromJson(json);
+  factory PublicAsset.fromJson(Map<String, dynamic> json) =>
+      _$PublicAssetFromJson(json);
   Map<String, dynamic> toJson() => _$PublicAssetToJson(this);
 }

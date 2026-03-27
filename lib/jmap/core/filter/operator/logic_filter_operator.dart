@@ -7,13 +7,13 @@ class LogicFilterOperator extends FilterOperator {
 
   @override
   List<Object?> get props => [
-    operator,
-    conditions,
-  ];
+        operator,
+        conditions,
+      ];
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{
-    'operator': operator.name,
-    'conditions': conditions.map((e) => e.toJson()).toList(),
-  };
+        'operator': operator.name,
+        'conditions': conditions.map((e) => e.toJson()).toList(),
+      };
 }

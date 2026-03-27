@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 
 class PatchObject with EquatableMixin {
-
   static const mailboxIdsProperty = 'mailboxIds';
   static const keywordsProperty = 'keywords';
   static const identityIdsProperty = 'identityIds';

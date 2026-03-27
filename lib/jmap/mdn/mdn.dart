@@ -9,7 +9,6 @@ part 'mdn.g.dart';
 @EmailIdNullableConverter()
 @JsonSerializable(explicitToJson: true)
 class MDN with EquatableMixin {
-
   @JsonKey(includeIfNull: false)
   final EmailId? forEmailId;
 
@@ -44,39 +43,37 @@ class MDN with EquatableMixin {
   final List<String>? error;
 
   @JsonKey(includeIfNull: false)
-  final Map<String,String>? extensionFields;
+  final Map<String, String>? extensionFields;
 
-  MDN({
-    this.disposition,
-    this.forEmailId,
-    this.subject,
-    this.textBody,
-    this.includeOriginalMessage,
-    this.reportingUA,
-    this.mdnGateway,
-    this.originalRecipient,
-    this.finalRecipient,
-    this.originalMessageId,
-    this.error,
-    this.extensionFields
-  });
-
+  MDN(
+      {this.disposition,
+      this.forEmailId,
+      this.subject,
+      this.textBody,
+      this.includeOriginalMessage,
+      this.reportingUA,
+      this.mdnGateway,
+      this.originalRecipient,
+      this.finalRecipient,
+      this.originalMessageId,
+      this.error,
+      this.extensionFields});
 
   @override
   List<Object?> get props => [
-    forEmailId,
-    subject,
-    textBody,
-    includeOriginalMessage,
-    reportingUA,
-    disposition,
-    mdnGateway,
-    originalRecipient,
-    finalRecipient,
-    originalMessageId,
-    error,
-    extensionFields
-  ];
+        forEmailId,
+        subject,
+        textBody,
+        includeOriginalMessage,
+        reportingUA,
+        disposition,
+        mdnGateway,
+        originalRecipient,
+        finalRecipient,
+        originalMessageId,
+        error,
+        extensionFields
+      ];
 
   factory MDN.fromJson(Map<String, dynamic> json) => _$MDNFromJson(json);
 

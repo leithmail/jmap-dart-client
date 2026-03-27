@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/http/converter/id_converter.dart';
 import 'package:jmap_dart_client/http/converter/quotas/data_type_converter.dart';
@@ -32,18 +31,16 @@ class Quota with EquatableMixin {
     this.id,
     this.resourceType,
     this.scope,
-    this.name,
-    {
-      this.used,
-      this.hardLimit,
-      this.limit,
-      this.warnLimit,
-      this.softLimit,
-      this.description,
-      this.types,
-      this.dataTypes,
-    }
-  );
+    this.name, {
+    this.used,
+    this.hardLimit,
+    this.limit,
+    this.warnLimit,
+    this.softLimit,
+    this.description,
+    this.types,
+    this.dataTypes,
+  });
 
   factory Quota.fromJson(Map<String, dynamic> json) => _$QuotaFromJson(json);
 
@@ -51,17 +48,17 @@ class Quota with EquatableMixin {
 
   @override
   List<Object?> get props => [
-    id,
-    resourceType,
-    used,
-    scope,
-    name,
-    dataTypes,
-    hardLimit,
-    limit,
-    warnLimit,
-    softLimit,
-    description,
-    types
-  ];
+        id,
+        resourceType,
+        used,
+        scope,
+        name,
+        dataTypes,
+        hardLimit,
+        limit,
+        warnLimit,
+        softLimit,
+        description,
+        types
+      ];
 }

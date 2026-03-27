@@ -12,46 +12,47 @@ class HttpClient {
 
   Future<Map<String, dynamic>> post(
     String path, {
-      data,
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken,
-      ProgressCallback? onSendProgress,
-      ProgressCallback? onReceiveProgress,
-    }
-  ) async {
-    final newOptions = options?.appendHeaders({HttpHeaders.acceptHeader : jmapHeader})
-      ?? Options(headers: {HttpHeaders.acceptHeader : jmapHeader}) ;
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final newOptions =
+        options?.appendHeaders({HttpHeaders.acceptHeader: jmapHeader}) ??
+            Options(headers: {HttpHeaders.acceptHeader: jmapHeader});
 
-    return await _dio.post(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-        options: newOptions,
-        cancelToken: cancelToken,
-        onSendProgress: onSendProgress,
-        onReceiveProgress: onReceiveProgress)
-      .then((value) => value.data)
-      .catchError((error) => throw error);
+    return await _dio
+        .post(path,
+            data: data,
+            queryParameters: queryParameters,
+            options: newOptions,
+            cancelToken: cancelToken,
+            onSendProgress: onSendProgress,
+            onReceiveProgress: onReceiveProgress)
+        .then((value) => value.data)
+        .catchError((error) => throw error);
   }
 
   Future<dynamic> get(
     String path, {
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      CancelToken? cancelToken,
-      ProgressCallback? onReceiveProgress,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
   }) async {
-    final newOptions = options?.appendHeaders({HttpHeaders.acceptHeader : jmapHeader})
-        ?? Options(headers: {HttpHeaders.acceptHeader : jmapHeader}) ;
+    final newOptions =
+        options?.appendHeaders({HttpHeaders.acceptHeader: jmapHeader}) ??
+            Options(headers: {HttpHeaders.acceptHeader: jmapHeader});
 
-    return await _dio.get(
-        path,
-        queryParameters: queryParameters,
-        options: newOptions,
-        cancelToken: cancelToken,
-        onReceiveProgress: onReceiveProgress)
-      .then((value) => value.data)
-      .catchError((error) => throw error);
+    return await _dio
+        .get(path,
+            queryParameters: queryParameters,
+            options: newOptions,
+            cancelToken: cancelToken,
+            onReceiveProgress: onReceiveProgress)
+        .then((value) => value.data)
+        .catchError((error) => throw error);
   }
 }

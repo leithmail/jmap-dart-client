@@ -10,7 +10,8 @@ class EmailAddress with EquatableMixin {
 
   EmailAddress(this.name, this.email);
 
-  factory EmailAddress.fromJson(Map<String, dynamic> json) => _$EmailAddressFromJson(json);
+  factory EmailAddress.fromJson(Map<String, dynamic> json) =>
+      _$EmailAddressFromJson(json);
 
   Map<String, dynamic> toJson() => _$EmailAddressToJson(this);
 

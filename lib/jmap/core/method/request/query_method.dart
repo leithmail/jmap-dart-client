@@ -7,9 +7,14 @@ import 'package:jmap_dart_client/jmap/core/unsigned_int.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 abstract class QueryMethod extends MethodRequiringAccountId
-    with OptionalPosition, OptionalAnchorOffset, OptionalCalculateTotal,
-        OptionalFilter, OptionalSort, OptionalAnchor, OptionalLimit {
-
+    with
+        OptionalPosition,
+        OptionalAnchorOffset,
+        OptionalCalculateTotal,
+        OptionalFilter,
+        OptionalSort,
+        OptionalAnchor,
+        OptionalLimit {
   QueryMethod(AccountId accountId) : super(accountId);
 }
 

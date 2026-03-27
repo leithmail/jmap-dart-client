@@ -1,4 +1,3 @@
-
 enum CalendarPrivacy {
   public,
   private,

@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:quiver/check.dart';
 
 class ReferencePrefix with EquatableMixin {
-
   static final defaultPrefix = ReferencePrefix('#');
 
   final String value;

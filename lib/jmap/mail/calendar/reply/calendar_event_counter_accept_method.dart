@@ -18,11 +18,10 @@ class CalendarEventCounterAcceptMethod extends CalendarEventReplyMethod {
   MethodName get methodName => MethodName('CalendarEventCounter/accept');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
-    CapabilityIdentifier.jmapCore,
-    CapabilityIdentifier.jamesCalendarEvent
-  };
+  Set<CapabilityIdentifier> get requiredCapabilities =>
+      {CapabilityIdentifier.jmapCore, CapabilityIdentifier.jamesCalendarEvent};
 
   @override
-  Map<String, dynamic> toJson() => _$CalendarEventCounterAcceptMethodToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$CalendarEventCounterAcceptMethodToJson(this);
 }

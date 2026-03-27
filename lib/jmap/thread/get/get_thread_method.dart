@@ -29,9 +29,9 @@ class GetThreadMethod extends GetMethod {
 
   @override
   Set<CapabilityIdentifier> get requiredCapabilities => {
-    CapabilityIdentifier.jmapCore,
-    CapabilityIdentifier.jmapMail,
-  };
+        CapabilityIdentifier.jmapCore,
+        CapabilityIdentifier.jmapMail,
+      };
 
   @override
   Map<String, dynamic> toJson() => _$GetThreadMethodToJson(this);

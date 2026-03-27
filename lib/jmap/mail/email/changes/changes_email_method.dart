@@ -16,7 +16,9 @@ part 'changes_email_method.g.dart';
 @AccountIdConverter()
 @JsonSerializable()
 class ChangesEmailMethod extends ChangesMethod {
-  ChangesEmailMethod(AccountId accountId, State sinceState, {UnsignedInt? maxChanges}) : super(accountId, sinceState);
+  ChangesEmailMethod(AccountId accountId, State sinceState,
+      {UnsignedInt? maxChanges})
+      : super(accountId, sinceState);
 
   @override
   MethodName get methodName => MethodName('Email/changes');
@@ -25,14 +27,12 @@ class ChangesEmailMethod extends ChangesMethod {
   List<Object?> get props => [accountId, sinceState, maxChanges];
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
-    CapabilityIdentifier.jmapCore,
-    CapabilityIdentifier.jmapMail
-  };
+  Set<CapabilityIdentifier> get requiredCapabilities =>
+      {CapabilityIdentifier.jmapCore, CapabilityIdentifier.jmapMail};
 
-  factory ChangesEmailMethod.fromJson(Map<String, dynamic> json) => _$ChangesEmailMethodFromJson(json);
+  factory ChangesEmailMethod.fromJson(Map<String, dynamic> json) =>
+      _$ChangesEmailMethodFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$ChangesEmailMethodToJson(this);
-
 }

@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/http/converter/push/push_subscription_id_nullable_converter.dart';
 import 'package:jmap_dart_client/http/converter/utc_date_nullable_converter.dart';
@@ -13,7 +12,6 @@ part 'push_subscription.g.dart';
 @UTCDateNullableConverter()
 @JsonSerializable()
 class PushSubscription with EquatableMixin {
-
   @JsonKey(includeIfNull: false)
   final PushSubscriptionId? id;
 
@@ -45,12 +43,14 @@ class PushSubscription with EquatableMixin {
     this.types,
   });
 
-  factory PushSubscription.fromJson(Map<String, dynamic> json) => _$PushSubscriptionFromJson(json);
+  factory PushSubscription.fromJson(Map<String, dynamic> json) =>
+      _$PushSubscriptionFromJson(json);
 
   Map<String, dynamic> toJson() => _$PushSubscriptionToJson(this);
 
   @override
-  List<Object?> get props => [id, deviceClientId, url, keys, verificationCode, expires, types];
+  List<Object?> get props =>
+      [id, deviceClientId, url, keys, verificationCode, expires, types];
 }
 
 class PushSubscriptionId with EquatableMixin {

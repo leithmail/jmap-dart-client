@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/http/converter/calendar/calendar_duration_nullable_converter.dart';
 import 'package:jmap_dart_client/http/converter/calendar/calendar_extension_fields_nullable_converter.dart';
@@ -31,7 +30,6 @@ part 'calendar_event.g.dart';
 @CalendarAttendeeExtensionFieldsNullableConverter()
 @JsonSerializable(explicitToJson: true, includeIfNull: false)
 class CalendarEvent with EquatableMixin {
-
   @JsonKey(name: 'uid')
   final EventId? eventId;
 
@@ -65,56 +63,56 @@ class CalendarEvent with EquatableMixin {
   final List<RecurrenceRule>? recurrenceRules;
   final List<RecurrenceRule>? excludedCalendarEvents;
 
-  CalendarEvent({
-    this.eventId,
-    this.title,
-    this.description,
-    this.startDate,
-    this.endDate,
-    this.startUtcDate,
-    this.endUtcDate,
-    this.duration,
-    this.timeZone,
-    this.location,
-    this.method,
-    this.sequence,
-    this.privacy,
-    this.priority,
-    this.freeBusyStatus,
-    this.status,
-    this.organizer,
-    this.participants,
-    this.extensionFields,
-    this.recurrenceRules,
-    this.excludedCalendarEvents
-  });
+  CalendarEvent(
+      {this.eventId,
+      this.title,
+      this.description,
+      this.startDate,
+      this.endDate,
+      this.startUtcDate,
+      this.endUtcDate,
+      this.duration,
+      this.timeZone,
+      this.location,
+      this.method,
+      this.sequence,
+      this.privacy,
+      this.priority,
+      this.freeBusyStatus,
+      this.status,
+      this.organizer,
+      this.participants,
+      this.extensionFields,
+      this.recurrenceRules,
+      this.excludedCalendarEvents});
 
-  factory CalendarEvent.fromJson(Map<String, dynamic> json) => _$CalendarEventFromJson(json);
+  factory CalendarEvent.fromJson(Map<String, dynamic> json) =>
+      _$CalendarEventFromJson(json);
 
   Map<String, dynamic> toJson() => _$CalendarEventToJson(this);
 
   @override
   List<Object?> get props => [
-    eventId,
-    title,
-    description,
-    startDate,
-    endDate,
-    startUtcDate,
-    endUtcDate,
-    duration,
-    timeZone,
-    location,
-    method,
-    sequence,
-    privacy,
-    priority,
-    freeBusyStatus,
-    status,
-    organizer,
-    participants,
-    extensionFields,
-    recurrenceRules,
-    excludedCalendarEvents
-  ];
+        eventId,
+        title,
+        description,
+        startDate,
+        endDate,
+        startUtcDate,
+        endUtcDate,
+        duration,
+        timeZone,
+        location,
+        method,
+        sequence,
+        privacy,
+        priority,
+        freeBusyStatus,
+        status,
+        organizer,
+        participants,
+        extensionFields,
+        recurrenceRules,
+        excludedCalendarEvents
+      ];
 }

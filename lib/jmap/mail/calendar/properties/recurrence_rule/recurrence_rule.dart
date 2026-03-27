@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/http/converter/calendar/recurrence_rule_count_nullable_converter.dart';
 import 'package:jmap_dart_client/http/converter/calendar/recurrence_rule_interval_nullable_converter.dart';
@@ -24,7 +23,6 @@ part 'recurrence_rule.g.dart';
 @UTCDateNullableConverter()
 @JsonSerializable(explicitToJson: true, includeIfNull: false)
 class RecurrenceRule with EquatableMixin {
-
   final RecurrenceRuleFrequency? frequency;
   final RecurrenceRuleInterval? interval;
   final RecurrenceRuleRScale? rscale;
@@ -42,46 +40,46 @@ class RecurrenceRule with EquatableMixin {
   final RecurrenceRuleCount? count;
   final UTCDate? until;
 
-  RecurrenceRule({
-    this.frequency,
-    this.interval,
-    this.rscale,
-    this.skip,
-    this.firstDayOfWeek,
-    this.byDay,
-    this.byMonthDay,
-    this.byMonth,
-    this.byYearDay,
-    this.byWeekNo,
-    this.byHour,
-    this.byMinute,
-    this.bySecond,
-    this.bySetPosition,
-    this.count,
-    this.until
-  });
+  RecurrenceRule(
+      {this.frequency,
+      this.interval,
+      this.rscale,
+      this.skip,
+      this.firstDayOfWeek,
+      this.byDay,
+      this.byMonthDay,
+      this.byMonth,
+      this.byYearDay,
+      this.byWeekNo,
+      this.byHour,
+      this.byMinute,
+      this.bySecond,
+      this.bySetPosition,
+      this.count,
+      this.until});
 
-  factory RecurrenceRule.fromJson(Map<String, dynamic> json) => _$RecurrenceRuleFromJson(json);
+  factory RecurrenceRule.fromJson(Map<String, dynamic> json) =>
+      _$RecurrenceRuleFromJson(json);
 
   Map<String, dynamic> toJson() => _$RecurrenceRuleToJson(this);
 
   @override
   List<Object?> get props => [
-    frequency,
-    interval,
-    rscale,
-    skip,
-    firstDayOfWeek,
-    byDay,
-    byMonthDay,
-    byMonth,
-    byYearDay,
-    byWeekNo,
-    byHour,
-    byMinute,
-    bySecond,
-    bySetPosition,
-    count,
-    until
-  ];
+        frequency,
+        interval,
+        rscale,
+        skip,
+        firstDayOfWeek,
+        byDay,
+        byMonthDay,
+        byMonth,
+        byYearDay,
+        byWeekNo,
+        byHour,
+        byMinute,
+        bySecond,
+        bySetPosition,
+        count,
+        until
+      ];
 }

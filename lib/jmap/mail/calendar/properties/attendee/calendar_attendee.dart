@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/http/converter/calendar/calendar_attendee_expect_reply_nullable_converter.dart';
 import 'package:jmap_dart_client/http/converter/calendar/calendar_attendee_kind_nullable_converter.dart';
@@ -24,7 +23,6 @@ part 'calendar_attendee.g.dart';
 @CalendarAttendeeNameNullableConverter()
 @JsonSerializable(explicitToJson: true, includeIfNull: false)
 class CalendarAttendee with EquatableMixin {
-
   final CalendarAttendeeName? name;
   final CalendarAttendeeMailTo? mailto;
   final CalendarAttendeeKind? kind;
@@ -32,26 +30,20 @@ class CalendarAttendee with EquatableMixin {
   final CalendarAttendeeParticipationStatus? participationStatus;
   final CalendarAttendeeExpectReply? expectReply;
 
-  CalendarAttendee({
-    this.name,
-    this.mailto,
-    this.kind,
-    this.role,
-    this.participationStatus,
-    this.expectReply
-  });
+  CalendarAttendee(
+      {this.name,
+      this.mailto,
+      this.kind,
+      this.role,
+      this.participationStatus,
+      this.expectReply});
 
-  factory CalendarAttendee.fromJson(Map<String, dynamic> json) => _$CalendarAttendeeFromJson(json);
+  factory CalendarAttendee.fromJson(Map<String, dynamic> json) =>
+      _$CalendarAttendeeFromJson(json);
 
   Map<String, dynamic> toJson() => _$CalendarAttendeeToJson(this);
 
   @override
-  List<Object?> get props => [
-    name,
-    mailto,
-    kind,
-    role,
-    participationStatus,
-    expectReply
-  ];
+  List<Object?> get props =>
+      [name, mailto, kind, role, participationStatus, expectReply];
 }

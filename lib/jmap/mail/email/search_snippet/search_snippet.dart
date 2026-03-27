@@ -6,10 +6,9 @@ import 'package:json_annotation/json_annotation.dart';
 part 'search_snippet.g.dart';
 
 @JsonSerializable(
-  includeIfNull: false,
-  explicitToJson: true,
-  converters: [EmailIdConverter()]
-)
+    includeIfNull: false,
+    explicitToJson: true,
+    converters: [EmailIdConverter()])
 class SearchSnippet with EquatableMixin {
   final EmailId emailId;
   final String? subject;
@@ -21,9 +20,10 @@ class SearchSnippet with EquatableMixin {
     required this.preview,
   });
 
-  factory SearchSnippet.fromJson(Map<String, dynamic> json) => _$SearchSnippetFromJson(json);
+  factory SearchSnippet.fromJson(Map<String, dynamic> json) =>
+      _$SearchSnippetFromJson(json);
   Map<String, dynamic> toJson() => _$SearchSnippetToJson(this);
-  
+
   @override
   List<Object?> get props => [emailId, subject, preview];
 }

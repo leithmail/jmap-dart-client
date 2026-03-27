@@ -10,11 +10,13 @@ class WebSocketCapability extends CapabilityProperties {
 
   WebSocketCapability({this.supportsPush, this.url});
 
-  factory WebSocketCapability.fromJson(Map<String, dynamic> json) => _$WebSocketCapabilityFromJson(json);
+  factory WebSocketCapability.fromJson(Map<String, dynamic> json) =>
+      _$WebSocketCapabilityFromJson(json);
 
   Map<String, dynamic> toJson() => _$WebSocketCapabilityToJson(this);
 
-  static WebSocketCapability deserialize(Map<String, dynamic> json) => WebSocketCapability.fromJson(json);
+  static WebSocketCapability deserialize(Map<String, dynamic> json) =>
+      WebSocketCapability.fromJson(json);
 
   @override
   List<Object?> get props => [supportsPush, url];

@@ -18,7 +18,7 @@ import 'package:jmap_dart_client/jmap/mail/email/search_snippet/search_snippet_g
 import 'package:jmap_dart_client/jmap/mail/email/search_snippet/search_snippet_get_response.dart';
 
 void main() {
-  final baseOption  = BaseOptions(method: 'POST');
+  final baseOption = BaseOptions(method: 'POST');
   final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
   final dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
 
@@ -29,71 +29,71 @@ void main() {
   Map<String, dynamic> generateResponse({
     required List<SearchSnippet> foundSearchSnippets,
     required List<EmailId> notFoundEmailIds,
-  }) => {
-    "sessionState": sessionState.value,
-    "methodResponses": [
-      [
-        "Email/query",
-        {
-          "accountId": accountId.id.value,
-          "ids": foundSearchSnippets
-            .map((searchSnippet) => searchSnippet.emailId.id.value)
-            .toList()
-            ..addAll(notFoundEmailIds.map((emailId) => emailId.id.value)),
-        },
-        "c0"
-      ],
-      [
-        "SearchSnippet/get",
-        {
-          "accountId": accountId.id.value,
-          "notFound": notFoundEmailIds.map((emailId) => emailId.id.value).toList(),
-          "state": state.value,
-          "list": foundSearchSnippets.map((searchSnippet) => searchSnippet.toJson()).toList(),
-        },
-        "c1"
-      ]
-    ]
-  };
+  }) =>
+      {
+        "sessionState": sessionState.value,
+        "methodResponses": [
+          [
+            "Email/query",
+            {
+              "accountId": accountId.id.value,
+              "ids": foundSearchSnippets
+                  .map((searchSnippet) => searchSnippet.emailId.id.value)
+                  .toList()
+                ..addAll(notFoundEmailIds.map((emailId) => emailId.id.value)),
+            },
+            "c0"
+          ],
+          [
+            "SearchSnippet/get",
+            {
+              "accountId": accountId.id.value,
+              "notFound":
+                  notFoundEmailIds.map((emailId) => emailId.id.value).toList(),
+              "state": state.value,
+              "list": foundSearchSnippets
+                  .map((searchSnippet) => searchSnippet.toJson())
+                  .toList(),
+            },
+            "c1"
+          ]
+        ]
+      };
 
   Map<String, dynamic> generateRequest({
     required List<SearchSnippet> foundSearchSnippets,
     required List<EmailId> notFoundEmailIds,
     required Filter filter,
-  }) => {
-    "using": [
-      "urn:ietf:params:jmap:core",
-      "urn:ietf:params:jmap:mail"
-    ],
-    "methodCalls": [
-      [
-        "Email/query",
-        {
-          "accountId": accountId.id.value,
-          "filter": filter.toJson(),
-        },
-        "c0"
-      ],
-      [
-        "SearchSnippet/get",
-        {
-          "accountId": accountId.id.value,
-          "filter": filter.toJson(),
-          "#emailIds": {
-            "resultOf": "c0",
-            "name": "Email/query",
-            "path": "/ids/*"
-          },
-        },
-        "c1"
-      ]
-    ]
-  };
+  }) =>
+      {
+        "using": ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail"],
+        "methodCalls": [
+          [
+            "Email/query",
+            {
+              "accountId": accountId.id.value,
+              "filter": filter.toJson(),
+            },
+            "c0"
+          ],
+          [
+            "SearchSnippet/get",
+            {
+              "accountId": accountId.id.value,
+              "filter": filter.toJson(),
+              "#emailIds": {
+                "resultOf": "c0",
+                "name": "Email/query",
+                "path": "/ids/*"
+              },
+            },
+            "c1"
+          ]
+        ]
+      };
 
   group('search snippet get method test:', () {
-    test(
-      'should return search snippet if email exists',
-    () async {
+    test('should return search snippet if email exists', () async {
       // arrange
       final foundSearchSnippets = [
         SearchSnippet(
@@ -108,9 +108,7 @@ void main() {
         (server) => server.reply(
           200,
           generateResponse(
-            foundSearchSnippets: foundSearchSnippets,
-            notFoundEmailIds: []
-          ),
+              foundSearchSnippets: foundSearchSnippets, notFoundEmailIds: []),
         ),
         data: generateRequest(
           foundSearchSnippets: foundSearchSnippets,
@@ -121,40 +119,37 @@ void main() {
 
       final HttpClient httpClient = HttpClient(dio);
       final processingInvocation = ProcessingInvocation();
-      final jmapRequestBuilder = JmapRequestBuilder(httpClient, processingInvocation);
+      final jmapRequestBuilder =
+          JmapRequestBuilder(httpClient, processingInvocation);
 
-      final emailQueryMethod = QueryEmailMethod(accountId)
-        ..filter = filter;
-      final emailQueryMethodInvocation = jmapRequestBuilder.invocation(
-        emailQueryMethod);
+      final emailQueryMethod = QueryEmailMethod(accountId)..filter = filter;
+      final emailQueryMethodInvocation =
+          jmapRequestBuilder.invocation(emailQueryMethod);
 
       final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
         ..filter = filter;
       searchSnippetGetMethod.addReferenceEmailIds(
-        processingInvocation.createResultReference(
-          emailQueryMethodInvocation.methodCallId,
-          ReferencePath.idsPath));
-      final searchSnippetGetMethodInvocation = jmapRequestBuilder.invocation(
-        searchSnippetGetMethod);
-      
+          processingInvocation.createResultReference(
+              emailQueryMethodInvocation.methodCallId, ReferencePath.idsPath));
+      final searchSnippetGetMethodInvocation =
+          jmapRequestBuilder.invocation(searchSnippetGetMethod);
+
       // act
       final result = await (jmapRequestBuilder
-          ..usings(searchSnippetGetMethod.requiredCapabilities))
-        .build()
-        .execute();
+            ..usings(searchSnippetGetMethod.requiredCapabilities))
+          .build()
+          .execute();
 
       final searchSnippetGetResponse = result.parse<SearchSnippetGetResponse>(
-        searchSnippetGetMethodInvocation.methodCallId,
-        SearchSnippetGetResponse.fromJson);
-      
+          searchSnippetGetMethodInvocation.methodCallId,
+          SearchSnippetGetResponse.fromJson);
+
       // assert
       expect(searchSnippetGetResponse?.list, equals(foundSearchSnippets));
       expect(searchSnippetGetResponse?.notFound, isEmpty);
     });
 
-    test(
-      'should return null if email not found',
-    () async {
+    test('should return null if email not found', () async {
       // arrange
       final notFoundEmailIds = [EmailId(Id('some-email-id'))];
       final filter = EmailFilterCondition(text: 'some-text');
@@ -163,9 +158,7 @@ void main() {
         (server) => server.reply(
           200,
           generateResponse(
-            foundSearchSnippets: [],
-            notFoundEmailIds: notFoundEmailIds
-          ),
+              foundSearchSnippets: [], notFoundEmailIds: notFoundEmailIds),
         ),
         data: generateRequest(
           foundSearchSnippets: [],
@@ -176,41 +169,37 @@ void main() {
 
       final HttpClient httpClient = HttpClient(dio);
       final processingInvocation = ProcessingInvocation();
-      final jmapRequestBuilder = JmapRequestBuilder(httpClient, processingInvocation);
+      final jmapRequestBuilder =
+          JmapRequestBuilder(httpClient, processingInvocation);
 
-      final emailQueryMethod = QueryEmailMethod(accountId)
-        ..filter = filter;
-      final emailQueryMethodInvocation = jmapRequestBuilder.invocation(
-        emailQueryMethod);
+      final emailQueryMethod = QueryEmailMethod(accountId)..filter = filter;
+      final emailQueryMethodInvocation =
+          jmapRequestBuilder.invocation(emailQueryMethod);
 
       final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
         ..filter = filter;
       searchSnippetGetMethod.addReferenceEmailIds(
-        processingInvocation.createResultReference(
-          emailQueryMethodInvocation.methodCallId,
-          ReferencePath.idsPath));
-      final methodInvocation = jmapRequestBuilder.invocation(searchSnippetGetMethod);
-      
+          processingInvocation.createResultReference(
+              emailQueryMethodInvocation.methodCallId, ReferencePath.idsPath));
+      final methodInvocation =
+          jmapRequestBuilder.invocation(searchSnippetGetMethod);
+
       // act
       final result = await (jmapRequestBuilder
-          ..usings(searchSnippetGetMethod.requiredCapabilities))
-        .build()
-        .execute();
+            ..usings(searchSnippetGetMethod.requiredCapabilities))
+          .build()
+          .execute();
 
       final searchSnippetGetResponse = result.parse<SearchSnippetGetResponse>(
-        methodInvocation.methodCallId,
-        SearchSnippetGetResponse.fromJson);
-      
+          methodInvocation.methodCallId, SearchSnippetGetResponse.fromJson);
+
       // assert
       expect(searchSnippetGetResponse?.list, isEmpty);
-      expect(
-        searchSnippetGetResponse?.notFound,
-        equals(notFoundEmailIds.map((emailId) => emailId.id)));
+      expect(searchSnippetGetResponse?.notFound,
+          equals(notFoundEmailIds.map((emailId) => emailId.id)));
     });
 
-    test(
-      'should return error if server returns error',
-    () async {
+    test('should return error if server returns error', () async {
       // arrange
       final notFoundEmailIds = [EmailId(Id('some-email-id'))];
       final filter = EmailFilterCondition(text: 'some-text');
@@ -225,7 +214,9 @@ void main() {
                 "Email/query",
                 {
                   "accountId": accountId.id.value,
-                  "ids": notFoundEmailIds.map((emailId) => emailId.id.value).toList(),
+                  "ids": notFoundEmailIds
+                      .map((emailId) => emailId.id.value)
+                      .toList(),
                 },
                 "c0"
               ],
@@ -248,34 +239,32 @@ void main() {
 
       final HttpClient httpClient = HttpClient(dio);
       final processingInvocation = ProcessingInvocation();
-      final jmapRequestBuilder = JmapRequestBuilder(httpClient, processingInvocation);
+      final jmapRequestBuilder =
+          JmapRequestBuilder(httpClient, processingInvocation);
 
-      final emailQueryMethod = QueryEmailMethod(accountId)
-        ..filter = filter;
-      final emailQueryMethodInvocation = jmapRequestBuilder.invocation(
-        emailQueryMethod);
+      final emailQueryMethod = QueryEmailMethod(accountId)..filter = filter;
+      final emailQueryMethodInvocation =
+          jmapRequestBuilder.invocation(emailQueryMethod);
 
       final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
         ..filter = filter;
       searchSnippetGetMethod.addReferenceEmailIds(
-        processingInvocation.createResultReference(
-          emailQueryMethodInvocation.methodCallId,
-          ReferencePath.idsPath));
-      final methodInvocation = jmapRequestBuilder.invocation(searchSnippetGetMethod);
-      
+          processingInvocation.createResultReference(
+              emailQueryMethodInvocation.methodCallId, ReferencePath.idsPath));
+      final methodInvocation =
+          jmapRequestBuilder.invocation(searchSnippetGetMethod);
+
       // act
       final result = await (jmapRequestBuilder
-          ..usings(searchSnippetGetMethod.requiredCapabilities))
-        .build()
-        .execute();
-      
+            ..usings(searchSnippetGetMethod.requiredCapabilities))
+          .build()
+          .execute();
+
       // assert
       expect(
-        () => result.parse<SearchSnippetGetResponse>(
-          methodInvocation.methodCallId,
-          SearchSnippetGetResponse.fromJson),
-        throwsA(ErrorMethodResponseException(UnknownMethodResponse()))
-      );
+          () => result.parse<SearchSnippetGetResponse>(
+              methodInvocation.methodCallId, SearchSnippetGetResponse.fromJson),
+          throwsA(ErrorMethodResponseException(UnknownMethodResponse())));
     });
   });
 }

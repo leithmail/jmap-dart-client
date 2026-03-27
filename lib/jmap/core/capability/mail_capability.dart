@@ -9,7 +9,6 @@ part 'mail_capability.g.dart';
 @UnsignedIntNullableConverter()
 @JsonSerializable(explicitToJson: true, includeIfNull: false)
 class MailCapability extends CapabilityProperties with EquatableMixin {
-
   final UnsignedInt? maxMailboxesPerEmail;
   final UnsignedInt? maxMailboxDepth;
   final UnsignedInt? maxSizeMailboxName;
@@ -30,7 +29,8 @@ class MailCapability extends CapabilityProperties with EquatableMixin {
     this.mayCreateTopLevelMailbox,
   });
 
-  factory MailCapability.fromJson(Map<String, dynamic> json) => _$MailCapabilityFromJson(json);
+  factory MailCapability.fromJson(Map<String, dynamic> json) =>
+      _$MailCapabilityFromJson(json);
 
   Map<String, dynamic> toJson() => _$MailCapabilityToJson(this);
 
@@ -40,13 +40,13 @@ class MailCapability extends CapabilityProperties with EquatableMixin {
 
   @override
   List<Object?> get props => [
-    maxMailboxesPerEmail,
-    maxMailboxDepth,
-    maxSizeMailboxName,
-    maxKeywordsPerEmail,
-    maxSizeAttachmentsPerEmail,
-    emailQuerySortOptions,
-    emailsListSortOptions,
-    mayCreateTopLevelMailbox
-  ];
+        maxMailboxesPerEmail,
+        maxMailboxDepth,
+        maxSizeMailboxName,
+        maxKeywordsPerEmail,
+        maxSizeAttachmentsPerEmail,
+        emailQuerySortOptions,
+        emailsListSortOptions,
+        mayCreateTopLevelMailbox
+      ];
 }

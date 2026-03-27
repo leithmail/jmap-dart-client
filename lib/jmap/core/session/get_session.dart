@@ -11,9 +11,10 @@ class GetSession {
   GetSession(this._httpClient, this._capabilitiesConverter);
 
   Future<Session> execute() async {
-    return await _httpClient.get('/.well-known/jmap')
-      .then((value) => extractData(value))
-      .catchError((error) => throw error);
+    return await _httpClient
+        .get('/.well-known/jmap')
+        .then((value) => extractData(value))
+        .catchError((error) => throw error);
   }
 
   Session extractData(Map<String, dynamic> body) {
@@ -27,7 +28,10 @@ class GetSessionBuilder {
 
   GetSessionBuilder(this._httpClient);
 
-  void registerCapabilityConverter(Map<CapabilityIdentifier, CapabilityProperties Function(Map<String, dynamic>)> converters) {
+  void registerCapabilityConverter(
+      Map<CapabilityIdentifier,
+              CapabilityProperties Function(Map<String, dynamic>)>
+          converters) {
     _capabilitiesConverter.addConverters(converters);
     _capabilitiesConverter.build();
   }

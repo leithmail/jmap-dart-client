@@ -15,25 +15,22 @@ class JmapRequest {
   final HttpClient _httpClient;
   final BuiltSet<CapabilityIdentifier> _capabilities;
   final BuiltMap<MethodCallId, RequestInvocation> _invocations;
-  
+
   JmapRequest(this._httpClient, this._capabilities, this._invocations);
-  
+
   RequestObject? _requestObject;
   RequestObject? get requestObject => _requestObject;
 
   Future<ResponseObject> execute({CancelToken? cancelToken}) async {
     _requestObject = (RequestObject.builder()
-        ..usings(_capabilities.asSet())
-        ..methodCalls(_invocations.values.toList()))
-      .build();
+          ..usings(_capabilities.asSet())
+          ..methodCalls(_invocations.values.toList()))
+        .build();
 
-    return _httpClient.post(
-      '',
-      data: _requestObject?.toJson(),
-      cancelToken: cancelToken
-    )
-      .then(extractData)
-      .catchError((error) => throw error);
+    return _httpClient
+        .post('', data: _requestObject?.toJson(), cancelToken: cancelToken)
+        .then(extractData)
+        .catchError((error) => throw error);
   }
 
   ResponseObject extractData(Map<String, dynamic> body) {
@@ -50,11 +47,8 @@ class JmapRequestBuilder {
 
   RequestInvocation invocation(Method method, {MethodCallId? methodCallId}) {
     final callId = methodCallId ?? _processingInvocation.generateMethodCallId();
-    final RequestInvocation invocation = RequestInvocation(
-        method.methodName,
-        Arguments(method),
-        callId
-    );
+    final RequestInvocation invocation =
+        RequestInvocation(method.methodName, Arguments(method), callId);
     _processingInvocation.addMethod(callId, invocation);
     return invocation;
   }
@@ -64,7 +58,8 @@ class JmapRequestBuilder {
   }
 
   JmapRequest build() {
-    return JmapRequest(_httpClient, _capabilitiesBuilder.build(), _processingInvocation._invocations);
+    return JmapRequest(_httpClient, _capabilitiesBuilder.build(),
+        _processingInvocation._invocations);
   }
 }
 
@@ -78,18 +73,19 @@ class ProcessingInvocation {
 
   MethodCallId generateMethodCallId() {
     return positiveIntegers
-      .map((item) => MethodCallId(methodCallIdPrefix + item.toString()))
-      .firstWhere((callId) => !_invocations.keys.contains(callId));
+        .map((item) => MethodCallId(methodCallIdPrefix + item.toString()))
+        .firstWhere((callId) => !_invocations.keys.contains(callId));
   }
 
   void addMethod(MethodCallId callId, RequestInvocation requestInvocation) {
-    _invocations = (_invocations.toBuilder()
-        ..addAll({callId: requestInvocation}))
-      .build();
+    _invocations =
+        (_invocations.toBuilder()..addAll({callId: requestInvocation})).build();
   }
 
-  ResultReference createResultReference(MethodCallId methodCallId, ReferencePath path) {
-    checkArgument(_invocations.containsKey(methodCallId), message: 'no matched method call id');
+  ResultReference createResultReference(
+      MethodCallId methodCallId, ReferencePath path) {
+    checkArgument(_invocations.containsKey(methodCallId),
+        message: 'no matched method call id');
     return _invocations[methodCallId]!.createResultReference(path);
   }
 }

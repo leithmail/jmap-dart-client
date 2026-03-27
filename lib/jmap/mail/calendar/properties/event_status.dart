@@ -1,4 +1,3 @@
-
 enum EventStatus {
   tentative,
   confirmed,

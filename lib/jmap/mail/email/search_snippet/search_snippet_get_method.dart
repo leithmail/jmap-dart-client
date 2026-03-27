@@ -7,7 +7,8 @@ import 'package:jmap_dart_client/jmap/core/request/result_reference.dart';
 import 'package:jmap_dart_client/jmap/mail/email/email_filter_condition.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-class SearchSnippetGetMethod extends GetMethod with OptionalFilter, OptionalReferenceEmailIds {
+class SearchSnippetGetMethod extends GetMethod
+    with OptionalFilter, OptionalReferenceEmailIds {
   SearchSnippetGetMethod(super.accountId);
 
   @override
@@ -17,21 +18,19 @@ class SearchSnippetGetMethod extends GetMethod with OptionalFilter, OptionalRefe
   List<Object?> get props => [methodName, accountId, filter];
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
-    CapabilityIdentifier.jmapCore,
-    CapabilityIdentifier.jmapMail
-  };
+  Set<CapabilityIdentifier> get requiredCapabilities =>
+      {CapabilityIdentifier.jmapCore, CapabilityIdentifier.jmapMail};
 
   factory SearchSnippetGetMethod.fromJson(Map<String, dynamic> json) {
     return SearchSnippetGetMethod(
-      const AccountIdConverter().fromJson(json['accountId'])
-    )
+        const AccountIdConverter().fromJson(json['accountId']))
       ..filter = json['filter'] == null
-        ? null
-        : EmailFilterCondition.fromJson(json['filter'] as Map<String, dynamic>)
+          ? null
+          : EmailFilterCondition.fromJson(
+              json['filter'] as Map<String, dynamic>)
       ..referenceEmailIds = json['#emailIds'] == null
-        ? null
-        : ResultReference.fromJson(json['#emailIds'] as Map<String, dynamic>);
+          ? null
+          : ResultReference.fromJson(json['#emailIds'] as Map<String, dynamic>);
   }
 
   @override

@@ -5,7 +5,8 @@ class UTCDateNullableConverter implements JsonConverter<UTCDate?, String?> {
   const UTCDateNullableConverter();
 
   @override
-  UTCDate? fromJson(String? json) => json != null ? UTCDate(DateTime.parse(json).toUtc()) : null;
+  UTCDate? fromJson(String? json) =>
+      json != null ? UTCDate(DateTime.parse(json).toUtc()) : null;
 
   @override
   String? toJson(UTCDate? object) => object?.value.toUtc().toIso8601String();

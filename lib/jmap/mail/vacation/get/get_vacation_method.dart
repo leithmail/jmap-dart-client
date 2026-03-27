@@ -22,17 +22,13 @@ class GetVacationMethod extends GetMethod {
 
   @override
   Set<CapabilityIdentifier> get requiredCapabilities => {
-    CapabilityIdentifier.jmapCore,
-    CapabilityIdentifier.jmapVacationResponse
-  };
+        CapabilityIdentifier.jmapCore,
+        CapabilityIdentifier.jmapVacationResponse
+      };
 
   @override
-  List<Object?> get props => [
-    methodName,
-    accountId,
-    ids,
-    properties,
-    requiredCapabilities];
+  List<Object?> get props =>
+      [methodName, accountId, ids, properties, requiredCapabilities];
 
   factory GetVacationMethod.fromJson(Map<String, dynamic> json) =>
       _$GetVacationMethodFromJson(json);

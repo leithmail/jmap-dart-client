@@ -7,7 +7,6 @@ import 'package:jmap_dart_client/jmap/core/request/request_invocation.dart';
 import 'package:jmap_dart_client/jmap/mail/extensions/public_asset/public_asset.dart';
 
 class SetPublicAssetMethod extends SetMethod<PublicAsset> {
-
   SetPublicAssetMethod(super.accountId);
 
   @override
@@ -17,10 +16,8 @@ class SetPublicAssetMethod extends SetMethod<PublicAsset> {
   List<Object?> get props => [accountId, ifInState, create, update, destroy];
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
-    CapabilityIdentifier.jmapCore,
-    CapabilityIdentifier.jmapPublicAsset
-  };
+  Set<CapabilityIdentifier> get requiredCapabilities =>
+      {CapabilityIdentifier.jmapCore, CapabilityIdentifier.jmapPublicAsset};
 
   @override
   Map<String, dynamic> toJson() {
@@ -34,12 +31,19 @@ class SetPublicAssetMethod extends SetMethod<PublicAsset> {
       }
     }
 
-    writeNotNull('create', create
-      ?.map((id, create) => SetMethodPropertiesConverter().fromMapIdToJson(id, create.toJson())));
-    writeNotNull('update', update
-      ?.map((id, update) => SetMethodPropertiesConverter().fromMapIdToJson(id, update.toJson())));
-    writeNotNull('destroy', destroy
-      ?.map((destroyId) => const IdConverter().toJson(destroyId)).toList());
+    writeNotNull(
+        'create',
+        create?.map((id, create) => SetMethodPropertiesConverter()
+            .fromMapIdToJson(id, create.toJson())));
+    writeNotNull(
+        'update',
+        update?.map((id, update) => SetMethodPropertiesConverter()
+            .fromMapIdToJson(id, update.toJson())));
+    writeNotNull(
+        'destroy',
+        destroy
+            ?.map((destroyId) => const IdConverter().toJson(destroyId))
+            .toList());
 
     return val;
   }

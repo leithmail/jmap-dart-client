@@ -21,21 +21,21 @@ class GetMailboxMethod extends GetMethod {
   MethodName get methodName => MethodName('Mailbox/get');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
-    CapabilityIdentifier.jmapCore,
-    CapabilityIdentifier.jmapMail
-  };
+  Set<CapabilityIdentifier> get requiredCapabilities =>
+      {CapabilityIdentifier.jmapCore, CapabilityIdentifier.jmapMail};
 
   Set<CapabilityIdentifier> get requiredCapabilitiesSupportTeamMailboxes => {
-    CapabilityIdentifier.jmapCore,
-    CapabilityIdentifier.jmapMail,
-    CapabilityIdentifier.jmapTeamMailboxes
-  };
+        CapabilityIdentifier.jmapCore,
+        CapabilityIdentifier.jmapMail,
+        CapabilityIdentifier.jmapTeamMailboxes
+      };
 
   @override
-  List<Object?> get props => [methodName, accountId, ids, properties, requiredCapabilities];
+  List<Object?> get props =>
+      [methodName, accountId, ids, properties, requiredCapabilities];
 
-  factory GetMailboxMethod.fromJson(Map<String, dynamic> json) => _$GetMailboxMethodFromJson(json);
+  factory GetMailboxMethod.fromJson(Map<String, dynamic> json) =>
+      _$GetMailboxMethodFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$GetMailboxMethodToJson(this);

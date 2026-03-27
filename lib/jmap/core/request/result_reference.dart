@@ -22,7 +22,8 @@ class ResultReference with EquatableMixin {
   @override
   List<Object?> get props => [resultOf, name, path];
 
-  factory ResultReference.fromJson(Map<String, dynamic> json) => _$ResultReferenceFromJson(json);
+  factory ResultReference.fromJson(Map<String, dynamic> json) =>
+      _$ResultReferenceFromJson(json);
 
   Map<String, dynamic> toJson() => _$ResultReferenceToJson(this);
 }

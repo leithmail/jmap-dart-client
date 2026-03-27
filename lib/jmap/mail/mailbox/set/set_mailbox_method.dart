@@ -8,17 +8,16 @@ import 'package:jmap_dart_client/jmap/core/request/request_invocation.dart';
 import 'package:jmap_dart_client/jmap/mail/mailbox/mailbox.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-class SetMailboxMethod extends SetMethod<Mailbox> with OptionalOnDestroyRemoveEmails {
+class SetMailboxMethod extends SetMethod<Mailbox>
+    with OptionalOnDestroyRemoveEmails {
   SetMailboxMethod(AccountId accountId) : super(accountId);
 
   @override
   MethodName get methodName => MethodName('Mailbox/set');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
-    CapabilityIdentifier.jmapMail,
-    CapabilityIdentifier.jmapCore
-  };
+  Set<CapabilityIdentifier> get requiredCapabilities =>
+      {CapabilityIdentifier.jmapMail, CapabilityIdentifier.jmapCore};
 
   @override
   Map<String, dynamic> toJson() {
@@ -31,14 +30,21 @@ class SetMailboxMethod extends SetMethod<Mailbox> with OptionalOnDestroyRemoveEm
         val[key] = value;
       }
     }
-    
+
     writeNotNull('ifInState', ifInState?.value);
-    writeNotNull('create', create
-      ?.map((id, create) => SetMethodPropertiesConverter().fromMapIdToJson(id, create.toJson())));
-    writeNotNull('update', update
-      ?.map((id, update) => SetMethodPropertiesConverter().fromMapIdToJson(id, update.toJson())));
-    writeNotNull('destroy', destroy
-      ?.map((destroyId) => const IdConverter().toJson(destroyId)).toList());
+    writeNotNull(
+        'create',
+        create?.map((id, create) => SetMethodPropertiesConverter()
+            .fromMapIdToJson(id, create.toJson())));
+    writeNotNull(
+        'update',
+        update?.map((id, update) => SetMethodPropertiesConverter()
+            .fromMapIdToJson(id, update.toJson())));
+    writeNotNull(
+        'destroy',
+        destroy
+            ?.map((destroyId) => const IdConverter().toJson(destroyId))
+            .toList());
     writeNotNull('onDestroyRemoveEmails', onDestroyRemoveEmails);
 
     return val;
