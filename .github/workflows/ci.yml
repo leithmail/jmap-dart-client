@@ -7,8 +7,16 @@ on:
   workflow_dispatch:
   pull_request:
     branches: [main]
+    paths:
+      - "lib/**"
+      - "test/**"
+      - "pubspec.yaml"
   push:
     branches: [main]
+    paths:
+      - "lib/**"
+      - "test/**"
+      - "pubspec.yaml"
 
 jobs:
   quality-checks:
