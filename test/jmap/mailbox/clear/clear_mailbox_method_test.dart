@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:jmap_dart_client/http/http_client.dart';
 import 'package:jmap_dart_client/jmap/account_id.dart';
@@ -31,7 +31,7 @@ void main() {
 
   setUpAll(() {
     dio = Dio(BaseOptions(method: 'POST'))..options.baseUrl = baseUrl;
-    dioAdapter = DioAdapter(dio: dio);
+    dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
   });
 
   group('clear mailbox method test:', () {

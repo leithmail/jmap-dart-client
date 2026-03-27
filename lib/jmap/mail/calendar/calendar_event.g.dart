@@ -27,10 +27,10 @@ CalendarEvent _$CalendarEventFromJson(Map<String, dynamic> json) =>
       location: json['location'] as String?,
       method: $enumDecodeNullable(_$EventMethodEnumMap, json['method']),
       sequence: const CalendarSequenceNullableConverter()
-          .fromJson(json['sequence'] as int?),
+          .fromJson((json['sequence'] as num?)?.toInt()),
       privacy: $enumDecodeNullable(_$CalendarPrivacyEnumMap, json['privacy']),
       priority: const CalendarPriorityNullableConverter()
-          .fromJson(json['priority'] as int?),
+          .fromJson((json['priority'] as num?)?.toInt()),
       freeBusyStatus: $enumDecodeNullable(
           _$CalendarFreeBusyStatusEnumMap, json['freeBusyStatus']),
       status: $enumDecodeNullable(_$CalendarEventStatusEnumMap, json['status']),

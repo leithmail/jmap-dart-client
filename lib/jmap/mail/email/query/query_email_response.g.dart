@@ -11,7 +11,7 @@ QueryEmailResponse _$QueryEmailResponseFromJson(Map<String, dynamic> json) =>
       const AccountIdConverter().fromJson(json['accountId'] as String),
       const StateConverter().fromJson(json['queryState'] as String),
       json['canCalculateChanges'] as bool,
-      const UnsignedIntConverter().fromJson(json['position'] as int),
+      const UnsignedIntConverter().fromJson((json['position'] as num).toInt()),
       (json['ids'] as List<dynamic>)
           .map((e) => const IdConverter().fromJson(e as String))
           .toSet(),

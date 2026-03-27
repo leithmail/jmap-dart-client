@@ -9,7 +9,7 @@ part of 'public_asset.dart';
 PublicAsset _$PublicAssetFromJson(Map<String, dynamic> json) => PublicAsset(
       id: const IdNullableConverter().fromJson(json['id'] as String?),
       publicURI: json['publicURI'] as String?,
-      size: json['size'] as int?,
+      size: (json['size'] as num?)?.toInt(),
       contentType: json['contentType'] as String?,
       blobId: const IdNullableConverter().fromJson(json['blobId'] as String?),
       identityIds:

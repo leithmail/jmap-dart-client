@@ -20,9 +20,9 @@ EmailFilterCondition _$EmailFilterConditionFromJson(
       after:
           const UTCDateNullableConverter().fromJson(json['after'] as String?),
       minSize: const UnsignedIntNullableConverter()
-          .fromJson(json['minSize'] as int?),
+          .fromJson((json['minSize'] as num?)?.toInt()),
       maxSize: const UnsignedIntNullableConverter()
-          .fromJson(json['maxSize'] as int?),
+          .fromJson((json['maxSize'] as num?)?.toInt()),
       allInThreadHaveKeyword: json['allInThreadHaveKeyword'] as String?,
       someInThreadHaveKeyword: json['someInThreadHaveKeyword'] as String?,
       noneInThreadHaveKeyword: json['noneInThreadHaveKeyword'] as String?,

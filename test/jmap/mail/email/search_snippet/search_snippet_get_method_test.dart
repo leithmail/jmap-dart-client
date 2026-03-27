@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:jmap_dart_client/http/http_client.dart';
 import 'package:jmap_dart_client/jmap/account_id.dart';
@@ -20,7 +20,7 @@ import 'package:jmap_dart_client/jmap/mail/email/search_snippet/search_snippet_g
 void main() {
   final baseOption  = BaseOptions(method: 'POST');
   final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-  final dioAdapter = DioAdapter(dio: dio);
+  final dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
 
   final sessionState = State('some-session-state');
   final state = State('some-state');

@@ -11,7 +11,7 @@ RecurrenceRule _$RecurrenceRuleFromJson(Map<String, dynamic> json) =>
       frequency: $enumDecodeNullable(
           _$RecurrenceRuleFrequencyEnumMap, json['frequency']),
       interval: const RecurrenceRuleIntervalNullableConverter()
-          .fromJson(json['interval'] as int?),
+          .fromJson((json['interval'] as num?)?.toInt()),
       rscale: const RecurrenceRuleRScaleNullableConverter()
           .fromJson(json['rscale'] as String?),
       skip: $enumDecodeNullable(_$RecurrenceRuleSkipEnumMap, json['skip']),
@@ -20,28 +20,34 @@ RecurrenceRule _$RecurrenceRuleFromJson(Map<String, dynamic> json) =>
       byDay: (json['byDay'] as List<dynamic>?)
           ?.map((e) => $enumDecode(_$DayOfWeekEnumMap, e))
           .toList(),
-      byMonthDay:
-          (json['byMonthDay'] as List<dynamic>?)?.map((e) => e as int).toList(),
+      byMonthDay: (json['byMonthDay'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
       byMonth:
           (json['byMonth'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      byYearDay:
-          (json['byYearDay'] as List<dynamic>?)?.map((e) => e as int).toList(),
-      byWeekNo:
-          (json['byWeekNo'] as List<dynamic>?)?.map((e) => e as int).toList(),
+      byYearDay: (json['byYearDay'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      byWeekNo: (json['byWeekNo'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
       byHour: (json['byHour'] as List<dynamic>?)
-          ?.map((e) => const UnsignedIntConverter().fromJson(e as int))
+          ?.map(
+              (e) => const UnsignedIntConverter().fromJson((e as num).toInt()))
           .toList(),
       byMinute: (json['byMinute'] as List<dynamic>?)
-          ?.map((e) => const UnsignedIntConverter().fromJson(e as int))
+          ?.map(
+              (e) => const UnsignedIntConverter().fromJson((e as num).toInt()))
           .toList(),
       bySecond: (json['bySecond'] as List<dynamic>?)
-          ?.map((e) => const UnsignedIntConverter().fromJson(e as int))
+          ?.map(
+              (e) => const UnsignedIntConverter().fromJson((e as num).toInt()))
           .toList(),
       bySetPosition: (json['bySetPosition'] as List<dynamic>?)
-          ?.map((e) => e as int)
+          ?.map((e) => (e as num).toInt())
           .toList(),
       count: const RecurrenceRuleCountNullableConverter()
-          .fromJson(json['count'] as int?),
+          .fromJson((json['count'] as num?)?.toInt()),
       until:
           const UTCDateNullableConverter().fromJson(json['until'] as String?),
     );

@@ -12,15 +12,16 @@ Mailbox _$MailboxFromJson(Map<String, dynamic> json) => Mailbox(
       parentId: const MailboxIdNullableConverter()
           .fromJson(json['parentId'] as String?),
       role: const RoleConverter().fromJson(json['role'] as String?),
-      sortOrder: const SortOrderConverter().fromJson(json['sortOrder'] as int?),
-      totalEmails:
-          const TotalEmailConverter().fromJson(json['totalEmails'] as int?),
-      unreadEmails:
-          const UnreadEmailsConverter().fromJson(json['unreadEmails'] as int?),
-      totalThreads:
-          const TotalThreadsConverter().fromJson(json['totalThreads'] as int?),
+      sortOrder: const SortOrderConverter()
+          .fromJson((json['sortOrder'] as num?)?.toInt()),
+      totalEmails: const TotalEmailConverter()
+          .fromJson((json['totalEmails'] as num?)?.toInt()),
+      unreadEmails: const UnreadEmailsConverter()
+          .fromJson((json['unreadEmails'] as num?)?.toInt()),
+      totalThreads: const TotalThreadsConverter()
+          .fromJson((json['totalThreads'] as num?)?.toInt()),
       unreadThreads: const UnreadThreadsConverter()
-          .fromJson(json['unreadThreads'] as int?),
+          .fromJson((json['unreadThreads'] as num?)?.toInt()),
       myRights: json['myRights'] == null
           ? null
           : MailboxRights.fromJson(json['myRights'] as Map<String, dynamic>),

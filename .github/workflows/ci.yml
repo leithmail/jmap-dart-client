@@ -5,8 +5,11 @@ name: CI
 env:
   FLUTTER_VERSION: 3.32.8
 
-# Controls when the workflow will run
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -20,16 +23,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Install Flutter
-      - name: Install Flutter
-        uses: subosito/flutter-action@v2
+      # Install Dart
+      - uses: dart-lang/setup-dart@v1
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          channel: "stable"
+          sdk: 3.4
 
       # Install dependencies
       - name: Install dependencies
-        run: flutter pub get
-        
+        run: dart pub get
+
       - name: Unit-tests
-        run: flutter test
+        run: dart test

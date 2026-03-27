@@ -17,7 +17,6 @@ part 'query_mailbox_response.g.dart';
 @AccountIdConverter()
 @JsonSerializable()
 class QueryMailboxResponse extends QueryResponse {
-
   QueryMailboxResponse(
     AccountId accountId,
     State queryState,
@@ -26,9 +25,11 @@ class QueryMailboxResponse extends QueryResponse {
     Set<Id> ids,
     UnsignedInt? total,
     UnsignedInt? limit,
-  ) : super(accountId, queryState, canCalculateChanges, position, ids, total, limit);
+  ) : super(accountId, queryState, canCalculateChanges, position, ids, total,
+            limit);
 
-  factory QueryMailboxResponse.fromJson(Map<String, dynamic> json) => _$QueryMailboxResponseFromJson(json);
+  factory QueryMailboxResponse.fromJson(Map<String, dynamic> json) =>
+      _$QueryMailboxResponseFromJson(json);
 
   static QueryMailboxResponse deserialize(Map<String, dynamic> json) {
     return QueryMailboxResponse.fromJson(json);
@@ -37,5 +38,6 @@ class QueryMailboxResponse extends QueryResponse {
   Map<String, dynamic> toJson() => _$QueryMailboxResponseToJson(this);
 
   @override
-  List<Object?> get props => [accountId, queryState, canCalculateChanges, position, total, ids];
+  List<Object?> get props =>
+      [accountId, queryState, canCalculateChanges, position, total, ids];
 }
