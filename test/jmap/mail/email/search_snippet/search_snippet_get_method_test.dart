@@ -20,7 +20,7 @@ import 'package:jmap_dart_client/jmap/mail/email/search_snippet/search_snippet_g
 void main() {
   final baseOption  = BaseOptions(method: 'POST');
   final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-  final dioAdapter = DioAdapter(dio: dio);
+  final dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
 
   final sessionState = State('some-session-state');
   final state = State('some-state');

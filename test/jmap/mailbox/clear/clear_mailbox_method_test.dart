@@ -31,7 +31,7 @@ void main() {
 
   setUpAll(() {
     dio = Dio(BaseOptions(method: 'POST'))..options.baseUrl = baseUrl;
-    dioAdapter = DioAdapter(dio: dio);
+    dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
   });
 
   group('clear mailbox method test:', () {
