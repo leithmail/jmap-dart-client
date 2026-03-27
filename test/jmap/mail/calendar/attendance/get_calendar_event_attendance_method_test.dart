@@ -17,7 +17,9 @@ void main() {
     final baseOption = BaseOptions(method: 'POST');
     final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
     final dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
-    final dioAdapterHeaders = {"accept": "application/json;jmapVersion=rfc-8621"};
+    final dioAdapterHeaders = {
+      "accept": "application/json;jmapVersion=rfc-8621"
+    };
     final httpClient = HttpClient(dio);
     final processingInvocation = ProcessingInvocation();
     final requestBuilder = JmapRequestBuilder(httpClient, processingInvocation);
@@ -25,13 +27,12 @@ void main() {
     final freeBlobId = Id('abc123');
     final busyBlobId = Id('def456');
     final notFoundBlobId = Id('ghi789');
-    
+
     final methodCallId = MethodCallId('c0');
 
     test(
-      'should return CalendarEventAttendance '
-      'when the method returns success',
-    () async {
+        'should return CalendarEventAttendance '
+        'when the method returns success', () async {
       // arrange
       final freeAttendance = CalendarEventAttendance(
         blobId: freeBlobId,
@@ -44,7 +45,8 @@ void main() {
         isFree: false,
       );
       final blobIds = [freeBlobId, busyBlobId, notFoundBlobId];
-      final getCalendarEventAttendanceMethod = GetCalendarEventAttendanceMethod(accountId, blobIds);
+      final getCalendarEventAttendanceMethod =
+          GetCalendarEventAttendanceMethod(accountId, blobIds);
       final invocation = requestBuilder.invocation(
         getCalendarEventAttendanceMethod,
         methodCallId: methodCallId,
@@ -81,20 +83,16 @@ void main() {
           ]
         ]
       };
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, sampleResponse),
-        data: sampleRequest,
-        headers: dioAdapterHeaders
-      );
-      
+      dioAdapter.onPost('', (server) => server.reply(200, sampleResponse),
+          data: sampleRequest, headers: dioAdapterHeaders);
+
       // act
-      final response = (await (requestBuilder..usings(getCalendarEventAttendanceMethod.requiredCapabilities))
-        .build()
-        .execute())
-        .parse<GetCalendarEventAttendanceResponse>(
-          invocation.methodCallId,
-          GetCalendarEventAttendanceResponse.deserialize);
+      final response = (await (requestBuilder
+                ..usings(getCalendarEventAttendanceMethod.requiredCapabilities))
+              .build()
+              .execute())
+          .parse<GetCalendarEventAttendanceResponse>(invocation.methodCallId,
+              GetCalendarEventAttendanceResponse.deserialize);
 
       // assert
       expect(response?.accountId, equals(accountId));
@@ -104,12 +102,12 @@ void main() {
     });
 
     test(
-      'should return notDone '
-      'when blobId is invalid',
-    () async {
+        'should return notDone '
+        'when blobId is invalid', () async {
       // arrange
       final blobId = Id('invalid');
-      final getCalendarEventAttendanceMethod = GetCalendarEventAttendanceMethod(accountId, [blobId]);
+      final getCalendarEventAttendanceMethod =
+          GetCalendarEventAttendanceMethod(accountId, [blobId]);
       final invocation = requestBuilder.invocation(
         getCalendarEventAttendanceMethod,
         methodCallId: methodCallId,
@@ -150,35 +148,32 @@ void main() {
           ]
         ]
       };
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, sampleResponse),
-        data: sampleRequest,
-        headers: dioAdapterHeaders
-      );
-      
+      dioAdapter.onPost('', (server) => server.reply(200, sampleResponse),
+          data: sampleRequest, headers: dioAdapterHeaders);
+
       // act
-      final response = (await (requestBuilder..usings(getCalendarEventAttendanceMethod.requiredCapabilities))
-        .build()
-        .execute())
-        .parse<GetCalendarEventAttendanceResponse>(
-          invocation.methodCallId,
-          GetCalendarEventAttendanceResponse.deserialize);
+      final response = (await (requestBuilder
+                ..usings(getCalendarEventAttendanceMethod.requiredCapabilities))
+              .build()
+              .execute())
+          .parse<GetCalendarEventAttendanceResponse>(invocation.methodCallId,
+              GetCalendarEventAttendanceResponse.deserialize);
 
       // assert
       expect(response?.accountId, equals(accountId));
       expect(response?.list.isEmpty, isTrue);
       expect(response?.notFound?.isEmpty, isTrue);
-      expect(response?.notDone?[blobId], equals(SetError(SetError.invalidArguments)));
+      expect(response?.notDone?[blobId],
+          equals(SetError(SetError.invalidArguments)));
     });
 
     test(
-      'should return error '
-      'when method returns error',
-    () async {
+        'should return error '
+        'when method returns error', () async {
       // arrange
       final blobId = Id('invalid');
-      final getCalendarEventAttendanceMethod = GetCalendarEventAttendanceMethod(accountId, [blobId]);
+      final getCalendarEventAttendanceMethod =
+          GetCalendarEventAttendanceMethod(accountId, [blobId]);
       final invocation = requestBuilder.invocation(
         getCalendarEventAttendanceMethod,
         methodCallId: methodCallId,
@@ -211,23 +206,20 @@ void main() {
           ]
         ]
       };
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, sampleResponse),
-        data: sampleRequest,
-        headers: dioAdapterHeaders
-      );
-      
+      dioAdapter.onPost('', (server) => server.reply(200, sampleResponse),
+          data: sampleRequest, headers: dioAdapterHeaders);
+
       // act
-      final response = (await (requestBuilder..usings(getCalendarEventAttendanceMethod.requiredCapabilities))
-        .build()
-        .execute());
+      final response = (await (requestBuilder
+            ..usings(getCalendarEventAttendanceMethod.requiredCapabilities))
+          .build()
+          .execute());
 
       // assert
       expect(
         () => response.parse<GetCalendarEventAttendanceResponse>(
-          invocation.methodCallId,
-          GetCalendarEventAttendanceResponse.deserialize),
+            invocation.methodCallId,
+            GetCalendarEventAttendanceResponse.deserialize),
         throwsA(isA<ErrorMethodResponseException>()),
       );
     });

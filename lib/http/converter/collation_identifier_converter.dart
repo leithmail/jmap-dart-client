@@ -1,7 +1,8 @@
 import 'package:jmap_dart_client/jmap/core/sort/collation_identifier.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-class CollationIdentifierConverter implements JsonConverter<CollationIdentifier, String> {
+class CollationIdentifierConverter
+    implements JsonConverter<CollationIdentifier, String> {
   const CollationIdentifierConverter();
 
   @override

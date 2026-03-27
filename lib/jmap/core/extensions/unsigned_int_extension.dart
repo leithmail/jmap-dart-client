@@ -1,4 +1,3 @@
-
 import 'package:jmap_dart_client/jmap/core/unsigned_int.dart';
 import 'package:jmap_dart_client/jmap/core/extensions/num_extension.dart';
 

@@ -39,7 +39,8 @@ class ClearMailboxMethod extends ClearMethod {
       };
 
   @override
-  List<Object?> get props => [methodName, accountId, mailboxId, requiredCapabilities];
+  List<Object?> get props =>
+      [methodName, accountId, mailboxId, requiredCapabilities];
 
   factory ClearMailboxMethod.fromJson(Map<String, dynamic> json) =>
       _$ClearMailboxMethodFromJson(json);

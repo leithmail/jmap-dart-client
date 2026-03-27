@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/http/converter/delivered_converter.dart';
 import 'package:jmap_dart_client/http/converter/displayed_converter.dart';
@@ -16,7 +15,8 @@ class DeliveryStatus with EquatableMixin {
 
   DeliveryStatus(this.smtpReply, this.delivered, this.displayed);
 
-  factory DeliveryStatus.fromJson(Map<String, dynamic> json) => _$DeliveryStatusFromJson(json);
+  factory DeliveryStatus.fromJson(Map<String, dynamic> json) =>
+      _$DeliveryStatusFromJson(json);
 
   Map<String, dynamic> toJson() => _$DeliveryStatusToJson(this);
 

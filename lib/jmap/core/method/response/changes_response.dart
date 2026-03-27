@@ -11,6 +11,7 @@ abstract class ChangesResponse extends ResponseRequiringAccountId {
   final Set<Id> updated;
   final Set<Id> destroyed;
 
-  ChangesResponse(AccountId accountId, this.oldState, this.newState, this.hasMoreChanges,
-      this.created, this.updated, this.destroyed) : super(accountId);
+  ChangesResponse(AccountId accountId, this.oldState, this.newState,
+      this.hasMoreChanges, this.created, this.updated, this.destroyed)
+      : super(accountId);
 }

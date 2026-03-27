@@ -1,4 +1,3 @@
-
 enum RecurrenceRuleFrequency {
   yearly,
   monthly,

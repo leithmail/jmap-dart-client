@@ -8,11 +8,13 @@ part 'mdn_capability.g.dart';
 class MdnCapability extends CapabilityProperties with EquatableMixin {
   MdnCapability();
 
-  factory MdnCapability.fromJson(Map<String, dynamic> json) => _$MdnCapabilityFromJson(json);
+  factory MdnCapability.fromJson(Map<String, dynamic> json) =>
+      _$MdnCapabilityFromJson(json);
 
   Map<String, dynamic> toJson() => _$MdnCapabilityToJson(this);
 
-  static MdnCapability deserialize(Map<String, dynamic> json) => MdnCapability.fromJson(json);
+  static MdnCapability deserialize(Map<String, dynamic> json) =>
+      MdnCapability.fromJson(json);
 
   @override
   List<Object?> get props => [];

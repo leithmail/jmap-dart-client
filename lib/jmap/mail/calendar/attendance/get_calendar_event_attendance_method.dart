@@ -37,9 +37,10 @@ class GetCalendarEventAttendanceMethod extends GetMethod {
 
   factory GetCalendarEventAttendanceMethod.fromJson(
     Map<String, dynamic> json,
-  ) => _$GetCalendarEventAttendanceMethodFromJson(json);
+  ) =>
+      _$GetCalendarEventAttendanceMethodFromJson(json);
 
   @override
   Map<String, dynamic> toJson() =>
-    _$GetCalendarEventAttendanceMethodToJson(this);
+      _$GetCalendarEventAttendanceMethodToJson(this);
 }

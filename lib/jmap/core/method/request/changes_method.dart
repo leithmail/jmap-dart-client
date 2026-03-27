@@ -10,5 +10,6 @@ abstract class ChangesMethod extends MethodRequiringAccountId {
   @JsonKey(includeIfNull: false)
   final UnsignedInt? maxChanges;
 
-  ChangesMethod(AccountId accountId, this.sinceState, {this.maxChanges}) : super(accountId);
+  ChangesMethod(AccountId accountId, this.sinceState, {this.maxChanges})
+      : super(accountId);
 }

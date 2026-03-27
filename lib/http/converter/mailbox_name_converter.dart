@@ -5,7 +5,8 @@ class MailboxNameConverter implements JsonConverter<MailboxName?, String?> {
   const MailboxNameConverter();
 
   @override
-  MailboxName? fromJson(String? json) => json != null ? MailboxName(json) : null;
+  MailboxName? fromJson(String? json) =>
+      json != null ? MailboxName(json) : null;
 
   @override
   String? toJson(MailboxName? object) => object?.name;

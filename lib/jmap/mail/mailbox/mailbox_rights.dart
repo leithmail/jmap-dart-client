@@ -33,6 +33,15 @@ class MailboxRights with EquatableMixin {
   Map<String, dynamic> toJson() => _$MailboxRightsToJson(this);
 
   @override
-  List<Object?> get props => [mayReadItems, mayAddItems, mayRemoveItems, maySetSeen,
-    maySetKeywords, mayCreateChild, mayRename, mayDelete, maySubmit];
+  List<Object?> get props => [
+        mayReadItems,
+        mayAddItems,
+        mayRemoveItems,
+        maySetSeen,
+        maySetKeywords,
+        mayCreateChild,
+        mayRename,
+        mayDelete,
+        maySubmit
+      ];
 }

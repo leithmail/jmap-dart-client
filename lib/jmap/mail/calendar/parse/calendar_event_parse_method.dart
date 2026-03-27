@@ -6,17 +6,14 @@ import 'package:jmap_dart_client/jmap/core/method/request/parse_method.dart';
 import 'package:jmap_dart_client/jmap/core/request/request_invocation.dart';
 
 class CalendarEventParseMethod extends ParseMethod {
-
   CalendarEventParseMethod(super.accountId, super.blobIds);
 
   @override
   MethodName get methodName => MethodName('CalendarEvent/parse');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
-    CapabilityIdentifier.jmapCore,
-    CapabilityIdentifier.jamesCalendarEvent
-  };
+  Set<CapabilityIdentifier> get requiredCapabilities =>
+      {CapabilityIdentifier.jmapCore, CapabilityIdentifier.jamesCalendarEvent};
 
   @override
   Map<String, dynamic> toJson() {

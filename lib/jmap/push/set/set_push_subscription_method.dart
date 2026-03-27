@@ -5,16 +5,16 @@ import 'package:jmap_dart_client/jmap/core/method/request/set_method.dart';
 import 'package:jmap_dart_client/jmap/core/request/request_invocation.dart';
 import 'package:jmap_dart_client/jmap/push/push_subscription.dart';
 
-class SetPushSubscriptionMethod extends SetMethodNoNeedAccountId<PushSubscription> {
+class SetPushSubscriptionMethod
+    extends SetMethodNoNeedAccountId<PushSubscription> {
   SetPushSubscriptionMethod() : super();
 
   @override
   MethodName get methodName => MethodName('PushSubscription/set');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
-    CapabilityIdentifier.jmapCore
-  };
+  Set<CapabilityIdentifier> get requiredCapabilities =>
+      {CapabilityIdentifier.jmapCore};
 
   @override
   Map<String, dynamic> toJson() {
@@ -25,13 +25,20 @@ class SetPushSubscriptionMethod extends SetMethodNoNeedAccountId<PushSubscriptio
         val[key] = value;
       }
     }
-    
-    writeNotNull('create', create
-      ?.map((id, create) => SetMethodPropertiesConverter().fromMapIdToJson(id, create.toJson())));
-    writeNotNull('update', update
-      ?.map((id, update) => SetMethodPropertiesConverter().fromMapIdToJson(id, update.toJson())));
-    writeNotNull('destroy', destroy
-      ?.map((destroyId) => const IdConverter().toJson(destroyId)).toList());
+
+    writeNotNull(
+        'create',
+        create?.map((id, create) => SetMethodPropertiesConverter()
+            .fromMapIdToJson(id, create.toJson())));
+    writeNotNull(
+        'update',
+        update?.map((id, update) => SetMethodPropertiesConverter()
+            .fromMapIdToJson(id, update.toJson())));
+    writeNotNull(
+        'destroy',
+        destroy
+            ?.map((destroyId) => const IdConverter().toJson(destroyId))
+            .toList());
 
     return val;
   }

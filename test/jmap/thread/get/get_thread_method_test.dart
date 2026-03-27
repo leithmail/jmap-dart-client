@@ -31,16 +31,15 @@ void main() {
 
   group('get thread method test:', () {
     test(
-      'should return list email id '
-      'when thread found '
-      'and return not found '
-      'when thread not found',
-    () async {
+        'should return list email id '
+        'when thread found '
+        'and return not found '
+        'when thread not found', () async {
       // arrange
       final sampleRequest = {
         "using": getThreadMethod.requiredCapabilities
-          .map((capability) => capability.value.toString())
-          .toList(),
+            .map((capability) => capability.value.toString())
+            .toList(),
         "methodCalls": [
           [
             getThreadMethod.methodName.value,
@@ -67,23 +66,20 @@ void main() {
           ]
         ]
       };
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, sampleResponse),
-        data: sampleRequest,
-        headers: dioAdapterHeaders
-      );
-      
+      dioAdapter.onPost('', (server) => server.reply(200, sampleResponse),
+          data: sampleRequest, headers: dioAdapterHeaders);
+
       // act
       final invocation = requestBuilder.invocation(
         getThreadMethod,
         methodCallId: methodCallId,
       );
-      final response = (await (requestBuilder..usings(getThreadMethod.requiredCapabilities))
-        .build()
-        .execute())
-        .parse(invocation.methodCallId, GetThreadResponse.deserialize);
-      
+      final response = (await (requestBuilder
+                ..usings(getThreadMethod.requiredCapabilities))
+              .build()
+              .execute())
+          .parse(invocation.methodCallId, GetThreadResponse.deserialize);
+
       // assert
       expect(
         response,

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:quiver/check.dart';
 
-class UnsignedInt with EquatableMixin{
+class UnsignedInt with EquatableMixin {
   static final defaultValue = UnsignedInt(0);
 
   final num value;

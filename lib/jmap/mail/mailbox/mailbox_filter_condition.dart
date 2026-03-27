@@ -12,7 +12,6 @@ part 'mailbox_filter_condition.g.dart';
 @JsonSerializable()
 @MailboxIdNullableConverter()
 class MailboxFilterCondition extends FilterCondition {
-
   @JsonKey(includeIfNull: false)
   final Role? role;
   @JsonKey(includeIfNull: false)
@@ -33,13 +32,7 @@ class MailboxFilterCondition extends FilterCondition {
   });
 
   @override
-  List<Object?> get props => [
-    role,
-    parentId,
-    name,
-    hasAnyRole,
-    parentId
-  ];
+  List<Object?> get props => [role, parentId, name, hasAnyRole, parentId];
 
   factory MailboxFilterCondition.fromJson(Map<String, dynamic> json) =>
       _$MailboxFilterConditionFromJson(json);

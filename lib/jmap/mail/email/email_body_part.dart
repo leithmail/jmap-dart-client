@@ -68,25 +68,26 @@ class EmailBodyPart with EquatableMixin {
     this.subParts,
   });
 
-  factory EmailBodyPart.fromJson(Map<String, dynamic> json) => _$EmailBodyPartFromJson(json);
+  factory EmailBodyPart.fromJson(Map<String, dynamic> json) =>
+      _$EmailBodyPartFromJson(json);
 
   Map<String, dynamic> toJson() => _$EmailBodyPartToJson(this);
 
   @override
   List<Object?> get props => [
-    partId,
-    blobId,
-    size,
-    headers,
-    name,
-    type,
-    charset,
-    disposition,
-    cid,
-    language,
-    location,
-    subParts
-  ];
+        partId,
+        blobId,
+        size,
+        headers,
+        name,
+        type,
+        charset,
+        disposition,
+        cid,
+        language,
+        location,
+        subParts
+      ];
 }
 
 class PartId with EquatableMixin {

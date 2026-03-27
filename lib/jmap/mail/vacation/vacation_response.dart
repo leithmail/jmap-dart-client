@@ -11,7 +11,6 @@ part 'vacation_response.g.dart';
 @UTCDateNullableConverter()
 @JsonSerializable(explicitToJson: true)
 class VacationResponse with EquatableMixin {
-
   @JsonKey(includeIfNull: false)
   final VacationId? id;
 
@@ -28,28 +27,21 @@ class VacationResponse with EquatableMixin {
 
   final String? htmlBody;
 
-  VacationResponse({
-    this.id,
-    this.isEnabled,
-    this.fromDate,
-    this.toDate,
-    this.subject,
-    this.textBody,
-    this.htmlBody
-  });
+  VacationResponse(
+      {this.id,
+      this.isEnabled,
+      this.fromDate,
+      this.toDate,
+      this.subject,
+      this.textBody,
+      this.htmlBody});
 
-  factory VacationResponse.fromJson(Map<String, dynamic> json) => _$VacationResponseFromJson(json);
+  factory VacationResponse.fromJson(Map<String, dynamic> json) =>
+      _$VacationResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$VacationResponseToJson(this);
 
   @override
-  List<Object?> get props => [
-    id,
-    isEnabled,
-    fromDate,
-    toDate,
-    subject,
-    textBody,
-    htmlBody
-  ];
+  List<Object?> get props =>
+      [id, isEnabled, fromDate, toDate, subject, textBody, htmlBody];
 }

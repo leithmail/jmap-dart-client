@@ -10,7 +10,8 @@ class TestBasicAuthInterceptor extends InterceptorsWrapper {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    options.headers['Authorization'] = 'Basic ${base64Encode(utf8.encode('$username:$password'))}';
+    options.headers['Authorization'] =
+        'Basic ${base64Encode(utf8.encode('$username:$password'))}';
     super.onRequest(options, handler);
   }
 }

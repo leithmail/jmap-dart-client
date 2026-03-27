@@ -7,14 +7,10 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'search_snippet_get_response.g.dart';
 
-@JsonSerializable(
-  includeIfNull: false,
-  explicitToJson: true,
-  converters: [
-    AccountIdConverter(),
-    IdConverter(),
-  ]
-)
+@JsonSerializable(includeIfNull: false, explicitToJson: true, converters: [
+  AccountIdConverter(),
+  IdConverter(),
+])
 class SearchSnippetGetResponse extends ResponseRequiringAccountId {
   SearchSnippetGetResponse(
     super.accountId,
@@ -25,7 +21,8 @@ class SearchSnippetGetResponse extends ResponseRequiringAccountId {
   final List<SearchSnippet>? list;
   final List<Id>? notFound;
 
-  factory SearchSnippetGetResponse.fromJson(Map<String, dynamic> json) => _$SearchSnippetGetResponseFromJson(json);
+  factory SearchSnippetGetResponse.fromJson(Map<String, dynamic> json) =>
+      _$SearchSnippetGetResponseFromJson(json);
   Map<String, dynamic> toJson() => _$SearchSnippetGetResponseToJson(this);
 
   @override

@@ -18,6 +18,6 @@ class GetThreadResponse extends GetResponse<Thread> {
   @override
   List<Object?> get props => [accountId, state, list, notFound];
 
-  static GetThreadResponse deserialize(Map<String, dynamic> json)
-    => _$GetThreadResponseFromJson(json);
+  static GetThreadResponse deserialize(Map<String, dynamic> json) =>
+      _$GetThreadResponseFromJson(json);
 }

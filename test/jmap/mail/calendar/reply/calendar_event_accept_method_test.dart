@@ -30,45 +30,47 @@ void main() {
   final setErrorFixture = SetError(SetError.invalidPatch, description: '');
 
   Map<String, dynamic> constructData(CalendarEventReplyMethod method) => {
-    "using": method.requiredCapabilities
-      .map((capability) => capability.value.toString())
-      .toList(),
-    "methodCalls": [
-      [
-        method.methodName.value,
-        {
-          "accountId": accountId.id.value,
-          "blobIds": blobIds.map((id) => id.value).toList(),
-        },
-        methodCallId.value
-      ]
-    ]
-  };
+        "using": method.requiredCapabilities
+            .map((capability) => capability.value.toString())
+            .toList(),
+        "methodCalls": [
+          [
+            method.methodName.value,
+            {
+              "accountId": accountId.id.value,
+              "blobIds": blobIds.map((id) => id.value).toList(),
+            },
+            methodCallId.value
+          ]
+        ]
+      };
 
   Map<String, dynamic> constructResponse(CalendarEventReplyMethod method) => {
-    "sessionState": "abcdefghij",
-    "methodResponses": [[
-      method.methodName.value,
-      {
-        "accountId": accountId.id.value,
-        "accepted": [successBlobId.value],
-        "notAccepted": {
-          failureBlobId.value: setErrorFixture
-        },
-        "notFound": [notFoundBlobId.value],
-      },
-      methodCallId.value
-    ]]
-  };
+        "sessionState": "abcdefghij",
+        "methodResponses": [
+          [
+            method.methodName.value,
+            {
+              "accountId": accountId.id.value,
+              "accepted": [successBlobId.value],
+              "notAccepted": {failureBlobId.value: setErrorFixture},
+              "notFound": [notFoundBlobId.value],
+            },
+            methodCallId.value
+          ]
+        ]
+      };
 
   group('calendar event accept method', () {
     final method = CalendarEventAcceptMethod(accountId, blobIds: blobIds);
 
-    test('should succeed with success blob data, '
-    'and fail with failure blob data '
-    'and not found with not found blob data', () async {
+    test(
+        'should succeed with success blob data, '
+        'and fail with failure blob data '
+        'and not found with not found blob data', () async {
       // arrange
-      final invocation = requestBuilder.invocation(method, methodCallId: methodCallId);
+      final invocation =
+          requestBuilder.invocation(method, methodCallId: methodCallId);
       dioAdapter.onPost(
         '',
         (server) => server.reply(200, constructResponse(method)),
@@ -77,15 +79,16 @@ void main() {
       );
 
       // act
-      final response = (await (requestBuilder..usings(method.requiredCapabilities))
-        .build()
-        .execute())
+      final response = (await (requestBuilder
+                ..usings(method.requiredCapabilities))
+              .build()
+              .execute())
           .parse<CalendarEventReplyResponse>(
-            invocation.methodCallId,
-            CalendarEventAcceptResponse.deserialize);
-      
+              invocation.methodCallId, CalendarEventAcceptResponse.deserialize);
+
       // assert
-      expect((response as CalendarEventAcceptResponse?)?.accepted, equals([EventId(successBlobId.value)]));
+      expect((response as CalendarEventAcceptResponse?)?.accepted,
+          equals([EventId(successBlobId.value)]));
       expect(response?.notAccepted?.keys.toList(), equals([failureBlobId]));
       expect(response?.notFound, equals([notFoundBlobId]));
     });

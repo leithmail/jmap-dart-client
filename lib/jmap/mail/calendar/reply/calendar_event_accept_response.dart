@@ -5,13 +5,8 @@ import 'package:jmap_dart_client/jmap/mail/calendar/properties/event_id.dart';
 import 'package:jmap_dart_client/util/json_parsers.dart';
 
 class CalendarEventAcceptResponse extends CalendarEventReplyResponse {
-  CalendarEventAcceptResponse(
-    super.accountId,
-    super.notFound,
-    {
-      this.accepted,
-      this.notAccepted
-    });
+  CalendarEventAcceptResponse(super.accountId, super.notFound,
+      {this.accepted, this.notAccepted});
 
   final List<EventId>? accepted;
   final Map<Id, SetError>? notAccepted;

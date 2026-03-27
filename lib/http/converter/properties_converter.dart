@@ -1,4 +1,3 @@
-
 import 'package:jmap_dart_client/jmap/core/properties/properties.dart';
 import 'package:json_annotation/json_annotation.dart';
 

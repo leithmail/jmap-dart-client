@@ -10,7 +10,8 @@ class EmailHeader with EquatableMixin {
 
   EmailHeader(this.name, this.value);
 
-  factory EmailHeader.fromJson(Map<String, dynamic> json) => _$EmailHeaderFromJson(json);
+  factory EmailHeader.fromJson(Map<String, dynamic> json) =>
+      _$EmailHeaderFromJson(json);
 
   Map<String, dynamic> toJson() => _$EmailHeaderToJson(this);
 

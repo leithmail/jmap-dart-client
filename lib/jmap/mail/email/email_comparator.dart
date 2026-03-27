@@ -12,13 +12,13 @@ part 'email_comparator.g.dart';
 @EmailComparatorPropertyConverter()
 @JsonSerializable()
 class EmailComparator extends Comparator {
-
   EmailComparator(EmailComparatorProperty property) : super(property);
 
   @override
   List<Object?> get props => [property, isAscending, collation];
 
-  factory EmailComparator.fromJson(Map<String, dynamic> json) => _$EmailComparatorFromJson(json);
+  factory EmailComparator.fromJson(Map<String, dynamic> json) =>
+      _$EmailComparatorFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$EmailComparatorToJson(this);

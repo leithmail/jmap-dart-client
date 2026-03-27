@@ -8,10 +8,13 @@ part 'get_push_subscription_response.g.dart';
 
 @IdConverter()
 @JsonSerializable()
-class GetPushSubscriptionResponse extends GetResponseNoAccountId<PushSubscription> {
-  GetPushSubscriptionResponse(List<PushSubscription> list, List<Id>? notFound) : super(list, notFound);
+class GetPushSubscriptionResponse
+    extends GetResponseNoAccountId<PushSubscription> {
+  GetPushSubscriptionResponse(List<PushSubscription> list, List<Id>? notFound)
+      : super(list, notFound);
 
-  factory GetPushSubscriptionResponse.fromJson(Map<String, dynamic> json) => _$GetPushSubscriptionResponseFromJson(json);
+  factory GetPushSubscriptionResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetPushSubscriptionResponseFromJson(json);
 
   static GetPushSubscriptionResponse deserialize(Map<String, dynamic> json) {
     return GetPushSubscriptionResponse.fromJson(json);

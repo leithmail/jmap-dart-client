@@ -1,4 +1,3 @@
-
 import 'package:jmap_dart_client/jmap/core/error/error_type.dart';
 import 'package:json_annotation/json_annotation.dart';
 

@@ -8,7 +8,7 @@ part 'calendar_event_attendance.g.dart';
 enum AttendanceStatus {
   accepted,
   rejected,
-  tentativelyAccepted, 
+  tentativelyAccepted,
   needsAction,
 }
 
@@ -26,13 +26,14 @@ class CalendarEventAttendance with EquatableMixin {
     this.eventAttendanceStatus,
     this.isFree = true,
   });
-  
+
   @override
   List<Object?> get props => [blobId, eventAttendanceStatus, isFree];
 
   factory CalendarEventAttendance.fromJson(
     Map<String, dynamic> json,
-  ) => _$CalendarEventAttendanceFromJson(json);
+  ) =>
+      _$CalendarEventAttendanceFromJson(json);
 
   Map<String, dynamic> toJson() => _$CalendarEventAttendanceToJson(this);
 }

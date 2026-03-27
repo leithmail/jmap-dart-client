@@ -3,12 +3,11 @@ import 'package:jmap_dart_client/jmap/core/method/method.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 abstract class CalendarEventReplyMethod extends MethodRequiringAccountId
-  with OptionalLanguage {
+    with OptionalLanguage {
   CalendarEventReplyMethod(
-    super.accountId,
-    {
-      required this.blobIds,
-    });
+    super.accountId, {
+    required this.blobIds,
+  });
 
   final List<Id> blobIds;
 

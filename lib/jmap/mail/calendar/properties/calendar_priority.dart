@@ -1,8 +1,6 @@
-
 import 'package:equatable/equatable.dart';
 
 class CalendarPriority with EquatableMixin {
-
   final int value;
 
   CalendarPriority(this.value);

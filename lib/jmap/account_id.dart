@@ -12,7 +12,8 @@ class AccountId with EquatableMixin {
 
   AccountId(this.id);
 
-  factory AccountId.fromJson(Map<String, dynamic> json) => _$AccountIdFromJson(json);
+  factory AccountId.fromJson(Map<String, dynamic> json) =>
+      _$AccountIdFromJson(json);
 
   Map<String, dynamic> toJson() => _$AccountIdToJson(this);
 

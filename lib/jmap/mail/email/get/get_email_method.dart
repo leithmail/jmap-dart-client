@@ -18,24 +18,28 @@ part 'get_email_method.g.dart';
 @AccountIdConverter()
 @PropertiesConverter()
 @JsonSerializable(explicitToJson: true)
-class GetEmailMethod extends GetMethod with OptionalEmailBodyProperties, OptionalFetchTextBodyValues,
-    OptionalFetchHTMLBodyValues, OptionalFetchAllBodyValues, OptionalMaxBodyValueBytes {
-
+class GetEmailMethod extends GetMethod
+    with
+        OptionalEmailBodyProperties,
+        OptionalFetchTextBodyValues,
+        OptionalFetchHTMLBodyValues,
+        OptionalFetchAllBodyValues,
+        OptionalMaxBodyValueBytes {
   GetEmailMethod(AccountId accountId) : super(accountId);
 
   @override
   MethodName get methodName => MethodName('Email/get');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
-    CapabilityIdentifier.jmapCore,
-    CapabilityIdentifier.jmapMail
-  };
+  Set<CapabilityIdentifier> get requiredCapabilities =>
+      {CapabilityIdentifier.jmapCore, CapabilityIdentifier.jmapMail};
 
   @override
-  List<Object?> get props => [methodName, accountId, ids, properties, requiredCapabilities];
+  List<Object?> get props =>
+      [methodName, accountId, ids, properties, requiredCapabilities];
 
-  factory GetEmailMethod.fromJson(Map<String, dynamic> json) => _$GetEmailMethodFromJson(json);
+  factory GetEmailMethod.fromJson(Map<String, dynamic> json) =>
+      _$GetEmailMethodFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$GetEmailMethodToJson(this);

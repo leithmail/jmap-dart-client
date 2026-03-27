@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 
 class CalendarAttendeeKind with EquatableMixin {

@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 
 class DataType with EquatableMixin {
@@ -14,13 +13,6 @@ class DataType with EquatableMixin {
   List<Object?> get props => [value];
 }
 
-enum Scope {
-  account,
-  domain,
-  global
-}
+enum Scope { account, domain, global }
 
-enum ResourceType {
-  count,
-  octets
-}
+enum ResourceType { count, octets }

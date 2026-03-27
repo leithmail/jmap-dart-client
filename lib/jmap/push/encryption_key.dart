@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -6,7 +5,6 @@ part 'encryption_key.g.dart';
 
 @JsonSerializable()
 class EncryptionKey with EquatableMixin {
-
   @JsonKey(name: 'p256dh')
   final String publicKey;
 
@@ -15,7 +13,8 @@ class EncryptionKey with EquatableMixin {
 
   EncryptionKey(this.publicKey, this.authenticationSecret);
 
-  factory EncryptionKey.fromJson(Map<String, dynamic> json) => _$EncryptionKeyFromJson(json);
+  factory EncryptionKey.fromJson(Map<String, dynamic> json) =>
+      _$EncryptionKeyFromJson(json);
 
   Map<String, dynamic> toJson() => _$EncryptionKeyToJson(this);
 

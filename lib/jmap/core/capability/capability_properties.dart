@@ -1,5 +1,3 @@
 import 'package:equatable/equatable.dart';
 
-abstract class CapabilityProperties with EquatableMixin {
-
-}
+abstract class CapabilityProperties with EquatableMixin {}

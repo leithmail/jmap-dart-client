@@ -16,13 +16,11 @@ part 'get_quota_response.g.dart';
 @JsonSerializable()
 class GetQuotaResponse extends GetResponse<Quota> {
   GetQuotaResponse(
-    AccountId accountId,
-    State state,
-    List<Quota> list,
-    List<Id>? notFound
-  ) : super(accountId, state, list, notFound);
+      AccountId accountId, State state, List<Quota> list, List<Id>? notFound)
+      : super(accountId, state, list, notFound);
 
-  factory GetQuotaResponse.fromJson(Map<String, dynamic> json) => _$GetQuotaResponseFromJson(json);
+  factory GetQuotaResponse.fromJson(Map<String, dynamic> json) =>
+      _$GetQuotaResponseFromJson(json);
 
   static GetQuotaResponse deserialize(Map<String, dynamic> json) {
     return GetQuotaResponse.fromJson(json);

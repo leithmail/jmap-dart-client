@@ -7,13 +7,21 @@ import 'package:jmap_dart_client/jmap/core/state.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 abstract class SetMethod<T> extends MethodRequiringAccountId
-    with OptionalIfInState, OptionalCreate<T>, OptionalDestroy, OptionalUpdate,
-    OptionalReferenceDestroy {
+    with
+        OptionalIfInState,
+        OptionalCreate<T>,
+        OptionalDestroy,
+        OptionalUpdate,
+        OptionalReferenceDestroy {
   SetMethod(AccountId accountId) : super(accountId);
 }
 
 abstract class SetMethodNoNeedAccountId<T> extends Method
-    with OptionalCreate<T>, OptionalDestroy, OptionalUpdate, OptionalReferenceDestroy {
+    with
+        OptionalCreate<T>,
+        OptionalDestroy,
+        OptionalUpdate,
+        OptionalReferenceDestroy {
   SetMethodNoNeedAccountId() : super();
 }
 

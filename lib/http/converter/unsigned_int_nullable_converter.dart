@@ -1,7 +1,8 @@
 import 'package:jmap_dart_client/jmap/core/unsigned_int.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-class UnsignedIntNullableConverter implements JsonConverter<UnsignedInt?, int?> {
+class UnsignedIntNullableConverter
+    implements JsonConverter<UnsignedInt?, int?> {
   const UnsignedIntNullableConverter();
 
   @override

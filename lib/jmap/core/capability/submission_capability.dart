@@ -14,11 +14,13 @@ class SubmissionCapability extends CapabilityProperties with EquatableMixin {
 
   SubmissionCapability({this.maxDelayedSend, this.submissionExtensions});
 
-  factory SubmissionCapability.fromJson(Map<String, dynamic> json) => _$SubmissionCapabilityFromJson(json);
+  factory SubmissionCapability.fromJson(Map<String, dynamic> json) =>
+      _$SubmissionCapabilityFromJson(json);
 
   Map<String, dynamic> toJson() => _$SubmissionCapabilityToJson(this);
 
-  static SubmissionCapability deserialize(Map<String, dynamic> json) => SubmissionCapability.fromJson(json);
+  static SubmissionCapability deserialize(Map<String, dynamic> json) =>
+      SubmissionCapability.fromJson(json);
 
   @override
   List<Object?> get props => [maxDelayedSend, submissionExtensions];

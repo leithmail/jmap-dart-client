@@ -5,13 +5,8 @@ import 'package:jmap_dart_client/jmap/mail/calendar/properties/event_id.dart';
 import 'package:jmap_dart_client/util/json_parsers.dart';
 
 class CalendarEventMaybeResponse extends CalendarEventReplyResponse {
-  CalendarEventMaybeResponse(
-    super.accountId,
-    super.notFound,
-    {
-      this.maybe,
-      this.notMaybe
-    });
+  CalendarEventMaybeResponse(super.accountId, super.notFound,
+      {this.maybe, this.notMaybe});
 
   final List<EventId>? maybe;
   final Map<Id, SetError>? notMaybe;

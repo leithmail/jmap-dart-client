@@ -15,9 +15,9 @@ class SetVacationMethod extends SetMethod<VacationResponse>
 
   @override
   Set<CapabilityIdentifier> get requiredCapabilities => {
-    CapabilityIdentifier.jmapCore,
-    CapabilityIdentifier.jmapVacationResponse
-  };
+        CapabilityIdentifier.jmapCore,
+        CapabilityIdentifier.jmapVacationResponse
+      };
 
   @override
   Map<String, dynamic> toJson() {
@@ -32,8 +32,10 @@ class SetVacationMethod extends SetMethod<VacationResponse>
     }
 
     writeNotNull('ifInState', ifInState?.value);
-    writeNotNull('update', updateSingleton
-        ?.map((id, update) => SetMethodPropertiesConverter().fromMapIdToJson(id, update.toJson())));
+    writeNotNull(
+        'update',
+        updateSingleton?.map((id, update) => SetMethodPropertiesConverter()
+            .fromMapIdToJson(id, update.toJson())));
 
     return val;
   }

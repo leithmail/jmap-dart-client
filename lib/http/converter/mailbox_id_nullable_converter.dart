@@ -6,7 +6,8 @@ class MailboxIdNullableConverter implements JsonConverter<MailboxId?, String?> {
   const MailboxIdNullableConverter();
 
   @override
-  MailboxId? fromJson(String? json) => json != null ? MailboxId(Id(json)) : null;
+  MailboxId? fromJson(String? json) =>
+      json != null ? MailboxId(Id(json)) : null;
 
   @override
   String? toJson(MailboxId? object) => object?.id.value;

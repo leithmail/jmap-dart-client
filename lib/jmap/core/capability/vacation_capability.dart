@@ -7,11 +7,13 @@ part 'vacation_capability.g.dart';
 class VacationCapability extends CapabilityProperties {
   VacationCapability();
 
-  factory VacationCapability.fromJson(Map<String, dynamic> json) => _$VacationCapabilityFromJson(json);
+  factory VacationCapability.fromJson(Map<String, dynamic> json) =>
+      _$VacationCapabilityFromJson(json);
 
   Map<String, dynamic> toJson() => _$VacationCapabilityToJson(this);
 
-  static VacationCapability deserialize(Map<String, dynamic> json) => VacationCapability.fromJson(json);
+  static VacationCapability deserialize(Map<String, dynamic> json) =>
+      VacationCapability.fromJson(json);
 
   @override
   List<Object?> get props => [];

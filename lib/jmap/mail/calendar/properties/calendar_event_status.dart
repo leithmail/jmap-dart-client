@@ -1,4 +1,3 @@
-
 enum CalendarEventStatus {
   confirmed,
   cancelled,

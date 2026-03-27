@@ -14,16 +14,16 @@ abstract class SetResponse<T> extends ResponseRequiringAccountId {
   final Map<Id, SetError>? notUpdated;
   final Map<Id, SetError>? notDestroyed;
 
-  SetResponse(AccountId accountId, {
-    this.newState,
-    this.oldState,
-    this.created,
-    this.updated,
-    this.destroyed,
-    this.notCreated,
-    this.notUpdated,
-    this.notDestroyed
-  }) : super(accountId);
+  SetResponse(AccountId accountId,
+      {this.newState,
+      this.oldState,
+      this.created,
+      this.updated,
+      this.destroyed,
+      this.notCreated,
+      this.notUpdated,
+      this.notDestroyed})
+      : super(accountId);
 }
 
 abstract class SetResponseNoAccount<T> extends MethodResponse {
@@ -34,12 +34,12 @@ abstract class SetResponseNoAccount<T> extends MethodResponse {
   final Map<Id, SetError>? notUpdated;
   final Map<Id, SetError>? notDestroyed;
 
-  SetResponseNoAccount({
-    this.created,
-    this.updated,
-    this.destroyed,
-    this.notCreated,
-    this.notUpdated,
-    this.notDestroyed
-  }) : super();
+  SetResponseNoAccount(
+      {this.created,
+      this.updated,
+      this.destroyed,
+      this.notCreated,
+      this.notUpdated,
+      this.notDestroyed})
+      : super();
 }

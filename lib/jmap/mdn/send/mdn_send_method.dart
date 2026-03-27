@@ -10,7 +10,6 @@ import 'package:jmap_dart_client/jmap/mail/email/submission/set/set_email_submis
 import 'package:jmap_dart_client/jmap/mdn/mdn.dart';
 
 class MDNSendMethod extends SendMethod<MDN> with OptionalOnSuccessUpdateEmail {
-
   final IdentityId identityId;
 
   MDNSendMethod(super.accountId, super.send, this.identityId);
@@ -20,10 +19,10 @@ class MDNSendMethod extends SendMethod<MDN> with OptionalOnSuccessUpdateEmail {
 
   @override
   Set<CapabilityIdentifier> get requiredCapabilities => {
-    CapabilityIdentifier.jmapCore,
-    CapabilityIdentifier.jmapMail,
-    CapabilityIdentifier.jmapMdn
-  };
+        CapabilityIdentifier.jmapCore,
+        CapabilityIdentifier.jmapMail,
+        CapabilityIdentifier.jmapMdn
+      };
 
   @override
   Map<String, dynamic> toJson() {
@@ -40,17 +39,14 @@ class MDNSendMethod extends SendMethod<MDN> with OptionalOnSuccessUpdateEmail {
       }
     }
 
-    writeNotNull('onSuccessUpdateEmail', onSuccessUpdateEmail
-        ?.map((id, update) => SetMethodPropertiesConverter()
-        .fromMapEmailSubmissionIdToJson(id, update)));
+    writeNotNull(
+        'onSuccessUpdateEmail',
+        onSuccessUpdateEmail?.map((id, update) => SetMethodPropertiesConverter()
+            .fromMapEmailSubmissionIdToJson(id, update)));
     return val;
   }
 
   @override
-  List<Object?> get props => [
-    accountId,
-    send,
-    identityId,
-    onSuccessUpdateEmail
-  ];
+  List<Object?> get props =>
+      [accountId, send, identityId, onSuccessUpdateEmail];
 }

@@ -26,37 +26,43 @@ class EmailSubmission with EquatableMixin {
   final Set<Id>? dsnBlobIds;
   final Set<Id>? mdnBlobIds;
 
-  EmailSubmission({
-    this.id,
-    this.identityId,
-    this.emailId,
-    this.threadId,
-    this.envelope,
-    this.sendAt,
-    this.undoStatus,
-    this.deliveryStatus,
-    this.dsnBlobIds,
-    this.mdnBlobIds
-  });
+  EmailSubmission(
+      {this.id,
+      this.identityId,
+      this.emailId,
+      this.threadId,
+      this.envelope,
+      this.sendAt,
+      this.undoStatus,
+      this.deliveryStatus,
+      this.dsnBlobIds,
+      this.mdnBlobIds});
 
   factory EmailSubmission.fromJson(Map<String, dynamic> json) {
     return EmailSubmission(
-      id: const EmailSubmissionIdNullableConverter().fromJson(json['id'] as String?),
-      identityId: const IdNullableConverter().fromJson(json['identityId'] as String?),
-      emailId: const ReferenceEmailIdNullableConverter().fromJson(json['emailId'] as String?),
-      threadId: const ThreadIdNullableConverter().fromJson(json['threadId'] as String?),
-      envelope: json['envelope'] == null
-          ? null
-          : Envelope.fromJson(json['envelope'] as Map<String, dynamic>),
-      sendAt: const UTCDateNullableConverter().fromJson(json['sendAt'] as String?),
-      undoStatus: const UndoStatusNullableConverter().fromJson(json['undoStatus'] as String?),
-      deliveryStatus: (json['deliveryStatus'] as Map<String, dynamic>?)
-          ?.map((key, value) => DeliveryStatusConverter().parseEntry(key, value)),
-      dsnBlobIds: (json['dsnBlobIds'] as List<dynamic>?)
-          ?.map((json) => const IdConverter().fromJson(json)).toSet(),
-      mdnBlobIds: (json['mdnBlobIds'] as List<dynamic>?)
-          ?.map((json) => const IdConverter().fromJson(json)).toSet()
-    );
+        id: const EmailSubmissionIdNullableConverter()
+            .fromJson(json['id'] as String?),
+        identityId:
+            const IdNullableConverter().fromJson(json['identityId'] as String?),
+        emailId: const ReferenceEmailIdNullableConverter()
+            .fromJson(json['emailId'] as String?),
+        threadId: const ThreadIdNullableConverter()
+            .fromJson(json['threadId'] as String?),
+        envelope: json['envelope'] == null
+            ? null
+            : Envelope.fromJson(json['envelope'] as Map<String, dynamic>),
+        sendAt: const UTCDateNullableConverter()
+            .fromJson(json['sendAt'] as String?),
+        undoStatus: const UndoStatusNullableConverter()
+            .fromJson(json['undoStatus'] as String?),
+        deliveryStatus: (json['deliveryStatus'] as Map<String, dynamic>?)?.map(
+            (key, value) => DeliveryStatusConverter().parseEntry(key, value)),
+        dsnBlobIds: (json['dsnBlobIds'] as List<dynamic>?)
+            ?.map((json) => const IdConverter().fromJson(json))
+            .toSet(),
+        mdnBlobIds: (json['mdnBlobIds'] as List<dynamic>?)
+            ?.map((json) => const IdConverter().fromJson(json))
+            .toSet());
   }
 
   Map<String, dynamic> toJson() {
@@ -70,30 +76,38 @@ class EmailSubmission with EquatableMixin {
 
     writeNotNull('id', const EmailSubmissionIdNullableConverter().toJson(id));
     writeNotNull('identityId', const IdNullableConverter().toJson(identityId));
-    writeNotNull('emailId', const ReferenceEmailIdNullableConverter().toJson(emailId));
-    writeNotNull('threadId', const ThreadIdNullableConverter().toJson(threadId));
+    writeNotNull(
+        'emailId', const ReferenceEmailIdNullableConverter().toJson(emailId));
+    writeNotNull(
+        'threadId', const ThreadIdNullableConverter().toJson(threadId));
     writeNotNull('envelope', envelope?.toJson());
     writeNotNull('sendAt', const UTCDateNullableConverter().toJson(sendAt));
-    writeNotNull('undoStatus', const UndoStatusNullableConverter().toJson(undoStatus));
-    writeNotNull('deliveryStatus', deliveryStatus?.map((key, value) => DeliveryStatusConverter().toJson(key, value)));
-    writeNotNull('dsnBlobIds', dsnBlobIds?.map((id) => const IdConverter().toJson(id)).toList());
-    writeNotNull('mdnBlobIds', mdnBlobIds?.map((id) => const IdConverter().toJson(id)).toList());
+    writeNotNull(
+        'undoStatus', const UndoStatusNullableConverter().toJson(undoStatus));
+    writeNotNull(
+        'deliveryStatus',
+        deliveryStatus?.map(
+            (key, value) => DeliveryStatusConverter().toJson(key, value)));
+    writeNotNull('dsnBlobIds',
+        dsnBlobIds?.map((id) => const IdConverter().toJson(id)).toList());
+    writeNotNull('mdnBlobIds',
+        mdnBlobIds?.map((id) => const IdConverter().toJson(id)).toList());
     return val;
   }
 
   @override
   List<Object?> get props => [
-    id,
-    identityId,
-    emailId,
-    threadId,
-    envelope,
-    sendAt,
-    undoStatus,
-    deliveryStatus,
-    dsnBlobIds,
-    mdnBlobIds
-  ];
+        id,
+        identityId,
+        emailId,
+        threadId,
+        envelope,
+        sendAt,
+        undoStatus,
+        deliveryStatus,
+        dsnBlobIds,
+        mdnBlobIds
+      ];
 }
 
 class UndoStatus with EquatableMixin {

@@ -74,7 +74,8 @@ void main() {
     test('get email in a mailbox correctly', () async {
       final baseOption = BaseOptions(method: 'POST');
       final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-      final dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
+      final dioAdapter =
+          DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
       dioAdapter.onPost(
           '',
           (server) => server.reply(200, {
@@ -241,12 +242,10 @@ void main() {
         ..addSorts({
           EmailComparator(EmailComparatorProperty.sentAt)..setIsAscending(false)
         })
-        ..addFilters(LogicFilterOperator(
-            Operator.OR,
-            <Filter>{
-              EmailFilterCondition(hasKeyword: "music"),
-              EmailFilterCondition(hasKeyword: "video"),
-            }));
+        ..addFilters(LogicFilterOperator(Operator.OR, <Filter>{
+          EmailFilterCondition(hasKeyword: "music"),
+          EmailFilterCondition(hasKeyword: "video"),
+        }));
       final queryEmailInvocation = jmapRequestBuilder
           .invocation(queryEmailMethod, methodCallId: MethodCallId('c2'));
 

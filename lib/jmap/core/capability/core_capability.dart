@@ -21,32 +21,33 @@ class CoreCapability extends CapabilityProperties with EquatableMixin {
   final UnsignedInt? maxObjectsInSet;
   final Set<CollationIdentifier>? collationAlgorithms;
 
-  CoreCapability({
-    this.maxSizeUpload,
-    this.maxConcurrentUpload,
-    this.maxSizeRequest,
-    this.maxConcurrentRequests,
-    this.maxCallsInRequest,
-    this.maxObjectsInGet,
-    this.maxObjectsInSet,
-    this.collationAlgorithms
-  });
+  CoreCapability(
+      {this.maxSizeUpload,
+      this.maxConcurrentUpload,
+      this.maxSizeRequest,
+      this.maxConcurrentRequests,
+      this.maxCallsInRequest,
+      this.maxObjectsInGet,
+      this.maxObjectsInSet,
+      this.collationAlgorithms});
 
-  factory CoreCapability.fromJson(Map<String, dynamic> json) => _$CoreCapabilityFromJson(json);
+  factory CoreCapability.fromJson(Map<String, dynamic> json) =>
+      _$CoreCapabilityFromJson(json);
 
   Map<String, dynamic> toJson() => _$CoreCapabilityToJson(this);
 
-  static CoreCapability deserialize(Map<String, dynamic> json) => CoreCapability.fromJson(json);
+  static CoreCapability deserialize(Map<String, dynamic> json) =>
+      CoreCapability.fromJson(json);
 
   @override
   List<Object?> get props => [
-    maxSizeUpload,
-    maxConcurrentUpload,
-    maxSizeRequest,
-    maxConcurrentRequests,
-    maxCallsInRequest,
-    maxObjectsInGet,
-    maxObjectsInSet,
-    collationAlgorithms
-  ];
+        maxSizeUpload,
+        maxConcurrentUpload,
+        maxSizeRequest,
+        maxConcurrentRequests,
+        maxCallsInRequest,
+        maxObjectsInGet,
+        maxObjectsInSet,
+        collationAlgorithms
+      ];
 }
