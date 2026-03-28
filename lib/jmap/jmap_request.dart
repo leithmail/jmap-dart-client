@@ -12,7 +12,7 @@ import 'core/request/request_invocation.dart';
 import 'core/request/request_object.dart';
 
 class JmapRequest {
-  final HttpClient _httpClient;
+  final DioHttpClient _httpClient;
   final BuiltSet<CapabilityIdentifier> _capabilities;
   final BuiltMap<MethodCallId, RequestInvocation> _invocations;
 
@@ -40,7 +40,7 @@ class JmapRequest {
 }
 
 class JmapRequestBuilder {
-  final HttpClient _httpClient;
+  final DioHttpClient _httpClient;
   final ProcessingInvocation _processingInvocation;
   final SetBuilder<CapabilityIdentifier> _capabilitiesBuilder = SetBuilder();
 

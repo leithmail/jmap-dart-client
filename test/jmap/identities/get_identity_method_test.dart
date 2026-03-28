@@ -94,7 +94,7 @@ void main() {
         headers: {"accept": "application/json;jmapVersion=rfc-8621"},
       );
 
-      final httpClient = HttpClient(dio);
+      final httpClient = DioHttpClient(dio);
       final processingInvocation = ProcessingInvocation();
       final requestBuilder = JmapRequestBuilder(
         httpClient,

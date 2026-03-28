@@ -17,7 +17,7 @@ Please report any problem, any feature request, or discuss how you plan to use t
 ```dart
 // create instance of httpClient with Dio
 // using BasicAuth to config Dio
-final httpClient = HttpClient(Dio());
+final httpClient = DioHttpClient(Dio());
 
 final getSessionBuilder = GetSessionBuilder(httpClient);
 final session = await getSessionBuilder.build().execute();

@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:jmap_dart_client/util/options_extensions.dart';
 
-class HttpClient {
+class DioHttpClient {
   static const jmapHeader = 'application/json;jmapVersion=rfc-8621';
 
   final Dio _dio;
 
-  HttpClient(this._dio);
+  DioHttpClient(this._dio);
 
   Future<Map<String, dynamic>> post(
     String path, {

@@ -157,7 +157,7 @@ void main() {
           ),
         ),
       );
-      final httpClient = HttpClient(dio);
+      final httpClient = DioHttpClient(dio);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),
@@ -252,7 +252,7 @@ void main() {
             ),
           ),
         );
-        final httpClient = HttpClient(dio);
+        final httpClient = DioHttpClient(dio);
         final requestBuilder = JmapRequestBuilder(
           httpClient,
           ProcessingInvocation(),

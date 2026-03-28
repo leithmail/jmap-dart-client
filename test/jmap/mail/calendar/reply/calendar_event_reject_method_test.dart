@@ -18,7 +18,7 @@ void main() {
   final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
   final dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
   final dioAdapterHeaders = {"accept": "application/json;jmapVersion=rfc-8621"};
-  final httpClient = HttpClient(dio);
+  final httpClient = DioHttpClient(dio);
   final processingInvocation = ProcessingInvocation();
   final requestBuilder = JmapRequestBuilder(httpClient, processingInvocation);
   final accountId = AccountId(Id('123abc'));

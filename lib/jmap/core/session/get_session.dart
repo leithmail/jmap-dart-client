@@ -5,7 +5,7 @@ import 'package:jmap_dart_client/jmap/core/capability/capability_properties.dart
 import 'package:jmap_dart_client/jmap/core/session/session.dart';
 
 class GetSession {
-  final HttpClient _httpClient;
+  final DioHttpClient _httpClient;
   final CapabilitiesConverter _capabilitiesConverter;
 
   GetSession(this._httpClient, this._capabilitiesConverter);
@@ -23,7 +23,7 @@ class GetSession {
 }
 
 class GetSessionBuilder {
-  final HttpClient _httpClient;
+  final DioHttpClient _httpClient;
   final CapabilitiesConverter _capabilitiesConverter = CapabilitiesConverter();
 
   GetSessionBuilder(this._httpClient);

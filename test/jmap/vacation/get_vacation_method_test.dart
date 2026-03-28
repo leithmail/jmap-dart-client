@@ -69,7 +69,7 @@ void main() {
         headers: {"accept": "application/json;jmapVersion=rfc-8621"},
       );
 
-      final httpClient = HttpClient(dio);
+      final httpClient = DioHttpClient(dio);
       final processingInvocation = ProcessingInvocation();
       final accountId = AccountId(
         Id('0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555'),

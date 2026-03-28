@@ -43,7 +43,7 @@ void main() {
         bobTrashId,
       );
       final requestBuilder = JmapRequestBuilder(
-        HttpClient(dio),
+        DioHttpClient(dio),
         ProcessingInvocation(),
       );
       final invocation = requestBuilder.invocation(
@@ -105,7 +105,7 @@ void main() {
       };
       final clearMailboxMethod = ClearMailboxMethod(bobAccountId, bobTrashId);
       final requestBuilder = JmapRequestBuilder(
-        HttpClient(dio),
+        DioHttpClient(dio),
         ProcessingInvocation(),
       );
       final invocation = requestBuilder.invocation(
@@ -173,7 +173,7 @@ void main() {
       // Arrange
       final clearMailboxMethod = ClearMailboxMethod(bobAccountId, bobTrashId);
       final requestBuilder = JmapRequestBuilder(
-        HttpClient(dio),
+        DioHttpClient(dio),
         ProcessingInvocation(),
       );
       final invocation = requestBuilder.invocation(
@@ -238,7 +238,7 @@ void main() {
         invalidMailboxId,
       );
       final requestBuilder = JmapRequestBuilder(
-        HttpClient(dio),
+        DioHttpClient(dio),
         ProcessingInvocation(),
       );
       final invocation = requestBuilder.invocation(
@@ -307,7 +307,7 @@ void main() {
         notFoundMailboxId,
       );
       final requestBuilder = JmapRequestBuilder(
-        HttpClient(dio),
+        DioHttpClient(dio),
         ProcessingInvocation(),
       );
       final invocation = requestBuilder.invocation(
@@ -377,7 +377,7 @@ void main() {
       // Arrange
       final clearMailboxMethod = ClearMailboxMethod(bobAccountId, bobTrashId);
       final requestBuilder = JmapRequestBuilder(
-        HttpClient(dio),
+        DioHttpClient(dio),
         ProcessingInvocation(),
       );
       final invocation = requestBuilder.invocation(
@@ -451,7 +451,7 @@ void main() {
         teamMailboxId,
       );
       final requestBuilder = JmapRequestBuilder(
-        HttpClient(dio),
+        DioHttpClient(dio),
         ProcessingInvocation(),
       );
       final invocation = requestBuilder.invocation(
@@ -523,7 +523,7 @@ void main() {
         teamMailboxId,
       );
       final requestBuilder = JmapRequestBuilder(
-        HttpClient(dio),
+        DioHttpClient(dio),
         ProcessingInvocation(),
       );
       final invocation = requestBuilder.invocation(
