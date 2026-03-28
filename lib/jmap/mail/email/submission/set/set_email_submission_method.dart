@@ -20,10 +20,10 @@ class SetEmailSubmissionMethod extends SetMethod<EmailSubmission>
 
   @override
   Set<CapabilityIdentifier> get requiredCapabilities => {
-        CapabilityIdentifier.jmapSubmission,
-        CapabilityIdentifier.jmapMail,
-        CapabilityIdentifier.jmapCore
-      };
+    CapabilityIdentifier.jmapSubmission,
+    CapabilityIdentifier.jmapMail,
+    CapabilityIdentifier.jmapCore,
+  };
 
   @override
   Map<String, dynamic> toJson() {
@@ -39,42 +39,44 @@ class SetEmailSubmissionMethod extends SetMethod<EmailSubmission>
 
     writeNotNull('ifInState', ifInState?.value);
     writeNotNull(
-        'create',
-        create?.map((id, create) => SetMethodPropertiesConverter()
-            .fromMapIdToJson(id, create.toJson())));
+      'create',
+      create?.map(
+        (id, create) =>
+            SetMethodPropertiesConverter().fromMapIdToJson(id, create.toJson()),
+      ),
+    );
     writeNotNull(
-        'update',
-        update?.map((id, update) => SetMethodPropertiesConverter()
-            .fromMapIdToJson(id, update.toJson())));
+      'update',
+      update?.map(
+        (id, update) =>
+            SetMethodPropertiesConverter().fromMapIdToJson(id, update.toJson()),
+      ),
+    );
     writeNotNull(
-        'destroy',
-        destroy
-            ?.map((destroyId) => const IdConverter().toJson(destroyId))
-            .toList());
+      'destroy',
+      destroy
+          ?.map((destroyId) => const IdConverter().toJson(destroyId))
+          .toList(),
+    );
     writeNotNull(
-        'onSuccessUpdateEmail',
-        onSuccessUpdateEmail?.map((id, update) => SetMethodPropertiesConverter()
-            .fromMapEmailSubmissionIdToJson(id, update)));
+      'onSuccessUpdateEmail',
+      onSuccessUpdateEmail?.map(
+        (id, update) => SetMethodPropertiesConverter()
+            .fromMapEmailSubmissionIdToJson(id, update),
+      ),
+    );
     writeNotNull(
-        'onSuccessDestroyEmail',
-        onSuccessDestroyEmail
-            ?.map((destroyId) =>
-                const ReferencesEmailSubmissionIdConverter().toJson(destroyId))
-            .toList());
+      'onSuccessDestroyEmail',
+      onSuccessDestroyEmail
+          ?.map(
+            (destroyId) =>
+                const ReferencesEmailSubmissionIdConverter().toJson(destroyId),
+          )
+          .toList(),
+    );
 
     return val;
   }
-
-  @override
-  List<Object?> get props => [
-        accountId,
-        ifInState,
-        create,
-        update,
-        destroy,
-        onSuccessUpdateEmail,
-        onSuccessDestroyEmail
-      ];
 }
 
 mixin OptionalOnSuccessUpdateEmail {

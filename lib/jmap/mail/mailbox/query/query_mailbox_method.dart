@@ -14,23 +14,25 @@ class QueryMailboxMethod extends QueryMethod with FilterAsTree, SortAsTree {
   MethodName get methodName => MethodName('Mailbox/query');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities =>
-      {CapabilityIdentifier.jmapCore, CapabilityIdentifier.jmapMail};
-
-  @override
-  List<Object?> get props => [methodName, accountId, filter, limit];
+  Set<CapabilityIdentifier> get requiredCapabilities => {
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jmapMail,
+  };
 
   factory QueryMailboxMethod.fromJson(Map<String, dynamic> json) {
     return QueryMailboxMethod(
-        const AccountIdConverter().fromJson(json['accountId'] as String))
+        const AccountIdConverter().fromJson(json['accountId'] as String),
+      )
       ..sortAsTree = json['sortAsTree'] as bool?
       ..filterAsTree = json['filterAsTree'] as bool?
       ..filter = json['filter'] == null
           ? null
           : MailboxFilterCondition.fromJson(
-              json['filter'] as Map<String, dynamic>)
-      ..limit =
-          const UnsignedIntNullableConverter().fromJson(json['limit'] as int);
+              json['filter'] as Map<String, dynamic>,
+            )
+      ..limit = const UnsignedIntNullableConverter().fromJson(
+        json['limit'] as int,
+      );
   }
 
   @override

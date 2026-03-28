@@ -16,11 +16,10 @@ class GetPublicAssetMethod extends MethodRequiringAccountId with OptionalIds {
   MethodName get methodName => MethodName('PublicAsset/get');
 
   @override
-  List<Object?> get props => [accountId, ids];
-
-  @override
-  Set<CapabilityIdentifier> get requiredCapabilities =>
-      {CapabilityIdentifier.jmapCore, CapabilityIdentifier.jmapPublicAsset};
+  Set<CapabilityIdentifier> get requiredCapabilities => {
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jmapPublicAsset,
+  };
 
   @override
   Map<String, dynamic> toJson() => _$GetPublicAssetMethodToJson(this);

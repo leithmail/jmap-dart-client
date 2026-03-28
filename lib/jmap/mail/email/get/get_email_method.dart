@@ -31,12 +31,10 @@ class GetEmailMethod extends GetMethod
   MethodName get methodName => MethodName('Email/get');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities =>
-      {CapabilityIdentifier.jmapCore, CapabilityIdentifier.jmapMail};
-
-  @override
-  List<Object?> get props =>
-      [methodName, accountId, ids, properties, requiredCapabilities];
+  Set<CapabilityIdentifier> get requiredCapabilities => {
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jmapMail,
+  };
 
   factory GetEmailMethod.fromJson(Map<String, dynamic> json) =>
       _$GetEmailMethodFromJson(json);

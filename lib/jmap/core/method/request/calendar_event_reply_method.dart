@@ -4,15 +4,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 abstract class CalendarEventReplyMethod extends MethodRequiringAccountId
     with OptionalLanguage {
-  CalendarEventReplyMethod(
-    super.accountId, {
-    required this.blobIds,
-  });
+  CalendarEventReplyMethod(super.accountId, {required this.blobIds});
 
   final List<Id> blobIds;
-
-  @override
-  List<Object?> get props => [accountId, blobIds, language];
 }
 
 mixin OptionalLanguage {

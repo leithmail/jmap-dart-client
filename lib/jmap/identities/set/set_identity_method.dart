@@ -14,14 +14,16 @@ class SetIdentityMethod extends SetMethod<Identity> {
   MethodName get methodName => MethodName('Identity/set');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities =>
-      {CapabilityIdentifier.jmapCore, CapabilityIdentifier.jmapSubmission};
+  Set<CapabilityIdentifier> get requiredCapabilities => {
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jmapSubmission,
+  };
 
   Set<CapabilityIdentifier> get requiredCapabilitiesSupportSortOrder => {
-        CapabilityIdentifier.jmapCore,
-        CapabilityIdentifier.jmapSubmission,
-        CapabilityIdentifier.jamesSortOrder
-      };
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jmapSubmission,
+    CapabilityIdentifier.jamesSortOrder,
+  };
 
   @override
   Map<String, dynamic> toJson() {
@@ -37,22 +39,26 @@ class SetIdentityMethod extends SetMethod<Identity> {
 
     writeNotNull('ifInState', ifInState?.value);
     writeNotNull(
-        'create',
-        create?.map((id, create) => SetMethodPropertiesConverter()
-            .fromMapIdToJson(id, create.toJson())));
+      'create',
+      create?.map(
+        (id, create) =>
+            SetMethodPropertiesConverter().fromMapIdToJson(id, create.toJson()),
+      ),
+    );
     writeNotNull(
-        'update',
-        update?.map((id, update) => SetMethodPropertiesConverter()
-            .fromMapIdToJson(id, update.toJson())));
+      'update',
+      update?.map(
+        (id, update) =>
+            SetMethodPropertiesConverter().fromMapIdToJson(id, update.toJson()),
+      ),
+    );
     writeNotNull(
-        'destroy',
-        destroy
-            ?.map((destroyId) => const IdConverter().toJson(destroyId))
-            .toList());
+      'destroy',
+      destroy
+          ?.map((destroyId) => const IdConverter().toJson(destroyId))
+          .toList(),
+    );
 
     return val;
   }
-
-  @override
-  List<Object?> get props => [accountId, ifInState, create, update, destroy];
 }

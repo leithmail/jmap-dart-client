@@ -35,25 +35,13 @@ class ParseEmailMethod extends ParseMethod
 
   @override
   Set<CapabilityIdentifier> get requiredCapabilities => {
-        CapabilityIdentifier.jmapCore,
-        CapabilityIdentifier.jmapMail,
-      };
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jmapMail,
+  };
 
   factory ParseEmailMethod.fromJson(Map<String, dynamic> json) =>
       _$ParseEmailMethodFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$ParseEmailMethodToJson(this);
-
-  @override
-  List<Object?> get props => [
-        accountId,
-        blobIds,
-        properties,
-        bodyProperties,
-        fetchTextBodyValues,
-        fetchHTMLBodyValues,
-        fetchAllBodyValues,
-        maxBodyValueBytes,
-      ];
 }

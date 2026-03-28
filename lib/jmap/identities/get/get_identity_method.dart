@@ -21,18 +21,16 @@ class GetIdentityMethod extends GetMethod {
   MethodName get methodName => MethodName('Identity/get');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities =>
-      {CapabilityIdentifier.jmapCore, CapabilityIdentifier.jmapSubmission};
+  Set<CapabilityIdentifier> get requiredCapabilities => {
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jmapSubmission,
+  };
 
   Set<CapabilityIdentifier> get requiredCapabilitiesSupportSortOrder => {
-        CapabilityIdentifier.jmapCore,
-        CapabilityIdentifier.jmapSubmission,
-        CapabilityIdentifier.jamesSortOrder
-      };
-
-  @override
-  List<Object?> get props =>
-      [methodName, accountId, ids, properties, requiredCapabilities];
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jmapSubmission,
+    CapabilityIdentifier.jamesSortOrder,
+  };
 
   factory GetIdentityMethod.fromJson(Map<String, dynamic> json) =>
       _$GetIdentityMethodFromJson(json);

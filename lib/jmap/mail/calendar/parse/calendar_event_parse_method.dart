@@ -12,14 +12,16 @@ class CalendarEventParseMethod extends ParseMethod {
   MethodName get methodName => MethodName('CalendarEvent/parse');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities =>
-      {CapabilityIdentifier.jmapCore, CapabilityIdentifier.jamesCalendarEvent};
+  Set<CapabilityIdentifier> get requiredCapabilities => {
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jamesCalendarEvent,
+  };
 
   @override
   Map<String, dynamic> toJson() {
     final val = <String, dynamic>{
       'accountId': const AccountIdConverter().toJson(accountId),
-      'blobIds': blobIds.map(const IdConverter().toJson).toList()
+      'blobIds': blobIds.map(const IdConverter().toJson).toList(),
     };
 
     void writeNotNull(String key, dynamic value) {
@@ -32,7 +34,4 @@ class CalendarEventParseMethod extends ParseMethod {
 
     return val;
   }
-
-  @override
-  List<Object?> get props => [accountId, blobIds, properties];
 }

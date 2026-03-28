@@ -15,19 +15,20 @@ class SearchSnippetGetMethod extends GetMethod
   MethodName get methodName => MethodName('SearchSnippet/get');
 
   @override
-  List<Object?> get props => [methodName, accountId, filter];
-
-  @override
-  Set<CapabilityIdentifier> get requiredCapabilities =>
-      {CapabilityIdentifier.jmapCore, CapabilityIdentifier.jmapMail};
+  Set<CapabilityIdentifier> get requiredCapabilities => {
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jmapMail,
+  };
 
   factory SearchSnippetGetMethod.fromJson(Map<String, dynamic> json) {
     return SearchSnippetGetMethod(
-        const AccountIdConverter().fromJson(json['accountId']))
+        const AccountIdConverter().fromJson(json['accountId']),
+      )
       ..filter = json['filter'] == null
           ? null
           : EmailFilterCondition.fromJson(
-              json['filter'] as Map<String, dynamic>)
+              json['filter'] as Map<String, dynamic>,
+            )
       ..referenceEmailIds = json['#emailIds'] == null
           ? null
           : ResultReference.fromJson(json['#emailIds'] as Map<String, dynamic>);

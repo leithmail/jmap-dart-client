@@ -16,15 +16,15 @@ class QueryEmailMethod extends QueryMethod with OptionalCollapseThreads {
   MethodName get methodName => MethodName('Email/query');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities =>
-      {CapabilityIdentifier.jmapCore, CapabilityIdentifier.jmapMail};
-
-  @override
-  List<Object?> get props => [methodName, accountId, limit, filter, sort];
+  Set<CapabilityIdentifier> get requiredCapabilities => {
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jmapMail,
+  };
 
   factory QueryEmailMethod.fromJson(Map<String, dynamic> json) {
     return QueryEmailMethod(
-        const AccountIdConverter().fromJson(json['accountId'] as String))
+        const AccountIdConverter().fromJson(json['accountId'] as String),
+      )
       ..position = json['position'] as int?
       ..anchorOffset = json['anchorOffset'] as int?
       ..calculateTotal = json['calculateTotal'] as bool?
@@ -32,13 +32,15 @@ class QueryEmailMethod extends QueryMethod with OptionalCollapseThreads {
       ..filter = json['filter'] == null
           ? null
           : EmailFilterCondition.fromJson(
-              json['filter'] as Map<String, dynamic>)
+              json['filter'] as Map<String, dynamic>,
+            )
       ..sort = (json['sort'] as List<dynamic>?)
           ?.map((e) => EmailComparator.fromJson(e as Map<String, dynamic>))
           .toSet()
       ..anchor = const IdNullableConverter().fromJson(json['anchor'] as String?)
-      ..limit =
-          const UnsignedIntNullableConverter().fromJson(json['limit'] as int);
+      ..limit = const UnsignedIntNullableConverter().fromJson(
+        json['limit'] as int,
+      );
   }
 
   @override
