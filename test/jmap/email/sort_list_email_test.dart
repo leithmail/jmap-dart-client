@@ -232,9 +232,9 @@ void main() {
 
     final queryEmailMethod = QueryEmailMethod(accountId)
       ..addLimit(UnsignedInt(20))
-      ..addSorts({
+      ..addSorts([
         EmailComparator(EmailComparatorProperty.sentAt)..setIsAscending(false)
-      })
+      ])
       ..addFilters(EmailFilterCondition(
           inMailbox: MailboxId((Id('aba7e8d0-18d9-11eb-a677-2990b970028d')))));
     final queryEmailInvocation = jmapRequestBuilder.invocation(queryEmailMethod,

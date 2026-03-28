@@ -56,10 +56,10 @@ mixin OptionalFilter {
 
 mixin OptionalSort {
   @JsonKey(includeIfNull: false)
-  Set<Comparator>? sort;
+  List<Comparator>? sort;
 
-  void addSorts(Set<Comparator> value) {
-    sort ??= <Comparator>{};
+  void addSorts(List<Comparator> value) {
+    sort ??= <Comparator>[];
     sort?.addAll(value);
   }
 }

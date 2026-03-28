@@ -36,7 +36,7 @@ class QueryEmailMethod extends QueryMethod with OptionalCollapseThreads {
             )
       ..sort = (json['sort'] as List<dynamic>?)
           ?.map((e) => EmailComparator.fromJson(e as Map<String, dynamic>))
-          .toSet()
+          .toList()
       ..anchor = const IdNullableConverter().fromJson(json['anchor'] as String?)
       ..limit = const UnsignedIntNullableConverter().fromJson(
         json['limit'] as int,

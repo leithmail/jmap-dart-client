@@ -239,9 +239,9 @@ void main() {
 
       final queryEmailMethod = QueryEmailMethod(accountId)
         ..addLimit(UnsignedInt(20))
-        ..addSorts({
+        ..addSorts([
           EmailComparator(EmailComparatorProperty.sentAt)..setIsAscending(false)
-        })
+        ])
         ..addFilters(LogicFilterOperator(Operator.OR, <Filter>{
           EmailFilterCondition(hasKeyword: "music"),
           EmailFilterCondition(hasKeyword: "video"),

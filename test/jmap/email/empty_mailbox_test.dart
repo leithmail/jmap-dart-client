@@ -117,10 +117,10 @@ void main() {
           '871ae8d53c475bffcd0530c2c673a18862a6ab967b1ac1f78c581fd150eb4120'));
 
       final queryEmailMethod = QueryEmailMethod(accountId)
-        ..addSorts({
+        ..addSorts([
           EmailComparator(EmailComparatorProperty.receivedAt)
             ..setIsAscending(false)
-        })
+        ])
         ..addFilters(EmailFilterCondition(
             inMailbox:
                 MailboxId((Id('025b0580-6422-11ef-a702-5d10e1ebf1c3')))));
