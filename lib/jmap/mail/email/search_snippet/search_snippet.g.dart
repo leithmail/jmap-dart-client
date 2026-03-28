@@ -13,18 +13,9 @@ SearchSnippet _$SearchSnippetFromJson(Map<String, dynamic> json) =>
       preview: json['preview'] as String?,
     );
 
-Map<String, dynamic> _$SearchSnippetToJson(SearchSnippet instance) {
-  final val = <String, dynamic>{
-    'emailId': const EmailIdConverter().toJson(instance.emailId),
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('subject', instance.subject);
-  writeNotNull('preview', instance.preview);
-  return val;
-}
+Map<String, dynamic> _$SearchSnippetToJson(SearchSnippet instance) =>
+    <String, dynamic>{
+      'emailId': const EmailIdConverter().toJson(instance.emailId),
+      'subject': ?instance.subject,
+      'preview': ?instance.preview,
+    };

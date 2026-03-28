@@ -8,36 +8,28 @@ part of 'get_quota_method.dart';
 
 GetQuotaMethod _$GetQuotaMethodFromJson(Map<String, dynamic> json) =>
     GetQuotaMethod(
-      const AccountIdConverter().fromJson(json['accountId'] as String),
-    )
+        const AccountIdConverter().fromJson(json['accountId'] as String),
+      )
       ..ids = (json['ids'] as List<dynamic>?)
           ?.map((e) => const IdConverter().fromJson(e as String))
           .toSet()
       ..referenceIds = json['#ids'] == null
           ? null
           : ResultReference.fromJson(json['#ids'] as Map<String, dynamic>)
-      ..properties = const PropertiesConverter()
-          .fromJson(json['properties'] as List<String>?)
+      ..properties = const PropertiesConverter().fromJson(
+        json['properties'] as List<String>?,
+      )
       ..referenceProperties = json['#properties'] == null
           ? null
           : ResultReference.fromJson(
-              json['#properties'] as Map<String, dynamic>);
+              json['#properties'] as Map<String, dynamic>,
+            );
 
-Map<String, dynamic> _$GetQuotaMethodToJson(GetQuotaMethod instance) {
-  final val = <String, dynamic>{
-    'accountId': const AccountIdConverter().toJson(instance.accountId),
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('ids', instance.ids?.map(const IdConverter().toJson).toList());
-  writeNotNull('#ids', instance.referenceIds?.toJson());
-  writeNotNull(
-      'properties', const PropertiesConverter().toJson(instance.properties));
-  writeNotNull('#properties', instance.referenceProperties?.toJson());
-  return val;
-}
+Map<String, dynamic> _$GetQuotaMethodToJson(GetQuotaMethod instance) =>
+    <String, dynamic>{
+      'accountId': const AccountIdConverter().toJson(instance.accountId),
+      'ids': ?instance.ids?.map(const IdConverter().toJson).toList(),
+      '#ids': ?instance.referenceIds?.toJson(),
+      'properties': ?const PropertiesConverter().toJson(instance.properties),
+      '#properties': ?instance.referenceProperties?.toJson(),
+    };

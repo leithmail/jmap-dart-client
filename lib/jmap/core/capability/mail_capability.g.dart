@@ -8,16 +8,21 @@ part of 'mail_capability.dart';
 
 MailCapability _$MailCapabilityFromJson(Map<String, dynamic> json) =>
     MailCapability(
-      maxMailboxesPerEmail: const UnsignedIntNullableConverter()
-          .fromJson((json['maxMailboxesPerEmail'] as num?)?.toInt()),
-      maxMailboxDepth: const UnsignedIntNullableConverter()
-          .fromJson((json['maxMailboxDepth'] as num?)?.toInt()),
-      maxSizeMailboxName: const UnsignedIntNullableConverter()
-          .fromJson((json['maxSizeMailboxName'] as num?)?.toInt()),
-      maxKeywordsPerEmail: const UnsignedIntNullableConverter()
-          .fromJson((json['maxKeywordsPerEmail'] as num?)?.toInt()),
-      maxSizeAttachmentsPerEmail: const UnsignedIntNullableConverter()
-          .fromJson((json['maxSizeAttachmentsPerEmail'] as num?)?.toInt()),
+      maxMailboxesPerEmail: const UnsignedIntNullableConverter().fromJson(
+        (json['maxMailboxesPerEmail'] as num?)?.toInt(),
+      ),
+      maxMailboxDepth: const UnsignedIntNullableConverter().fromJson(
+        (json['maxMailboxDepth'] as num?)?.toInt(),
+      ),
+      maxSizeMailboxName: const UnsignedIntNullableConverter().fromJson(
+        (json['maxSizeMailboxName'] as num?)?.toInt(),
+      ),
+      maxKeywordsPerEmail: const UnsignedIntNullableConverter().fromJson(
+        (json['maxKeywordsPerEmail'] as num?)?.toInt(),
+      ),
+      maxSizeAttachmentsPerEmail: const UnsignedIntNullableConverter().fromJson(
+        (json['maxSizeAttachmentsPerEmail'] as num?)?.toInt(),
+      ),
       emailQuerySortOptions: (json['emailQuerySortOptions'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toSet(),
@@ -27,35 +32,23 @@ MailCapability _$MailCapabilityFromJson(Map<String, dynamic> json) =>
       mayCreateTopLevelMailbox: json['mayCreateTopLevelMailbox'] as bool?,
     );
 
-Map<String, dynamic> _$MailCapabilityToJson(MailCapability instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull(
-      'maxMailboxesPerEmail',
-      const UnsignedIntNullableConverter()
-          .toJson(instance.maxMailboxesPerEmail));
-  writeNotNull('maxMailboxDepth',
-      const UnsignedIntNullableConverter().toJson(instance.maxMailboxDepth));
-  writeNotNull('maxSizeMailboxName',
-      const UnsignedIntNullableConverter().toJson(instance.maxSizeMailboxName));
-  writeNotNull(
-      'maxKeywordsPerEmail',
-      const UnsignedIntNullableConverter()
-          .toJson(instance.maxKeywordsPerEmail));
-  writeNotNull(
-      'maxSizeAttachmentsPerEmail',
-      const UnsignedIntNullableConverter()
-          .toJson(instance.maxSizeAttachmentsPerEmail));
-  writeNotNull(
-      'emailQuerySortOptions', instance.emailQuerySortOptions?.toList());
-  writeNotNull(
-      'emailsListSortOptions', instance.emailsListSortOptions?.toList());
-  writeNotNull('mayCreateTopLevelMailbox', instance.mayCreateTopLevelMailbox);
-  return val;
-}
+Map<String, dynamic> _$MailCapabilityToJson(MailCapability instance) =>
+    <String, dynamic>{
+      'maxMailboxesPerEmail': ?const UnsignedIntNullableConverter().toJson(
+        instance.maxMailboxesPerEmail,
+      ),
+      'maxMailboxDepth': ?const UnsignedIntNullableConverter().toJson(
+        instance.maxMailboxDepth,
+      ),
+      'maxSizeMailboxName': ?const UnsignedIntNullableConverter().toJson(
+        instance.maxSizeMailboxName,
+      ),
+      'maxKeywordsPerEmail': ?const UnsignedIntNullableConverter().toJson(
+        instance.maxKeywordsPerEmail,
+      ),
+      'maxSizeAttachmentsPerEmail': ?const UnsignedIntNullableConverter()
+          .toJson(instance.maxSizeAttachmentsPerEmail),
+      'emailQuerySortOptions': ?instance.emailQuerySortOptions?.toList(),
+      'emailsListSortOptions': ?instance.emailsListSortOptions?.toList(),
+      'mayCreateTopLevelMailbox': ?instance.mayCreateTopLevelMailbox,
+    };

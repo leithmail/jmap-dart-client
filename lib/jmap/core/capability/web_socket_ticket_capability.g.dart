@@ -7,27 +7,19 @@ part of 'web_socket_ticket_capability.dart';
 // **************************************************************************
 
 WebSocketTicketCapability _$WebSocketTicketCapabilityFromJson(
-        Map<String, dynamic> json) =>
-    WebSocketTicketCapability(
-      generationEndpoint: json['generationEndpoint'] == null
-          ? null
-          : Uri.parse(json['generationEndpoint'] as String),
-      revocationEndpoint: json['revocationEndpoint'] == null
-          ? null
-          : Uri.parse(json['revocationEndpoint'] as String),
-    );
+  Map<String, dynamic> json,
+) => WebSocketTicketCapability(
+  generationEndpoint: json['generationEndpoint'] == null
+      ? null
+      : Uri.parse(json['generationEndpoint'] as String),
+  revocationEndpoint: json['revocationEndpoint'] == null
+      ? null
+      : Uri.parse(json['revocationEndpoint'] as String),
+);
 
 Map<String, dynamic> _$WebSocketTicketCapabilityToJson(
-    WebSocketTicketCapability instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('generationEndpoint', instance.generationEndpoint?.toString());
-  writeNotNull('revocationEndpoint', instance.revocationEndpoint?.toString());
-  return val;
-}
+  WebSocketTicketCapability instance,
+) => <String, dynamic>{
+  'generationEndpoint': ?instance.generationEndpoint?.toString(),
+  'revocationEndpoint': ?instance.revocationEndpoint?.toString(),
+};

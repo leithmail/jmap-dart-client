@@ -8,42 +8,36 @@ part of 'parse_email_method.dart';
 
 ParseEmailMethod _$ParseEmailMethodFromJson(Map<String, dynamic> json) =>
     ParseEmailMethod(
-      const AccountIdConverter().fromJson(json['accountId'] as String),
-      (json['blobIds'] as List<dynamic>)
-          .map((e) => const IdConverter().fromJson(e as String))
-          .toSet(),
-    )
-      ..properties = const PropertiesConverter()
-          .fromJson(json['properties'] as List<String>?)
+        const AccountIdConverter().fromJson(json['accountId'] as String),
+        (json['blobIds'] as List<dynamic>)
+            .map((e) => const IdConverter().fromJson(e as String))
+            .toSet(),
+      )
+      ..properties = const PropertiesConverter().fromJson(
+        json['properties'] as List<String>?,
+      )
       ..bodyProperties = json['bodyProperties'] == null
           ? null
           : EmailBodyProperties.fromJson(
-              json['bodyProperties'] as Map<String, dynamic>)
+              json['bodyProperties'] as Map<String, dynamic>,
+            )
       ..fetchTextBodyValues = json['fetchTextBodyValues'] as bool?
       ..fetchHTMLBodyValues = json['fetchHTMLBodyValues'] as bool?
       ..fetchAllBodyValues = json['fetchAllBodyValues'] as bool?
-      ..maxBodyValueBytes = const UnsignedIntNullableConverter()
-          .fromJson((json['maxBodyValueBytes'] as num?)?.toInt());
+      ..maxBodyValueBytes = const UnsignedIntNullableConverter().fromJson(
+        (json['maxBodyValueBytes'] as num?)?.toInt(),
+      );
 
-Map<String, dynamic> _$ParseEmailMethodToJson(ParseEmailMethod instance) {
-  final val = <String, dynamic>{
-    'accountId': const AccountIdConverter().toJson(instance.accountId),
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull(
-      'properties', const PropertiesConverter().toJson(instance.properties));
-  val['blobIds'] = instance.blobIds.map(const IdConverter().toJson).toList();
-  writeNotNull('bodyProperties', instance.bodyProperties?.toJson());
-  writeNotNull('fetchTextBodyValues', instance.fetchTextBodyValues);
-  writeNotNull('fetchHTMLBodyValues', instance.fetchHTMLBodyValues);
-  writeNotNull('fetchAllBodyValues', instance.fetchAllBodyValues);
-  writeNotNull('maxBodyValueBytes',
-      const UnsignedIntNullableConverter().toJson(instance.maxBodyValueBytes));
-  return val;
-}
+Map<String, dynamic> _$ParseEmailMethodToJson(ParseEmailMethod instance) =>
+    <String, dynamic>{
+      'accountId': const AccountIdConverter().toJson(instance.accountId),
+      'properties': ?const PropertiesConverter().toJson(instance.properties),
+      'blobIds': instance.blobIds.map(const IdConverter().toJson).toList(),
+      'bodyProperties': ?instance.bodyProperties?.toJson(),
+      'fetchTextBodyValues': ?instance.fetchTextBodyValues,
+      'fetchHTMLBodyValues': ?instance.fetchHTMLBodyValues,
+      'fetchAllBodyValues': ?instance.fetchAllBodyValues,
+      'maxBodyValueBytes': ?const UnsignedIntNullableConverter().toJson(
+        instance.maxBodyValueBytes,
+      ),
+    };
