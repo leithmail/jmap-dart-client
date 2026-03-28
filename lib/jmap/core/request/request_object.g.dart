@@ -9,8 +9,9 @@ part of 'request_object.dart';
 RequestObject _$RequestObjectFromJson(Map<String, dynamic> json) =>
     RequestObject(
       (json['using'] as List<dynamic>)
-          .map((e) =>
-              const CapabilityIdentifierConverter().fromJson(e as String))
+          .map(
+            (e) => const CapabilityIdentifierConverter().fromJson(e as String),
+          )
           .toSet(),
       (json['methodCalls'] as List<dynamic>)
           .map((e) => const RequestInvocationConverter().fromJson(e as List))

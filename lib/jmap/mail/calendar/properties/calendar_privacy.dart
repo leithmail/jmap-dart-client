@@ -1,5 +1,1 @@
-enum CalendarPrivacy {
-  public,
-  private,
-  secret;
-}
+enum CalendarPrivacy { public, private, secret }

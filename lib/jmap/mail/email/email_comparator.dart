@@ -14,9 +14,6 @@ part 'email_comparator.g.dart';
 class EmailComparator extends Comparator {
   EmailComparator(EmailComparatorProperty property) : super(property);
 
-  @override
-  List<Object?> get props => [property, isAscending, collation];
-
   factory EmailComparator.fromJson(Map<String, dynamic> json) =>
       _$EmailComparatorFromJson(json);
 

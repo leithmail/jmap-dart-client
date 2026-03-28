@@ -18,7 +18,7 @@ void main() {
     final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
     final dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
     final dioAdapterHeaders = {
-      "accept": "application/json;jmapVersion=rfc-8621"
+      "accept": "application/json;jmapVersion=rfc-8621",
     };
     final httpClient = HttpClient(dio);
     final processingInvocation = ProcessingInvocation();
@@ -30,8 +30,7 @@ void main() {
 
     final methodCallId = MethodCallId('c0');
 
-    test(
-        'should return CalendarEventAttendance '
+    test('should return CalendarEventAttendance '
         'when the method returns success', () async {
       // arrange
       final freeAttendance = CalendarEventAttendance(
@@ -45,8 +44,10 @@ void main() {
         isFree: false,
       );
       final blobIds = [freeBlobId, busyBlobId, notFoundBlobId];
-      final getCalendarEventAttendanceMethod =
-          GetCalendarEventAttendanceMethod(accountId, blobIds);
+      final getCalendarEventAttendanceMethod = GetCalendarEventAttendanceMethod(
+        accountId,
+        blobIds,
+      );
       final invocation = requestBuilder.invocation(
         getCalendarEventAttendanceMethod,
         methodCallId: methodCallId,
@@ -63,9 +64,9 @@ void main() {
               "accountId": accountId.id.value,
               "blobIds": blobIds.map((id) => id.value).toList(),
             },
-            methodCallId.value
-          ]
-        ]
+            methodCallId.value,
+          ],
+        ],
       };
       final sampleResponse = {
         "sessionState": "abcdefghij",
@@ -79,20 +80,28 @@ void main() {
               "notFound": [notFoundBlobId.value],
               "notDone": {},
             },
-            methodCallId.value
-          ]
-        ]
+            methodCallId.value,
+          ],
+        ],
       };
-      dioAdapter.onPost('', (server) => server.reply(200, sampleResponse),
-          data: sampleRequest, headers: dioAdapterHeaders);
+      dioAdapter.onPost(
+        '',
+        (server) => server.reply(200, sampleResponse),
+        data: sampleRequest,
+        headers: dioAdapterHeaders,
+      );
 
       // act
-      final response = (await (requestBuilder
-                ..usings(getCalendarEventAttendanceMethod.requiredCapabilities))
-              .build()
-              .execute())
-          .parse<GetCalendarEventAttendanceResponse>(invocation.methodCallId,
-              GetCalendarEventAttendanceResponse.deserialize);
+      final response =
+          (await (requestBuilder..usings(
+                    getCalendarEventAttendanceMethod.requiredCapabilities,
+                  ))
+                  .build()
+                  .execute())
+              .parse<GetCalendarEventAttendanceResponse>(
+                invocation.methodCallId,
+                GetCalendarEventAttendanceResponse.deserialize,
+              );
 
       // assert
       expect(response?.accountId, equals(accountId));
@@ -101,13 +110,14 @@ void main() {
       expect(response?.notDone?.isEmpty, isTrue);
     });
 
-    test(
-        'should return notDone '
+    test('should return notDone '
         'when blobId is invalid', () async {
       // arrange
       final blobId = Id('invalid');
-      final getCalendarEventAttendanceMethod =
-          GetCalendarEventAttendanceMethod(accountId, [blobId]);
+      final getCalendarEventAttendanceMethod = GetCalendarEventAttendanceMethod(
+        accountId,
+        [blobId],
+      );
       final invocation = requestBuilder.invocation(
         getCalendarEventAttendanceMethod,
         methodCallId: methodCallId,
@@ -124,9 +134,9 @@ void main() {
               "accountId": accountId.id.value,
               "blobIds": [blobId.value],
             },
-            methodCallId.value
-          ]
-        ]
+            methodCallId.value,
+          ],
+        ],
       };
       final sampleResponse = {
         "sessionState": "abcdefghij",
@@ -139,41 +149,50 @@ void main() {
               "list": [],
               "notFound": [],
               "notDone": {
-                blobId.value: SetError(
-                  SetError.invalidArguments,
-                ).toJson(),
+                blobId.value: SetError(SetError.invalidArguments).toJson(),
               },
             },
-            methodCallId.value
-          ]
-        ]
+            methodCallId.value,
+          ],
+        ],
       };
-      dioAdapter.onPost('', (server) => server.reply(200, sampleResponse),
-          data: sampleRequest, headers: dioAdapterHeaders);
+      dioAdapter.onPost(
+        '',
+        (server) => server.reply(200, sampleResponse),
+        data: sampleRequest,
+        headers: dioAdapterHeaders,
+      );
 
       // act
-      final response = (await (requestBuilder
-                ..usings(getCalendarEventAttendanceMethod.requiredCapabilities))
-              .build()
-              .execute())
-          .parse<GetCalendarEventAttendanceResponse>(invocation.methodCallId,
-              GetCalendarEventAttendanceResponse.deserialize);
+      final response =
+          (await (requestBuilder..usings(
+                    getCalendarEventAttendanceMethod.requiredCapabilities,
+                  ))
+                  .build()
+                  .execute())
+              .parse<GetCalendarEventAttendanceResponse>(
+                invocation.methodCallId,
+                GetCalendarEventAttendanceResponse.deserialize,
+              );
 
       // assert
       expect(response?.accountId, equals(accountId));
       expect(response?.list.isEmpty, isTrue);
       expect(response?.notFound?.isEmpty, isTrue);
-      expect(response?.notDone?[blobId],
-          equals(SetError(SetError.invalidArguments)));
+      expect(
+        response?.notDone?[blobId],
+        equals(SetError(SetError.invalidArguments)),
+      );
     });
 
-    test(
-        'should return error '
+    test('should return error '
         'when method returns error', () async {
       // arrange
       final blobId = Id('invalid');
-      final getCalendarEventAttendanceMethod =
-          GetCalendarEventAttendanceMethod(accountId, [blobId]);
+      final getCalendarEventAttendanceMethod = GetCalendarEventAttendanceMethod(
+        accountId,
+        [blobId],
+      );
       final invocation = requestBuilder.invocation(
         getCalendarEventAttendanceMethod,
         methodCallId: methodCallId,
@@ -190,36 +209,40 @@ void main() {
               "accountId": accountId.id.value,
               "blobIds": [blobId.value],
             },
-            methodCallId.value
-          ]
-        ]
+            methodCallId.value,
+          ],
+        ],
       };
       final sampleResponse = {
         "sessionState": "abcdefghij",
         "methodResponses": [
           [
             "error",
-            {
-              "type": SetError.tooLarge.value,
-            },
-            methodCallId.value
-          ]
-        ]
+            {"type": SetError.tooLarge.value},
+            methodCallId.value,
+          ],
+        ],
       };
-      dioAdapter.onPost('', (server) => server.reply(200, sampleResponse),
-          data: sampleRequest, headers: dioAdapterHeaders);
+      dioAdapter.onPost(
+        '',
+        (server) => server.reply(200, sampleResponse),
+        data: sampleRequest,
+        headers: dioAdapterHeaders,
+      );
 
       // act
-      final response = (await (requestBuilder
-            ..usings(getCalendarEventAttendanceMethod.requiredCapabilities))
-          .build()
-          .execute());
+      final response =
+          (await (requestBuilder
+                ..usings(getCalendarEventAttendanceMethod.requiredCapabilities))
+              .build()
+              .execute());
 
       // assert
       expect(
         () => response.parse<GetCalendarEventAttendanceResponse>(
-            invocation.methodCallId,
-            GetCalendarEventAttendanceResponse.deserialize),
+          invocation.methodCallId,
+          GetCalendarEventAttendanceResponse.deserialize,
+        ),
         throwsA(isA<ErrorMethodResponseException>()),
       );
     });

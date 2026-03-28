@@ -22,14 +22,10 @@ class GetQuotaMethod extends GetMethod {
 
   @override
   Set<CapabilityIdentifier> get requiredCapabilities => {
-        CapabilityIdentifier.jmapCore,
-        CapabilityIdentifier.jmapMail,
-        CapabilityIdentifier.jmapQuota
-      };
-
-  @override
-  List<Object?> get props =>
-      [methodName, accountId, ids, properties, requiredCapabilities];
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jmapMail,
+    CapabilityIdentifier.jmapQuota,
+  };
 
   factory GetQuotaMethod.fromJson(Map<String, dynamic> json) =>
       _$GetQuotaMethodFromJson(json);

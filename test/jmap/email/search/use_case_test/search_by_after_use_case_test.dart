@@ -22,106 +22,103 @@ import 'package:jmap_dart_client/jmap/mail/email/query/query_email_method.dart';
 
 void main() {
   final expectMail = Email(
-      id: EmailId(Id("04f27c50-e879-11ec-aae4-43ebf0340ebd")),
-      preview: "AAAA",
-      hasAttachment: false,
-      subject: "AAAA",
-      size: UnsignedInt(3328),
-      from: {EmailAddress("Manh tuan Manh", "manh199672@gmail.com")},
-      sentAt: UTCDate(DateTime.parse("2022-06-10T04:44:03Z")),
-      receivedAt: UTCDate(DateTime.parse("2022-06-10T04:51:41Z")));
+    id: EmailId(Id("04f27c50-e879-11ec-aae4-43ebf0340ebd")),
+    preview: "AAAA",
+    hasAttachment: false,
+    subject: "AAAA",
+    size: UnsignedInt(3328),
+    from: {EmailAddress("Manh tuan Manh", "manh199672@gmail.com")},
+    sentAt: UTCDate(DateTime.parse("2022-06-10T04:44:03Z")),
+    receivedAt: UTCDate(DateTime.parse("2022-06-10T04:51:41Z")),
+  );
 
   Future<List<Email>?> searchMailByCondition(Comparator comparator) async {
     final baseOption = BaseOptions(method: 'POST');
     final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
     final dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
     dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
-              "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
-              "methodResponses": [
-                [
-                  "Email/query",
-                  {
-                    "accountId":
-                        "0eacc7a5c74b27ab36a823bc5c34da36e16c093705f241d6ed5f48ee73a4ecfb",
-                    "queryState": "c4a08240",
-                    "canCalculateChanges": false,
-                    "ids": ["04f27c50-e879-11ec-aae4-43ebf0340ebd"],
-                    "position": 0,
-                    "limit": 256
-                  },
-                  "c1"
-                ],
-                [
-                  "Email/get",
-                  {
-                    "accountId":
-                        "0eacc7a5c74b27ab36a823bc5c34da36e16c093705f241d6ed5f48ee73a4ecfb",
-                    "notFound": [],
-                    "state": "94bbff20-e87c-11ec-aae4-43ebf0340ebd",
-                    "list": [
-                      {
-                        "preview": "AAAA",
-                        "hasAttachment": false,
-                        "size": 3328,
-                        "subject": "AAAA",
-                        "from": [
-                          {
-                            "name": "Manh tuan Manh",
-                            "email": "manh199672@gmail.com"
-                          }
-                        ],
-                        "sentAt": "2022-06-10T04:44:03Z",
-                        "id": "04f27c50-e879-11ec-aae4-43ebf0340ebd",
-                        "receivedAt": "2022-06-10T04:51:41Z"
-                      }
-                    ]
-                  },
-                  "c2"
-                ]
-              ]
-            }),
-        data: {
-          "using": ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail"],
-          "methodCalls": [
-            [
-              "Email/query",
-              {
-                "accountId":
-                    "0eacc7a5c74b27ab36a823bc5c34da36e16c093705f241d6ed5f48ee73a4ecfb",
-                "filter": {"after": "2022-05-12T06:12:00.000Z", "from": "manh"}
-              },
-              "c1"
-            ],
-            [
-              "Email/get",
-              {
-                "accountId":
-                    "0eacc7a5c74b27ab36a823bc5c34da36e16c093705f241d6ed5f48ee73a4ecfb",
-                "#ids": {
-                  "resultOf": "c1",
-                  "name": "Email/query",
-                  "path": "/ids/*"
+      '',
+      (server) => server.reply(200, {
+        "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
+        "methodResponses": [
+          [
+            "Email/query",
+            {
+              "accountId":
+                  "0eacc7a5c74b27ab36a823bc5c34da36e16c093705f241d6ed5f48ee73a4ecfb",
+              "queryState": "c4a08240",
+              "canCalculateChanges": false,
+              "ids": ["04f27c50-e879-11ec-aae4-43ebf0340ebd"],
+              "position": 0,
+              "limit": 256,
+            },
+            "c1",
+          ],
+          [
+            "Email/get",
+            {
+              "accountId":
+                  "0eacc7a5c74b27ab36a823bc5c34da36e16c093705f241d6ed5f48ee73a4ecfb",
+              "notFound": [],
+              "state": "94bbff20-e87c-11ec-aae4-43ebf0340ebd",
+              "list": [
+                {
+                  "preview": "AAAA",
+                  "hasAttachment": false,
+                  "size": 3328,
+                  "subject": "AAAA",
+                  "from": [
+                    {"name": "Manh tuan Manh", "email": "manh199672@gmail.com"},
+                  ],
+                  "sentAt": "2022-06-10T04:44:03Z",
+                  "id": "04f27c50-e879-11ec-aae4-43ebf0340ebd",
+                  "receivedAt": "2022-06-10T04:51:41Z",
                 },
-                "properties": [
-                  "id",
-                  "subject",
-                  "size",
-                  "from",
-                  "receivedAt",
-                  "sentAt",
-                  "preview",
-                  "hasAttachment"
-                ]
+              ],
+            },
+            "c2",
+          ],
+        ],
+      }),
+      data: {
+        "using": ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail"],
+        "methodCalls": [
+          [
+            "Email/query",
+            {
+              "accountId":
+                  "0eacc7a5c74b27ab36a823bc5c34da36e16c093705f241d6ed5f48ee73a4ecfb",
+              "filter": {"after": "2022-05-12T06:12:00.000Z", "from": "manh"},
+            },
+            "c1",
+          ],
+          [
+            "Email/get",
+            {
+              "accountId":
+                  "0eacc7a5c74b27ab36a823bc5c34da36e16c093705f241d6ed5f48ee73a4ecfb",
+              "#ids": {
+                "resultOf": "c1",
+                "name": "Email/query",
+                "path": "/ids/*",
               },
-              "c2"
-            ]
-          ]
-        },
-        headers: {
-          "accept": "application/json;jmapVersion=rfc-8621",
-        });
+              "properties": [
+                "id",
+                "subject",
+                "size",
+                "from",
+                "receivedAt",
+                "sentAt",
+                "preview",
+                "hasAttachment",
+              ],
+            },
+            "c2",
+          ],
+        ],
+      },
+      headers: {"accept": "application/json;jmapVersion=rfc-8621"},
+    );
 
     final httpClient = HttpClient(dio);
     final processingInvocation = ProcessingInvocation();
@@ -136,9 +133,7 @@ void main() {
     final queryEmailMethod = QueryEmailMethod(accountId)
       ..addFilters(
         EmailFilterCondition(
-          after: UTCDate(
-            DateTime.parse('2022-05-12T06:12:00Z'),
-          ),
+          after: UTCDate(DateTime.parse('2022-05-12T06:12:00Z')),
           from: 'manh',
         ),
       );
@@ -148,29 +143,33 @@ void main() {
     );
 
     final getEmailMethod = GetEmailMethod(accountId)
-      ..addProperties(Properties({
-        "id",
-        "subject",
-        "size",
-        "from",
-        "receivedAt",
-        "sentAt",
-        "preview",
-        "hasAttachment"
-      }))
-      ..addReferenceIds(processingInvocation.createResultReference(
-        queryEmailInvocation.methodCallId,
-        ReferencePath.idsPath,
-      ));
+      ..addProperties(
+        Properties({
+          "id",
+          "subject",
+          "size",
+          "from",
+          "receivedAt",
+          "sentAt",
+          "preview",
+          "hasAttachment",
+        }),
+      )
+      ..addReferenceIds(
+        processingInvocation.createResultReference(
+          queryEmailInvocation.methodCallId,
+          ReferencePath.idsPath,
+        ),
+      );
     final getEmailInvocation = jmapRequestBuilder.invocation(
       getEmailMethod,
       methodCallId: MethodCallId('c2'),
     );
 
-    final result = await (jmapRequestBuilder
-          ..usings(getEmailMethod.requiredCapabilities))
-        .build()
-        .execute();
+    final result =
+        await (jmapRequestBuilder..usings(getEmailMethod.requiredCapabilities))
+            .build()
+            .execute();
 
     final resultList = result.parse<GetEmailResponse>(
       getEmailInvocation.methodCallId,
@@ -187,8 +186,8 @@ void main() {
   group('search email test', () {
     test('Search emails from someone in last 30 days', () async {
       final listEmailResponse = await searchMailByCondition(
-          EmailComparator(EmailComparatorProperty.sentAt)
-            ..setIsAscending(false));
+        EmailComparator(EmailComparatorProperty.sentAt)..setIsAscending(false),
+      );
       expect(listEmailResponse, containsAllInOrder([expectMail]));
     });
   });

@@ -11,7 +11,8 @@ class ReferencesEmailSubmissionIdConverter
   @override
   EmailSubmissionId fromJson(String json) {
     return EmailSubmissionId(
-        ReferenceId(ReferencePrefix.defaultPrefix, Id(json.substring(1))));
+      ReferenceId(ReferencePrefix.defaultPrefix, Id(json.substring(1))),
+    );
   }
 
   @override

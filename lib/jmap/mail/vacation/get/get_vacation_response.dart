@@ -15,9 +15,12 @@ part 'get_vacation_response.g.dart';
 @IdConverter()
 @JsonSerializable()
 class GetVacationResponse extends GetResponse<VacationResponse> {
-  GetVacationResponse(AccountId accountId, State state,
-      List<VacationResponse> list, List<Id>? notFound)
-      : super(accountId, state, list, notFound);
+  GetVacationResponse(
+    AccountId accountId,
+    State state,
+    List<VacationResponse> list,
+    List<Id>? notFound,
+  ) : super(accountId, state, list, notFound);
 
   factory GetVacationResponse.fromJson(Map<String, dynamic> json) =>
       _$GetVacationResponseFromJson(json);

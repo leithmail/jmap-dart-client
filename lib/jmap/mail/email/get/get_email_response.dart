@@ -23,8 +23,11 @@ part 'get_email_response.g.dart';
 @JsonSerializable()
 class GetEmailResponse extends GetResponse<Email> {
   GetEmailResponse(
-      AccountId accountId, State state, List<Email> list, List<Id>? notFound)
-      : super(accountId, state, list, notFound);
+    AccountId accountId,
+    State state,
+    List<Email> list,
+    List<Id>? notFound,
+  ) : super(accountId, state, list, notFound);
 
   factory GetEmailResponse.fromJson(Map<String, dynamic> json) =>
       _$GetEmailResponseFromJson(json);
@@ -36,14 +39,20 @@ class GetEmailResponse extends GetResponse<Email> {
   void sortEmails(Comparator comparator) {
     list.sort((email1, email2) {
       if (comparator.property == EmailComparatorProperty.receivedAt) {
-        return email1.receivedAt
-            .compareToSort(email2.receivedAt, comparator.isAscending);
+        return email1.receivedAt.compareToSort(
+          email2.receivedAt,
+          comparator.isAscending,
+        );
       } else if (comparator.property == EmailComparatorProperty.sentAt) {
-        return email1.sentAt
-            .compareToSort(email2.sentAt, comparator.isAscending);
+        return email1.sentAt.compareToSort(
+          email2.sentAt,
+          comparator.isAscending,
+        );
       } else if (comparator.property == EmailComparatorProperty.subject) {
-        return email1.subject
-            .compareToSort(email2.subject, comparator.isAscending);
+        return email1.subject.compareToSort(
+          email2.subject,
+          comparator.isAscending,
+        );
       } else if (comparator.property == EmailComparatorProperty.size) {
         return email1.size.compareToSort(email2.size, comparator.isAscending);
       } else {

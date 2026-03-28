@@ -23,29 +23,44 @@ class SetPublicAssetResponse extends SetResponse<PublicAsset> {
   static SetPublicAssetResponse deserialize(Map<String, dynamic> json) {
     return SetPublicAssetResponse(
       const AccountIdConverter().fromJson(json['accountId'] as String),
-      newState:
-          const StateNullableConverter().fromJson(json['newState'] as String?),
-      created: (json['created'] as Map<String, dynamic>?)?.map((key, value) =>
-          MapEntry(const IdConverter().fromJson(key),
-              PublicAsset.fromJson(value as Map<String, dynamic>))),
-      updated: (json['updated'] as Map<String, dynamic>?)?.map((key, value) =>
-          MapEntry(
-              const IdConverter().fromJson(key),
-              value != null
-                  ? PublicAsset.fromJson(value as Map<String, dynamic>)
-                  : null)),
+      newState: const StateNullableConverter().fromJson(
+        json['newState'] as String?,
+      ),
+      created: (json['created'] as Map<String, dynamic>?)?.map(
+        (key, value) => MapEntry(
+          const IdConverter().fromJson(key),
+          PublicAsset.fromJson(value as Map<String, dynamic>),
+        ),
+      ),
+      updated: (json['updated'] as Map<String, dynamic>?)?.map(
+        (key, value) => MapEntry(
+          const IdConverter().fromJson(key),
+          value != null
+              ? PublicAsset.fromJson(value as Map<String, dynamic>)
+              : null,
+        ),
+      ),
       destroyed: (json['destroyed'] as List<dynamic>?)
           ?.map((id) => const IdConverter().fromJson(id))
           .toSet(),
       notCreated: (json['notCreated'] as Map<String, dynamic>?)?.map(
-          (key, value) => MapEntry(
-              const IdConverter().fromJson(key), SetError.fromJson(value))),
+        (key, value) => MapEntry(
+          const IdConverter().fromJson(key),
+          SetError.fromJson(value),
+        ),
+      ),
       notUpdated: (json['notUpdated'] as Map<String, dynamic>?)?.map(
-          (key, value) => MapEntry(
-              const IdConverter().fromJson(key), SetError.fromJson(value))),
+        (key, value) => MapEntry(
+          const IdConverter().fromJson(key),
+          SetError.fromJson(value),
+        ),
+      ),
       notDestroyed: (json['notDestroyed'] as Map<String, dynamic>?)?.map(
-          (key, value) => MapEntry(
-              const IdConverter().fromJson(key), SetError.fromJson(value))),
+        (key, value) => MapEntry(
+          const IdConverter().fromJson(key),
+          SetError.fromJson(value),
+        ),
+      ),
     );
   }
 }

@@ -9,12 +9,13 @@ class EmailBodyValue with EquatableMixin {
   final Map<IndividualHeaderIdentifier, String?>? acceptLanguageHeader;
   final Map<IndividualHeaderIdentifier, String?>? contentLanguageHeader;
 
-  EmailBodyValue(
-      {required this.value,
-      required this.isEncodingProblem,
-      required this.isTruncated,
-      this.acceptLanguageHeader,
-      this.contentLanguageHeader});
+  EmailBodyValue({
+    required this.value,
+    required this.isEncodingProblem,
+    required this.isTruncated,
+    this.acceptLanguageHeader,
+    this.contentLanguageHeader,
+  });
 
   factory EmailBodyValue.fromJson(Map<String, dynamic> json) {
     return EmailBodyValue(
@@ -23,14 +24,16 @@ class EmailBodyValue with EquatableMixin {
       isTruncated: json['isTruncated'] as bool,
       acceptLanguageHeader: IndividualHeaderIdentifierNullableConverter()
           .parseEntry(
-              IndividualHeaderIdentifier.acceptLanguageHeader.value,
-              json[IndividualHeaderIdentifier.acceptLanguageHeader.value]
-                  as String?),
+            IndividualHeaderIdentifier.acceptLanguageHeader.value,
+            json[IndividualHeaderIdentifier.acceptLanguageHeader.value]
+                as String?,
+          ),
       contentLanguageHeader: IndividualHeaderIdentifierNullableConverter()
           .parseEntry(
-              IndividualHeaderIdentifier.contentLanguageHeader.value,
-              json[IndividualHeaderIdentifier.contentLanguageHeader.value]
-                  as String?),
+            IndividualHeaderIdentifier.contentLanguageHeader.value,
+            json[IndividualHeaderIdentifier.contentLanguageHeader.value]
+                as String?,
+          ),
     );
   }
 
@@ -47,24 +50,28 @@ class EmailBodyValue with EquatableMixin {
     writeNotNull('isEncodingProblem', isEncodingProblem);
     writeNotNull('isTruncated', isTruncated);
     writeNotNull(
-        IndividualHeaderIdentifier.acceptLanguageHeader.value,
-        IndividualHeaderIdentifierNullableConverter().toJson(
-            acceptLanguageHeader,
-            IndividualHeaderIdentifier.acceptLanguageHeader));
+      IndividualHeaderIdentifier.acceptLanguageHeader.value,
+      IndividualHeaderIdentifierNullableConverter().toJson(
+        acceptLanguageHeader,
+        IndividualHeaderIdentifier.acceptLanguageHeader,
+      ),
+    );
     writeNotNull(
-        IndividualHeaderIdentifier.contentLanguageHeader.value,
-        IndividualHeaderIdentifierNullableConverter().toJson(
-            contentLanguageHeader,
-            IndividualHeaderIdentifier.contentLanguageHeader));
+      IndividualHeaderIdentifier.contentLanguageHeader.value,
+      IndividualHeaderIdentifierNullableConverter().toJson(
+        contentLanguageHeader,
+        IndividualHeaderIdentifier.contentLanguageHeader,
+      ),
+    );
     return val;
   }
 
   @override
   List<Object?> get props => [
-        value,
-        isEncodingProblem,
-        isTruncated,
-        acceptLanguageHeader,
-        contentLanguageHeader,
-      ];
+    value,
+    isEncodingProblem,
+    isTruncated,
+    acceptLanguageHeader,
+    contentLanguageHeader,
+  ];
 }

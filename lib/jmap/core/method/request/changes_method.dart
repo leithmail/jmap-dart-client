@@ -11,5 +11,5 @@ abstract class ChangesMethod extends MethodRequiringAccountId {
   final UnsignedInt? maxChanges;
 
   ChangesMethod(AccountId accountId, this.sinceState, {this.maxChanges})
-      : super(accountId);
+    : super(accountId);
 }

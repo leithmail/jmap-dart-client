@@ -21,16 +21,18 @@ class HttpClient {
   }) async {
     final newOptions =
         options?.appendHeaders({HttpHeaders.acceptHeader: jmapHeader}) ??
-            Options(headers: {HttpHeaders.acceptHeader: jmapHeader});
+        Options(headers: {HttpHeaders.acceptHeader: jmapHeader});
 
     return await _dio
-        .post(path,
-            data: data,
-            queryParameters: queryParameters,
-            options: newOptions,
-            cancelToken: cancelToken,
-            onSendProgress: onSendProgress,
-            onReceiveProgress: onReceiveProgress)
+        .post(
+          path,
+          data: data,
+          queryParameters: queryParameters,
+          options: newOptions,
+          cancelToken: cancelToken,
+          onSendProgress: onSendProgress,
+          onReceiveProgress: onReceiveProgress,
+        )
         .then((value) => value.data)
         .catchError((error) => throw error);
   }
@@ -44,14 +46,16 @@ class HttpClient {
   }) async {
     final newOptions =
         options?.appendHeaders({HttpHeaders.acceptHeader: jmapHeader}) ??
-            Options(headers: {HttpHeaders.acceptHeader: jmapHeader});
+        Options(headers: {HttpHeaders.acceptHeader: jmapHeader});
 
     return await _dio
-        .get(path,
-            queryParameters: queryParameters,
-            options: newOptions,
-            cancelToken: cancelToken,
-            onReceiveProgress: onReceiveProgress)
+        .get(
+          path,
+          queryParameters: queryParameters,
+          options: newOptions,
+          cancelToken: cancelToken,
+          onReceiveProgress: onReceiveProgress,
+        )
         .then((value) => value.data)
         .catchError((error) => throw error);
   }

@@ -12,7 +12,5 @@ EmailBodyProperties _$EmailBodyPropertiesFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$EmailBodyPropertiesToJson(
-        EmailBodyProperties instance) =>
-    <String, dynamic>{
-      'value': instance.value.toList(),
-    };
+  EmailBodyProperties instance,
+) => <String, dynamic>{'value': instance.value.toList()};

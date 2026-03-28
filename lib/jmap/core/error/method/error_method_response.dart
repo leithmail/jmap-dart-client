@@ -12,8 +12,9 @@ abstract class ErrorMethodResponse extends MethodResponse {
   static final invalidResultReference = ErrorType("invalidResultReference");
   static final forbidden = ErrorType("forbidden");
   static final accountNotFound = ErrorType("accountNotFound");
-  static final accountNotSupportedByMethod =
-      ErrorType("accountNotSupportedByMethod");
+  static final accountNotSupportedByMethod = ErrorType(
+    "accountNotSupportedByMethod",
+  );
   static final accountReadOnly = ErrorType("accountReadOnly");
   static final cannotCalculateChanges = ErrorType("cannotCalculateChanges");
   static final overQuota = ErrorType("overQuota");
@@ -29,63 +30,69 @@ abstract class ErrorMethodResponse extends MethodResponse {
 
 class ServerPartialFailMethodResponse extends ErrorMethodResponse {
   ServerPartialFailMethodResponse({String? description})
-      : super(ErrorMethodResponse.serverPartialFail, description: description);
+    : super(ErrorMethodResponse.serverPartialFail, description: description);
 }
 
 class ServerUnavailableMethodResponse extends ErrorMethodResponse {
   ServerUnavailableMethodResponse({String? description})
-      : super(ErrorMethodResponse.serverUnavailable, description: description);
+    : super(ErrorMethodResponse.serverUnavailable, description: description);
 }
 
 class ServerFailMethodResponse extends ErrorMethodResponse {
   ServerFailMethodResponse({String? description})
-      : super(ErrorMethodResponse.serverFail, description: description);
+    : super(ErrorMethodResponse.serverFail, description: description);
 }
 
 class UnknownMethodResponse extends ErrorMethodResponse {
   UnknownMethodResponse({String? description})
-      : super(ErrorMethodResponse.unknownMethod, description: description);
+    : super(ErrorMethodResponse.unknownMethod, description: description);
 }
 
 class InvalidArgumentsMethodResponse extends ErrorMethodResponse {
   InvalidArgumentsMethodResponse({String? description})
-      : super(ErrorMethodResponse.invalidArguments, description: description);
+    : super(ErrorMethodResponse.invalidArguments, description: description);
 }
 
 class InvalidResultReferenceMethodResponse extends ErrorMethodResponse {
   InvalidResultReferenceMethodResponse({String? description})
-      : super(ErrorMethodResponse.invalidResultReference,
-            description: description);
+    : super(
+        ErrorMethodResponse.invalidResultReference,
+        description: description,
+      );
 }
 
 class ForbiddenMethodResponse extends ErrorMethodResponse {
   ForbiddenMethodResponse({String? description})
-      : super(ErrorMethodResponse.forbidden, description: description);
+    : super(ErrorMethodResponse.forbidden, description: description);
 }
 
 class AccountNotFoundMethodResponse extends ErrorMethodResponse {
   AccountNotFoundMethodResponse({String? description})
-      : super(ErrorMethodResponse.accountNotFound, description: description);
+    : super(ErrorMethodResponse.accountNotFound, description: description);
 }
 
 class AccountNotSupportedByMethod extends ErrorMethodResponse {
   AccountNotSupportedByMethod({String? description})
-      : super(ErrorMethodResponse.accountNotSupportedByMethod,
-            description: description);
+    : super(
+        ErrorMethodResponse.accountNotSupportedByMethod,
+        description: description,
+      );
 }
 
 class AccountReadOnly extends ErrorMethodResponse {
   AccountReadOnly({String? description})
-      : super(ErrorMethodResponse.accountReadOnly, description: description);
+    : super(ErrorMethodResponse.accountReadOnly, description: description);
 }
 
 class CannotCalculateChangesMethodResponse extends ErrorMethodResponse {
   CannotCalculateChangesMethodResponse({String? description})
-      : super(ErrorMethodResponse.cannotCalculateChanges,
-            description: description);
+    : super(
+        ErrorMethodResponse.cannotCalculateChanges,
+        description: description,
+      );
 }
 
 class UndefinedErrorMethodResponse extends ErrorMethodResponse {
   UndefinedErrorMethodResponse(ErrorType errorType, {String? description})
-      : super(errorType, description: description);
+    : super(errorType, description: description);
 }

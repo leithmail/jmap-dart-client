@@ -9,8 +9,9 @@ class CalendarAttendeeExtensionFieldsNullableConverter
   CalendarExtensionFields? fromJson(dynamic json) {
     if (json is Map<String, dynamic>) {
       final mapExtensionFields = json.map((key, values) {
-        final listFields =
-            (values as List<dynamic>).map((value) => value as String).toList();
+        final listFields = (values as List<dynamic>)
+            .map((value) => value as String)
+            .toList();
         return MapEntry(key, listFields);
       });
       return CalendarExtensionFields(mapExtensionFields);

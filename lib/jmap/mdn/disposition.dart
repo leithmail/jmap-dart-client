@@ -24,19 +24,14 @@ enum ActionMode {
   @JsonValue('manual-action')
   manual,
   @JsonValue('automatic-action')
-  automatic;
+  automatic,
 }
 
 enum SendingMode {
   @JsonValue('mdn-sent-manually')
   manually,
   @JsonValue('mdn-sent-automatically')
-  automatically;
+  automatically,
 }
 
-enum DispositionType {
-  deleted,
-  dispatched,
-  displayed,
-  processed;
-}
+enum DispositionType { deleted, dispatched, displayed, processed }

@@ -23,28 +23,35 @@ void main() {
       });
 
       test(
-          'should throw TypeError exception when json doesn\'t contains account id',
-          () {
-        // arrange
-        final json = <String, dynamic>{};
+        'should throw TypeError exception when json doesn\'t contains account id',
+        () {
+          // arrange
+          final json = <String, dynamic>{};
 
-        // assert
-        expect(() => jsonParsers.parsingAccountId(json),
-            throwsA(isA<TypeError>()));
-      });
+          // assert
+          expect(
+            () => jsonParsers.parsingAccountId(json),
+            throwsA(isA<TypeError>()),
+          );
+        },
+      );
 
-      test('should throw TypeError exception when accountId json is not String',
-          () {
-        // arrange
-        const rawAccountId = 'abc123';
-        final json = {
-          'accountId': [rawAccountId]
-        };
+      test(
+        'should throw TypeError exception when accountId json is not String',
+        () {
+          // arrange
+          const rawAccountId = 'abc123';
+          final json = {
+            'accountId': [rawAccountId],
+          };
 
-        // assert
-        expect(() => jsonParsers.parsingAccountId(json),
-            throwsA(isA<TypeError>()));
-      });
+          // assert
+          expect(
+            () => jsonParsers.parsingAccountId(json),
+            throwsA(isA<TypeError>()),
+          );
+        },
+      );
     });
 
     group('parse list id test:', () {
@@ -76,8 +83,10 @@ void main() {
         final json = {'listId': 'abc123'};
 
         // assert
-        expect(() => jsonParsers.parsingListEventId(json, 'listId'),
-            throwsA(isA<TypeError>()));
+        expect(
+          () => jsonParsers.parsingListEventId(json, 'listId'),
+          throwsA(isA<TypeError>()),
+        );
       });
     });
 
@@ -105,62 +114,84 @@ void main() {
         expect(listEventId, null);
       });
 
-      test('should throw TypeError when list event id json is not List<String>',
-          () {
-        // arrange
-        final json = {'listEventId': 'abc123'};
+      test(
+        'should throw TypeError when list event id json is not List<String>',
+        () {
+          // arrange
+          final json = {'listEventId': 'abc123'};
 
-        // assert
-        expect(() => jsonParsers.parsingListEventId(json, 'listEventId'),
-            throwsA(isA<TypeError>()));
-      });
+          // assert
+          expect(
+            () => jsonParsers.parsingListEventId(json, 'listEventId'),
+            throwsA(isA<TypeError>()),
+          );
+        },
+      );
     });
 
     group('parsingMapSetError::test', () {
-      test('SHOULD return map SetError WHEN json contains map SetError object',
-          () {
-        // arrange
-        SetError rawSetError =
-            SetError(SetError.invalidPatch, description: 'invalidPatch');
+      test(
+        'SHOULD return map SetError WHEN json contains map SetError object',
+        () {
+          // arrange
+          SetError rawSetError = SetError(
+            SetError.invalidPatch,
+            description: 'invalidPatch',
+          );
 
-        final json = <String, dynamic>{
-          'notAccepted': {
-            'eventId': {'type': 'invalidPatch', 'description': 'invalidPatch'}
-          }
-        };
+          final json = <String, dynamic>{
+            'notAccepted': {
+              'eventId': {
+                'type': 'invalidPatch',
+                'description': 'invalidPatch',
+              },
+            },
+          };
 
-        // act
-        final mapSetError = jsonParsers.parsingMapSetError(json, 'notAccepted');
+          // act
+          final mapSetError = jsonParsers.parsingMapSetError(
+            json,
+            'notAccepted',
+          );
 
-        // assert
-        expect(mapSetError?.keys, equals([Id('eventId')]));
-        expect(mapSetError?.values, equals([rawSetError]));
-      });
-
-      test('SHOULD return null WHEN json does not contains map SetError object',
-          () {
-        // arrange
-        final json = <String, dynamic>{'notAccepted': null};
-
-        // act
-        final mapSetError = jsonParsers.parsingMapSetError(json, 'notAccepted');
-
-        // assert
-        expect(mapSetError, null);
-      });
+          // assert
+          expect(mapSetError?.keys, equals([Id('eventId')]));
+          expect(mapSetError?.values, equals([rawSetError]));
+        },
+      );
 
       test(
-          'SHOULD throw TypeError WHEN the value of eventId is not SetError object',
-          () {
-        // arrange
-        final json = <String, dynamic>{
-          'notAccepted': {'eventId': 'dab123'}
-        };
+        'SHOULD return null WHEN json does not contains map SetError object',
+        () {
+          // arrange
+          final json = <String, dynamic>{'notAccepted': null};
 
-        // assert
-        expect(() => jsonParsers.parsingMapSetError(json, 'notAccepted'),
-            throwsA(isA<TypeError>()));
-      });
+          // act
+          final mapSetError = jsonParsers.parsingMapSetError(
+            json,
+            'notAccepted',
+          );
+
+          // assert
+          expect(mapSetError, null);
+        },
+      );
+
+      test(
+        'SHOULD throw TypeError WHEN the value of eventId is not SetError object',
+        () {
+          // arrange
+          final json = <String, dynamic>{
+            'notAccepted': {'eventId': 'dab123'},
+          };
+
+          // assert
+          expect(
+            () => jsonParsers.parsingMapSetError(json, 'notAccepted'),
+            throwsA(isA<TypeError>()),
+          );
+        },
+      );
     });
   });
 }

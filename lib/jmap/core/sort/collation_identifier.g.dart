@@ -7,12 +7,8 @@ part of 'collation_identifier.dart';
 // **************************************************************************
 
 CollationIdentifier _$CollationIdentifierFromJson(Map<String, dynamic> json) =>
-    CollationIdentifier(
-      json['value'] as String,
-    );
+    CollationIdentifier(json['value'] as String);
 
 Map<String, dynamic> _$CollationIdentifierToJson(
-        CollationIdentifier instance) =>
-    <String, dynamic>{
-      'value': instance.value,
-    };
+  CollationIdentifier instance,
+) => <String, dynamic>{'value': instance.value};

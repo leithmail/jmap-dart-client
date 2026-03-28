@@ -11,10 +11,7 @@ part 'clear_mailbox_method.g.dart';
 
 @JsonSerializable(
   explicitToJson: true,
-  converters: [
-    AccountIdConverter(),
-    MailboxIdConverter(),
-  ],
+  converters: [AccountIdConverter(), MailboxIdConverter()],
 )
 class ClearMailboxMethod extends ClearMethod {
   final MailboxId mailboxId;
@@ -26,21 +23,17 @@ class ClearMailboxMethod extends ClearMethod {
 
   @override
   Set<CapabilityIdentifier> get requiredCapabilities => {
-        CapabilityIdentifier.jmapCore,
-        CapabilityIdentifier.jmapMail,
-        CapabilityIdentifier.jmapMailboxClear,
-      };
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jmapMail,
+    CapabilityIdentifier.jmapMailboxClear,
+  };
 
   Set<CapabilityIdentifier> get requiredCapabilitiesSupportTeamMailboxes => {
-        CapabilityIdentifier.jmapCore,
-        CapabilityIdentifier.jmapMail,
-        CapabilityIdentifier.jmapTeamMailboxes,
-        CapabilityIdentifier.jmapMailboxClear,
-      };
-
-  @override
-  List<Object?> get props =>
-      [methodName, accountId, mailboxId, requiredCapabilities];
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jmapMail,
+    CapabilityIdentifier.jmapTeamMailboxes,
+    CapabilityIdentifier.jmapMailboxClear,
+  };
 
   factory ClearMailboxMethod.fromJson(Map<String, dynamic> json) =>
       _$ClearMailboxMethodFromJson(json);

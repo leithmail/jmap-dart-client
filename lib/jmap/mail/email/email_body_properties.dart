@@ -15,7 +15,7 @@ class EmailBodyProperties extends Properties {
     'disposition',
     'cid',
     'language',
-    'location'
+    'location',
   });
 
   EmailBodyProperties(Set<String> value) : super(value);

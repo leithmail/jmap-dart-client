@@ -10,7 +10,10 @@ class RequestInvocationConverter
   @override
   RequestInvocation fromJson(List<dynamic> json) {
     return RequestInvocation(
-        MethodName(json[0]), jsonDecode(json[1]), jsonDecode(json[2]));
+      MethodName(json[0]),
+      jsonDecode(json[1]),
+      jsonDecode(json[2]),
+    );
   }
 
   @override

@@ -30,13 +30,14 @@ class CalendarAttendee with EquatableMixin {
   final CalendarAttendeeParticipationStatus? participationStatus;
   final CalendarAttendeeExpectReply? expectReply;
 
-  CalendarAttendee(
-      {this.name,
-      this.mailto,
-      this.kind,
-      this.role,
-      this.participationStatus,
-      this.expectReply});
+  CalendarAttendee({
+    this.name,
+    this.mailto,
+    this.kind,
+    this.role,
+    this.participationStatus,
+    this.expectReply,
+  });
 
   factory CalendarAttendee.fromJson(Map<String, dynamic> json) =>
       _$CalendarAttendeeFromJson(json);
@@ -44,6 +45,12 @@ class CalendarAttendee with EquatableMixin {
   Map<String, dynamic> toJson() => _$CalendarAttendeeToJson(this);
 
   @override
-  List<Object?> get props =>
-      [name, mailto, kind, role, participationStatus, expectReply];
+  List<Object?> get props => [
+    name,
+    mailto,
+    kind,
+    role,
+    participationStatus,
+    expectReply,
+  ];
 }

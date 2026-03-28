@@ -24,21 +24,27 @@ class JsonParsers {
 
   List<EventId>? parsingListEventId(Map<String, dynamic> json, String key) {
     return (json[key] as List<dynamic>?)
-        ?.map((value) =>
-            const EventIdNullableConverter().fromJson(value as String))
+        ?.map(
+          (value) => const EventIdNullableConverter().fromJson(value as String),
+        )
         .where((element) => element != null)
         .cast<EventId>()
         .toList();
   }
 
   Map<Id, SetError>? parsingMapSetError(Map<String, dynamic> json, String key) {
-    return (json[key] as Map<String, dynamic>?)?.map((key, value) =>
-        MapEntry(const IdConverter().fromJson(key), SetError.fromJson(value)));
+    return (json[key] as Map<String, dynamic>?)?.map(
+      (key, value) =>
+          MapEntry(const IdConverter().fromJson(key), SetError.fromJson(value)),
+    );
   }
 
   Map<Id, Email>? parsingMapEmail(Map<String, dynamic> json, String key) {
-    return (json[key] as Map<String, dynamic>?)?.map((key, value) => MapEntry(
+    return (json[key] as Map<String, dynamic>?)?.map(
+      (key, value) => MapEntry(
         const IdConverter().fromJson(key),
-        Email.fromJson(value as Map<String, dynamic>)));
+        Email.fromJson(value as Map<String, dynamic>),
+      ),
+    );
   }
 }

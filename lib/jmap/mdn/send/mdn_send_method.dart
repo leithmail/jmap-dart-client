@@ -19,17 +19,19 @@ class MDNSendMethod extends SendMethod<MDN> with OptionalOnSuccessUpdateEmail {
 
   @override
   Set<CapabilityIdentifier> get requiredCapabilities => {
-        CapabilityIdentifier.jmapCore,
-        CapabilityIdentifier.jmapMail,
-        CapabilityIdentifier.jmapMdn
-      };
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jmapMail,
+    CapabilityIdentifier.jmapMdn,
+  };
 
   @override
   Map<String, dynamic> toJson() {
     final val = <String, dynamic>{
       'accountId': const AccountIdConverter().toJson(accountId),
-      'send': send.map((id, mdn) =>
-          SendMethodPropertiesConverter().fromMapIdToJson(id, mdn.toJson())),
+      'send': send.map(
+        (id, mdn) =>
+            SendMethodPropertiesConverter().fromMapIdToJson(id, mdn.toJson()),
+      ),
       'identityId': const IdentityIdConverter().toJson(identityId),
     };
 
@@ -40,13 +42,12 @@ class MDNSendMethod extends SendMethod<MDN> with OptionalOnSuccessUpdateEmail {
     }
 
     writeNotNull(
-        'onSuccessUpdateEmail',
-        onSuccessUpdateEmail?.map((id, update) => SetMethodPropertiesConverter()
-            .fromMapEmailSubmissionIdToJson(id, update)));
+      'onSuccessUpdateEmail',
+      onSuccessUpdateEmail?.map(
+        (id, update) => SetMethodPropertiesConverter()
+            .fromMapEmailSubmissionIdToJson(id, update),
+      ),
+    );
     return val;
   }
-
-  @override
-  List<Object?> get props =>
-      [accountId, send, identityId, onSuccessUpdateEmail];
 }

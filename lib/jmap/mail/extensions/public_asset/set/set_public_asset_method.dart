@@ -13,11 +13,10 @@ class SetPublicAssetMethod extends SetMethod<PublicAsset> {
   MethodName get methodName => MethodName('PublicAsset/set');
 
   @override
-  List<Object?> get props => [accountId, ifInState, create, update, destroy];
-
-  @override
-  Set<CapabilityIdentifier> get requiredCapabilities =>
-      {CapabilityIdentifier.jmapCore, CapabilityIdentifier.jmapPublicAsset};
+  Set<CapabilityIdentifier> get requiredCapabilities => {
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jmapPublicAsset,
+  };
 
   @override
   Map<String, dynamic> toJson() {
@@ -32,18 +31,25 @@ class SetPublicAssetMethod extends SetMethod<PublicAsset> {
     }
 
     writeNotNull(
-        'create',
-        create?.map((id, create) => SetMethodPropertiesConverter()
-            .fromMapIdToJson(id, create.toJson())));
+      'create',
+      create?.map(
+        (id, create) =>
+            SetMethodPropertiesConverter().fromMapIdToJson(id, create.toJson()),
+      ),
+    );
     writeNotNull(
-        'update',
-        update?.map((id, update) => SetMethodPropertiesConverter()
-            .fromMapIdToJson(id, update.toJson())));
+      'update',
+      update?.map(
+        (id, update) =>
+            SetMethodPropertiesConverter().fromMapIdToJson(id, update.toJson()),
+      ),
+    );
     writeNotNull(
-        'destroy',
-        destroy
-            ?.map((destroyId) => const IdConverter().toJson(destroyId))
-            .toList());
+      'destroy',
+      destroy
+          ?.map((destroyId) => const IdConverter().toJson(destroyId))
+          .toList(),
+    );
 
     return val;
   }

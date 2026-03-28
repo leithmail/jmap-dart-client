@@ -34,14 +34,14 @@ class SetError with EquatableMixin {
   Map<String, dynamic> toJson() => _$SetErrorToJson(this);
 
   static Set<ErrorType> get errorTypesJMAPSupport => {
-        SetError.forbidden,
-        SetError.overQuota,
-        SetError.tooLarge,
-        SetError.notFound,
-        SetError.invalidPatch,
-        SetError.willDestroy,
-        SetError.invalidProperties,
-        SetError.singleton,
-        SetError.serverFail,
-      };
+    SetError.forbidden,
+    SetError.overQuota,
+    SetError.tooLarge,
+    SetError.notFound,
+    SetError.invalidPatch,
+    SetError.willDestroy,
+    SetError.invalidProperties,
+    SetError.singleton,
+    SetError.serverFail,
+  };
 }

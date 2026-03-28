@@ -16,8 +16,11 @@ part 'get_mailbox_response.g.dart';
 @JsonSerializable()
 class GetMailboxResponse extends GetResponse<Mailbox> {
   GetMailboxResponse(
-      AccountId accountId, State state, List<Mailbox> list, List<Id>? notFound)
-      : super(accountId, state, list, notFound);
+    AccountId accountId,
+    State state,
+    List<Mailbox> list,
+    List<Id>? notFound,
+  ) : super(accountId, state, list, notFound);
 
   factory GetMailboxResponse.fromJson(Map<String, dynamic> json) =>
       _$GetMailboxResponseFromJson(json);

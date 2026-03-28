@@ -29,17 +29,21 @@ class ResponseObject with EquatableMixin {
   Map<String, dynamic> toJson() => _$ResponseObjectToJson(this);
 
   T? parse<T extends MethodResponse>(
-      MethodCallId methodCallId, T Function(Map<String, dynamic> o) fromJson,
-      {MethodName? methodName}) {
-    final matchedResponse = methodResponses.firstWhere((method) =>
-        methodName == null
-            ? method.methodCallId == methodCallId
-            : (method.methodCallId == methodCallId &&
-                _validMethodResponseName(method, methodName)));
+    MethodCallId methodCallId,
+    T Function(Map<String, dynamic> o) fromJson, {
+    MethodName? methodName,
+  }) {
+    final matchedResponse = methodResponses.firstWhere(
+      (method) => methodName == null
+          ? method.methodCallId == methodCallId
+          : (method.methodCallId == methodCallId &&
+                _validMethodResponseName(method, methodName)),
+    );
 
     if (matchedResponse.methodName == ErrorMethodResponse.errorMethodName) {
-      final errorResponse =
-          _parsingErrorMethodResponse(matchedResponse.arguments.value);
+      final errorResponse = _parsingErrorMethodResponse(
+        matchedResponse.arguments.value,
+      );
       throw ErrorMethodResponseException(errorResponse);
     }
 
@@ -47,13 +51,16 @@ class ResponseObject with EquatableMixin {
   }
 
   bool _validMethodResponseName(
-      ResponseInvocation responseInvocation, MethodName methodName) {
+    ResponseInvocation responseInvocation,
+    MethodName methodName,
+  ) {
     return responseInvocation.methodName == methodName ||
         responseInvocation.methodName == ErrorMethodResponse.errorMethodName;
   }
 
   ErrorMethodResponse _parsingErrorMethodResponse(
-      Map<String, dynamic> errorResponse) {
+    Map<String, dynamic> errorResponse,
+  ) {
     try {
       final description = errorResponse["description"];
       final errorType = ErrorType(errorResponse["type"]);
@@ -80,8 +87,10 @@ class ResponseObject with EquatableMixin {
       } else if (errorType == ErrorMethodResponse.cannotCalculateChanges) {
         return CannotCalculateChangesMethodResponse(description: description);
       } else {
-        return UndefinedErrorMethodResponse(errorType,
-            description: description);
+        return UndefinedErrorMethodResponse(
+          errorType,
+          description: description,
+        );
       }
     } catch (e) {
       developer.log("_parsingErrorMethodResponse(): Exception $e");

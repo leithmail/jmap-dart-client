@@ -25,8 +25,15 @@ class QueryEmailResponse extends QueryResponse {
     Set<Id> ids,
     UnsignedInt? total,
     UnsignedInt? limit,
-  ) : super(accountId, queryState, canCalculateChanges, position, ids, total,
-            limit);
+  ) : super(
+        accountId,
+        queryState,
+        canCalculateChanges,
+        position,
+        ids,
+        total,
+        limit,
+      );
 
   factory QueryEmailResponse.fromJson(Map<String, dynamic> json) =>
       _$QueryEmailResponseFromJson(json);
@@ -38,6 +45,12 @@ class QueryEmailResponse extends QueryResponse {
   Map<String, dynamic> toJson() => _$QueryEmailResponseToJson(this);
 
   @override
-  List<Object?> get props =>
-      [accountId, queryState, canCalculateChanges, position, total, ids];
+  List<Object?> get props => [
+    accountId,
+    queryState,
+    canCalculateChanges,
+    position,
+    total,
+    ids,
+  ];
 }

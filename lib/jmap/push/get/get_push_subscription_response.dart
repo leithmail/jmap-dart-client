@@ -11,7 +11,7 @@ part 'get_push_subscription_response.g.dart';
 class GetPushSubscriptionResponse
     extends GetResponseNoAccountId<PushSubscription> {
   GetPushSubscriptionResponse(List<PushSubscription> list, List<Id>? notFound)
-      : super(list, notFound);
+    : super(list, notFound);
 
   factory GetPushSubscriptionResponse.fromJson(Map<String, dynamic> json) =>
       _$GetPushSubscriptionResponseFromJson(json);

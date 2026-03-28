@@ -1,5 +1,1 @@
-enum RecurrenceRuleSkip {
-  omit,
-  backward,
-  forward;
-}
+enum RecurrenceRuleSkip { omit, backward, forward }

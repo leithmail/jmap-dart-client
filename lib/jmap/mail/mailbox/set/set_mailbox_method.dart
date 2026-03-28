@@ -16,8 +16,10 @@ class SetMailboxMethod extends SetMethod<Mailbox>
   MethodName get methodName => MethodName('Mailbox/set');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities =>
-      {CapabilityIdentifier.jmapMail, CapabilityIdentifier.jmapCore};
+  Set<CapabilityIdentifier> get requiredCapabilities => {
+    CapabilityIdentifier.jmapMail,
+    CapabilityIdentifier.jmapCore,
+  };
 
   @override
   Map<String, dynamic> toJson() {
@@ -33,25 +35,29 @@ class SetMailboxMethod extends SetMethod<Mailbox>
 
     writeNotNull('ifInState', ifInState?.value);
     writeNotNull(
-        'create',
-        create?.map((id, create) => SetMethodPropertiesConverter()
-            .fromMapIdToJson(id, create.toJson())));
+      'create',
+      create?.map(
+        (id, create) =>
+            SetMethodPropertiesConverter().fromMapIdToJson(id, create.toJson()),
+      ),
+    );
     writeNotNull(
-        'update',
-        update?.map((id, update) => SetMethodPropertiesConverter()
-            .fromMapIdToJson(id, update.toJson())));
+      'update',
+      update?.map(
+        (id, update) =>
+            SetMethodPropertiesConverter().fromMapIdToJson(id, update.toJson()),
+      ),
+    );
     writeNotNull(
-        'destroy',
-        destroy
-            ?.map((destroyId) => const IdConverter().toJson(destroyId))
-            .toList());
+      'destroy',
+      destroy
+          ?.map((destroyId) => const IdConverter().toJson(destroyId))
+          .toList(),
+    );
     writeNotNull('onDestroyRemoveEmails', onDestroyRemoveEmails);
 
     return val;
   }
-
-  @override
-  List<Object?> get props => [accountId, ifInState, create, update, destroy];
 }
 
 mixin OptionalOnDestroyRemoveEmails {

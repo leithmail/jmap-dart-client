@@ -1,10 +1,8 @@
-import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/jmap/core/sort/collation_identifier.dart';
 import 'package:jmap_dart_client/jmap/core/sort/comparator_property.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-abstract class Comparator
-    with EquatableMixin, OptionalIsAscending, OptionalCollation {
+abstract class Comparator with OptionalIsAscending, OptionalCollation {
   final ComparatorProperty property;
 
   Comparator(this.property);

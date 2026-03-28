@@ -38,8 +38,10 @@ void main() {
     test('should fail when wrong account id', () async {
       // Arrange
       final unknownAccountId = AccountId(Id('unknownAccountId'));
-      final clearMailboxMethod =
-          ClearMailboxMethod(unknownAccountId, bobTrashId);
+      final clearMailboxMethod = ClearMailboxMethod(
+        unknownAccountId,
+        bobTrashId,
+      );
       final requestBuilder = JmapRequestBuilder(
         HttpClient(dio),
         ProcessingInvocation(),
@@ -50,21 +52,16 @@ void main() {
       );
       dioAdapter.onPost(
         '',
-        (server) => server.reply(
-          200,
-          {
-            "sessionState": sessionState.value,
-            "methodResponses": [
-              [
-                "error",
-                {
-                  "type": "accountNotFound",
-                },
-                methodCallId.value,
-              ],
+        (server) => server.reply(200, {
+          "sessionState": sessionState.value,
+          "methodResponses": [
+            [
+              "error",
+              {"type": "accountNotFound"},
+              methodCallId.value,
             ],
-          },
-        ),
+          ],
+        }),
         data: {
           "using": clearMailboxMethod.requiredCapabilities
               .map((capability) => capability.value.toString())
@@ -77,17 +74,18 @@ void main() {
                 "mailboxId": bobTrashId.id.value,
               },
               methodCallId.value,
-            ]
-          ]
+            ],
+          ],
         },
         headers: dioAdapterHeaders,
       );
 
       // Act
-      final responseObject = await (requestBuilder
-            ..usings(clearMailboxMethod.requiredCapabilities))
-          .build()
-          .execute();
+      final responseObject =
+          await (requestBuilder
+                ..usings(clearMailboxMethod.requiredCapabilities))
+              .build()
+              .execute();
 
       // Assert
       expect(
@@ -116,23 +114,20 @@ void main() {
       );
       dioAdapter.onPost(
         '',
-        (server) => server.reply(
-          200,
-          {
-            "sessionState": sessionState.value,
-            "methodResponses": [
-              [
-                "error",
-                {
-                  "type": "unknownMethod",
-                  "description":
-                      "Missing capability(ies): com:linagora:params:jmap:mailbox:clear"
-                },
-                methodCallId.value,
-              ],
+        (server) => server.reply(200, {
+          "sessionState": sessionState.value,
+          "methodResponses": [
+            [
+              "error",
+              {
+                "type": "unknownMethod",
+                "description":
+                    "Missing capability(ies): com:linagora:params:jmap:mailbox:clear",
+              },
+              methodCallId.value,
             ],
-          },
-        ),
+          ],
+        }),
         data: {
           "using": listCapabilitiesUsed
               .map((capability) => capability.value.toString())
@@ -145,17 +140,17 @@ void main() {
                 "mailboxId": bobTrashId.id.value,
               },
               methodCallId.value,
-            ]
-          ]
+            ],
+          ],
         },
         headers: dioAdapterHeaders,
       );
 
       // Act
-      final responseObject = await (requestBuilder
-            ..usings(listCapabilitiesUsed))
-          .build()
-          .execute();
+      final responseObject =
+          await (requestBuilder..usings(listCapabilitiesUsed))
+              .build()
+              .execute();
 
       // Assert
       expect(
@@ -163,10 +158,14 @@ void main() {
           invocation.methodCallId,
           ClearMailboxResponse.deserialize,
         ),
-        throwsA(ErrorMethodResponseException(UnknownMethodResponse(
-          description:
-              'Missing capability(ies): com:linagora:params:jmap:mailbox:clear',
-        ))),
+        throwsA(
+          ErrorMethodResponseException(
+            UnknownMethodResponse(
+              description:
+                  'Missing capability(ies): com:linagora:params:jmap:mailbox:clear',
+            ),
+          ),
+        ),
       );
     });
 
@@ -183,22 +182,19 @@ void main() {
       );
       dioAdapter.onPost(
         '',
-        (server) => server.reply(
-          200,
-          {
-            "sessionState": sessionState.value,
-            "methodResponses": [
-              [
-                "Mailbox/clear",
-                {
-                  "accountId": bobAccountId.id.value,
-                  "totalDeletedMessagesCount": 2
-                },
-                methodCallId.value,
-              ],
+        (server) => server.reply(200, {
+          "sessionState": sessionState.value,
+          "methodResponses": [
+            [
+              "Mailbox/clear",
+              {
+                "accountId": bobAccountId.id.value,
+                "totalDeletedMessagesCount": 2,
+              },
+              methodCallId.value,
             ],
-          },
-        ),
+          ],
+        }),
         data: {
           "using": clearMailboxMethod.requiredCapabilities
               .map((capability) => capability.value.toString())
@@ -211,17 +207,18 @@ void main() {
                 "mailboxId": bobTrashId.id.value,
               },
               methodCallId.value,
-            ]
-          ]
+            ],
+          ],
         },
         headers: dioAdapterHeaders,
       );
 
       // Act
-      final responseObject = await (requestBuilder
-            ..usings(clearMailboxMethod.requiredCapabilities))
-          .build()
-          .execute();
+      final responseObject =
+          await (requestBuilder
+                ..usings(clearMailboxMethod.requiredCapabilities))
+              .build()
+              .execute();
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,
@@ -229,21 +226,17 @@ void main() {
       );
 
       // Assert
-      expect(
-        clearMailboxResponse?.totalDeletedMessagesCount?.value,
-        2,
-      );
-      expect(
-        clearMailboxResponse?.notCleared,
-        isNull,
-      );
+      expect(clearMailboxResponse?.totalDeletedMessagesCount?.value, 2);
+      expect(clearMailboxResponse?.notCleared, isNull);
     });
 
     test('should fail when invalid mailbox id', () async {
       // Arrange
       final invalidMailboxId = MailboxId(Id('invalidMailboxId'));
-      final clearMailboxMethod =
-          ClearMailboxMethod(bobAccountId, invalidMailboxId);
+      final clearMailboxMethod = ClearMailboxMethod(
+        bobAccountId,
+        invalidMailboxId,
+      );
       final requestBuilder = JmapRequestBuilder(
         HttpClient(dio),
         ProcessingInvocation(),
@@ -254,25 +247,22 @@ void main() {
       );
       dioAdapter.onPost(
         '',
-        (server) => server.reply(
-          200,
-          {
-            "sessionState": sessionState.value,
-            "methodResponses": [
-              [
-                "Mailbox/clear",
-                {
-                  "accountId": bobAccountId.id.value,
-                  "notCleared": {
-                    "type": "invalidArguments",
-                    "description": "invalidMailboxId"
-                  }
+        (server) => server.reply(200, {
+          "sessionState": sessionState.value,
+          "methodResponses": [
+            [
+              "Mailbox/clear",
+              {
+                "accountId": bobAccountId.id.value,
+                "notCleared": {
+                  "type": "invalidArguments",
+                  "description": "invalidMailboxId",
                 },
-                methodCallId.value,
-              ],
+              },
+              methodCallId.value,
             ],
-          },
-        ),
+          ],
+        }),
         data: {
           "using": clearMailboxMethod.requiredCapabilities
               .map((capability) => capability.value.toString())
@@ -285,17 +275,18 @@ void main() {
                 "mailboxId": invalidMailboxId.id.value,
               },
               methodCallId.value,
-            ]
-          ]
+            ],
+          ],
         },
         headers: dioAdapterHeaders,
       );
 
       // Act
-      final responseObject = await (requestBuilder
-            ..usings(clearMailboxMethod.requiredCapabilities))
-          .build()
-          .execute();
+      final responseObject =
+          await (requestBuilder
+                ..usings(clearMailboxMethod.requiredCapabilities))
+              .build()
+              .execute();
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,
@@ -303,25 +294,18 @@ void main() {
       );
 
       // Assert
-      expect(
-        clearMailboxResponse?.totalDeletedMessagesCount,
-        isNull,
-      );
-      expect(
-        clearMailboxResponse?.notCleared?.type,
-        SetError.invalidArguments,
-      );
-      expect(
-        clearMailboxResponse?.notCleared?.description,
-        'invalidMailboxId',
-      );
+      expect(clearMailboxResponse?.totalDeletedMessagesCount, isNull);
+      expect(clearMailboxResponse?.notCleared?.type, SetError.invalidArguments);
+      expect(clearMailboxResponse?.notCleared?.description, 'invalidMailboxId');
     });
 
     test('should fail when mailbox id not found', () async {
       // Arrange
       final notFoundMailboxId = MailboxId(Id('notFoundMailboxId'));
-      final clearMailboxMethod =
-          ClearMailboxMethod(bobAccountId, notFoundMailboxId);
+      final clearMailboxMethod = ClearMailboxMethod(
+        bobAccountId,
+        notFoundMailboxId,
+      );
       final requestBuilder = JmapRequestBuilder(
         HttpClient(dio),
         ProcessingInvocation(),
@@ -332,26 +316,23 @@ void main() {
       );
       dioAdapter.onPost(
         '',
-        (server) => server.reply(
-          200,
-          {
-            "sessionState": sessionState.value,
-            "methodResponses": [
-              [
-                "Mailbox/clear",
-                {
-                  "accountId": bobAccountId.id.value,
-                  "notCleared": {
-                    "type": "notFound",
-                    "description":
-                        "${notFoundMailboxId.id.value} can not be found"
-                  }
+        (server) => server.reply(200, {
+          "sessionState": sessionState.value,
+          "methodResponses": [
+            [
+              "Mailbox/clear",
+              {
+                "accountId": bobAccountId.id.value,
+                "notCleared": {
+                  "type": "notFound",
+                  "description":
+                      "${notFoundMailboxId.id.value} can not be found",
                 },
-                methodCallId.value,
-              ],
+              },
+              methodCallId.value,
             ],
-          },
-        ),
+          ],
+        }),
         data: {
           "using": clearMailboxMethod.requiredCapabilities
               .map((capability) => capability.value.toString())
@@ -364,17 +345,18 @@ void main() {
                 "mailboxId": notFoundMailboxId.id.value,
               },
               methodCallId.value,
-            ]
-          ]
+            ],
+          ],
         },
         headers: dioAdapterHeaders,
       );
 
       // Act
-      final responseObject = await (requestBuilder
-            ..usings(clearMailboxMethod.requiredCapabilities))
-          .build()
-          .execute();
+      final responseObject =
+          await (requestBuilder
+                ..usings(clearMailboxMethod.requiredCapabilities))
+              .build()
+              .execute();
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,
@@ -382,22 +364,15 @@ void main() {
       );
 
       // Assert
-      expect(
-        clearMailboxResponse?.totalDeletedMessagesCount,
-        isNull,
-      );
-      expect(
-        clearMailboxResponse?.notCleared?.type,
-        SetError.notFound,
-      );
+      expect(clearMailboxResponse?.totalDeletedMessagesCount, isNull);
+      expect(clearMailboxResponse?.notCleared?.type, SetError.notFound);
       expect(
         clearMailboxResponse?.notCleared?.description,
         '${notFoundMailboxId.id.value} can not be found',
       );
     });
 
-    test(
-        'should return serverFail error\n'
+    test('should return serverFail error\n'
         'when exceptions are encountered during the deletion', () async {
       // Arrange
       final clearMailboxMethod = ClearMailboxMethod(bobAccountId, bobTrashId);
@@ -411,26 +386,23 @@ void main() {
       );
       dioAdapter.onPost(
         '',
-        (server) => server.reply(
-          200,
-          {
-            "sessionState": sessionState.value,
-            "methodResponses": [
-              [
-                "Mailbox/clear",
-                {
-                  "accountId": bobAccountId.id.value,
-                  "notCleared": {
-                    "type": "serverFail",
-                    "description":
-                        "exception abcxyz happened while clearing ${bobTrashId.id.value}"
-                  }
+        (server) => server.reply(200, {
+          "sessionState": sessionState.value,
+          "methodResponses": [
+            [
+              "Mailbox/clear",
+              {
+                "accountId": bobAccountId.id.value,
+                "notCleared": {
+                  "type": "serverFail",
+                  "description":
+                      "exception abcxyz happened while clearing ${bobTrashId.id.value}",
                 },
-                methodCallId.value,
-              ],
+              },
+              methodCallId.value,
             ],
-          },
-        ),
+          ],
+        }),
         data: {
           "using": clearMailboxMethod.requiredCapabilities
               .map((capability) => capability.value.toString())
@@ -443,17 +415,18 @@ void main() {
                 "mailboxId": bobTrashId.id.value,
               },
               methodCallId.value,
-            ]
-          ]
+            ],
+          ],
         },
         headers: dioAdapterHeaders,
       );
 
       // Act
-      final responseObject = await (requestBuilder
-            ..usings(clearMailboxMethod.requiredCapabilities))
-          .build()
-          .execute();
+      final responseObject =
+          await (requestBuilder
+                ..usings(clearMailboxMethod.requiredCapabilities))
+              .build()
+              .execute();
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,
@@ -461,27 +434,22 @@ void main() {
       );
 
       // Assert
-      expect(
-        clearMailboxResponse?.totalDeletedMessagesCount,
-        isNull,
-      );
-      expect(
-        clearMailboxResponse?.notCleared?.type,
-        SetError.serverFail,
-      );
+      expect(clearMailboxResponse?.totalDeletedMessagesCount, isNull);
+      expect(clearMailboxResponse?.notCleared?.type, SetError.serverFail);
       expect(
         clearMailboxResponse?.notCleared?.description,
         'exception abcxyz happened while clearing ${bobTrashId.id.value}',
       );
     });
 
-    test(
-        'should succeed to clear team mailbox\n'
+    test('should succeed to clear team mailbox\n'
         'when request has share capability', () async {
       // Arrange
       final teamMailboxId = MailboxId(Id('teamMailboxId'));
-      final clearMailboxMethod =
-          ClearMailboxMethod(bobAccountId, teamMailboxId);
+      final clearMailboxMethod = ClearMailboxMethod(
+        bobAccountId,
+        teamMailboxId,
+      );
       final requestBuilder = JmapRequestBuilder(
         HttpClient(dio),
         ProcessingInvocation(),
@@ -492,22 +460,19 @@ void main() {
       );
       dioAdapter.onPost(
         '',
-        (server) => server.reply(
-          200,
-          {
-            "sessionState": sessionState.value,
-            "methodResponses": [
-              [
-                "Mailbox/clear",
-                {
-                  "accountId": bobAccountId.id.value,
-                  "totalDeletedMessagesCount": 1,
-                },
-                methodCallId.value,
-              ],
+        (server) => server.reply(200, {
+          "sessionState": sessionState.value,
+          "methodResponses": [
+            [
+              "Mailbox/clear",
+              {
+                "accountId": bobAccountId.id.value,
+                "totalDeletedMessagesCount": 1,
+              },
+              methodCallId.value,
             ],
-          },
-        ),
+          ],
+        }),
         data: {
           "using": clearMailboxMethod.requiredCapabilitiesSupportTeamMailboxes
               .map((capability) => capability.value.toString())
@@ -520,18 +485,19 @@ void main() {
                 "mailboxId": teamMailboxId.id.value,
               },
               methodCallId.value,
-            ]
-          ]
+            ],
+          ],
         },
         headers: dioAdapterHeaders,
       );
 
       // Act
-      final responseObject = await (requestBuilder
-            ..usings(
-                clearMailboxMethod.requiredCapabilitiesSupportTeamMailboxes))
-          .build()
-          .execute();
+      final responseObject =
+          await (requestBuilder..usings(
+                clearMailboxMethod.requiredCapabilitiesSupportTeamMailboxes,
+              ))
+              .build()
+              .execute();
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,
@@ -539,18 +505,11 @@ void main() {
       );
 
       // Assert
-      expect(
-        clearMailboxResponse?.totalDeletedMessagesCount?.value,
-        1,
-      );
-      expect(
-        clearMailboxResponse?.notCleared,
-        isNull,
-      );
+      expect(clearMailboxResponse?.totalDeletedMessagesCount?.value, 1);
+      expect(clearMailboxResponse?.notCleared, isNull);
     });
 
-    test(
-        'should fail to clear team mailbox\n'
+    test('should fail to clear team mailbox\n'
         'when missing share capability', () async {
       // Arrange
       final teamMailboxId = MailboxId(Id('teamMailboxId'));
@@ -559,8 +518,10 @@ void main() {
         CapabilityIdentifier.jmapMail,
         CapabilityIdentifier.jmapMailboxClear,
       };
-      final clearMailboxMethod =
-          ClearMailboxMethod(bobAccountId, teamMailboxId);
+      final clearMailboxMethod = ClearMailboxMethod(
+        bobAccountId,
+        teamMailboxId,
+      );
       final requestBuilder = JmapRequestBuilder(
         HttpClient(dio),
         ProcessingInvocation(),
@@ -571,25 +532,22 @@ void main() {
       );
       dioAdapter.onPost(
         '',
-        (server) => server.reply(
-          200,
-          {
-            "sessionState": sessionState.value,
-            "methodResponses": [
-              [
-                "Mailbox/clear",
-                {
-                  "accountId": bobAccountId.id.value,
-                  "notCleared": {
-                    "type": "notFound",
-                    "description": "${teamMailboxId.id.value} can not be found"
-                  }
+        (server) => server.reply(200, {
+          "sessionState": sessionState.value,
+          "methodResponses": [
+            [
+              "Mailbox/clear",
+              {
+                "accountId": bobAccountId.id.value,
+                "notCleared": {
+                  "type": "notFound",
+                  "description": "${teamMailboxId.id.value} can not be found",
                 },
-                methodCallId.value,
-              ],
+              },
+              methodCallId.value,
             ],
-          },
-        ),
+          ],
+        }),
         data: {
           "using": listCapabilitiesUsed
               .map((capability) => capability.value.toString())
@@ -602,17 +560,17 @@ void main() {
                 "mailboxId": teamMailboxId.id.value,
               },
               methodCallId.value,
-            ]
-          ]
+            ],
+          ],
         },
         headers: dioAdapterHeaders,
       );
 
       // Act
-      final responseObject = await (requestBuilder
-            ..usings(listCapabilitiesUsed))
-          .build()
-          .execute();
+      final responseObject =
+          await (requestBuilder..usings(listCapabilitiesUsed))
+              .build()
+              .execute();
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,
@@ -620,14 +578,8 @@ void main() {
       );
 
       // Assert
-      expect(
-        clearMailboxResponse?.totalDeletedMessagesCount,
-        isNull,
-      );
-      expect(
-        clearMailboxResponse?.notCleared?.type,
-        SetError.notFound,
-      );
+      expect(clearMailboxResponse?.totalDeletedMessagesCount, isNull);
+      expect(clearMailboxResponse?.notCleared?.type, SetError.notFound);
       expect(
         clearMailboxResponse?.notCleared?.description,
         '${teamMailboxId.id.value} can not be found',

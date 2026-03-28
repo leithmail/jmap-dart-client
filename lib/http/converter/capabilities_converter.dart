@@ -15,11 +15,16 @@ import 'package:jmap_dart_client/jmap/core/capability/websocket_capability.dart'
 class CapabilitiesConverter {
   static final defaultConverter = CapabilitiesConverter();
 
-  BuiltMap<CapabilityIdentifier,
-          CapabilityProperties Function(Map<String, dynamic>)>?
-      mapCapabilitiesConverter;
-  final _mapCapabilityConverterBuilder = MapBuilder<CapabilityIdentifier,
-      CapabilityProperties Function(Map<String, dynamic>)>();
+  BuiltMap<
+    CapabilityIdentifier,
+    CapabilityProperties Function(Map<String, dynamic>)
+  >?
+  mapCapabilitiesConverter;
+  final _mapCapabilityConverterBuilder =
+      MapBuilder<
+        CapabilityIdentifier,
+        CapabilityProperties Function(Map<String, dynamic>)
+      >();
 
   CapabilitiesConverter() {
     _mapCapabilityConverterBuilder.addAll({
@@ -32,14 +37,17 @@ class CapabilitiesConverter {
       CapabilityIdentifier.jmapWebSocket: WebSocketCapability.deserialize,
       CapabilityIdentifier.jmapWebSocketTicket:
           WebSocketTicketCapability.deserialize,
-      CapabilityIdentifier.jmapMdn: MdnCapability.deserialize
+      CapabilityIdentifier.jmapMdn: MdnCapability.deserialize,
     });
   }
 
   void addConverters(
-      Map<CapabilityIdentifier,
-              CapabilityProperties Function(Map<String, dynamic>)>
-          converters) {
+    Map<
+      CapabilityIdentifier,
+      CapabilityProperties Function(Map<String, dynamic>)
+    >
+    converters,
+  ) {
     _mapCapabilityConverterBuilder.addAll(converters);
   }
 
@@ -52,7 +60,9 @@ class CapabilitiesConverter {
   }
 
   MapEntry<CapabilityIdentifier, CapabilityProperties> convert(
-      String key, dynamic value) {
+    String key,
+    dynamic value,
+  ) {
     if (mapCapabilitiesConverter == null) {
       build();
     }
@@ -61,7 +71,9 @@ class CapabilitiesConverter {
     if (mapCapabilitiesConverter!.containsKey(identifier)) {
       try {
         return MapEntry(
-            identifier, mapCapabilitiesConverter![identifier]!.call(value));
+          identifier,
+          mapCapabilitiesConverter![identifier]!.call(value),
+        );
       } catch (e) {
         return MapEntry(identifier, EmptyCapability());
       }

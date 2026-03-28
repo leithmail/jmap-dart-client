@@ -7,27 +7,18 @@ part of 'calendar_event_maybe_method.dart';
 // **************************************************************************
 
 CalendarEventMaybeMethod _$CalendarEventMaybeMethodFromJson(
-        Map<String, dynamic> json) =>
-    CalendarEventMaybeMethod(
-      const AccountIdConverter().fromJson(json['accountId'] as String),
-      blobIds: (json['blobIds'] as List<dynamic>)
-          .map((e) => const IdConverter().fromJson(e as String))
-          .toList(),
-    )..language = json['language'] as String?;
+  Map<String, dynamic> json,
+) => CalendarEventMaybeMethod(
+  const AccountIdConverter().fromJson(json['accountId'] as String),
+  blobIds: (json['blobIds'] as List<dynamic>)
+      .map((e) => const IdConverter().fromJson(e as String))
+      .toList(),
+)..language = json['language'] as String?;
 
 Map<String, dynamic> _$CalendarEventMaybeMethodToJson(
-    CalendarEventMaybeMethod instance) {
-  final val = <String, dynamic>{
-    'accountId': const AccountIdConverter().toJson(instance.accountId),
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('language', instance.language);
-  val['blobIds'] = instance.blobIds.map(const IdConverter().toJson).toList();
-  return val;
-}
+  CalendarEventMaybeMethod instance,
+) => <String, dynamic>{
+  'accountId': const AccountIdConverter().toJson(instance.accountId),
+  'language': ?instance.language,
+  'blobIds': instance.blobIds.map(const IdConverter().toJson).toList(),
+};

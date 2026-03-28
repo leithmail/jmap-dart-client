@@ -9,7 +9,7 @@ abstract class GetResponse<T> extends ResponseRequiringAccountId {
   final List<Id>? notFound;
 
   GetResponse(AccountId accountId, this.state, this.list, this.notFound)
-      : super(accountId);
+    : super(accountId);
 }
 
 abstract class GetResponseNoAccountId<T> extends MethodResponse {

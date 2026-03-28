@@ -30,8 +30,7 @@ void main() {
   final methodCallId = MethodCallId('c0');
 
   group('get thread method test:', () {
-    test(
-        'should return list email id '
+    test('should return list email id '
         'when thread found '
         'and return not found '
         'when thread not found', () async {
@@ -47,9 +46,9 @@ void main() {
               "accountId": accountId.id.value,
               "ids": getThreadMethod.ids?.map((e) => e.value).toList(),
             },
-            methodCallId.value
-          ]
-        ]
+            methodCallId.value,
+          ],
+        ],
       };
       final sampleResponse = {
         "sessionState": "abcdefghij",
@@ -63,32 +62,38 @@ void main() {
               "notFound": [notFoundId.value],
             },
             methodCallId.value,
-          ]
-        ]
+          ],
+        ],
       };
-      dioAdapter.onPost('', (server) => server.reply(200, sampleResponse),
-          data: sampleRequest, headers: dioAdapterHeaders);
+      dioAdapter.onPost(
+        '',
+        (server) => server.reply(200, sampleResponse),
+        data: sampleRequest,
+        headers: dioAdapterHeaders,
+      );
 
       // act
       final invocation = requestBuilder.invocation(
         getThreadMethod,
         methodCallId: methodCallId,
       );
-      final response = (await (requestBuilder
-                ..usings(getThreadMethod.requiredCapabilities))
-              .build()
-              .execute())
-          .parse(invocation.methodCallId, GetThreadResponse.deserialize);
+      final response =
+          (await (requestBuilder..usings(getThreadMethod.requiredCapabilities))
+                  .build()
+                  .execute())
+              .parse(invocation.methodCallId, GetThreadResponse.deserialize);
 
       // assert
       expect(
         response,
-        equals(GetThreadResponse(
-          accountId,
-          State('state'),
-          [foundThread],
-          [notFoundId],
-        )),
+        equals(
+          GetThreadResponse(
+            accountId,
+            State('state'),
+            [foundThread],
+            [notFoundId],
+          ),
+        ),
       );
     });
   });

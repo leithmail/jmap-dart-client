@@ -13,8 +13,9 @@ class SetPushSubscriptionMethod
   MethodName get methodName => MethodName('PushSubscription/set');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities =>
-      {CapabilityIdentifier.jmapCore};
+  Set<CapabilityIdentifier> get requiredCapabilities => {
+    CapabilityIdentifier.jmapCore,
+  };
 
   @override
   Map<String, dynamic> toJson() {
@@ -27,22 +28,26 @@ class SetPushSubscriptionMethod
     }
 
     writeNotNull(
-        'create',
-        create?.map((id, create) => SetMethodPropertiesConverter()
-            .fromMapIdToJson(id, create.toJson())));
+      'create',
+      create?.map(
+        (id, create) =>
+            SetMethodPropertiesConverter().fromMapIdToJson(id, create.toJson()),
+      ),
+    );
     writeNotNull(
-        'update',
-        update?.map((id, update) => SetMethodPropertiesConverter()
-            .fromMapIdToJson(id, update.toJson())));
+      'update',
+      update?.map(
+        (id, update) =>
+            SetMethodPropertiesConverter().fromMapIdToJson(id, update.toJson()),
+      ),
+    );
     writeNotNull(
-        'destroy',
-        destroy
-            ?.map((destroyId) => const IdConverter().toJson(destroyId))
-            .toList());
+      'destroy',
+      destroy
+          ?.map((destroyId) => const IdConverter().toJson(destroyId))
+          .toList(),
+    );
 
     return val;
   }
-
-  @override
-  List<Object?> get props => [create, update, destroy];
 }

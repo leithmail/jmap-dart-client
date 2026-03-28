@@ -9,8 +9,9 @@ part of 'calendar_organizer.dart';
 CalendarOrganizer _$CalendarOrganizerFromJson(Map<String, dynamic> json) =>
     CalendarOrganizer(
       name: json['name'] as String?,
-      mailto: const MailAddressNullableConverter()
-          .fromJson(json['mailto'] as String?),
+      mailto: const MailAddressNullableConverter().fromJson(
+        json['mailto'] as String?,
+      ),
     );
 
 Map<String, dynamic> _$CalendarOrganizerToJson(CalendarOrganizer instance) {
@@ -24,6 +25,8 @@ Map<String, dynamic> _$CalendarOrganizerToJson(CalendarOrganizer instance) {
 
   writeNotNull('name', instance.name);
   writeNotNull(
-      'mailto', const MailAddressNullableConverter().toJson(instance.mailto));
+    'mailto',
+    const MailAddressNullableConverter().toJson(instance.mailto),
+  );
   return val;
 }

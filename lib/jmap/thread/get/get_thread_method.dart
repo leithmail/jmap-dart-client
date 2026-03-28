@@ -12,11 +12,7 @@ part 'get_thread_method.g.dart';
 @JsonSerializable(
   includeIfNull: false,
   explicitToJson: true,
-  converters: [
-    AccountIdConverter(),
-    IdConverter(),
-    PropertiesConverter(),
-  ],
+  converters: [AccountIdConverter(), IdConverter(), PropertiesConverter()],
 )
 class GetThreadMethod extends GetMethod {
   GetThreadMethod(super.accountId);
@@ -25,13 +21,10 @@ class GetThreadMethod extends GetMethod {
   MethodName get methodName => MethodName('Thread/get');
 
   @override
-  List<Object?> get props => [accountId, ids];
-
-  @override
   Set<CapabilityIdentifier> get requiredCapabilities => {
-        CapabilityIdentifier.jmapCore,
-        CapabilityIdentifier.jmapMail,
-      };
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jmapMail,
+  };
 
   @override
   Map<String, dynamic> toJson() => _$GetThreadMethodToJson(this);

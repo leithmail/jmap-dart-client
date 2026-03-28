@@ -48,17 +48,17 @@ class Quota with EquatableMixin {
 
   @override
   List<Object?> get props => [
-        id,
-        resourceType,
-        used,
-        scope,
-        name,
-        dataTypes,
-        hardLimit,
-        limit,
-        warnLimit,
-        softLimit,
-        description,
-        types
-      ];
+    id,
+    resourceType,
+    used,
+    scope,
+    name,
+    dataTypes,
+    hardLimit,
+    limit,
+    warnLimit,
+    softLimit,
+    description,
+    types,
+  ];
 }

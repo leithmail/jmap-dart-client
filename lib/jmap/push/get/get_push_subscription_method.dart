@@ -19,12 +19,8 @@ class GetPushSubscriptionMethod extends GetMethodNoNeedAccountId {
 
   @override
   Set<CapabilityIdentifier> get requiredCapabilities => {
-        CapabilityIdentifier.jmapCore,
-      };
-
-  @override
-  List<Object?> get props =>
-      [methodName, ids, properties, requiredCapabilities];
+    CapabilityIdentifier.jmapCore,
+  };
 
   factory GetPushSubscriptionMethod.fromJson(Map<String, dynamic> json) =>
       _$GetPushSubscriptionMethodFromJson(json);

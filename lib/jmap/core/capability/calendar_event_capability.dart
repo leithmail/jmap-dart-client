@@ -26,8 +26,8 @@ class CalendarEventCapability extends CapabilityProperties {
 
   @override
   List<Object?> get props => [
-        replySupportedLanguage,
-        supportFreeBusyQuery,
-        counterSupport,
-      ];
+    replySupportedLanguage,
+    supportFreeBusyQuery,
+    counterSupport,
+  ];
 }

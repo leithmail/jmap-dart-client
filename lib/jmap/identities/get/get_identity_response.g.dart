@@ -19,10 +19,10 @@ GetIdentityResponse _$GetIdentityResponseFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$GetIdentityResponseToJson(
-        GetIdentityResponse instance) =>
-    <String, dynamic>{
-      'accountId': const AccountIdConverter().toJson(instance.accountId),
-      'state': const StateConverter().toJson(instance.state),
-      'list': instance.list,
-      'notFound': instance.notFound?.map(const IdConverter().toJson).toList(),
-    };
+  GetIdentityResponse instance,
+) => <String, dynamic>{
+  'accountId': const AccountIdConverter().toJson(instance.accountId),
+  'state': const StateConverter().toJson(instance.state),
+  'list': instance.list,
+  'notFound': instance.notFound?.map(const IdConverter().toJson).toList(),
+};

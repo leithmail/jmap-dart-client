@@ -12,7 +12,8 @@ GetEmailResponse _$GetEmailResponseFromJson(Map<String, dynamic> json) =>
       const StateConverter().fromJson(json['state'] as String),
       (json['list'] as List<dynamic>)
           .map(
-              (e) => const EmailConverter().fromJson(e as Map<String, dynamic>))
+            (e) => const EmailConverter().fromJson(e as Map<String, dynamic>),
+          )
           .toList(),
       (json['notFound'] as List<dynamic>?)
           ?.map((e) => const IdConverter().fromJson(e as String))

@@ -40,13 +40,13 @@ class MailCapability extends CapabilityProperties with EquatableMixin {
 
   @override
   List<Object?> get props => [
-        maxMailboxesPerEmail,
-        maxMailboxDepth,
-        maxSizeMailboxName,
-        maxKeywordsPerEmail,
-        maxSizeAttachmentsPerEmail,
-        emailQuerySortOptions,
-        emailsListSortOptions,
-        mayCreateTopLevelMailbox
-      ];
+    maxMailboxesPerEmail,
+    maxMailboxDepth,
+    maxSizeMailboxName,
+    maxKeywordsPerEmail,
+    maxSizeAttachmentsPerEmail,
+    emailQuerySortOptions,
+    emailsListSortOptions,
+    mayCreateTopLevelMailbox,
+  ];
 }
