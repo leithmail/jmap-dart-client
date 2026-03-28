@@ -1,4 +1,1 @@
-enum CalendarFreeBusyStatus {
-  free,
-  busy;
-}
+enum CalendarFreeBusyStatus { free, busy }

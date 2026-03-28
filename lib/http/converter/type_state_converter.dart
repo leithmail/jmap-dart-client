@@ -7,14 +7,15 @@ class TypeStateConverter {
   static final defaultConverter = TypeStateConverter();
 
   BuiltMap<AccountId, TypeState Function(Map<String, dynamic>)>?
-      mapTypeStateConverter;
+  mapTypeStateConverter;
   final _mapTypeStateConverterBuilder =
       MapBuilder<AccountId, TypeState Function(Map<String, dynamic>)>();
 
   TypeStateConverter();
 
   void addConverters(
-      Map<AccountId, TypeState Function(Map<String, dynamic>)> converters) {
+    Map<AccountId, TypeState Function(Map<String, dynamic>)> converters,
+  ) {
     _mapTypeStateConverterBuilder.addAll(converters);
   }
 
@@ -34,7 +35,9 @@ class TypeStateConverter {
     final identifier = AccountId(Id(key));
     if (mapTypeStateConverter!.containsKey(identifier)) {
       return MapEntry(
-          identifier, mapTypeStateConverter![identifier]!.call(value));
+        identifier,
+        mapTypeStateConverter![identifier]!.call(value),
+      );
     } else {
       return MapEntry(identifier, TypeState(value));
     }

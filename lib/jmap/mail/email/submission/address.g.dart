@@ -6,15 +6,11 @@ part of 'address.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Address _$AddressFromJson(Map<String, dynamic> json) => Address(
-      json['email'] as String,
-      parameters: json['parameters'],
-    );
+Address _$AddressFromJson(Map<String, dynamic> json) =>
+    Address(json['email'] as String, parameters: json['parameters']);
 
 Map<String, dynamic> _$AddressToJson(Address instance) {
-  final val = <String, dynamic>{
-    'email': instance.email,
-  };
+  final val = <String, dynamic>{'email': instance.email};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {

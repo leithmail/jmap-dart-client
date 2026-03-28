@@ -7,7 +7,10 @@ abstract class ParseResponse<T> extends ResponseRequiringAccountId {
   final List<Id>? notParsable;
   final List<Id>? notFound;
 
-  ParseResponse(AccountId accountId,
-      {this.parsed, this.notParsable, this.notFound})
-      : super(accountId);
+  ParseResponse(
+    AccountId accountId, {
+    this.parsed,
+    this.notParsable,
+    this.notFound,
+  }) : super(accountId);
 }

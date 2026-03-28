@@ -68,20 +68,21 @@ class Mailbox with EquatableMixin {
   @JsonKey(includeIfNull: false)
   final Map<String, List<String>?>? rights;
 
-  Mailbox(
-      {this.id,
-      this.name,
-      this.parentId,
-      this.role,
-      this.sortOrder,
-      this.totalEmails,
-      this.unreadEmails,
-      this.totalThreads,
-      this.unreadThreads,
-      this.myRights,
-      this.isSubscribed,
-      this.namespace,
-      this.rights});
+  Mailbox({
+    this.id,
+    this.name,
+    this.parentId,
+    this.role,
+    this.sortOrder,
+    this.totalEmails,
+    this.unreadEmails,
+    this.totalThreads,
+    this.unreadThreads,
+    this.myRights,
+    this.isSubscribed,
+    this.namespace,
+    this.rights,
+  });
 
   factory Mailbox.fromJson(Map<String, dynamic> json) =>
       _$MailboxFromJson(json);
@@ -90,20 +91,20 @@ class Mailbox with EquatableMixin {
 
   @override
   List<Object?> get props => [
-        id,
-        name,
-        parentId,
-        role,
-        sortOrder,
-        totalEmails,
-        unreadEmails,
-        totalThreads,
-        unreadThreads,
-        myRights,
-        isSubscribed,
-        namespace,
-        rights
-      ];
+    id,
+    name,
+    parentId,
+    role,
+    sortOrder,
+    totalEmails,
+    unreadEmails,
+    totalThreads,
+    unreadThreads,
+    myRights,
+    isSubscribed,
+    namespace,
+    rights,
+  ];
 }
 
 class MailboxId with EquatableMixin {

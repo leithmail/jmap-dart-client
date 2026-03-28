@@ -148,138 +148,186 @@ void main() {
       }''';
 
       final Session expectedSession = Session(
-          {
+        {
+          CapabilityIdentifier.jmapSubmission: SubmissionCapability(
+            maxDelayedSend: UnsignedInt(0),
+            submissionExtensions: {},
+          ),
+          CapabilityIdentifier.jamesCalendarEvent: CalendarEventCapability(
+            replySupportedLanguage: ["en", "fr"],
+            counterSupport: true,
+          ),
+          CapabilityIdentifier.jmapCore: CoreCapability(
+            maxSizeUpload: UnsignedInt(20971520),
+            maxConcurrentUpload: UnsignedInt(4),
+            maxSizeRequest: UnsignedInt(10000000),
+            maxConcurrentRequests: UnsignedInt(4),
+            maxCallsInRequest: UnsignedInt(16),
+            maxObjectsInGet: UnsignedInt(500),
+            maxObjectsInSet: UnsignedInt(500),
+            collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+          ),
+          CapabilityIdentifier.jmapMail: MailCapability(
+            maxMailboxesPerEmail: UnsignedInt(10000000),
+            maxSizeMailboxName: UnsignedInt(200),
+            maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+            emailQuerySortOptions: {
+              "receivedAt",
+              "sentAt",
+              "size",
+              "from",
+              "to",
+              "subject",
+            },
+            mayCreateTopLevelMailbox: true,
+          ),
+          CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
+            supportsPush: true,
+            url: Uri.parse('ws://domain.com/jmap/ws'),
+          ),
+          CapabilityIdentifier.jmapWebSocketTicket: WebSocketTicketCapability(
+            generationEndpoint: Uri.parse('http://localhost/jmap/ws/ticket'),
+            revocationEndpoint: Uri.parse('http://localhost/jmap/ws/ticket'),
+          ),
+          CapabilityIdentifier(
+            Uri.parse('urn:apache:james:params:jmap:mail:quota'),
+          ): DefaultCapability(
+            <String, dynamic>{},
+          ),
+          CapabilityIdentifier(
+            Uri.parse('urn:apache:james:params:jmap:mail:shares'),
+          ): DefaultCapability(
+            <String, dynamic>{},
+          ),
+          CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
+          CapabilityIdentifier.jmapMdn: MdnCapability(),
+        },
+        {
+          AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ): Account(AccountName('bob@domain.tld'), true, false, {
             CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                maxDelayedSend: UnsignedInt(0), submissionExtensions: {}),
-            CapabilityIdentifier.jamesCalendarEvent: CalendarEventCapability(
-              replySupportedLanguage: ["en", "fr"],
-              counterSupport: true,
+              maxDelayedSend: UnsignedInt(0),
+              submissionExtensions: {},
+            ),
+            CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
+              supportsPush: true,
+              url: Uri.parse('ws://domain.com/jmap/ws'),
             ),
             CapabilityIdentifier.jmapCore: CoreCapability(
-                maxSizeUpload: UnsignedInt(20971520),
-                maxConcurrentUpload: UnsignedInt(4),
-                maxSizeRequest: UnsignedInt(10000000),
-                maxConcurrentRequests: UnsignedInt(4),
-                maxCallsInRequest: UnsignedInt(16),
-                maxObjectsInGet: UnsignedInt(500),
-                maxObjectsInSet: UnsignedInt(500),
-                collationAlgorithms: {
-                  CollationIdentifier("i;unicode-casemap")
-                }),
+              maxSizeUpload: UnsignedInt(20971520),
+              maxConcurrentUpload: UnsignedInt(4),
+              maxSizeRequest: UnsignedInt(10000000),
+              maxConcurrentRequests: UnsignedInt(4),
+              maxCallsInRequest: UnsignedInt(16),
+              maxObjectsInGet: UnsignedInt(500),
+              maxObjectsInSet: UnsignedInt(500),
+              collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+            ),
             CapabilityIdentifier.jmapMail: MailCapability(
-                maxMailboxesPerEmail: UnsignedInt(10000000),
-                maxSizeMailboxName: UnsignedInt(200),
-                maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-                emailQuerySortOptions: {
-                  "receivedAt",
-                  "sentAt",
-                  "size",
-                  "from",
-                  "to",
-                  "subject"
-                },
-                mayCreateTopLevelMailbox: true),
-            CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
-                supportsPush: true, url: Uri.parse('ws://domain.com/jmap/ws')),
-            CapabilityIdentifier.jmapWebSocketTicket: WebSocketTicketCapability(
-                generationEndpoint:
-                    Uri.parse('http://localhost/jmap/ws/ticket'),
-                revocationEndpoint:
-                    Uri.parse('http://localhost/jmap/ws/ticket')),
+              maxMailboxesPerEmail: UnsignedInt(10000000),
+              maxSizeMailboxName: UnsignedInt(200),
+              maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+              emailQuerySortOptions: {
+                "receivedAt",
+                "sentAt",
+                "size",
+                "from",
+                "to",
+                "subject",
+              },
+              mayCreateTopLevelMailbox: true,
+            ),
             CapabilityIdentifier(
-                    Uri.parse('urn:apache:james:params:jmap:mail:quota')):
-                DefaultCapability(<String, dynamic>{}),
+              Uri.parse('urn:apache:james:params:jmap:mail:quota'),
+            ): DefaultCapability(
+              <String, dynamic>{},
+            ),
             CapabilityIdentifier(
-                    Uri.parse('urn:apache:james:params:jmap:mail:shares')):
-                DefaultCapability(<String, dynamic>{}),
+              Uri.parse('urn:apache:james:params:jmap:mail:shares'),
+            ): DefaultCapability(
+              <String, dynamic>{},
+            ),
             CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
-            CapabilityIdentifier.jmapMdn: MdnCapability()
-          },
-          {
-            AccountId(Id(
-                    '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')):
-                Account(AccountName('bob@domain.tld'), true, false, {
-              CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                  maxDelayedSend: UnsignedInt(0), submissionExtensions: {}),
-              CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
-                  supportsPush: true,
-                  url: Uri.parse('ws://domain.com/jmap/ws')),
-              CapabilityIdentifier.jmapCore: CoreCapability(
-                  maxSizeUpload: UnsignedInt(20971520),
-                  maxConcurrentUpload: UnsignedInt(4),
-                  maxSizeRequest: UnsignedInt(10000000),
-                  maxConcurrentRequests: UnsignedInt(4),
-                  maxCallsInRequest: UnsignedInt(16),
-                  maxObjectsInGet: UnsignedInt(500),
-                  maxObjectsInSet: UnsignedInt(500),
-                  collationAlgorithms: {
-                    CollationIdentifier("i;unicode-casemap")
-                  }),
-              CapabilityIdentifier.jmapMail: MailCapability(
-                  maxMailboxesPerEmail: UnsignedInt(10000000),
-                  maxSizeMailboxName: UnsignedInt(200),
-                  maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-                  emailQuerySortOptions: {
-                    "receivedAt",
-                    "sentAt",
-                    "size",
-                    "from",
-                    "to",
-                    "subject"
-                  },
-                  mayCreateTopLevelMailbox: true),
-              CapabilityIdentifier(
-                      Uri.parse('urn:apache:james:params:jmap:mail:quota')):
-                  DefaultCapability(<String, dynamic>{}),
-              CapabilityIdentifier(
-                      Uri.parse('urn:apache:james:params:jmap:mail:shares')):
-                  DefaultCapability(<String, dynamic>{}),
-              CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
-              CapabilityIdentifier.jmapMdn: MdnCapability()
-            })
-          },
-          {
-            CapabilityIdentifier.jmapSubmission: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jamesCalendarEvent: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapWebSocket: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapWebSocketTicket: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapCore: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapMail: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier(
-                Uri.parse(
-                    'urn:apache:james:params:jmap:mail:quota')): AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier(
-                Uri.parse(
-                    'urn:apache:james:params:jmap:mail:shares')): AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapVacationResponse: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapMdn: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-          },
-          UserName('bob@domain.tld'),
-          Uri.parse('http://domain.com/jmap'),
-          Uri.parse(
-              'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}'),
-          Uri.parse('http://domain.com/upload/{accountId}'),
-          Uri.parse(
-              'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}'),
-          State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'));
+            CapabilityIdentifier.jmapMdn: MdnCapability(),
+          }),
+        },
+        {
+          CapabilityIdentifier.jmapSubmission: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jamesCalendarEvent: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapWebSocket: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapWebSocketTicket: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapCore: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapMail: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier(
+            Uri.parse('urn:apache:james:params:jmap:mail:quota'),
+          ): AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier(
+            Uri.parse('urn:apache:james:params:jmap:mail:shares'),
+          ): AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapVacationResponse: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapMdn: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+        },
+        UserName('bob@domain.tld'),
+        Uri.parse('http://domain.com/jmap'),
+        Uri.parse(
+          'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
+        ),
+        Uri.parse('http://domain.com/upload/{accountId}'),
+        Uri.parse(
+          'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}',
+        ),
+        State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
+      );
 
       final parsedSession = Session.fromJson(json.decode(sessionString));
 
       expect(parsedSession, equals(expectedSession));
     });
 
-    test('get should parsing correctly session with some limit capabilities',
-        () {
+    test('get should parsing correctly session with some limit capabilities', () {
       const sessionString = '''{
         "capabilities": {
           "urn:ietf:params:jmap:submission": {
@@ -371,86 +419,107 @@ void main() {
       }''';
 
       final Session expectedSession = Session(
-          {
+        {
+          CapabilityIdentifier.jmapSubmission: SubmissionCapability(
+            maxDelayedSend: UnsignedInt(0),
+            submissionExtensions: {},
+          ),
+          CapabilityIdentifier.jmapCore: CoreCapability(
+            maxSizeUpload: UnsignedInt(20971520),
+            maxConcurrentUpload: UnsignedInt(4),
+            maxSizeRequest: UnsignedInt(10000000),
+            maxConcurrentRequests: UnsignedInt(4),
+            maxCallsInRequest: UnsignedInt(16),
+            maxObjectsInGet: UnsignedInt(500),
+            maxObjectsInSet: UnsignedInt(500),
+            collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+          ),
+          CapabilityIdentifier.jmapMail: MailCapability(
+            maxMailboxesPerEmail: UnsignedInt(10000000),
+            maxSizeMailboxName: UnsignedInt(200),
+            maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+            emailQuerySortOptions: {
+              "receivedAt",
+              "sentAt",
+              "size",
+              "from",
+              "to",
+              "subject",
+            },
+            mayCreateTopLevelMailbox: true,
+          ),
+          CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
+        },
+        {
+          AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ): Account(AccountName('bob@domain.tld'), true, false, {
             CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                maxDelayedSend: UnsignedInt(0), submissionExtensions: {}),
+              maxDelayedSend: UnsignedInt(0),
+              submissionExtensions: {},
+            ),
             CapabilityIdentifier.jmapCore: CoreCapability(
-                maxSizeUpload: UnsignedInt(20971520),
-                maxConcurrentUpload: UnsignedInt(4),
-                maxSizeRequest: UnsignedInt(10000000),
-                maxConcurrentRequests: UnsignedInt(4),
-                maxCallsInRequest: UnsignedInt(16),
-                maxObjectsInGet: UnsignedInt(500),
-                maxObjectsInSet: UnsignedInt(500),
-                collationAlgorithms: {
-                  CollationIdentifier("i;unicode-casemap")
-                }),
+              maxSizeUpload: UnsignedInt(20971520),
+              maxConcurrentUpload: UnsignedInt(4),
+              maxSizeRequest: UnsignedInt(10000000),
+              maxConcurrentRequests: UnsignedInt(4),
+              maxCallsInRequest: UnsignedInt(16),
+              maxObjectsInGet: UnsignedInt(500),
+              maxObjectsInSet: UnsignedInt(500),
+              collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+            ),
             CapabilityIdentifier.jmapMail: MailCapability(
-                maxMailboxesPerEmail: UnsignedInt(10000000),
-                maxSizeMailboxName: UnsignedInt(200),
-                maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-                emailQuerySortOptions: {
-                  "receivedAt",
-                  "sentAt",
-                  "size",
-                  "from",
-                  "to",
-                  "subject"
-                },
-                mayCreateTopLevelMailbox: true),
-            CapabilityIdentifier.jmapVacationResponse: VacationCapability()
-          },
-          {
-            AccountId(Id(
-                    '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')):
-                Account(AccountName('bob@domain.tld'), true, false, {
-              CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                  maxDelayedSend: UnsignedInt(0), submissionExtensions: {}),
-              CapabilityIdentifier.jmapCore: CoreCapability(
-                  maxSizeUpload: UnsignedInt(20971520),
-                  maxConcurrentUpload: UnsignedInt(4),
-                  maxSizeRequest: UnsignedInt(10000000),
-                  maxConcurrentRequests: UnsignedInt(4),
-                  maxCallsInRequest: UnsignedInt(16),
-                  maxObjectsInGet: UnsignedInt(500),
-                  maxObjectsInSet: UnsignedInt(500),
-                  collationAlgorithms: {
-                    CollationIdentifier("i;unicode-casemap")
-                  }),
-              CapabilityIdentifier.jmapMail: MailCapability(
-                  maxMailboxesPerEmail: UnsignedInt(10000000),
-                  maxSizeMailboxName: UnsignedInt(200),
-                  maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-                  emailQuerySortOptions: {
-                    "receivedAt",
-                    "sentAt",
-                    "size",
-                    "from",
-                    "to",
-                    "subject"
-                  },
-                  mayCreateTopLevelMailbox: true),
-              CapabilityIdentifier.jmapVacationResponse: VacationCapability()
-            })
-          },
-          {
-            CapabilityIdentifier.jmapSubmission: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapCore: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapMail: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapVacationResponse: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6'))
-          },
-          UserName('bob@domain.tld'),
-          Uri.parse('http://domain.com/jmap'),
-          Uri.parse(
-              'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}'),
-          Uri.parse('http://domain.com/upload/{accountId}'),
-          Uri.parse(
-              'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}'),
-          State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'));
+              maxMailboxesPerEmail: UnsignedInt(10000000),
+              maxSizeMailboxName: UnsignedInt(200),
+              maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+              emailQuerySortOptions: {
+                "receivedAt",
+                "sentAt",
+                "size",
+                "from",
+                "to",
+                "subject",
+              },
+              mayCreateTopLevelMailbox: true,
+            ),
+            CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
+          }),
+        },
+        {
+          CapabilityIdentifier.jmapSubmission: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapCore: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapMail: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapVacationResponse: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+        },
+        UserName('bob@domain.tld'),
+        Uri.parse('http://domain.com/jmap'),
+        Uri.parse(
+          'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
+        ),
+        Uri.parse('http://domain.com/upload/{accountId}'),
+        Uri.parse(
+          'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}',
+        ),
+        State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
+      );
 
       final parsedSession = Session.fromJson(json.decode(sessionString));
 
@@ -458,9 +527,9 @@ void main() {
     });
 
     test(
-        'get should parsing correctly session with some capabilities miss property',
-        () {
-      const sessionString = '''{
+      'get should parsing correctly session with some capabilities miss property',
+      () {
+        const sessionString = '''{
         "capabilities": {
           "urn:ietf:params:jmap:submission": {
             "maxDelayedSend": 0,
@@ -535,11 +604,36 @@ void main() {
         "state": "2c9f1b12-b35a-43e6-9af2-0106fb53a943"
       }''';
 
-      final Session expectedSession = Session(
+        final Session expectedSession = Session(
           {
             CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                maxDelayedSend: UnsignedInt(0), submissionExtensions: {}),
+              maxDelayedSend: UnsignedInt(0),
+              submissionExtensions: {},
+            ),
             CapabilityIdentifier.jmapCore: CoreCapability(
+              maxSizeUpload: UnsignedInt(20971520),
+              maxConcurrentUpload: UnsignedInt(4),
+              maxSizeRequest: UnsignedInt(10000000),
+              maxConcurrentRequests: UnsignedInt(4),
+              maxCallsInRequest: UnsignedInt(16),
+              maxObjectsInGet: UnsignedInt(500),
+              maxObjectsInSet: UnsignedInt(500),
+              collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+            ),
+            CapabilityIdentifier.jmapMail: MailCapability(),
+            CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
+          },
+          {
+            AccountId(
+              Id(
+                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+              ),
+            ): Account(AccountName('bob@domain.tld'), true, false, {
+              CapabilityIdentifier.jmapSubmission: SubmissionCapability(
+                maxDelayedSend: UnsignedInt(0),
+                submissionExtensions: {},
+              ),
+              CapabilityIdentifier.jmapCore: CoreCapability(
                 maxSizeUpload: UnsignedInt(20971520),
                 maxConcurrentUpload: UnsignedInt(4),
                 maxSizeRequest: UnsignedInt(10000000),
@@ -547,67 +641,63 @@ void main() {
                 maxCallsInRequest: UnsignedInt(16),
                 maxObjectsInGet: UnsignedInt(500),
                 maxObjectsInSet: UnsignedInt(500),
-                collationAlgorithms: {
-                  CollationIdentifier("i;unicode-casemap")
-                }),
-            CapabilityIdentifier.jmapMail: MailCapability(),
-            CapabilityIdentifier.jmapVacationResponse: VacationCapability()
-          },
-          {
-            AccountId(Id(
-                    '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')):
-                Account(AccountName('bob@domain.tld'), true, false, {
-              CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                  maxDelayedSend: UnsignedInt(0), submissionExtensions: {}),
-              CapabilityIdentifier.jmapCore: CoreCapability(
-                  maxSizeUpload: UnsignedInt(20971520),
-                  maxConcurrentUpload: UnsignedInt(4),
-                  maxSizeRequest: UnsignedInt(10000000),
-                  maxConcurrentRequests: UnsignedInt(4),
-                  maxCallsInRequest: UnsignedInt(16),
-                  maxObjectsInGet: UnsignedInt(500),
-                  maxObjectsInSet: UnsignedInt(500),
-                  collationAlgorithms: {
-                    CollationIdentifier("i;unicode-casemap")
-                  }),
+                collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+              ),
               CapabilityIdentifier.jmapMail: MailCapability(
-                  maxMailboxesPerEmail: UnsignedInt(10000000),
-                  maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-                  emailQuerySortOptions: {
-                    "receivedAt",
-                    "sentAt",
-                    "size",
-                    "from",
-                    "to",
-                    "subject"
-                  },
-                  mayCreateTopLevelMailbox: true),
-              CapabilityIdentifier.jmapVacationResponse: VacationCapability()
-            })
+                maxMailboxesPerEmail: UnsignedInt(10000000),
+                maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+                emailQuerySortOptions: {
+                  "receivedAt",
+                  "sentAt",
+                  "size",
+                  "from",
+                  "to",
+                  "subject",
+                },
+                mayCreateTopLevelMailbox: true,
+              ),
+              CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
+            }),
           },
           {
-            CapabilityIdentifier.jmapSubmission: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapCore: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapMail: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapVacationResponse: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6'))
+            CapabilityIdentifier.jmapSubmission: AccountId(
+              Id(
+                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+              ),
+            ),
+            CapabilityIdentifier.jmapCore: AccountId(
+              Id(
+                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+              ),
+            ),
+            CapabilityIdentifier.jmapMail: AccountId(
+              Id(
+                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+              ),
+            ),
+            CapabilityIdentifier.jmapVacationResponse: AccountId(
+              Id(
+                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+              ),
+            ),
           },
           UserName('bob@domain.tld'),
           Uri.parse('http://domain.com/jmap'),
           Uri.parse(
-              'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}'),
+            'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
+          ),
           Uri.parse('http://domain.com/upload/{accountId}'),
           Uri.parse(
-              'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}'),
-          State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'));
+            'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}',
+          ),
+          State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
+        );
 
-      final parsedSession = Session.fromJson(json.decode(sessionString));
+        final parsedSession = Session.fromJson(json.decode(sessionString));
 
-      expect(parsedSession, equals(expectedSession));
-    });
+        expect(parsedSession, equals(expectedSession));
+      },
+    );
   });
 
   group('get session with unknown capability', () {
@@ -730,143 +820,198 @@ void main() {
         "eventSourceUrl": "http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}",
         "state": "2c9f1b12-b35a-43e6-9af2-0106fb53a943"
       }''';
-      final customCapabilityIdentifier =
-          CapabilityIdentifier(Uri.parse('urn:tmail:custom:params:mailbox'));
+      final customCapabilityIdentifier = CapabilityIdentifier(
+        Uri.parse('urn:tmail:custom:params:mailbox'),
+      );
       final customCapability = DefaultCapability({
         "param1": 1,
         "param2": "good",
-        "param3": {"custom", "capability"}.toList()
+        "param3": {"custom", "capability"}.toList(),
       });
 
       final Session expectedSession = Session(
-          {
+        {
+          customCapabilityIdentifier: customCapability,
+          CapabilityIdentifier.jmapSubmission: SubmissionCapability(
+            maxDelayedSend: UnsignedInt(0),
+            submissionExtensions: {},
+          ),
+          CapabilityIdentifier.jmapCore: CoreCapability(
+            maxSizeUpload: UnsignedInt(20971520),
+            maxConcurrentUpload: UnsignedInt(4),
+            maxSizeRequest: UnsignedInt(10000000),
+            maxConcurrentRequests: UnsignedInt(4),
+            maxCallsInRequest: UnsignedInt(16),
+            maxObjectsInGet: UnsignedInt(500),
+            maxObjectsInSet: UnsignedInt(500),
+            collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+          ),
+          CapabilityIdentifier.jmapMail: MailCapability(
+            maxMailboxesPerEmail: UnsignedInt(10000000),
+            maxSizeMailboxName: UnsignedInt(200),
+            maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+            emailQuerySortOptions: {
+              "receivedAt",
+              "sentAt",
+              "size",
+              "from",
+              "to",
+              "subject",
+            },
+            mayCreateTopLevelMailbox: true,
+          ),
+          CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
+            supportsPush: true,
+            url: Uri.parse('ws://domain.com/jmap/ws'),
+          ),
+          CapabilityIdentifier(
+            Uri.parse('urn:apache:james:params:jmap:mail:quota'),
+          ): DefaultCapability(
+            <String, dynamic>{},
+          ),
+          CapabilityIdentifier(
+            Uri.parse('urn:apache:james:params:jmap:mail:shares'),
+          ): DefaultCapability(
+            <String, dynamic>{},
+          ),
+          CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
+          CapabilityIdentifier.jmapMdn: MdnCapability(),
+        },
+        {
+          AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ): Account(AccountName('bob@domain.tld'), true, false, {
             customCapabilityIdentifier: customCapability,
             CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                maxDelayedSend: UnsignedInt(0), submissionExtensions: {}),
-            CapabilityIdentifier.jmapCore: CoreCapability(
-                maxSizeUpload: UnsignedInt(20971520),
-                maxConcurrentUpload: UnsignedInt(4),
-                maxSizeRequest: UnsignedInt(10000000),
-                maxConcurrentRequests: UnsignedInt(4),
-                maxCallsInRequest: UnsignedInt(16),
-                maxObjectsInGet: UnsignedInt(500),
-                maxObjectsInSet: UnsignedInt(500),
-                collationAlgorithms: {
-                  CollationIdentifier("i;unicode-casemap")
-                }),
-            CapabilityIdentifier.jmapMail: MailCapability(
-                maxMailboxesPerEmail: UnsignedInt(10000000),
-                maxSizeMailboxName: UnsignedInt(200),
-                maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-                emailQuerySortOptions: {
-                  "receivedAt",
-                  "sentAt",
-                  "size",
-                  "from",
-                  "to",
-                  "subject"
-                },
-                mayCreateTopLevelMailbox: true),
+              maxDelayedSend: UnsignedInt(0),
+              submissionExtensions: {},
+            ),
             CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
-                supportsPush: true, url: Uri.parse('ws://domain.com/jmap/ws')),
+              supportsPush: true,
+              url: Uri.parse('ws://domain.com/jmap/ws'),
+            ),
+            CapabilityIdentifier.jmapCore: CoreCapability(
+              maxSizeUpload: UnsignedInt(20971520),
+              maxConcurrentUpload: UnsignedInt(4),
+              maxSizeRequest: UnsignedInt(10000000),
+              maxConcurrentRequests: UnsignedInt(4),
+              maxCallsInRequest: UnsignedInt(16),
+              maxObjectsInGet: UnsignedInt(500),
+              maxObjectsInSet: UnsignedInt(500),
+              collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+            ),
+            CapabilityIdentifier.jmapMail: MailCapability(
+              maxMailboxesPerEmail: UnsignedInt(10000000),
+              maxSizeMailboxName: UnsignedInt(200),
+              maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+              emailQuerySortOptions: {
+                "receivedAt",
+                "sentAt",
+                "size",
+                "from",
+                "to",
+                "subject",
+              },
+              mayCreateTopLevelMailbox: true,
+            ),
             CapabilityIdentifier(
-                    Uri.parse('urn:apache:james:params:jmap:mail:quota')):
-                DefaultCapability(<String, dynamic>{}),
+              Uri.parse('urn:apache:james:params:jmap:mail:quota'),
+            ): DefaultCapability(
+              <String, dynamic>{},
+            ),
             CapabilityIdentifier(
-                    Uri.parse('urn:apache:james:params:jmap:mail:shares')):
-                DefaultCapability(<String, dynamic>{}),
+              Uri.parse('urn:apache:james:params:jmap:mail:shares'),
+            ): DefaultCapability(
+              <String, dynamic>{},
+            ),
             CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
-            CapabilityIdentifier.jmapMdn: MdnCapability()
-          },
-          {
-            AccountId(Id(
-                    '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')):
-                Account(AccountName('bob@domain.tld'), true, false, {
-              customCapabilityIdentifier: customCapability,
-              CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                  maxDelayedSend: UnsignedInt(0), submissionExtensions: {}),
-              CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
-                  supportsPush: true,
-                  url: Uri.parse('ws://domain.com/jmap/ws')),
-              CapabilityIdentifier.jmapCore: CoreCapability(
-                  maxSizeUpload: UnsignedInt(20971520),
-                  maxConcurrentUpload: UnsignedInt(4),
-                  maxSizeRequest: UnsignedInt(10000000),
-                  maxConcurrentRequests: UnsignedInt(4),
-                  maxCallsInRequest: UnsignedInt(16),
-                  maxObjectsInGet: UnsignedInt(500),
-                  maxObjectsInSet: UnsignedInt(500),
-                  collationAlgorithms: {
-                    CollationIdentifier("i;unicode-casemap")
-                  }),
-              CapabilityIdentifier.jmapMail: MailCapability(
-                  maxMailboxesPerEmail: UnsignedInt(10000000),
-                  maxSizeMailboxName: UnsignedInt(200),
-                  maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-                  emailQuerySortOptions: {
-                    "receivedAt",
-                    "sentAt",
-                    "size",
-                    "from",
-                    "to",
-                    "subject"
-                  },
-                  mayCreateTopLevelMailbox: true),
-              CapabilityIdentifier(
-                      Uri.parse('urn:apache:james:params:jmap:mail:quota')):
-                  DefaultCapability(<String, dynamic>{}),
-              CapabilityIdentifier(
-                      Uri.parse('urn:apache:james:params:jmap:mail:shares')):
-                  DefaultCapability(<String, dynamic>{}),
-              CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
-              CapabilityIdentifier.jmapMdn: MdnCapability()
-            })
-          },
-          {
-            customCapabilityIdentifier: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapSubmission: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapWebSocket: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapCore: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapMail: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier(
-                Uri.parse(
-                    'urn:apache:james:params:jmap:mail:quota')): AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier(
-                Uri.parse(
-                    'urn:apache:james:params:jmap:mail:shares')): AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapVacationResponse: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapMdn: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-          },
-          UserName('bob@domain.tld'),
-          Uri.parse('http://domain.com/jmap'),
-          Uri.parse(
-              'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}'),
-          Uri.parse('http://domain.com/upload/{accountId}'),
-          Uri.parse(
-              'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}'),
-          State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'));
+            CapabilityIdentifier.jmapMdn: MdnCapability(),
+          }),
+        },
+        {
+          customCapabilityIdentifier: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapSubmission: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapWebSocket: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapCore: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapMail: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier(
+            Uri.parse('urn:apache:james:params:jmap:mail:quota'),
+          ): AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier(
+            Uri.parse('urn:apache:james:params:jmap:mail:shares'),
+          ): AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapVacationResponse: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapMdn: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+        },
+        UserName('bob@domain.tld'),
+        Uri.parse('http://domain.com/jmap'),
+        Uri.parse(
+          'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
+        ),
+        Uri.parse('http://domain.com/upload/{accountId}'),
+        Uri.parse(
+          'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}',
+        ),
+        State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
+      );
 
       final parsedSession = Session.fromJson(json.decode(sessionString));
 
       expect(parsedSession, equals(expectedSession));
       expect(
-          parsedSession.capabilities[CapabilityIdentifier(
-              Uri.parse('urn:tmail:custom:params:mailbox'))],
-          equals(customCapability));
+        parsedSession.capabilities[CapabilityIdentifier(
+          Uri.parse('urn:tmail:custom:params:mailbox'),
+        )],
+        equals(customCapability),
+      );
       expect(
-          parsedSession.accounts.values.first.accountCapabilities[
-              CapabilityIdentifier(
-                  Uri.parse('urn:tmail:custom:params:mailbox'))],
-          equals(customCapability));
+        parsedSession
+            .accounts
+            .values
+            .first
+            .accountCapabilities[CapabilityIdentifier(
+          Uri.parse('urn:tmail:custom:params:mailbox'),
+        )],
+        equals(customCapability),
+      );
     });
   });
 
@@ -995,147 +1140,199 @@ void main() {
         "eventSourceUrl": "http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}",
         "state": "2c9f1b12-b35a-43e6-9af2-0106fb53a943"
       }''';
-      final customCapabilityIdentifier =
-          CapabilityIdentifier(Uri.parse('urn:tmail:custom:params:mailbox'));
+      final customCapabilityIdentifier = CapabilityIdentifier(
+        Uri.parse('urn:tmail:custom:params:mailbox'),
+      );
       final customCapability = DefaultCapability({
         "param1": 1,
         "param2": "good",
-        "param3": {"custom", "capability"}.toList()
+        "param3": {"custom", "capability"}.toList(),
       });
 
-      final testCapability =
-          TestCapability(100, 'test', {"test", "capability"});
+      final testCapability = TestCapability(100, 'test', {
+        "test",
+        "capability",
+      });
 
       final Session expectedSession = Session(
-          {
-            TestCapability.testCapabilityIdentifier: testCapability,
+        {
+          TestCapability.testCapabilityIdentifier: testCapability,
+          customCapabilityIdentifier: customCapability,
+          CapabilityIdentifier.jmapSubmission: SubmissionCapability(
+            maxDelayedSend: UnsignedInt(0),
+            submissionExtensions: {},
+          ),
+          CapabilityIdentifier.jmapCore: CoreCapability(
+            maxSizeUpload: UnsignedInt(20971520),
+            maxConcurrentUpload: UnsignedInt(4),
+            maxSizeRequest: UnsignedInt(10000000),
+            maxConcurrentRequests: UnsignedInt(4),
+            maxCallsInRequest: UnsignedInt(16),
+            maxObjectsInGet: UnsignedInt(500),
+            maxObjectsInSet: UnsignedInt(500),
+            collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+          ),
+          CapabilityIdentifier.jmapMail: MailCapability(
+            maxMailboxesPerEmail: UnsignedInt(10000000),
+            maxSizeMailboxName: UnsignedInt(200),
+            maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+            emailQuerySortOptions: {
+              "receivedAt",
+              "sentAt",
+              "size",
+              "from",
+              "to",
+              "subject",
+            },
+            mayCreateTopLevelMailbox: true,
+          ),
+          CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
+            supportsPush: true,
+            url: Uri.parse('ws://domain.com/jmap/ws'),
+          ),
+          CapabilityIdentifier(
+            Uri.parse('urn:apache:james:params:jmap:mail:quota'),
+          ): DefaultCapability(
+            <String, dynamic>{},
+          ),
+          CapabilityIdentifier(
+            Uri.parse('urn:apache:james:params:jmap:mail:shares'),
+          ): DefaultCapability(
+            <String, dynamic>{},
+          ),
+          CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
+          CapabilityIdentifier.jmapMdn: MdnCapability(),
+        },
+        {
+          AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ): Account(AccountName('bob@domain.tld'), true, false, {
             customCapabilityIdentifier: customCapability,
             CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                maxDelayedSend: UnsignedInt(0), submissionExtensions: {}),
-            CapabilityIdentifier.jmapCore: CoreCapability(
-                maxSizeUpload: UnsignedInt(20971520),
-                maxConcurrentUpload: UnsignedInt(4),
-                maxSizeRequest: UnsignedInt(10000000),
-                maxConcurrentRequests: UnsignedInt(4),
-                maxCallsInRequest: UnsignedInt(16),
-                maxObjectsInGet: UnsignedInt(500),
-                maxObjectsInSet: UnsignedInt(500),
-                collationAlgorithms: {
-                  CollationIdentifier("i;unicode-casemap")
-                }),
-            CapabilityIdentifier.jmapMail: MailCapability(
-                maxMailboxesPerEmail: UnsignedInt(10000000),
-                maxSizeMailboxName: UnsignedInt(200),
-                maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-                emailQuerySortOptions: {
-                  "receivedAt",
-                  "sentAt",
-                  "size",
-                  "from",
-                  "to",
-                  "subject"
-                },
-                mayCreateTopLevelMailbox: true),
+              maxDelayedSend: UnsignedInt(0),
+              submissionExtensions: {},
+            ),
             CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
-                supportsPush: true, url: Uri.parse('ws://domain.com/jmap/ws')),
+              supportsPush: true,
+              url: Uri.parse('ws://domain.com/jmap/ws'),
+            ),
+            CapabilityIdentifier.jmapCore: CoreCapability(
+              maxSizeUpload: UnsignedInt(20971520),
+              maxConcurrentUpload: UnsignedInt(4),
+              maxSizeRequest: UnsignedInt(10000000),
+              maxConcurrentRequests: UnsignedInt(4),
+              maxCallsInRequest: UnsignedInt(16),
+              maxObjectsInGet: UnsignedInt(500),
+              maxObjectsInSet: UnsignedInt(500),
+              collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+            ),
+            CapabilityIdentifier.jmapMail: MailCapability(
+              maxMailboxesPerEmail: UnsignedInt(10000000),
+              maxSizeMailboxName: UnsignedInt(200),
+              maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+              emailQuerySortOptions: {
+                "receivedAt",
+                "sentAt",
+                "size",
+                "from",
+                "to",
+                "subject",
+              },
+              mayCreateTopLevelMailbox: true,
+            ),
             CapabilityIdentifier(
-                    Uri.parse('urn:apache:james:params:jmap:mail:quota')):
-                DefaultCapability(<String, dynamic>{}),
+              Uri.parse('urn:apache:james:params:jmap:mail:quota'),
+            ): DefaultCapability(
+              <String, dynamic>{},
+            ),
             CapabilityIdentifier(
-                    Uri.parse('urn:apache:james:params:jmap:mail:shares')):
-                DefaultCapability(<String, dynamic>{}),
+              Uri.parse('urn:apache:james:params:jmap:mail:shares'),
+            ): DefaultCapability(
+              <String, dynamic>{},
+            ),
             CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
-            CapabilityIdentifier.jmapMdn: MdnCapability()
-          },
-          {
-            AccountId(Id(
-                    '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')):
-                Account(AccountName('bob@domain.tld'), true, false, {
-              customCapabilityIdentifier: customCapability,
-              CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                  maxDelayedSend: UnsignedInt(0), submissionExtensions: {}),
-              CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
-                  supportsPush: true,
-                  url: Uri.parse('ws://domain.com/jmap/ws')),
-              CapabilityIdentifier.jmapCore: CoreCapability(
-                  maxSizeUpload: UnsignedInt(20971520),
-                  maxConcurrentUpload: UnsignedInt(4),
-                  maxSizeRequest: UnsignedInt(10000000),
-                  maxConcurrentRequests: UnsignedInt(4),
-                  maxCallsInRequest: UnsignedInt(16),
-                  maxObjectsInGet: UnsignedInt(500),
-                  maxObjectsInSet: UnsignedInt(500),
-                  collationAlgorithms: {
-                    CollationIdentifier("i;unicode-casemap")
-                  }),
-              CapabilityIdentifier.jmapMail: MailCapability(
-                  maxMailboxesPerEmail: UnsignedInt(10000000),
-                  maxSizeMailboxName: UnsignedInt(200),
-                  maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-                  emailQuerySortOptions: {
-                    "receivedAt",
-                    "sentAt",
-                    "size",
-                    "from",
-                    "to",
-                    "subject"
-                  },
-                  mayCreateTopLevelMailbox: true),
-              CapabilityIdentifier(
-                      Uri.parse('urn:apache:james:params:jmap:mail:quota')):
-                  DefaultCapability(<String, dynamic>{}),
-              CapabilityIdentifier(
-                      Uri.parse('urn:apache:james:params:jmap:mail:shares')):
-                  DefaultCapability(<String, dynamic>{}),
-              CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
-              CapabilityIdentifier.jmapMdn: MdnCapability()
-            })
-          },
-          {
-            customCapabilityIdentifier: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapSubmission: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapWebSocket: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapCore: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapMail: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier(
-                Uri.parse(
-                    'urn:apache:james:params:jmap:mail:quota')): AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier(
-                Uri.parse(
-                    'urn:apache:james:params:jmap:mail:shares')): AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapVacationResponse: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapMdn: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-          },
-          UserName('bob@domain.tld'),
-          Uri.parse('http://domain.com/jmap'),
-          Uri.parse(
-              'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}'),
-          Uri.parse('http://domain.com/upload/{accountId}'),
-          Uri.parse(
-              'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}'),
-          State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'));
+            CapabilityIdentifier.jmapMdn: MdnCapability(),
+          }),
+        },
+        {
+          customCapabilityIdentifier: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapSubmission: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapWebSocket: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapCore: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapMail: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier(
+            Uri.parse('urn:apache:james:params:jmap:mail:quota'),
+          ): AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier(
+            Uri.parse('urn:apache:james:params:jmap:mail:shares'),
+          ): AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapVacationResponse: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapMdn: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+        },
+        UserName('bob@domain.tld'),
+        Uri.parse('http://domain.com/jmap'),
+        Uri.parse(
+          'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
+        ),
+        Uri.parse('http://domain.com/upload/{accountId}'),
+        Uri.parse(
+          'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}',
+        ),
+        State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
+      );
 
-      final parsedSession = Session.fromJson(json.decode(sessionString),
-          converter: CapabilitiesConverter()
-            ..addConverters({
-              TestCapability.testCapabilityIdentifier:
-                  TestCapability.deserialize
-            })
-            ..build());
+      final parsedSession = Session.fromJson(
+        json.decode(sessionString),
+        converter: CapabilitiesConverter()
+          ..addConverters({
+            TestCapability.testCapabilityIdentifier: TestCapability.deserialize,
+          })
+          ..build(),
+      );
 
       expect(parsedSession, equals(expectedSession));
       expect(
-          parsedSession.capabilities[TestCapability.testCapabilityIdentifier],
-          equals(testCapability));
+        parsedSession.capabilities[TestCapability.testCapabilityIdentifier],
+        equals(testCapability),
+      );
     });
   });
 
@@ -1215,70 +1412,87 @@ void main() {
       }''';
 
       final Session expectedSession = Session(
-          {
+        {
+          CapabilityIdentifier.jmapSubmission: SubmissionCapability(
+            maxDelayedSend: UnsignedInt(0),
+            submissionExtensions: {},
+          ),
+          CapabilityIdentifier.jmapCore: CoreCapability(
+            maxSizeUpload: UnsignedInt(20971520),
+            maxConcurrentUpload: UnsignedInt(4),
+            maxSizeRequest: UnsignedInt(10000000),
+            maxConcurrentRequests: UnsignedInt(4),
+            maxCallsInRequest: UnsignedInt(16),
+            maxObjectsInGet: UnsignedInt(500),
+            maxObjectsInSet: UnsignedInt(500),
+            collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+          ),
+          CapabilityIdentifier.jmapMail: MailCapability(),
+        },
+        {
+          AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ): Account(AccountName('bob@domain.tld'), true, false, {
             CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                maxDelayedSend: UnsignedInt(0), submissionExtensions: {}),
+              maxDelayedSend: UnsignedInt(0),
+              submissionExtensions: {},
+            ),
             CapabilityIdentifier.jmapCore: CoreCapability(
-                maxSizeUpload: UnsignedInt(20971520),
-                maxConcurrentUpload: UnsignedInt(4),
-                maxSizeRequest: UnsignedInt(10000000),
-                maxConcurrentRequests: UnsignedInt(4),
-                maxCallsInRequest: UnsignedInt(16),
-                maxObjectsInGet: UnsignedInt(500),
-                maxObjectsInSet: UnsignedInt(500),
-                collationAlgorithms: {
-                  CollationIdentifier("i;unicode-casemap")
-                }),
-            CapabilityIdentifier.jmapMail: MailCapability(),
-          },
-          {
-            AccountId(Id(
-                    '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')):
-                Account(AccountName('bob@domain.tld'), true, false, {
-              CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                  maxDelayedSend: UnsignedInt(0), submissionExtensions: {}),
-              CapabilityIdentifier.jmapCore: CoreCapability(
-                  maxSizeUpload: UnsignedInt(20971520),
-                  maxConcurrentUpload: UnsignedInt(4),
-                  maxSizeRequest: UnsignedInt(10000000),
-                  maxConcurrentRequests: UnsignedInt(4),
-                  maxCallsInRequest: UnsignedInt(16),
-                  maxObjectsInGet: UnsignedInt(500),
-                  maxObjectsInSet: UnsignedInt(500),
-                  collationAlgorithms: {
-                    CollationIdentifier("i;unicode-casemap")
-                  }),
-              CapabilityIdentifier.jmapMail: MailCapability(
-                  maxMailboxesPerEmail: UnsignedInt(10000000),
-                  maxSizeMailboxName: UnsignedInt(200),
-                  maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-                  emailQuerySortOptions: {
-                    "receivedAt",
-                    "sentAt",
-                    "size",
-                    "from",
-                    "to",
-                    "subject"
-                  },
-                  mayCreateTopLevelMailbox: true),
-            })
-          },
-          {
-            CapabilityIdentifier.jmapSubmission: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapCore: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-            CapabilityIdentifier.jmapMail: AccountId(Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6')),
-          },
-          UserName('bob@domain.tld'),
-          Uri.parse('http://domain.com/jmap'),
-          Uri.parse(
-              'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}'),
-          Uri.parse('http://domain.com/upload/{accountId}'),
-          Uri.parse(
-              'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}'),
-          State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'));
+              maxSizeUpload: UnsignedInt(20971520),
+              maxConcurrentUpload: UnsignedInt(4),
+              maxSizeRequest: UnsignedInt(10000000),
+              maxConcurrentRequests: UnsignedInt(4),
+              maxCallsInRequest: UnsignedInt(16),
+              maxObjectsInGet: UnsignedInt(500),
+              maxObjectsInSet: UnsignedInt(500),
+              collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+            ),
+            CapabilityIdentifier.jmapMail: MailCapability(
+              maxMailboxesPerEmail: UnsignedInt(10000000),
+              maxSizeMailboxName: UnsignedInt(200),
+              maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+              emailQuerySortOptions: {
+                "receivedAt",
+                "sentAt",
+                "size",
+                "from",
+                "to",
+                "subject",
+              },
+              mayCreateTopLevelMailbox: true,
+            ),
+          }),
+        },
+        {
+          CapabilityIdentifier.jmapSubmission: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapCore: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+          CapabilityIdentifier.jmapMail: AccountId(
+            Id(
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
+            ),
+          ),
+        },
+        UserName('bob@domain.tld'),
+        Uri.parse('http://domain.com/jmap'),
+        Uri.parse(
+          'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
+        ),
+        Uri.parse('http://domain.com/upload/{accountId}'),
+        Uri.parse(
+          'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}',
+        ),
+        State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
+      );
 
       final parsedSession = Session.fromJson(json.decode(sessionString));
 
@@ -1416,55 +1630,63 @@ void main() {
       ''';
 
       final Session expectedSession = Session(
-          {
-            CapabilityIdentifier.jmapCore: CoreCapability(
-                maxSizeUpload: UnsignedInt(1073741824),
-                maxConcurrentUpload: UnsignedInt(5),
-                maxSizeRequest: UnsignedInt(10485760),
-                maxConcurrentRequests: UnsignedInt(5),
-                maxCallsInRequest: UnsignedInt(50),
-                maxObjectsInGet: UnsignedInt(4096),
-                maxObjectsInSet: UnsignedInt(4096),
-                collationAlgorithms: {}),
-            CapabilityIdentifier.jmapMail: MailCapability(),
-            CapabilityIdentifier.jmapSubmission: SubmissionCapability(),
-            CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
-            CapabilityIdentifier.jmapMdn: MdnCapability(),
-            CapabilityIdentifier(
-                    Uri.parse('https://cyrusimap.org/ns/jmap/sieve')):
-                DefaultCapability(<String, dynamic>{}),
-          },
-          {
-            AccountId(Id('example')):
-                Account(AccountName('example'), true, false, {
+        {
+          CapabilityIdentifier.jmapCore: CoreCapability(
+            maxSizeUpload: UnsignedInt(1073741824),
+            maxConcurrentUpload: UnsignedInt(5),
+            maxSizeRequest: UnsignedInt(10485760),
+            maxConcurrentRequests: UnsignedInt(5),
+            maxCallsInRequest: UnsignedInt(50),
+            maxObjectsInGet: UnsignedInt(4096),
+            maxObjectsInSet: UnsignedInt(4096),
+            collationAlgorithms: {},
+          ),
+          CapabilityIdentifier.jmapMail: MailCapability(),
+          CapabilityIdentifier.jmapSubmission: SubmissionCapability(),
+          CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
+          CapabilityIdentifier.jmapMdn: MdnCapability(),
+          CapabilityIdentifier(
+            Uri.parse('https://cyrusimap.org/ns/jmap/sieve'),
+          ): DefaultCapability(
+            <String, dynamic>{},
+          ),
+        },
+        {
+          AccountId(Id('example')): Account(
+            AccountName('example'),
+            true,
+            false,
+            {
               CapabilityIdentifier.jmapCore: CoreCapability(),
               CapabilityIdentifier.jmapMail: MailCapability(
-                  maxMailboxesPerEmail: UnsignedInt(20),
-                  maxKeywordsPerEmail: UnsignedInt(100),
-                  maxSizeAttachmentsPerEmail: UnsignedInt(10485760),
-                  emailsListSortOptions: {
-                    "receivedAt",
-                    "sentAt",
-                    "from",
-                    "id",
-                    "emailstate",
-                    "size",
-                    "subject",
-                    "to",
-                    "hasKeyword",
-                    "someInThreadHaveKeyword"
-                  },
-                  mayCreateTopLevelMailbox: true),
+                maxMailboxesPerEmail: UnsignedInt(20),
+                maxKeywordsPerEmail: UnsignedInt(100),
+                maxSizeAttachmentsPerEmail: UnsignedInt(10485760),
+                emailsListSortOptions: {
+                  "receivedAt",
+                  "sentAt",
+                  "from",
+                  "id",
+                  "emailstate",
+                  "size",
+                  "subject",
+                  "to",
+                  "hasKeyword",
+                  "someInThreadHaveKeyword",
+                },
+                mayCreateTopLevelMailbox: true,
+              ),
               CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                  maxDelayedSend: UnsignedInt(44236800),
-                  submissionExtensions: {
-                    "size": ["10240000"],
-                    "dsn": []
-                  }),
+                maxDelayedSend: UnsignedInt(44236800),
+                submissionExtensions: {
+                  "size": ["10240000"],
+                  "dsn": [],
+                },
+              ),
               CapabilityIdentifier.jmapMdn: MdnCapability(),
               CapabilityIdentifier(
-                      Uri.parse('https://cyrusimap.org/ns/jmap/sieve')):
-                  DefaultCapability({
+                Uri.parse('https://cyrusimap.org/ns/jmap/sieve'),
+              ): DefaultCapability({
                 "supportsTest": true,
                 "maxRedirects": null,
                 "maxNumberScripts": 5,
@@ -1505,38 +1727,49 @@ void main() {
                   "redirect-dsn",
                   "special-use",
                   "fcc",
-                  "mailboxid"
+                  "mailboxid",
                 ],
                 "notificationMethods": ["mailto"],
-                "externalLists": ["urn:ietf:params:sieve:addrbook"]
+                "externalLists": ["urn:ietf:params:sieve:addrbook"],
               }),
-              CapabilityIdentifier.jmapVacationResponse: VacationCapability()
-            })
-          },
-          {
-            CapabilityIdentifier.jmapMail: AccountId(Id('example')),
-            CapabilityIdentifier.jmapSubmission: AccountId(Id('example')),
-            CapabilityIdentifier(
-                    Uri.parse('https://cyrusimap.org/ns/jmap/contacts')):
-                AccountId(Id('example')),
-            CapabilityIdentifier(
-                    Uri.parse('https://cyrusimap.org/ns/jmap/calendars')):
-                AccountId(Id('example')),
-            CapabilityIdentifier(
-                    Uri.parse('https://cyrusimap.org/ns/jmap/backup')):
-                AccountId(Id('example')),
-            CapabilityIdentifier.jmapVacationResponse: AccountId(Id('example')),
-            CapabilityIdentifier(
-                    Uri.parse('https://cyrusimap.org/ns/jmap/sieve')):
-                AccountId(Id('example')),
-          },
-          UserName('example'),
-          Uri.parse('/jmap/'),
-          Uri.parse('/jmap/download/{accountId}/{blobId}/{name}?accept={type}'),
-          Uri.parse('/jmap/upload/{accountId}/'),
-          Uri.parse(
-              '/jmap/eventsource/?types={types}&closeafter={closeafter}&ping={ping}'),
-          State('0'));
+              CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
+            },
+          ),
+        },
+        {
+          CapabilityIdentifier.jmapMail: AccountId(Id('example')),
+          CapabilityIdentifier.jmapSubmission: AccountId(Id('example')),
+          CapabilityIdentifier(
+            Uri.parse('https://cyrusimap.org/ns/jmap/contacts'),
+          ): AccountId(
+            Id('example'),
+          ),
+          CapabilityIdentifier(
+            Uri.parse('https://cyrusimap.org/ns/jmap/calendars'),
+          ): AccountId(
+            Id('example'),
+          ),
+          CapabilityIdentifier(
+            Uri.parse('https://cyrusimap.org/ns/jmap/backup'),
+          ): AccountId(
+            Id('example'),
+          ),
+          CapabilityIdentifier.jmapVacationResponse: AccountId(Id('example')),
+          CapabilityIdentifier(
+            Uri.parse('https://cyrusimap.org/ns/jmap/sieve'),
+          ): AccountId(
+            Id('example'),
+          ),
+        },
+        UserName('example'),
+        Uri.parse('/jmap/'),
+        Uri.parse('/jmap/download/{accountId}/{blobId}/{name}?accept={type}'),
+        Uri.parse('/jmap/upload/{accountId}/'),
+        Uri.parse(
+          '/jmap/eventsource/?types={types}&closeafter={closeafter}&ping={ping}',
+        ),
+        State('0'),
+      );
 
       final parsedSession = Session.fromJson(json.decode(sessionString));
 

@@ -1,8 +1,9 @@
 import 'package:equatable/equatable.dart';
 
 class CalendarAttendeeParticipationStatus with EquatableMixin {
-  static final needsAction =
-      CalendarAttendeeParticipationStatus('needs-action');
+  static final needsAction = CalendarAttendeeParticipationStatus(
+    'needs-action',
+  );
   static final accepted = CalendarAttendeeParticipationStatus('accepted');
   static final declined = CalendarAttendeeParticipationStatus('declined');
   static final tentative = CalendarAttendeeParticipationStatus('tentative');

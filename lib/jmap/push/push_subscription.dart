@@ -49,8 +49,15 @@ class PushSubscription with EquatableMixin {
   Map<String, dynamic> toJson() => _$PushSubscriptionToJson(this);
 
   @override
-  List<Object?> get props =>
-      [id, deviceClientId, url, keys, verificationCode, expires, types];
+  List<Object?> get props => [
+    id,
+    deviceClientId,
+    url,
+    keys,
+    verificationCode,
+    expires,
+    types,
+  ];
 }
 
 class PushSubscriptionId with EquatableMixin {

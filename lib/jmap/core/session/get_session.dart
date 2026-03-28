@@ -29,9 +29,12 @@ class GetSessionBuilder {
   GetSessionBuilder(this._httpClient);
 
   void registerCapabilityConverter(
-      Map<CapabilityIdentifier,
-              CapabilityProperties Function(Map<String, dynamic>)>
-          converters) {
+    Map<
+      CapabilityIdentifier,
+      CapabilityProperties Function(Map<String, dynamic>)
+    >
+    converters,
+  ) {
     _capabilitiesConverter.addConverters(converters);
     _capabilitiesConverter.build();
   }

@@ -6,8 +6,9 @@ part 'test_capability.g.dart';
 
 @JsonSerializable()
 class TestCapability extends CapabilityProperties {
-  static CapabilityIdentifier testCapabilityIdentifier =
-      CapabilityIdentifier(Uri.parse('urn:test:tmail:params:custom'));
+  static CapabilityIdentifier testCapabilityIdentifier = CapabilityIdentifier(
+    Uri.parse('urn:test:tmail:params:custom'),
+  );
 
   final int testParam1;
   final String testParam2;

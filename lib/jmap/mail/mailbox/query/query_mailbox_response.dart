@@ -25,8 +25,15 @@ class QueryMailboxResponse extends QueryResponse {
     Set<Id> ids,
     UnsignedInt? total,
     UnsignedInt? limit,
-  ) : super(accountId, queryState, canCalculateChanges, position, ids, total,
-            limit);
+  ) : super(
+        accountId,
+        queryState,
+        canCalculateChanges,
+        position,
+        ids,
+        total,
+        limit,
+      );
 
   factory QueryMailboxResponse.fromJson(Map<String, dynamic> json) =>
       _$QueryMailboxResponseFromJson(json);
@@ -38,6 +45,12 @@ class QueryMailboxResponse extends QueryResponse {
   Map<String, dynamic> toJson() => _$QueryMailboxResponseToJson(this);
 
   @override
-  List<Object?> get props =>
-      [accountId, queryState, canCalculateChanges, position, total, ids];
+  List<Object?> get props => [
+    accountId,
+    queryState,
+    canCalculateChanges,
+    position,
+    total,
+    ids,
+  ];
 }

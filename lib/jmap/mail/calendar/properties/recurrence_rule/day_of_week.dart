@@ -14,5 +14,5 @@ enum DayOfWeek {
   @JsonValue('sa')
   saturday,
   @JsonValue('su')
-  sunday;
+  sunday,
 }

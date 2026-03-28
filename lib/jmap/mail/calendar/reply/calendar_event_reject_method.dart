@@ -7,10 +7,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'calendar_event_reject_method.g.dart';
 
-@JsonSerializable(converters: [
-  AccountIdConverter(),
-  IdConverter(),
-])
+@JsonSerializable(converters: [AccountIdConverter(), IdConverter()])
 class CalendarEventRejectMethod extends CalendarEventReplyMethod {
   CalendarEventRejectMethod(super.accountId, {required super.blobIds});
 
@@ -18,8 +15,10 @@ class CalendarEventRejectMethod extends CalendarEventReplyMethod {
   MethodName get methodName => MethodName('CalendarEvent/reject');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities =>
-      {CapabilityIdentifier.jmapCore, CapabilityIdentifier.jamesCalendarEvent};
+  Set<CapabilityIdentifier> get requiredCapabilities => {
+    CapabilityIdentifier.jmapCore,
+    CapabilityIdentifier.jamesCalendarEvent,
+  };
 
   @override
   Map<String, dynamic> toJson() => _$CalendarEventRejectMethodToJson(this);

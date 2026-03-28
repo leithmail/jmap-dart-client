@@ -14,10 +14,23 @@ part 'changes_email_response.g.dart';
 @AccountIdConverter()
 @JsonSerializable()
 class ChangesEmailResponse extends ChangesResponse {
-  ChangesEmailResponse(AccountId accountId, State oldState, State newState,
-      bool hasMoreChanges, Set<Id> created, Set<Id> updated, Set<Id> destroyed)
-      : super(accountId, oldState, newState, hasMoreChanges, created, updated,
-            destroyed);
+  ChangesEmailResponse(
+    AccountId accountId,
+    State oldState,
+    State newState,
+    bool hasMoreChanges,
+    Set<Id> created,
+    Set<Id> updated,
+    Set<Id> destroyed,
+  ) : super(
+        accountId,
+        oldState,
+        newState,
+        hasMoreChanges,
+        created,
+        updated,
+        destroyed,
+      );
 
   factory ChangesEmailResponse.fromJson(Map<String, dynamic> json) =>
       _$ChangesEmailResponseFromJson(json);
@@ -28,12 +41,12 @@ class ChangesEmailResponse extends ChangesResponse {
 
   @override
   List<Object?> get props => [
-        accountId,
-        oldState,
-        newState,
-        hasMoreChanges,
-        created,
-        updated,
-        destroyed
-      ];
+    accountId,
+    oldState,
+    newState,
+    hasMoreChanges,
+    created,
+    updated,
+    destroyed,
+  ];
 }

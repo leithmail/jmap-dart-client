@@ -9,7 +9,8 @@ class MessageIdsHeaderValueNullableConverter
   MessageIdsHeaderValue? fromJson(List<dynamic>? json) {
     if (json != null) {
       return MessageIdsHeaderValue(
-          json.map((value) => value as String).toSet());
+        json.map((value) => value as String).toSet(),
+      );
     } else {
       return null;
     }

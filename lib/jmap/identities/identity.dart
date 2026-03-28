@@ -44,17 +44,18 @@ class Identity with EquatableMixin {
   @JsonKey(includeIfNull: false)
   final UnsignedInt? sortOrder;
 
-  Identity(
-      {this.id,
-      this.description,
-      this.name,
-      this.email,
-      this.bcc,
-      this.replyTo,
-      this.textSignature,
-      this.htmlSignature,
-      this.mayDelete,
-      this.sortOrder});
+  Identity({
+    this.id,
+    this.description,
+    this.name,
+    this.email,
+    this.bcc,
+    this.replyTo,
+    this.textSignature,
+    this.htmlSignature,
+    this.mayDelete,
+    this.sortOrder,
+  });
 
   factory Identity.fromJson(Map<String, dynamic> json) =>
       _$IdentityFromJson(json);
@@ -63,17 +64,17 @@ class Identity with EquatableMixin {
 
   @override
   List<Object?> get props => [
-        id,
-        description,
-        name,
-        email,
-        bcc,
-        replyTo,
-        textSignature,
-        htmlSignature,
-        mayDelete,
-        sortOrder
-      ];
+    id,
+    description,
+    name,
+    email,
+    bcc,
+    replyTo,
+    textSignature,
+    htmlSignature,
+    mayDelete,
+    sortOrder,
+  ];
 }
 
 class IdentityId with EquatableMixin {

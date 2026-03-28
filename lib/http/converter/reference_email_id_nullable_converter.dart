@@ -12,7 +12,8 @@ class ReferenceEmailIdNullableConverter
   EmailId? fromJson(String? json) {
     if (json != null) {
       return EmailId(
-          ReferenceId(ReferencePrefix(json[0]), Id(json.substring(1))));
+        ReferenceId(ReferencePrefix(json[0]), Id(json.substring(1))),
+      );
     } else {
       return null;
     }

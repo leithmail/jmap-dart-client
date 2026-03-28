@@ -20,10 +20,5 @@ class ParseEmailResponse extends ParseResponse<Email> {
   }
 
   @override
-  List<Object?> get props => [
-        accountId,
-        parsed,
-        notParsable,
-        notFound,
-      ];
+  List<Object?> get props => [accountId, parsed, notParsable, notFound];
 }

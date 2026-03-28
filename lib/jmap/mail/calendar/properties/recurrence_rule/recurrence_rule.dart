@@ -40,23 +40,24 @@ class RecurrenceRule with EquatableMixin {
   final RecurrenceRuleCount? count;
   final UTCDate? until;
 
-  RecurrenceRule(
-      {this.frequency,
-      this.interval,
-      this.rscale,
-      this.skip,
-      this.firstDayOfWeek,
-      this.byDay,
-      this.byMonthDay,
-      this.byMonth,
-      this.byYearDay,
-      this.byWeekNo,
-      this.byHour,
-      this.byMinute,
-      this.bySecond,
-      this.bySetPosition,
-      this.count,
-      this.until});
+  RecurrenceRule({
+    this.frequency,
+    this.interval,
+    this.rscale,
+    this.skip,
+    this.firstDayOfWeek,
+    this.byDay,
+    this.byMonthDay,
+    this.byMonth,
+    this.byYearDay,
+    this.byWeekNo,
+    this.byHour,
+    this.byMinute,
+    this.bySecond,
+    this.bySetPosition,
+    this.count,
+    this.until,
+  });
 
   factory RecurrenceRule.fromJson(Map<String, dynamic> json) =>
       _$RecurrenceRuleFromJson(json);
@@ -65,21 +66,21 @@ class RecurrenceRule with EquatableMixin {
 
   @override
   List<Object?> get props => [
-        frequency,
-        interval,
-        rscale,
-        skip,
-        firstDayOfWeek,
-        byDay,
-        byMonthDay,
-        byMonth,
-        byYearDay,
-        byWeekNo,
-        byHour,
-        byMinute,
-        bySecond,
-        bySetPosition,
-        count,
-        until
-      ];
+    frequency,
+    interval,
+    rscale,
+    skip,
+    firstDayOfWeek,
+    byDay,
+    byMonthDay,
+    byMonth,
+    byYearDay,
+    byWeekNo,
+    byHour,
+    byMinute,
+    bySecond,
+    bySetPosition,
+    count,
+    until,
+  ];
 }

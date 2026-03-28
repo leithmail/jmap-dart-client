@@ -9,13 +9,16 @@ class StateChange with EquatableMixin {
 
   StateChange(this.type, this.changed);
 
-  factory StateChange.fromJson(Map<String, dynamic> json,
-      {TypeStateConverter? converter}) {
+  factory StateChange.fromJson(
+    Map<String, dynamic> json, {
+    TypeStateConverter? converter,
+  }) {
     converter ??= TypeStateConverter.defaultConverter;
     return StateChange(
       json['@type'] as String,
-      (json['changed'] as Map<String, dynamic>)
-          .map((key, value) => converter!.convert(key, value)),
+      (json['changed'] as Map<String, dynamic>).map(
+        (key, value) => converter!.convert(key, value),
+      ),
     );
   }
 

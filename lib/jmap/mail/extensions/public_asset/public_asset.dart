@@ -10,10 +10,7 @@ part 'public_asset.g.dart';
 typedef PublicAssetIdentities = Map<IdentityId, bool>;
 
 @JsonSerializable(
-  converters: [
-    IdNullableConverter(),
-    PublicAssetIdentitiesConverter(),
-  ],
+  converters: [IdNullableConverter(), PublicAssetIdentitiesConverter()],
   includeIfNull: false,
 )
 class PublicAsset with EquatableMixin {
@@ -35,13 +32,13 @@ class PublicAsset with EquatableMixin {
 
   @override
   List<Object?> get props => [
-        id,
-        publicURI,
-        size,
-        contentType,
-        blobId,
-        identityIds,
-      ];
+    id,
+    publicURI,
+    size,
+    contentType,
+    blobId,
+    identityIds,
+  ];
 
   factory PublicAsset.fromJson(Map<String, dynamic> json) =>
       _$PublicAssetFromJson(json);

@@ -19,11 +19,24 @@ part 'changes_mailbox_response.g.dart';
 class ChangesMailboxResponse extends ChangesResponse {
   final Properties? updatedProperties;
 
-  ChangesMailboxResponse(AccountId accountId, State oldState, State newState,
-      bool hasMoreChanges, Set<Id> created, Set<Id> updated, Set<Id> destroyed,
-      {this.updatedProperties})
-      : super(accountId, oldState, newState, hasMoreChanges, created, updated,
-            destroyed);
+  ChangesMailboxResponse(
+    AccountId accountId,
+    State oldState,
+    State newState,
+    bool hasMoreChanges,
+    Set<Id> created,
+    Set<Id> updated,
+    Set<Id> destroyed, {
+    this.updatedProperties,
+  }) : super(
+         accountId,
+         oldState,
+         newState,
+         hasMoreChanges,
+         created,
+         updated,
+         destroyed,
+       );
 
   factory ChangesMailboxResponse.fromJson(Map<String, dynamic> json) =>
       _$ChangesMailboxResponseFromJson(json);
@@ -34,13 +47,13 @@ class ChangesMailboxResponse extends ChangesResponse {
 
   @override
   List<Object?> get props => [
-        accountId,
-        oldState,
-        newState,
-        hasMoreChanges,
-        created,
-        updated,
-        destroyed,
-        updatedProperties
-      ];
+    accountId,
+    oldState,
+    newState,
+    hasMoreChanges,
+    created,
+    updated,
+    destroyed,
+    updatedProperties,
+  ];
 }

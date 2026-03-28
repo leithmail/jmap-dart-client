@@ -1,5 +1,1 @@
-enum CalendarEventStatus {
-  confirmed,
-  cancelled,
-  tentative;
-}
+enum CalendarEventStatus { confirmed, cancelled, tentative }

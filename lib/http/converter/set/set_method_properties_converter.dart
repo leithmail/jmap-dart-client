@@ -10,17 +10,19 @@ class SetMethodPropertiesConverter {
   }
 
   MapEntry<String, dynamic> fromMapEmailSubmissionIdToJson(
-      EmailSubmissionId emailSubmissionId, dynamic object) {
+    EmailSubmissionId emailSubmissionId,
+    dynamic object,
+  ) {
     if (object is PatchObject) {
       return MapEntry(
-          const ReferencesEmailSubmissionIdConverter()
-              .toJson(emailSubmissionId),
-          object.toJson());
+        const ReferencesEmailSubmissionIdConverter().toJson(emailSubmissionId),
+        object.toJson(),
+      );
     } else {
       return MapEntry(
-          const ReferencesEmailSubmissionIdConverter()
-              .toJson(emailSubmissionId),
-          object);
+        const ReferencesEmailSubmissionIdConverter().toJson(emailSubmissionId),
+        object,
+      );
     }
   }
 }

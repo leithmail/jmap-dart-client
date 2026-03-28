@@ -9,8 +9,11 @@ class ResponseInvocationConverter
   @override
   ResponseInvocation fromJson(List<dynamic> json) {
     if (json.length == 3) {
-      return ResponseInvocation(MethodName(json[0]), ResponseArguments(json[1]),
-          MethodCallId(json[2]));
+      return ResponseInvocation(
+        MethodName(json[0]),
+        ResponseArguments(json[1]),
+        MethodCallId(json[2]),
+      );
     } else {
       throw Exception("Wrong response invocation");
     }

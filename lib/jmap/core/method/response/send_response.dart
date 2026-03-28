@@ -8,5 +8,5 @@ abstract class SendResponse<T> extends ResponseRequiringAccountId {
   final Map<Id, SetError>? notSent;
 
   SendResponse(AccountId accountId, {this.sent, this.notSent})
-      : super(accountId);
+    : super(accountId);
 }

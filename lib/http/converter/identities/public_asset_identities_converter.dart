@@ -8,13 +8,25 @@ class PublicAssetIdentitiesConverter
 
   @override
   Map<IdentityId, bool> fromJson(Map<String, dynamic> json) {
-    return Map.fromEntries(json.entries.map((entry) => MapEntry(
-        const IdentityIdConverter().fromJson(entry.key), entry.value)));
+    return Map.fromEntries(
+      json.entries.map(
+        (entry) => MapEntry(
+          const IdentityIdConverter().fromJson(entry.key),
+          entry.value,
+        ),
+      ),
+    );
   }
 
   @override
   Map<String, bool> toJson(Map<IdentityId, bool> object) {
-    return Map.fromEntries(object.entries.map((entry) =>
-        MapEntry(const IdentityIdConverter().toJson(entry.key), entry.value)));
+    return Map.fromEntries(
+      object.entries.map(
+        (entry) => MapEntry(
+          const IdentityIdConverter().toJson(entry.key),
+          entry.value,
+        ),
+      ),
+    );
   }
 }

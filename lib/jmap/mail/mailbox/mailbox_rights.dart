@@ -16,15 +16,16 @@ class MailboxRights with EquatableMixin {
   final bool maySubmit;
 
   MailboxRights(
-      this.mayReadItems,
-      this.mayAddItems,
-      this.mayRemoveItems,
-      this.maySetSeen,
-      this.maySetKeywords,
-      this.mayCreateChild,
-      this.mayRename,
-      this.mayDelete,
-      this.maySubmit);
+    this.mayReadItems,
+    this.mayAddItems,
+    this.mayRemoveItems,
+    this.maySetSeen,
+    this.maySetKeywords,
+    this.mayCreateChild,
+    this.mayRename,
+    this.mayDelete,
+    this.maySubmit,
+  );
 
   factory MailboxRights.fromJson(Map<String, dynamic> json) {
     return _$MailboxRightsFromJson(json);
@@ -34,14 +35,14 @@ class MailboxRights with EquatableMixin {
 
   @override
   List<Object?> get props => [
-        mayReadItems,
-        mayAddItems,
-        mayRemoveItems,
-        maySetSeen,
-        maySetKeywords,
-        mayCreateChild,
-        mayRename,
-        mayDelete,
-        maySubmit
-      ];
+    mayReadItems,
+    mayAddItems,
+    mayRemoveItems,
+    maySetSeen,
+    maySetKeywords,
+    mayCreateChild,
+    mayRename,
+    mayDelete,
+    maySubmit,
+  ];
 }

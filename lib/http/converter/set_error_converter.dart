@@ -21,8 +21,6 @@ class SetErrorConverter
 
   @override
   Map<String, dynamic> toJson(Map<Id, SetError> object) {
-    return object.map(
-      (key, value) => MapEntry(key.value, value.toJson()),
-    );
+    return object.map((key, value) => MapEntry(key.value, value.toJson()));
   }
 }

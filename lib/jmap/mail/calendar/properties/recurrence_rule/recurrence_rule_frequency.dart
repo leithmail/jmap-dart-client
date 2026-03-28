@@ -5,5 +5,5 @@ enum RecurrenceRuleFrequency {
   daily,
   hourly,
   minutely,
-  secondly;
+  secondly,
 }

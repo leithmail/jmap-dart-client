@@ -16,5 +16,5 @@ enum EventMethod {
   @JsonValue('COUNTER')
   counter,
   @JsonValue('DECLINECOUNTER')
-  declineCounter;
+  declineCounter,
 }

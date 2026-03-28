@@ -7,19 +7,21 @@ part of 'submission_capability.dart';
 // **************************************************************************
 
 SubmissionCapability _$SubmissionCapabilityFromJson(
-        Map<String, dynamic> json) =>
-    SubmissionCapability(
-      maxDelayedSend: const UnsignedIntNullableConverter()
-          .fromJson((json['maxDelayedSend'] as num?)?.toInt()),
-      submissionExtensions:
-          (json['submissionExtensions'] as Map<String, dynamic>?)?.map(
+  Map<String, dynamic> json,
+) => SubmissionCapability(
+  maxDelayedSend: const UnsignedIntNullableConverter().fromJson(
+    (json['maxDelayedSend'] as num?)?.toInt(),
+  ),
+  submissionExtensions: (json['submissionExtensions'] as Map<String, dynamic>?)
+      ?.map(
         (k, e) =>
             MapEntry(k, (e as List<dynamic>).map((e) => e as String).toList()),
       ),
-    );
+);
 
 Map<String, dynamic> _$SubmissionCapabilityToJson(
-    SubmissionCapability instance) {
+  SubmissionCapability instance,
+) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -28,8 +30,10 @@ Map<String, dynamic> _$SubmissionCapabilityToJson(
     }
   }
 
-  writeNotNull('maxDelayedSend',
-      const UnsignedIntNullableConverter().toJson(instance.maxDelayedSend));
+  writeNotNull(
+    'maxDelayedSend',
+    const UnsignedIntNullableConverter().toJson(instance.maxDelayedSend),
+  );
   writeNotNull('submissionExtensions', instance.submissionExtensions);
   return val;
 }

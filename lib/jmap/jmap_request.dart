@@ -22,10 +22,11 @@ class JmapRequest {
   RequestObject? get requestObject => _requestObject;
 
   Future<ResponseObject> execute({CancelToken? cancelToken}) async {
-    _requestObject = (RequestObject.builder()
-          ..usings(_capabilities.asSet())
-          ..methodCalls(_invocations.values.toList()))
-        .build();
+    _requestObject =
+        (RequestObject.builder()
+              ..usings(_capabilities.asSet())
+              ..methodCalls(_invocations.values.toList()))
+            .build();
 
     return _httpClient
         .post('', data: _requestObject?.toJson(), cancelToken: cancelToken)
@@ -47,8 +48,11 @@ class JmapRequestBuilder {
 
   RequestInvocation invocation(Method method, {MethodCallId? methodCallId}) {
     final callId = methodCallId ?? _processingInvocation.generateMethodCallId();
-    final RequestInvocation invocation =
-        RequestInvocation(method.methodName, Arguments(method), callId);
+    final RequestInvocation invocation = RequestInvocation(
+      method.methodName,
+      Arguments(method),
+      callId,
+    );
     _processingInvocation.addMethod(callId, invocation);
     return invocation;
   }
@@ -58,8 +62,11 @@ class JmapRequestBuilder {
   }
 
   JmapRequest build() {
-    return JmapRequest(_httpClient, _capabilitiesBuilder.build(),
-        _processingInvocation._invocations);
+    return JmapRequest(
+      _httpClient,
+      _capabilitiesBuilder.build(),
+      _processingInvocation._invocations,
+    );
   }
 }
 
@@ -83,9 +90,13 @@ class ProcessingInvocation {
   }
 
   ResultReference createResultReference(
-      MethodCallId methodCallId, ReferencePath path) {
-    checkArgument(_invocations.containsKey(methodCallId),
-        message: 'no matched method call id');
+    MethodCallId methodCallId,
+    ReferencePath path,
+  ) {
+    checkArgument(
+      _invocations.containsKey(methodCallId),
+      message: 'no matched method call id',
+    );
     return _invocations[methodCallId]!.createResultReference(path);
   }
 }

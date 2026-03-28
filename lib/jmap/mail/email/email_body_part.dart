@@ -75,19 +75,19 @@ class EmailBodyPart with EquatableMixin {
 
   @override
   List<Object?> get props => [
-        partId,
-        blobId,
-        size,
-        headers,
-        name,
-        type,
-        charset,
-        disposition,
-        cid,
-        language,
-        location,
-        subParts
-      ];
+    partId,
+    blobId,
+    size,
+    headers,
+    name,
+    type,
+    charset,
+    disposition,
+    cid,
+    language,
+    location,
+    subParts,
+  ];
 }
 
 class PartId with EquatableMixin {

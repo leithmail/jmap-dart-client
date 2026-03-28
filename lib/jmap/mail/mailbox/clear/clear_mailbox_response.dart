@@ -18,19 +18,11 @@ class ClearMailboxResponse extends ClearResponse {
     AccountId accountId,
     UnsignedInt? totalDeletedMessagesCount,
     SetError? notCleared,
-  ) : super(
-          accountId,
-          totalDeletedMessagesCount,
-          notCleared,
-        );
+  ) : super(accountId, totalDeletedMessagesCount, notCleared);
 
   static ClearMailboxResponse deserialize(Map<String, dynamic> json) =>
       _$ClearMailboxResponseFromJson(json);
 
   @override
-  List<Object?> get props => [
-        accountId,
-        totalDeletedMessagesCount,
-        notCleared,
-      ];
+  List<Object?> get props => [accountId, totalDeletedMessagesCount, notCleared];
 }

@@ -30,7 +30,9 @@ class RequestObject with EquatableMixin {
 
 class RequestObjectBuilder with RequiredUsing, RequireMethodCall {
   RequestObject build() {
-    return RequestObject(capabilitiesBuilder.build().asSet(),
-        invocationsBuilder.build().asList());
+    return RequestObject(
+      capabilitiesBuilder.build().asSet(),
+      invocationsBuilder.build().asList(),
+    );
   }
 }
