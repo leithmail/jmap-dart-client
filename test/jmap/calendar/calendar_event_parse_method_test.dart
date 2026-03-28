@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:test/test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
-import 'package:jmap_dart_client/http/http_client.dart';
+import '../../dio_mocks.dart';
 import 'package:jmap_dart_client/jmap/account_id.dart';
 import 'package:jmap_dart_client/jmap/core/id.dart';
 import 'package:jmap_dart_client/jmap/core/properties/properties.dart';
@@ -254,7 +254,7 @@ void main() {
       final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
         blobId1,
       });
-      final httpClient = DioHttpClient(dio);
+      final httpClient = DioMockEndpointHttpClient(dio);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),
@@ -443,7 +443,7 @@ void main() {
           blobId1,
           blobId2,
         });
-        final httpClient = DioHttpClient(dio);
+        final httpClient = DioMockEndpointHttpClient(dio);
         final requestBuilder = JmapRequestBuilder(
           httpClient,
           ProcessingInvocation(),
@@ -525,7 +525,7 @@ void main() {
         final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
           blobIdNotFound,
         });
-        final httpClient = DioHttpClient(dio);
+        final httpClient = DioMockEndpointHttpClient(dio);
         final requestBuilder = JmapRequestBuilder(
           httpClient,
           ProcessingInvocation(),
@@ -590,7 +590,7 @@ void main() {
       final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
         blobIdNotParsable,
       });
-      final httpClient = DioHttpClient(dio);
+      final httpClient = DioMockEndpointHttpClient(dio);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),
@@ -665,7 +665,7 @@ void main() {
         final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
           blobId1,
         })..addProperties(Properties({"uid", "title", "description"}));
-        final httpClient = DioHttpClient(dio);
+        final httpClient = DioMockEndpointHttpClient(dio);
         final requestBuilder = JmapRequestBuilder(
           httpClient,
           ProcessingInvocation(),

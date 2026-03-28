@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:test/test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
-import 'package:jmap_dart_client/http/http_client.dart';
+import '../../../../dio_mocks.dart';
 import 'package:jmap_dart_client/jmap/account_id.dart';
 import 'package:jmap_dart_client/jmap/core/error/method/error_method_response.dart';
 import 'package:jmap_dart_client/jmap/core/error/method/exception/error_method_response_exception.dart';
@@ -116,7 +116,9 @@ void main() {
         ),
       );
 
-      final DioHttpClient httpClient = DioHttpClient(dio);
+      final DioMockEndpointHttpClient httpClient = DioMockEndpointHttpClient(
+        dio,
+      );
       final processingInvocation = ProcessingInvocation();
       final jmapRequestBuilder = JmapRequestBuilder(
         httpClient,
@@ -177,7 +179,9 @@ void main() {
         ),
       );
 
-      final DioHttpClient httpClient = DioHttpClient(dio);
+      final DioMockEndpointHttpClient httpClient = DioMockEndpointHttpClient(
+        dio,
+      );
       final processingInvocation = ProcessingInvocation();
       final jmapRequestBuilder = JmapRequestBuilder(
         httpClient,
@@ -254,7 +258,9 @@ void main() {
         ),
       );
 
-      final DioHttpClient httpClient = DioHttpClient(dio);
+      final DioMockEndpointHttpClient httpClient = DioMockEndpointHttpClient(
+        dio,
+      );
       final processingInvocation = ProcessingInvocation();
       final jmapRequestBuilder = JmapRequestBuilder(
         httpClient,
