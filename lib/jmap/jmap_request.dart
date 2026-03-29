@@ -1,6 +1,8 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:built_collection/built_collection.dart';
-import 'package:dio/dio.dart';
-import 'package:jmap_dart_client/http/http_client.dart';
+import 'package:jmap_dart_client/http/endpoint_http_client.dart';
 import 'package:jmap_dart_client/jmap/core/request/reference_path.dart';
 import 'package:jmap_dart_client/jmap/core/request/result_reference.dart';
 import 'package:jmap_dart_client/jmap/core/response/response_object.dart';
@@ -12,26 +14,33 @@ import 'core/request/request_invocation.dart';
 import 'core/request/request_object.dart';
 
 class JmapRequest {
-  final HttpClient _httpClient;
+  final EndpointHttpClient _httpClient;
   final BuiltSet<CapabilityIdentifier> _capabilities;
   final BuiltMap<MethodCallId, RequestInvocation> _invocations;
+
+  static const jmapHeader = 'application/json;jmapVersion=rfc-8621';
 
   JmapRequest(this._httpClient, this._capabilities, this._invocations);
 
   RequestObject? _requestObject;
   RequestObject? get requestObject => _requestObject;
 
-  Future<ResponseObject> execute({CancelToken? cancelToken}) async {
+  Future<ResponseObject> execute() async {
     _requestObject =
         (RequestObject.builder()
               ..usings(_capabilities.asSet())
               ..methodCalls(_invocations.values.toList()))
             .build();
 
-    return _httpClient
-        .post('', data: _requestObject?.toJson(), cancelToken: cancelToken)
-        .then(extractData)
-        .catchError((error) => throw error);
+    final response = await _httpClient.post(
+      Uri.parse(
+        '',
+      ), // this uri is overridden by EndpointHttpClient, so it can be empty
+      body: jsonEncode(_requestObject?.toJson()),
+      headers: {HttpHeaders.acceptHeader: jmapHeader},
+    );
+
+    return extractData(jsonDecode(response.body) as Map<String, dynamic>);
   }
 
   ResponseObject extractData(Map<String, dynamic> body) {
@@ -40,7 +49,7 @@ class JmapRequest {
 }
 
 class JmapRequestBuilder {
-  final HttpClient _httpClient;
+  final EndpointHttpClient _httpClient;
   final ProcessingInvocation _processingInvocation;
   final SetBuilder<CapabilityIdentifier> _capabilitiesBuilder = SetBuilder();
 

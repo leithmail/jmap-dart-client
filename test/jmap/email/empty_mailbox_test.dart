@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:test/test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
-import 'package:jmap_dart_client/http/http_client.dart';
+import '../../dio_mocks.dart';
 import 'package:jmap_dart_client/jmap/account_id.dart';
 import 'package:jmap_dart_client/jmap/core/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/jmap/core/id.dart';
@@ -108,7 +108,7 @@ void main() {
         headers: {"accept": "application/json;jmapVersion=rfc-8621"},
       );
 
-      final httpClient = HttpClient(dio);
+      final httpClient = DioMockEndpointHttpClient(dio);
       final processingInvocation = ProcessingInvocation();
       final jmapRequestBuilder = JmapRequestBuilder(
         httpClient,

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:test/test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
-import 'package:jmap_dart_client/http/http_client.dart';
+import '../../dio_mocks.dart';
 import 'package:jmap_dart_client/jmap/account_id.dart';
 import 'package:jmap_dart_client/jmap/core/id.dart';
 import 'package:jmap_dart_client/jmap/core/utc_date.dart';
@@ -103,7 +103,7 @@ void main() {
       final accountId = AccountId(
         Id('0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555'),
       );
-      final httpClient = HttpClient(dio);
+      final httpClient = DioMockEndpointHttpClient(dio);
       final processingInvocation = ProcessingInvocation();
 
       final setVacationMethod = SetVacationMethod(accountId)

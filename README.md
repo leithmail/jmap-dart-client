@@ -15,18 +15,20 @@ Please report any problem, any feature request, or discuss how you plan to use t
 
 #### GetSession:
 ```dart
-// create instance of httpClient with Dio
-// using BasicAuth to config Dio
-final httpClient = HttpClient(Dio());
+final httpClient = http.Client();
+final jmapSessionHttpClient = EndpointHttpClient(httpClient, Uri.parse('http://jmap.example.org/.well-known/jmap'));
 
-final getSessionBuilder = GetSessionBuilder(httpClient);
+final getSessionBuilder = GetSessionBuilder(jmapSessionHttpClient);
 final session = await getSessionBuilder.build().execute();
 ```
 
 #### Fetching mailboxes
 ```dart
+final httpClient = http.Client();
+final jmapApiHttpClient = EndpointHttpClient(httpClient, Uri.parse('http://jmap.example.org/'));
+
 final processingInvocation = ProcessingInvocation();
-final jmapRequestBuilder = JmapRequestBuilder(httpClient, processingInvocation);
+final jmapRequestBuilder = JmapRequestBuilder(jmapApiHttpClient, processingInvocation);
 
 final getMailboxMethod = GetMailboxMethod(accountId)
   ..addProperties(Properties({'role', 'name'}));
@@ -45,9 +47,11 @@ final getMailboxResponse = responseObject.parse<GetMailboxResponse>(
 
 #### Get emails in Mailbox
 ```dart
+final httpClient = http.Client();
+final jmapApiHttpClient = EndpointHttpClient(httpClient, Uri.parse('http://jmap.example.org/'));
 final processingInvocation = ProcessingInvocation();
 
-final jmapRequestBuilder = JmapRequestBuilder(httpClient, processingInvocation);
+final jmapRequestBuilder = JmapRequestBuilder(jmapApiHttpClient, processingInvocation);
 
 final queryEmailMethod = QueryEmailMethod(accountId)
   ..addPosition(0)

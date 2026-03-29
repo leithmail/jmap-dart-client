@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:test/test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
-import 'package:jmap_dart_client/http/http_client.dart';
+import '../../dio_mocks.dart';
 import 'package:jmap_dart_client/jmap/core/id.dart';
 import 'package:jmap_dart_client/jmap/jmap_request.dart';
 import 'package:jmap_dart_client/jmap/push/push_subscription.dart';
@@ -73,7 +73,7 @@ void main() {
           ),
         );
 
-      final httpClient = HttpClient(dio);
+      final httpClient = DioMockEndpointHttpClient(dio);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),

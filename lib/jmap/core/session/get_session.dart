@@ -1,20 +1,20 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
 import 'package:jmap_dart_client/http/converter/capabilities_converter.dart';
-import 'package:jmap_dart_client/http/http_client.dart';
 import 'package:jmap_dart_client/jmap/core/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/jmap/core/capability/capability_properties.dart';
 import 'package:jmap_dart_client/jmap/core/session/session.dart';
 
 class GetSession {
-  final HttpClient _httpClient;
+  final http.Client _httpClient;
   final CapabilitiesConverter _capabilitiesConverter;
 
   GetSession(this._httpClient, this._capabilitiesConverter);
 
   Future<Session> execute() async {
-    return await _httpClient
-        .get('/.well-known/jmap')
-        .then((value) => extractData(value))
-        .catchError((error) => throw error);
+    final response = await _httpClient.get(Uri.parse('/.well-known/jmap'));
+    return extractData(jsonDecode(response.body) as Map<String, dynamic>);
   }
 
   Session extractData(Map<String, dynamic> body) {
@@ -23,7 +23,7 @@ class GetSession {
 }
 
 class GetSessionBuilder {
-  final HttpClient _httpClient;
+  final http.Client _httpClient;
   final CapabilitiesConverter _capabilitiesConverter = CapabilitiesConverter();
 
   GetSessionBuilder(this._httpClient);

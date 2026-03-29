@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:test/test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
-import 'package:jmap_dart_client/http/http_client.dart';
+import '../../../dio_mocks.dart';
 import 'package:jmap_dart_client/jmap/account_id.dart';
 import 'package:jmap_dart_client/jmap/core/id.dart';
 import 'package:jmap_dart_client/jmap/core/properties/properties.dart';
@@ -100,7 +100,7 @@ void main() {
       );
 
       final parseEmailMethod = ParseEmailMethod(accountId, {blobId1});
-      final httpClient = HttpClient(dio);
+      final httpClient = DioMockEndpointHttpClient(dio);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),
@@ -181,7 +181,7 @@ void main() {
       );
 
       final parseEmailMethod = ParseEmailMethod(accountId, {blobId1, blobId2});
-      final httpClient = HttpClient(dio);
+      final httpClient = DioMockEndpointHttpClient(dio);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),
@@ -247,7 +247,7 @@ void main() {
         );
 
         final parseEmailMethod = ParseEmailMethod(accountId, {blobIdNotFound});
-        final httpClient = HttpClient(dio);
+        final httpClient = DioMockEndpointHttpClient(dio);
         final requestBuilder = JmapRequestBuilder(
           httpClient,
           ProcessingInvocation(),
@@ -307,7 +307,7 @@ void main() {
       );
 
       final parseEmailMethod = ParseEmailMethod(accountId, {blobIdNotParsable});
-      final httpClient = HttpClient(dio);
+      final httpClient = DioMockEndpointHttpClient(dio);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),
@@ -373,7 +373,7 @@ void main() {
 
       final parseEmailMethod = ParseEmailMethod(accountId, {blobId3})
         ..addProperties(Properties({"id", "preview", "subject"}));
-      final httpClient = HttpClient(dio);
+      final httpClient = DioMockEndpointHttpClient(dio);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),
