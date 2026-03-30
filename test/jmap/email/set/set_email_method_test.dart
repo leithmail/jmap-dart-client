@@ -67,7 +67,7 @@ void main() {
                     'keywords': {'\$seen': true},
                     'subject': 'set email 3',
                     'sender': [
-                      {'name: bob, email: bob@email'},
+                      {'name': 'bob', 'email': 'bob@email'},
                     ],
                     'from': [
                       {'name': 'alice', 'email': 'alice@email'},
@@ -194,7 +194,7 @@ void main() {
                     'keywords': {'\$seen': true},
                     'subject': 'set email 3',
                     'sender': [
-                      {'name: bob, email: bob@email'},
+                      {'name': 'bob', 'email': 'bob@email'},
                     ],
                     'from': [
                       {'name': 'alice', 'email': 'alice@email'},
