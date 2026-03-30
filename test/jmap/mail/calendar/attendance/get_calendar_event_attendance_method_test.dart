@@ -1,7 +1,3 @@
-import 'package:dio/dio.dart';
-import 'package:test/test.dart';
-import 'package:http_mock_adapter/http_mock_adapter.dart';
-import '../../../../dio_mocks.dart';
 import 'package:jmap_dart_client/jmap/account_id.dart';
 import 'package:jmap_dart_client/jmap/core/error/method/exception/error_method_response_exception.dart';
 import 'package:jmap_dart_client/jmap/core/error/set_error.dart';
@@ -11,18 +7,12 @@ import 'package:jmap_dart_client/jmap/jmap_request.dart';
 import 'package:jmap_dart_client/jmap/mail/calendar/attendance/calendar_event_attendance.dart';
 import 'package:jmap_dart_client/jmap/mail/calendar/attendance/get_calendar_event_attendance_method.dart';
 import 'package:jmap_dart_client/jmap/mail/calendar/attendance/get_calendar_event_attendance_response.dart';
+import 'package:test/test.dart';
+
+import '../../../../http_mocks.dart';
 
 void main() {
   group('get calendar event attendance method test', () {
-    final baseOption = BaseOptions(method: 'POST');
-    final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-    final dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
-    final dioAdapterHeaders = {
-      "accept": "application/json;jmapVersion=rfc-8621",
-    };
-    final httpClient = DioMockEndpointHttpClient(dio);
-    final processingInvocation = ProcessingInvocation();
-    final requestBuilder = JmapRequestBuilder(httpClient, processingInvocation);
     final accountId = AccountId(Id('123abc'));
     final freeBlobId = Id('abc123');
     final busyBlobId = Id('def456');
@@ -48,11 +38,6 @@ void main() {
         accountId,
         blobIds,
       );
-      final invocation = requestBuilder.invocation(
-        getCalendarEventAttendanceMethod,
-        methodCallId: methodCallId,
-      );
-
       final sampleRequest = {
         "using": getCalendarEventAttendanceMethod.requiredCapabilities
             .map((capability) => capability.value.toString())
@@ -84,11 +69,19 @@ void main() {
           ],
         ],
       };
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, sampleResponse),
-        data: sampleRequest,
-        headers: dioAdapterHeaders,
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: sampleResponse,
+        expectedBody: sampleRequest,
+      );
+      final httpClient = MockEndpointHttpClient(httpMockClient);
+      final processingInvocation = ProcessingInvocation();
+      final requestBuilder = JmapRequestBuilder(
+        httpClient,
+        processingInvocation,
+      );
+      final invocation = requestBuilder.invocation(
+        getCalendarEventAttendanceMethod,
+        methodCallId: methodCallId,
       );
 
       // act
@@ -118,11 +111,6 @@ void main() {
         accountId,
         [blobId],
       );
-      final invocation = requestBuilder.invocation(
-        getCalendarEventAttendanceMethod,
-        methodCallId: methodCallId,
-      );
-
       final sampleRequest = {
         "using": getCalendarEventAttendanceMethod.requiredCapabilities
             .map((capability) => capability.value.toString())
@@ -156,11 +144,19 @@ void main() {
           ],
         ],
       };
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, sampleResponse),
-        data: sampleRequest,
-        headers: dioAdapterHeaders,
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: sampleResponse,
+        expectedBody: sampleRequest,
+      );
+      final httpClient = MockEndpointHttpClient(httpMockClient);
+      final processingInvocation = ProcessingInvocation();
+      final requestBuilder = JmapRequestBuilder(
+        httpClient,
+        processingInvocation,
+      );
+      final invocation = requestBuilder.invocation(
+        getCalendarEventAttendanceMethod,
+        methodCallId: methodCallId,
       );
 
       // act
@@ -193,11 +189,6 @@ void main() {
         accountId,
         [blobId],
       );
-      final invocation = requestBuilder.invocation(
-        getCalendarEventAttendanceMethod,
-        methodCallId: methodCallId,
-      );
-
       final sampleRequest = {
         "using": getCalendarEventAttendanceMethod.requiredCapabilities
             .map((capability) => capability.value.toString())
@@ -223,11 +214,19 @@ void main() {
           ],
         ],
       };
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, sampleResponse),
-        data: sampleRequest,
-        headers: dioAdapterHeaders,
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: sampleResponse,
+        expectedBody: sampleRequest,
+      );
+      final httpClient = MockEndpointHttpClient(httpMockClient);
+      final processingInvocation = ProcessingInvocation();
+      final requestBuilder = JmapRequestBuilder(
+        httpClient,
+        processingInvocation,
+      );
+      final invocation = requestBuilder.invocation(
+        getCalendarEventAttendanceMethod,
+        methodCallId: methodCallId,
       );
 
       // act

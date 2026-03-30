@@ -1,7 +1,3 @@
-import 'package:dio/dio.dart';
-import 'package:test/test.dart';
-import 'package:http_mock_adapter/http_mock_adapter.dart';
-import '../../../dio_mocks.dart';
 import 'package:jmap_dart_client/jmap/account_id.dart';
 import 'package:jmap_dart_client/jmap/core/id.dart';
 import 'package:jmap_dart_client/jmap/core/request/request_invocation.dart';
@@ -11,15 +7,11 @@ import 'package:jmap_dart_client/jmap/mail/email/email.dart';
 import 'package:jmap_dart_client/jmap/thread/get/get_thread_method.dart';
 import 'package:jmap_dart_client/jmap/thread/get/get_thread_response.dart';
 import 'package:jmap_dart_client/jmap/thread/thread.dart';
+import 'package:test/test.dart';
+
+import '../../../http_mocks.dart';
 
 void main() {
-  final baseOption = BaseOptions(method: 'POST');
-  final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-  final dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
-  final dioAdapterHeaders = {"accept": "application/json;jmapVersion=rfc-8621"};
-  final httpClient = DioMockEndpointHttpClient(dio);
-  final processingInvocation = ProcessingInvocation();
-  final requestBuilder = JmapRequestBuilder(httpClient, processingInvocation);
   final accountId = AccountId(Id('123abc'));
   final foundId = Id('found-thread-id');
   final emailIdFound = EmailId(Id('email-id-found'));
@@ -65,11 +57,16 @@ void main() {
           ],
         ],
       };
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, sampleResponse),
-        data: sampleRequest,
-        headers: dioAdapterHeaders,
+
+      final processingInvocation = ProcessingInvocation();
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: sampleResponse,
+        expectedBody: sampleRequest,
+      );
+      final httpClient = MockEndpointHttpClient(httpMockClient);
+      final requestBuilder = JmapRequestBuilder(
+        httpClient,
+        processingInvocation,
       );
 
       // act

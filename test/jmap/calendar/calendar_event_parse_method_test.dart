@@ -1,7 +1,3 @@
-import 'package:dio/dio.dart';
-import 'package:test/test.dart';
-import 'package:http_mock_adapter/http_mock_adapter.dart';
-import '../../dio_mocks.dart';
 import 'package:jmap_dart_client/jmap/account_id.dart';
 import 'package:jmap_dart_client/jmap/core/id.dart';
 import 'package:jmap_dart_client/jmap/core/properties/properties.dart';
@@ -30,6 +26,9 @@ import 'package:jmap_dart_client/jmap/mail/calendar/properties/mail_address.dart
 import 'package:jmap_dart_client/jmap/mail/calendar/properties/recurrence_rule/day_of_week.dart';
 import 'package:jmap_dart_client/jmap/mail/calendar/properties/recurrence_rule/recurrence_rule.dart';
 import 'package:jmap_dart_client/jmap/mail/calendar/properties/recurrence_rule/recurrence_rule_frequency.dart';
+import 'package:test/test.dart';
+
+import '../../http_mocks.dart';
 
 void main() {
   group('Test to json calendar event parse method', () {
@@ -154,15 +153,8 @@ void main() {
     final blobIdNotParsable = Id('4f9f65ab-dc7b-4146-850f-6e4881093965');
 
     test('CalendarEventParseMethod parse should succeed', () async {
-      final baseOption = BaseOptions(method: 'POST');
-      final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-      final dioAdapter = DioAdapter(
-        dio: dio,
-        matcher: const UrlRequestMatcher(),
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
           "methodResponses": [
             [
@@ -231,8 +223,8 @@ void main() {
               "c0",
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": [
             "urn:ietf:params:jmap:core",
             "com:linagora:params:calendar:event",
@@ -248,13 +240,12 @@ void main() {
             ],
           ],
         },
-        headers: {"accept": "application/json;jmapVersion=rfc-8621"},
       );
 
       final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
         blobId1,
       });
-      final httpClient = DioMockEndpointHttpClient(dio);
+      final httpClient = MockEndpointHttpClient(httpMockClient);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),
@@ -280,15 +271,8 @@ void main() {
     test(
       'CalendarEventParseMethod parse should support several blobIds',
       () async {
-        final baseOption = BaseOptions(method: 'POST');
-        final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-        final dioAdapter = DioAdapter(
-          dio: dio,
-          matcher: const UrlRequestMatcher(),
-        );
-        dioAdapter.onPost(
-          '',
-          (server) => server.reply(200, {
+        final httpMockClient = HttpMockResponseClient(
+          responseBody: {
             "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
             "methodResponses": [
               [
@@ -419,8 +403,8 @@ void main() {
                 "c0",
               ],
             ],
-          }),
-          data: {
+          },
+          expectedBody: {
             "using": [
               "urn:ietf:params:jmap:core",
               "com:linagora:params:calendar:event",
@@ -436,14 +420,13 @@ void main() {
               ],
             ],
           },
-          headers: {"accept": "application/json;jmapVersion=rfc-8621"},
         );
 
         final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
           blobId1,
           blobId2,
         });
-        final httpClient = DioMockEndpointHttpClient(dio);
+        final httpClient = MockEndpointHttpClient(httpMockClient);
         final requestBuilder = JmapRequestBuilder(
           httpClient,
           ProcessingInvocation(),
@@ -482,15 +465,8 @@ void main() {
     test(
       'CalendarEventParseMethod parse should return not found result when blobId does not exist',
       () async {
-        final baseOption = BaseOptions(method: 'POST');
-        final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-        final dioAdapter = DioAdapter(
-          dio: dio,
-          matcher: const UrlRequestMatcher(),
-        );
-        dioAdapter.onPost(
-          '',
-          (server) => server.reply(200, {
+        final httpMockClient = HttpMockResponseClient(
+          responseBody: {
             "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
             "methodResponses": [
               [
@@ -502,8 +478,8 @@ void main() {
                 "c0",
               ],
             ],
-          }),
-          data: {
+          },
+          expectedBody: {
             "using": [
               "urn:ietf:params:jmap:core",
               "com:linagora:params:calendar:event",
@@ -519,13 +495,12 @@ void main() {
               ],
             ],
           },
-          headers: {"accept": "application/json;jmapVersion=rfc-8621"},
         );
 
         final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
           blobIdNotFound,
         });
-        final httpClient = DioMockEndpointHttpClient(dio);
+        final httpClient = MockEndpointHttpClient(httpMockClient);
         final requestBuilder = JmapRequestBuilder(
           httpClient,
           ProcessingInvocation(),
@@ -547,15 +522,8 @@ void main() {
     );
 
     test('CalendarEventParseMethod parse should return not parsable', () async {
-      final baseOption = BaseOptions(method: 'POST');
-      final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-      final dioAdapter = DioAdapter(
-        dio: dio,
-        matcher: const UrlRequestMatcher(),
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
           "methodResponses": [
             [
@@ -567,8 +535,8 @@ void main() {
               "c0",
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": [
             "urn:ietf:params:jmap:core",
             "com:linagora:params:calendar:event",
@@ -584,13 +552,12 @@ void main() {
             ],
           ],
         },
-        headers: {"accept": "application/json;jmapVersion=rfc-8621"},
       );
 
       final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
         blobIdNotParsable,
       });
-      final httpClient = DioMockEndpointHttpClient(dio);
+      final httpClient = MockEndpointHttpClient(httpMockClient);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),
@@ -613,15 +580,8 @@ void main() {
     test(
       'CalendarEventParseMethod parse with properties should succeed',
       () async {
-        final baseOption = BaseOptions(method: 'POST');
-        final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-        final dioAdapter = DioAdapter(
-          dio: dio,
-          matcher: const UrlRequestMatcher(),
-        );
-        dioAdapter.onPost(
-          '',
-          (server) => server.reply(200, {
+        final httpMockClient = HttpMockResponseClient(
+          responseBody: {
             "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
             "methodResponses": [
               [
@@ -641,8 +601,8 @@ void main() {
                 "c0",
               ],
             ],
-          }),
-          data: {
+          },
+          expectedBody: {
             "using": [
               "urn:ietf:params:jmap:core",
               "com:linagora:params:calendar:event",
@@ -659,13 +619,12 @@ void main() {
               ],
             ],
           },
-          headers: {"accept": "application/json;jmapVersion=rfc-8621"},
         );
 
         final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
           blobId1,
         })..addProperties(Properties({"uid", "title", "description"}));
-        final httpClient = DioMockEndpointHttpClient(dio);
+        final httpClient = MockEndpointHttpClient(httpMockClient);
         final requestBuilder = JmapRequestBuilder(
           httpClient,
           ProcessingInvocation(),
