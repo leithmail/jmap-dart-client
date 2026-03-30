@@ -6,6 +6,7 @@ import 'package:jmap_dart_client/http/converter/state_converter.dart';
 import 'package:jmap_dart_client/jmap/core/error/error_method_response.dart';
 import 'package:jmap_dart_client/jmap/core/error/error_type.dart';
 import 'package:jmap_dart_client/jmap/core/error/exception/jmap_method_error_exception.dart';
+import 'package:jmap_dart_client/jmap/core/error/exception/jmap_parse_response_exception.dart';
 import 'package:jmap_dart_client/jmap/core/method/method_response.dart';
 import 'package:jmap_dart_client/jmap/core/request/request_invocation.dart';
 import 'package:jmap_dart_client/jmap/core/response/response_invocation.dart';
@@ -38,6 +39,8 @@ class ResponseObject with EquatableMixin {
           ? method.methodCallId == methodCallId
           : (method.methodCallId == methodCallId &&
                 _validMethodResponseName(method, methodName)),
+      orElse: () =>
+          throw JmapParseResponseException(methodCallId: methodCallId),
     );
 
     if (matchedResponse.methodName == ErrorMethodResponse.errorMethodName) {

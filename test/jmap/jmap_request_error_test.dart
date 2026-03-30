@@ -68,6 +68,22 @@ void main() {
           throwsA(isA<JmapConnectionException>()),
         );
       });
+
+      test('throws JmapConnectionException on any http.Client exception', () {
+        // arrange — simulate a custom exception from a user-injected http.Client
+        final request = buildRequest(
+          HttpMockResponseClient(
+            handler: (_) => throw Exception('custom transport error'),
+            responseBody: null,
+          ),
+        );
+
+        // act + assert
+        expect(
+          () => request.execute(),
+          throwsA(isA<JmapConnectionException>()),
+        );
+      });
     });
 
     group('malformed response body', () {
@@ -86,6 +102,31 @@ void main() {
           throwsA(isA<JmapParseResponseException>()),
         );
       });
+
+      test(
+        'throws JmapParseResponseException (not JmapConnectionException) when JSON shape is invalid',
+        () {
+          // arrange
+          final request = buildRequest(
+            HttpMockResponseClient(
+              statusCode: 200,
+              responseBody: {'invalid': true},
+            ),
+          );
+
+          // act + assert
+          expect(
+            () => request.execute(),
+            throwsA(
+              isA<JmapParseResponseException>().having(
+                (e) => e,
+                'not connection exception',
+                isNot(isA<JmapConnectionException>()),
+              ),
+            ),
+          );
+        },
+      );
     });
   });
 }

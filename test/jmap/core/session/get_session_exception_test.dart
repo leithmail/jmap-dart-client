@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:jmap_dart_client/http/converter/capabilities_converter.dart';
 import 'package:jmap_dart_client/jmap/core/error/exception/jmap_connection_exception.dart';
 import 'package:jmap_dart_client/jmap/core/error/exception/jmap_http_exception.dart';
+import 'package:jmap_dart_client/jmap/core/error/exception/jmap_parse_response_exception.dart';
 import 'package:jmap_dart_client/jmap/core/session/get_session.dart';
 import 'package:test/test.dart';
 
@@ -74,6 +75,53 @@ void main() {
           throwsA(isA<JmapConnectionException>()),
         );
       });
+
+      test('throws JmapConnectionException on any http.Client exception', () {
+        // arrange — simulate a custom exception from a user-injected http.Client
+        final client = HttpMockResponseClient(
+          expectedMethod: 'GET',
+          expectedUrl: '/.well-known/jmap',
+          expectedHeaders: {},
+          handler: (_) => throw Exception('custom transport error'),
+          responseBody: null,
+        );
+        final getSession = GetSession(client, CapabilitiesConverter());
+
+        // act + assert
+        expect(
+          () => getSession.execute(),
+          throwsA(isA<JmapConnectionException>()),
+        );
+      });
+    });
+
+    group('malformed response body', () {
+      test(
+        'throws JmapParseResponseException (not JmapConnectionException) when JSON shape is invalid',
+        () {
+          // arrange
+          final client = HttpMockResponseClient(
+            expectedMethod: 'GET',
+            expectedUrl: '/.well-known/jmap',
+            expectedHeaders: {},
+            statusCode: 200,
+            responseBody: {'invalid': true},
+          );
+          final getSession = GetSession(client, CapabilitiesConverter());
+
+          // act + assert
+          expect(
+            () => getSession.execute(),
+            throwsA(
+              isA<JmapParseResponseException>().having(
+                (e) => e,
+                'not connection exception',
+                isNot(isA<JmapConnectionException>()),
+              ),
+            ),
+          );
+        },
+      );
     });
   });
 }
