@@ -3,9 +3,9 @@ import 'dart:developer' as developer;
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/http/converter/response_invocation_converter.dart';
 import 'package:jmap_dart_client/http/converter/state_converter.dart';
+import 'package:jmap_dart_client/jmap/core/error/error_method_response.dart';
 import 'package:jmap_dart_client/jmap/core/error/error_type.dart';
-import 'package:jmap_dart_client/jmap/core/error/method/error_method_response.dart';
-import 'package:jmap_dart_client/jmap/core/error/method/exception/error_method_response_exception.dart';
+import 'package:jmap_dart_client/jmap/core/error/exception/jmap_method_error_exception.dart';
 import 'package:jmap_dart_client/jmap/core/method/method_response.dart';
 import 'package:jmap_dart_client/jmap/core/request/request_invocation.dart';
 import 'package:jmap_dart_client/jmap/core/response/response_invocation.dart';
@@ -44,7 +44,7 @@ class ResponseObject with EquatableMixin {
       final errorResponse = _parsingErrorMethodResponse(
         matchedResponse.arguments.value,
       );
-      throw ErrorMethodResponseException(errorResponse);
+      throw JmapMethodErrorException(errorResponse);
     }
 
     return fromJson(matchedResponse.arguments.value);

@@ -1,5 +1,5 @@
 import 'package:jmap_dart_client/jmap/account_id.dart';
-import 'package:jmap_dart_client/jmap/core/error/method/exception/error_method_response_exception.dart';
+import 'package:jmap_dart_client/jmap/core/error/exception/jmap_method_error_exception.dart';
 import 'package:jmap_dart_client/jmap/core/error/set_error.dart';
 import 'package:jmap_dart_client/jmap/core/id.dart';
 import 'package:jmap_dart_client/jmap/core/request/request_invocation.dart';
@@ -242,7 +242,7 @@ void main() {
           invocation.methodCallId,
           GetCalendarEventAttendanceResponse.deserialize,
         ),
-        throwsA(isA<ErrorMethodResponseException>()),
+        throwsA(isA<JmapMethodErrorException>()),
       );
     });
   });

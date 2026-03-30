@@ -1,6 +1,6 @@
 import 'package:jmap_dart_client/jmap/account_id.dart';
-import 'package:jmap_dart_client/jmap/core/error/method/error_method_response.dart';
-import 'package:jmap_dart_client/jmap/core/error/method/exception/error_method_response_exception.dart';
+import 'package:jmap_dart_client/jmap/core/error/error_method_response.dart';
+import 'package:jmap_dart_client/jmap/core/error/exception/jmap_method_error_exception.dart';
 import 'package:jmap_dart_client/jmap/core/filter/filter.dart';
 import 'package:jmap_dart_client/jmap/core/id.dart';
 import 'package:jmap_dart_client/jmap/core/request/reference_path.dart';
@@ -277,7 +277,7 @@ void main() {
           methodInvocation.methodCallId,
           SearchSnippetGetResponse.fromJson,
         ),
-        throwsA(ErrorMethodResponseException(UnknownMethodResponse())),
+        throwsA(JmapMethodErrorException(UnknownMethodResponse())),
       );
     });
   });
