@@ -3,6 +3,13 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
+import 'package:jmap_dart_client/http/endpoint_http_client.dart';
+
+class MockEndpointHttpClient extends EndpointHttpClient {
+  static final Uri endpointUri = Uri.parse('https://example.org/jmap');
+
+  MockEndpointHttpClient(http.Client client) : super(client, endpointUri);
+}
 
 class HttpMockException implements Exception {
   final String message;
@@ -111,7 +118,8 @@ class HttpMockResponseClient extends MockClient {
              !_requestBodyMatches(request, expectedBody)) {
            final normalizedExpectedBody = _normalizeBody(expectedBody);
            throw HttpMockException(
-             'Expected body: $normalizedExpectedBody, but got: ${request.body}',
+             '\nExpected body: $normalizedExpectedBody\n' +
+                 'Recieved body: ${request.body}',
            );
          }
          for (final entry

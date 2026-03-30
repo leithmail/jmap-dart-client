@@ -8,6 +8,7 @@ import 'package:jmap_dart_client/jmap/core/request/result_reference.dart';
 import 'package:jmap_dart_client/jmap/core/response/response_object.dart';
 import 'package:jmap_dart_client/util/util.dart';
 import 'package:quiver/check.dart';
+
 import 'core/capability/capability_identifier.dart';
 import 'core/method/method.dart';
 import 'core/request/request_invocation.dart';
@@ -17,8 +18,6 @@ class JmapRequest {
   final EndpointHttpClient _httpClient;
   final BuiltSet<CapabilityIdentifier> _capabilities;
   final BuiltMap<MethodCallId, RequestInvocation> _invocations;
-
-  static const jmapHeader = 'application/json;jmapVersion=rfc-8621';
 
   JmapRequest(this._httpClient, this._capabilities, this._invocations);
 
@@ -37,7 +36,10 @@ class JmapRequest {
         '',
       ), // this uri is overridden by EndpointHttpClient, so it can be empty
       body: jsonEncode(_requestObject?.toJson()),
-      headers: {HttpHeaders.acceptHeader: jmapHeader},
+      headers: {
+        HttpHeaders.acceptHeader: 'application/json',
+        HttpHeaders.contentTypeHeader: 'application/json',
+      },
     );
 
     return extractData(jsonDecode(response.body) as Map<String, dynamic>);
