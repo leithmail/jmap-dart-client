@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:collection/collection.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:jmap_dart_client/http/endpoint_http_client.dart';
@@ -150,9 +151,13 @@ class HttpMockResponseClient extends MockClient {
   };
 
   static bool _requestBodyMatches(http.Request request, Object? expectedBody) {
-    final normalizedExpectedBody = _normalizeBody(expectedBody);
-
-    return request.body == normalizedExpectedBody;
+    if (expectedBody is Map) {
+      return const DeepCollectionEquality().equals(
+        jsonDecode(request.body),
+        expectedBody,
+      );
+    }
+    return request.body == _normalizeBody(expectedBody);
   }
 
   static String _normalizeBody(Object? body) {
