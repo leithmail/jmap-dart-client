@@ -1,12 +1,11 @@
-import 'package:dio/dio.dart';
-import 'package:test/test.dart';
-import 'package:http_mock_adapter/http_mock_adapter.dart';
-import '../../dio_mocks.dart';
 import 'package:jmap_dart_client/jmap/core/id.dart';
 import 'package:jmap_dart_client/jmap/jmap_request.dart';
 import 'package:jmap_dart_client/jmap/push/get/get_push_subscription_method.dart';
 import 'package:jmap_dart_client/jmap/push/get/get_push_subscription_response.dart';
 import 'package:jmap_dart_client/jmap/push/push_subscription.dart';
+import 'package:test/test.dart';
+
+import '../../http_mocks.dart';
 
 void main() {
   group('test to json get pushSubscription method', () {
@@ -15,15 +14,8 @@ void main() {
     );
 
     test('get pushSubscription method and response parsing', () async {
-      final baseOption = BaseOptions(method: 'POST');
-      final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-      final dioAdapter = DioAdapter(
-        dio: dio,
-        matcher: const UrlRequestMatcher(),
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
           "methodResponses": [
             [
@@ -43,8 +35,8 @@ void main() {
               "c0",
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": ["urn:ietf:params:jmap:core"],
           "methodCalls": [
             [
@@ -56,13 +48,12 @@ void main() {
             ],
           ],
         },
-        headers: {"accept": "application/json;jmapVersion=rfc-8621"},
       );
 
       final getPushSubscriptionMethod = GetPushSubscriptionMethod()
         ..addIds({Id('e50b2c1d-9553-41a3-b0a7-a7d26b599ee1')});
 
-      final httpClient = DioMockEndpointHttpClient(dio);
+      final httpClient = MockEndpointHttpClient(httpMockClient);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),

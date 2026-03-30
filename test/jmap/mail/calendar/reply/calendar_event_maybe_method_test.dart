@@ -1,7 +1,3 @@
-import 'package:dio/dio.dart';
-import 'package:test/test.dart';
-import 'package:http_mock_adapter/http_mock_adapter.dart';
-import '../../../../dio_mocks.dart';
 import 'package:jmap_dart_client/jmap/account_id.dart';
 import 'package:jmap_dart_client/jmap/core/error/set_error.dart';
 import 'package:jmap_dart_client/jmap/core/id.dart';
@@ -12,15 +8,11 @@ import 'package:jmap_dart_client/jmap/jmap_request.dart';
 import 'package:jmap_dart_client/jmap/mail/calendar/properties/event_id.dart';
 import 'package:jmap_dart_client/jmap/mail/calendar/reply/calendar_event_maybe_method.dart';
 import 'package:jmap_dart_client/jmap/mail/calendar/reply/calendar_event_maybe_response.dart';
+import 'package:test/test.dart';
+
+import '../../../../http_mocks.dart';
 
 void main() {
-  final baseOption = BaseOptions(method: 'POST');
-  final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-  final dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
-  final dioAdapterHeaders = {"accept": "application/json;jmapVersion=rfc-8621"};
-  final httpClient = DioMockEndpointHttpClient(dio);
-  final processingInvocation = ProcessingInvocation();
-  final requestBuilder = JmapRequestBuilder(httpClient, processingInvocation);
   final accountId = AccountId(Id('123abc'));
   final successBlobId = Id('abc123');
   final failureBlobId = Id('def456');
@@ -68,15 +60,19 @@ void main() {
         'and fail with failure blob data '
         'and not found with not found blob data', () async {
       // arrange
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: constructResponse(method),
+        expectedBody: constructData(method),
+      );
+      final httpClient = MockEndpointHttpClient(httpMockClient);
+      final processingInvocation = ProcessingInvocation();
+      final requestBuilder = JmapRequestBuilder(
+        httpClient,
+        processingInvocation,
+      );
       final invocation = requestBuilder.invocation(
         method,
         methodCallId: methodCallId,
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, constructResponse(method)),
-        data: constructData(method),
-        headers: dioAdapterHeaders,
       );
 
       // act

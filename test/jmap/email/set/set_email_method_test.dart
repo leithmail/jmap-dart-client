@@ -1,8 +1,4 @@
-import 'package:dio/dio.dart';
-import 'package:test/test.dart';
-import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:http_parser/http_parser.dart';
-import '../../../dio_mocks.dart';
 import 'package:jmap_dart_client/jmap/account_id.dart';
 import 'package:jmap_dart_client/jmap/core/id.dart';
 import 'package:jmap_dart_client/jmap/core/unsigned_int.dart';
@@ -16,6 +12,9 @@ import 'package:jmap_dart_client/jmap/mail/email/keyword_identifier.dart';
 import 'package:jmap_dart_client/jmap/mail/email/set/set_email_method.dart';
 import 'package:jmap_dart_client/jmap/mail/email/set/set_email_response.dart';
 import 'package:jmap_dart_client/jmap/mail/mailbox/mailbox.dart';
+import 'package:test/test.dart';
+
+import '../../../http_mocks.dart';
 
 void main() {
   group('test to json set email method', () {
@@ -27,15 +26,8 @@ void main() {
     );
 
     test('set email method and response parsing', () async {
-      final baseOption = BaseOptions(method: 'POST');
-      final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-      final dioAdapter = DioAdapter(
-        dio: dio,
-        matcher: const UrlRequestMatcher(),
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
           "methodResponses": [
             [
@@ -57,8 +49,8 @@ void main() {
               "c0",
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           'using': ['urn:ietf:params:jmap:mail', 'urn:ietf:params:jmap:core'],
           'methodCalls': [
             [
@@ -103,7 +95,6 @@ void main() {
             ],
           ],
         },
-        headers: {"accept": "application/json;jmapVersion=rfc-8621"},
       );
 
       final setEmailMethod =
@@ -142,7 +133,7 @@ void main() {
             ),
           );
 
-      final httpClient = DioMockEndpointHttpClient(dio);
+      final httpClient = MockEndpointHttpClient(httpMockClient);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),
@@ -162,15 +153,8 @@ void main() {
     });
 
     test('set email method and response parsing with header User-Agent', () async {
-      final baseOption = BaseOptions(method: 'POST');
-      final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-      final dioAdapter = DioAdapter(
-        dio: dio,
-        matcher: const UrlRequestMatcher(),
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
           "methodResponses": [
             [
@@ -192,8 +176,8 @@ void main() {
               "c0",
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           'using': ['urn:ietf:params:jmap:mail', 'urn:ietf:params:jmap:core'],
           'methodCalls': [
             [
@@ -239,7 +223,6 @@ void main() {
             ],
           ],
         },
-        headers: {"accept": "application/json;jmapVersion=rfc-8621"},
       );
 
       final setEmailMethod =
@@ -282,7 +265,7 @@ void main() {
             ),
           );
 
-      final httpClient = DioMockEndpointHttpClient(dio);
+      final httpClient = MockEndpointHttpClient(httpMockClient);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),
@@ -302,15 +285,8 @@ void main() {
     });
 
     test('set email method and response parsing with header Mdn', () async {
-      final baseOption = BaseOptions(method: 'POST');
-      final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-      final dioAdapter = DioAdapter(
-        dio: dio,
-        matcher: const UrlRequestMatcher(),
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
           "methodResponses": [
             [
@@ -332,8 +308,8 @@ void main() {
               "c0",
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": ["urn:ietf:params:jmap:mail", "urn:ietf:params:jmap:core"],
           "methodCalls": [
             [
@@ -374,7 +350,6 @@ void main() {
             ],
           ],
         },
-        headers: {"accept": "application/json;jmapVersion=rfc-8621"},
       );
 
       final setEmailMethod =
@@ -416,7 +391,7 @@ void main() {
             ),
           );
 
-      final httpClient = DioMockEndpointHttpClient(dio);
+      final httpClient = MockEndpointHttpClient(httpMockClient);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),

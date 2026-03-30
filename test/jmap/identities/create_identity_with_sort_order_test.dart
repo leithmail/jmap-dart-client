@@ -1,7 +1,3 @@
-import 'package:dio/dio.dart';
-import 'package:test/test.dart';
-import 'package:http_mock_adapter/http_mock_adapter.dart';
-import '../../dio_mocks.dart';
 import 'package:jmap_dart_client/jmap/account_id.dart';
 import 'package:jmap_dart_client/jmap/core/id.dart';
 import 'package:jmap_dart_client/jmap/core/patch_object.dart';
@@ -10,6 +6,9 @@ import 'package:jmap_dart_client/jmap/identities/identity.dart';
 import 'package:jmap_dart_client/jmap/identities/set/set_identity_method.dart';
 import 'package:jmap_dart_client/jmap/identities/set/set_identity_response.dart';
 import 'package:jmap_dart_client/jmap/jmap_request.dart';
+import 'package:test/test.dart';
+
+import '../../http_mocks.dart';
 
 void main() {
   group('test to json set identity method', () {
@@ -19,15 +18,8 @@ void main() {
     );
 
     test('create new identity with sort order method and response parsing', () async {
-      final baseOption = BaseOptions(method: 'POST');
-      final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-      final dioAdapter = DioAdapter(
-        dio: dio,
-        matcher: const UrlRequestMatcher(),
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
           "methodResponses": [
             [
@@ -46,8 +38,8 @@ void main() {
               "c0",
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": [
             "urn:ietf:params:jmap:core",
             "urn:ietf:params:jmap:submission",
@@ -74,7 +66,6 @@ void main() {
             ],
           ],
         },
-        headers: {"accept": "application/json;jmapVersion=rfc-8621"},
       );
 
       final setIdentityMethod =
@@ -97,7 +88,7 @@ void main() {
             ),
           );
 
-      final httpClient = DioMockEndpointHttpClient(dio);
+      final httpClient = MockEndpointHttpClient(httpMockClient);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),
@@ -135,16 +126,8 @@ void main() {
       test(
         'test increase of old default identity request and create new identity request',
         () async {
-          final baseOption = BaseOptions(method: 'POST');
-          final dio = Dio(baseOption)
-            ..options.baseUrl = 'http://domain.com/jmap';
-          final dioAdapter = DioAdapter(
-            dio: dio,
-            matcher: const UrlRequestMatcher(),
-          );
-          dioAdapter.onPost(
-            '',
-            (server) => server.reply(200, {
+          final httpMockClient = HttpMockResponseClient(
+            responseBody: {
               "sessionState": "2c9f1b12-b35a-43e6-9af2-0106f123a943",
               "methodResponses": [
                 [
@@ -164,8 +147,8 @@ void main() {
                   "c0",
                 ],
               ],
-            }),
-            data: {
+            },
+            expectedBody: {
               "using": [
                 "urn:ietf:params:jmap:core",
                 "urn:ietf:params:jmap:submission",
@@ -195,7 +178,6 @@ void main() {
                 ],
               ],
             },
-            headers: {"accept": "application/json;jmapVersion=rfc-8621"},
           );
 
           final setIdentityMethod =
@@ -221,7 +203,7 @@ void main() {
                   }),
                 });
 
-          final httpClient = DioMockEndpointHttpClient(dio);
+          final httpClient = MockEndpointHttpClient(httpMockClient);
           final requestBuilder = JmapRequestBuilder(
             httpClient,
             ProcessingInvocation(),

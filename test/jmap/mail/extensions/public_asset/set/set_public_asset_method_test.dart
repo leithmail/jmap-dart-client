@@ -1,8 +1,4 @@
-import 'package:dio/dio.dart';
-import 'package:test/test.dart';
-import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:jmap_dart_client/http/converter/identities/public_asset_identities_converter.dart';
-import '../../../../../dio_mocks.dart';
 import 'package:jmap_dart_client/jmap/account_id.dart';
 import 'package:jmap_dart_client/jmap/core/error/set_error.dart';
 import 'package:jmap_dart_client/jmap/core/id.dart';
@@ -13,15 +9,11 @@ import 'package:jmap_dart_client/jmap/jmap_request.dart';
 import 'package:jmap_dart_client/jmap/mail/extensions/public_asset/public_asset.dart';
 import 'package:jmap_dart_client/jmap/mail/extensions/public_asset/set/set_public_asset_method.dart';
 import 'package:jmap_dart_client/jmap/mail/extensions/public_asset/set/set_public_asset_response.dart';
+import 'package:test/test.dart';
+
+import '../../../../../http_mocks.dart';
 
 void main() {
-  final baseOption = BaseOptions(method: 'POST');
-  final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-  final dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
-  final dioAdapterHeaders = {"accept": "application/json;jmapVersion=rfc-8621"};
-  final httpClient = DioMockEndpointHttpClient(dio);
-  final processingInvocation = ProcessingInvocation();
-  final requestBuilder = JmapRequestBuilder(httpClient, processingInvocation);
   final accountId = AccountId(Id('123abc'));
   final identityId = IdentityId(Id('some-identity-id'));
   final methodCallId = MethodCallId('c0');
@@ -45,13 +37,8 @@ void main() {
       );
       final method = SetPublicAssetMethod(accountId)
         ..addCreate(createId, createObject);
-      final invocation = requestBuilder.invocation(
-        method,
-        methodCallId: methodCallId,
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": "abcdefghij",
           "methodResponses": [
             [
@@ -64,8 +51,8 @@ void main() {
               methodCallId.value,
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": method.requiredCapabilities
               .map((capability) => capability.value.toString())
               .toList(),
@@ -80,7 +67,16 @@ void main() {
             ],
           ],
         },
-        headers: dioAdapterHeaders,
+      );
+      final httpClient = MockEndpointHttpClient(httpMockClient);
+      final processingInvocation = ProcessingInvocation();
+      final requestBuilder = JmapRequestBuilder(
+        httpClient,
+        processingInvocation,
+      );
+      final invocation = requestBuilder.invocation(
+        method,
+        methodCallId: methodCallId,
       );
 
       // act
@@ -108,13 +104,8 @@ void main() {
       );
       final method = SetPublicAssetMethod(accountId)
         ..addCreate(createId, createObject);
-      final invocation = requestBuilder.invocation(
-        method,
-        methodCallId: methodCallId,
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": "abcdefghij",
           "methodResponses": [
             [
@@ -133,8 +124,8 @@ void main() {
               methodCallId.value,
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": method.requiredCapabilities
               .map((capability) => capability.value.toString())
               .toList(),
@@ -149,7 +140,16 @@ void main() {
             ],
           ],
         },
-        headers: dioAdapterHeaders,
+      );
+      final httpClient = MockEndpointHttpClient(httpMockClient);
+      final processingInvocation = ProcessingInvocation();
+      final requestBuilder = JmapRequestBuilder(
+        httpClient,
+        processingInvocation,
+      );
+      final invocation = requestBuilder.invocation(
+        method,
+        methodCallId: methodCallId,
       );
 
       // act
@@ -174,13 +174,8 @@ void main() {
       // arrange
       final method = SetPublicAssetMethod(accountId)
         ..addDestroy({publicAsset.id!});
-      final invocation = requestBuilder.invocation(
-        method,
-        methodCallId: methodCallId,
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": "abcdefghij",
           "methodResponses": [
             [
@@ -193,8 +188,8 @@ void main() {
               methodCallId.value,
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": method.requiredCapabilities
               .map((capability) => capability.value.toString())
               .toList(),
@@ -209,7 +204,16 @@ void main() {
             ],
           ],
         },
-        headers: dioAdapterHeaders,
+      );
+      final httpClient = MockEndpointHttpClient(httpMockClient);
+      final processingInvocation = ProcessingInvocation();
+      final requestBuilder = JmapRequestBuilder(
+        httpClient,
+        processingInvocation,
+      );
+      final invocation = requestBuilder.invocation(
+        method,
+        methodCallId: methodCallId,
       );
 
       // act
@@ -232,13 +236,8 @@ void main() {
       String errorDescription(String? id) => 'Invalid UUID string: $id';
       final method = SetPublicAssetMethod(accountId)
         ..addDestroy({publicAsset.id!});
-      final invocation = requestBuilder.invocation(
-        method,
-        methodCallId: methodCallId,
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": "abcdefghij",
           "methodResponses": [
             [
@@ -257,8 +256,8 @@ void main() {
               methodCallId.value,
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": method.requiredCapabilities
               .map((capability) => capability.value.toString())
               .toList(),
@@ -273,7 +272,16 @@ void main() {
             ],
           ],
         },
-        headers: dioAdapterHeaders,
+      );
+      final httpClient = MockEndpointHttpClient(httpMockClient);
+      final processingInvocation = ProcessingInvocation();
+      final requestBuilder = JmapRequestBuilder(
+        httpClient,
+        processingInvocation,
+      );
+      final invocation = requestBuilder.invocation(
+        method,
+        methodCallId: methodCallId,
       );
 
       // act
@@ -305,13 +313,8 @@ void main() {
       });
       final method = SetPublicAssetMethod(accountId)
         ..addUpdates({publicAsset.id!: updateObject});
-      final invocation = requestBuilder.invocation(
-        method,
-        methodCallId: methodCallId,
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": "abcdefghij",
           "methodResponses": [
             [
@@ -324,8 +327,8 @@ void main() {
               methodCallId.value,
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": method.requiredCapabilities
               .map((capability) => capability.value.toString())
               .toList(),
@@ -340,7 +343,16 @@ void main() {
             ],
           ],
         },
-        headers: dioAdapterHeaders,
+      );
+      final httpClient = MockEndpointHttpClient(httpMockClient);
+      final processingInvocation = ProcessingInvocation();
+      final requestBuilder = JmapRequestBuilder(
+        httpClient,
+        processingInvocation,
+      );
+      final invocation = requestBuilder.invocation(
+        method,
+        methodCallId: methodCallId,
       );
 
       // act
@@ -367,13 +379,8 @@ void main() {
       });
       final method = SetPublicAssetMethod(accountId)
         ..addUpdates({publicAsset.id!: updateObject});
-      final invocation = requestBuilder.invocation(
-        method,
-        methodCallId: methodCallId,
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": "abcdefghij",
           "methodResponses": [
             [
@@ -392,8 +399,8 @@ void main() {
               methodCallId.value,
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": method.requiredCapabilities
               .map((capability) => capability.value.toString())
               .toList(),
@@ -408,7 +415,16 @@ void main() {
             ],
           ],
         },
-        headers: dioAdapterHeaders,
+      );
+      final httpClient = MockEndpointHttpClient(httpMockClient);
+      final processingInvocation = ProcessingInvocation();
+      final requestBuilder = JmapRequestBuilder(
+        httpClient,
+        processingInvocation,
+      );
+      final invocation = requestBuilder.invocation(
+        method,
+        methodCallId: methodCallId,
       );
 
       // act

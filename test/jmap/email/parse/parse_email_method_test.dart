@@ -1,7 +1,3 @@
-import 'package:dio/dio.dart';
-import 'package:test/test.dart';
-import 'package:http_mock_adapter/http_mock_adapter.dart';
-import '../../../dio_mocks.dart';
 import 'package:jmap_dart_client/jmap/account_id.dart';
 import 'package:jmap_dart_client/jmap/core/id.dart';
 import 'package:jmap_dart_client/jmap/core/properties/properties.dart';
@@ -11,6 +7,9 @@ import 'package:jmap_dart_client/jmap/mail/email/email.dart';
 import 'package:jmap_dart_client/jmap/mail/email/email_address.dart';
 import 'package:jmap_dart_client/jmap/mail/email/parse/parse_email_method.dart';
 import 'package:jmap_dart_client/jmap/mail/email/parse/parse_email_response.dart';
+import 'package:test/test.dart';
+
+import '../../../http_mocks.dart';
 
 void main() {
   group('Test to json parse email method', () {
@@ -50,15 +49,8 @@ void main() {
     final blobIdNotParsable = Id('4f9f65ab-dc7b-4146-850f-6e4881093965');
 
     test('ParseEmailMethod parse should succeed', () async {
-      final baseOption = BaseOptions(method: 'POST');
-      final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-      final dioAdapter = DioAdapter(
-        dio: dio,
-        matcher: const UrlRequestMatcher(),
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
           "methodResponses": [
             [
@@ -82,8 +74,8 @@ void main() {
               "c0",
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail"],
           "methodCalls": [
             [
@@ -96,11 +88,10 @@ void main() {
             ],
           ],
         },
-        headers: {"accept": "application/json;jmapVersion=rfc-8621"},
       );
 
       final parseEmailMethod = ParseEmailMethod(accountId, {blobId1});
-      final httpClient = DioMockEndpointHttpClient(dio);
+      final httpClient = MockEndpointHttpClient(httpMockClient);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),
@@ -120,15 +111,8 @@ void main() {
     });
 
     test('ParseEmailMethod parse should support several blobIds', () async {
-      final baseOption = BaseOptions(method: 'POST');
-      final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-      final dioAdapter = DioAdapter(
-        dio: dio,
-        matcher: const UrlRequestMatcher(),
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
           "methodResponses": [
             [
@@ -163,8 +147,8 @@ void main() {
               "c0",
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail"],
           "methodCalls": [
             [
@@ -177,11 +161,10 @@ void main() {
             ],
           ],
         },
-        headers: {"accept": "application/json;jmapVersion=rfc-8621"},
       );
 
       final parseEmailMethod = ParseEmailMethod(accountId, {blobId1, blobId2});
-      final httpClient = DioMockEndpointHttpClient(dio);
+      final httpClient = MockEndpointHttpClient(httpMockClient);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),
@@ -209,15 +192,8 @@ void main() {
     test(
       'ParseEmailMethod parse should return not found result when blobId does not exist',
       () async {
-        final baseOption = BaseOptions(method: 'POST');
-        final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-        final dioAdapter = DioAdapter(
-          dio: dio,
-          matcher: const UrlRequestMatcher(),
-        );
-        dioAdapter.onPost(
-          '',
-          (server) => server.reply(200, {
+        final httpMockClient = HttpMockResponseClient(
+          responseBody: {
             "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
             "methodResponses": [
               [
@@ -229,8 +205,8 @@ void main() {
                 "c0",
               ],
             ],
-          }),
-          data: {
+          },
+          expectedBody: {
             "using": ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail"],
             "methodCalls": [
               [
@@ -243,11 +219,10 @@ void main() {
               ],
             ],
           },
-          headers: {"accept": "application/json;jmapVersion=rfc-8621"},
         );
 
         final parseEmailMethod = ParseEmailMethod(accountId, {blobIdNotFound});
-        final httpClient = DioMockEndpointHttpClient(dio);
+        final httpClient = MockEndpointHttpClient(httpMockClient);
         final requestBuilder = JmapRequestBuilder(
           httpClient,
           ProcessingInvocation(),
@@ -269,15 +244,8 @@ void main() {
     );
 
     test('ParseEmailMethod parse should return not parsable', () async {
-      final baseOption = BaseOptions(method: 'POST');
-      final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-      final dioAdapter = DioAdapter(
-        dio: dio,
-        matcher: const UrlRequestMatcher(),
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
           "methodResponses": [
             [
@@ -289,8 +257,8 @@ void main() {
               "c0",
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail"],
           "methodCalls": [
             [
@@ -303,11 +271,10 @@ void main() {
             ],
           ],
         },
-        headers: {"accept": "application/json;jmapVersion=rfc-8621"},
       );
 
       final parseEmailMethod = ParseEmailMethod(accountId, {blobIdNotParsable});
-      final httpClient = DioMockEndpointHttpClient(dio);
+      final httpClient = MockEndpointHttpClient(httpMockClient);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),
@@ -327,15 +294,8 @@ void main() {
     });
 
     test('ParseEmailMethod parse with properties should succeed', () async {
-      final baseOption = BaseOptions(method: 'POST');
-      final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-      final dioAdapter = DioAdapter(
-        dio: dio,
-        matcher: const UrlRequestMatcher(),
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
           "methodResponses": [
             [
@@ -353,8 +313,8 @@ void main() {
               "c0",
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail"],
           "methodCalls": [
             [
@@ -368,12 +328,11 @@ void main() {
             ],
           ],
         },
-        headers: {"accept": "application/json;jmapVersion=rfc-8621"},
       );
 
       final parseEmailMethod = ParseEmailMethod(accountId, {blobId3})
         ..addProperties(Properties({"id", "preview", "subject"}));
-      final httpClient = DioMockEndpointHttpClient(dio);
+      final httpClient = MockEndpointHttpClient(httpMockClient);
       final requestBuilder = JmapRequestBuilder(
         httpClient,
         ProcessingInvocation(),

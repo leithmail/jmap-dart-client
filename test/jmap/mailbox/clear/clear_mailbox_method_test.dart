@@ -1,7 +1,3 @@
-import 'package:dio/dio.dart';
-import 'package:test/test.dart';
-import 'package:http_mock_adapter/http_mock_adapter.dart';
-import '../../../dio_mocks.dart';
 import 'package:jmap_dart_client/jmap/account_id.dart';
 import 'package:jmap_dart_client/jmap/core/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/jmap/core/error/method/error_method_response.dart';
@@ -14,25 +10,15 @@ import 'package:jmap_dart_client/jmap/jmap_request.dart';
 import 'package:jmap_dart_client/jmap/mail/mailbox/clear/clear_mailbox_method.dart';
 import 'package:jmap_dart_client/jmap/mail/mailbox/clear/clear_mailbox_response.dart';
 import 'package:jmap_dart_client/jmap/mail/mailbox/mailbox.dart';
+import 'package:test/test.dart';
+
+import '../../../http_mocks.dart';
 
 void main() {
-  const Map<String, String> dioAdapterHeaders = {
-    'accept': 'application/json;jmapVersion=rfc-8621',
-  };
-  const String baseUrl = 'http://domain.com/jmap';
-
-  late final Dio dio;
-  late final DioAdapter dioAdapter;
-
   final methodCallId = MethodCallId('c0');
   final bobAccountId = AccountId(Id('bob'));
   final bobTrashId = MailboxId(Id('trash-bob'));
   final sessionState = State('newState');
-
-  setUpAll(() {
-    dio = Dio(BaseOptions(method: 'POST'))..options.baseUrl = baseUrl;
-    dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
-  });
 
   group('clear mailbox method test:', () {
     test('should fail when wrong account id', () async {
@@ -42,17 +28,8 @@ void main() {
         unknownAccountId,
         bobTrashId,
       );
-      final requestBuilder = JmapRequestBuilder(
-        DioMockEndpointHttpClient(dio),
-        ProcessingInvocation(),
-      );
-      final invocation = requestBuilder.invocation(
-        clearMailboxMethod,
-        methodCallId: methodCallId,
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": sessionState.value,
           "methodResponses": [
             [
@@ -61,8 +38,8 @@ void main() {
               methodCallId.value,
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": clearMailboxMethod.requiredCapabilities
               .map((capability) => capability.value.toString())
               .toList(),
@@ -77,7 +54,14 @@ void main() {
             ],
           ],
         },
-        headers: dioAdapterHeaders,
+      );
+      final requestBuilder = JmapRequestBuilder(
+        MockEndpointHttpClient(httpMockClient),
+        ProcessingInvocation(),
+      );
+      final invocation = requestBuilder.invocation(
+        clearMailboxMethod,
+        methodCallId: methodCallId,
       );
 
       // Act
@@ -104,17 +88,8 @@ void main() {
         CapabilityIdentifier.jmapMail,
       };
       final clearMailboxMethod = ClearMailboxMethod(bobAccountId, bobTrashId);
-      final requestBuilder = JmapRequestBuilder(
-        DioMockEndpointHttpClient(dio),
-        ProcessingInvocation(),
-      );
-      final invocation = requestBuilder.invocation(
-        clearMailboxMethod,
-        methodCallId: methodCallId,
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": sessionState.value,
           "methodResponses": [
             [
@@ -127,8 +102,8 @@ void main() {
               methodCallId.value,
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": listCapabilitiesUsed
               .map((capability) => capability.value.toString())
               .toList(),
@@ -143,7 +118,14 @@ void main() {
             ],
           ],
         },
-        headers: dioAdapterHeaders,
+      );
+      final requestBuilder = JmapRequestBuilder(
+        MockEndpointHttpClient(httpMockClient),
+        ProcessingInvocation(),
+      );
+      final invocation = requestBuilder.invocation(
+        clearMailboxMethod,
+        methodCallId: methodCallId,
       );
 
       // Act
@@ -172,17 +154,8 @@ void main() {
     test('should clear all messages in target mailbox', () async {
       // Arrange
       final clearMailboxMethod = ClearMailboxMethod(bobAccountId, bobTrashId);
-      final requestBuilder = JmapRequestBuilder(
-        DioMockEndpointHttpClient(dio),
-        ProcessingInvocation(),
-      );
-      final invocation = requestBuilder.invocation(
-        clearMailboxMethod,
-        methodCallId: methodCallId,
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": sessionState.value,
           "methodResponses": [
             [
@@ -194,8 +167,8 @@ void main() {
               methodCallId.value,
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": clearMailboxMethod.requiredCapabilities
               .map((capability) => capability.value.toString())
               .toList(),
@@ -210,7 +183,14 @@ void main() {
             ],
           ],
         },
-        headers: dioAdapterHeaders,
+      );
+      final requestBuilder = JmapRequestBuilder(
+        MockEndpointHttpClient(httpMockClient),
+        ProcessingInvocation(),
+      );
+      final invocation = requestBuilder.invocation(
+        clearMailboxMethod,
+        methodCallId: methodCallId,
       );
 
       // Act
@@ -237,17 +217,8 @@ void main() {
         bobAccountId,
         invalidMailboxId,
       );
-      final requestBuilder = JmapRequestBuilder(
-        DioMockEndpointHttpClient(dio),
-        ProcessingInvocation(),
-      );
-      final invocation = requestBuilder.invocation(
-        clearMailboxMethod,
-        methodCallId: methodCallId,
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": sessionState.value,
           "methodResponses": [
             [
@@ -262,8 +233,8 @@ void main() {
               methodCallId.value,
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": clearMailboxMethod.requiredCapabilities
               .map((capability) => capability.value.toString())
               .toList(),
@@ -278,7 +249,14 @@ void main() {
             ],
           ],
         },
-        headers: dioAdapterHeaders,
+      );
+      final requestBuilder = JmapRequestBuilder(
+        MockEndpointHttpClient(httpMockClient),
+        ProcessingInvocation(),
+      );
+      final invocation = requestBuilder.invocation(
+        clearMailboxMethod,
+        methodCallId: methodCallId,
       );
 
       // Act
@@ -306,17 +284,8 @@ void main() {
         bobAccountId,
         notFoundMailboxId,
       );
-      final requestBuilder = JmapRequestBuilder(
-        DioMockEndpointHttpClient(dio),
-        ProcessingInvocation(),
-      );
-      final invocation = requestBuilder.invocation(
-        clearMailboxMethod,
-        methodCallId: methodCallId,
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": sessionState.value,
           "methodResponses": [
             [
@@ -332,8 +301,8 @@ void main() {
               methodCallId.value,
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": clearMailboxMethod.requiredCapabilities
               .map((capability) => capability.value.toString())
               .toList(),
@@ -348,7 +317,14 @@ void main() {
             ],
           ],
         },
-        headers: dioAdapterHeaders,
+      );
+      final requestBuilder = JmapRequestBuilder(
+        MockEndpointHttpClient(httpMockClient),
+        ProcessingInvocation(),
+      );
+      final invocation = requestBuilder.invocation(
+        clearMailboxMethod,
+        methodCallId: methodCallId,
       );
 
       // Act
@@ -376,17 +352,8 @@ void main() {
         'when exceptions are encountered during the deletion', () async {
       // Arrange
       final clearMailboxMethod = ClearMailboxMethod(bobAccountId, bobTrashId);
-      final requestBuilder = JmapRequestBuilder(
-        DioMockEndpointHttpClient(dio),
-        ProcessingInvocation(),
-      );
-      final invocation = requestBuilder.invocation(
-        clearMailboxMethod,
-        methodCallId: methodCallId,
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": sessionState.value,
           "methodResponses": [
             [
@@ -402,8 +369,8 @@ void main() {
               methodCallId.value,
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": clearMailboxMethod.requiredCapabilities
               .map((capability) => capability.value.toString())
               .toList(),
@@ -418,7 +385,14 @@ void main() {
             ],
           ],
         },
-        headers: dioAdapterHeaders,
+      );
+      final requestBuilder = JmapRequestBuilder(
+        MockEndpointHttpClient(httpMockClient),
+        ProcessingInvocation(),
+      );
+      final invocation = requestBuilder.invocation(
+        clearMailboxMethod,
+        methodCallId: methodCallId,
       );
 
       // Act
@@ -450,17 +424,8 @@ void main() {
         bobAccountId,
         teamMailboxId,
       );
-      final requestBuilder = JmapRequestBuilder(
-        DioMockEndpointHttpClient(dio),
-        ProcessingInvocation(),
-      );
-      final invocation = requestBuilder.invocation(
-        clearMailboxMethod,
-        methodCallId: methodCallId,
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": sessionState.value,
           "methodResponses": [
             [
@@ -472,8 +437,8 @@ void main() {
               methodCallId.value,
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": clearMailboxMethod.requiredCapabilitiesSupportTeamMailboxes
               .map((capability) => capability.value.toString())
               .toList(),
@@ -488,7 +453,14 @@ void main() {
             ],
           ],
         },
-        headers: dioAdapterHeaders,
+      );
+      final requestBuilder = JmapRequestBuilder(
+        MockEndpointHttpClient(httpMockClient),
+        ProcessingInvocation(),
+      );
+      final invocation = requestBuilder.invocation(
+        clearMailboxMethod,
+        methodCallId: methodCallId,
       );
 
       // Act
@@ -522,17 +494,8 @@ void main() {
         bobAccountId,
         teamMailboxId,
       );
-      final requestBuilder = JmapRequestBuilder(
-        DioMockEndpointHttpClient(dio),
-        ProcessingInvocation(),
-      );
-      final invocation = requestBuilder.invocation(
-        clearMailboxMethod,
-        methodCallId: methodCallId,
-      );
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": sessionState.value,
           "methodResponses": [
             [
@@ -547,8 +510,8 @@ void main() {
               methodCallId.value,
             ],
           ],
-        }),
-        data: {
+        },
+        expectedBody: {
           "using": listCapabilitiesUsed
               .map((capability) => capability.value.toString())
               .toList(),
@@ -563,7 +526,14 @@ void main() {
             ],
           ],
         },
-        headers: dioAdapterHeaders,
+      );
+      final requestBuilder = JmapRequestBuilder(
+        MockEndpointHttpClient(httpMockClient),
+        ProcessingInvocation(),
+      );
+      final invocation = requestBuilder.invocation(
+        clearMailboxMethod,
+        methodCallId: methodCallId,
       );
 
       // Act

@@ -1,7 +1,3 @@
-import 'package:dio/dio.dart';
-import 'package:test/test.dart';
-import 'package:http_mock_adapter/http_mock_adapter.dart';
-import '../../../../dio_mocks.dart';
 import 'package:jmap_dart_client/jmap/account_id.dart';
 import 'package:jmap_dart_client/jmap/core/error/method/error_method_response.dart';
 import 'package:jmap_dart_client/jmap/core/error/method/exception/error_method_response_exception.dart';
@@ -16,12 +12,11 @@ import 'package:jmap_dart_client/jmap/mail/email/query/query_email_method.dart';
 import 'package:jmap_dart_client/jmap/mail/email/search_snippet/search_snippet.dart';
 import 'package:jmap_dart_client/jmap/mail/email/search_snippet/search_snippet_get_method.dart';
 import 'package:jmap_dart_client/jmap/mail/email/search_snippet/search_snippet_get_response.dart';
+import 'package:test/test.dart';
+
+import '../../../../http_mocks.dart';
 
 void main() {
-  final baseOption = BaseOptions(method: 'POST');
-  final dio = Dio(baseOption)..options.baseUrl = 'http://domain.com/jmap';
-  final dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
-
   final sessionState = State('some-session-state');
   final state = State('some-state');
   final accountId = AccountId(Id('some-account-id'));
@@ -100,25 +95,19 @@ void main() {
         ),
       ];
       final filter = EmailFilterCondition(text: 'some-text');
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(
-          200,
-          generateResponse(
-            foundSearchSnippets: foundSearchSnippets,
-            notFoundEmailIds: [],
-          ),
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: generateResponse(
+          foundSearchSnippets: foundSearchSnippets,
+          notFoundEmailIds: [],
         ),
-        data: generateRequest(
+        expectedBody: generateRequest(
           foundSearchSnippets: foundSearchSnippets,
           notFoundEmailIds: [],
           filter: filter,
         ),
       );
 
-      final DioMockEndpointHttpClient httpClient = DioMockEndpointHttpClient(
-        dio,
-      );
+      final httpClient = MockEndpointHttpClient(httpMockClient);
       final processingInvocation = ProcessingInvocation();
       final jmapRequestBuilder = JmapRequestBuilder(
         httpClient,
@@ -163,25 +152,19 @@ void main() {
       // arrange
       final notFoundEmailIds = [EmailId(Id('some-email-id'))];
       final filter = EmailFilterCondition(text: 'some-text');
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(
-          200,
-          generateResponse(
-            foundSearchSnippets: [],
-            notFoundEmailIds: notFoundEmailIds,
-          ),
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: generateResponse(
+          foundSearchSnippets: [],
+          notFoundEmailIds: notFoundEmailIds,
         ),
-        data: generateRequest(
+        expectedBody: generateRequest(
           foundSearchSnippets: [],
           notFoundEmailIds: notFoundEmailIds,
           filter: filter,
         ),
       );
 
-      final DioMockEndpointHttpClient httpClient = DioMockEndpointHttpClient(
-        dio,
-      );
+      final httpClient = MockEndpointHttpClient(httpMockClient);
       final processingInvocation = ProcessingInvocation();
       final jmapRequestBuilder = JmapRequestBuilder(
         httpClient,
@@ -229,9 +212,8 @@ void main() {
       // arrange
       final notFoundEmailIds = [EmailId(Id('some-email-id'))];
       final filter = EmailFilterCondition(text: 'some-text');
-      dioAdapter.onPost(
-        '',
-        (server) => server.reply(200, {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
           "sessionState": sessionState.value,
           "methodResponses": [
             [
@@ -250,17 +232,15 @@ void main() {
               "c1",
             ],
           ],
-        }),
-        data: generateRequest(
+        },
+        expectedBody: generateRequest(
           foundSearchSnippets: [],
           notFoundEmailIds: notFoundEmailIds,
           filter: filter,
         ),
       );
 
-      final DioMockEndpointHttpClient httpClient = DioMockEndpointHttpClient(
-        dio,
-      );
+      final httpClient = MockEndpointHttpClient(httpMockClient);
       final processingInvocation = ProcessingInvocation();
       final jmapRequestBuilder = JmapRequestBuilder(
         httpClient,
