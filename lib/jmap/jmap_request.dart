@@ -61,8 +61,6 @@ class JmapRequest {
   ResponseObject _extractData(String body) {
     try {
       return ResponseObject.fromJson(jsonDecode(body) as Map<String, dynamic>);
-    } on FormatException catch (e) {
-      throw JmapParseResponseException(message: e.message);
     } catch (e) {
       throw JmapParseResponseException(message: e.toString());
     }

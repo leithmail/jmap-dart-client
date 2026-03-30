@@ -37,8 +37,6 @@ class GetSession {
         jsonDecode(body) as Map<String, dynamic>,
         converter: _capabilitiesConverter,
       );
-    } on FormatException catch (e) {
-      throw JmapParseResponseException(message: e.message);
     } catch (e) {
       throw JmapParseResponseException(message: e.toString());
     }
