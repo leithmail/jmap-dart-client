@@ -39,5 +39,17 @@ void main() {
       expect(result, contains('c1'));
       expect(result, contains('not found'));
     });
+
+    test(
+      'toString with null message contains methodCallId without message',
+      () {
+        final result = JmapParseResponseException(
+          methodCallId: MethodCallId('c2'),
+        ).toString();
+        expect(result, contains('JmapParseResponseException'));
+        expect(result, contains('c2'));
+        expect(result, isNot(contains('message:')));
+      },
+    );
   });
 }
