@@ -1,9 +1,8 @@
+import 'package:jmap_dart_client/api/capabilities_converter.dart';
 import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/src/converters/account_name_converter.dart';
-
-import 'capabilities_converter.dart';
 
 class AccountConverter {
   const AccountConverter();

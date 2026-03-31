@@ -11,10 +11,7 @@ import 'package:jmap_dart_client/entities/capability/submission_capability.dart'
 import 'package:jmap_dart_client/entities/capability/vacation_capability.dart';
 import 'package:jmap_dart_client/entities/capability/web_socket_ticket_capability.dart';
 import 'package:jmap_dart_client/entities/capability/websocket_capability.dart';
-import 'package:meta/meta.dart';
 
-@internal
-/// API is not stable yet, so this class is not intended to be used outside of the library.
 class CapabilitiesConverter {
   static final defaultConverter = CapabilitiesConverter();
 

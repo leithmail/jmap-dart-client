@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 import 'package:http/http.dart' as http;
+import 'package:jmap_dart_client/api/capabilities_converter.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/capability/capability_properties.dart';
 import 'package:jmap_dart_client/entities/core/account.dart';
@@ -11,7 +12,6 @@ import 'package:jmap_dart_client/entities/core/user_name.dart';
 import 'package:jmap_dart_client/errors/exceptions.dart';
 import 'package:jmap_dart_client/src/converters/account_converter.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
-import 'package:jmap_dart_client/src/converters/capabilities_converter.dart';
 import 'package:jmap_dart_client/src/converters/state_converter.dart';
 import 'package:jmap_dart_client/src/converters/user_name_converter.dart';
 
@@ -66,14 +66,18 @@ class Session with EquatableMixin {
     );
   }
 
-  static Future<Session> fetch(http.Client client, Uri url) async {
+  static Future<Session> fetch(
+    http.Client client,
+    Uri url, {
+    CapabilitiesConverter? converter,
+  }) async {
     try {
       final response = await client.get(url);
       if (response.statusCode == 401) throw JmapUnauthorizedException();
       if (response.statusCode >= 400) {
         throw JmapHttpException(response.statusCode);
       }
-      return _extractData(response.body);
+      return _extractData(response.body, converter: converter);
     } on JmapException {
       rethrow;
     } catch (e) {
@@ -81,9 +85,12 @@ class Session with EquatableMixin {
     }
   }
 
-  static Session _extractData(String body) {
+  static Session _extractData(String body, {CapabilitiesConverter? converter}) {
     try {
-      return Session.fromJson(jsonDecode(body) as Map<String, dynamic>);
+      return Session.fromJson(
+        jsonDecode(body) as Map<String, dynamic>,
+        converter: converter,
+      );
     } catch (e) {
       throw JmapParseResponseException(message: e.toString());
     }
