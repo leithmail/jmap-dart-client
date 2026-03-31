@@ -24,24 +24,15 @@ void main() {
       expect(_ConcreteJmapException().message, isNull);
     });
 
-    test('equal when same message', () {
-      expect(
-        _ConcreteJmapException(message: 'err'),
-        equals(_ConcreteJmapException(message: 'err')),
-      );
-    });
-
-    test('not equal when different message', () {
-      expect(
-        _ConcreteJmapException(message: 'a'),
-        isNot(equals(_ConcreteJmapException(message: 'b'))),
-      );
-    });
-
     test('toString contains class name and message', () {
       final result = _ConcreteJmapException(message: 'oops').toString();
       expect(result, contains('_ConcreteJmapException'));
       expect(result, contains('oops'));
+    });
+
+    test('toString with null message only contains class name', () {
+      final result = _ConcreteJmapException().toString();
+      expect(result, equals('_ConcreteJmapException'));
     });
   });
 }

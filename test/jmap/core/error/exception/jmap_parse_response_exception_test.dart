@@ -19,33 +19,6 @@ void main() {
         final exception = JmapParseResponseException(methodCallId: callId);
         expect(exception.methodCallId, equals(callId));
       });
-
-      test('equal when same methodCallId and message', () {
-        final callId = MethodCallId('c1');
-        expect(
-          JmapParseResponseException(
-            methodCallId: callId,
-            message: 'not found',
-          ),
-          equals(
-            JmapParseResponseException(
-              methodCallId: callId,
-              message: 'not found',
-            ),
-          ),
-        );
-      });
-
-      test('not equal when different methodCallId', () {
-        expect(
-          JmapParseResponseException(methodCallId: MethodCallId('c1')),
-          isNot(
-            equals(
-              JmapParseResponseException(methodCallId: MethodCallId('c2')),
-            ),
-          ),
-        );
-      });
     });
 
     group('envelope-level failure (null methodCallId)', () {
@@ -55,20 +28,16 @@ void main() {
           isNull,
         );
       });
-
-      test('equal when both have null methodCallId and same message', () {
-        expect(
-          JmapParseResponseException(message: 'err'),
-          equals(JmapParseResponseException(message: 'err')),
-        );
-      });
     });
 
-    test('toString contains class name', () {
+    test('toString contains class name and methodCallId value', () {
       final result = JmapParseResponseException(
         methodCallId: MethodCallId('c1'),
+        message: 'not found',
       ).toString();
       expect(result, contains('JmapParseResponseException'));
+      expect(result, contains('c1'));
+      expect(result, contains('not found'));
     });
   });
 }

@@ -1,13 +1,10 @@
-import 'package:equatable/equatable.dart';
-
-abstract class JmapException with EquatableMixin implements Exception {
+abstract class JmapException implements Exception {
   final String? message;
 
   JmapException({this.message});
 
   @override
-  List<Object?> get props => [message];
-
-  @override
-  bool? get stringify => true;
+  String toString() {
+    return message == null ? '$runtimeType' : '$runtimeType(message: $message)';
+  }
 }

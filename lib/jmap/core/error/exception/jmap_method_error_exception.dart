@@ -7,5 +7,7 @@ class JmapMethodErrorException extends JmapException {
   JmapMethodErrorException(this.errorResponse) : super();
 
   @override
-  List<Object?> get props => [errorResponse];
+  String toString() {
+    return '$runtimeType(errorResponse: $errorResponse)';
+  }
 }

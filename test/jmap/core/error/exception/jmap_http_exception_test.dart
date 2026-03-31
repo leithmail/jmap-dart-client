@@ -27,21 +27,15 @@ void main() {
       expect(JmapHttpException(404).message, isNull);
     });
 
-    test('equal when same statusCode and message', () {
-      expect(
-        JmapHttpException(500, message: 'err'),
-        equals(JmapHttpException(500, message: 'err')),
-      );
-    });
-
-    test('not equal when different statusCode', () {
-      expect(JmapHttpException(404), isNot(equals(JmapHttpException(500))));
-    });
-
     test('toString contains class name and statusCode', () {
       final result = JmapHttpException(503).toString();
       expect(result, contains('JmapHttpException'));
       expect(result, contains('503'));
+    });
+
+    test('toString contains message when provided', () {
+      final result = JmapHttpException(503, message: 'unavailable').toString();
+      expect(result, contains('unavailable'));
     });
   });
 
@@ -69,23 +63,17 @@ void main() {
       );
     });
 
-    test('equal when same message', () {
-      expect(
-        JmapUnauthorizedException(message: 'expired'),
-        equals(JmapUnauthorizedException(message: 'expired')),
-      );
-    });
-
-    test('not equal when different message', () {
-      expect(
-        JmapUnauthorizedException(message: 'a'),
-        isNot(equals(JmapUnauthorizedException(message: 'b'))),
-      );
-    });
-
     test('toString contains class name', () {
       final result = JmapUnauthorizedException().toString();
       expect(result, contains('JmapUnauthorizedException'));
+      expect(result, contains('401'));
+    });
+
+    test('toString contains message', () {
+      final result = JmapUnauthorizedException(
+        message: 'token expired',
+      ).toString();
+      expect(result, contains('token expired'));
     });
   });
 }

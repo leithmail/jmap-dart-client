@@ -277,7 +277,13 @@ void main() {
           methodInvocation.methodCallId,
           SearchSnippetGetResponse.fromJson,
         ),
-        throwsA(JmapMethodErrorException(UnknownMethodResponse())),
+        throwsA(
+          isA<JmapMethodErrorException>().having(
+            (e) => e.errorResponse,
+            'errorResponse',
+            isA<UnknownMethodResponse>(),
+          ),
+        ),
       );
     });
   });

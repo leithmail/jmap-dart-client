@@ -77,7 +77,13 @@ void main() {
           invocation.methodCallId,
           ClearMailboxResponse.deserialize,
         ),
-        throwsA(JmapMethodErrorException(AccountNotFoundMethodResponse())),
+        throwsA(
+          isA<JmapMethodErrorException>().having(
+            (e) => e.errorResponse,
+            'errorResponse',
+            isA<AccountNotFoundMethodResponse>(),
+          ),
+        ),
       );
     });
 
@@ -141,12 +147,12 @@ void main() {
           ClearMailboxResponse.deserialize,
         ),
         throwsA(
-          JmapMethodErrorException(
-            UnknownMethodResponse(
-              description:
-                  'Missing capability(ies): com:linagora:params:jmap:mailbox:clear',
-            ),
-          ),
+          predicate<JmapMethodErrorException>((e) {
+            final response = e.errorResponse;
+            return response is UnknownMethodResponse &&
+                response.description ==
+                    'Missing capability(ies): com:linagora:params:jmap:mailbox:clear';
+          }, 'JmapMethodErrorException with UnknownMethodResponse description'),
         ),
       );
     });

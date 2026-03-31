@@ -8,5 +8,10 @@ class JmapParseResponseException extends JmapException {
     : super(message: message);
 
   @override
-  List<Object?> get props => [methodCallId, message];
+  String toString() {
+    final methodCallIdText = methodCallId?.value;
+    return message == null
+        ? '$runtimeType(methodCallId: $methodCallIdText)'
+        : '$runtimeType(methodCallId: $methodCallIdText, message: $message)';
+  }
 }

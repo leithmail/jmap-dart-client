@@ -42,34 +42,16 @@ void main() {
       );
     });
 
-    test('equal when same type, detail, and message', () {
-      expect(
-        JmapRequestException(
-          unknownCapability,
-          detail: 'cap not supported',
-          message: 'rejected',
-        ),
-        equals(
-          JmapRequestException(
-            unknownCapability,
-            detail: 'cap not supported',
-            message: 'rejected',
-          ),
-        ),
-      );
-    });
-
-    test('not equal when different type', () {
-      expect(
-        JmapRequestException('urn:ietf:params:jmap:error:notJSON'),
-        isNot(equals(JmapRequestException(unknownCapability))),
-      );
-    });
-
-    test('toString contains class name and type', () {
-      final result = JmapRequestException(unknownCapability).toString();
+    test('toString contains class name and key fields', () {
+      final result = JmapRequestException(
+        unknownCapability,
+        detail: 'capability not supported',
+        message: 'rejected',
+      ).toString();
       expect(result, contains('JmapRequestException'));
       expect(result, contains(unknownCapability));
+      expect(result, contains('capability not supported'));
+      expect(result, contains('rejected'));
     });
   });
 }

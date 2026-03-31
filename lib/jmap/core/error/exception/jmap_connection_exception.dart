@@ -7,5 +7,9 @@ class JmapConnectionException extends JmapException {
     : super(message: message);
 
   @override
-  List<Object?> get props => [cause, message];
+  String toString() {
+    return message == null
+        ? '$runtimeType(cause: $cause)'
+        : '$runtimeType(cause: $cause, message: $message)';
+  }
 }

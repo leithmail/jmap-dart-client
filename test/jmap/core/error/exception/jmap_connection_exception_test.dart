@@ -41,25 +41,19 @@ void main() {
       );
     });
 
-    test('equal when same cause and message', () {
-      const cause = SocketException('refused');
-      expect(
-        JmapConnectionException(cause, message: 'msg'),
-        equals(JmapConnectionException(cause, message: 'msg')),
-      );
-    });
-
-    test('not equal when different cause', () {
-      expect(
-        JmapConnectionException(const SocketException('a')),
-        isNot(equals(JmapConnectionException(const SocketException('b')))),
-      );
-    });
-
     test('toString contains class name and cause', () {
       const cause = SocketException('refused');
       final result = JmapConnectionException(cause).toString();
       expect(result, contains('JmapConnectionException'));
+      expect(result, contains('cause:'));
+    });
+
+    test('toString with message contains message', () {
+      final result = JmapConnectionException(
+        const SocketException('refused'),
+        message: 'could not connect',
+      ).toString();
+      expect(result, contains('could not connect'));
     });
   });
 }

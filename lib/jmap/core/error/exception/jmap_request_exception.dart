@@ -8,5 +8,7 @@ class JmapRequestException extends JmapException {
     : super(message: message);
 
   @override
-  List<Object?> get props => [type, detail, message];
+  String toString() {
+    return '$runtimeType(type: $type, detail: $detail, message: $message)';
+  }
 }

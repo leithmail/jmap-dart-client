@@ -25,32 +25,12 @@ void main() {
       expect(exception.errorResponse, same(response));
     });
 
-    test('equal when same errorResponse', () {
-      final response = ServerFailMethodResponse();
-      expect(
-        JmapMethodErrorException(response),
-        equals(JmapMethodErrorException(response)),
-      );
-    });
-
-    test('not equal when different errorResponse', () {
-      expect(
-        JmapMethodErrorException(ServerFailMethodResponse(description: 'a')),
-        isNot(
-          equals(
-            JmapMethodErrorException(
-              ServerFailMethodResponse(description: 'b'),
-            ),
-          ),
-        ),
-      );
-    });
-
     test('toString contains class name', () {
       final result = JmapMethodErrorException(
         ServerFailMethodResponse(),
       ).toString();
       expect(result, contains('JmapMethodErrorException'));
+      expect(result, contains('errorResponse:'));
     });
   });
 }

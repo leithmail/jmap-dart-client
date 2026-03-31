@@ -7,12 +7,13 @@ class JmapHttpException extends JmapException {
     : super(message: message);
 
   @override
-  List<Object?> get props => [statusCode, message];
+  String toString() {
+    return message == null
+        ? '$runtimeType(statusCode: $statusCode)'
+        : '$runtimeType(statusCode: $statusCode, message: $message)';
+  }
 }
 
 class JmapUnauthorizedException extends JmapHttpException {
   JmapUnauthorizedException({String? message}) : super(401, message: message);
-
-  @override
-  List<Object?> get props => [statusCode, message];
 }
