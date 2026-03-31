@@ -82,19 +82,15 @@ Future<GetMailboxResponse> fetchMailboxes(
 ) async {
   final client = http.Client();
   try {
-    final endpointClient = EndpointHttpClient(client, apiEndpoint);
     final processing = ProcessingInvocation();
-    final requestBuilder = JmapRequestBuilder(endpointClient, processing);
+    final requestBuilder = JmapRequestBuilder(processing);
 
     final getMailboxMethod = GetMailboxMethod(accountId)
       ..addProperties(Properties({'id', 'name', 'role', 'totalEmails'}));
 
     final getMailboxInvocation = requestBuilder.invocation(getMailboxMethod);
 
-    final response = await requestBuilder.build().execute(
-            httpMockClient,
-            MockEndpointHttpClient.endpointUri,
-          );
+    final response = await requestBuilder.build().execute(client, apiEndpoint);
     return response.parse<GetMailboxResponse>(
       getMailboxInvocation.methodCallId,
       GetMailboxResponse.deserialize,
@@ -118,9 +114,8 @@ Future<GetEmailResponse> fetchInboxEmails(
 ) async {
   final client = http.Client();
   try {
-    final endpointClient = EndpointHttpClient(client, apiEndpoint);
     final processing = ProcessingInvocation();
-    final requestBuilder = JmapRequestBuilder(endpointClient, processing);
+    final requestBuilder = JmapRequestBuilder(processing);
 
     final queryEmailMethod = QueryEmailMethod(accountId)
       ..addPosition(0)
@@ -145,10 +140,7 @@ Future<GetEmailResponse> fetchInboxEmails(
 
     final getEmailInvocation = requestBuilder.invocation(getEmailMethod);
 
-    final response = await requestBuilder.build().execute(
-            httpMockClient,
-            MockEndpointHttpClient.endpointUri,
-          );
+    final response = await requestBuilder.build().execute(client, apiEndpoint);
     return response.parse<GetEmailResponse>(
       getEmailInvocation.methodCallId,
       GetEmailResponse.deserialize,
@@ -231,11 +223,12 @@ The library exposes distinct exception types so callers can react precisely:
 - `JmapMethodErrorException`: typed JMAP method-level error from `ResponseObject.parse(...)`.
 
 ```dart
+import 'package:http/http.dart' as http;
 import 'package:jmap_dart_client/jmap_dart_client.dart';
 
-Future<void> runRequest(JmapRequest request) async {
+Future<void> runRequest(RequestObject request, http.Client client, Uri url) async {
   try {
-    final response = await request.execute();
+    final response = await request.execute(client, url);
     // parse(...) may throw JmapMethodErrorException for method-level errors.
     response.parse(
       MethodCallId('c1'),
