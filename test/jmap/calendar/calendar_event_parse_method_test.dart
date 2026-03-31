@@ -245,13 +245,12 @@ void main() {
       final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
         blobId1,
       });
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        ProcessingInvocation(),
-      );
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final invocation = requestBuilder.invocation(calendarEventParseMethod);
-      final response = await requestBuilder.build().execute();
+      final response = await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final calendarEventParsed = response.parse<CalendarEventParseResponse>(
         invocation.methodCallId,
@@ -422,13 +421,12 @@ void main() {
           blobId1,
           blobId2,
         });
-        final httpClient = MockEndpointHttpClient(httpMockClient);
-        final requestBuilder = JmapRequestBuilder(
-          httpClient,
-          ProcessingInvocation(),
-        );
+        final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
         final invocation = requestBuilder.invocation(calendarEventParseMethod);
-        final response = await requestBuilder.build().execute();
+        final response = await requestBuilder.build().execute(
+          httpMockClient,
+          MockEndpointHttpClient.endpointUri,
+        );
 
         final calendarEventParsed = response.parse<CalendarEventParseResponse>(
           invocation.methodCallId,
@@ -492,13 +490,12 @@ void main() {
         final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
           blobIdNotFound,
         });
-        final httpClient = MockEndpointHttpClient(httpMockClient);
-        final requestBuilder = JmapRequestBuilder(
-          httpClient,
-          ProcessingInvocation(),
-        );
+        final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
         final invocation = requestBuilder.invocation(calendarEventParseMethod);
-        final response = await requestBuilder.build().execute();
+        final response = await requestBuilder.build().execute(
+          httpMockClient,
+          MockEndpointHttpClient.endpointUri,
+        );
 
         final calendarEventParsed = response.parse<CalendarEventParseResponse>(
           invocation.methodCallId,
@@ -545,13 +542,12 @@ void main() {
       final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
         blobIdNotParsable,
       });
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        ProcessingInvocation(),
-      );
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final invocation = requestBuilder.invocation(calendarEventParseMethod);
-      final response = await requestBuilder.build().execute();
+      final response = await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final calendarEventParsed = response.parse<CalendarEventParseResponse>(
         invocation.methodCallId,
@@ -608,13 +604,12 @@ void main() {
         final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
           blobId1,
         })..addProperties(Properties({"uid", "title", "description"}));
-        final httpClient = MockEndpointHttpClient(httpMockClient);
-        final requestBuilder = JmapRequestBuilder(
-          httpClient,
-          ProcessingInvocation(),
-        );
+        final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
         final invocation = requestBuilder.invocation(calendarEventParseMethod);
-        final response = await requestBuilder.build().execute();
+        final response = await requestBuilder.build().execute(
+          httpMockClient,
+          MockEndpointHttpClient.endpointUri,
+        );
 
         final calendarEventParsed = response.parse<CalendarEventParseResponse>(
           invocation.methodCallId,

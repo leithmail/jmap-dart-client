@@ -57,17 +57,17 @@ void main() {
           ],
         },
       );
-      final requestBuilder = JmapRequestBuilder(
-        MockEndpointHttpClient(httpMockClient),
-        ProcessingInvocation(),
-      );
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final invocation = requestBuilder.invocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
       );
 
       // Act
-      final responseObject = await requestBuilder.build().execute();
+      final responseObject = await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       // Assert
       expect(
@@ -125,10 +125,7 @@ void main() {
           ],
         },
       );
-      final requestBuilder = JmapRequestBuilder(
-        MockEndpointHttpClient(httpMockClient),
-        ProcessingInvocation(),
-      );
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final invocation = requestBuilder.invocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
@@ -137,9 +134,10 @@ void main() {
 
       // Act
       final responseObject =
-          await (requestBuilder..usings(listCapabilitiesUsed))
-              .build()
-              .execute();
+          await (requestBuilder..usings(listCapabilitiesUsed)).build().execute(
+            httpMockClient,
+            MockEndpointHttpClient.endpointUri,
+          );
 
       // Assert
       expect(
@@ -193,17 +191,17 @@ void main() {
           ],
         },
       );
-      final requestBuilder = JmapRequestBuilder(
-        MockEndpointHttpClient(httpMockClient),
-        ProcessingInvocation(),
-      );
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final invocation = requestBuilder.invocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
       );
 
       // Act
-      final responseObject = await requestBuilder.build().execute();
+      final responseObject = await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,
@@ -257,17 +255,17 @@ void main() {
           ],
         },
       );
-      final requestBuilder = JmapRequestBuilder(
-        MockEndpointHttpClient(httpMockClient),
-        ProcessingInvocation(),
-      );
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final invocation = requestBuilder.invocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
       );
 
       // Act
-      final responseObject = await requestBuilder.build().execute();
+      final responseObject = await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,
@@ -323,17 +321,17 @@ void main() {
           ],
         },
       );
-      final requestBuilder = JmapRequestBuilder(
-        MockEndpointHttpClient(httpMockClient),
-        ProcessingInvocation(),
-      );
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final invocation = requestBuilder.invocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
       );
 
       // Act
-      final responseObject = await requestBuilder.build().execute();
+      final responseObject = await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,
@@ -389,17 +387,17 @@ void main() {
           ],
         },
       );
-      final requestBuilder = JmapRequestBuilder(
-        MockEndpointHttpClient(httpMockClient),
-        ProcessingInvocation(),
-      );
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final invocation = requestBuilder.invocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
       );
 
       // Act
-      final responseObject = await requestBuilder.build().execute();
+      final responseObject = await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,
@@ -455,10 +453,7 @@ void main() {
           ],
         },
       );
-      final requestBuilder = JmapRequestBuilder(
-        MockEndpointHttpClient(httpMockClient),
-        ProcessingInvocation(),
-      );
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final invocation = requestBuilder.invocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
@@ -470,7 +465,7 @@ void main() {
                 clearMailboxMethod.requiredCapabilitiesSupportTeamMailboxes,
               ))
               .build()
-              .execute();
+              .execute(httpMockClient, MockEndpointHttpClient.endpointUri);
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,
@@ -530,10 +525,7 @@ void main() {
           ],
         },
       );
-      final requestBuilder = JmapRequestBuilder(
-        MockEndpointHttpClient(httpMockClient),
-        ProcessingInvocation(),
-      );
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final invocation = requestBuilder.invocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
@@ -541,9 +533,10 @@ void main() {
 
       // Act
       final responseObject =
-          await (requestBuilder..usings(listCapabilitiesUsed))
-              .build()
-              .execute();
+          await (requestBuilder..usings(listCapabilitiesUsed)).build().execute(
+            httpMockClient,
+            MockEndpointHttpClient.endpointUri,
+          );
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,

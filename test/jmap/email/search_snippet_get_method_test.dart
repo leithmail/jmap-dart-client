@@ -107,12 +107,8 @@ void main() {
         ),
       );
 
-      final httpClient = MockEndpointHttpClient(httpMockClient);
       final processingInvocation = ProcessingInvocation();
-      final jmapRequestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+      final jmapRequestBuilder = JmapRequestBuilder(processingInvocation);
 
       final emailQueryMethod = QueryEmailMethod(accountId)..filter = filter;
       final emailQueryMethodInvocation = jmapRequestBuilder.invocation(
@@ -132,7 +128,10 @@ void main() {
       );
 
       // act
-      final result = await jmapRequestBuilder.build().execute();
+      final result = await jmapRequestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final searchSnippetGetResponse = result.parse<SearchSnippetGetResponse>(
         searchSnippetGetMethodInvocation.methodCallId,
@@ -160,12 +159,8 @@ void main() {
         ),
       );
 
-      final httpClient = MockEndpointHttpClient(httpMockClient);
       final processingInvocation = ProcessingInvocation();
-      final jmapRequestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+      final jmapRequestBuilder = JmapRequestBuilder(processingInvocation);
 
       final emailQueryMethod = QueryEmailMethod(accountId)..filter = filter;
       final emailQueryMethodInvocation = jmapRequestBuilder.invocation(
@@ -185,7 +180,10 @@ void main() {
       );
 
       // act
-      final result = await jmapRequestBuilder.build().execute();
+      final result = await jmapRequestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final searchSnippetGetResponse = result.parse<SearchSnippetGetResponse>(
         methodInvocation.methodCallId,
@@ -232,12 +230,8 @@ void main() {
         ),
       );
 
-      final httpClient = MockEndpointHttpClient(httpMockClient);
       final processingInvocation = ProcessingInvocation();
-      final jmapRequestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+      final jmapRequestBuilder = JmapRequestBuilder(processingInvocation);
 
       final emailQueryMethod = QueryEmailMethod(accountId)..filter = filter;
       final emailQueryMethodInvocation = jmapRequestBuilder.invocation(
@@ -257,7 +251,10 @@ void main() {
       );
 
       // act
-      final result = await jmapRequestBuilder.build().execute();
+      final result = await jmapRequestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       // assert
       expect(

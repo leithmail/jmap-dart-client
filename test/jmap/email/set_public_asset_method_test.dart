@@ -70,20 +70,20 @@ void main() {
           ],
         },
       );
-      final httpClient = MockEndpointHttpClient(httpMockClient);
+
       final processingInvocation = ProcessingInvocation();
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+      final requestBuilder = JmapRequestBuilder(processingInvocation);
       final invocation = requestBuilder.invocation(
         method,
         methodCallId: methodCallId,
       );
 
       // act
-      final response = (await requestBuilder.build().execute())
-          .parse<SetPublicAssetResponse>(
+      final response =
+          (await requestBuilder.build().execute(
+            httpMockClient,
+            MockEndpointHttpClient.endpointUri,
+          )).parse<SetPublicAssetResponse>(
             invocation.methodCallId,
             SetPublicAssetResponse.deserialize,
           );
@@ -142,20 +142,20 @@ void main() {
           ],
         },
       );
-      final httpClient = MockEndpointHttpClient(httpMockClient);
+
       final processingInvocation = ProcessingInvocation();
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+      final requestBuilder = JmapRequestBuilder(processingInvocation);
       final invocation = requestBuilder.invocation(
         method,
         methodCallId: methodCallId,
       );
 
       // act
-      final response = (await requestBuilder.build().execute())
-          .parse<SetPublicAssetResponse>(
+      final response =
+          (await requestBuilder.build().execute(
+            httpMockClient,
+            MockEndpointHttpClient.endpointUri,
+          )).parse<SetPublicAssetResponse>(
             invocation.methodCallId,
             SetPublicAssetResponse.deserialize,
           );
@@ -205,20 +205,20 @@ void main() {
           ],
         },
       );
-      final httpClient = MockEndpointHttpClient(httpMockClient);
+
       final processingInvocation = ProcessingInvocation();
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+      final requestBuilder = JmapRequestBuilder(processingInvocation);
       final invocation = requestBuilder.invocation(
         method,
         methodCallId: methodCallId,
       );
 
       // act
-      final response = (await requestBuilder.build().execute())
-          .parse<SetPublicAssetResponse>(
+      final response =
+          (await requestBuilder.build().execute(
+            httpMockClient,
+            MockEndpointHttpClient.endpointUri,
+          )).parse<SetPublicAssetResponse>(
             invocation.methodCallId,
             SetPublicAssetResponse.deserialize,
           );
@@ -272,20 +272,20 @@ void main() {
           ],
         },
       );
-      final httpClient = MockEndpointHttpClient(httpMockClient);
+
       final processingInvocation = ProcessingInvocation();
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+      final requestBuilder = JmapRequestBuilder(processingInvocation);
       final invocation = requestBuilder.invocation(
         method,
         methodCallId: methodCallId,
       );
 
       // act
-      final response = (await requestBuilder.build().execute())
-          .parse<SetPublicAssetResponse>(
+      final response =
+          (await requestBuilder.build().execute(
+            httpMockClient,
+            MockEndpointHttpClient.endpointUri,
+          )).parse<SetPublicAssetResponse>(
             invocation.methodCallId,
             SetPublicAssetResponse.deserialize,
           );
@@ -342,20 +342,20 @@ void main() {
           ],
         },
       );
-      final httpClient = MockEndpointHttpClient(httpMockClient);
+
       final processingInvocation = ProcessingInvocation();
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+      final requestBuilder = JmapRequestBuilder(processingInvocation);
       final invocation = requestBuilder.invocation(
         method,
         methodCallId: methodCallId,
       );
 
       // act
-      final response = (await requestBuilder.build().execute())
-          .parse<SetPublicAssetResponse>(
+      final response =
+          (await requestBuilder.build().execute(
+            httpMockClient,
+            MockEndpointHttpClient.endpointUri,
+          )).parse<SetPublicAssetResponse>(
             invocation.methodCallId,
             SetPublicAssetResponse.deserialize,
           );
@@ -413,20 +413,20 @@ void main() {
           ],
         },
       );
-      final httpClient = MockEndpointHttpClient(httpMockClient);
+
       final processingInvocation = ProcessingInvocation();
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+      final requestBuilder = JmapRequestBuilder(processingInvocation);
       final invocation = requestBuilder.invocation(
         method,
         methodCallId: methodCallId,
       );
 
       // act
-      final response = (await requestBuilder.build().execute())
-          .parse<SetPublicAssetResponse>(
+      final response =
+          (await requestBuilder.build().execute(
+            httpMockClient,
+            MockEndpointHttpClient.endpointUri,
+          )).parse<SetPublicAssetResponse>(
             invocation.methodCallId,
             SetPublicAssetResponse.deserialize,
           );

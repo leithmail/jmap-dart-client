@@ -65,11 +65,10 @@ class JmapRequest {
 }
 
 class JmapRequestBuilder {
-  final EndpointHttpClient _httpClient;
   final ProcessingInvocation _processingInvocation;
   final SetBuilder<CapabilityIdentifier> _capabilitiesBuilder = SetBuilder();
 
-  JmapRequestBuilder(this._httpClient, this._processingInvocation);
+  JmapRequestBuilder(this._processingInvocation);
 
   RequestInvocation invocation(
     Method method, {
@@ -93,12 +92,11 @@ class JmapRequestBuilder {
     _capabilitiesBuilder.addAll(capabilityIdentifiers);
   }
 
-  JmapRequest build() {
-    return JmapRequest(
-      _httpClient,
-      _capabilitiesBuilder.build(),
-      _processingInvocation._invocations,
-    );
+  RequestObject build() {
+    return (RequestObject.builder()
+          ..usings(_capabilitiesBuilder.build().asSet())
+          ..methodCalls(_processingInvocation._invocations.values.toList()))
+        .build();
   }
 }
 

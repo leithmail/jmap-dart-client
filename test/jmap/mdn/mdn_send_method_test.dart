@@ -124,13 +124,12 @@ void main() {
             }),
           });
 
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        ProcessingInvocation(),
-      );
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final mdnSendInvocation = requestBuilder.invocation(mdnSendMethod);
-      final response = await requestBuilder.build().execute();
+      final response = await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final mdnSendResponse = response.parse<MDNSendResponse>(
         mdnSendInvocation.methodCallId,

@@ -91,13 +91,13 @@ void main() {
       );
 
       final parseEmailMethod = ParseEmailMethod(accountId, {blobId1});
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        ProcessingInvocation(),
-      );
+
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final invocation = requestBuilder.invocation(parseEmailMethod);
-      final response = await requestBuilder.build().execute();
+      final response = await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final emailParsed = response.parse<ParseEmailResponse>(
         invocation.methodCallId,
@@ -161,13 +161,13 @@ void main() {
       );
 
       final parseEmailMethod = ParseEmailMethod(accountId, {blobId1, blobId2});
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        ProcessingInvocation(),
-      );
+
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final invocation = requestBuilder.invocation(parseEmailMethod);
-      final response = await requestBuilder.build().execute();
+      final response = await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final emailParsed = response.parse<ParseEmailResponse>(
         invocation.methodCallId,
@@ -216,13 +216,13 @@ void main() {
         );
 
         final parseEmailMethod = ParseEmailMethod(accountId, {blobIdNotFound});
-        final httpClient = MockEndpointHttpClient(httpMockClient);
-        final requestBuilder = JmapRequestBuilder(
-          httpClient,
-          ProcessingInvocation(),
-        );
+
+        final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
         final invocation = requestBuilder.invocation(parseEmailMethod);
-        final response = await requestBuilder.build().execute();
+        final response = await requestBuilder.build().execute(
+          httpMockClient,
+          MockEndpointHttpClient.endpointUri,
+        );
 
         final emailParsed = response.parse<ParseEmailResponse>(
           invocation.methodCallId,
@@ -264,13 +264,13 @@ void main() {
       );
 
       final parseEmailMethod = ParseEmailMethod(accountId, {blobIdNotParsable});
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        ProcessingInvocation(),
-      );
+
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final invocation = requestBuilder.invocation(parseEmailMethod);
-      final response = await requestBuilder.build().execute();
+      final response = await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final emailParsed = response.parse<ParseEmailResponse>(
         invocation.methodCallId,
@@ -319,13 +319,13 @@ void main() {
 
       final parseEmailMethod = ParseEmailMethod(accountId, {blobId3})
         ..addProperties(Properties({"id", "preview", "subject"}));
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        ProcessingInvocation(),
-      );
+
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final invocation = requestBuilder.invocation(parseEmailMethod);
-      final response = await requestBuilder.build().execute();
+      final response = await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final emailParsed = response.parse<ParseEmailResponse>(
         invocation.methodCallId,

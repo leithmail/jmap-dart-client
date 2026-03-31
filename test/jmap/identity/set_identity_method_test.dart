@@ -82,15 +82,14 @@ void main() {
             ),
           );
 
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        ProcessingInvocation(),
-      );
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final setIdentityInvocation = requestBuilder.invocation(
         setIdentityMethod,
       );
-      final response = await requestBuilder.build().execute();
+      final response = await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final setIdentityResponse = response.parse<SetIdentityResponse>(
         setIdentityInvocation.methodCallId,

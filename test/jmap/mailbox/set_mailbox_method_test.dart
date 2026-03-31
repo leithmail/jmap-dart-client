@@ -89,13 +89,12 @@ void main() {
             ),
           );
 
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        ProcessingInvocation(),
-      );
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final setMailboxInvocation = requestBuilder.invocation(setMailboxMethod);
-      final response = await requestBuilder.build().execute();
+      final response = await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final setMailboxResponse = response.parse<SetMailboxResponse>(
         setMailboxInvocation.methodCallId,

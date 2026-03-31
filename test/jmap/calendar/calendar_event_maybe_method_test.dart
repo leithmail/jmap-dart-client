@@ -65,20 +65,19 @@ void main() {
         responseBody: constructResponse(method),
         expectedBody: constructData(method),
       );
-      final httpClient = MockEndpointHttpClient(httpMockClient);
       final processingInvocation = ProcessingInvocation();
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+      final requestBuilder = JmapRequestBuilder(processingInvocation);
       final invocation = requestBuilder.invocation(
         method,
         methodCallId: methodCallId,
       );
 
       // act
-      final response = (await requestBuilder.build().execute())
-          .parse<CalendarEventMaybeResponse>(
+      final response =
+          (await requestBuilder.build().execute(
+            httpMockClient,
+            MockEndpointHttpClient.endpointUri,
+          )).parse<CalendarEventMaybeResponse>(
             invocation.methodCallId,
             CalendarEventMaybeResponse.deserialize,
           );

@@ -64,15 +64,14 @@ void main() {
           ),
         );
 
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        ProcessingInvocation(),
-      );
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final setPushSubscriptionInvocation = requestBuilder.invocation(
         setPushSubscriptionMethod,
       );
-      final response = await requestBuilder.build().execute();
+      final response = await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final setPushSubscriptionResponse = response
           .parse<SetPushSubscriptionResponse>(

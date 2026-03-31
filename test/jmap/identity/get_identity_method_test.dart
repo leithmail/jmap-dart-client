@@ -85,12 +85,8 @@ void main() {
         },
       );
 
-      final httpClient = MockEndpointHttpClient(httpMockClient);
       final processingInvocation = ProcessingInvocation();
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+      final requestBuilder = JmapRequestBuilder(processingInvocation);
       final accountId = AccountId(
         Id('3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12'),
       );
@@ -99,7 +95,10 @@ void main() {
       final getIdentityInvocation = requestBuilder.invocation(
         getIdentityMethod,
       );
-      final response = await requestBuilder.build().execute();
+      final response = await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final resultList = response.parse<GetIdentityResponse>(
         getIdentityInvocation.methodCallId,

@@ -99,12 +99,8 @@ void main() {
         },
       );
 
-      final httpClient = MockEndpointHttpClient(httpMockClient);
       final processingInvocation = ProcessingInvocation();
-      final jmapRequestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+      final jmapRequestBuilder = JmapRequestBuilder(processingInvocation);
       final accountId = AccountId(
         Id('871ae8d53c475bffcd0530c2c673a18862a6ab967b1ac1f78c581fd150eb4120'),
       );
@@ -142,7 +138,7 @@ void main() {
                 CapabilityIdentifier.jmapMail,
               }))
               .build()
-              .execute();
+              .execute(httpMockClient, MockEndpointHttpClient.endpointUri);
 
       final resulQuery = result.parse<QueryEmailResponse>(
         queryEmailInvocation.methodCallId,

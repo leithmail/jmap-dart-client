@@ -94,7 +94,7 @@ void main() {
       final accountId = AccountId(
         Id('0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555'),
       );
-      final httpClient = MockEndpointHttpClient(httpMockClient);
+
       final processingInvocation = ProcessingInvocation();
 
       final setVacationMethod = SetVacationMethod(accountId)
@@ -106,17 +106,18 @@ void main() {
           ),
         });
 
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      )..invocation(setVacationMethod);
+      final requestBuilder = JmapRequestBuilder(processingInvocation)
+        ..invocation(setVacationMethod);
 
       final getVacationMethod = GetVacationMethod(accountId);
       final getVacationInvocation = requestBuilder.invocation(
         getVacationMethod,
       );
 
-      final response = await requestBuilder.build().execute();
+      final response = await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      );
 
       final getVacationResponse = response.parse<GetVacationResponse>(
         getVacationInvocation.methodCallId,

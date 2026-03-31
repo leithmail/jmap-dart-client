@@ -148,18 +148,15 @@ void main() {
           ),
         ),
       );
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        ProcessingInvocation(),
-      );
+
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final getMailboxInvocation = requestBuilder.invocation(getMailboxMethod);
       final response =
           await (requestBuilder..usings(
                 getMailboxMethod.requiredCapabilitiesSupportTeamMailboxes,
               ))
               .build()
-              .execute();
+              .execute(httpMockClient, MockEndpointHttpClient.endpointUri);
 
       final getMailboxResponse = response.parse<GetMailboxResponse>(
         getMailboxInvocation.methodCallId,
@@ -235,15 +232,15 @@ void main() {
             ),
           ),
         );
-        final httpClient = MockEndpointHttpClient(httpMockClient);
-        final requestBuilder = JmapRequestBuilder(
-          httpClient,
-          ProcessingInvocation(),
-        );
+
+        final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
         final getMailboxInvocation = requestBuilder.invocation(
           getMailboxMethod,
         );
-        final response = await requestBuilder.build().execute();
+        final response = await requestBuilder.build().execute(
+          httpMockClient,
+          MockEndpointHttpClient.endpointUri,
+        );
 
         final getMailboxResponse = response.parse<GetMailboxResponse>(
           getMailboxInvocation.methodCallId,

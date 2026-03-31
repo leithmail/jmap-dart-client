@@ -91,7 +91,10 @@ Future<GetMailboxResponse> fetchMailboxes(
 
     final getMailboxInvocation = requestBuilder.invocation(getMailboxMethod);
 
-    final response = await requestBuilder.build().execute();
+    final response = await requestBuilder.build().execute(
+            httpMockClient,
+            MockEndpointHttpClient.endpointUri,
+          );
     return response.parse<GetMailboxResponse>(
       getMailboxInvocation.methodCallId,
       GetMailboxResponse.deserialize,
@@ -142,7 +145,10 @@ Future<GetEmailResponse> fetchInboxEmails(
 
     final getEmailInvocation = requestBuilder.invocation(getEmailMethod);
 
-    final response = await requestBuilder.build().execute();
+    final response = await requestBuilder.build().execute(
+            httpMockClient,
+            MockEndpointHttpClient.endpointUri,
+          );
     return response.parse<GetEmailResponse>(
       getEmailInvocation.methodCallId,
       GetEmailResponse.deserialize,
@@ -203,7 +209,10 @@ Future<Session> loadSessionWithDio(Uri sessionEndpoint) async {
 
   try {
     final endpointClient = EndpointHttpClient(dioClient, sessionEndpoint);
-    return await GetSessionBuilder(endpointClient).build().execute();
+    return await GetSessionBuilder(endpointClient).execute(
+            httpMockClient,
+            MockEndpointHttpClient.endpointUri,
+          );
   } finally {
     dioClient.close();
   }

@@ -65,21 +65,18 @@ void main() {
         responseBody: sampleResponse,
         expectedBody: sampleRequest,
       );
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+
+      final requestBuilder = JmapRequestBuilder(processingInvocation);
 
       // act
       final invocation = requestBuilder.invocation(
         getThreadMethod,
         methodCallId: methodCallId,
       );
-      final response = (await requestBuilder.build().execute()).parse(
-        invocation.methodCallId,
-        GetThreadResponse.deserialize,
-      );
+      final response = (await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      )).parse(invocation.methodCallId, GetThreadResponse.deserialize);
 
       // assert
       expect(

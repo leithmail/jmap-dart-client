@@ -75,12 +75,8 @@ void main() {
         responseBody: sampleResponse,
         expectedBody: sampleRequest,
       );
-      final httpClient = MockEndpointHttpClient(httpMockClient);
       final processingInvocation = ProcessingInvocation();
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+      final requestBuilder = JmapRequestBuilder(processingInvocation);
       final invocation = requestBuilder.invocation(
         getCalendarEventAttendanceMethod,
         methodCallId: methodCallId,
@@ -92,7 +88,7 @@ void main() {
                     getCalendarEventAttendanceMethod.requiredCapabilities,
                   ))
                   .build()
-                  .execute())
+                  .execute(httpMockClient, MockEndpointHttpClient.endpointUri))
               .parse<GetCalendarEventAttendanceResponse>(
                 invocation.methodCallId,
                 GetCalendarEventAttendanceResponse.deserialize,
@@ -152,12 +148,8 @@ void main() {
         responseBody: sampleResponse,
         expectedBody: sampleRequest,
       );
-      final httpClient = MockEndpointHttpClient(httpMockClient);
       final processingInvocation = ProcessingInvocation();
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+      final requestBuilder = JmapRequestBuilder(processingInvocation);
       final invocation = requestBuilder.invocation(
         getCalendarEventAttendanceMethod,
         methodCallId: methodCallId,
@@ -169,7 +161,7 @@ void main() {
                     getCalendarEventAttendanceMethod.requiredCapabilities,
                   ))
                   .build()
-                  .execute())
+                  .execute(httpMockClient, MockEndpointHttpClient.endpointUri))
               .parse<GetCalendarEventAttendanceResponse>(
                 invocation.methodCallId,
                 GetCalendarEventAttendanceResponse.deserialize,
@@ -224,19 +216,18 @@ void main() {
         responseBody: sampleResponse,
         expectedBody: sampleRequest,
       );
-      final httpClient = MockEndpointHttpClient(httpMockClient);
       final processingInvocation = ProcessingInvocation();
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+      final requestBuilder = JmapRequestBuilder(processingInvocation);
       final invocation = requestBuilder.invocation(
         getCalendarEventAttendanceMethod,
         methodCallId: methodCallId,
       );
 
       // act
-      final response = (await requestBuilder.build().execute());
+      final response = (await requestBuilder.build().execute(
+        httpMockClient,
+        MockEndpointHttpClient.endpointUri,
+      ));
 
       // assert
       expect(

@@ -88,11 +88,7 @@ void main() {
             ),
           );
 
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        ProcessingInvocation(),
-      );
+      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
       final setIdentityInvocation = requestBuilder.invocation(
         setIdentityMethod,
       );
@@ -101,7 +97,7 @@ void main() {
                 setIdentityMethod.requiredCapabilitiesSupportSortOrder,
               ))
               .build()
-              .execute();
+              .execute(httpMockClient, MockEndpointHttpClient.endpointUri);
 
       final setIdentityResponse = response.parse<SetIdentityResponse>(
         setIdentityInvocation.methodCallId,
@@ -203,11 +199,7 @@ void main() {
                   }),
                 });
 
-          final httpClient = MockEndpointHttpClient(httpMockClient);
-          final requestBuilder = JmapRequestBuilder(
-            httpClient,
-            ProcessingInvocation(),
-          );
+          final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
           final setIdentityInvocation = requestBuilder.invocation(
             setIdentityMethod,
           );
@@ -216,7 +208,7 @@ void main() {
                     setIdentityMethod.requiredCapabilitiesSupportSortOrder,
                   ))
                   .build()
-                  .execute();
+                  .execute(httpMockClient, MockEndpointHttpClient.endpointUri);
 
           final setIdentityResponse = response.parse<SetIdentityResponse>(
             setIdentityInvocation.methodCallId,
