@@ -119,7 +119,7 @@ import 'package:jmap_dart_client/jmap_dart_client.dart';
 Future<GetEmailResponse?> fetchInboxEmails(
   Uri apiEndpoint,
   AccountId accountId,
-  Id inboxId,
+  MailboxId inboxId,
 ) async {
   final client = http.Client();
   try {
@@ -130,9 +130,9 @@ Future<GetEmailResponse?> fetchInboxEmails(
     final queryEmailMethod = QueryEmailMethod(accountId)
       ..addPosition(0)
       ..addLimit(UnsignedInt(20))
-      ..addSorts({
+      ..addSorts([
         EmailComparator(EmailComparatorProperty.sentAt)..setIsAscending(false),
-      })
+      ])
       ..addFilters(EmailFilterCondition(inMailbox: inboxId));
 
     final queryInvocation = requestBuilder.invocation(queryEmailMethod);
@@ -239,7 +239,6 @@ Future<void> runRequest(JmapRequest request) async {
     response.parse(
       MethodCallId('c1'),
       GetMailboxResponse.deserialize,
-      methodName: GetMailboxMethod.methodName,
     );
   } on JmapUnauthorizedException {
     // Ask user to re-authenticate.
