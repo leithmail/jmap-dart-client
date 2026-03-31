@@ -14,14 +14,21 @@ void main() {
     group('401 response', () {
       test('throws JmapUnauthorizedException', () {
         // arrange
-        final client = HttpMockResponseClient(
+        final httpClient = HttpMockResponseClient(
           expectedMethod: 'GET',
-          expectedUrl: '/.well-known/jmap',
+          expectedUrl: 'https://example.org/.well-known/jmap',
           expectedHeaders: {},
           statusCode: 401,
           responseBody: '',
         );
-        final getSession = GetSession(client, CapabilitiesConverter());
+        final httpEndpointClient = MockEndpointHttpClient(
+          httpClient,
+          'https://example.org/.well-known/jmap',
+        );
+        final getSession = GetSession(
+          httpEndpointClient,
+          CapabilitiesConverter(),
+        );
 
         // act + assert
         expect(
@@ -34,14 +41,21 @@ void main() {
     group('500 response', () {
       test('throws JmapHttpException with statusCode 500', () async {
         // arrange
-        final client = HttpMockResponseClient(
+        final httpClient = HttpMockResponseClient(
           expectedMethod: 'GET',
-          expectedUrl: '/.well-known/jmap',
+          expectedUrl: 'https://example.org/.well-known/jmap',
           expectedHeaders: {},
           statusCode: 500,
           responseBody: '',
         );
-        final getSession = GetSession(client, CapabilitiesConverter());
+        final httpEndpointClient = MockEndpointHttpClient(
+          httpClient,
+          'https://example.org/.well-known/jmap',
+        );
+        final getSession = GetSession(
+          httpEndpointClient,
+          CapabilitiesConverter(),
+        );
 
         // act + assert
         await expectLater(
@@ -60,14 +74,21 @@ void main() {
     group('transport failure', () {
       test('throws JmapConnectionException on SocketException', () {
         // arrange
-        final client = HttpMockResponseClient(
+        final httpClient = HttpMockResponseClient(
           expectedMethod: 'GET',
-          expectedUrl: '/.well-known/jmap',
+          expectedUrl: 'https://example.org/.well-known/jmap',
           expectedHeaders: {},
           handler: (_) => throw const SocketException('Connection refused'),
           responseBody: null,
         );
-        final getSession = GetSession(client, CapabilitiesConverter());
+        final httpEndpointClient = MockEndpointHttpClient(
+          httpClient,
+          'https://example.org/.well-known/jmap',
+        );
+        final getSession = GetSession(
+          httpEndpointClient,
+          CapabilitiesConverter(),
+        );
 
         // act + assert
         expect(
@@ -78,14 +99,21 @@ void main() {
 
       test('throws JmapConnectionException on any http.Client exception', () {
         // arrange — simulate a custom exception from a user-injected http.Client
-        final client = HttpMockResponseClient(
+        final httpClient = HttpMockResponseClient(
           expectedMethod: 'GET',
-          expectedUrl: '/.well-known/jmap',
+          expectedUrl: 'https://example.org/.well-known/jmap',
           expectedHeaders: {},
           handler: (_) => throw Exception('custom transport error'),
           responseBody: null,
         );
-        final getSession = GetSession(client, CapabilitiesConverter());
+        final httpEndpointClient = MockEndpointHttpClient(
+          httpClient,
+          'https://example.org/.well-known/jmap',
+        );
+        final getSession = GetSession(
+          httpEndpointClient,
+          CapabilitiesConverter(),
+        );
 
         // act + assert
         expect(
@@ -100,14 +128,21 @@ void main() {
         'throws JmapParseResponseException (not JmapConnectionException) when JSON shape is invalid',
         () {
           // arrange
-          final client = HttpMockResponseClient(
+          final httpClient = HttpMockResponseClient(
             expectedMethod: 'GET',
-            expectedUrl: '/.well-known/jmap',
+            expectedUrl: 'https://example.org/.well-known/jmap',
             expectedHeaders: {},
             statusCode: 200,
             responseBody: {'invalid': true},
           );
-          final getSession = GetSession(client, CapabilitiesConverter());
+          final httpEndpointClient = MockEndpointHttpClient(
+            httpClient,
+            'https://example.org/.well-known/jmap',
+          );
+          final getSession = GetSession(
+            httpEndpointClient,
+            CapabilitiesConverter(),
+          );
 
           // act + assert
           expect(
