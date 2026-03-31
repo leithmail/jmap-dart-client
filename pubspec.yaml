@@ -1,7 +1,7 @@
 name: jmap_dart_client
 description: A JMAP client library to make JMAP method calls and process the responses.
-version: 0.3.6
-homepage: https://github.com/linagora/jmap-dart-client.git
+version: 0.4.0
+homepage: https://github.com/leithmail/jmap-dart-client.git
 
 environment:
   sdk: ^3.8.0
