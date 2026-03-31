@@ -241,13 +241,10 @@ void main() {
         methodName: setEmailInvocation.methodName,
       );
 
-      expect(
-        setEmailResponse?.created?[Id('dab1234')],
-        equals(expectedCreated),
-      );
+      expect(setEmailResponse.created?[Id('dab1234')], equals(expectedCreated));
 
       expect(
-        setEmailUpdateResponse?.updated?[Id(
+        setEmailUpdateResponse.updated?[Id(
           '64469f10-8e15-11ec-984e-e3f8b83572b4',
         )],
         equals(null),
@@ -467,13 +464,10 @@ void main() {
         methodName: setEmailInvocation.methodName,
       );
 
-      expect(
-        setEmailResponse?.created?[Id('dab1234')],
-        equals(expectedCreated),
-      );
+      expect(setEmailResponse.created?[Id('dab1234')], equals(expectedCreated));
 
       expect(
-        setEmailUpdateResponse?.updated?[Id(
+        setEmailUpdateResponse.updated?[Id(
           '64469f10-8e15-11ec-984e-e3f8b83572b4',
         )],
         equals(null),

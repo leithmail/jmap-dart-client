@@ -119,8 +119,8 @@ void main() {
         GetQuotaResponse.deserialize,
       );
 
-      expect(resultList?.list.length, equals(2));
-      expect(resultList?.list, containsAll([expectQuota1, expectQuota2]));
+      expect(resultList.list.length, equals(2));
+      expect(resultList.list, containsAll([expectQuota1, expectQuota2]));
     });
   });
 }

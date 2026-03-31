@@ -106,8 +106,8 @@ void main() {
         GetIdentityResponse.deserialize,
       );
 
-      expect(resultList?.list.length, equals(2));
-      expect(resultList?.list, containsAll({expectIdentity1, expectIdentity2}));
+      expect(resultList.list.length, equals(2));
+      expect(resultList.list, containsAll({expectIdentity1, expectIdentity2}));
     });
   });
 }

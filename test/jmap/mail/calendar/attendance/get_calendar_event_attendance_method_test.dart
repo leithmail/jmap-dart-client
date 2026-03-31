@@ -99,10 +99,10 @@ void main() {
               );
 
       // assert
-      expect(response?.accountId, equals(accountId));
-      expect(response?.list, equals([freeAttendance, busyAttendance]));
-      expect(response?.notFound, equals([notFoundBlobId]));
-      expect(response?.notDone?.isEmpty, isTrue);
+      expect(response.accountId, equals(accountId));
+      expect(response.list, equals([freeAttendance, busyAttendance]));
+      expect(response.notFound, equals([notFoundBlobId]));
+      expect(response.notDone?.isEmpty, isTrue);
     });
 
     test('should return notDone '
@@ -176,11 +176,11 @@ void main() {
               );
 
       // assert
-      expect(response?.accountId, equals(accountId));
-      expect(response?.list.isEmpty, isTrue);
-      expect(response?.notFound?.isEmpty, isTrue);
+      expect(response.accountId, equals(accountId));
+      expect(response.list.isEmpty, isTrue);
+      expect(response.notFound?.isEmpty, isTrue);
       expect(
-        response?.notDone?[blobId],
+        response.notDone?[blobId],
         equals(SetError(SetError.invalidArguments)),
       );
     });

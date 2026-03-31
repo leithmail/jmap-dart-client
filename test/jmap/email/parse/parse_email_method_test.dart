@@ -104,7 +104,7 @@ void main() {
         ParseEmailResponse.deserialize,
       );
 
-      expect(emailParsed!.parsed![blobId1]!.id, equals(expectMail1.id));
+      expect(emailParsed.parsed![blobId1]!.id, equals(expectMail1.id));
     });
 
     test('ParseEmailMethod parse should support several blobIds', () async {
@@ -174,7 +174,7 @@ void main() {
         ParseEmailResponse.deserialize,
       );
 
-      expect(emailParsed!.parsed!.length, 2);
+      expect(emailParsed.parsed!.length, 2);
       expect(
         emailParsed.parsed!.values.map((email) => email.id),
         containsAll([expectMail1.id, expectMail2.id]),
@@ -229,7 +229,7 @@ void main() {
           ParseEmailResponse.deserialize,
         );
 
-        expect(emailParsed!.notFound, contains(blobIdNotFound));
+        expect(emailParsed.notFound, contains(blobIdNotFound));
       },
     );
 
@@ -277,7 +277,7 @@ void main() {
         ParseEmailResponse.deserialize,
       );
 
-      expect(emailParsed!.notParsable, contains(blobIdNotParsable));
+      expect(emailParsed.notParsable, contains(blobIdNotParsable));
     });
 
     test('ParseEmailMethod parse with properties should succeed', () async {
@@ -332,7 +332,7 @@ void main() {
         ParseEmailResponse.deserialize,
       );
 
-      expect(emailParsed!.parsed![blobId3]!.id, equals(expectMail3.id));
+      expect(emailParsed.parsed![blobId3]!.id, equals(expectMail3.id));
     });
   });
 }

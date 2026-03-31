@@ -81,7 +81,7 @@ void main() {
           );
 
       expect(
-        setPushSubscriptionResponse!.created![Id('dab246')]!.id,
+        setPushSubscriptionResponse.created![Id('dab246')]!.id,
         equals(expectedCreated.id),
       );
     });

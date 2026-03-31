@@ -81,8 +81,8 @@ void main() {
         GetVacationResponse.deserialize,
       );
 
-      expect(resultList?.list.length, equals(1));
-      expect(resultList?.list, contains(expectVacation));
+      expect(resultList.list.length, equals(1));
+      expect(resultList.list, contains(expectVacation));
     });
   });
 }

@@ -167,11 +167,8 @@ void main() {
       GetEmailResponse.deserialize,
     );
 
-    if (resultList != null) {
-      resultList.sortEmails(comparator);
-    }
-
-    return resultList?.list;
+    resultList.sortEmails(comparator);
+    return resultList.list;
   }
 
   group('search email test', () {

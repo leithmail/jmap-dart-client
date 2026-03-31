@@ -211,8 +211,8 @@ void main() {
       );
 
       // Assert
-      expect(clearMailboxResponse?.totalDeletedMessagesCount?.value, 2);
-      expect(clearMailboxResponse?.notCleared, isNull);
+      expect(clearMailboxResponse.totalDeletedMessagesCount?.value, 2);
+      expect(clearMailboxResponse.notCleared, isNull);
     });
 
     test('should fail when invalid mailbox id', () async {
@@ -275,9 +275,9 @@ void main() {
       );
 
       // Assert
-      expect(clearMailboxResponse?.totalDeletedMessagesCount, isNull);
-      expect(clearMailboxResponse?.notCleared?.type, SetError.invalidArguments);
-      expect(clearMailboxResponse?.notCleared?.description, 'invalidMailboxId');
+      expect(clearMailboxResponse.totalDeletedMessagesCount, isNull);
+      expect(clearMailboxResponse.notCleared?.type, SetError.invalidArguments);
+      expect(clearMailboxResponse.notCleared?.description, 'invalidMailboxId');
     });
 
     test('should fail when mailbox id not found', () async {
@@ -341,10 +341,10 @@ void main() {
       );
 
       // Assert
-      expect(clearMailboxResponse?.totalDeletedMessagesCount, isNull);
-      expect(clearMailboxResponse?.notCleared?.type, SetError.notFound);
+      expect(clearMailboxResponse.totalDeletedMessagesCount, isNull);
+      expect(clearMailboxResponse.notCleared?.type, SetError.notFound);
       expect(
-        clearMailboxResponse?.notCleared?.description,
+        clearMailboxResponse.notCleared?.description,
         '${notFoundMailboxId.id.value} can not be found',
       );
     });
@@ -407,10 +407,10 @@ void main() {
       );
 
       // Assert
-      expect(clearMailboxResponse?.totalDeletedMessagesCount, isNull);
-      expect(clearMailboxResponse?.notCleared?.type, SetError.serverFail);
+      expect(clearMailboxResponse.totalDeletedMessagesCount, isNull);
+      expect(clearMailboxResponse.notCleared?.type, SetError.serverFail);
       expect(
-        clearMailboxResponse?.notCleared?.description,
+        clearMailboxResponse.notCleared?.description,
         'exception abcxyz happened while clearing ${bobTrashId.id.value}',
       );
     });
@@ -478,8 +478,8 @@ void main() {
       );
 
       // Assert
-      expect(clearMailboxResponse?.totalDeletedMessagesCount?.value, 1);
-      expect(clearMailboxResponse?.notCleared, isNull);
+      expect(clearMailboxResponse.totalDeletedMessagesCount?.value, 1);
+      expect(clearMailboxResponse.notCleared, isNull);
     });
 
     test('should fail to clear team mailbox\n'
@@ -551,10 +551,10 @@ void main() {
       );
 
       // Assert
-      expect(clearMailboxResponse?.totalDeletedMessagesCount, isNull);
-      expect(clearMailboxResponse?.notCleared?.type, SetError.notFound);
+      expect(clearMailboxResponse.totalDeletedMessagesCount, isNull);
+      expect(clearMailboxResponse.notCleared?.type, SetError.notFound);
       expect(
-        clearMailboxResponse?.notCleared?.description,
+        clearMailboxResponse.notCleared?.description,
         '${teamMailboxId.id.value} can not be found',
       );
     });

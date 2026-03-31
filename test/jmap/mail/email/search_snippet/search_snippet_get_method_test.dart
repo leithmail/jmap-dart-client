@@ -140,8 +140,8 @@ void main() {
       );
 
       // assert
-      expect(searchSnippetGetResponse?.list, equals(foundSearchSnippets));
-      expect(searchSnippetGetResponse?.notFound, isEmpty);
+      expect(searchSnippetGetResponse.list, equals(foundSearchSnippets));
+      expect(searchSnippetGetResponse.notFound, isEmpty);
     });
 
     test('should return null if email not found', () async {
@@ -193,9 +193,9 @@ void main() {
       );
 
       // assert
-      expect(searchSnippetGetResponse?.list, isEmpty);
+      expect(searchSnippetGetResponse.list, isEmpty);
       expect(
-        searchSnippetGetResponse?.notFound,
+        searchSnippetGetResponse.notFound,
         equals(notFoundEmailIds.map((emailId) => emailId.id)),
       );
     });

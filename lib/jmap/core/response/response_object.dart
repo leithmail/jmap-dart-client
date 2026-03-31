@@ -29,7 +29,7 @@ class ResponseObject with EquatableMixin {
 
   Map<String, dynamic> toJson() => _$ResponseObjectToJson(this);
 
-  T? parse<T extends MethodResponse>(
+  T parse<T extends MethodResponse>(
     MethodCallId methodCallId,
     T Function(Map<String, dynamic> o) fromJson, {
     MethodName? methodName,

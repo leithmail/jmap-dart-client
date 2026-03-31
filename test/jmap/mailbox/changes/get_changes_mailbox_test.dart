@@ -202,8 +202,8 @@ void main() {
         GetMailboxResponse.deserialize,
       );
 
-      expect(resultUpdated!.list[0], equals(expectedUpdated));
-      expect(resultDestroyed!.list.length, equals(0));
+      expect(resultUpdated.list[0], equals(expectedUpdated));
+      expect(resultDestroyed.list.length, equals(0));
     });
   });
 }

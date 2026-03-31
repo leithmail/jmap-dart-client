@@ -259,7 +259,7 @@ void main() {
       );
 
       expect(
-        calendarEventParsed!.parsed![blobId1],
+        calendarEventParsed.parsed![blobId1],
         containsOnce(expectedCalendarEvent),
       );
     });
@@ -435,7 +435,7 @@ void main() {
           CalendarEventParseResponse.deserialize,
         );
 
-        expect(calendarEventParsed!.parsed!.length, 2);
+        expect(calendarEventParsed.parsed!.length, 2);
         expect(
           calendarEventParsed.parsed!.values,
           containsAll([
@@ -505,7 +505,7 @@ void main() {
           CalendarEventParseResponse.deserialize,
         );
 
-        expect(calendarEventParsed!.notFound, contains(blobIdNotFound));
+        expect(calendarEventParsed.notFound, contains(blobIdNotFound));
       },
     );
 
@@ -558,7 +558,7 @@ void main() {
         CalendarEventParseResponse.deserialize,
       );
 
-      expect(calendarEventParsed!.notParsable, contains(blobIdNotParsable));
+      expect(calendarEventParsed.notParsable, contains(blobIdNotParsable));
     });
 
     test(
@@ -622,7 +622,7 @@ void main() {
         );
 
         expect(
-          calendarEventParsed!.parsed![blobId1],
+          calendarEventParsed.parsed![blobId1],
           containsOnce(expectedCalendarEvent3),
         );
       },

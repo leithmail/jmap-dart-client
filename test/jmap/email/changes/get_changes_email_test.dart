@@ -271,8 +271,8 @@ void main() {
         GetEmailResponse.deserialize,
       );
 
-      expect(resultUpdated!.list[0], equals(expectMail1));
-      expect(resultCreated!.list[0], equals(expectMail2));
+      expect(resultUpdated.list[0], equals(expectMail1));
+      expect(resultCreated.list[0], equals(expectMail2));
       expect(resultCreated.list[1], equals(expectMail3));
     });
   });

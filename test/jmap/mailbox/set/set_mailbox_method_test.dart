@@ -103,7 +103,7 @@ void main() {
       );
 
       expect(
-        setMailboxResponse!.created![Id('dab246')]!.id,
+        setMailboxResponse.created![Id('dab246')]!.id,
         equals(expectedCreated.id),
       );
     });

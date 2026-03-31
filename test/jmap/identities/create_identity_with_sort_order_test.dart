@@ -109,7 +109,7 @@ void main() {
       );
 
       expect(
-        setIdentityResponse!.created![Id('dab246')]!.id,
+        setIdentityResponse.created![Id('dab246')]!.id,
         equals(expectedCreated.id),
       );
     });
@@ -224,7 +224,7 @@ void main() {
           );
 
           expect(
-            setIdentityResponse!.created![Id('xyz123')]!.id,
+            setIdentityResponse.created![Id('xyz123')]!.id,
             equals(expectedCreated.id),
           );
           expect(

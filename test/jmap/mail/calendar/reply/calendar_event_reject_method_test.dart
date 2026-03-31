@@ -2,7 +2,6 @@ import 'package:jmap_dart_client/jmap/account_id.dart';
 import 'package:jmap_dart_client/jmap/core/error/set_error.dart';
 import 'package:jmap_dart_client/jmap/core/id.dart';
 import 'package:jmap_dart_client/jmap/core/method/request/calendar_event_reply_method.dart';
-import 'package:jmap_dart_client/jmap/core/method/response/calendar_event_reply_response.dart';
 import 'package:jmap_dart_client/jmap/core/request/request_invocation.dart';
 import 'package:jmap_dart_client/jmap/jmap_request.dart';
 import 'package:jmap_dart_client/jmap/mail/calendar/properties/event_id.dart';
@@ -79,18 +78,15 @@ void main() {
 
       // act
       final response = (await requestBuilder.build().execute())
-          .parse<CalendarEventReplyResponse>(
+          .parse<CalendarEventRejectResponse>(
             invocation.methodCallId,
             CalendarEventRejectResponse.deserialize,
           );
 
       // assert
-      expect(
-        (response as CalendarEventRejectResponse?)?.rejected,
-        equals([EventId(successBlobId.value)]),
-      );
-      expect(response?.notRejected?.keys.toList(), equals([failureBlobId]));
-      expect(response?.notFound, equals([notFoundBlobId]));
+      expect(response.rejected, equals([EventId(successBlobId.value)]));
+      expect(response.notRejected?.keys.toList(), equals([failureBlobId]));
+      expect(response.notFound, equals([notFoundBlobId]));
     });
   });
 }
