@@ -1,29 +1,29 @@
 import 'dart:io';
 
-import 'package:built_collection/built_collection.dart';
-import 'package:jmap_dart_client/api/jmap_request.dart';
+import 'package:jmap_dart_client/api/request/request_object.dart';
 import 'package:jmap_dart_client/errors/exceptions.dart';
 import 'package:test/test.dart';
 
 import '../helpers/http_mocks.dart';
 
 void main() {
-  group('JmapRequest.execute() exception behaviour', () {
-    JmapRequest buildRequest(HttpMockResponseClient httpMock) {
-      final endpointClient = MockEndpointHttpClient(httpMock);
-      return JmapRequest(endpointClient, BuiltSet(), BuiltMap());
+  group('RequestObject.execute() exception behaviour', () {
+    RequestObject buildRequest() {
+      return RequestObject({}, []);
     }
 
     group('401 response', () {
       test('throws JmapUnauthorizedException', () {
         // arrange
-        final request = buildRequest(
-          HttpMockResponseClient(statusCode: 401, responseBody: ''),
+        final client = HttpMockResponseClient(
+          statusCode: 401,
+          responseBody: '',
         );
+        final request = buildRequest();
 
         // act + assert
         expect(
-          () => request.execute(),
+          () => request.execute(client, MockEndpointHttpClient.endpointUri),
           throwsA(isA<JmapUnauthorizedException>()),
         );
       });
@@ -32,13 +32,15 @@ void main() {
     group('503 response', () {
       test('throws JmapHttpException with statusCode 503', () async {
         // arrange
-        final request = buildRequest(
-          HttpMockResponseClient(statusCode: 503, responseBody: ''),
+        final client = HttpMockResponseClient(
+          statusCode: 503,
+          responseBody: '',
         );
+        final request = buildRequest();
 
         // act + assert
         await expectLater(
-          () => request.execute(),
+          () => request.execute(client, MockEndpointHttpClient.endpointUri),
           throwsA(
             isA<JmapHttpException>().having(
               (e) => e.statusCode,
@@ -53,32 +55,30 @@ void main() {
     group('transport failure', () {
       test('throws JmapConnectionException on SocketException', () {
         // arrange
-        final request = buildRequest(
-          HttpMockResponseClient(
-            handler: (_) => throw const SocketException('Connection refused'),
-            responseBody: null,
-          ),
+        final client = HttpMockResponseClient(
+          handler: (_) => throw const SocketException('Connection refused'),
+          responseBody: null,
         );
+        final request = buildRequest();
 
         // act + assert
         expect(
-          () => request.execute(),
+          () => request.execute(client, MockEndpointHttpClient.endpointUri),
           throwsA(isA<JmapConnectionException>()),
         );
       });
 
       test('throws JmapConnectionException on any http.Client exception', () {
         // arrange — simulate a custom exception from a user-injected http.Client
-        final request = buildRequest(
-          HttpMockResponseClient(
-            handler: (_) => throw Exception('custom transport error'),
-            responseBody: null,
-          ),
+        final client = HttpMockResponseClient(
+          handler: (_) => throw Exception('custom transport error'),
+          responseBody: null,
         );
+        final request = buildRequest();
 
         // act + assert
         expect(
-          () => request.execute(),
+          () => request.execute(client, MockEndpointHttpClient.endpointUri),
           throwsA(isA<JmapConnectionException>()),
         );
       });
@@ -87,16 +87,15 @@ void main() {
     group('malformed response body', () {
       test('throws JmapParseResponseException on non-JSON body', () {
         // arrange
-        final request = buildRequest(
-          HttpMockResponseClient(
-            statusCode: 200,
-            responseBody: 'not valid json {{{{',
-          ),
+        final client = HttpMockResponseClient(
+          statusCode: 200,
+          responseBody: 'not valid json {{{{',
         );
+        final request = buildRequest();
 
         // act + assert
         expect(
-          () => request.execute(),
+          () => request.execute(client, MockEndpointHttpClient.endpointUri),
           throwsA(isA<JmapParseResponseException>()),
         );
       });
@@ -105,16 +104,15 @@ void main() {
         'throws JmapParseResponseException (not JmapConnectionException) when JSON shape is invalid',
         () {
           // arrange
-          final request = buildRequest(
-            HttpMockResponseClient(
-              statusCode: 200,
-              responseBody: {'invalid': true},
-            ),
+          final client = HttpMockResponseClient(
+            statusCode: 200,
+            responseBody: {'invalid': true},
           );
+          final request = buildRequest();
 
           // act + assert
           expect(
-            () => request.execute(),
+            () => request.execute(client, MockEndpointHttpClient.endpointUri),
             throwsA(
               isA<JmapParseResponseException>().having(
                 (e) => e,
