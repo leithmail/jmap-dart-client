@@ -148,7 +148,7 @@ void main() {
       }''';
 
       final Session expectedSession = Session(
-        {
+        capabilities: {
           CapabilityIdentifier.jmapSubmission: SubmissionCapability(
             maxDelayedSend: UnsignedInt(0),
             submissionExtensions: {},
@@ -202,7 +202,7 @@ void main() {
           CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
           CapabilityIdentifier.jmapMdn: MdnCapability(),
         },
-        {
+        accounts: {
           AccountId(
             Id(
               '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
@@ -254,7 +254,7 @@ void main() {
             CapabilityIdentifier.jmapMdn: MdnCapability(),
           }),
         },
-        {
+        primaryAccounts: {
           CapabilityIdentifier.jmapSubmission: AccountId(
             Id(
               '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
@@ -310,16 +310,16 @@ void main() {
             ),
           ),
         },
-        UserName('bob@domain.tld'),
-        Uri.parse('http://domain.com/jmap'),
-        Uri.parse(
+        username: UserName('bob@domain.tld'),
+        apiUrl: Uri.parse('http://domain.com/jmap'),
+        downloadUrl: Uri.parse(
           'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
         ),
-        Uri.parse('http://domain.com/upload/{accountId}'),
-        Uri.parse(
+        uploadUrl: Uri.parse('http://domain.com/upload/{accountId}'),
+        eventSourceUrl: Uri.parse(
           'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}',
         ),
-        State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
+        state: State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
       );
 
       final parsedSession = Session.fromJson(json.decode(sessionString));
@@ -419,7 +419,7 @@ void main() {
       }''';
 
       final Session expectedSession = Session(
-        {
+        capabilities: {
           CapabilityIdentifier.jmapSubmission: SubmissionCapability(
             maxDelayedSend: UnsignedInt(0),
             submissionExtensions: {},
@@ -450,7 +450,7 @@ void main() {
           ),
           CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
         },
-        {
+        accounts: {
           AccountId(
             Id(
               '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
@@ -487,7 +487,7 @@ void main() {
             CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
           }),
         },
-        {
+        primaryAccounts: {
           CapabilityIdentifier.jmapSubmission: AccountId(
             Id(
               '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
@@ -509,16 +509,16 @@ void main() {
             ),
           ),
         },
-        UserName('bob@domain.tld'),
-        Uri.parse('http://domain.com/jmap'),
-        Uri.parse(
+        username: UserName('bob@domain.tld'),
+        apiUrl: Uri.parse('http://domain.com/jmap'),
+        downloadUrl: Uri.parse(
           'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
         ),
-        Uri.parse('http://domain.com/upload/{accountId}'),
-        Uri.parse(
+        uploadUrl: Uri.parse('http://domain.com/upload/{accountId}'),
+        eventSourceUrl: Uri.parse(
           'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}',
         ),
-        State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
+        state: State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
       );
 
       final parsedSession = Session.fromJson(json.decode(sessionString));
@@ -605,7 +605,7 @@ void main() {
       }''';
 
         final Session expectedSession = Session(
-          {
+          capabilities: {
             CapabilityIdentifier.jmapSubmission: SubmissionCapability(
               maxDelayedSend: UnsignedInt(0),
               submissionExtensions: {},
@@ -623,7 +623,7 @@ void main() {
             CapabilityIdentifier.jmapMail: MailCapability(),
             CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
           },
-          {
+          accounts: {
             AccountId(
               Id(
                 '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
@@ -659,7 +659,7 @@ void main() {
               CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
             }),
           },
-          {
+          primaryAccounts: {
             CapabilityIdentifier.jmapSubmission: AccountId(
               Id(
                 '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
@@ -681,16 +681,16 @@ void main() {
               ),
             ),
           },
-          UserName('bob@domain.tld'),
-          Uri.parse('http://domain.com/jmap'),
-          Uri.parse(
+          username: UserName('bob@domain.tld'),
+          apiUrl: Uri.parse('http://domain.com/jmap'),
+          downloadUrl: Uri.parse(
             'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
           ),
-          Uri.parse('http://domain.com/upload/{accountId}'),
-          Uri.parse(
+          uploadUrl: Uri.parse('http://domain.com/upload/{accountId}'),
+          eventSourceUrl: Uri.parse(
             'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}',
           ),
-          State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
+          state: State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
         );
 
         final parsedSession = Session.fromJson(json.decode(sessionString));
@@ -830,7 +830,7 @@ void main() {
       });
 
       final Session expectedSession = Session(
-        {
+        capabilities: {
           customCapabilityIdentifier: customCapability,
           CapabilityIdentifier.jmapSubmission: SubmissionCapability(
             maxDelayedSend: UnsignedInt(0),
@@ -877,7 +877,7 @@ void main() {
           CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
           CapabilityIdentifier.jmapMdn: MdnCapability(),
         },
-        {
+        accounts: {
           AccountId(
             Id(
               '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
@@ -930,7 +930,7 @@ void main() {
             CapabilityIdentifier.jmapMdn: MdnCapability(),
           }),
         },
-        {
+        primaryAccounts: {
           customCapabilityIdentifier: AccountId(
             Id(
               '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
@@ -981,16 +981,16 @@ void main() {
             ),
           ),
         },
-        UserName('bob@domain.tld'),
-        Uri.parse('http://domain.com/jmap'),
-        Uri.parse(
+        username: UserName('bob@domain.tld'),
+        apiUrl: Uri.parse('http://domain.com/jmap'),
+        downloadUrl: Uri.parse(
           'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
         ),
-        Uri.parse('http://domain.com/upload/{accountId}'),
-        Uri.parse(
+        uploadUrl: Uri.parse('http://domain.com/upload/{accountId}'),
+        eventSourceUrl: Uri.parse(
           'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}',
         ),
-        State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
+        state: State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
       );
 
       final parsedSession = Session.fromJson(json.decode(sessionString));
@@ -1155,7 +1155,7 @@ void main() {
       });
 
       final Session expectedSession = Session(
-        {
+        capabilities: {
           TestCapability.testCapabilityIdentifier: testCapability,
           customCapabilityIdentifier: customCapability,
           CapabilityIdentifier.jmapSubmission: SubmissionCapability(
@@ -1203,7 +1203,7 @@ void main() {
           CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
           CapabilityIdentifier.jmapMdn: MdnCapability(),
         },
-        {
+        accounts: {
           AccountId(
             Id(
               '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
@@ -1256,7 +1256,7 @@ void main() {
             CapabilityIdentifier.jmapMdn: MdnCapability(),
           }),
         },
-        {
+        primaryAccounts: {
           customCapabilityIdentifier: AccountId(
             Id(
               '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
@@ -1307,16 +1307,16 @@ void main() {
             ),
           ),
         },
-        UserName('bob@domain.tld'),
-        Uri.parse('http://domain.com/jmap'),
-        Uri.parse(
+        username: UserName('bob@domain.tld'),
+        apiUrl: Uri.parse('http://domain.com/jmap'),
+        downloadUrl: Uri.parse(
           'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
         ),
-        Uri.parse('http://domain.com/upload/{accountId}'),
-        Uri.parse(
+        uploadUrl: Uri.parse('http://domain.com/upload/{accountId}'),
+        eventSourceUrl: Uri.parse(
           'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}',
         ),
-        State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
+        state: State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
       );
 
       final parsedSession = Session.fromJson(
@@ -1412,7 +1412,7 @@ void main() {
       }''';
 
       final Session expectedSession = Session(
-        {
+        capabilities: {
           CapabilityIdentifier.jmapSubmission: SubmissionCapability(
             maxDelayedSend: UnsignedInt(0),
             submissionExtensions: {},
@@ -1429,7 +1429,7 @@ void main() {
           ),
           CapabilityIdentifier.jmapMail: MailCapability(),
         },
-        {
+        accounts: {
           AccountId(
             Id(
               '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
@@ -1465,7 +1465,7 @@ void main() {
             ),
           }),
         },
-        {
+        primaryAccounts: {
           CapabilityIdentifier.jmapSubmission: AccountId(
             Id(
               '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
@@ -1482,16 +1482,16 @@ void main() {
             ),
           ),
         },
-        UserName('bob@domain.tld'),
-        Uri.parse('http://domain.com/jmap'),
-        Uri.parse(
+        username: UserName('bob@domain.tld'),
+        apiUrl: Uri.parse('http://domain.com/jmap'),
+        downloadUrl: Uri.parse(
           'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
         ),
-        Uri.parse('http://domain.com/upload/{accountId}'),
-        Uri.parse(
+        uploadUrl: Uri.parse('http://domain.com/upload/{accountId}'),
+        eventSourceUrl: Uri.parse(
           'http://domain.com/eventSource?types={types}&closeAfter={closeafter}&ping={ping}',
         ),
-        State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
+        state: State('2c9f1b12-b35a-43e6-9af2-0106fb53a943'),
       );
 
       final parsedSession = Session.fromJson(json.decode(sessionString));
@@ -1630,7 +1630,7 @@ void main() {
       ''';
 
       final Session expectedSession = Session(
-        {
+        capabilities: {
           CapabilityIdentifier.jmapCore: CoreCapability(
             maxSizeUpload: UnsignedInt(1073741824),
             maxConcurrentUpload: UnsignedInt(5),
@@ -1651,7 +1651,7 @@ void main() {
             <String, dynamic>{},
           ),
         },
-        {
+        accounts: {
           AccountId(Id('example')): Account(
             AccountName('example'),
             true,
@@ -1736,7 +1736,7 @@ void main() {
             },
           ),
         },
-        {
+        primaryAccounts: {
           CapabilityIdentifier.jmapMail: AccountId(Id('example')),
           CapabilityIdentifier.jmapSubmission: AccountId(Id('example')),
           CapabilityIdentifier(
@@ -1761,14 +1761,16 @@ void main() {
             Id('example'),
           ),
         },
-        UserName('example'),
-        Uri.parse('/jmap/'),
-        Uri.parse('/jmap/download/{accountId}/{blobId}/{name}?accept={type}'),
-        Uri.parse('/jmap/upload/{accountId}/'),
-        Uri.parse(
+        username: UserName('example'),
+        apiUrl: Uri.parse('/jmap/'),
+        downloadUrl: Uri.parse(
+          '/jmap/download/{accountId}/{blobId}/{name}?accept={type}',
+        ),
+        uploadUrl: Uri.parse('/jmap/upload/{accountId}/'),
+        eventSourceUrl: Uri.parse(
           '/jmap/eventsource/?types={types}&closeafter={closeafter}&ping={ping}',
         ),
-        State('0'),
+        state: State('0'),
       );
 
       final parsedSession = Session.fromJson(json.decode(sessionString));

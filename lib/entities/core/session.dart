@@ -22,17 +22,17 @@ class Session with EquatableMixin {
   final Uri eventSourceUrl;
   final State state;
 
-  Session(
-    this.capabilities,
-    this.accounts,
-    this.primaryAccounts,
-    this.username,
-    this.apiUrl,
-    this.downloadUrl,
-    this.uploadUrl,
-    this.eventSourceUrl,
-    this.state,
-  );
+  Session({
+    required this.capabilities,
+    required this.accounts,
+    required this.primaryAccounts,
+    required this.username,
+    required this.apiUrl,
+    required this.downloadUrl,
+    required this.uploadUrl,
+    required this.eventSourceUrl,
+    required this.state,
+  });
 
   factory Session.fromJson(
     Map<String, dynamic> json, {
@@ -40,25 +40,25 @@ class Session with EquatableMixin {
   }) {
     converter ??= CapabilitiesConverter.defaultConverter;
     return Session(
-      (json['capabilities'] as Map<String, dynamic>).map(
+      capabilities: (json['capabilities'] as Map<String, dynamic>).map(
         (key, value) => converter!.convert(key, value),
       ),
-      (json['accounts'] as Map<String, dynamic>).map(
+      accounts: (json['accounts'] as Map<String, dynamic>).map(
         (key, value) =>
             const AccountConverter().convert(key, value, converter!),
       ),
-      (json['primaryAccounts'] as Map<String, dynamic>).map(
+      primaryAccounts: (json['primaryAccounts'] as Map<String, dynamic>).map(
         (key, value) => MapEntry(
           CapabilityIdentifier(Uri.parse(key)),
           const AccountIdConverter().fromJson(value),
         ),
       ),
-      const UserNameConverter().fromJson(json['username'] as String),
-      Uri.parse(json['apiUrl'] as String),
-      Uri.parse(json['downloadUrl'] as String),
-      Uri.parse(json['uploadUrl'] as String),
-      Uri.parse(json['eventSourceUrl'] as String),
-      const StateConverter().fromJson(json['state'] as String),
+      username: const UserNameConverter().fromJson(json['username'] as String),
+      apiUrl: Uri.parse(json['apiUrl'] as String),
+      downloadUrl: Uri.parse(json['downloadUrl'] as String),
+      uploadUrl: Uri.parse(json['uploadUrl'] as String),
+      eventSourceUrl: Uri.parse(json['eventSourceUrl'] as String),
+      state: const StateConverter().fromJson(json['state'] as String),
     );
   }
 
