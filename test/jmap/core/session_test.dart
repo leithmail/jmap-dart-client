@@ -207,52 +207,57 @@ void main() {
             Id(
               '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
             ),
-          ): Account(AccountName('bob@domain.tld'), true, false, {
-            CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-              maxDelayedSend: UnsignedInt(0),
-              submissionExtensions: {},
-            ),
-            CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
-              supportsPush: true,
-              url: Uri.parse('ws://domain.com/jmap/ws'),
-            ),
-            CapabilityIdentifier.jmapCore: CoreCapability(
-              maxSizeUpload: UnsignedInt(20971520),
-              maxConcurrentUpload: UnsignedInt(4),
-              maxSizeRequest: UnsignedInt(10000000),
-              maxConcurrentRequests: UnsignedInt(4),
-              maxCallsInRequest: UnsignedInt(16),
-              maxObjectsInGet: UnsignedInt(500),
-              maxObjectsInSet: UnsignedInt(500),
-              collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
-            ),
-            CapabilityIdentifier.jmapMail: MailCapability(
-              maxMailboxesPerEmail: UnsignedInt(10000000),
-              maxSizeMailboxName: UnsignedInt(200),
-              maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-              emailQuerySortOptions: {
-                "receivedAt",
-                "sentAt",
-                "size",
-                "from",
-                "to",
-                "subject",
-              },
-              mayCreateTopLevelMailbox: true,
-            ),
-            CapabilityIdentifier(
-              Uri.parse('urn:apache:james:params:jmap:mail:quota'),
-            ): DefaultCapability(
-              <String, dynamic>{},
-            ),
-            CapabilityIdentifier(
-              Uri.parse('urn:apache:james:params:jmap:mail:shares'),
-            ): DefaultCapability(
-              <String, dynamic>{},
-            ),
-            CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
-            CapabilityIdentifier.jmapMdn: MdnCapability(),
-          }),
+          ): Account(
+            name: AccountName('bob@domain.tld'),
+            isPersonal: true,
+            isReadOnly: false,
+            accountCapabilities: {
+              CapabilityIdentifier.jmapSubmission: SubmissionCapability(
+                maxDelayedSend: UnsignedInt(0),
+                submissionExtensions: {},
+              ),
+              CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
+                supportsPush: true,
+                url: Uri.parse('ws://domain.com/jmap/ws'),
+              ),
+              CapabilityIdentifier.jmapCore: CoreCapability(
+                maxSizeUpload: UnsignedInt(20971520),
+                maxConcurrentUpload: UnsignedInt(4),
+                maxSizeRequest: UnsignedInt(10000000),
+                maxConcurrentRequests: UnsignedInt(4),
+                maxCallsInRequest: UnsignedInt(16),
+                maxObjectsInGet: UnsignedInt(500),
+                maxObjectsInSet: UnsignedInt(500),
+                collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+              ),
+              CapabilityIdentifier.jmapMail: MailCapability(
+                maxMailboxesPerEmail: UnsignedInt(10000000),
+                maxSizeMailboxName: UnsignedInt(200),
+                maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+                emailQuerySortOptions: {
+                  "receivedAt",
+                  "sentAt",
+                  "size",
+                  "from",
+                  "to",
+                  "subject",
+                },
+                mayCreateTopLevelMailbox: true,
+              ),
+              CapabilityIdentifier(
+                Uri.parse('urn:apache:james:params:jmap:mail:quota'),
+              ): DefaultCapability(
+                <String, dynamic>{},
+              ),
+              CapabilityIdentifier(
+                Uri.parse('urn:apache:james:params:jmap:mail:shares'),
+              ): DefaultCapability(
+                <String, dynamic>{},
+              ),
+              CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
+              CapabilityIdentifier.jmapMdn: MdnCapability(),
+            },
+          ),
         },
         primaryAccounts: {
           CapabilityIdentifier.jmapSubmission: AccountId(
@@ -455,37 +460,42 @@ void main() {
             Id(
               '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
             ),
-          ): Account(AccountName('bob@domain.tld'), true, false, {
-            CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-              maxDelayedSend: UnsignedInt(0),
-              submissionExtensions: {},
-            ),
-            CapabilityIdentifier.jmapCore: CoreCapability(
-              maxSizeUpload: UnsignedInt(20971520),
-              maxConcurrentUpload: UnsignedInt(4),
-              maxSizeRequest: UnsignedInt(10000000),
-              maxConcurrentRequests: UnsignedInt(4),
-              maxCallsInRequest: UnsignedInt(16),
-              maxObjectsInGet: UnsignedInt(500),
-              maxObjectsInSet: UnsignedInt(500),
-              collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
-            ),
-            CapabilityIdentifier.jmapMail: MailCapability(
-              maxMailboxesPerEmail: UnsignedInt(10000000),
-              maxSizeMailboxName: UnsignedInt(200),
-              maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-              emailQuerySortOptions: {
-                "receivedAt",
-                "sentAt",
-                "size",
-                "from",
-                "to",
-                "subject",
-              },
-              mayCreateTopLevelMailbox: true,
-            ),
-            CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
-          }),
+          ): Account(
+            name: AccountName('bob@domain.tld'),
+            isPersonal: true,
+            isReadOnly: false,
+            accountCapabilities: {
+              CapabilityIdentifier.jmapSubmission: SubmissionCapability(
+                maxDelayedSend: UnsignedInt(0),
+                submissionExtensions: {},
+              ),
+              CapabilityIdentifier.jmapCore: CoreCapability(
+                maxSizeUpload: UnsignedInt(20971520),
+                maxConcurrentUpload: UnsignedInt(4),
+                maxSizeRequest: UnsignedInt(10000000),
+                maxConcurrentRequests: UnsignedInt(4),
+                maxCallsInRequest: UnsignedInt(16),
+                maxObjectsInGet: UnsignedInt(500),
+                maxObjectsInSet: UnsignedInt(500),
+                collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+              ),
+              CapabilityIdentifier.jmapMail: MailCapability(
+                maxMailboxesPerEmail: UnsignedInt(10000000),
+                maxSizeMailboxName: UnsignedInt(200),
+                maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+                emailQuerySortOptions: {
+                  "receivedAt",
+                  "sentAt",
+                  "size",
+                  "from",
+                  "to",
+                  "subject",
+                },
+                mayCreateTopLevelMailbox: true,
+              ),
+              CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
+            },
+          ),
         },
         primaryAccounts: {
           CapabilityIdentifier.jmapSubmission: AccountId(
@@ -628,36 +638,43 @@ void main() {
               Id(
                 '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
               ),
-            ): Account(AccountName('bob@domain.tld'), true, false, {
-              CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                maxDelayedSend: UnsignedInt(0),
-                submissionExtensions: {},
-              ),
-              CapabilityIdentifier.jmapCore: CoreCapability(
-                maxSizeUpload: UnsignedInt(20971520),
-                maxConcurrentUpload: UnsignedInt(4),
-                maxSizeRequest: UnsignedInt(10000000),
-                maxConcurrentRequests: UnsignedInt(4),
-                maxCallsInRequest: UnsignedInt(16),
-                maxObjectsInGet: UnsignedInt(500),
-                maxObjectsInSet: UnsignedInt(500),
-                collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
-              ),
-              CapabilityIdentifier.jmapMail: MailCapability(
-                maxMailboxesPerEmail: UnsignedInt(10000000),
-                maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-                emailQuerySortOptions: {
-                  "receivedAt",
-                  "sentAt",
-                  "size",
-                  "from",
-                  "to",
-                  "subject",
-                },
-                mayCreateTopLevelMailbox: true,
-              ),
-              CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
-            }),
+            ): Account(
+              name: AccountName('bob@domain.tld'),
+              isPersonal: true,
+              isReadOnly: false,
+              accountCapabilities: {
+                CapabilityIdentifier.jmapSubmission: SubmissionCapability(
+                  maxDelayedSend: UnsignedInt(0),
+                  submissionExtensions: {},
+                ),
+                CapabilityIdentifier.jmapCore: CoreCapability(
+                  maxSizeUpload: UnsignedInt(20971520),
+                  maxConcurrentUpload: UnsignedInt(4),
+                  maxSizeRequest: UnsignedInt(10000000),
+                  maxConcurrentRequests: UnsignedInt(4),
+                  maxCallsInRequest: UnsignedInt(16),
+                  maxObjectsInGet: UnsignedInt(500),
+                  maxObjectsInSet: UnsignedInt(500),
+                  collationAlgorithms: {
+                    CollationIdentifier("i;unicode-casemap"),
+                  },
+                ),
+                CapabilityIdentifier.jmapMail: MailCapability(
+                  maxMailboxesPerEmail: UnsignedInt(10000000),
+                  maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+                  emailQuerySortOptions: {
+                    "receivedAt",
+                    "sentAt",
+                    "size",
+                    "from",
+                    "to",
+                    "subject",
+                  },
+                  mayCreateTopLevelMailbox: true,
+                ),
+                CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
+              },
+            ),
           },
           primaryAccounts: {
             CapabilityIdentifier.jmapSubmission: AccountId(
@@ -882,53 +899,58 @@ void main() {
             Id(
               '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
             ),
-          ): Account(AccountName('bob@domain.tld'), true, false, {
-            customCapabilityIdentifier: customCapability,
-            CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-              maxDelayedSend: UnsignedInt(0),
-              submissionExtensions: {},
-            ),
-            CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
-              supportsPush: true,
-              url: Uri.parse('ws://domain.com/jmap/ws'),
-            ),
-            CapabilityIdentifier.jmapCore: CoreCapability(
-              maxSizeUpload: UnsignedInt(20971520),
-              maxConcurrentUpload: UnsignedInt(4),
-              maxSizeRequest: UnsignedInt(10000000),
-              maxConcurrentRequests: UnsignedInt(4),
-              maxCallsInRequest: UnsignedInt(16),
-              maxObjectsInGet: UnsignedInt(500),
-              maxObjectsInSet: UnsignedInt(500),
-              collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
-            ),
-            CapabilityIdentifier.jmapMail: MailCapability(
-              maxMailboxesPerEmail: UnsignedInt(10000000),
-              maxSizeMailboxName: UnsignedInt(200),
-              maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-              emailQuerySortOptions: {
-                "receivedAt",
-                "sentAt",
-                "size",
-                "from",
-                "to",
-                "subject",
-              },
-              mayCreateTopLevelMailbox: true,
-            ),
-            CapabilityIdentifier(
-              Uri.parse('urn:apache:james:params:jmap:mail:quota'),
-            ): DefaultCapability(
-              <String, dynamic>{},
-            ),
-            CapabilityIdentifier(
-              Uri.parse('urn:apache:james:params:jmap:mail:shares'),
-            ): DefaultCapability(
-              <String, dynamic>{},
-            ),
-            CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
-            CapabilityIdentifier.jmapMdn: MdnCapability(),
-          }),
+          ): Account(
+            name: AccountName('bob@domain.tld'),
+            isPersonal: true,
+            isReadOnly: false,
+            accountCapabilities: {
+              customCapabilityIdentifier: customCapability,
+              CapabilityIdentifier.jmapSubmission: SubmissionCapability(
+                maxDelayedSend: UnsignedInt(0),
+                submissionExtensions: {},
+              ),
+              CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
+                supportsPush: true,
+                url: Uri.parse('ws://domain.com/jmap/ws'),
+              ),
+              CapabilityIdentifier.jmapCore: CoreCapability(
+                maxSizeUpload: UnsignedInt(20971520),
+                maxConcurrentUpload: UnsignedInt(4),
+                maxSizeRequest: UnsignedInt(10000000),
+                maxConcurrentRequests: UnsignedInt(4),
+                maxCallsInRequest: UnsignedInt(16),
+                maxObjectsInGet: UnsignedInt(500),
+                maxObjectsInSet: UnsignedInt(500),
+                collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+              ),
+              CapabilityIdentifier.jmapMail: MailCapability(
+                maxMailboxesPerEmail: UnsignedInt(10000000),
+                maxSizeMailboxName: UnsignedInt(200),
+                maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+                emailQuerySortOptions: {
+                  "receivedAt",
+                  "sentAt",
+                  "size",
+                  "from",
+                  "to",
+                  "subject",
+                },
+                mayCreateTopLevelMailbox: true,
+              ),
+              CapabilityIdentifier(
+                Uri.parse('urn:apache:james:params:jmap:mail:quota'),
+              ): DefaultCapability(
+                <String, dynamic>{},
+              ),
+              CapabilityIdentifier(
+                Uri.parse('urn:apache:james:params:jmap:mail:shares'),
+              ): DefaultCapability(
+                <String, dynamic>{},
+              ),
+              CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
+              CapabilityIdentifier.jmapMdn: MdnCapability(),
+            },
+          ),
         },
         primaryAccounts: {
           customCapabilityIdentifier: AccountId(
@@ -1208,53 +1230,58 @@ void main() {
             Id(
               '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
             ),
-          ): Account(AccountName('bob@domain.tld'), true, false, {
-            customCapabilityIdentifier: customCapability,
-            CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-              maxDelayedSend: UnsignedInt(0),
-              submissionExtensions: {},
-            ),
-            CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
-              supportsPush: true,
-              url: Uri.parse('ws://domain.com/jmap/ws'),
-            ),
-            CapabilityIdentifier.jmapCore: CoreCapability(
-              maxSizeUpload: UnsignedInt(20971520),
-              maxConcurrentUpload: UnsignedInt(4),
-              maxSizeRequest: UnsignedInt(10000000),
-              maxConcurrentRequests: UnsignedInt(4),
-              maxCallsInRequest: UnsignedInt(16),
-              maxObjectsInGet: UnsignedInt(500),
-              maxObjectsInSet: UnsignedInt(500),
-              collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
-            ),
-            CapabilityIdentifier.jmapMail: MailCapability(
-              maxMailboxesPerEmail: UnsignedInt(10000000),
-              maxSizeMailboxName: UnsignedInt(200),
-              maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-              emailQuerySortOptions: {
-                "receivedAt",
-                "sentAt",
-                "size",
-                "from",
-                "to",
-                "subject",
-              },
-              mayCreateTopLevelMailbox: true,
-            ),
-            CapabilityIdentifier(
-              Uri.parse('urn:apache:james:params:jmap:mail:quota'),
-            ): DefaultCapability(
-              <String, dynamic>{},
-            ),
-            CapabilityIdentifier(
-              Uri.parse('urn:apache:james:params:jmap:mail:shares'),
-            ): DefaultCapability(
-              <String, dynamic>{},
-            ),
-            CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
-            CapabilityIdentifier.jmapMdn: MdnCapability(),
-          }),
+          ): Account(
+            name: AccountName('bob@domain.tld'),
+            isPersonal: true,
+            isReadOnly: false,
+            accountCapabilities: {
+              customCapabilityIdentifier: customCapability,
+              CapabilityIdentifier.jmapSubmission: SubmissionCapability(
+                maxDelayedSend: UnsignedInt(0),
+                submissionExtensions: {},
+              ),
+              CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
+                supportsPush: true,
+                url: Uri.parse('ws://domain.com/jmap/ws'),
+              ),
+              CapabilityIdentifier.jmapCore: CoreCapability(
+                maxSizeUpload: UnsignedInt(20971520),
+                maxConcurrentUpload: UnsignedInt(4),
+                maxSizeRequest: UnsignedInt(10000000),
+                maxConcurrentRequests: UnsignedInt(4),
+                maxCallsInRequest: UnsignedInt(16),
+                maxObjectsInGet: UnsignedInt(500),
+                maxObjectsInSet: UnsignedInt(500),
+                collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+              ),
+              CapabilityIdentifier.jmapMail: MailCapability(
+                maxMailboxesPerEmail: UnsignedInt(10000000),
+                maxSizeMailboxName: UnsignedInt(200),
+                maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+                emailQuerySortOptions: {
+                  "receivedAt",
+                  "sentAt",
+                  "size",
+                  "from",
+                  "to",
+                  "subject",
+                },
+                mayCreateTopLevelMailbox: true,
+              ),
+              CapabilityIdentifier(
+                Uri.parse('urn:apache:james:params:jmap:mail:quota'),
+              ): DefaultCapability(
+                <String, dynamic>{},
+              ),
+              CapabilityIdentifier(
+                Uri.parse('urn:apache:james:params:jmap:mail:shares'),
+              ): DefaultCapability(
+                <String, dynamic>{},
+              ),
+              CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
+              CapabilityIdentifier.jmapMdn: MdnCapability(),
+            },
+          ),
         },
         primaryAccounts: {
           customCapabilityIdentifier: AccountId(
@@ -1434,36 +1461,41 @@ void main() {
             Id(
               '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
             ),
-          ): Account(AccountName('bob@domain.tld'), true, false, {
-            CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-              maxDelayedSend: UnsignedInt(0),
-              submissionExtensions: {},
-            ),
-            CapabilityIdentifier.jmapCore: CoreCapability(
-              maxSizeUpload: UnsignedInt(20971520),
-              maxConcurrentUpload: UnsignedInt(4),
-              maxSizeRequest: UnsignedInt(10000000),
-              maxConcurrentRequests: UnsignedInt(4),
-              maxCallsInRequest: UnsignedInt(16),
-              maxObjectsInGet: UnsignedInt(500),
-              maxObjectsInSet: UnsignedInt(500),
-              collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
-            ),
-            CapabilityIdentifier.jmapMail: MailCapability(
-              maxMailboxesPerEmail: UnsignedInt(10000000),
-              maxSizeMailboxName: UnsignedInt(200),
-              maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-              emailQuerySortOptions: {
-                "receivedAt",
-                "sentAt",
-                "size",
-                "from",
-                "to",
-                "subject",
-              },
-              mayCreateTopLevelMailbox: true,
-            ),
-          }),
+          ): Account(
+            name: AccountName('bob@domain.tld'),
+            isPersonal: true,
+            isReadOnly: false,
+            accountCapabilities: {
+              CapabilityIdentifier.jmapSubmission: SubmissionCapability(
+                maxDelayedSend: UnsignedInt(0),
+                submissionExtensions: {},
+              ),
+              CapabilityIdentifier.jmapCore: CoreCapability(
+                maxSizeUpload: UnsignedInt(20971520),
+                maxConcurrentUpload: UnsignedInt(4),
+                maxSizeRequest: UnsignedInt(10000000),
+                maxConcurrentRequests: UnsignedInt(4),
+                maxCallsInRequest: UnsignedInt(16),
+                maxObjectsInGet: UnsignedInt(500),
+                maxObjectsInSet: UnsignedInt(500),
+                collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+              ),
+              CapabilityIdentifier.jmapMail: MailCapability(
+                maxMailboxesPerEmail: UnsignedInt(10000000),
+                maxSizeMailboxName: UnsignedInt(200),
+                maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+                emailQuerySortOptions: {
+                  "receivedAt",
+                  "sentAt",
+                  "size",
+                  "from",
+                  "to",
+                  "subject",
+                },
+                mayCreateTopLevelMailbox: true,
+              ),
+            },
+          ),
         },
         primaryAccounts: {
           CapabilityIdentifier.jmapSubmission: AccountId(
@@ -1653,10 +1685,10 @@ void main() {
         },
         accounts: {
           AccountId(Id('example')): Account(
-            AccountName('example'),
-            true,
-            false,
-            {
+            name: AccountName('example'),
+            isPersonal: true,
+            isReadOnly: false,
+            accountCapabilities: {
               CapabilityIdentifier.jmapCore: CoreCapability(),
               CapabilityIdentifier.jmapMail: MailCapability(
                 maxMailboxesPerEmail: UnsignedInt(20),

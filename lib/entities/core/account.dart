@@ -8,12 +8,12 @@ class Account with EquatableMixin {
   final bool isReadOnly;
   final Map<CapabilityIdentifier, CapabilityProperties> accountCapabilities;
 
-  Account(
-    this.name,
-    this.isPersonal,
-    this.isReadOnly,
-    this.accountCapabilities,
-  );
+  Account({
+    required this.name,
+    required this.isPersonal,
+    required this.isReadOnly,
+    required this.accountCapabilities,
+  });
 
   @override
   List<Object> get props => [name, isPersonal, isReadOnly, accountCapabilities];

@@ -23,12 +23,11 @@ class AccountConverter {
     CapabilitiesConverter converter,
   ) {
     return Account(
-      const AccountNameConverter().fromJson(json['name'] as String),
-      json['isPersonal'] as bool,
-      json['isReadOnly'] as bool,
-      (json['accountCapabilities'] as Map<String, dynamic>).map(
-        (key, value) => converter.convert(key, value),
-      ),
+      name: const AccountNameConverter().fromJson(json['name'] as String),
+      isPersonal: json['isPersonal'] as bool,
+      isReadOnly: json['isReadOnly'] as bool,
+      accountCapabilities: (json['accountCapabilities'] as Map<String, dynamic>)
+          .map((key, value) => converter.convert(key, value)),
     );
   }
 }
