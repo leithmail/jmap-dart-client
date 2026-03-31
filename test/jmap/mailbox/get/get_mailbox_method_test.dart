@@ -124,9 +124,9 @@ void main() {
         },
         expectedBody: {
           "using": [
+            "urn:apache:james:params:jmap:mail:shares",
             "urn:ietf:params:jmap:core",
             "urn:ietf:params:jmap:mail",
-            "urn:apache:james:params:jmap:mail:shares",
           ],
           "methodCalls": [
             [
@@ -243,11 +243,7 @@ void main() {
         final getMailboxInvocation = requestBuilder.invocation(
           getMailboxMethod,
         );
-        final response =
-            await (requestBuilder
-                  ..usings(getMailboxMethod.requiredCapabilities))
-                .build()
-                .execute();
+        final response = await requestBuilder.build().execute();
 
         final getMailboxResponse = response.parse<GetMailboxResponse>(
           getMailboxInvocation.methodCallId,

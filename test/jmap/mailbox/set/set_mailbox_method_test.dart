@@ -54,7 +54,7 @@ void main() {
           ],
         },
         expectedBody: {
-          "using": ["urn:ietf:params:jmap:mail", "urn:ietf:params:jmap:core"],
+          "using": ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail"],
           "methodCalls": [
             [
               "Mailbox/set",
@@ -95,10 +95,7 @@ void main() {
         ProcessingInvocation(),
       );
       final setMailboxInvocation = requestBuilder.invocation(setMailboxMethod);
-      final response =
-          await (requestBuilder..usings(setMailboxMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final setMailboxResponse = response.parse<SetMailboxResponse>(
         setMailboxInvocation.methodCallId,

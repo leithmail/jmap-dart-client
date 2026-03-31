@@ -139,11 +139,7 @@ void main() {
           getEmailMethodForCreated,
         );
 
-        final result =
-            await (jmapRequestBuilder
-                  ..usings(getEmailMethodForCreated.requiredCapabilities))
-                .build()
-                .execute();
+        final result = await jmapRequestBuilder.build().execute();
 
         final resultCreated = result.parse<GetEmailResponse>(
           getEmailForCreatedInvocation.methodCallId,

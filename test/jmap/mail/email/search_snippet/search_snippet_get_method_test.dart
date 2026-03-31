@@ -132,11 +132,7 @@ void main() {
       );
 
       // act
-      final result =
-          await (jmapRequestBuilder
-                ..usings(searchSnippetGetMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final result = await jmapRequestBuilder.build().execute();
 
       final searchSnippetGetResponse = result.parse<SearchSnippetGetResponse>(
         searchSnippetGetMethodInvocation.methodCallId,
@@ -189,11 +185,7 @@ void main() {
       );
 
       // act
-      final result =
-          await (jmapRequestBuilder
-                ..usings(searchSnippetGetMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final result = await jmapRequestBuilder.build().execute();
 
       final searchSnippetGetResponse = result.parse<SearchSnippetGetResponse>(
         methodInvocation.methodCallId,
@@ -265,11 +257,7 @@ void main() {
       );
 
       // act
-      final result =
-          await (jmapRequestBuilder
-                ..usings(searchSnippetGetMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final result = await jmapRequestBuilder.build().execute();
 
       // assert
       expect(

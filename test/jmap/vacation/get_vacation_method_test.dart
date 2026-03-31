@@ -74,10 +74,7 @@ void main() {
       final getVacationInvocation = requestBuilder.invocation(
         getVacationMethod,
       );
-      final response =
-          await (requestBuilder..usings(getVacationMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final resultList = response.parse<GetVacationResponse>(
         getVacationInvocation.methodCallId,

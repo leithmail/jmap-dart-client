@@ -160,10 +160,7 @@ void main() {
       methodCallId: MethodCallId('c2'),
     );
 
-    final result =
-        await (jmapRequestBuilder..usings(getEmailMethod.requiredCapabilities))
-            .build()
-            .execute();
+    final result = await jmapRequestBuilder.build().execute();
 
     final resultList = result.parse<GetEmailResponse>(
       getEmailInvocation.methodCallId,

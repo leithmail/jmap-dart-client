@@ -40,9 +40,11 @@ void main() {
           ],
         },
         expectedBody: {
-          "using": clearMailboxMethod.requiredCapabilities
-              .map((capability) => capability.value.toString())
-              .toList(),
+          "using":
+              clearMailboxMethod.requiredCapabilities
+                  .map((capability) => capability.value.toString())
+                  .toList()
+                ..sort(),
           "methodCalls": [
             [
               clearMailboxMethod.methodName.value,
@@ -65,11 +67,7 @@ void main() {
       );
 
       // Act
-      final responseObject =
-          await (requestBuilder
-                ..usings(clearMailboxMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final responseObject = await requestBuilder.build().execute();
 
       // Assert
       expect(
@@ -110,9 +108,11 @@ void main() {
           ],
         },
         expectedBody: {
-          "using": listCapabilitiesUsed
-              .map((capability) => capability.value.toString())
-              .toList(),
+          "using":
+              listCapabilitiesUsed
+                  .map((capability) => capability.value.toString())
+                  .toList()
+                ..sort(),
           "methodCalls": [
             [
               clearMailboxMethod.methodName.value,
@@ -132,6 +132,7 @@ void main() {
       final invocation = requestBuilder.invocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
+        withRequiredCapabilities: false,
       );
 
       // Act
@@ -175,9 +176,11 @@ void main() {
           ],
         },
         expectedBody: {
-          "using": clearMailboxMethod.requiredCapabilities
-              .map((capability) => capability.value.toString())
-              .toList(),
+          "using":
+              clearMailboxMethod.requiredCapabilities
+                  .map((capability) => capability.value.toString())
+                  .toList()
+                ..sort(),
           "methodCalls": [
             [
               clearMailboxMethod.methodName.value,
@@ -200,11 +203,7 @@ void main() {
       );
 
       // Act
-      final responseObject =
-          await (requestBuilder
-                ..usings(clearMailboxMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final responseObject = await requestBuilder.build().execute();
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,
@@ -241,9 +240,11 @@ void main() {
           ],
         },
         expectedBody: {
-          "using": clearMailboxMethod.requiredCapabilities
-              .map((capability) => capability.value.toString())
-              .toList(),
+          "using":
+              clearMailboxMethod.requiredCapabilities
+                  .map((capability) => capability.value.toString())
+                  .toList()
+                ..sort(),
           "methodCalls": [
             [
               clearMailboxMethod.methodName.value,
@@ -266,11 +267,7 @@ void main() {
       );
 
       // Act
-      final responseObject =
-          await (requestBuilder
-                ..usings(clearMailboxMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final responseObject = await requestBuilder.build().execute();
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,
@@ -309,9 +306,11 @@ void main() {
           ],
         },
         expectedBody: {
-          "using": clearMailboxMethod.requiredCapabilities
-              .map((capability) => capability.value.toString())
-              .toList(),
+          "using":
+              clearMailboxMethod.requiredCapabilities
+                  .map((capability) => capability.value.toString())
+                  .toList()
+                ..sort(),
           "methodCalls": [
             [
               clearMailboxMethod.methodName.value,
@@ -334,11 +333,7 @@ void main() {
       );
 
       // Act
-      final responseObject =
-          await (requestBuilder
-                ..usings(clearMailboxMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final responseObject = await requestBuilder.build().execute();
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,
@@ -377,9 +372,11 @@ void main() {
           ],
         },
         expectedBody: {
-          "using": clearMailboxMethod.requiredCapabilities
-              .map((capability) => capability.value.toString())
-              .toList(),
+          "using":
+              clearMailboxMethod.requiredCapabilities
+                  .map((capability) => capability.value.toString())
+                  .toList()
+                ..sort(),
           "methodCalls": [
             [
               clearMailboxMethod.methodName.value,
@@ -402,11 +399,7 @@ void main() {
       );
 
       // Act
-      final responseObject =
-          await (requestBuilder
-                ..usings(clearMailboxMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final responseObject = await requestBuilder.build().execute();
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,
@@ -445,9 +438,11 @@ void main() {
           ],
         },
         expectedBody: {
-          "using": clearMailboxMethod.requiredCapabilitiesSupportTeamMailboxes
-              .map((capability) => capability.value.toString())
-              .toList(),
+          "using":
+              clearMailboxMethod.requiredCapabilitiesSupportTeamMailboxes
+                  .map((capability) => capability.value.toString())
+                  .toList()
+                ..sort(),
           "methodCalls": [
             [
               clearMailboxMethod.methodName.value,
@@ -518,9 +513,11 @@ void main() {
           ],
         },
         expectedBody: {
-          "using": listCapabilitiesUsed
-              .map((capability) => capability.value.toString())
-              .toList(),
+          "using":
+              listCapabilitiesUsed
+                  .map((capability) => capability.value.toString())
+                  .toList()
+                ..sort(),
           "methodCalls": [
             [
               clearMailboxMethod.methodName.value,

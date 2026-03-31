@@ -99,10 +99,7 @@ void main() {
       final getIdentityInvocation = requestBuilder.invocation(
         getIdentityMethod,
       );
-      final response =
-          await (requestBuilder..usings(getIdentityMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final resultList = response.parse<GetIdentityResponse>(
         getIdentityInvocation.methodCallId,

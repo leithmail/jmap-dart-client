@@ -97,10 +97,7 @@ void main() {
         ProcessingInvocation(),
       );
       final invocation = requestBuilder.invocation(parseEmailMethod);
-      final response =
-          await (requestBuilder..usings(parseEmailMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final emailParsed = response.parse<ParseEmailResponse>(
         invocation.methodCallId,
@@ -170,10 +167,7 @@ void main() {
         ProcessingInvocation(),
       );
       final invocation = requestBuilder.invocation(parseEmailMethod);
-      final response =
-          await (requestBuilder..usings(parseEmailMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final emailParsed = response.parse<ParseEmailResponse>(
         invocation.methodCallId,
@@ -228,11 +222,7 @@ void main() {
           ProcessingInvocation(),
         );
         final invocation = requestBuilder.invocation(parseEmailMethod);
-        final response =
-            await (requestBuilder
-                  ..usings(parseEmailMethod.requiredCapabilities))
-                .build()
-                .execute();
+        final response = await requestBuilder.build().execute();
 
         final emailParsed = response.parse<ParseEmailResponse>(
           invocation.methodCallId,
@@ -280,10 +270,7 @@ void main() {
         ProcessingInvocation(),
       );
       final invocation = requestBuilder.invocation(parseEmailMethod);
-      final response =
-          await (requestBuilder..usings(parseEmailMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final emailParsed = response.parse<ParseEmailResponse>(
         invocation.methodCallId,
@@ -338,10 +325,7 @@ void main() {
         ProcessingInvocation(),
       );
       final invocation = requestBuilder.invocation(parseEmailMethod);
-      final response =
-          await (requestBuilder..usings(parseEmailMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final emailParsed = response.parse<ParseEmailResponse>(
         invocation.methodCallId,

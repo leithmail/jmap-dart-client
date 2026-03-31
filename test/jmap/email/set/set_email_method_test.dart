@@ -51,7 +51,7 @@ void main() {
           ],
         },
         expectedBody: {
-          'using': ['urn:ietf:params:jmap:mail', 'urn:ietf:params:jmap:core'],
+          'using': ['urn:ietf:params:jmap:core', 'urn:ietf:params:jmap:mail'],
           'methodCalls': [
             [
               'Email/set',
@@ -139,10 +139,7 @@ void main() {
         ProcessingInvocation(),
       );
       final setEmailInvocation = requestBuilder.invocation(setEmailMethod);
-      final response =
-          await (requestBuilder..usings(setEmailMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final setEmailResponse = response.parse<SetEmailResponse>(
         setEmailInvocation.methodCallId,
@@ -178,7 +175,7 @@ void main() {
           ],
         },
         expectedBody: {
-          'using': ['urn:ietf:params:jmap:mail', 'urn:ietf:params:jmap:core'],
+          'using': ['urn:ietf:params:jmap:core', 'urn:ietf:params:jmap:mail'],
           'methodCalls': [
             [
               'Email/set',
@@ -271,10 +268,7 @@ void main() {
         ProcessingInvocation(),
       );
       final setEmailInvocation = requestBuilder.invocation(setEmailMethod);
-      final response =
-          await (requestBuilder..usings(setEmailMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final setEmailResponse = response.parse<SetEmailResponse>(
         setEmailInvocation.methodCallId,
@@ -310,7 +304,7 @@ void main() {
           ],
         },
         expectedBody: {
-          "using": ["urn:ietf:params:jmap:mail", "urn:ietf:params:jmap:core"],
+          "using": ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail"],
           "methodCalls": [
             [
               "Email/set",
@@ -397,10 +391,7 @@ void main() {
         ProcessingInvocation(),
       );
       final setEmailInvocation = requestBuilder.invocation(setEmailMethod);
-      final response =
-          await (requestBuilder..usings(setEmailMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final setEmailResponse = response.parse<SetEmailResponse>(
         setEmailInvocation.methodCallId,
