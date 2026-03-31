@@ -1,14 +1,14 @@
-import 'package:jmap_dart_client/jmap/account_id.dart';
-import 'package:jmap_dart_client/jmap/core/id.dart';
-import 'package:jmap_dart_client/jmap/core/utc_date.dart';
-import 'package:jmap_dart_client/jmap/jmap_request.dart';
-import 'package:jmap_dart_client/jmap/mail/vacation/get/get_vacation_method.dart';
-import 'package:jmap_dart_client/jmap/mail/vacation/get/get_vacation_response.dart';
-import 'package:jmap_dart_client/jmap/mail/vacation/vacation_id.dart';
-import 'package:jmap_dart_client/jmap/mail/vacation/vacation_response.dart';
+import 'package:jmap_dart_client/api/jmap_request.dart';
+import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/entities/core/id.dart';
+import 'package:jmap_dart_client/entities/core/utc_date.dart';
+import 'package:jmap_dart_client/entities/vacation/vacation_id.dart';
+import 'package:jmap_dart_client/entities/vacation/vacation_response.dart';
+import 'package:jmap_dart_client/methods/vacation/get_vacation_method.dart';
+import 'package:jmap_dart_client/methods/vacation/get_vacation_response.dart';
 import 'package:test/test.dart';
 
-import '../../http_mocks.dart';
+import '../../helpers/http_mocks.dart';
 
 void main() {
   group('test to json get vacation method', () {

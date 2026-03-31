@@ -1,20 +1,20 @@
-import 'package:jmap_dart_client/jmap/account_id.dart';
-import 'package:jmap_dart_client/jmap/core/capability/capability_identifier.dart';
-import 'package:jmap_dart_client/jmap/core/id.dart';
-import 'package:jmap_dart_client/jmap/core/request/reference_path.dart';
-import 'package:jmap_dart_client/jmap/core/request/request_invocation.dart';
-import 'package:jmap_dart_client/jmap/jmap_request.dart';
-import 'package:jmap_dart_client/jmap/mail/email/email_comparator.dart';
-import 'package:jmap_dart_client/jmap/mail/email/email_comparator_property.dart';
-import 'package:jmap_dart_client/jmap/mail/email/email_filter_condition.dart';
-import 'package:jmap_dart_client/jmap/mail/email/query/query_email_method.dart';
-import 'package:jmap_dart_client/jmap/mail/email/query/query_email_response.dart';
-import 'package:jmap_dart_client/jmap/mail/email/set/set_email_method.dart';
-import 'package:jmap_dart_client/jmap/mail/email/set/set_email_response.dart';
-import 'package:jmap_dart_client/jmap/mail/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/api/jmap_request.dart';
+import 'package:jmap_dart_client/api/request/reference_path.dart';
+import 'package:jmap_dart_client/api/request/request_invocation.dart';
+import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
+import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/entities/core/id.dart';
+import 'package:jmap_dart_client/entities/email/email_comparator.dart';
+import 'package:jmap_dart_client/entities/email/email_comparator_property.dart';
+import 'package:jmap_dart_client/entities/email/email_filter_condition.dart';
+import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/methods/email/query_email_method.dart';
+import 'package:jmap_dart_client/methods/email/query_email_response.dart';
+import 'package:jmap_dart_client/methods/email/set_email_method.dart';
+import 'package:jmap_dart_client/methods/email/set_email_response.dart';
 import 'package:test/test.dart';
 
-import '../../http_mocks.dart';
+import '../../helpers/http_mocks.dart';
 
 void main() {
   group('empty trash folder', () {

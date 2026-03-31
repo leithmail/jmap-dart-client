@@ -1,11 +1,11 @@
-import 'package:jmap_dart_client/jmap/core/id.dart';
-import 'package:jmap_dart_client/jmap/jmap_request.dart';
-import 'package:jmap_dart_client/jmap/push/push_subscription.dart';
-import 'package:jmap_dart_client/jmap/push/set/set_push_subscription_method.dart';
-import 'package:jmap_dart_client/jmap/push/set/set_push_subscription_response.dart';
+import 'package:jmap_dart_client/api/jmap_request.dart';
+import 'package:jmap_dart_client/entities/core/id.dart';
+import 'package:jmap_dart_client/entities/push/push_subscription.dart';
+import 'package:jmap_dart_client/methods/push/set_push_subscription_method.dart';
+import 'package:jmap_dart_client/methods/push/set_push_subscription_response.dart';
 import 'package:test/test.dart';
 
-import '../../http_mocks.dart';
+import '../../helpers/http_mocks.dart';
 
 void main() {
   group('test to json set pushSubscription method', () {

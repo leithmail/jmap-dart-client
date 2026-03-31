@@ -1,19 +1,19 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:test/test.dart';
 import 'package:http_parser/http_parser.dart';
-import 'package:jmap_dart_client/jmap/core/id.dart';
-import 'package:jmap_dart_client/jmap/core/unsigned_int.dart';
-import 'package:jmap_dart_client/jmap/core/utc_date.dart';
-import 'package:jmap_dart_client/jmap/mail/email/email.dart';
-import 'package:jmap_dart_client/jmap/mail/email/email_address.dart';
-import 'package:jmap_dart_client/jmap/mail/email/email_body_part.dart';
-import 'package:jmap_dart_client/jmap/mail/email/email_body_value.dart';
-import 'package:jmap_dart_client/jmap/mail/email/email_header.dart';
-import 'package:jmap_dart_client/jmap/mail/email/individual_header_identifier.dart';
-import 'package:jmap_dart_client/jmap/mail/email/keyword_identifier.dart';
-import 'package:jmap_dart_client/jmap/mail/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/entities/core/id.dart';
+import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
+import 'package:jmap_dart_client/entities/core/utc_date.dart';
+import 'package:jmap_dart_client/entities/email/email.dart';
+import 'package:jmap_dart_client/entities/email/email_address.dart';
+import 'package:jmap_dart_client/entities/email/email_body_part.dart';
+import 'package:jmap_dart_client/entities/email/email_body_value.dart';
+import 'package:jmap_dart_client/entities/email/email_header.dart';
+import 'package:jmap_dart_client/entities/email/individual_header_identifier.dart';
+import 'package:jmap_dart_client/entities/email/keyword_identifier.dart';
+import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('email object test', () {
