@@ -3,6 +3,10 @@ import 'dart:io';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:jmap_dart_client/http/endpoint_http_client.dart';
+import 'package:jmap_dart_client/jmap/core/error/exception/jmap_connection_exception.dart';
+import 'package:jmap_dart_client/jmap/core/error/exception/jmap_exception.dart';
+import 'package:jmap_dart_client/jmap/core/error/exception/jmap_http_exception.dart';
+import 'package:jmap_dart_client/jmap/core/error/exception/jmap_parse_response_exception.dart';
 import 'package:jmap_dart_client/jmap/core/request/reference_path.dart';
 import 'package:jmap_dart_client/jmap/core/request/result_reference.dart';
 import 'package:jmap_dart_client/jmap/core/response/response_object.dart';
@@ -31,22 +35,35 @@ class JmapRequest {
               ..methodCalls(_invocations.values.toList()))
             .build();
 
-    final response = await _httpClient.post(
-      Uri.parse(
-        '',
-      ), // this uri is overridden by EndpointHttpClient, so it can be empty
-      body: jsonEncode(_requestObject?.toJson()),
-      headers: {
-        HttpHeaders.acceptHeader: 'application/json',
-        HttpHeaders.contentTypeHeader: 'application/json',
-      },
-    );
-
-    return extractData(jsonDecode(response.body) as Map<String, dynamic>);
+    try {
+      final response = await _httpClient.post(
+        Uri.parse(
+          '',
+        ), // this uri is overridden by EndpointHttpClient, so it can be empty
+        body: jsonEncode(_requestObject?.toJson()),
+        headers: {
+          HttpHeaders.acceptHeader: 'application/json',
+          HttpHeaders.contentTypeHeader: 'application/json',
+        },
+      );
+      if (response.statusCode == 401) throw JmapUnauthorizedException();
+      if (response.statusCode >= 400) {
+        throw JmapHttpException(response.statusCode);
+      }
+      return _extractData(response.body);
+    } on JmapException {
+      rethrow;
+    } catch (e) {
+      throw JmapConnectionException(e);
+    }
   }
 
-  ResponseObject extractData(Map<String, dynamic> body) {
-    return ResponseObject.fromJson(body);
+  ResponseObject _extractData(String body) {
+    try {
+      return ResponseObject.fromJson(jsonDecode(body) as Map<String, dynamic>);
+    } catch (e) {
+      throw JmapParseResponseException(message: e.toString());
+    }
   }
 }
 

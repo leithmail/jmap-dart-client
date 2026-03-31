@@ -4,6 +4,10 @@ import 'package:http/http.dart' as http;
 import 'package:jmap_dart_client/http/converter/capabilities_converter.dart';
 import 'package:jmap_dart_client/jmap/core/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/jmap/core/capability/capability_properties.dart';
+import 'package:jmap_dart_client/jmap/core/error/exception/jmap_connection_exception.dart';
+import 'package:jmap_dart_client/jmap/core/error/exception/jmap_exception.dart';
+import 'package:jmap_dart_client/jmap/core/error/exception/jmap_http_exception.dart';
+import 'package:jmap_dart_client/jmap/core/error/exception/jmap_parse_response_exception.dart';
 import 'package:jmap_dart_client/jmap/core/session/session.dart';
 
 class GetSession {
@@ -13,12 +17,29 @@ class GetSession {
   GetSession(this._httpClient, this._capabilitiesConverter);
 
   Future<Session> execute() async {
-    final response = await _httpClient.get(Uri.parse('/.well-known/jmap'));
-    return extractData(jsonDecode(response.body) as Map<String, dynamic>);
+    try {
+      final response = await _httpClient.get(Uri.parse('/.well-known/jmap'));
+      if (response.statusCode == 401) throw JmapUnauthorizedException();
+      if (response.statusCode >= 400) {
+        throw JmapHttpException(response.statusCode);
+      }
+      return _extractData(response.body);
+    } on JmapException {
+      rethrow;
+    } catch (e) {
+      throw JmapConnectionException(e);
+    }
   }
 
-  Session extractData(Map<String, dynamic> body) {
-    return Session.fromJson(body, converter: _capabilitiesConverter);
+  Session _extractData(String body) {
+    try {
+      return Session.fromJson(
+        jsonDecode(body) as Map<String, dynamic>,
+        converter: _capabilitiesConverter,
+      );
+    } catch (e) {
+      throw JmapParseResponseException(message: e.toString());
+    }
   }
 }
 

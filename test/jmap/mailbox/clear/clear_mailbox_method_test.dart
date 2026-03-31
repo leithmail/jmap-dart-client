@@ -1,7 +1,7 @@
 import 'package:jmap_dart_client/jmap/account_id.dart';
 import 'package:jmap_dart_client/jmap/core/capability/capability_identifier.dart';
-import 'package:jmap_dart_client/jmap/core/error/method/error_method_response.dart';
-import 'package:jmap_dart_client/jmap/core/error/method/exception/error_method_response_exception.dart';
+import 'package:jmap_dart_client/jmap/core/error/error_method_response.dart';
+import 'package:jmap_dart_client/jmap/core/error/exception/jmap_method_error_exception.dart';
 import 'package:jmap_dart_client/jmap/core/error/set_error.dart';
 import 'package:jmap_dart_client/jmap/core/id.dart';
 import 'package:jmap_dart_client/jmap/core/request/request_invocation.dart';
@@ -77,7 +77,13 @@ void main() {
           invocation.methodCallId,
           ClearMailboxResponse.deserialize,
         ),
-        throwsA(ErrorMethodResponseException(AccountNotFoundMethodResponse())),
+        throwsA(
+          isA<JmapMethodErrorException>().having(
+            (e) => e.errorResponse,
+            'errorResponse',
+            isA<AccountNotFoundMethodResponse>(),
+          ),
+        ),
       );
     });
 
@@ -141,12 +147,12 @@ void main() {
           ClearMailboxResponse.deserialize,
         ),
         throwsA(
-          ErrorMethodResponseException(
-            UnknownMethodResponse(
-              description:
-                  'Missing capability(ies): com:linagora:params:jmap:mailbox:clear',
-            ),
-          ),
+          predicate<JmapMethodErrorException>((e) {
+            final response = e.errorResponse;
+            return response is UnknownMethodResponse &&
+                response.description ==
+                    'Missing capability(ies): com:linagora:params:jmap:mailbox:clear';
+          }, 'JmapMethodErrorException with UnknownMethodResponse description'),
         ),
       );
     });
