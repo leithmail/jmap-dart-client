@@ -6,10 +6,7 @@ import 'package:jmap_dart_client/api/endpoint_http_client.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/api/response/response_object.dart';
-import 'package:jmap_dart_client/errors/jmap_connection_exception.dart';
-import 'package:jmap_dart_client/errors/jmap_exception.dart';
-import 'package:jmap_dart_client/errors/jmap_http_exception.dart';
-import 'package:jmap_dart_client/errors/jmap_parse_response_exception.dart';
+import 'package:jmap_dart_client/errors/exceptions.dart';
 import 'package:jmap_dart_client/src/utils/utils.dart';
 import 'package:quiver/check.dart';
 

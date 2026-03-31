@@ -4,10 +4,7 @@ import 'package:jmap_dart_client/api/endpoint_http_client.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/capability/capability_properties.dart';
 import 'package:jmap_dart_client/entities/core/session.dart';
-import 'package:jmap_dart_client/errors/jmap_connection_exception.dart';
-import 'package:jmap_dart_client/errors/jmap_exception.dart';
-import 'package:jmap_dart_client/errors/jmap_http_exception.dart';
-import 'package:jmap_dart_client/errors/jmap_parse_response_exception.dart';
+import 'package:jmap_dart_client/errors/exceptions.dart';
 import 'package:jmap_dart_client/src/converters/capabilities_converter.dart';
 
 class GetSession {

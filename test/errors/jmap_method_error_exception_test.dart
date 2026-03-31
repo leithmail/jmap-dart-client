@@ -1,6 +1,5 @@
 import 'package:jmap_dart_client/errors/error_method_response.dart';
-import 'package:jmap_dart_client/errors/jmap_exception.dart';
-import 'package:jmap_dart_client/errors/jmap_method_error_exception.dart';
+import 'package:jmap_dart_client/errors/exceptions.dart';
 import 'package:test/test.dart';
 
 void main() {

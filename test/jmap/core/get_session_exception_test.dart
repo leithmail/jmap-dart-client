@@ -1,9 +1,7 @@
 import 'dart:io';
 
 import 'package:jmap_dart_client/api/get_session.dart';
-import 'package:jmap_dart_client/errors/jmap_connection_exception.dart';
-import 'package:jmap_dart_client/errors/jmap_http_exception.dart';
-import 'package:jmap_dart_client/errors/jmap_parse_response_exception.dart';
+import 'package:jmap_dart_client/errors/exceptions.dart';
 import 'package:jmap_dart_client/src/converters/capabilities_converter.dart';
 import 'package:test/test.dart';
 

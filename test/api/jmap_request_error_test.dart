@@ -2,9 +2,7 @@ import 'dart:io';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:jmap_dart_client/api/jmap_request.dart';
-import 'package:jmap_dart_client/errors/jmap_connection_exception.dart';
-import 'package:jmap_dart_client/errors/jmap_http_exception.dart';
-import 'package:jmap_dart_client/errors/jmap_parse_response_exception.dart';
+import 'package:jmap_dart_client/errors/exceptions.dart';
 import 'package:test/test.dart';
 
 import '../helpers/http_mocks.dart';

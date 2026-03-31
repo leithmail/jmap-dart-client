@@ -8,7 +8,7 @@ import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_filter_condition.dart';
 import 'package:jmap_dart_client/entities/email/search_snippet.dart';
 import 'package:jmap_dart_client/errors/error_method_response.dart';
-import 'package:jmap_dart_client/errors/jmap_method_error_exception.dart';
+import 'package:jmap_dart_client/errors/exceptions.dart';
 import 'package:jmap_dart_client/methods/email/query_email_method.dart';
 import 'package:jmap_dart_client/methods/email/search_snippet_get_method.dart';
 import 'package:jmap_dart_client/methods/email/search_snippet_get_response.dart';

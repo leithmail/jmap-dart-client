@@ -133,12 +133,7 @@ export 'entities/vacation/vacation_response.dart';
 // Errors and exceptions
 export 'errors/error_method_response.dart';
 export 'errors/error_type.dart';
-export 'errors/jmap_connection_exception.dart';
-export 'errors/jmap_exception.dart';
-export 'errors/jmap_http_exception.dart';
-export 'errors/jmap_method_error_exception.dart';
-export 'errors/jmap_parse_response_exception.dart';
-export 'errors/jmap_request_exception.dart';
+export 'errors/exceptions.dart';
 export 'errors/set_error.dart';
 export 'methods/calendar/attendance/get_calendar_event_attendance_method.dart';
 export 'methods/calendar/attendance/get_calendar_event_attendance_response.dart';
