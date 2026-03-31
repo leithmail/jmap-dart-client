@@ -65,13 +65,13 @@ class ProcessingInvocation {
   }
 
   ResultReference createResultReference(
-    MethodCallId methodCallId,
+    RequestInvocation invocation,
     ReferencePath path,
   ) {
     checkArgument(
-      _invocations.containsKey(methodCallId),
+      _invocations.containsKey(invocation.methodCallId),
       message: 'no matched method call id',
     );
-    return _invocations[methodCallId]!.createResultReference(path);
+    return invocation.createResultReference(path);
   }
 }

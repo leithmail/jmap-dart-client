@@ -133,7 +133,7 @@ Future<GetEmailResponse> fetchInboxEmails(
       )
       ..addReferenceIds(
         processing.createResultReference(
-          queryInvocation.methodCallId,
+          queryInvocation,
           ReferencePath.idsPath,
         ),
       );

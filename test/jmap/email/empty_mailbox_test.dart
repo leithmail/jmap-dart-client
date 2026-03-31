@@ -123,7 +123,7 @@ void main() {
       final setEmailMethod = SetEmailMethod(accountId)
         ..addReferenceDestroy(
           processingInvocation.createResultReference(
-            queryEmailInvocation.methodCallId,
+            queryEmailInvocation,
             ReferencePath.idsPath,
           ),
         );

@@ -217,7 +217,7 @@ void main() {
         ..addProperties(Properties({'mailboxIds', 'keywords'}))
         ..addReferenceIds(
           processingInvocation.createResultReference(
-            changesEmailInvocation.methodCallId,
+            changesEmailInvocation,
             ReferencePath('/updated'),
           ),
         );
@@ -246,7 +246,7 @@ void main() {
         )
         ..addReferenceIds(
           processingInvocation.createResultReference(
-            changesEmailInvocation.methodCallId,
+            changesEmailInvocation,
             ReferencePath('/created'),
           ),
         );

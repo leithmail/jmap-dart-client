@@ -147,7 +147,7 @@ void main() {
             final getMailBoxMethod = GetMailboxMethod(accountId)
               ..addReferenceIds(
                 processingInvocation.createResultReference(
-                  queryMailboxInvocation.methodCallId,
+                  queryMailboxInvocation,
                   ReferencePath('ids/*'),
                 ),
               );

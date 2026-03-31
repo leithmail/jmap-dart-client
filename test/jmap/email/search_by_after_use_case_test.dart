@@ -147,7 +147,7 @@ void main() {
       )
       ..addReferenceIds(
         processingInvocation.createResultReference(
-          queryEmailInvocation.methodCallId,
+          queryEmailInvocation,
           ReferencePath.idsPath,
         ),
       );

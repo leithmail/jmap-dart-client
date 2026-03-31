@@ -164,7 +164,7 @@ void main() {
       final getMailboxMethodForUpdate = GetMailboxMethod(accountId)
         ..addReferenceIds(
           processingInvocation.createResultReference(
-            changesMailboxInvocation.methodCallId,
+            changesMailboxInvocation,
             ReferencePath.updatedPath,
           ),
         );
@@ -177,7 +177,7 @@ void main() {
       final getMailboxMethodForDestroyed = GetMailboxMethod(accountId)
         ..addReferenceIds(
           processingInvocation.createResultReference(
-            changesMailboxInvocation.methodCallId,
+            changesMailboxInvocation,
             ReferencePath('/destroyed/*'),
           ),
         );

@@ -119,7 +119,7 @@ void main() {
         ..filter = filter;
       searchSnippetGetMethod.addReferenceEmailIds(
         processingInvocation.createResultReference(
-          emailQueryMethodInvocation.methodCallId,
+          emailQueryMethodInvocation,
           ReferencePath.idsPath,
         ),
       );
@@ -171,7 +171,7 @@ void main() {
         ..filter = filter;
       searchSnippetGetMethod.addReferenceEmailIds(
         processingInvocation.createResultReference(
-          emailQueryMethodInvocation.methodCallId,
+          emailQueryMethodInvocation,
           ReferencePath.idsPath,
         ),
       );
@@ -242,7 +242,7 @@ void main() {
         ..filter = filter;
       searchSnippetGetMethod.addReferenceEmailIds(
         processingInvocation.createResultReference(
-          emailQueryMethodInvocation.methodCallId,
+          emailQueryMethodInvocation,
           ReferencePath.idsPath,
         ),
       );
