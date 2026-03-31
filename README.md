@@ -84,7 +84,7 @@ Future<Session> loadSession(Uri sessionEndpoint) async {
 import 'package:http/http.dart' as http;
 import 'package:jmap_dart_client/jmap_dart_client.dart';
 
-Future<GetMailboxResponse?> fetchMailboxes(
+Future<GetMailboxResponse> fetchMailboxes(
   Uri apiEndpoint,
   AccountId accountId,
 ) async {
@@ -116,7 +116,7 @@ Future<GetMailboxResponse?> fetchMailboxes(
 import 'package:http/http.dart' as http;
 import 'package:jmap_dart_client/jmap_dart_client.dart';
 
-Future<GetEmailResponse?> fetchInboxEmails(
+Future<GetEmailResponse> fetchInboxEmails(
   Uri apiEndpoint,
   AccountId accountId,
   MailboxId inboxId,
