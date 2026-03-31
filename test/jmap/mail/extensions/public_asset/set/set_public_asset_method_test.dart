@@ -53,9 +53,11 @@ void main() {
           ],
         },
         expectedBody: {
-          "using": method.requiredCapabilities
-              .map((capability) => capability.value.toString())
-              .toList(),
+          "using":
+              method.requiredCapabilities
+                  .map((capability) => capability.value.toString())
+                  .toList()
+                ..sort(),
           "methodCalls": [
             [
               method.methodName.value,
@@ -80,14 +82,11 @@ void main() {
       );
 
       // act
-      final response =
-          (await (requestBuilder..usings(method.requiredCapabilities))
-                  .build()
-                  .execute())
-              .parse<SetPublicAssetResponse>(
-                invocation.methodCallId,
-                SetPublicAssetResponse.deserialize,
-              );
+      final response = (await requestBuilder.build().execute())
+          .parse<SetPublicAssetResponse>(
+            invocation.methodCallId,
+            SetPublicAssetResponse.deserialize,
+          );
 
       // assert
       expect(response?.created, equals({createId: publicAsset}));
@@ -126,9 +125,11 @@ void main() {
           ],
         },
         expectedBody: {
-          "using": method.requiredCapabilities
-              .map((capability) => capability.value.toString())
-              .toList(),
+          "using":
+              method.requiredCapabilities
+                  .map((capability) => capability.value.toString())
+                  .toList()
+                ..sort(),
           "methodCalls": [
             [
               method.methodName.value,
@@ -153,14 +154,11 @@ void main() {
       );
 
       // act
-      final response =
-          (await (requestBuilder..usings(method.requiredCapabilities))
-                  .build()
-                  .execute())
-              .parse<SetPublicAssetResponse>(
-                invocation.methodCallId,
-                SetPublicAssetResponse.deserialize,
-              );
+      final response = (await requestBuilder.build().execute())
+          .parse<SetPublicAssetResponse>(
+            invocation.methodCallId,
+            SetPublicAssetResponse.deserialize,
+          );
 
       // assert
       expect(
@@ -190,9 +188,11 @@ void main() {
           ],
         },
         expectedBody: {
-          "using": method.requiredCapabilities
-              .map((capability) => capability.value.toString())
-              .toList(),
+          "using":
+              method.requiredCapabilities
+                  .map((capability) => capability.value.toString())
+                  .toList()
+                ..sort(),
           "methodCalls": [
             [
               method.methodName.value,
@@ -217,14 +217,11 @@ void main() {
       );
 
       // act
-      final response =
-          (await (requestBuilder..usings(method.requiredCapabilities))
-                  .build()
-                  .execute())
-              .parse<SetPublicAssetResponse>(
-                invocation.methodCallId,
-                SetPublicAssetResponse.deserialize,
-              );
+      final response = (await requestBuilder.build().execute())
+          .parse<SetPublicAssetResponse>(
+            invocation.methodCallId,
+            SetPublicAssetResponse.deserialize,
+          );
 
       // assert
       expect(response?.destroyed, equals({publicAsset.id}));
@@ -258,9 +255,11 @@ void main() {
           ],
         },
         expectedBody: {
-          "using": method.requiredCapabilities
-              .map((capability) => capability.value.toString())
-              .toList(),
+          "using":
+              method.requiredCapabilities
+                  .map((capability) => capability.value.toString())
+                  .toList()
+                ..sort(),
           "methodCalls": [
             [
               method.methodName.value,
@@ -285,14 +284,11 @@ void main() {
       );
 
       // act
-      final response =
-          (await (requestBuilder..usings(method.requiredCapabilities))
-                  .build()
-                  .execute())
-              .parse<SetPublicAssetResponse>(
-                invocation.methodCallId,
-                SetPublicAssetResponse.deserialize,
-              );
+      final response = (await requestBuilder.build().execute())
+          .parse<SetPublicAssetResponse>(
+            invocation.methodCallId,
+            SetPublicAssetResponse.deserialize,
+          );
 
       // assert
       expect(
@@ -329,9 +325,11 @@ void main() {
           ],
         },
         expectedBody: {
-          "using": method.requiredCapabilities
-              .map((capability) => capability.value.toString())
-              .toList(),
+          "using":
+              method.requiredCapabilities
+                  .map((capability) => capability.value.toString())
+                  .toList()
+                ..sort(),
           "methodCalls": [
             [
               method.methodName.value,
@@ -356,14 +354,11 @@ void main() {
       );
 
       // act
-      final response =
-          (await (requestBuilder..usings(method.requiredCapabilities))
-                  .build()
-                  .execute())
-              .parse<SetPublicAssetResponse>(
-                invocation.methodCallId,
-                SetPublicAssetResponse.deserialize,
-              );
+      final response = (await requestBuilder.build().execute())
+          .parse<SetPublicAssetResponse>(
+            invocation.methodCallId,
+            SetPublicAssetResponse.deserialize,
+          );
 
       // assert
       expect(response?.updated, equals({publicAsset.id: null}));
@@ -401,9 +396,11 @@ void main() {
           ],
         },
         expectedBody: {
-          "using": method.requiredCapabilities
-              .map((capability) => capability.value.toString())
-              .toList(),
+          "using":
+              method.requiredCapabilities
+                  .map((capability) => capability.value.toString())
+                  .toList()
+                ..sort(),
           "methodCalls": [
             [
               method.methodName.value,
@@ -428,14 +425,11 @@ void main() {
       );
 
       // act
-      final response =
-          (await (requestBuilder..usings(method.requiredCapabilities))
-                  .build()
-                  .execute())
-              .parse<SetPublicAssetResponse>(
-                invocation.methodCallId,
-                SetPublicAssetResponse.deserialize,
-              );
+      final response = (await requestBuilder.build().execute())
+          .parse<SetPublicAssetResponse>(
+            invocation.methodCallId,
+            SetPublicAssetResponse.deserialize,
+          );
 
       // assert
       expect(

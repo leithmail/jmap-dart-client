@@ -72,11 +72,7 @@ void main() {
       final setPushSubscriptionInvocation = requestBuilder.invocation(
         setPushSubscriptionMethod,
       );
-      final response =
-          await (requestBuilder
-                ..usings(setPushSubscriptionMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final setPushSubscriptionResponse = response
           .parse<SetPushSubscriptionResponse>(

@@ -116,10 +116,7 @@ void main() {
         getVacationMethod,
       );
 
-      final response =
-          await (requestBuilder..usings(setVacationMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final getVacationResponse = response.parse<GetVacationResponse>(
         getVacationInvocation.methodCallId,

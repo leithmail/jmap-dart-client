@@ -48,9 +48,11 @@ void main() {
             ],
           },
           expectedBody: {
-            "using": getPublicAssetMethod.requiredCapabilities
-                .map((capability) => capability.value.toString())
-                .toList(),
+            "using":
+                getPublicAssetMethod.requiredCapabilities
+                    .map((capability) => capability.value.toString())
+                    .toList()
+                  ..sort(),
             "methodCalls": [
               [
                 getPublicAssetMethod.methodName.value,
@@ -75,15 +77,11 @@ void main() {
         );
 
         // act
-        final response =
-            (await (requestBuilder
-                      ..usings(getPublicAssetMethod.requiredCapabilities))
-                    .build()
-                    .execute())
-                .parse<GetPublicAssetResponse>(
-                  invocation.methodCallId,
-                  GetPublicAssetResponse.deserialize,
-                );
+        final response = (await requestBuilder.build().execute())
+            .parse<GetPublicAssetResponse>(
+              invocation.methodCallId,
+              GetPublicAssetResponse.deserialize,
+            );
 
         // assert
         expect((response)?.list, equals([publicAsset]));
@@ -114,9 +112,11 @@ void main() {
             ],
           },
           expectedBody: {
-            "using": getPublicAssetMethod.requiredCapabilities
-                .map((capability) => capability.value.toString())
-                .toList(),
+            "using":
+                getPublicAssetMethod.requiredCapabilities
+                    .map((capability) => capability.value.toString())
+                    .toList()
+                  ..sort(),
             "methodCalls": [
               [
                 getPublicAssetMethod.methodName.value,
@@ -141,15 +141,11 @@ void main() {
         );
 
         // act
-        final response =
-            (await (requestBuilder
-                      ..usings(getPublicAssetMethod.requiredCapabilities))
-                    .build()
-                    .execute())
-                .parse<GetPublicAssetResponse>(
-                  invocation.methodCallId,
-                  GetPublicAssetResponse.deserialize,
-                );
+        final response = (await requestBuilder.build().execute())
+            .parse<GetPublicAssetResponse>(
+              invocation.methodCallId,
+              GetPublicAssetResponse.deserialize,
+            );
 
         // assert
         expect((response)?.notFound, equals([publicAsset.id]));

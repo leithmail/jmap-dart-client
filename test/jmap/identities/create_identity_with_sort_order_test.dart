@@ -41,9 +41,9 @@ void main() {
         },
         expectedBody: {
           "using": [
+            "urn:apache:james:params:jmap:mail:identity:sortorder",
             "urn:ietf:params:jmap:core",
             "urn:ietf:params:jmap:submission",
-            "urn:apache:james:params:jmap:mail:identity:sortorder",
           ],
           "methodCalls": [
             [
@@ -150,9 +150,9 @@ void main() {
             },
             expectedBody: {
               "using": [
+                "urn:apache:james:params:jmap:mail:identity:sortorder",
                 "urn:ietf:params:jmap:core",
                 "urn:ietf:params:jmap:submission",
-                "urn:apache:james:params:jmap:mail:identity:sortorder",
               ],
               "methodCalls": [
                 [

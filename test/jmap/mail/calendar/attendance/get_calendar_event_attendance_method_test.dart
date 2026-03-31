@@ -39,9 +39,11 @@ void main() {
         blobIds,
       );
       final sampleRequest = {
-        "using": getCalendarEventAttendanceMethod.requiredCapabilities
-            .map((capability) => capability.value.toString())
-            .toList(),
+        "using":
+            getCalendarEventAttendanceMethod.requiredCapabilities
+                .map((capability) => capability.value.toString())
+                .toList()
+              ..sort(),
         "methodCalls": [
           [
             getCalendarEventAttendanceMethod.methodName.value,
@@ -112,9 +114,11 @@ void main() {
         [blobId],
       );
       final sampleRequest = {
-        "using": getCalendarEventAttendanceMethod.requiredCapabilities
-            .map((capability) => capability.value.toString())
-            .toList(),
+        "using":
+            getCalendarEventAttendanceMethod.requiredCapabilities
+                .map((capability) => capability.value.toString())
+                .toList()
+              ..sort(),
         "methodCalls": [
           [
             getCalendarEventAttendanceMethod.methodName.value,
@@ -190,9 +194,11 @@ void main() {
         [blobId],
       );
       final sampleRequest = {
-        "using": getCalendarEventAttendanceMethod.requiredCapabilities
-            .map((capability) => capability.value.toString())
-            .toList(),
+        "using":
+            getCalendarEventAttendanceMethod.requiredCapabilities
+                .map((capability) => capability.value.toString())
+                .toList()
+              ..sort(),
         "methodCalls": [
           [
             getCalendarEventAttendanceMethod.methodName.value,
@@ -230,11 +236,7 @@ void main() {
       );
 
       // act
-      final response =
-          (await (requestBuilder
-                ..usings(getCalendarEventAttendanceMethod.requiredCapabilities))
-              .build()
-              .execute());
+      final response = (await requestBuilder.build().execute());
 
       // assert
       expect(

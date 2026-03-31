@@ -90,10 +90,7 @@ void main() {
       final setIdentityInvocation = requestBuilder.invocation(
         setIdentityMethod,
       );
-      final response =
-          await (requestBuilder..usings(setIdentityMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final setIdentityResponse = response.parse<SetIdentityResponse>(
         setIdentityInvocation.methodCallId,

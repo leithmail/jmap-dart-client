@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/http/converter/capability_identifier_converter.dart';
 import 'package:jmap_dart_client/http/converter/request_invocation_converter.dart';
@@ -30,8 +32,12 @@ class RequestObject with EquatableMixin {
 
 class RequestObjectBuilder with RequiredUsing, RequireMethodCall {
   RequestObject build() {
+    final sortedCapabilities = SplayTreeSet<CapabilityIdentifier>(
+      (a, b) => a.value.toString().compareTo(b.value.toString()),
+    )..addAll(capabilitiesBuilder.build());
+
     return RequestObject(
-      capabilitiesBuilder.build().asSet(),
+      sortedCapabilities,
       invocationsBuilder.build().asList(),
     );
   }

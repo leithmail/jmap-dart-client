@@ -81,9 +81,9 @@ void main() {
         },
         expectedBody: {
           "using": [
-            "urn:ietf:params:jmap:submission",
-            "urn:ietf:params:jmap:mail",
             "urn:ietf:params:jmap:core",
+            "urn:ietf:params:jmap:mail",
+            "urn:ietf:params:jmap:submission",
           ],
           "methodCalls": [
             [
@@ -228,11 +228,7 @@ void main() {
         setEmailSubmissionMethod,
       );
 
-      final response =
-          await (requestBuilder
-                ..usings(setEmailSubmissionMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final setEmailResponse = response.parse<SetEmailResponse>(
         setEmailInvocation.methodCallId,
@@ -306,9 +302,9 @@ void main() {
         },
         expectedBody: {
           "using": [
-            "urn:ietf:params:jmap:submission",
-            "urn:ietf:params:jmap:mail",
             "urn:ietf:params:jmap:core",
+            "urn:ietf:params:jmap:mail",
+            "urn:ietf:params:jmap:submission",
           ],
           "methodCalls": [
             [
@@ -458,11 +454,7 @@ void main() {
         setEmailSubmissionMethod,
       );
 
-      final response =
-          await (requestBuilder
-                ..usings(setEmailSubmissionMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final setEmailResponse = response.parse<SetEmailResponse>(
         setEmailInvocation.methodCallId,

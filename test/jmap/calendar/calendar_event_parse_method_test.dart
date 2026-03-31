@@ -226,8 +226,8 @@ void main() {
         },
         expectedBody: {
           "using": [
-            "urn:ietf:params:jmap:core",
             "com:linagora:params:calendar:event",
+            "urn:ietf:params:jmap:core",
           ],
           "methodCalls": [
             [
@@ -251,11 +251,7 @@ void main() {
         ProcessingInvocation(),
       );
       final invocation = requestBuilder.invocation(calendarEventParseMethod);
-      final response =
-          await (requestBuilder
-                ..usings(calendarEventParseMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final calendarEventParsed = response.parse<CalendarEventParseResponse>(
         invocation.methodCallId,
@@ -406,8 +402,8 @@ void main() {
           },
           expectedBody: {
             "using": [
-              "urn:ietf:params:jmap:core",
               "com:linagora:params:calendar:event",
+              "urn:ietf:params:jmap:core",
             ],
             "methodCalls": [
               [
@@ -432,11 +428,7 @@ void main() {
           ProcessingInvocation(),
         );
         final invocation = requestBuilder.invocation(calendarEventParseMethod);
-        final response =
-            await (requestBuilder
-                  ..usings(calendarEventParseMethod.requiredCapabilities))
-                .build()
-                .execute();
+        final response = await requestBuilder.build().execute();
 
         final calendarEventParsed = response.parse<CalendarEventParseResponse>(
           invocation.methodCallId,
@@ -481,8 +473,8 @@ void main() {
           },
           expectedBody: {
             "using": [
-              "urn:ietf:params:jmap:core",
               "com:linagora:params:calendar:event",
+              "urn:ietf:params:jmap:core",
             ],
             "methodCalls": [
               [
@@ -506,11 +498,7 @@ void main() {
           ProcessingInvocation(),
         );
         final invocation = requestBuilder.invocation(calendarEventParseMethod);
-        final response =
-            await (requestBuilder
-                  ..usings(calendarEventParseMethod.requiredCapabilities))
-                .build()
-                .execute();
+        final response = await requestBuilder.build().execute();
 
         final calendarEventParsed = response.parse<CalendarEventParseResponse>(
           invocation.methodCallId,
@@ -538,8 +526,8 @@ void main() {
         },
         expectedBody: {
           "using": [
-            "urn:ietf:params:jmap:core",
             "com:linagora:params:calendar:event",
+            "urn:ietf:params:jmap:core",
           ],
           "methodCalls": [
             [
@@ -563,11 +551,7 @@ void main() {
         ProcessingInvocation(),
       );
       final invocation = requestBuilder.invocation(calendarEventParseMethod);
-      final response =
-          await (requestBuilder
-                ..usings(calendarEventParseMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final calendarEventParsed = response.parse<CalendarEventParseResponse>(
         invocation.methodCallId,
@@ -604,8 +588,8 @@ void main() {
           },
           expectedBody: {
             "using": [
-              "urn:ietf:params:jmap:core",
               "com:linagora:params:calendar:event",
+              "urn:ietf:params:jmap:core",
             ],
             "methodCalls": [
               [
@@ -630,11 +614,7 @@ void main() {
           ProcessingInvocation(),
         );
         final invocation = requestBuilder.invocation(calendarEventParseMethod);
-        final response =
-            await (requestBuilder
-                  ..usings(calendarEventParseMethod.requiredCapabilities))
-                .build()
-                .execute();
+        final response = await requestBuilder.build().execute();
 
         final calendarEventParsed = response.parse<CalendarEventParseResponse>(
           invocation.methodCallId,

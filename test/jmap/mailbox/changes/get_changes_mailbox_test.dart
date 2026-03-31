@@ -190,11 +190,7 @@ void main() {
         methodCallId: MethodCallId('c2'),
       );
 
-      final result =
-          await (jmapRequestBuilder
-                ..usings(getMailboxMethodForUpdate.requiredCapabilities))
-              .build()
-              .execute();
+      final result = await jmapRequestBuilder.build().execute();
 
       final resultUpdated = result.parse<GetMailboxResponse>(
         getMailboxForUpdateInvocation.methodCallId,

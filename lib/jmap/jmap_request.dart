@@ -74,7 +74,11 @@ class JmapRequestBuilder {
 
   JmapRequestBuilder(this._httpClient, this._processingInvocation);
 
-  RequestInvocation invocation(Method method, {MethodCallId? methodCallId}) {
+  RequestInvocation invocation(
+    Method method, {
+    MethodCallId? methodCallId,
+    bool withRequiredCapabilities = true,
+  }) {
     final callId = methodCallId ?? _processingInvocation.generateMethodCallId();
     final RequestInvocation invocation = RequestInvocation(
       method.methodName,
@@ -82,6 +86,9 @@ class JmapRequestBuilder {
       callId,
     );
     _processingInvocation.addMethod(callId, invocation);
+    if (withRequiredCapabilities) {
+      usings(method.requiredCapabilities);
+    }
     return invocation;
   }
 

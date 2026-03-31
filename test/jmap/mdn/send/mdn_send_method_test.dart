@@ -130,10 +130,7 @@ void main() {
         ProcessingInvocation(),
       );
       final mdnSendInvocation = requestBuilder.invocation(mdnSendMethod);
-      final response =
-          await (requestBuilder..usings(mdnSendMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final mdnSendResponse = response.parse<MDNSendResponse>(
         mdnSendInvocation.methodCallId,

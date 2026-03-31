@@ -22,9 +22,11 @@ void main() {
   final setErrorFixture = SetError(SetError.invalidPatch, description: '');
 
   Map<String, dynamic> constructData(CalendarEventReplyMethod method) => {
-    "using": method.requiredCapabilities
-        .map((capability) => capability.value.toString())
-        .toList(),
+    "using":
+        method.requiredCapabilities
+            .map((capability) => capability.value.toString())
+            .toList()
+          ..sort(),
     "methodCalls": [
       [
         method.methodName.value,
@@ -79,14 +81,11 @@ void main() {
       );
 
       // act
-      final response =
-          (await (requestBuilder..usings(method.requiredCapabilities))
-                  .build()
-                  .execute())
-              .parse<CalendarEventReplyResponse>(
-                invocation.methodCallId,
-                CalendarEventAcceptResponse.deserialize,
-              );
+      final response = (await requestBuilder.build().execute())
+          .parse<CalendarEventReplyResponse>(
+            invocation.methodCallId,
+            CalendarEventAcceptResponse.deserialize,
+          );
 
       // assert
       expect(

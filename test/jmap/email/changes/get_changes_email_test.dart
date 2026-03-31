@@ -259,11 +259,7 @@ void main() {
         methodCallId: MethodCallId('c3'),
       );
 
-      final result =
-          await (jmapRequestBuilder
-                ..usings(getEmailMethodForUpdate.requiredCapabilities))
-              .build()
-              .execute();
+      final result = await jmapRequestBuilder.build().execute();
 
       final resultUpdated = result.parse<GetEmailResponse>(
         getEmailForUpdateInvocation.methodCallId,

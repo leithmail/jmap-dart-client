@@ -28,9 +28,11 @@ void main() {
         'when thread not found', () async {
       // arrange
       final sampleRequest = {
-        "using": getThreadMethod.requiredCapabilities
-            .map((capability) => capability.value.toString())
-            .toList(),
+        "using":
+            getThreadMethod.requiredCapabilities
+                .map((capability) => capability.value.toString())
+                .toList()
+              ..sort(),
         "methodCalls": [
           [
             getThreadMethod.methodName.value,
@@ -74,11 +76,10 @@ void main() {
         getThreadMethod,
         methodCallId: methodCallId,
       );
-      final response =
-          (await (requestBuilder..usings(getThreadMethod.requiredCapabilities))
-                  .build()
-                  .execute())
-              .parse(invocation.methodCallId, GetThreadResponse.deserialize);
+      final response = (await requestBuilder.build().execute()).parse(
+        invocation.methodCallId,
+        GetThreadResponse.deserialize,
+      );
 
       // assert
       expect(

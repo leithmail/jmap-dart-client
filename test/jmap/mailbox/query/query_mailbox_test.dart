@@ -159,11 +159,7 @@ void main() {
               getMailBoxMethod,
               methodCallId: MethodCallId('c3'),
             );
-            final result =
-                await (jmapRequestBuilder
-                      ..usings(getMailBoxMethod.requiredCapabilities))
-                    .build()
-                    .execute();
+            final result = await jmapRequestBuilder.build().execute();
 
             final resultList = result.parse<GetMailboxResponse>(
               getMailboxInvocation.methodCallId,

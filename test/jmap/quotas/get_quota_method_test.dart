@@ -112,10 +112,7 @@ void main() {
         processingInvocation,
       );
       final getQuotaInvocation = requestBuilder.invocation(getQuotaMethod);
-      final response =
-          await (requestBuilder..usings(getQuotaMethod.requiredCapabilities))
-              .build()
-              .execute();
+      final response = await requestBuilder.build().execute();
 
       final resultList = response.parse<GetQuotaResponse>(
         getQuotaInvocation.methodCallId,
