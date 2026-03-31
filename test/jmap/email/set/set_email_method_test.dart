@@ -146,7 +146,7 @@ void main() {
         SetEmailResponse.deserialize,
       );
 
-      expect(setEmailResponse!.created![Id('aa1234')], equals(expectedCreated));
+      expect(setEmailResponse.created![Id('aa1234')], equals(expectedCreated));
     });
 
     test('set email method and response parsing with header User-Agent', () async {
@@ -275,7 +275,7 @@ void main() {
         SetEmailResponse.deserialize,
       );
 
-      expect(setEmailResponse!.created![Id('aa1234')], equals(expectedCreated));
+      expect(setEmailResponse.created![Id('aa1234')], equals(expectedCreated));
     });
 
     test('set email method and response parsing with header Mdn', () async {
@@ -405,7 +405,7 @@ void main() {
         size: UnsignedInt(600),
       );
 
-      expect(setEmailResponse!.created![Id('e01')], equals(expectedCreated1));
+      expect(setEmailResponse.created![Id('e01')], equals(expectedCreated1));
     });
   });
 }

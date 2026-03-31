@@ -69,10 +69,7 @@ void main() {
             GetPushSubscriptionResponse.deserialize,
           );
 
-      expect(
-        getPushSubscriptionResponse!.list.first.id,
-        equals(expectedGet.id),
-      );
+      expect(getPushSubscriptionResponse.list.first.id, equals(expectedGet.id));
     });
   });
 }

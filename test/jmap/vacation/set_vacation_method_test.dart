@@ -123,7 +123,7 @@ void main() {
         GetVacationResponse.deserialize,
       );
 
-      expect(getVacationResponse!.list, contains(expectedUpdated));
+      expect(getVacationResponse.list, contains(expectedUpdated));
     });
   });
 }

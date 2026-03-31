@@ -148,14 +148,14 @@ void main() {
         queryEmailInvocation.methodCallId,
         QueryEmailResponse.deserialize,
       );
-      expect(resulQuery!.canCalculateChanges, isFalse);
+      expect(resulQuery.canCalculateChanges, isFalse);
       expect(resulQuery.ids, hasLength(8));
 
       final resultSet = result.parse<SetEmailResponse>(
         setEmailInvocation.methodCallId,
         SetEmailResponse.deserialize,
       );
-      expect(resultSet!.destroyed, hasLength(8));
+      expect(resultSet.destroyed, hasLength(8));
       expect(resultSet.destroyed, containsAll(resulQuery.ids));
     });
   });

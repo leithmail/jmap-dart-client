@@ -166,8 +166,8 @@ void main() {
         GetMailboxResponse.deserialize,
       );
 
-      expect(getMailboxResponse?.list.length, equals(1));
-      expect(getMailboxResponse?.list, containsAll([expectedMailbox1]));
+      expect(getMailboxResponse.list.length, equals(1));
+      expect(getMailboxResponse.list, containsAll([expectedMailbox1]));
     });
 
     test(
@@ -250,8 +250,8 @@ void main() {
           GetMailboxResponse.deserialize,
         );
 
-        expect(getMailboxResponse?.list.length, equals(1));
-        expect(getMailboxResponse?.list, containsAll([expectedMailbox2]));
+        expect(getMailboxResponse.list.length, equals(1));
+        expect(getMailboxResponse.list, containsAll([expectedMailbox2]));
       },
     );
   });

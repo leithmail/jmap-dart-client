@@ -166,9 +166,9 @@ void main() {
               GetMailboxResponse.deserialize,
             );
 
-            expect(resultList?.list.first.name?.name, 'Spam');
-            expect(resultList?.list.first.role?.value, 'junk');
-            expect(resultList?.list.first, equals(expectedReported));
+            expect(resultList.list.first.name?.name, 'Spam');
+            expect(resultList.list.first.role?.value, 'junk');
+            expect(resultList.list.first, equals(expectedReported));
           },
         );
       }

@@ -98,7 +98,7 @@ void main() {
       );
 
       expect(
-        setIdentityResponse!.created![Id('dab246')]!.id,
+        setIdentityResponse.created![Id('dab246')]!.id,
         equals(expectedCreated.id),
       );
     });

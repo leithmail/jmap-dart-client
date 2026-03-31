@@ -275,9 +275,9 @@ void main() {
         GetEmailResponse.deserialize,
       );
 
-      expect(resultList?.list.length, equals(5));
+      expect(resultList.list.length, equals(5));
       expect(
-        resultList?.list,
+        resultList.list,
         containsAll({
           expectMail1,
           expectMail2,

@@ -146,7 +146,7 @@ void main() {
           GetEmailResponse.deserialize,
         );
 
-        expect(resultCreated!.list.length, equals(1));
+        expect(resultCreated.list.length, equals(1));
         expect(resultCreated.list, containsAll([expectMail]));
       },
     );

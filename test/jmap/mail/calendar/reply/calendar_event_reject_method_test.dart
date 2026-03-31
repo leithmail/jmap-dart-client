@@ -85,12 +85,9 @@ void main() {
           );
 
       // assert
-      expect(
-        (response as CalendarEventRejectResponse?)?.rejected,
-        equals([EventId(successBlobId.value)]),
-      );
-      expect(response?.notRejected?.keys.toList(), equals([failureBlobId]));
-      expect(response?.notFound, equals([notFoundBlobId]));
+      expect(response.rejected, equals([EventId(successBlobId.value)]));
+      expect(response.notRejected?.keys.toList(), equals([failureBlobId]));
+      expect(response.notFound, equals([notFoundBlobId]));
     });
   });
 }

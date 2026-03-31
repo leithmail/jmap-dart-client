@@ -89,7 +89,7 @@ void main() {
           );
 
       // assert
-      expect(response?.created, equals({createId: publicAsset}));
+      expect(response.created, equals({createId: publicAsset}));
     });
 
     test('should return notCreated '
@@ -162,7 +162,7 @@ void main() {
 
       // assert
       expect(
-        response?.notCreated?[createId],
+        response.notCreated?[createId],
         SetError(SetError.invalidArguments, description: errorDescription),
       );
     });
@@ -224,7 +224,7 @@ void main() {
           );
 
       // assert
-      expect(response?.destroyed, equals({publicAsset.id}));
+      expect(response.destroyed, equals({publicAsset.id}));
     });
 
     test('should return notDestroyed '
@@ -292,7 +292,7 @@ void main() {
 
       // assert
       expect(
-        response?.notDestroyed?[publicAsset.id],
+        response.notDestroyed?[publicAsset.id],
         SetError(
           SetError.invalidArguments,
           description: errorDescription(publicAsset.id?.value),
@@ -361,7 +361,7 @@ void main() {
           );
 
       // assert
-      expect(response?.updated, equals({publicAsset.id: null}));
+      expect(response.updated, equals({publicAsset.id: null}));
     });
 
     test('should return notUpdated '
@@ -433,7 +433,7 @@ void main() {
 
       // assert
       expect(
-        response?.notUpdated?[publicAsset.id],
+        response.notUpdated?[publicAsset.id],
         SetError(SetError.invalidArguments, description: errorDescription),
       );
     });

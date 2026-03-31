@@ -137,7 +137,7 @@ void main() {
         MDNSendResponse.deserialize,
       );
 
-      expect(mdnSendResponse!.sent![Id('k1546')]!, equals(expectedResult));
+      expect(mdnSendResponse.sent![Id('k1546')]!, equals(expectedResult));
     });
   });
 }

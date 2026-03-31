@@ -84,7 +84,7 @@ void main() {
             );
 
         // assert
-        expect((response)?.list, equals([publicAsset]));
+        expect(response.list, equals([publicAsset]));
       },
     );
 
@@ -148,7 +148,7 @@ void main() {
             );
 
         // assert
-        expect((response)?.notFound, equals([publicAsset.id]));
+        expect(response.notFound, equals([publicAsset.id]));
       },
     );
   });
