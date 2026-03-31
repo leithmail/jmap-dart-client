@@ -66,16 +66,8 @@ The barrel exports the package's public, consumer-facing modules so you do not n
 import 'package:http/http.dart' as http;
 import 'package:jmap_dart_client/jmap_dart_client.dart';
 
-Future<Session> loadSession(Uri sessionEndpoint) async {
-  final client = http.Client();
-  try {
-    final endpointClient = EndpointHttpClient(client, sessionEndpoint);
-    final getSession = GetSessionBuilder(endpointClient).build();
-    return await getSession.execute();
-  } finally {
-    client.close();
-  }
-}
+final client = http.Client();
+final session = await Session.fetch(client, Uri.parse('https://example.org/.well-known/jmap'));
 ```
 
 ### Query Mailboxes

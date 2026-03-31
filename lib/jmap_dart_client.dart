@@ -7,8 +7,6 @@ export 'api/filter/filter.dart';
 export 'api/filter/filter_condition.dart';
 export 'api/filter/filter_operator.dart';
 export 'api/filter/operator/logic_filter_operator.dart';
-// Session
-export 'api/get_session.dart';
 export 'api/jmap_request.dart';
 // Shared method abstractions
 export 'api/method/method.dart';

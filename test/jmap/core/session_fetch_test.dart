@@ -1,14 +1,13 @@
 import 'dart:io';
 
-import 'package:jmap_dart_client/api/get_session.dart';
+import 'package:jmap_dart_client/entities/core/session.dart';
 import 'package:jmap_dart_client/errors/exceptions.dart';
-import 'package:jmap_dart_client/src/converters/capabilities_converter.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
 
 void main() {
-  group('GetSession.execute() exception behaviour', () {
+  group('Session.fetch exception behaviour', () {
     group('401 response', () {
       test('throws JmapUnauthorizedException', () {
         // arrange
@@ -23,14 +22,13 @@ void main() {
           httpClient,
           'https://example.org/.well-known/jmap',
         );
-        final getSession = GetSession(
-          httpEndpointClient,
-          CapabilitiesConverter(),
-        );
 
         // act + assert
         expect(
-          () => getSession.execute(),
+          () => Session.fetch(
+            httpEndpointClient,
+            Uri.parse('https://example.org/.well-known/jmap'),
+          ),
           throwsA(isA<JmapUnauthorizedException>()),
         );
       });
@@ -50,14 +48,13 @@ void main() {
           httpClient,
           'https://example.org/.well-known/jmap',
         );
-        final getSession = GetSession(
-          httpEndpointClient,
-          CapabilitiesConverter(),
-        );
 
         // act + assert
         await expectLater(
-          () => getSession.execute(),
+          () => Session.fetch(
+            httpEndpointClient,
+            Uri.parse('https://example.org/.well-known/jmap'),
+          ),
           throwsA(
             isA<JmapHttpException>().having(
               (e) => e.statusCode,
@@ -83,14 +80,13 @@ void main() {
           httpClient,
           'https://example.org/.well-known/jmap',
         );
-        final getSession = GetSession(
-          httpEndpointClient,
-          CapabilitiesConverter(),
-        );
 
         // act + assert
         expect(
-          () => getSession.execute(),
+          () => Session.fetch(
+            httpEndpointClient,
+            Uri.parse('https://example.org/.well-known/jmap'),
+          ),
           throwsA(isA<JmapConnectionException>()),
         );
       });
@@ -108,14 +104,13 @@ void main() {
           httpClient,
           'https://example.org/.well-known/jmap',
         );
-        final getSession = GetSession(
-          httpEndpointClient,
-          CapabilitiesConverter(),
-        );
 
         // act + assert
         expect(
-          () => getSession.execute(),
+          () => Session.fetch(
+            httpEndpointClient,
+            Uri.parse('https://example.org/.well-known/jmap'),
+          ),
           throwsA(isA<JmapConnectionException>()),
         );
       });
@@ -137,14 +132,13 @@ void main() {
             httpClient,
             'https://example.org/.well-known/jmap',
           );
-          final getSession = GetSession(
-            httpEndpointClient,
-            CapabilitiesConverter(),
-          );
 
           // act + assert
           expect(
-            () => getSession.execute(),
+            () => Session.fetch(
+              httpEndpointClient,
+              Uri.parse('https://example.org/.well-known/jmap'),
+            ),
             throwsA(
               isA<JmapParseResponseException>().having(
                 (e) => e,
