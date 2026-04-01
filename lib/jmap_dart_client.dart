@@ -1,13 +1,12 @@
 library jmap_dart_client;
 
-// Query/filter/sort building blocks
+// Core API building blocks
+export 'api/capabilities_converter.dart';
 export 'api/filter/filter.dart';
 export 'api/filter/filter_condition.dart';
 export 'api/filter/filter_operator.dart';
 export 'api/filter/operator/logic_filter_operator.dart';
-// HTTP client
 export 'api/http_client.dart';
-// Shared method abstractions
 export 'api/method/method.dart';
 export 'api/method/method_response.dart';
 export 'api/method/request/calendar_event_reply_method.dart';
@@ -28,19 +27,23 @@ export 'api/method/response/send_response.dart';
 export 'api/method/response/set_response.dart';
 export 'api/properties/properties.dart';
 export 'api/request/patch_object.dart';
+export 'api/request/ready_to_build.dart';
 export 'api/request/reference_id.dart';
-// Request/response wiring needed by consumers
 export 'api/request/reference_path.dart';
 export 'api/request/reference_prefix.dart';
 export 'api/request/request_invocation.dart';
+export 'api/request/request_object.dart';
+export 'api/request/require_method_call.dart';
+export 'api/request/require_using.dart';
 export 'api/request/result_reference.dart';
 export 'api/request_builder.dart';
+export 'api/response/response_invocation.dart';
 export 'api/response/response_object.dart';
 export 'api/sort/collation_identifier.dart';
 export 'api/sort/comparator.dart';
 export 'api/sort/comparator_property.dart';
+// Entity models: Calendar
 export 'entities/calendar/calendar_event.dart';
-// Calendar
 export 'entities/calendar/calendar_event_attendance.dart';
 export 'entities/calendar/properties/attendee/calendar_attendee.dart';
 export 'entities/calendar/properties/attendee/calendar_attendee_expect_reply.dart';
@@ -68,7 +71,7 @@ export 'entities/calendar/properties/recurrence_rule/recurrence_rule_frequency.d
 export 'entities/calendar/properties/recurrence_rule/recurrence_rule_interval.dart';
 export 'entities/calendar/properties/recurrence_rule/recurrence_rule_rscale.dart';
 export 'entities/calendar/properties/recurrence_rule/recurrence_rule_skip.dart';
-// Capabilities
+// Entity models: Capabilities
 export 'entities/capability/calendar_event_capability.dart';
 export 'entities/capability/capability_identifier.dart';
 export 'entities/capability/capability_properties.dart';
@@ -81,9 +84,8 @@ export 'entities/capability/submission_capability.dart';
 export 'entities/capability/vacation_capability.dart';
 export 'entities/capability/web_socket_ticket_capability.dart';
 export 'entities/capability/websocket_capability.dart';
-// Core primitives
+// Entity models: Core
 export 'entities/core/account.dart';
-// Core identities and request execution
 export 'entities/core/account_id.dart';
 export 'entities/core/id.dart';
 export 'entities/core/session.dart';
@@ -91,6 +93,7 @@ export 'entities/core/state.dart';
 export 'entities/core/unsigned_int.dart';
 export 'entities/core/user_name.dart';
 export 'entities/core/utc_date.dart';
+// Entity models: Email
 export 'entities/email/address.dart';
 export 'entities/email/delivery_status.dart';
 export 'entities/email/email.dart';
@@ -109,23 +112,27 @@ export 'entities/email/individual_header_identifier.dart';
 export 'entities/email/keyword_identifier.dart';
 export 'entities/email/public_asset.dart';
 export 'entities/email/search_snippet.dart';
+// Entity models: Identity
 export 'entities/identity/identity.dart';
+// Entity models: Mailbox
 export 'entities/mailbox/mailbox.dart';
 export 'entities/mailbox/mailbox_filter_condition.dart';
 export 'entities/mailbox/mailbox_rights.dart';
 export 'entities/mailbox/namespace.dart';
-// MDN
+// Entity models: MDN
 export 'entities/mdn/disposition.dart';
 export 'entities/mdn/mdn.dart';
-// Push
+// Entity models: Push
 export 'entities/push/encryption_key.dart';
 export 'entities/push/push_subscription.dart';
 export 'entities/push/state_change.dart';
 export 'entities/push/type_state.dart';
-// Quotas
+// Entity models: Quota
 export 'entities/quota/data_types.dart';
 export 'entities/quota/quota.dart';
+// Entity models: Thread
 export 'entities/thread/thread.dart';
+// Entity models: Vacation
 export 'entities/vacation/vacation_id.dart';
 export 'entities/vacation/vacation_response.dart';
 // Errors and exceptions
@@ -133,6 +140,7 @@ export 'errors/error_method_response.dart';
 export 'errors/error_type.dart';
 export 'errors/exceptions.dart';
 export 'errors/set_error.dart';
+// Methods: Calendar
 export 'methods/calendar/attendance/get_calendar_event_attendance_method.dart';
 export 'methods/calendar/attendance/get_calendar_event_attendance_response.dart';
 export 'methods/calendar/parse/calendar_event_parse_method.dart';
@@ -144,12 +152,11 @@ export 'methods/calendar/reply/calendar_event_maybe_method.dart';
 export 'methods/calendar/reply/calendar_event_maybe_response.dart';
 export 'methods/calendar/reply/calendar_event_reject_method.dart';
 export 'methods/calendar/reply/calendar_event_reject_response.dart';
-// Email
+// Methods: Email
 export 'methods/email/changes_email_method.dart';
 export 'methods/email/changes_email_response.dart';
 export 'methods/email/get_email_method.dart';
 export 'methods/email/get_email_response.dart';
-// Mail extensions
 export 'methods/email/get_public_asset_method.dart';
 export 'methods/email/get_public_asset_response.dart';
 export 'methods/email/parse_email_method.dart';
@@ -164,12 +171,12 @@ export 'methods/email/set_email_submission_method.dart';
 export 'methods/email/set_email_submission_response.dart';
 export 'methods/email/set_public_asset_method.dart';
 export 'methods/email/set_public_asset_response.dart';
-// Identities
+// Methods: Identity
 export 'methods/identity/get_identity_method.dart';
 export 'methods/identity/get_identity_response.dart';
 export 'methods/identity/set_identity_method.dart';
 export 'methods/identity/set_identity_response.dart';
-// Mailbox
+// Methods: Mailbox
 export 'methods/mailbox/changes/changes_mailbox_method.dart';
 export 'methods/mailbox/changes/changes_mailbox_response.dart';
 export 'methods/mailbox/clear/clear_mailbox_method.dart';
@@ -180,18 +187,21 @@ export 'methods/mailbox/query/query_mailbox_method.dart';
 export 'methods/mailbox/query/query_mailbox_response.dart';
 export 'methods/mailbox/set/set_mailbox_method.dart';
 export 'methods/mailbox/set/set_mailbox_response.dart';
+// Methods: MDN
 export 'methods/mdn/mdn_send_method.dart';
 export 'methods/mdn/mdn_send_response.dart';
+// Methods: Push
 export 'methods/push/get_push_subscription_method.dart';
 export 'methods/push/get_push_subscription_response.dart';
 export 'methods/push/set_push_subscription_method.dart';
 export 'methods/push/set_push_subscription_response.dart';
+// Methods: Quota
 export 'methods/quota/get_quota_method.dart';
 export 'methods/quota/get_quota_response.dart';
-// Thread
+// Methods: Thread
 export 'methods/thread/get_thread_method.dart';
 export 'methods/thread/get_thread_response.dart';
-// Vacation
+// Methods: Vacation
 export 'methods/vacation/get_vacation_method.dart';
 export 'methods/vacation/get_vacation_response.dart';
 export 'methods/vacation/set_vacation_method.dart';
