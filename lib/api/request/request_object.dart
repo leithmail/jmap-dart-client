@@ -4,8 +4,6 @@ import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:http/http.dart' as http;
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
-import 'package:jmap_dart_client/api/request/require_method_call.dart';
-import 'package:jmap_dart_client/api/request/require_using.dart';
 import 'package:jmap_dart_client/api/response/response_object.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/errors/exceptions.dart';
@@ -22,16 +20,16 @@ class RequestObject with EquatableMixin {
   final Set<CapabilityIdentifier> using;
   final List<RequestInvocation> methodCalls;
 
-  RequestObject(this.using, this.methodCalls);
+  RequestObject(
+    Set<CapabilityIdentifier> using,
+    List<RequestInvocation> methodCalls,
+  ) : using = Set.unmodifiable(using),
+      methodCalls = List.unmodifiable(methodCalls);
 
   @override
   List<Object> get props => [using, methodCalls];
 
   Map<String, dynamic> toJson() => _$RequestObjectToJson(this);
-
-  static RequestObjectBuilder builder() {
-    return RequestObjectBuilder();
-  }
 
   Future<ResponseObject> execute(http.Client client, Uri url) async {
     try {
@@ -57,18 +55,9 @@ class RequestObject with EquatableMixin {
 
   ResponseObject _extractData(String body) {
     try {
-      return ResponseObject.fromJson(jsonDecode(body) as Map<String, dynamic>);
+      return ResponseObject.fromJson(jsonDecode(body));
     } catch (e) {
       throw JmapParseResponseException(message: e.toString());
     }
-  }
-}
-
-class RequestObjectBuilder with RequiredUsing, RequireMethodCall {
-  RequestObject build() {
-    return RequestObject(
-      capabilitiesBuilder.build().toSet(),
-      invocationsBuilder.build().asList(),
-    );
   }
 }

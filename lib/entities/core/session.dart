@@ -87,10 +87,7 @@ class Session with EquatableMixin {
 
   static Session _extractData(String body, {CapabilitiesConverter? converter}) {
     try {
-      return Session.fromJson(
-        jsonDecode(body) as Map<String, dynamic>,
-        converter: converter,
-      );
+      return Session.fromJson(jsonDecode(body), converter: converter);
     } catch (e) {
       throw JmapParseResponseException(message: e.toString());
     }

@@ -1,4 +1,3 @@
-import 'package:built_collection/built_collection.dart';
 import 'package:jmap_dart_client/api/method/method_response.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/src/utils/utils.dart';
@@ -9,12 +8,9 @@ import 'request/request_object.dart';
 
 class RequestBuilder {
   static const String _methodCallIdPrefix = 'c';
-  late BuiltMap<MethodCallId, RequestInvocation> _invocations;
-  final SetBuilder<CapabilityIdentifier> _capabilitiesBuilder = SetBuilder();
-
-  RequestBuilder() {
-    _invocations = BuiltMap();
-  }
+  final List<RequestInvocation> _invocations = [];
+  final Set<CapabilityIdentifier> _capabilities = {};
+  final Set<MethodCallId> _methodCallIds = {};
 
   RequestInvocation<R> addInvocation<R extends MethodResponse>(
     Method<R> method, {
@@ -35,24 +31,21 @@ class RequestBuilder {
   }
 
   void addUsings(Set<CapabilityIdentifier> capabilityIdentifiers) {
-    _capabilitiesBuilder.addAll(capabilityIdentifiers);
+    _capabilities.addAll(capabilityIdentifiers);
   }
 
   RequestObject build() {
-    return (RequestObject.builder()
-          ..addUsings(_capabilitiesBuilder.build().asSet())
-          ..methodCalls(_invocations.values.toList()))
-        .build();
+    return RequestObject(_capabilities, _invocations);
   }
 
   MethodCallId _generateMethodCallId() {
     return positiveIntegers
         .map((item) => MethodCallId(_methodCallIdPrefix + item.toString()))
-        .firstWhere((callId) => !_invocations.keys.contains(callId));
+        .firstWhere((callId) => !_methodCallIds.contains(callId));
   }
 
   void _addMethod(MethodCallId callId, RequestInvocation requestInvocation) {
-    _invocations =
-        (_invocations.toBuilder()..addAll({callId: requestInvocation})).build();
+    _methodCallIds.add(callId);
+    _invocations.add(requestInvocation);
   }
 }
