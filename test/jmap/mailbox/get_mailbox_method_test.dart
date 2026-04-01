@@ -1,0 +1,249 @@
+import 'package:jmap_dart_client/api/request_builder.dart';
+import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/entities/core/id.dart';
+import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
+import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/entities/mailbox/mailbox_rights.dart';
+import 'package:jmap_dart_client/entities/mailbox/namespace.dart';
+import 'package:jmap_dart_client/methods/mailbox/get/get_mailbox_method.dart';
+import 'package:test/test.dart';
+
+import '../../helpers/http_mocks.dart';
+
+void main() {
+  group('test to json get mailbox method', () {
+    final expectedMailbox1 = Mailbox(
+      id: MailboxId(Id('f1cef2d0-30a9-11eb-9a8d-254ee97830fe')),
+      role: Role('inbox'),
+      name: MailboxName('INBOX'),
+      sortOrder: SortOrder(sortValue: 10),
+      totalEmails: TotalEmails(UnsignedInt(1847)),
+      unreadEmails: UnreadEmails(UnsignedInt(1708)),
+      totalThreads: TotalThreads(UnsignedInt(1847)),
+      unreadThreads: UnreadThreads(UnsignedInt(1708)),
+      myRights: MailboxRights(
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+      ),
+      isSubscribed: IsSubscribed(false),
+      rights: {
+        "firstname23.surname23@upn.integration-open-paas.org": [
+          "i",
+          "l",
+          "r",
+          "s",
+          "t",
+          "w",
+        ],
+      },
+      namespace: Namespace('Personal'),
+    );
+
+    final expectedMailbox2 = Mailbox(
+      id: MailboxId(Id('f1cef2d0-30a9-11eb-9a8d-254ee97830fe')),
+      role: Role('inbox'),
+      name: MailboxName('INBOX'),
+      sortOrder: SortOrder(sortValue: 10),
+      totalEmails: TotalEmails(UnsignedInt(1847)),
+      unreadEmails: UnreadEmails(UnsignedInt(1708)),
+      totalThreads: TotalThreads(UnsignedInt(1847)),
+      unreadThreads: UnreadThreads(UnsignedInt(1708)),
+      myRights: MailboxRights(
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+      ),
+      isSubscribed: IsSubscribed(false),
+    );
+
+    test('get mailbox method and response parsing has team mailboxes', () async {
+      final httpMockClient = HttpMockResponseClient(
+        responseBody: {
+          "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
+          "methodResponses": [
+            [
+              "Mailbox/get",
+              {
+                "accountId":
+                    "0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555",
+                "notFound": [],
+                "state": "c7b1bb10-80f5-11ed-b960-5773e4d60b2f",
+                "list": [
+                  {
+                    "totalThreads": 1847,
+                    "name": "INBOX",
+                    "isSubscribed": false,
+                    "role": "inbox",
+                    "totalEmails": 1847,
+                    "unreadThreads": 1708,
+                    "unreadEmails": 1708,
+                    "sortOrder": 10,
+                    "rights": {
+                      "firstname23.surname23@upn.integration-open-paas.org": [
+                        "i",
+                        "l",
+                        "r",
+                        "s",
+                        "t",
+                        "w",
+                      ],
+                    },
+                    "namespace": "Personal",
+                    "myRights": {
+                      "mayReadItems": true,
+                      "mayAddItems": true,
+                      "mayRemoveItems": true,
+                      "maySetSeen": true,
+                      "maySetKeywords": true,
+                      "mayCreateChild": true,
+                      "mayRename": true,
+                      "mayDelete": true,
+                      "maySubmit": true,
+                    },
+                    "id": "f1cef2d0-30a9-11eb-9a8d-254ee97830fe",
+                  },
+                ],
+              },
+              "c0",
+            ],
+          ],
+        },
+        expectedBody: {
+          "using": [
+            "urn:apache:james:params:jmap:mail:shares",
+            "urn:ietf:params:jmap:core",
+            "urn:ietf:params:jmap:mail",
+          ],
+          "methodCalls": [
+            [
+              "Mailbox/get",
+              {
+                "accountId":
+                    "0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555",
+              },
+              "c0",
+            ],
+          ],
+        },
+      );
+
+      final getMailboxMethod = GetMailboxMethod(
+        AccountId(
+          Id(
+            '0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555',
+          ),
+        ),
+      );
+
+      final requestBuilder = RequestBuilder();
+      final getMailboxInvocation = requestBuilder.addInvocation(
+        getMailboxMethod,
+      );
+      final response =
+          await (requestBuilder..addUsings(
+                getMailboxMethod.requiredCapabilitiesSupportTeamMailboxes,
+              ))
+              .build()
+              .execute(httpMockClient, HttpMockResponseClient.defaultUri);
+
+      final getMailboxResponse = getMailboxInvocation.parse(response);
+
+      expect(getMailboxResponse.list.length, equals(1));
+      expect(getMailboxResponse.list, containsAll([expectedMailbox1]));
+    });
+
+    test(
+      'get mailbox method and response parsing not have team mailboxes',
+      () async {
+        final httpMockClient = HttpMockResponseClient(
+          responseBody: {
+            "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
+            "methodResponses": [
+              [
+                "Mailbox/get",
+                {
+                  "accountId":
+                      "0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555",
+                  "notFound": [],
+                  "state": "c7b1bb10-80f5-11ed-b960-5773e4d60b2f",
+                  "list": [
+                    {
+                      "totalThreads": 1847,
+                      "name": "INBOX",
+                      "isSubscribed": false,
+                      "role": "inbox",
+                      "totalEmails": 1847,
+                      "unreadThreads": 1708,
+                      "unreadEmails": 1708,
+                      "sortOrder": 10,
+                      "myRights": {
+                        "mayReadItems": true,
+                        "mayAddItems": true,
+                        "mayRemoveItems": true,
+                        "maySetSeen": true,
+                        "maySetKeywords": true,
+                        "mayCreateChild": true,
+                        "mayRename": true,
+                        "mayDelete": true,
+                        "maySubmit": true,
+                      },
+                      "id": "f1cef2d0-30a9-11eb-9a8d-254ee97830fe",
+                    },
+                  ],
+                },
+                "c0",
+              ],
+            ],
+          },
+          expectedBody: {
+            "using": ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail"],
+            "methodCalls": [
+              [
+                "Mailbox/get",
+                {
+                  "accountId":
+                      "0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555",
+                },
+                "c0",
+              ],
+            ],
+          },
+        );
+
+        final getMailboxMethod = GetMailboxMethod(
+          AccountId(
+            Id(
+              '0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555',
+            ),
+          ),
+        );
+
+        final requestBuilder = RequestBuilder();
+        final getMailboxInvocation = requestBuilder.addInvocation(
+          getMailboxMethod,
+        );
+        final response = await requestBuilder.build().execute(
+          httpMockClient,
+          HttpMockResponseClient.defaultUri,
+        );
+
+        final getMailboxResponse = getMailboxInvocation.parse(response);
+        expect(getMailboxResponse.list.length, equals(1));
+        expect(getMailboxResponse.list, containsAll([expectedMailbox2]));
+      },
+    );
+  });
+}

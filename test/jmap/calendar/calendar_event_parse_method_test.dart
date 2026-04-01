@@ -1,34 +1,33 @@
-import 'package:jmap_dart_client/jmap/account_id.dart';
-import 'package:jmap_dart_client/jmap/core/id.dart';
-import 'package:jmap_dart_client/jmap/core/properties/properties.dart';
-import 'package:jmap_dart_client/jmap/core/utc_date.dart';
-import 'package:jmap_dart_client/jmap/jmap_request.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/calendar_event.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/parse/calendar_event_parse_method.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/parse/calendar_event_parse_response.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/attendee/calendar_attendee.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/attendee/calendar_attendee_expect_reply.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/attendee/calendar_attendee_kind.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/attendee/calendar_attendee_mail_to.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/attendee/calendar_attendee_name.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/attendee/calendar_attendee_participation_status.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/attendee/calendar_attendee_role.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/calendar_duration.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/calendar_extension_fields.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/calendar_free_busy_status.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/calendar_organizer.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/calendar_priority.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/calendar_privacy.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/calendar_sequence.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/event_id.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/event_method.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/mail_address.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/recurrence_rule/day_of_week.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/recurrence_rule/recurrence_rule.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/recurrence_rule/recurrence_rule_frequency.dart';
+import 'package:jmap_dart_client/api/properties/properties.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
+import 'package:jmap_dart_client/entities/calendar/calendar_event.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/attendee/calendar_attendee.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/attendee/calendar_attendee_expect_reply.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/attendee/calendar_attendee_kind.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/attendee/calendar_attendee_mail_to.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/attendee/calendar_attendee_name.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/attendee/calendar_attendee_participation_status.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/attendee/calendar_attendee_role.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/calendar_duration.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/calendar_extension_fields.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/calendar_free_busy_status.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/calendar_organizer.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/calendar_priority.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/calendar_privacy.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/calendar_sequence.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/event_id.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/event_method.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/mail_address.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/recurrence_rule/day_of_week.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/recurrence_rule/recurrence_rule.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/recurrence_rule/recurrence_rule_frequency.dart';
+import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/entities/core/id.dart';
+import 'package:jmap_dart_client/entities/core/utc_date.dart';
+import 'package:jmap_dart_client/methods/calendar/parse/calendar_event_parse_method.dart';
 import 'package:test/test.dart';
 
-import '../../http_mocks.dart';
+import '../../helpers/http_mocks.dart';
 
 void main() {
   group('Test to json calendar event parse method', () {
@@ -245,18 +244,14 @@ void main() {
       final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
         blobId1,
       });
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        ProcessingInvocation(),
+      final requestBuilder = RequestBuilder();
+      final invocation = requestBuilder.addInvocation(calendarEventParseMethod);
+      final response = await requestBuilder.build().execute(
+        httpMockClient,
+        HttpMockResponseClient.defaultUri,
       );
-      final invocation = requestBuilder.invocation(calendarEventParseMethod);
-      final response = await requestBuilder.build().execute();
 
-      final calendarEventParsed = response.parse<CalendarEventParseResponse>(
-        invocation.methodCallId,
-        CalendarEventParseResponse.deserialize,
-      );
+      final calendarEventParsed = invocation.parse(response);
 
       expect(
         calendarEventParsed.parsed![blobId1],
@@ -422,18 +417,16 @@ void main() {
           blobId1,
           blobId2,
         });
-        final httpClient = MockEndpointHttpClient(httpMockClient);
-        final requestBuilder = JmapRequestBuilder(
-          httpClient,
-          ProcessingInvocation(),
+        final requestBuilder = RequestBuilder();
+        final invocation = requestBuilder.addInvocation(
+          calendarEventParseMethod,
         );
-        final invocation = requestBuilder.invocation(calendarEventParseMethod);
-        final response = await requestBuilder.build().execute();
+        final response = await requestBuilder.build().execute(
+          httpMockClient,
+          HttpMockResponseClient.defaultUri,
+        );
 
-        final calendarEventParsed = response.parse<CalendarEventParseResponse>(
-          invocation.methodCallId,
-          CalendarEventParseResponse.deserialize,
-        );
+        final calendarEventParsed = invocation.parse(response);
 
         expect(calendarEventParsed.parsed!.length, 2);
         expect(
@@ -492,19 +485,16 @@ void main() {
         final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
           blobIdNotFound,
         });
-        final httpClient = MockEndpointHttpClient(httpMockClient);
-        final requestBuilder = JmapRequestBuilder(
-          httpClient,
-          ProcessingInvocation(),
+        final requestBuilder = RequestBuilder();
+        final invocation = requestBuilder.addInvocation(
+          calendarEventParseMethod,
         );
-        final invocation = requestBuilder.invocation(calendarEventParseMethod);
-        final response = await requestBuilder.build().execute();
-
-        final calendarEventParsed = response.parse<CalendarEventParseResponse>(
-          invocation.methodCallId,
-          CalendarEventParseResponse.deserialize,
+        final response = await requestBuilder.build().execute(
+          httpMockClient,
+          HttpMockResponseClient.defaultUri,
         );
 
+        final calendarEventParsed = invocation.parse(response);
         expect(calendarEventParsed.notFound, contains(blobIdNotFound));
       },
     );
@@ -545,19 +535,14 @@ void main() {
       final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
         blobIdNotParsable,
       });
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        ProcessingInvocation(),
-      );
-      final invocation = requestBuilder.invocation(calendarEventParseMethod);
-      final response = await requestBuilder.build().execute();
-
-      final calendarEventParsed = response.parse<CalendarEventParseResponse>(
-        invocation.methodCallId,
-        CalendarEventParseResponse.deserialize,
+      final requestBuilder = RequestBuilder();
+      final invocation = requestBuilder.addInvocation(calendarEventParseMethod);
+      final response = await requestBuilder.build().execute(
+        httpMockClient,
+        HttpMockResponseClient.defaultUri,
       );
 
+      final calendarEventParsed = invocation.parse(response);
       expect(calendarEventParsed.notParsable, contains(blobIdNotParsable));
     });
 
@@ -608,19 +593,16 @@ void main() {
         final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
           blobId1,
         })..addProperties(Properties({"uid", "title", "description"}));
-        final httpClient = MockEndpointHttpClient(httpMockClient);
-        final requestBuilder = JmapRequestBuilder(
-          httpClient,
-          ProcessingInvocation(),
+        final requestBuilder = RequestBuilder();
+        final invocation = requestBuilder.addInvocation(
+          calendarEventParseMethod,
         );
-        final invocation = requestBuilder.invocation(calendarEventParseMethod);
-        final response = await requestBuilder.build().execute();
-
-        final calendarEventParsed = response.parse<CalendarEventParseResponse>(
-          invocation.methodCallId,
-          CalendarEventParseResponse.deserialize,
+        final response = await requestBuilder.build().execute(
+          httpMockClient,
+          HttpMockResponseClient.defaultUri,
         );
 
+        final calendarEventParsed = invocation.parse(response);
         expect(
           calendarEventParsed.parsed![blobId1],
           containsOnce(expectedCalendarEvent3),

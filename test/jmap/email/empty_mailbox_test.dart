@@ -1,20 +1,18 @@
-import 'package:jmap_dart_client/jmap/account_id.dart';
-import 'package:jmap_dart_client/jmap/core/capability/capability_identifier.dart';
-import 'package:jmap_dart_client/jmap/core/id.dart';
-import 'package:jmap_dart_client/jmap/core/request/reference_path.dart';
-import 'package:jmap_dart_client/jmap/core/request/request_invocation.dart';
-import 'package:jmap_dart_client/jmap/jmap_request.dart';
-import 'package:jmap_dart_client/jmap/mail/email/email_comparator.dart';
-import 'package:jmap_dart_client/jmap/mail/email/email_comparator_property.dart';
-import 'package:jmap_dart_client/jmap/mail/email/email_filter_condition.dart';
-import 'package:jmap_dart_client/jmap/mail/email/query/query_email_method.dart';
-import 'package:jmap_dart_client/jmap/mail/email/query/query_email_response.dart';
-import 'package:jmap_dart_client/jmap/mail/email/set/set_email_method.dart';
-import 'package:jmap_dart_client/jmap/mail/email/set/set_email_response.dart';
-import 'package:jmap_dart_client/jmap/mail/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/api/request/reference_path.dart';
+import 'package:jmap_dart_client/api/request/request_invocation.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
+import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
+import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/entities/core/id.dart';
+import 'package:jmap_dart_client/entities/email/email_comparator.dart';
+import 'package:jmap_dart_client/entities/email/email_comparator_property.dart';
+import 'package:jmap_dart_client/entities/email/email_filter_condition.dart';
+import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/methods/email/query_email_method.dart';
+import 'package:jmap_dart_client/methods/email/set_email_method.dart';
 import 'package:test/test.dart';
 
-import '../../http_mocks.dart';
+import '../../helpers/http_mocks.dart';
 
 void main() {
   group('empty trash folder', () {
@@ -99,12 +97,7 @@ void main() {
         },
       );
 
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final processingInvocation = ProcessingInvocation();
-      final jmapRequestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+      final jmapRequestBuilder = RequestBuilder();
       final accountId = AccountId(
         Id('871ae8d53c475bffcd0530c2c673a18862a6ab967b1ac1f78c581fd150eb4120'),
       );
@@ -119,42 +112,31 @@ void main() {
             inMailbox: MailboxId((Id('025b0580-6422-11ef-a702-5d10e1ebf1c3'))),
           ),
         );
-      final queryEmailInvocation = jmapRequestBuilder.invocation(
+      final queryEmailInvocation = jmapRequestBuilder.addInvocation(
         queryEmailMethod,
         methodCallId: MethodCallId('c0'),
       );
 
       final setEmailMethod = SetEmailMethod(accountId)
-        ..addReferenceDestroy(
-          processingInvocation.createResultReference(
-            queryEmailInvocation.methodCallId,
-            ReferencePath.idsPath,
-          ),
-        );
-      final setEmailInvocation = jmapRequestBuilder.invocation(
+        ..addReferenceDestroy(queryEmailInvocation, ReferencePath.idsPath);
+      final setEmailInvocation = jmapRequestBuilder.addInvocation(
         setEmailMethod,
         methodCallId: MethodCallId('c1'),
       );
 
       final result =
-          await (jmapRequestBuilder..usings({
+          await (jmapRequestBuilder..addUsings({
                 CapabilityIdentifier.jmapCore,
                 CapabilityIdentifier.jmapMail,
               }))
               .build()
-              .execute();
+              .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
-      final resulQuery = result.parse<QueryEmailResponse>(
-        queryEmailInvocation.methodCallId,
-        QueryEmailResponse.deserialize,
-      );
+      final resulQuery = queryEmailInvocation.parse(result);
       expect(resulQuery.canCalculateChanges, isFalse);
       expect(resulQuery.ids, hasLength(8));
 
-      final resultSet = result.parse<SetEmailResponse>(
-        setEmailInvocation.methodCallId,
-        SetEmailResponse.deserialize,
-      );
+      final resultSet = setEmailInvocation.parse(result);
       expect(resultSet.destroyed, hasLength(8));
       expect(resultSet.destroyed, containsAll(resulQuery.ids));
     });

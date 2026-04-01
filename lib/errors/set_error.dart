@@ -1,0 +1,47 @@
+import 'package:equatable/equatable.dart';
+import 'package:jmap_dart_client/errors/error_type.dart';
+import 'package:jmap_dart_client/src/converters/error_type_converter.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'set_error.g.dart';
+
+@ErrorTypeConverter()
+@JsonSerializable(explicitToJson: true)
+class SetError with EquatableMixin {
+  static final forbidden = ErrorType("forbidden");
+  static final overQuota = ErrorType("overQuota");
+  static final tooLarge = ErrorType("tooLarge");
+  static final notFound = ErrorType("notFound");
+  static final invalidPatch = ErrorType("invalidPatch");
+  static final willDestroy = ErrorType("willDestroy");
+  static final invalidProperties = ErrorType("invalidProperties");
+  static final invalidArguments = ErrorType("invalidArguments");
+  static final singleton = ErrorType("singleton");
+  static final serverFail = ErrorType("serverFail");
+
+  final ErrorType type;
+  final String? description;
+  final Set<String>? properties;
+
+  SetError(this.type, {this.description, this.properties});
+
+  @override
+  List<Object?> get props => [type, description, properties];
+
+  factory SetError.fromJson(Map<String, dynamic> json) =>
+      _$SetErrorFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SetErrorToJson(this);
+
+  static Set<ErrorType> get errorTypesJMAPSupport => {
+    SetError.forbidden,
+    SetError.overQuota,
+    SetError.tooLarge,
+    SetError.notFound,
+    SetError.invalidPatch,
+    SetError.willDestroy,
+    SetError.invalidProperties,
+    SetError.singleton,
+    SetError.serverFail,
+  };
+}

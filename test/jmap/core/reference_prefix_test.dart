@@ -1,5 +1,5 @@
+import 'package:jmap_dart_client/api/request/reference_prefix.dart';
 import 'package:test/test.dart';
-import 'package:jmap_dart_client/jmap/core/reference_prefix.dart';
 
 void main() {
   group('Invalid reference_prefix', () {

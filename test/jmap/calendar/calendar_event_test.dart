@@ -1,28 +1,28 @@
 import 'dart:convert';
 
+import 'package:jmap_dart_client/entities/calendar/calendar_event.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/attendee/calendar_attendee.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/attendee/calendar_attendee_expect_reply.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/attendee/calendar_attendee_kind.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/attendee/calendar_attendee_mail_to.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/attendee/calendar_attendee_name.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/attendee/calendar_attendee_participation_status.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/attendee/calendar_attendee_role.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/calendar_duration.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/calendar_extension_fields.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/calendar_free_busy_status.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/calendar_organizer.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/calendar_priority.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/calendar_privacy.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/calendar_sequence.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/event_id.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/event_method.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/mail_address.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/recurrence_rule/day_of_week.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/recurrence_rule/recurrence_rule.dart';
+import 'package:jmap_dart_client/entities/calendar/properties/recurrence_rule/recurrence_rule_frequency.dart';
+import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:test/test.dart';
-import 'package:jmap_dart_client/jmap/core/utc_date.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/calendar_event.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/attendee/calendar_attendee.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/attendee/calendar_attendee_expect_reply.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/attendee/calendar_attendee_kind.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/attendee/calendar_attendee_mail_to.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/attendee/calendar_attendee_name.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/attendee/calendar_attendee_participation_status.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/attendee/calendar_attendee_role.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/calendar_duration.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/calendar_extension_fields.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/calendar_free_busy_status.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/calendar_organizer.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/calendar_priority.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/calendar_privacy.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/calendar_sequence.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/event_id.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/event_method.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/mail_address.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/recurrence_rule/day_of_week.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/recurrence_rule/recurrence_rule.dart';
-import 'package:jmap_dart_client/jmap/mail/calendar/properties/recurrence_rule/recurrence_rule_frequency.dart';
 
 void main() {
   group('calendar event object test', () {

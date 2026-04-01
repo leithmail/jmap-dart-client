@@ -3,7 +3,7 @@
 [![CI](https://github.com/leithmail/jmap-dart-client/actions/workflows/ci.yml/badge.svg)](https://github.com/leithmail/jmap-dart-client/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/github/leithmail/jmap-dart-client/graph/badge.svg?token=SNE1L5DIIU)](https://codecov.io/github/leithmail/jmap-dart-client)
 
-A Dart client library for [JMAP](https://jmap.io/), focused on building and executing method calls and parsing typed responses.
+A Dart client library for [JMAP](https://jmap.io/), focused on building requests, executing method calls, and parsing typed responses through a simpler, more consistent API.
 
 > [!IMPORTANT] 
 > Early work in progress: APIs and docs may evolve.
@@ -25,15 +25,14 @@ A Dart client library for [JMAP](https://jmap.io/), focused on building and exec
 
 This repository started as a fork of [linagora/jmap-dart-client](https://github.com/linagora/jmap-dart-client).
 
-The original project did important foundational work for JMAP support in Dart and deserves credit for that base. This fork is now maintained as a long-lived, independent line: it keeps compatibility where it makes sense, but it can intentionally diverge in API design, scope, and release cadence.
+The original project did important foundational work for JMAP support in Dart and deserves credit for that base. This fork is now maintained as a long-lived, independent line with its own API design, scope, and release cadence.
 
 Main differences from upstream include:
 
-- No unnecessary transport dependencies (for example, no Dio in the core package).
-- HTTP built on the Dart `http.Client` interface, which keeps transport injectable and easy to swap.
-- Substantially improved error handling and clearer exception boundaries.
-- Focus on pure JMAP RFC implementation with no vendor-specific or Linagora-specific integrations.
-- Pure Dart package with no Flutter dependency.
+- A more opinionated, simplified public API.
+- A lightweight, transport-agnostic core built around Dart's `http.Client`.
+- A stronger focus on standards-based JMAP behavior and clear error handling.
+- No Flutter dependency and no vendor-specific integrations in the core package.
 
 ## Installation Status
 
@@ -50,13 +49,13 @@ dependencies:
 
 ## Public API
 
-Use the main barrel import:
+Use the main barrel import and alias it in your application code:
 
 ```dart
-import 'package:jmap_dart_client/jmap_dart_client.dart';
+import 'package:jmap_dart_client/jmap_dart_client.dart' as jmap;
 ```
 
-The barrel exports the package's public, consumer-facing modules so you do not need to import deep internal paths for normal usage.
+The barrel exports the supported, consumer-facing API. Anything under `lib/src/` is internal and should be treated as private implementation detail.
 
 ## Examples
 
@@ -64,14 +63,13 @@ The barrel exports the package's public, consumer-facing modules so you do not n
 
 ```dart
 import 'package:http/http.dart' as http;
-import 'package:jmap_dart_client/jmap_dart_client.dart';
+import 'package:jmap_dart_client/jmap_dart_client.dart' as jmap;
 
-Future<Session> loadSession(Uri sessionEndpoint) async {
+Future<jmap.Session> fetchSession(Uri sessionUrl) async {
   final client = http.Client();
+
   try {
-    final endpointClient = EndpointHttpClient(client, sessionEndpoint);
-    final getSession = GetSessionBuilder(endpointClient).build();
-    return await getSession.execute();
+    return await jmap.Session.fetch(client, sessionUrl);
   } finally {
     client.close();
   }
@@ -82,28 +80,27 @@ Future<Session> loadSession(Uri sessionEndpoint) async {
 
 ```dart
 import 'package:http/http.dart' as http;
-import 'package:jmap_dart_client/jmap_dart_client.dart';
+import 'package:jmap_dart_client/jmap_dart_client.dart' as jmap;
 
-Future<GetMailboxResponse> fetchMailboxes(
+Future<jmap.GetMailboxResponse> fetchMailboxes(
   Uri apiEndpoint,
-  AccountId accountId,
+  jmap.AccountId accountId,
 ) async {
   final client = http.Client();
+
   try {
-    final endpointClient = EndpointHttpClient(client, apiEndpoint);
-    final processing = ProcessingInvocation();
-    final requestBuilder = JmapRequestBuilder(endpointClient, processing);
+    final requestBuilder = jmap.RequestBuilder();
 
-    final getMailboxMethod = GetMailboxMethod(accountId)
-      ..addProperties(Properties({'id', 'name', 'role', 'totalEmails'}));
+    final getMailboxMethod = jmap.GetMailboxMethod(accountId)
+      ..addProperties(
+        jmap.Properties({'id', 'name', 'role', 'totalEmails'}),
+      );
 
-    final getMailboxInvocation = requestBuilder.invocation(getMailboxMethod);
+    final getMailboxInvocation = requestBuilder.addInvocation(getMailboxMethod);
 
-    final response = await requestBuilder.build().execute();
-    return response.parse<GetMailboxResponse>(
-      getMailboxInvocation.methodCallId,
-      GetMailboxResponse.deserialize,
-    );
+    final response = await requestBuilder.build().execute(client, apiEndpoint);
+
+    return getMailboxInvocation.parse(response);
   } finally {
     client.close();
   }
@@ -114,47 +111,40 @@ Future<GetMailboxResponse> fetchMailboxes(
 
 ```dart
 import 'package:http/http.dart' as http;
-import 'package:jmap_dart_client/jmap_dart_client.dart';
+import 'package:jmap_dart_client/jmap_dart_client.dart' as jmap;
 
-Future<GetEmailResponse> fetchInboxEmails(
+Future<jmap.GetEmailResponse> fetchInboxEmails(
   Uri apiEndpoint,
-  AccountId accountId,
-  MailboxId inboxId,
+  jmap.AccountId accountId,
+  jmap.MailboxId inboxId,
 ) async {
   final client = http.Client();
+
   try {
-    final endpointClient = EndpointHttpClient(client, apiEndpoint);
-    final processing = ProcessingInvocation();
-    final requestBuilder = JmapRequestBuilder(endpointClient, processing);
+    final requestBuilder = jmap.RequestBuilder();
 
-    final queryEmailMethod = QueryEmailMethod(accountId)
+    final queryEmailMethod = jmap.QueryEmailMethod(accountId)
       ..addPosition(0)
-      ..addLimit(UnsignedInt(20))
+      ..addLimit(20)
       ..addSorts([
-        EmailComparator(EmailComparatorProperty.sentAt)..setIsAscending(false),
+        jmap.EmailComparator(jmap.EmailComparatorProperty.sentAt)
+          ..setIsAscending(false),
       ])
-      ..addFilters(EmailFilterCondition(inMailbox: inboxId));
+      ..addFilters(jmap.EmailFilterCondition(inMailbox: inboxId));
 
-    final queryInvocation = requestBuilder.invocation(queryEmailMethod);
+    final queryInvocation = requestBuilder.addInvocation(queryEmailMethod);
 
-    final getEmailMethod = GetEmailMethod(accountId)
+    final getEmailMethod = jmap.GetEmailMethod(accountId)
       ..addProperties(
-        Properties({'id', 'subject', 'from', 'sentAt', 'preview'}),
+        jmap.Properties({'id', 'subject', 'from', 'sentAt', 'preview'}),
       )
-      ..addReferenceIds(
-        processing.createResultReference(
-          queryInvocation.methodCallId,
-          ReferencePath.idsPath,
-        ),
-      );
+      ..addReferenceIds(queryInvocation, jmap.ReferencePath.idsPath);
 
-    final getEmailInvocation = requestBuilder.invocation(getEmailMethod);
+    final getEmailInvocation = requestBuilder.addInvocation(getEmailMethod);
 
-    final response = await requestBuilder.build().execute();
-    return response.parse<GetEmailResponse>(
-      getEmailInvocation.methodCallId,
-      GetEmailResponse.deserialize,
-    );
+    final response = await requestBuilder.build().execute(client, apiEndpoint);
+
+    return getEmailInvocation.parse(response);
   } finally {
     client.close();
   }
@@ -170,7 +160,7 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
-import 'package:jmap_dart_client/jmap_dart_client.dart';
+import 'package:jmap_dart_client/jmap_dart_client.dart' as jmap;
 
 class DioHttpClient extends http.BaseClient {
   final Dio _dio;
@@ -206,12 +196,11 @@ class DioHttpClient extends http.BaseClient {
   }
 }
 
-Future<Session> loadSessionWithDio(Uri sessionEndpoint) async {
+Future<jmap.Session> loadSessionWithDio(Uri sessionEndpoint) async {
   final dioClient = DioHttpClient(Dio());
 
   try {
-    final endpointClient = EndpointHttpClient(dioClient, sessionEndpoint);
-    return await GetSessionBuilder(endpointClient).build().execute();
+    return await jmap.Session.fetch(dioClient, sessionEndpoint);
   } finally {
     dioClient.close();
   }
@@ -227,34 +216,41 @@ The library exposes distinct exception types so callers can react precisely:
 - `JmapHttpException`: any HTTP status >= 400.
 - `JmapConnectionException`: transport/client failures.
 - `JmapParseResponseException`: invalid or unexpected response payload.
-- `JmapMethodErrorException`: typed JMAP method-level error from `ResponseObject.parse(...)`.
+- `JmapMethodErrorException`: typed JMAP method-level error from `RequestInvocation.parse(...)`.
 
 ```dart
-import 'package:jmap_dart_client/jmap_dart_client.dart';
+import 'package:http/http.dart' as http;
+import 'package:jmap_dart_client/jmap_dart_client.dart' as jmap;
 
-Future<void> runRequest(JmapRequest request) async {
+Future<void> runRequest(
+  http.Client client,
+  Uri url,
+  jmap.AccountId accountId,
+) async {
+  final requestBuilder = jmap.RequestBuilder();
+  final getMailboxInvocation = requestBuilder.addInvocation(
+    jmap.GetMailboxMethod(accountId),
+  );
+  final request = requestBuilder.build();
+
   try {
-    final response = await request.execute();
-    // parse(...) may throw JmapMethodErrorException for method-level errors.
-    response.parse(
-      MethodCallId('c1'),
-      GetMailboxResponse.deserialize,
-    );
-  } on JmapUnauthorizedException {
+    final response = await request.execute(client, url);
+    getMailboxInvocation.parse(response);
+  } on jmap.JmapUnauthorizedException {
     // Ask user to re-authenticate.
-  } on JmapHttpException catch (e) {
+  } on jmap.JmapHttpException catch (e) {
     // Server-side HTTP failure.
     print('HTTP error: ${e.statusCode}');
-  } on JmapMethodErrorException catch (e) {
+  } on jmap.JmapMethodErrorException catch (e) {
     // JMAP method returned an "error" response invocation.
     print('Method error: ${e.errorResponse}');
-  } on JmapParseResponseException catch (e) {
+  } on jmap.JmapParseResponseException catch (e) {
     // Response could not be decoded or did not match expected shape.
     print('Parse error: $e');
-  } on JmapConnectionException catch (e) {
+  } on jmap.JmapConnectionException catch (e) {
     // Network or low-level client failure.
     print('Connection error: ${e.cause}');
-  } on JmapException catch (e) {
+  } on jmap.JmapException catch (e) {
     // Generic fallback for any JMAP client exception.
     print('JMAP error: $e');
   }

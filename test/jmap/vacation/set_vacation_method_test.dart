@@ -1,15 +1,14 @@
-import 'package:jmap_dart_client/jmap/account_id.dart';
-import 'package:jmap_dart_client/jmap/core/id.dart';
-import 'package:jmap_dart_client/jmap/core/utc_date.dart';
-import 'package:jmap_dart_client/jmap/jmap_request.dart';
-import 'package:jmap_dart_client/jmap/mail/vacation/get/get_vacation_method.dart';
-import 'package:jmap_dart_client/jmap/mail/vacation/get/get_vacation_response.dart';
-import 'package:jmap_dart_client/jmap/mail/vacation/set/set_vacation_method.dart';
-import 'package:jmap_dart_client/jmap/mail/vacation/vacation_id.dart';
-import 'package:jmap_dart_client/jmap/mail/vacation/vacation_response.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
+import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/entities/core/id.dart';
+import 'package:jmap_dart_client/entities/core/utc_date.dart';
+import 'package:jmap_dart_client/entities/vacation/vacation_id.dart';
+import 'package:jmap_dart_client/entities/vacation/vacation_response.dart';
+import 'package:jmap_dart_client/methods/vacation/get_vacation_method.dart';
+import 'package:jmap_dart_client/methods/vacation/set_vacation_method.dart';
 import 'package:test/test.dart';
 
-import '../../http_mocks.dart';
+import '../../helpers/http_mocks.dart';
 
 void main() {
   group('test to json set vacation method', () {
@@ -94,8 +93,6 @@ void main() {
       final accountId = AccountId(
         Id('0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555'),
       );
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final processingInvocation = ProcessingInvocation();
 
       final setVacationMethod = SetVacationMethod(accountId)
         ..addUpdatesSingleton({
@@ -106,23 +103,19 @@ void main() {
           ),
         });
 
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      )..invocation(setVacationMethod);
+      final requestBuilder = RequestBuilder()..addInvocation(setVacationMethod);
 
       final getVacationMethod = GetVacationMethod(accountId);
-      final getVacationInvocation = requestBuilder.invocation(
+      final getVacationInvocation = requestBuilder.addInvocation(
         getVacationMethod,
       );
 
-      final response = await requestBuilder.build().execute();
-
-      final getVacationResponse = response.parse<GetVacationResponse>(
-        getVacationInvocation.methodCallId,
-        GetVacationResponse.deserialize,
+      final response = await requestBuilder.build().execute(
+        httpMockClient,
+        HttpMockResponseClient.defaultUri,
       );
 
+      final getVacationResponse = getVacationInvocation.parse(response);
       expect(getVacationResponse.list, contains(expectedUpdated));
     });
   });

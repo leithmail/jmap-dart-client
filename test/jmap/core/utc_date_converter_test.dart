@@ -1,7 +1,7 @@
+import 'package:jmap_dart_client/entities/core/utc_date.dart';
+import 'package:jmap_dart_client/src/converters/utc_date_converter.dart';
+import 'package:jmap_dart_client/src/converters/utc_date_nullable_converter.dart';
 import 'package:test/test.dart';
-import 'package:jmap_dart_client/http/converter/utc_date_converter.dart';
-import 'package:jmap_dart_client/http/converter/utc_date_nullable_converter.dart';
-import 'package:jmap_dart_client/jmap/core/utc_date.dart';
 
 void main() {
   const utcDateStringTest = '2021-10-04T04:39:56.000Z';

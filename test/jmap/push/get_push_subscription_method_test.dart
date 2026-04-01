@@ -1,11 +1,10 @@
-import 'package:jmap_dart_client/jmap/core/id.dart';
-import 'package:jmap_dart_client/jmap/jmap_request.dart';
-import 'package:jmap_dart_client/jmap/push/get/get_push_subscription_method.dart';
-import 'package:jmap_dart_client/jmap/push/get/get_push_subscription_response.dart';
-import 'package:jmap_dart_client/jmap/push/push_subscription.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
+import 'package:jmap_dart_client/entities/core/id.dart';
+import 'package:jmap_dart_client/entities/push/push_subscription.dart';
+import 'package:jmap_dart_client/methods/push/get_push_subscription_method.dart';
 import 'package:test/test.dart';
 
-import '../../http_mocks.dart';
+import '../../helpers/http_mocks.dart';
 
 void main() {
   group('test to json get pushSubscription method', () {
@@ -19,7 +18,7 @@ void main() {
           "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
           "methodResponses": [
             [
-              "PushSubscription/set",
+              "PushSubscription/get",
               {
                 "list": [
                   {
@@ -53,22 +52,18 @@ void main() {
       final getPushSubscriptionMethod = GetPushSubscriptionMethod()
         ..addIds({Id('e50b2c1d-9553-41a3-b0a7-a7d26b599ee1')});
 
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final requestBuilder = JmapRequestBuilder(
-        httpClient,
-        ProcessingInvocation(),
-      );
-      final getPushSubscriptionInvocation = requestBuilder.invocation(
+      final requestBuilder = RequestBuilder();
+      final getPushSubscriptionInvocation = requestBuilder.addInvocation(
         getPushSubscriptionMethod,
       );
-      final response = await requestBuilder.build().execute();
+      final response = await requestBuilder.build().execute(
+        httpMockClient,
+        HttpMockResponseClient.defaultUri,
+      );
 
-      final getPushSubscriptionResponse = response
-          .parse<GetPushSubscriptionResponse>(
-            getPushSubscriptionInvocation.methodCallId,
-            GetPushSubscriptionResponse.deserialize,
-          );
-
+      final getPushSubscriptionResponse = getPushSubscriptionInvocation.parse(
+        response,
+      );
       expect(getPushSubscriptionResponse.list.first.id, equals(expectedGet.id));
     });
   });

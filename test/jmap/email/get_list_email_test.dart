@@ -1,23 +1,21 @@
-import 'package:jmap_dart_client/jmap/account_id.dart';
-import 'package:jmap_dart_client/jmap/core/id.dart';
-import 'package:jmap_dart_client/jmap/core/properties/properties.dart';
-import 'package:jmap_dart_client/jmap/core/request/reference_path.dart';
-import 'package:jmap_dart_client/jmap/core/request/request_invocation.dart';
-import 'package:jmap_dart_client/jmap/core/unsigned_int.dart';
-import 'package:jmap_dart_client/jmap/core/utc_date.dart';
-import 'package:jmap_dart_client/jmap/jmap_request.dart';
-import 'package:jmap_dart_client/jmap/mail/email/email.dart';
-import 'package:jmap_dart_client/jmap/mail/email/email_address.dart';
-import 'package:jmap_dart_client/jmap/mail/email/email_comparator.dart';
-import 'package:jmap_dart_client/jmap/mail/email/email_comparator_property.dart';
-import 'package:jmap_dart_client/jmap/mail/email/email_filter_condition.dart';
-import 'package:jmap_dart_client/jmap/mail/email/get/get_email_method.dart';
-import 'package:jmap_dart_client/jmap/mail/email/get/get_email_response.dart';
-import 'package:jmap_dart_client/jmap/mail/email/query/query_email_method.dart';
-import 'package:jmap_dart_client/jmap/mail/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/api/properties/properties.dart';
+import 'package:jmap_dart_client/api/request/reference_path.dart';
+import 'package:jmap_dart_client/api/request/request_invocation.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
+import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/entities/core/id.dart';
+import 'package:jmap_dart_client/entities/core/utc_date.dart';
+import 'package:jmap_dart_client/entities/email/email.dart';
+import 'package:jmap_dart_client/entities/email/email_address.dart';
+import 'package:jmap_dart_client/entities/email/email_comparator.dart';
+import 'package:jmap_dart_client/entities/email/email_comparator_property.dart';
+import 'package:jmap_dart_client/entities/email/email_filter_condition.dart';
+import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/methods/email/get_email_method.dart';
+import 'package:jmap_dart_client/methods/email/query_email_method.dart';
 import 'package:test/test.dart';
 
-import '../../http_mocks.dart';
+import '../../helpers/http_mocks.dart';
 
 void main() {
   group('get list email test', () {
@@ -210,18 +208,13 @@ void main() {
         },
       );
 
-      final httpClient = MockEndpointHttpClient(httpMockClient);
-      final processingInvocation = ProcessingInvocation();
-      final jmapRequestBuilder = JmapRequestBuilder(
-        httpClient,
-        processingInvocation,
-      );
+      final jmapRequestBuilder = RequestBuilder();
       final accountId = AccountId(
         Id('93c56f4408cff66f0a929aea8e3940e753c3275e5622582ae3010e7277b7696c'),
       );
 
       final queryEmailMethod = QueryEmailMethod(accountId)
-        ..addLimit(UnsignedInt(20))
+        ..addLimit(20)
         ..addSorts([
           EmailComparator(EmailComparatorProperty.sentAt)
             ..setIsAscending(false),
@@ -231,7 +224,7 @@ void main() {
             inMailbox: MailboxId((Id('aba7e8d0-18d9-11eb-a677-2990b970028d'))),
           ),
         );
-      final queryEmailInvocation = jmapRequestBuilder.invocation(
+      final queryEmailInvocation = jmapRequestBuilder.addInvocation(
         queryEmailMethod,
         methodCallId: MethodCallId('c2'),
       );
@@ -248,23 +241,18 @@ void main() {
             "hasAttachment",
           }),
         )
-        ..addReferenceIds(
-          processingInvocation.createResultReference(
-            queryEmailInvocation.methodCallId,
-            ReferencePath.idsPath,
-          ),
-        );
-      final getEmailInvocation = jmapRequestBuilder.invocation(
+        ..addReferenceIds(queryEmailInvocation, ReferencePath.idsPath);
+      final getEmailInvocation = jmapRequestBuilder.addInvocation(
         getEmailMethod,
         methodCallId: MethodCallId('c3'),
       );
 
-      final result = await jmapRequestBuilder.build().execute();
-
-      final resultList = result.parse<GetEmailResponse>(
-        getEmailInvocation.methodCallId,
-        GetEmailResponse.deserialize,
+      final result = await jmapRequestBuilder.build().execute(
+        httpMockClient,
+        HttpMockResponseClient.defaultUri,
       );
+
+      final resultList = getEmailInvocation.parse(result);
 
       expect(resultList.list.length, equals(5));
       expect(
