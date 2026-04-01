@@ -1,6 +1,6 @@
 import 'package:jmap_dart_client/api/filter/filter.dart';
-import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
@@ -11,7 +11,6 @@ import 'package:jmap_dart_client/errors/error_method_response.dart';
 import 'package:jmap_dart_client/errors/exceptions.dart';
 import 'package:jmap_dart_client/methods/email/query_email_method.dart';
 import 'package:jmap_dart_client/methods/email/search_snippet_get_method.dart';
-import 'package:jmap_dart_client/methods/email/search_snippet_get_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -130,11 +129,9 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final searchSnippetGetResponse = result.parse<SearchSnippetGetResponse>(
-        searchSnippetGetMethodInvocation.methodCallId,
-        SearchSnippetGetResponse.fromJson,
+      final searchSnippetGetResponse = searchSnippetGetMethodInvocation.parse(
+        result,
       );
-
       // assert
       expect(searchSnippetGetResponse.list, equals(foundSearchSnippets));
       expect(searchSnippetGetResponse.notFound, isEmpty);
@@ -179,11 +176,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final searchSnippetGetResponse = result.parse<SearchSnippetGetResponse>(
-        methodInvocation.methodCallId,
-        SearchSnippetGetResponse.fromJson,
-      );
-
+      final searchSnippetGetResponse = methodInvocation.parse(result);
       // assert
       expect(searchSnippetGetResponse.list, isEmpty);
       expect(
@@ -249,10 +242,7 @@ void main() {
 
       // assert
       expect(
-        () => result.parse<SearchSnippetGetResponse>(
-          methodInvocation.methodCallId,
-          SearchSnippetGetResponse.fromJson,
-        ),
+        () => methodInvocation.parse(result),
         throwsA(
           isA<JmapMethodErrorException>().having(
             (e) => e.errorResponse,

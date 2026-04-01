@@ -1,12 +1,11 @@
-import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/api/method/request/calendar_event_reply_method.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/calendar/properties/event_id.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/errors/set_error.dart';
 import 'package:jmap_dart_client/methods/calendar/reply/calendar_event_accept_method.dart';
-import 'package:jmap_dart_client/methods/calendar/reply/calendar_event_accept_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -73,14 +72,12 @@ void main() {
       );
 
       // act
-      final response =
-          (await requestBuilder.build().execute(
-            httpMockClient,
-            HttpMockResponseClient.defaultUri,
-          )).parse<CalendarEventAcceptResponse>(
-            invocation.methodCallId,
-            CalendarEventAcceptResponse.deserialize,
-          );
+      final requestResult = await requestBuilder.build().execute(
+        httpMockClient,
+        HttpMockResponseClient.defaultUri,
+      );
+
+      final response = invocation.parse(requestResult);
 
       // assert
       expect(response.accepted, equals([EventId(successBlobId.value)]));

@@ -7,7 +7,6 @@ import 'package:jmap_dart_client/entities/email/public_asset.dart';
 import 'package:jmap_dart_client/entities/identity/identity.dart';
 import 'package:jmap_dart_client/errors/set_error.dart';
 import 'package:jmap_dart_client/methods/email/set_public_asset_method.dart';
-import 'package:jmap_dart_client/methods/email/set_public_asset_response.dart';
 import 'package:jmap_dart_client/src/converters/identities/public_asset_identities_converter.dart';
 import 'package:test/test.dart';
 
@@ -78,14 +77,11 @@ void main() {
       );
 
       // act
-      final response =
-          (await requestBuilder.build().execute(
-            httpMockClient,
-            HttpMockResponseClient.defaultUri,
-          )).parse<SetPublicAssetResponse>(
-            invocation.methodCallId,
-            SetPublicAssetResponse.deserialize,
-          );
+      final requestResponse = await requestBuilder.build().execute(
+        httpMockClient,
+        HttpMockResponseClient.defaultUri,
+      );
+      final response = invocation.parse(requestResponse);
 
       // assert
       expect(response.created, equals({createId: publicAsset}));
@@ -149,14 +145,11 @@ void main() {
       );
 
       // act
-      final response =
-          (await requestBuilder.build().execute(
-            httpMockClient,
-            HttpMockResponseClient.defaultUri,
-          )).parse<SetPublicAssetResponse>(
-            invocation.methodCallId,
-            SetPublicAssetResponse.deserialize,
-          );
+      final requestResponse = await requestBuilder.build().execute(
+        httpMockClient,
+        HttpMockResponseClient.defaultUri,
+      );
+      final response = invocation.parse(requestResponse);
 
       // assert
       expect(
@@ -211,14 +204,11 @@ void main() {
       );
 
       // act
-      final response =
-          (await requestBuilder.build().execute(
-            httpMockClient,
-            HttpMockResponseClient.defaultUri,
-          )).parse<SetPublicAssetResponse>(
-            invocation.methodCallId,
-            SetPublicAssetResponse.deserialize,
-          );
+      final requestResponse = await requestBuilder.build().execute(
+        httpMockClient,
+        HttpMockResponseClient.defaultUri,
+      );
+      final response = invocation.parse(requestResponse);
 
       // assert
       expect(response.destroyed, equals({publicAsset.id}));
@@ -277,14 +267,11 @@ void main() {
       );
 
       // act
-      final response =
-          (await requestBuilder.build().execute(
-            httpMockClient,
-            HttpMockResponseClient.defaultUri,
-          )).parse<SetPublicAssetResponse>(
-            invocation.methodCallId,
-            SetPublicAssetResponse.deserialize,
-          );
+      final requestResponse = await requestBuilder.build().execute(
+        httpMockClient,
+        HttpMockResponseClient.defaultUri,
+      );
+      final response = invocation.parse(requestResponse);
 
       // assert
       expect(
@@ -346,14 +333,11 @@ void main() {
       );
 
       // act
-      final response =
-          (await requestBuilder.build().execute(
-            httpMockClient,
-            HttpMockResponseClient.defaultUri,
-          )).parse<SetPublicAssetResponse>(
-            invocation.methodCallId,
-            SetPublicAssetResponse.deserialize,
-          );
+      final requestResponse = await requestBuilder.build().execute(
+        httpMockClient,
+        HttpMockResponseClient.defaultUri,
+      );
+      final response = invocation.parse(requestResponse);
 
       // assert
       expect(response.updated, equals({publicAsset.id: null}));
@@ -416,14 +400,11 @@ void main() {
       );
 
       // act
-      final response =
-          (await requestBuilder.build().execute(
-            httpMockClient,
-            HttpMockResponseClient.defaultUri,
-          )).parse<SetPublicAssetResponse>(
-            invocation.methodCallId,
-            SetPublicAssetResponse.deserialize,
-          );
+      final requestResponse = await requestBuilder.build().execute(
+        httpMockClient,
+        HttpMockResponseClient.defaultUri,
+      );
+      final response = invocation.parse(requestResponse);
 
       // assert
       expect(

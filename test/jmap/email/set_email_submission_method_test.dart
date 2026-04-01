@@ -17,7 +17,6 @@ import 'package:jmap_dart_client/entities/email/envelope.dart';
 import 'package:jmap_dart_client/entities/email/individual_header_identifier.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/methods/email/set_email_method.dart';
-import 'package:jmap_dart_client/methods/email/set_email_response.dart';
 import 'package:jmap_dart_client/methods/email/set_email_submission_method.dart';
 import 'package:jmap_dart_client/src/converters/mailbox_id_converter.dart';
 import 'package:test/test.dart';
@@ -229,15 +228,9 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final setEmailResponse = response.parse<SetEmailResponse>(
-        setEmailInvocation.methodCallId,
-        SetEmailResponse.deserialize,
-      );
-
-      final setEmailUpdateResponse = response.parse<SetEmailResponse>(
-        setEmailSubmissionInvocation.methodCallId,
-        SetEmailResponse.deserialize,
-        methodName: setEmailInvocation.methodName,
+      final setEmailResponse = setEmailInvocation.parse(response);
+      final setEmailUpdateResponse = setEmailSubmissionInvocation.parse(
+        response,
       );
 
       expect(setEmailResponse.created?[Id('dab1234')], equals(expectedCreated));
@@ -451,15 +444,9 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final setEmailResponse = response.parse<SetEmailResponse>(
-        setEmailInvocation.methodCallId,
-        SetEmailResponse.deserialize,
-      );
-
-      final setEmailUpdateResponse = response.parse<SetEmailResponse>(
-        setEmailSubmissionInvocation.methodCallId,
-        SetEmailResponse.deserialize,
-        methodName: setEmailInvocation.methodName,
+      final setEmailResponse = setEmailInvocation.parse(response);
+      final setEmailUpdateResponse = setEmailSubmissionInvocation.parse(
+        response,
       );
 
       expect(setEmailResponse.created?[Id('dab1234')], equals(expectedCreated));

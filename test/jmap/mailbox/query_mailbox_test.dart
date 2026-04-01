@@ -8,7 +8,6 @@ import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox_filter_condition.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox_rights.dart';
 import 'package:jmap_dart_client/methods/mailbox/get/get_mailbox_method.dart';
-import 'package:jmap_dart_client/methods/mailbox/get/get_mailbox_response.dart';
 import 'package:jmap_dart_client/methods/mailbox/query/query_mailbox_method.dart';
 import 'package:test/test.dart';
 
@@ -154,10 +153,7 @@ void main() {
               HttpMockResponseClient.defaultUri,
             );
 
-            final resultList = result.parse<GetMailboxResponse>(
-              getMailboxInvocation.methodCallId,
-              GetMailboxResponse.deserialize,
-            );
+            final resultList = getMailboxInvocation.parse(result);
 
             expect(resultList.list.first.name?.name, 'Spam');
             expect(resultList.list.first.role?.value, 'junk');

@@ -9,7 +9,6 @@ import 'package:jmap_dart_client/errors/error_method_response.dart';
 import 'package:jmap_dart_client/errors/exceptions.dart';
 import 'package:jmap_dart_client/errors/set_error.dart';
 import 'package:jmap_dart_client/methods/mailbox/clear/clear_mailbox_method.dart';
-import 'package:jmap_dart_client/methods/mailbox/clear/clear_mailbox_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -71,10 +70,7 @@ void main() {
 
       // Assert
       expect(
-        () => responseObject.parse<ClearMailboxResponse>(
-          invocation.methodCallId,
-          ClearMailboxResponse.deserialize,
-        ),
+        () => invocation.parse(responseObject),
         throwsA(
           isA<JmapMethodErrorException>().having(
             (e) => e.errorResponse,
@@ -140,10 +136,7 @@ void main() {
 
       // Assert
       expect(
-        () => responseObject.parse<ClearMailboxResponse>(
-          invocation.methodCallId,
-          ClearMailboxResponse.deserialize,
-        ),
+        () => invocation.parse(responseObject),
         throwsA(
           predicate<JmapMethodErrorException>((e) {
             final response = e.errorResponse;
@@ -202,11 +195,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
-        invocation.methodCallId,
-        ClearMailboxResponse.deserialize,
-      );
-
+      final clearMailboxResponse = invocation.parse(responseObject);
       // Assert
       expect(clearMailboxResponse.totalDeletedMessagesCount?.value, 2);
       expect(clearMailboxResponse.notCleared, isNull);
@@ -266,11 +255,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
-        invocation.methodCallId,
-        ClearMailboxResponse.deserialize,
-      );
-
+      final clearMailboxResponse = invocation.parse(responseObject);
       // Assert
       expect(clearMailboxResponse.totalDeletedMessagesCount, isNull);
       expect(clearMailboxResponse.notCleared?.type, SetError.invalidArguments);
@@ -332,10 +317,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
-        invocation.methodCallId,
-        ClearMailboxResponse.deserialize,
-      );
+      final clearMailboxResponse = invocation.parse(responseObject);
 
       // Assert
       expect(clearMailboxResponse.totalDeletedMessagesCount, isNull);
@@ -398,10 +380,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
-        invocation.methodCallId,
-        ClearMailboxResponse.deserialize,
-      );
+      final clearMailboxResponse = invocation.parse(responseObject);
 
       // Assert
       expect(clearMailboxResponse.totalDeletedMessagesCount, isNull);
@@ -466,10 +445,7 @@ void main() {
               .build()
               .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
-      final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
-        invocation.methodCallId,
-        ClearMailboxResponse.deserialize,
-      );
+      final clearMailboxResponse = invocation.parse(responseObject);
 
       // Assert
       expect(clearMailboxResponse.totalDeletedMessagesCount?.value, 1);
@@ -536,11 +512,7 @@ void main() {
               .build()
               .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
-      final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
-        invocation.methodCallId,
-        ClearMailboxResponse.deserialize,
-      );
-
+      final clearMailboxResponse = invocation.parse(responseObject);
       // Assert
       expect(clearMailboxResponse.totalDeletedMessagesCount, isNull);
       expect(clearMailboxResponse.notCleared?.type, SetError.notFound);

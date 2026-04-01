@@ -5,7 +5,6 @@ import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/quota/data_types.dart';
 import 'package:jmap_dart_client/entities/quota/quota.dart';
 import 'package:jmap_dart_client/methods/quota/get_quota_method.dart';
-import 'package:jmap_dart_client/methods/quota/get_quota_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -113,10 +112,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final resultList = response.parse<GetQuotaResponse>(
-        getQuotaInvocation.methodCallId,
-        GetQuotaResponse.deserialize,
-      );
+      final resultList = getQuotaInvocation.parse(response);
 
       expect(resultList.list.length, equals(2));
       expect(resultList.list, containsAll([expectQuota1, expectQuota2]));

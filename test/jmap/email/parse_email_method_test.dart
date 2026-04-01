@@ -6,7 +6,6 @@ import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
 import 'package:jmap_dart_client/methods/email/parse_email_method.dart';
-import 'package:jmap_dart_client/methods/email/parse_email_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -99,11 +98,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final emailParsed = response.parse<ParseEmailResponse>(
-        invocation.methodCallId,
-        ParseEmailResponse.deserialize,
-      );
-
+      final emailParsed = invocation.parse(response);
       expect(emailParsed.parsed![blobId1]!.id, equals(expectMail1.id));
     });
 
@@ -169,11 +164,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final emailParsed = response.parse<ParseEmailResponse>(
-        invocation.methodCallId,
-        ParseEmailResponse.deserialize,
-      );
-
+      final emailParsed = invocation.parse(response);
       expect(emailParsed.parsed!.length, 2);
       expect(
         emailParsed.parsed!.values.map((email) => email.id),
@@ -224,11 +215,7 @@ void main() {
           HttpMockResponseClient.defaultUri,
         );
 
-        final emailParsed = response.parse<ParseEmailResponse>(
-          invocation.methodCallId,
-          ParseEmailResponse.deserialize,
-        );
-
+        final emailParsed = invocation.parse(response);
         expect(emailParsed.notFound, contains(blobIdNotFound));
       },
     );
@@ -272,10 +259,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final emailParsed = response.parse<ParseEmailResponse>(
-        invocation.methodCallId,
-        ParseEmailResponse.deserialize,
-      );
+      final emailParsed = invocation.parse(response);
 
       expect(emailParsed.notParsable, contains(blobIdNotParsable));
     });
@@ -327,11 +311,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final emailParsed = response.parse<ParseEmailResponse>(
-        invocation.methodCallId,
-        ParseEmailResponse.deserialize,
-      );
-
+      final emailParsed = invocation.parse(response);
       expect(emailParsed.parsed![blobId3]!.id, equals(expectMail3.id));
     });
   });

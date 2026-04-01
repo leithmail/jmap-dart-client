@@ -6,7 +6,6 @@ import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/errors/exceptions.dart';
 import 'package:jmap_dart_client/errors/set_error.dart';
 import 'package:jmap_dart_client/methods/calendar/attendance/get_calendar_event_attendance_method.dart';
-import 'package:jmap_dart_client/methods/calendar/attendance/get_calendar_event_attendance_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -82,18 +81,16 @@ void main() {
         methodCallId: methodCallId,
       );
 
+      requestBuilder.addUsings(
+        getCalendarEventAttendanceMethod.requiredCapabilities,
+      );
       // act
-      final response =
-          (await (requestBuilder..addUsings(
-                    getCalendarEventAttendanceMethod.requiredCapabilities,
-                  ))
-                  .build()
-                  .execute(httpMockClient, HttpMockResponseClient.defaultUri))
-              .parse<GetCalendarEventAttendanceResponse>(
-                invocation.methodCallId,
-                GetCalendarEventAttendanceResponse.deserialize,
-              );
+      final requestResponse = await requestBuilder.build().execute(
+        httpMockClient,
+        HttpMockResponseClient.defaultUri,
+      );
 
+      final response = invocation.parse(requestResponse);
       // assert
       expect(response.accountId, equals(accountId));
       expect(response.list, equals([freeAttendance, busyAttendance]));
@@ -154,18 +151,15 @@ void main() {
         getCalendarEventAttendanceMethod,
         methodCallId: methodCallId,
       );
-
+      requestBuilder.addUsings(
+        getCalendarEventAttendanceMethod.requiredCapabilities,
+      );
       // act
-      final response =
-          (await (requestBuilder..addUsings(
-                    getCalendarEventAttendanceMethod.requiredCapabilities,
-                  ))
-                  .build()
-                  .execute(httpMockClient, HttpMockResponseClient.defaultUri))
-              .parse<GetCalendarEventAttendanceResponse>(
-                invocation.methodCallId,
-                GetCalendarEventAttendanceResponse.deserialize,
-              );
+      final requestResponse = await requestBuilder.build().execute(
+        httpMockClient,
+        HttpMockResponseClient.defaultUri,
+      );
+      final response = invocation.parse(requestResponse);
 
       // assert
       expect(response.accountId, equals(accountId));
@@ -231,10 +225,7 @@ void main() {
 
       // assert
       expect(
-        () => response.parse<GetCalendarEventAttendanceResponse>(
-          invocation.methodCallId,
-          GetCalendarEventAttendanceResponse.deserialize,
-        ),
+        () => invocation.parse(response),
         throwsA(isA<JmapMethodErrorException>()),
       );
     });

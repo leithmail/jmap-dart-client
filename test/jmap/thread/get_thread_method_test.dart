@@ -72,10 +72,11 @@ void main() {
         getThreadMethod,
         methodCallId: methodCallId,
       );
-      final response = (await requestBuilder.build().execute(
+      final responseObject = await requestBuilder.build().execute(
         httpMockClient,
         HttpMockResponseClient.defaultUri,
-      )).parse(invocation.methodCallId, GetThreadResponse.deserialize);
+      );
+      final response = invocation.parse(responseObject);
 
       // assert
       expect(

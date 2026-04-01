@@ -5,7 +5,6 @@ import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/vacation/vacation_id.dart';
 import 'package:jmap_dart_client/entities/vacation/vacation_response.dart';
 import 'package:jmap_dart_client/methods/vacation/get_vacation_method.dart';
-import 'package:jmap_dart_client/methods/vacation/get_vacation_response.dart';
 import 'package:jmap_dart_client/methods/vacation/set_vacation_method.dart';
 import 'package:test/test.dart';
 
@@ -116,11 +115,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final getVacationResponse = response.parse<GetVacationResponse>(
-        getVacationInvocation.methodCallId,
-        GetVacationResponse.deserialize,
-      );
-
+      final getVacationResponse = getVacationInvocation.parse(response);
       expect(getVacationResponse.list, contains(expectedUpdated));
     });
   });

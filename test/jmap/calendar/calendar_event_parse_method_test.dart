@@ -25,7 +25,6 @@ import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/methods/calendar/parse/calendar_event_parse_method.dart';
-import 'package:jmap_dart_client/methods/calendar/parse/calendar_event_parse_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -252,10 +251,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final calendarEventParsed = response.parse<CalendarEventParseResponse>(
-        invocation.methodCallId,
-        CalendarEventParseResponse.deserialize,
-      );
+      final calendarEventParsed = invocation.parse(response);
 
       expect(
         calendarEventParsed.parsed![blobId1],
@@ -430,10 +426,7 @@ void main() {
           HttpMockResponseClient.defaultUri,
         );
 
-        final calendarEventParsed = response.parse<CalendarEventParseResponse>(
-          invocation.methodCallId,
-          CalendarEventParseResponse.deserialize,
-        );
+        final calendarEventParsed = invocation.parse(response);
 
         expect(calendarEventParsed.parsed!.length, 2);
         expect(
@@ -501,11 +494,7 @@ void main() {
           HttpMockResponseClient.defaultUri,
         );
 
-        final calendarEventParsed = response.parse<CalendarEventParseResponse>(
-          invocation.methodCallId,
-          CalendarEventParseResponse.deserialize,
-        );
-
+        final calendarEventParsed = invocation.parse(response);
         expect(calendarEventParsed.notFound, contains(blobIdNotFound));
       },
     );
@@ -553,11 +542,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final calendarEventParsed = response.parse<CalendarEventParseResponse>(
-        invocation.methodCallId,
-        CalendarEventParseResponse.deserialize,
-      );
-
+      final calendarEventParsed = invocation.parse(response);
       expect(calendarEventParsed.notParsable, contains(blobIdNotParsable));
     });
 
@@ -617,11 +602,7 @@ void main() {
           HttpMockResponseClient.defaultUri,
         );
 
-        final calendarEventParsed = response.parse<CalendarEventParseResponse>(
-          invocation.methodCallId,
-          CalendarEventParseResponse.deserialize,
-        );
-
+        final calendarEventParsed = invocation.parse(response);
         expect(
           calendarEventParsed.parsed![blobId1],
           containsOnce(expectedCalendarEvent3),

@@ -13,7 +13,6 @@ import 'package:jmap_dart_client/entities/email/keyword_identifier.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/methods/email/changes_email_method.dart';
 import 'package:jmap_dart_client/methods/email/get_email_method.dart';
-import 'package:jmap_dart_client/methods/email/get_email_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -250,15 +249,9 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final resultUpdated = result.parse<GetEmailResponse>(
-        getEmailForUpdateInvocation.methodCallId,
-        GetEmailResponse.deserialize,
-      );
+      final resultUpdated = getEmailForUpdateInvocation.parse(result);
 
-      final resultCreated = result.parse<GetEmailResponse>(
-        getEmailForCreatedInvocation.methodCallId,
-        GetEmailResponse.deserialize,
-      );
+      final resultCreated = getEmailForCreatedInvocation.parse(result);
 
       expect(resultUpdated.list[0], equals(expectMail1));
       expect(resultCreated.list[0], equals(expectMail2));

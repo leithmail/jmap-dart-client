@@ -6,7 +6,6 @@ import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/errors/set_error.dart';
 import 'package:jmap_dart_client/methods/calendar/reply/calendar_event_reject_method.dart';
-import 'package:jmap_dart_client/methods/calendar/reply/calendar_event_reject_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -73,14 +72,11 @@ void main() {
       );
 
       // act
-      final response =
-          (await requestBuilder.build().execute(
-            httpMockClient,
-            HttpMockResponseClient.defaultUri,
-          )).parse<CalendarEventRejectResponse>(
-            invocation.methodCallId,
-            CalendarEventRejectResponse.deserialize,
-          );
+      final requestResponse = await requestBuilder.build().execute(
+        httpMockClient,
+        HttpMockResponseClient.defaultUri,
+      );
+      final response = invocation.parse(requestResponse);
 
       // assert
       expect(response.rejected, equals([EventId(successBlobId.value)]));

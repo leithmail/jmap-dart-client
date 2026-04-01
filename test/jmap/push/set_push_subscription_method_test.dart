@@ -2,7 +2,6 @@ import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/push/push_subscription.dart';
 import 'package:jmap_dart_client/methods/push/set_push_subscription_method.dart';
-import 'package:jmap_dart_client/methods/push/set_push_subscription_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -73,12 +72,9 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final setPushSubscriptionResponse = response
-          .parse<SetPushSubscriptionResponse>(
-            setPushSubscriptionInvocation.methodCallId,
-            SetPushSubscriptionResponse.deserialize,
-          );
-
+      final setPushSubscriptionResponse = setPushSubscriptionInvocation.parse(
+        response,
+      );
       expect(
         setPushSubscriptionResponse.created![Id('dab246')]!.id,
         equals(expectedCreated.id),

@@ -3,7 +3,6 @@ import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/identity/identity.dart';
 import 'package:jmap_dart_client/methods/identity/set_identity_method.dart';
-import 'package:jmap_dart_client/methods/identity/set_identity_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -91,11 +90,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final setIdentityResponse = response.parse<SetIdentityResponse>(
-        setIdentityInvocation.methodCallId,
-        SetIdentityResponse.deserialize,
-      );
-
+      final setIdentityResponse = setIdentityInvocation.parse(response);
       expect(
         setIdentityResponse.created![Id('dab246')]!.id,
         equals(expectedCreated.id),

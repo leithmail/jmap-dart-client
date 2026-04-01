@@ -5,7 +5,6 @@ import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/vacation/vacation_id.dart';
 import 'package:jmap_dart_client/entities/vacation/vacation_response.dart';
 import 'package:jmap_dart_client/methods/vacation/get_vacation_method.dart';
-import 'package:jmap_dart_client/methods/vacation/get_vacation_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -75,10 +74,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final resultList = response.parse<GetVacationResponse>(
-        getVacationInvocation.methodCallId,
-        GetVacationResponse.deserialize,
-      );
+      final resultList = getVacationInvocation.parse(response);
 
       expect(resultList.list.length, equals(1));
       expect(resultList.list, contains(expectVacation));

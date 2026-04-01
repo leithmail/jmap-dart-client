@@ -14,7 +14,6 @@ import 'package:jmap_dart_client/entities/email/email_comparator_property.dart';
 import 'package:jmap_dart_client/entities/email/email_filter_condition.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/methods/email/get_email_method.dart';
-import 'package:jmap_dart_client/methods/email/get_email_response.dart';
 import 'package:jmap_dart_client/methods/email/query_email_method.dart';
 import 'package:test/test.dart';
 
@@ -265,10 +264,7 @@ void main() {
       HttpMockResponseClient.defaultUri,
     );
 
-    final resultList = result.parse<GetEmailResponse>(
-      getEmailInvocation.methodCallId,
-      GetEmailResponse.deserialize,
-    );
+    final resultList = getEmailInvocation.parse(result);
 
     resultList.sortEmails(comparator);
     return resultList.list;

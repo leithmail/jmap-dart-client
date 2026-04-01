@@ -11,7 +11,6 @@ import 'package:jmap_dart_client/entities/identity/identity.dart';
 import 'package:jmap_dart_client/entities/mdn/disposition.dart';
 import 'package:jmap_dart_client/entities/mdn/mdn.dart';
 import 'package:jmap_dart_client/methods/mdn/mdn_send_method.dart';
-import 'package:jmap_dart_client/methods/mdn/mdn_send_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -131,10 +130,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final mdnSendResponse = response.parse<MDNSendResponse>(
-        mdnSendInvocation.methodCallId,
-        MDNSendResponse.deserialize,
-      );
+      final mdnSendResponse = mdnSendInvocation.parse(response);
 
       expect(mdnSendResponse.sent![Id('k1546')]!, equals(expectedResult));
     });

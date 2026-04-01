@@ -4,7 +4,6 @@ import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
 import 'package:jmap_dart_client/entities/identity/identity.dart';
 import 'package:jmap_dart_client/methods/identity/get_identity_method.dart';
-import 'package:jmap_dart_client/methods/identity/get_identity_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -99,11 +98,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final resultList = response.parse<GetIdentityResponse>(
-        getIdentityInvocation.methodCallId,
-        GetIdentityResponse.deserialize,
-      );
-
+      final resultList = getIdentityInvocation.parse(response);
       expect(resultList.list.length, equals(2));
       expect(resultList.list, containsAll({expectIdentity1, expectIdentity2}));
     });

@@ -9,7 +9,6 @@ import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox_rights.dart';
 import 'package:jmap_dart_client/methods/mailbox/changes/changes_mailbox_method.dart';
 import 'package:jmap_dart_client/methods/mailbox/get/get_mailbox_method.dart';
-import 'package:jmap_dart_client/methods/mailbox/get/get_mailbox_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -183,15 +182,8 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final resultUpdated = result.parse<GetMailboxResponse>(
-        getMailboxForUpdateInvocation.methodCallId,
-        GetMailboxResponse.deserialize,
-      );
-
-      final resultDestroyed = result.parse<GetMailboxResponse>(
-        getMailboxForDestroyInvocation.methodCallId,
-        GetMailboxResponse.deserialize,
-      );
+      final resultUpdated = getMailboxForUpdateInvocation.parse(result);
+      final resultDestroyed = getMailboxForDestroyInvocation.parse(result);
 
       expect(resultUpdated.list[0], equals(expectedUpdated));
       expect(resultDestroyed.list.length, equals(0));

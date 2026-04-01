@@ -2,7 +2,6 @@ import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/push/push_subscription.dart';
 import 'package:jmap_dart_client/methods/push/get_push_subscription_method.dart';
-import 'package:jmap_dart_client/methods/push/get_push_subscription_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -19,7 +18,7 @@ void main() {
           "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
           "methodResponses": [
             [
-              "PushSubscription/set",
+              "PushSubscription/get",
               {
                 "list": [
                   {
@@ -62,12 +61,9 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final getPushSubscriptionResponse = response
-          .parse<GetPushSubscriptionResponse>(
-            getPushSubscriptionInvocation.methodCallId,
-            GetPushSubscriptionResponse.deserialize,
-          );
-
+      final getPushSubscriptionResponse = getPushSubscriptionInvocation.parse(
+        response,
+      );
       expect(getPushSubscriptionResponse.list.first.id, equals(expectedGet.id));
     });
   });

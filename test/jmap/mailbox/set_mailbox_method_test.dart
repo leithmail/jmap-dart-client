@@ -3,7 +3,6 @@ import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/methods/mailbox/set/set_mailbox_method.dart';
-import 'package:jmap_dart_client/methods/mailbox/set/set_mailbox_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -98,10 +97,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final setMailboxResponse = response.parse<SetMailboxResponse>(
-        setMailboxInvocation.methodCallId,
-        SetMailboxResponse.deserialize,
-      );
+      final setMailboxResponse = setMailboxInvocation.parse(response);
 
       expect(
         setMailboxResponse.created![Id('dab246')]!.id,

@@ -5,7 +5,6 @@ import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/email/public_asset.dart';
 import 'package:jmap_dart_client/entities/identity/identity.dart';
 import 'package:jmap_dart_client/methods/email/get_public_asset_method.dart';
-import 'package:jmap_dart_client/methods/email/get_public_asset_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -73,17 +72,14 @@ void main() {
         );
 
         // act
-        final response =
-            (await requestBuilder.build().execute(
-              httpMockClient,
-              HttpMockResponseClient.defaultUri,
-            )).parse<GetPublicAssetResponse>(
-              invocation.methodCallId,
-              GetPublicAssetResponse.deserialize,
-            );
+        final response = (await requestBuilder.build().execute(
+          httpMockClient,
+          HttpMockResponseClient.defaultUri,
+        ));
+        final invocationResponse = invocation.parse(response);
 
         // assert
-        expect(response.list, equals([publicAsset]));
+        expect(invocationResponse.list, equals([publicAsset]));
       },
     );
 
@@ -136,14 +132,12 @@ void main() {
         );
 
         // act
-        final response =
-            (await requestBuilder.build().execute(
-              httpMockClient,
-              HttpMockResponseClient.defaultUri,
-            )).parse<GetPublicAssetResponse>(
-              invocation.methodCallId,
-              GetPublicAssetResponse.deserialize,
-            );
+        final requestResponse = await requestBuilder.build().execute(
+          httpMockClient,
+          HttpMockResponseClient.defaultUri,
+        );
+
+        final response = invocation.parse(requestResponse);
 
         // assert
         expect(response.notFound, equals([publicAsset.id]));
