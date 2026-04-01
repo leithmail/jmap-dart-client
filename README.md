@@ -132,10 +132,8 @@ Future<GetEmailResponse> fetchInboxEmails(
         Properties({'id', 'subject', 'from', 'sentAt', 'preview'}),
       )
       ..addReferenceIds(
-        processing.createResultReference(
           queryInvocation,
           ReferencePath.idsPath,
-        ),
       );
 
     final getEmailInvocation = requestBuilder.invocation(getEmailMethod);

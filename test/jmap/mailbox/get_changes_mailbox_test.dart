@@ -162,12 +162,7 @@ void main() {
       );
 
       final getMailboxMethodForUpdate = GetMailboxMethod(accountId)
-        ..addReferenceIds(
-          processingInvocation.createResultReference(
-            changesMailboxInvocation,
-            ReferencePath.updatedPath,
-          ),
-        );
+        ..addReferenceIds(changesMailboxInvocation, ReferencePath.updatedPath);
 
       final getMailboxForUpdateInvocation = jmapRequestBuilder.invocation(
         getMailboxMethodForUpdate,
@@ -176,10 +171,8 @@ void main() {
 
       final getMailboxMethodForDestroyed = GetMailboxMethod(accountId)
         ..addReferenceIds(
-          processingInvocation.createResultReference(
-            changesMailboxInvocation,
-            ReferencePath('/destroyed/*'),
-          ),
+          changesMailboxInvocation,
+          ReferencePath('/destroyed/*'),
         );
       final getMailboxForDestroyInvocation = jmapRequestBuilder.invocation(
         getMailboxMethodForDestroyed,

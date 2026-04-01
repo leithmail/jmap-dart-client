@@ -118,10 +118,8 @@ void main() {
       final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
         ..filter = filter;
       searchSnippetGetMethod.addReferenceEmailIds(
-        processingInvocation.createResultReference(
-          emailQueryMethodInvocation,
-          ReferencePath.idsPath,
-        ),
+        emailQueryMethodInvocation,
+        ReferencePath.idsPath,
       );
       final searchSnippetGetMethodInvocation = jmapRequestBuilder.invocation(
         searchSnippetGetMethod,
@@ -170,10 +168,8 @@ void main() {
       final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
         ..filter = filter;
       searchSnippetGetMethod.addReferenceEmailIds(
-        processingInvocation.createResultReference(
-          emailQueryMethodInvocation,
-          ReferencePath.idsPath,
-        ),
+        emailQueryMethodInvocation,
+        ReferencePath.idsPath,
       );
       final methodInvocation = jmapRequestBuilder.invocation(
         searchSnippetGetMethod,
@@ -241,10 +237,8 @@ void main() {
       final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
         ..filter = filter;
       searchSnippetGetMethod.addReferenceEmailIds(
-        processingInvocation.createResultReference(
-          emailQueryMethodInvocation,
-          ReferencePath.idsPath,
-        ),
+        emailQueryMethodInvocation,
+        ReferencePath.idsPath,
       );
       final methodInvocation = jmapRequestBuilder.invocation(
         searchSnippetGetMethod,

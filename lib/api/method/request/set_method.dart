@@ -1,5 +1,7 @@
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/request/patch_object.dart';
+import 'package:jmap_dart_client/api/request/reference_path.dart';
+import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
@@ -83,7 +85,7 @@ mixin OptionalReferenceDestroy {
   @JsonKey(name: '#destroy', includeIfNull: false)
   ResultReference? referenceDestroy;
 
-  void addReferenceDestroy(ResultReference resultReferenceDestroy) {
-    referenceDestroy = resultReferenceDestroy;
+  void addReferenceDestroy(RequestInvocation invocation, ReferencePath path) {
+    referenceDestroy = invocation.createResultReference(path);
   }
 }

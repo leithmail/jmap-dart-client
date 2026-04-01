@@ -1,8 +1,5 @@
 import 'package:built_collection/built_collection.dart';
-import 'package:jmap_dart_client/api/request/reference_path.dart';
-import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/src/utils/utils.dart';
-import 'package:quiver/check.dart';
 
 import '../entities/capability/capability_identifier.dart';
 import 'method/method.dart';
@@ -62,16 +59,5 @@ class ProcessingInvocation {
   void addMethod(MethodCallId callId, RequestInvocation requestInvocation) {
     _invocations =
         (_invocations.toBuilder()..addAll({callId: requestInvocation})).build();
-  }
-
-  ResultReference createResultReference(
-    RequestInvocation invocation,
-    ReferencePath path,
-  ) {
-    checkArgument(
-      _invocations.containsKey(invocation.methodCallId),
-      message: 'no matched method call id',
-    );
-    return invocation.createResultReference(path);
   }
 }

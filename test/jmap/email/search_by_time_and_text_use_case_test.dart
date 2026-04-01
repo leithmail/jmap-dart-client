@@ -152,12 +152,7 @@ void main() {
           "hasAttachment",
         }),
       )
-      ..addReferenceIds(
-        processingInvocation.createResultReference(
-          queryEmailInvocation,
-          ReferencePath.idsPath,
-        ),
-      );
+      ..addReferenceIds(queryEmailInvocation, ReferencePath.idsPath);
     final getEmailInvocation = jmapRequestBuilder.invocation(
       getEmailMethod,
       methodCallId: MethodCallId('c2'),

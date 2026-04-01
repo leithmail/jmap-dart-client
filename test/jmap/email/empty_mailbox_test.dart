@@ -121,12 +121,7 @@ void main() {
       );
 
       final setEmailMethod = SetEmailMethod(accountId)
-        ..addReferenceDestroy(
-          processingInvocation.createResultReference(
-            queryEmailInvocation,
-            ReferencePath.idsPath,
-          ),
-        );
+        ..addReferenceDestroy(queryEmailInvocation, ReferencePath.idsPath);
       final setEmailInvocation = jmapRequestBuilder.invocation(
         setEmailMethod,
         methodCallId: MethodCallId('c1'),
