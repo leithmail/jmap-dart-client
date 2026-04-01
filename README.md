@@ -25,18 +25,14 @@ A Dart client library for [JMAP](https://jmap.io/), focused on building requests
 
 This repository started as a fork of [linagora/jmap-dart-client](https://github.com/linagora/jmap-dart-client).
 
-The original project did important foundational work for JMAP support in Dart and deserves credit for that base. This fork is now maintained as a long-lived, independent line: it keeps compatibility where it makes sense, but it can intentionally diverge in API design, scope, and release cadence.
+The original project did important foundational work for JMAP support in Dart and deserves credit for that base. This fork is now maintained as a long-lived, independent line with its own API design, scope, and release cadence.
 
 Main differences from upstream include:
 
-- The public API has intentionally diverged to simplify common flows and normalize naming across request, response, and model types.
-- Session discovery and request execution are centered around straightforward entry points such as `Session.fetch`, `RequestBuilder`, `RequestObject.execute`, and `ResponseObject.parse`.
-- `RequestBuilder` automatically collects required JMAP capabilities from the methods you add, so the top-level `using` block is usually handled for you.
-- No unnecessary transport dependencies (for example, no Dio in the core package).
-- HTTP is built on the Dart `http.Client` interface, which keeps transport injectable and easy to swap.
-- Substantially improved error handling and clearer exception boundaries.
-- Focus on pure JMAP RFC implementation with no vendor-specific or Linagora-specific integrations.
-- Pure Dart package with no Flutter dependency.
+- A more opinionated, simplified public API.
+- A lightweight, transport-agnostic core built around Dart's `http.Client`.
+- A stronger focus on standards-based JMAP behavior and clear error handling.
+- No Flutter dependency and no vendor-specific integrations in the core package.
 
 ## Installation Status
 
@@ -104,10 +100,7 @@ Future<jmap.GetMailboxResponse> fetchMailboxes(
 
     final response = await requestBuilder.build().execute(client, apiEndpoint);
 
-    return response.parse<jmap.GetMailboxResponse>(
-      getMailboxInvocation.methodCallId,
-      jmap.GetMailboxResponse.deserialize,
-    );
+    return getMailboxInvocation.parse(response);
   } finally {
     client.close();
   }
@@ -151,10 +144,7 @@ Future<jmap.GetEmailResponse> fetchInboxEmails(
 
     final response = await requestBuilder.build().execute(client, apiEndpoint);
 
-    return response.parse<jmap.GetEmailResponse>(
-      getEmailInvocation.methodCallId,
-      jmap.GetEmailResponse.deserialize,
-    );
+    return getEmailInvocation.parse(response);
   } finally {
     client.close();
   }
@@ -226,24 +216,26 @@ The library exposes distinct exception types so callers can react precisely:
 - `JmapHttpException`: any HTTP status >= 400.
 - `JmapConnectionException`: transport/client failures.
 - `JmapParseResponseException`: invalid or unexpected response payload.
-- `JmapMethodErrorException`: typed JMAP method-level error from `ResponseObject.parse(...)`.
+- `JmapMethodErrorException`: typed JMAP method-level error from `RequestInvocation.parse(...)`.
 
 ```dart
 import 'package:http/http.dart' as http;
 import 'package:jmap_dart_client/jmap_dart_client.dart' as jmap;
 
 Future<void> runRequest(
-  jmap.RequestObject request,
   http.Client client,
   Uri url,
+  jmap.AccountId accountId,
 ) async {
+  final requestBuilder = jmap.RequestBuilder();
+  final getMailboxInvocation = requestBuilder.addInvocation(
+    jmap.GetMailboxMethod(accountId),
+  );
+  final request = requestBuilder.build();
+
   try {
     final response = await request.execute(client, url);
-
-    response.parse<jmap.GetMailboxResponse>(
-      jmap.MethodCallId('c1'),
-      jmap.GetMailboxResponse.deserialize,
-    );
+    getMailboxInvocation.parse(response);
   } on jmap.JmapUnauthorizedException {
     // Ask user to re-authenticate.
   } on jmap.JmapHttpException catch (e) {
