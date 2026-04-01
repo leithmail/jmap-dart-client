@@ -1,4 +1,5 @@
 import 'package:built_collection/built_collection.dart';
+import 'package:jmap_dart_client/api/method/method_response.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/src/utils/utils.dart';
 
@@ -15,15 +16,15 @@ class RequestBuilder {
     _invocations = BuiltMap();
   }
 
-  RequestInvocation addInvocation(
-    Method method, {
+  RequestInvocation<R> addInvocation<R extends MethodResponse>(
+    Method<R> method, {
     MethodCallId? methodCallId,
     bool withRequiredCapabilities = true,
   }) {
     final callId = methodCallId ?? _generateMethodCallId();
-    final RequestInvocation invocation = RequestInvocation(
+    final RequestInvocation<R> invocation = RequestInvocation<R>(
       method.methodName,
-      Arguments(method),
+      Arguments<R>(method),
       callId,
     );
     _addMethod(callId, invocation);

@@ -1,17 +1,27 @@
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/api/method/method.dart';
+import 'package:jmap_dart_client/api/method/method_response.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
+import 'package:jmap_dart_client/api/response/response_object.dart';
 
-class RequestInvocation {
+class RequestInvocation<R extends MethodResponse> {
   final MethodName methodName;
-  final Arguments arguments;
+  final Arguments<R> arguments;
   final MethodCallId methodCallId;
 
   RequestInvocation(this.methodName, this.arguments, this.methodCallId);
 
   ResultReference createResultReference(ReferencePath path) {
     return ResultReference(methodCallId, arguments.value.methodName, path);
+  }
+
+  R parse(ResponseObject response) {
+    return response.parse<R>(
+      methodCallId,
+      arguments.value.deserializeResponse,
+      methodName: methodName,
+    );
   }
 }
 
@@ -24,8 +34,8 @@ class MethodName with EquatableMixin {
   List<Object> get props => [value];
 }
 
-class Arguments<T extends Method> {
-  final T value;
+class Arguments<R extends MethodResponse> {
+  final Method<R> value;
 
   Arguments(this.value);
 }

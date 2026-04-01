@@ -8,7 +8,6 @@ import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
 import 'package:jmap_dart_client/entities/email/individual_header_identifier.dart';
 import 'package:jmap_dart_client/methods/email/get_email_method.dart';
-import 'package:jmap_dart_client/methods/email/get_email_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -140,10 +139,7 @@ void main() {
           HttpMockResponseClient.defaultUri,
         );
 
-        final resultCreated = result.parse<GetEmailResponse>(
-          getEmailForCreatedInvocation.methodCallId,
-          GetEmailResponse.deserialize,
-        );
+        final resultCreated = getEmailForCreatedInvocation.parse(result);
 
         expect(resultCreated.list.length, equals(1));
         expect(resultCreated.list, containsAll([expectMail]));
