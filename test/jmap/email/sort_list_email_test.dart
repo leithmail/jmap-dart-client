@@ -1,7 +1,7 @@
-import 'package:jmap_dart_client/api/jmap_request.dart';
 import 'package:jmap_dart_client/api/properties/properties.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/api/sort/comparator.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
@@ -221,7 +221,7 @@ void main() {
       },
     );
 
-    final jmapRequestBuilder = JmapRequestBuilder();
+    final jmapRequestBuilder = RequestBuilder();
     final accountId = AccountId(
       Id('3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12'),
     );

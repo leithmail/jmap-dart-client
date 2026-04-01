@@ -1,5 +1,5 @@
-import 'package:jmap_dart_client/api/jmap_request.dart';
 import 'package:jmap_dart_client/api/properties/properties.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/calendar/calendar_event.dart';
 import 'package:jmap_dart_client/entities/calendar/properties/attendee/calendar_attendee.dart';
 import 'package:jmap_dart_client/entities/calendar/properties/attendee/calendar_attendee_expect_reply.dart';
@@ -245,7 +245,7 @@ void main() {
       final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
         blobId1,
       });
-      final requestBuilder = JmapRequestBuilder();
+      final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.invocation(calendarEventParseMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
@@ -421,7 +421,7 @@ void main() {
           blobId1,
           blobId2,
         });
-        final requestBuilder = JmapRequestBuilder();
+        final requestBuilder = RequestBuilder();
         final invocation = requestBuilder.invocation(calendarEventParseMethod);
         final response = await requestBuilder.build().execute(
           httpMockClient,
@@ -490,7 +490,7 @@ void main() {
         final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
           blobIdNotFound,
         });
-        final requestBuilder = JmapRequestBuilder();
+        final requestBuilder = RequestBuilder();
         final invocation = requestBuilder.invocation(calendarEventParseMethod);
         final response = await requestBuilder.build().execute(
           httpMockClient,
@@ -542,7 +542,7 @@ void main() {
       final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
         blobIdNotParsable,
       });
-      final requestBuilder = JmapRequestBuilder();
+      final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.invocation(calendarEventParseMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
@@ -604,7 +604,7 @@ void main() {
         final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
           blobId1,
         })..addProperties(Properties({"uid", "title", "description"}));
-        final requestBuilder = JmapRequestBuilder();
+        final requestBuilder = RequestBuilder();
         final invocation = requestBuilder.invocation(calendarEventParseMethod);
         final response = await requestBuilder.build().execute(
           httpMockClient,

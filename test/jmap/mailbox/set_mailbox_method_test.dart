@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/jmap_request.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
@@ -89,7 +89,7 @@ void main() {
             ),
           );
 
-      final requestBuilder = JmapRequestBuilder();
+      final requestBuilder = RequestBuilder();
       final setMailboxInvocation = requestBuilder.invocation(setMailboxMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,

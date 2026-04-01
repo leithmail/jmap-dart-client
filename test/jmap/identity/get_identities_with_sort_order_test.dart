@@ -1,5 +1,5 @@
-import 'package:jmap_dart_client/api/jmap_request.dart';
 import 'package:jmap_dart_client/api/properties/properties.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
@@ -79,7 +79,7 @@ void main() {
         },
       );
 
-      final requestBuilder = JmapRequestBuilder();
+      final requestBuilder = RequestBuilder();
       final accountId = AccountId(
         Id('4603645929458bf671aca134b890cbb8ac4a0d297640f7eefe9f30ea28daa0b1'),
       );

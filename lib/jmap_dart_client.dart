@@ -7,7 +7,6 @@ export 'api/filter/filter.dart';
 export 'api/filter/filter_condition.dart';
 export 'api/filter/filter_operator.dart';
 export 'api/filter/operator/logic_filter_operator.dart';
-export 'api/jmap_request.dart';
 // Shared method abstractions
 export 'api/method/method.dart';
 export 'api/method/method_response.dart';
@@ -35,6 +34,7 @@ export 'api/request/reference_path.dart';
 export 'api/request/reference_prefix.dart';
 export 'api/request/request_invocation.dart';
 export 'api/request/result_reference.dart';
+export 'api/request_builder.dart';
 export 'api/response/response_object.dart';
 export 'api/sort/collation_identifier.dart';
 export 'api/sort/comparator.dart';

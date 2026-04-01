@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/jmap_request.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/push/push_subscription.dart';
 import 'package:jmap_dart_client/methods/push/get_push_subscription_method.dart';
@@ -53,7 +53,7 @@ void main() {
       final getPushSubscriptionMethod = GetPushSubscriptionMethod()
         ..addIds({Id('e50b2c1d-9553-41a3-b0a7-a7d26b599ee1')});
 
-      final requestBuilder = JmapRequestBuilder();
+      final requestBuilder = RequestBuilder();
       final getPushSubscriptionInvocation = requestBuilder.invocation(
         getPushSubscriptionMethod,
       );

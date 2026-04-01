@@ -1,5 +1,5 @@
 import 'package:jmap_dart_client/api/filter/filter.dart';
-import 'package:jmap_dart_client/api/jmap_request.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
@@ -107,7 +107,7 @@ void main() {
         ),
       );
 
-      final jmapRequestBuilder = JmapRequestBuilder();
+      final jmapRequestBuilder = RequestBuilder();
 
       final emailQueryMethod = QueryEmailMethod(accountId)..filter = filter;
       final emailQueryMethodInvocation = jmapRequestBuilder.invocation(
@@ -156,7 +156,7 @@ void main() {
         ),
       );
 
-      final jmapRequestBuilder = JmapRequestBuilder();
+      final jmapRequestBuilder = RequestBuilder();
 
       final emailQueryMethod = QueryEmailMethod(accountId)..filter = filter;
       final emailQueryMethodInvocation = jmapRequestBuilder.invocation(
@@ -224,7 +224,7 @@ void main() {
         ),
       );
 
-      final jmapRequestBuilder = JmapRequestBuilder();
+      final jmapRequestBuilder = RequestBuilder();
 
       final emailQueryMethod = QueryEmailMethod(accountId)..filter = filter;
       final emailQueryMethodInvocation = jmapRequestBuilder.invocation(

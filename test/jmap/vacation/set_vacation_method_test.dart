@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/jmap_request.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
@@ -104,8 +104,7 @@ void main() {
           ),
         });
 
-      final requestBuilder = JmapRequestBuilder()
-        ..invocation(setVacationMethod);
+      final requestBuilder = RequestBuilder()..invocation(setVacationMethod);
 
       final getVacationMethod = GetVacationMethod(accountId);
       final getVacationInvocation = requestBuilder.invocation(

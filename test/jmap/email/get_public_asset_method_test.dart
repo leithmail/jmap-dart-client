@@ -1,5 +1,5 @@
-import 'package:jmap_dart_client/api/jmap_request.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/email/public_asset.dart';
@@ -66,7 +66,7 @@ void main() {
           },
         );
 
-        final requestBuilder = JmapRequestBuilder();
+        final requestBuilder = RequestBuilder();
         final invocation = requestBuilder.invocation(
           getPublicAssetMethod,
           methodCallId: methodCallId,
@@ -129,7 +129,7 @@ void main() {
           },
         );
 
-        final requestBuilder = JmapRequestBuilder();
+        final requestBuilder = RequestBuilder();
         final invocation = requestBuilder.invocation(
           getPublicAssetMethod,
           methodCallId: methodCallId,

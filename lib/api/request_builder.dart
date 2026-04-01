@@ -1,17 +1,17 @@
 import 'package:built_collection/built_collection.dart';
+import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/src/utils/utils.dart';
 
-import '../entities/capability/capability_identifier.dart';
 import 'method/method.dart';
 import 'request/request_invocation.dart';
 import 'request/request_object.dart';
 
-class JmapRequestBuilder {
+class RequestBuilder {
   static const String methodCallIdPrefix = 'c';
   late BuiltMap<MethodCallId, RequestInvocation> _invocations;
   final SetBuilder<CapabilityIdentifier> _capabilitiesBuilder = SetBuilder();
 
-  JmapRequestBuilder() {
+  RequestBuilder() {
     _invocations = BuiltMap();
   }
 

@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/jmap_request.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/api/method/request/calendar_event_reply_method.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/entities/calendar/properties/event_id.dart';
@@ -66,7 +66,7 @@ void main() {
         expectedBody: constructData(method),
       );
 
-      final requestBuilder = JmapRequestBuilder();
+      final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.invocation(
         method,
         methodCallId: methodCallId,

@@ -1,7 +1,7 @@
-import 'package:jmap_dart_client/api/jmap_request.dart';
 import 'package:jmap_dart_client/api/request/patch_object.dart';
 import 'package:jmap_dart_client/api/request/reference_id.dart';
 import 'package:jmap_dart_client/api/request/reference_prefix.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
@@ -124,7 +124,7 @@ void main() {
             }),
           });
 
-      final requestBuilder = JmapRequestBuilder();
+      final requestBuilder = RequestBuilder();
       final mdnSendInvocation = requestBuilder.invocation(mdnSendMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,

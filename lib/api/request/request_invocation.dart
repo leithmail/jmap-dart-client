@@ -1,8 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
-
-import '../method/method.dart';
 
 class RequestInvocation {
   final MethodName methodName;

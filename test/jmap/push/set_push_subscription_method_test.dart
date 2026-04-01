@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/jmap_request.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/push/push_subscription.dart';
 import 'package:jmap_dart_client/methods/push/set_push_subscription_method.dart';
@@ -64,7 +64,7 @@ void main() {
           ),
         );
 
-      final requestBuilder = JmapRequestBuilder();
+      final requestBuilder = RequestBuilder();
       final setPushSubscriptionInvocation = requestBuilder.invocation(
         setPushSubscriptionMethod,
       );

@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/jmap_request.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
@@ -149,7 +149,7 @@ void main() {
         ),
       );
 
-      final requestBuilder = JmapRequestBuilder();
+      final requestBuilder = RequestBuilder();
       final getMailboxInvocation = requestBuilder.invocation(getMailboxMethod);
       final response =
           await (requestBuilder..usings(
@@ -233,7 +233,7 @@ void main() {
           ),
         );
 
-        final requestBuilder = JmapRequestBuilder();
+        final requestBuilder = RequestBuilder();
         final getMailboxInvocation = requestBuilder.invocation(
           getMailboxMethod,
         );
