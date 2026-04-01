@@ -82,8 +82,7 @@ Future<GetMailboxResponse> fetchMailboxes(
 ) async {
   final client = http.Client();
   try {
-    final processing = ProcessingInvocation();
-    final requestBuilder = JmapRequestBuilder(processing);
+    final requestBuilder = JmapRequestBuilder();
 
     final getMailboxMethod = GetMailboxMethod(accountId)
       ..addProperties(Properties({'id', 'name', 'role', 'totalEmails'}));
@@ -114,8 +113,7 @@ Future<GetEmailResponse> fetchInboxEmails(
 ) async {
   final client = http.Client();
   try {
-    final processing = ProcessingInvocation();
-    final requestBuilder = JmapRequestBuilder(processing);
+    final requestBuilder = JmapRequestBuilder();
 
     final queryEmailMethod = QueryEmailMethod(accountId)
       ..addPosition(0)

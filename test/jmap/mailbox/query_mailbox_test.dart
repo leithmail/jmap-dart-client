@@ -129,8 +129,8 @@ void main() {
               },
             );
 
-            final processingInvocation = ProcessingInvocation();
-            final jmapRequestBuilder = JmapRequestBuilder(processingInvocation);
+            
+            final jmapRequestBuilder = JmapRequestBuilder();
             final accountId = AccountId(
               Id(
                 '0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555',

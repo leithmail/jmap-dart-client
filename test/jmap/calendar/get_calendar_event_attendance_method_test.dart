@@ -75,8 +75,8 @@ void main() {
         responseBody: sampleResponse,
         expectedBody: sampleRequest,
       );
-      final processingInvocation = ProcessingInvocation();
-      final requestBuilder = JmapRequestBuilder(processingInvocation);
+      
+      final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(
         getCalendarEventAttendanceMethod,
         methodCallId: methodCallId,
@@ -148,8 +148,8 @@ void main() {
         responseBody: sampleResponse,
         expectedBody: sampleRequest,
       );
-      final processingInvocation = ProcessingInvocation();
-      final requestBuilder = JmapRequestBuilder(processingInvocation);
+      
+      final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(
         getCalendarEventAttendanceMethod,
         methodCallId: methodCallId,
@@ -216,8 +216,8 @@ void main() {
         responseBody: sampleResponse,
         expectedBody: sampleRequest,
       );
-      final processingInvocation = ProcessingInvocation();
-      final requestBuilder = JmapRequestBuilder(processingInvocation);
+      
+      final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(
         getCalendarEventAttendanceMethod,
         methodCallId: methodCallId,

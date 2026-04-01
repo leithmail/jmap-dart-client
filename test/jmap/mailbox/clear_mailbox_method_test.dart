@@ -57,7 +57,7 @@ void main() {
           ],
         },
       );
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
@@ -125,7 +125,7 @@ void main() {
           ],
         },
       );
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
@@ -191,7 +191,7 @@ void main() {
           ],
         },
       );
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
@@ -255,7 +255,7 @@ void main() {
           ],
         },
       );
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
@@ -321,7 +321,7 @@ void main() {
           ],
         },
       );
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
@@ -387,7 +387,7 @@ void main() {
           ],
         },
       );
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
@@ -453,7 +453,7 @@ void main() {
           ],
         },
       );
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
@@ -525,7 +525,7 @@ void main() {
           ],
         },
       );
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(
         clearMailboxMethod,
         methodCallId: methodCallId,

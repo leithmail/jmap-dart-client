@@ -149,7 +149,7 @@ void main() {
         ),
       );
 
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final getMailboxInvocation = requestBuilder.invocation(getMailboxMethod);
       final response =
           await (requestBuilder..usings(
@@ -233,7 +233,7 @@ void main() {
           ),
         );
 
-        final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+        final requestBuilder = JmapRequestBuilder();
         final getMailboxInvocation = requestBuilder.invocation(
           getMailboxMethod,
         );

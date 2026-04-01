@@ -245,7 +245,7 @@ void main() {
       final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
         blobId1,
       });
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(calendarEventParseMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
@@ -421,7 +421,7 @@ void main() {
           blobId1,
           blobId2,
         });
-        final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+        final requestBuilder = JmapRequestBuilder();
         final invocation = requestBuilder.invocation(calendarEventParseMethod);
         final response = await requestBuilder.build().execute(
           httpMockClient,
@@ -490,7 +490,7 @@ void main() {
         final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
           blobIdNotFound,
         });
-        final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+        final requestBuilder = JmapRequestBuilder();
         final invocation = requestBuilder.invocation(calendarEventParseMethod);
         final response = await requestBuilder.build().execute(
           httpMockClient,
@@ -542,7 +542,7 @@ void main() {
       final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
         blobIdNotParsable,
       });
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(calendarEventParseMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
@@ -604,7 +604,7 @@ void main() {
         final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
           blobId1,
         })..addProperties(Properties({"uid", "title", "description"}));
-        final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+        final requestBuilder = JmapRequestBuilder();
         final invocation = requestBuilder.invocation(calendarEventParseMethod);
         final response = await requestBuilder.build().execute(
           httpMockClient,

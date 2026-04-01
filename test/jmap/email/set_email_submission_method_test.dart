@@ -216,7 +216,7 @@ void main() {
               }),
             });
 
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
 
       final setEmailInvocation = requestBuilder.invocation(setEmailMethod);
 
@@ -438,7 +438,7 @@ void main() {
               }),
             });
 
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
 
       final setEmailInvocation = requestBuilder.invocation(setEmailMethod);
 

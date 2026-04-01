@@ -53,7 +53,7 @@ void main() {
       final getPushSubscriptionMethod = GetPushSubscriptionMethod()
         ..addIds({Id('e50b2c1d-9553-41a3-b0a7-a7d26b599ee1')});
 
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final getPushSubscriptionInvocation = requestBuilder.invocation(
         getPushSubscriptionMethod,
       );

@@ -124,7 +124,7 @@ void main() {
             }),
           });
 
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final mdnSendInvocation = requestBuilder.invocation(mdnSendMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,

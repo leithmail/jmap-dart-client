@@ -89,7 +89,7 @@ void main() {
             ),
           );
 
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final setMailboxInvocation = requestBuilder.invocation(setMailboxMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,

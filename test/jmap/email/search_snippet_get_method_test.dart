@@ -107,8 +107,7 @@ void main() {
         ),
       );
 
-      final processingInvocation = ProcessingInvocation();
-      final jmapRequestBuilder = JmapRequestBuilder(processingInvocation);
+      final jmapRequestBuilder = JmapRequestBuilder();
 
       final emailQueryMethod = QueryEmailMethod(accountId)..filter = filter;
       final emailQueryMethodInvocation = jmapRequestBuilder.invocation(
@@ -157,8 +156,7 @@ void main() {
         ),
       );
 
-      final processingInvocation = ProcessingInvocation();
-      final jmapRequestBuilder = JmapRequestBuilder(processingInvocation);
+      final jmapRequestBuilder = JmapRequestBuilder();
 
       final emailQueryMethod = QueryEmailMethod(accountId)..filter = filter;
       final emailQueryMethodInvocation = jmapRequestBuilder.invocation(
@@ -226,8 +224,7 @@ void main() {
         ),
       );
 
-      final processingInvocation = ProcessingInvocation();
-      final jmapRequestBuilder = JmapRequestBuilder(processingInvocation);
+      final jmapRequestBuilder = JmapRequestBuilder();
 
       final emailQueryMethod = QueryEmailMethod(accountId)..filter = filter;
       final emailQueryMethodInvocation = jmapRequestBuilder.invocation(

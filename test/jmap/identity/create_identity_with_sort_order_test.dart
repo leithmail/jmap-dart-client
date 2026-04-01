@@ -88,7 +88,7 @@ void main() {
             ),
           );
 
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final setIdentityInvocation = requestBuilder.invocation(
         setIdentityMethod,
       );
@@ -199,7 +199,7 @@ void main() {
                   }),
                 });
 
-          final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+          final requestBuilder = JmapRequestBuilder();
           final setIdentityInvocation = requestBuilder.invocation(
             setIdentityMethod,
           );

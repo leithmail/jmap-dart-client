@@ -92,7 +92,7 @@ void main() {
 
       final parseEmailMethod = ParseEmailMethod(accountId, {blobId1});
 
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(parseEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
@@ -162,7 +162,7 @@ void main() {
 
       final parseEmailMethod = ParseEmailMethod(accountId, {blobId1, blobId2});
 
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(parseEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
@@ -217,7 +217,7 @@ void main() {
 
         final parseEmailMethod = ParseEmailMethod(accountId, {blobIdNotFound});
 
-        final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+        final requestBuilder = JmapRequestBuilder();
         final invocation = requestBuilder.invocation(parseEmailMethod);
         final response = await requestBuilder.build().execute(
           httpMockClient,
@@ -265,7 +265,7 @@ void main() {
 
       final parseEmailMethod = ParseEmailMethod(accountId, {blobIdNotParsable});
 
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(parseEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
@@ -320,7 +320,7 @@ void main() {
       final parseEmailMethod = ParseEmailMethod(accountId, {blobId3})
         ..addProperties(Properties({"id", "preview", "subject"}));
 
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(parseEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,

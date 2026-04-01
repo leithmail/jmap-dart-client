@@ -133,7 +133,7 @@ void main() {
             ),
           );
 
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final setEmailInvocation = requestBuilder.invocation(setEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
@@ -261,7 +261,7 @@ void main() {
             ),
           );
 
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final setEmailInvocation = requestBuilder.invocation(setEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
@@ -383,7 +383,7 @@ void main() {
             ),
           );
 
-      final requestBuilder = JmapRequestBuilder(ProcessingInvocation());
+      final requestBuilder = JmapRequestBuilder();
       final setEmailInvocation = requestBuilder.invocation(setEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,

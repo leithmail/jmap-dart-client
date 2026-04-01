@@ -7,23 +7,26 @@ import 'request/request_invocation.dart';
 import 'request/request_object.dart';
 
 class JmapRequestBuilder {
-  final ProcessingInvocation _processingInvocation;
+  static const String methodCallIdPrefix = 'c';
+  late BuiltMap<MethodCallId, RequestInvocation> _invocations;
   final SetBuilder<CapabilityIdentifier> _capabilitiesBuilder = SetBuilder();
 
-  JmapRequestBuilder(this._processingInvocation);
+  JmapRequestBuilder() {
+    _invocations = BuiltMap();
+  }
 
   RequestInvocation invocation(
     Method method, {
     MethodCallId? methodCallId,
     bool withRequiredCapabilities = true,
   }) {
-    final callId = methodCallId ?? _processingInvocation.generateMethodCallId();
+    final callId = methodCallId ?? generateMethodCallId();
     final RequestInvocation invocation = RequestInvocation(
       method.methodName,
       Arguments(method),
       callId,
     );
-    _processingInvocation.addMethod(callId, invocation);
+    addMethod(callId, invocation);
     if (withRequiredCapabilities) {
       usings(method.requiredCapabilities);
     }
@@ -37,17 +40,8 @@ class JmapRequestBuilder {
   RequestObject build() {
     return (RequestObject.builder()
           ..usings(_capabilitiesBuilder.build().asSet())
-          ..methodCalls(_processingInvocation._invocations.values.toList()))
+          ..methodCalls(_invocations.values.toList()))
         .build();
-  }
-}
-
-class ProcessingInvocation {
-  static const String methodCallIdPrefix = 'c';
-  late BuiltMap<MethodCallId, RequestInvocation> _invocations;
-
-  ProcessingInvocation() {
-    _invocations = BuiltMap();
   }
 
   MethodCallId generateMethodCallId() {

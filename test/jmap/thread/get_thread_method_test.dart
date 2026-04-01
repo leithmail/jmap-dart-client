@@ -60,13 +60,13 @@ void main() {
         ],
       };
 
-      final processingInvocation = ProcessingInvocation();
+      
       final httpMockClient = HttpMockResponseClient(
         responseBody: sampleResponse,
         expectedBody: sampleRequest,
       );
 
-      final requestBuilder = JmapRequestBuilder(processingInvocation);
+      final requestBuilder = JmapRequestBuilder();
 
       // act
       final invocation = requestBuilder.invocation(

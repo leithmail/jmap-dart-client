@@ -66,8 +66,7 @@ void main() {
           },
         );
 
-        final processingInvocation = ProcessingInvocation();
-        final requestBuilder = JmapRequestBuilder(processingInvocation);
+        final requestBuilder = JmapRequestBuilder();
         final invocation = requestBuilder.invocation(
           getPublicAssetMethod,
           methodCallId: methodCallId,
@@ -130,8 +129,7 @@ void main() {
           },
         );
 
-        final processingInvocation = ProcessingInvocation();
-        final requestBuilder = JmapRequestBuilder(processingInvocation);
+        final requestBuilder = JmapRequestBuilder();
         final invocation = requestBuilder.invocation(
           getPublicAssetMethod,
           methodCallId: methodCallId,
