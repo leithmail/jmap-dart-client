@@ -18,7 +18,7 @@ CalendarEventAcceptMethod _$CalendarEventAcceptMethodFromJson(
 Map<String, dynamic> _$CalendarEventAcceptMethodToJson(
   CalendarEventAcceptMethod instance,
 ) => <String, dynamic>{
-  'accountId': const AccountIdConverter().toJson(instance.accountId),
   'language': ?instance.language,
+  'accountId': const AccountIdConverter().toJson(instance.accountId),
   'blobIds': instance.blobIds.map(const IdConverter().toJson).toList(),
 };

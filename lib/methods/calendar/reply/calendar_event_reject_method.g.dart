@@ -18,7 +18,7 @@ CalendarEventRejectMethod _$CalendarEventRejectMethodFromJson(
 Map<String, dynamic> _$CalendarEventRejectMethodToJson(
   CalendarEventRejectMethod instance,
 ) => <String, dynamic>{
-  'accountId': const AccountIdConverter().toJson(instance.accountId),
   'language': ?instance.language,
+  'accountId': const AccountIdConverter().toJson(instance.accountId),
   'blobIds': instance.blobIds.map(const IdConverter().toJson).toList(),
 };

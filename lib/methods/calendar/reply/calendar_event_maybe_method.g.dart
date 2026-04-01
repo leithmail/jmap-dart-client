@@ -18,7 +18,7 @@ CalendarEventMaybeMethod _$CalendarEventMaybeMethodFromJson(
 Map<String, dynamic> _$CalendarEventMaybeMethodToJson(
   CalendarEventMaybeMethod instance,
 ) => <String, dynamic>{
-  'accountId': const AccountIdConverter().toJson(instance.accountId),
   'language': ?instance.language,
+  'accountId': const AccountIdConverter().toJson(instance.accountId),
   'blobIds': instance.blobIds.map(const IdConverter().toJson).toList(),
 };

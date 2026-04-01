@@ -12,16 +12,9 @@ WebSocketCapability _$WebSocketCapabilityFromJson(Map<String, dynamic> json) =>
       url: json['url'] == null ? null : Uri.parse(json['url'] as String),
     );
 
-Map<String, dynamic> _$WebSocketCapabilityToJson(WebSocketCapability instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('supportsPush', instance.supportsPush);
-  writeNotNull('url', instance.url?.toString());
-  return val;
-}
+Map<String, dynamic> _$WebSocketCapabilityToJson(
+  WebSocketCapability instance,
+) => <String, dynamic>{
+  'supportsPush': ?instance.supportsPush,
+  'url': ?instance.url?.toString(),
+};
