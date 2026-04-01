@@ -136,7 +136,7 @@ void main() {
 
       final resulQuery = result.parse<QueryEmailResponse>(
         queryEmailInvocation.methodCallId,
-        QueryEmailResponse.deserialize,
+        QueryEmailResponse.fromJson,
       );
       expect(resulQuery.canCalculateChanges, isFalse);
       expect(resulQuery.ids, hasLength(8));

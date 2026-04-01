@@ -3,6 +3,7 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/email/email_body_properties.dart';
 import 'package:jmap_dart_client/methods/email/get_email_method.dart';
+import 'package:jmap_dart_client/methods/email/parse_email_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/properties_converter.dart';
@@ -21,7 +22,7 @@ part 'parse_email_method.g.dart';
     PropertiesConverter(),
   ],
 )
-class ParseEmailMethod extends ParseMethod
+class ParseEmailMethod extends ParseMethod<ParseEmailResponse>
     with
         OptionalEmailBodyProperties,
         OptionalFetchTextBodyValues,
@@ -44,4 +45,9 @@ class ParseEmailMethod extends ParseMethod
 
   @override
   Map<String, dynamic> toJson() => _$ParseEmailMethodToJson(this);
+
+  @override
+  ParseEmailResponse deserializeResponse(Map<String, dynamic> json) {
+    return ParseEmailResponse.deserialize(json);
+  }
 }

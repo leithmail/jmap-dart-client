@@ -3,11 +3,12 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
+import 'package:jmap_dart_client/methods/email/set_email_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/set/set_method_properties_converter.dart';
 
-class SetEmailMethod extends SetMethod<Email> {
+class SetEmailMethod extends SetMethod<SetEmailResponse, Email> {
   SetEmailMethod(AccountId accountId) : super(accountId);
 
   @override
@@ -55,5 +56,10 @@ class SetEmailMethod extends SetMethod<Email> {
     writeNotNull('#destroy', referenceDestroy?.toJson());
 
     return val;
+  }
+
+  @override
+  SetEmailResponse deserializeResponse(Map<String, dynamic> json) {
+    return SetEmailResponse.deserialize(json);
   }
 }

@@ -3,6 +3,7 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/methods/mailbox/clear/clear_mailbox_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/mailbox_id_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -13,7 +14,7 @@ part 'clear_mailbox_method.g.dart';
   explicitToJson: true,
   converters: [AccountIdConverter(), MailboxIdConverter()],
 )
-class ClearMailboxMethod extends ClearMethod {
+class ClearMailboxMethod extends ClearMethod<ClearMailboxResponse> {
   final MailboxId mailboxId;
 
   ClearMailboxMethod(AccountId accountId, this.mailboxId) : super(accountId);
@@ -40,4 +41,9 @@ class ClearMailboxMethod extends ClearMethod {
 
   @override
   Map<String, dynamic> toJson() => _$ClearMailboxMethodToJson(this);
+
+  @override
+  ClearMailboxResponse deserializeResponse(Map<String, dynamic> json) {
+    return ClearMailboxResponse.deserialize(json);
+  }
 }

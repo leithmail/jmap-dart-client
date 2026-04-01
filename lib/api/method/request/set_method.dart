@@ -1,4 +1,5 @@
 import 'package:jmap_dart_client/api/method/method.dart';
+import 'package:jmap_dart_client/api/method/method_response.dart';
 import 'package:jmap_dart_client/api/request/patch_object.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
@@ -8,7 +9,8 @@ import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-abstract class SetMethod<T> extends MethodRequiringAccountId
+abstract class SetMethod<R extends MethodResponse, T>
+    extends MethodRequiringAccountId<R>
     with
         OptionalIfInState,
         OptionalCreate<T>,
@@ -18,7 +20,8 @@ abstract class SetMethod<T> extends MethodRequiringAccountId
   SetMethod(AccountId accountId) : super(accountId);
 }
 
-abstract class SetMethodNoNeedAccountId<T> extends Method
+abstract class SetMethodNoNeedAccountId<R extends MethodResponse, T>
+    extends Method<R>
     with
         OptionalCreate<T>,
         OptionalDestroy,

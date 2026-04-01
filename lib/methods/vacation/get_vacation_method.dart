@@ -3,6 +3,7 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/methods/vacation/get_vacation_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/properties_converter.dart';
@@ -14,7 +15,7 @@ part 'get_vacation_method.g.dart';
 @AccountIdConverter()
 @PropertiesConverter()
 @JsonSerializable()
-class GetVacationMethod extends GetMethod {
+class GetVacationMethod extends GetMethod<GetVacationResponse> {
   GetVacationMethod(AccountId accountId) : super(accountId);
 
   @override
@@ -31,4 +32,9 @@ class GetVacationMethod extends GetMethod {
 
   @override
   Map<String, dynamic> toJson() => _$GetVacationMethodToJson(this);
+
+  @override
+  GetVacationResponse deserializeResponse(Map<String, dynamic> json) {
+    return GetVacationResponse.deserialize(json);
+  }
 }

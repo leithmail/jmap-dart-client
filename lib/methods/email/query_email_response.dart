@@ -38,10 +38,6 @@ class QueryEmailResponse extends QueryResponse {
   factory QueryEmailResponse.fromJson(Map<String, dynamic> json) =>
       _$QueryEmailResponseFromJson(json);
 
-  static QueryEmailResponse deserialize(Map<String, dynamic> json) {
-    return QueryEmailResponse.fromJson(json);
-  }
-
   Map<String, dynamic> toJson() => _$QueryEmailResponseToJson(this);
 
   @override

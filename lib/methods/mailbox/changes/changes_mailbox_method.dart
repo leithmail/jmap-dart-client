@@ -4,6 +4,7 @@ import 'package:jmap_dart_client/entities/capability/capability_identifier.dart'
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
+import 'package:jmap_dart_client/methods/mailbox/changes/changes_mailbox_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/state_converter.dart';
 import 'package:jmap_dart_client/src/converters/unsigned_int_nullable_converter.dart';
@@ -15,7 +16,7 @@ part 'changes_mailbox_method.g.dart';
 @StateConverter()
 @AccountIdConverter()
 @JsonSerializable()
-class ChangesMailboxMethod extends ChangesMethod {
+class ChangesMailboxMethod extends ChangesMethod<ChangesMailboxResponse> {
   ChangesMailboxMethod(
     AccountId accountId,
     State sinceState, {
@@ -35,4 +36,9 @@ class ChangesMailboxMethod extends ChangesMethod {
 
   @override
   Map<String, dynamic> toJson() => _$ChangesMailboxMethodToJson(this);
+
+  @override
+  ChangesMailboxResponse deserializeResponse(Map<String, dynamic> json) {
+    return ChangesMailboxResponse.fromJson(json);
+  }
 }

@@ -3,10 +3,11 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/vacation/vacation_response.dart';
+import 'package:jmap_dart_client/methods/vacation/set_vacation_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/set/set_method_properties_converter.dart';
 
-class SetVacationMethod extends SetMethod<VacationResponse>
+class SetVacationMethod extends SetMethod<SetVacationResponse, VacationResponse>
     with OptionalUpdateSingleton<VacationResponse> {
   SetVacationMethod(AccountId accountId) : super(accountId);
 
@@ -41,5 +42,10 @@ class SetVacationMethod extends SetMethod<VacationResponse>
     );
 
     return val;
+  }
+
+  @override
+  SetVacationResponse deserializeResponse(Map<String, dynamic> json) {
+    return SetVacationResponse.deserialize(json);
   }
 }

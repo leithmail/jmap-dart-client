@@ -3,11 +3,13 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox_filter_condition.dart';
+import 'package:jmap_dart_client/methods/mailbox/query/query_mailbox_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/unsigned_int_nullable_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-class QueryMailboxMethod extends QueryMethod with FilterAsTree, SortAsTree {
+class QueryMailboxMethod extends QueryMethod<QueryMailboxResponse>
+    with FilterAsTree, SortAsTree {
   QueryMailboxMethod(AccountId accountId) : super(accountId);
 
   @override
@@ -52,6 +54,11 @@ class QueryMailboxMethod extends QueryMethod with FilterAsTree, SortAsTree {
     writeNotNull('filter', filter?.toJson());
     writeNotNull('limit', const UnsignedIntNullableConverter().toJson(limit));
     return val;
+  }
+
+  @override
+  QueryMailboxResponse deserializeResponse(Map<String, dynamic> json) {
+    return QueryMailboxResponse.fromJson(json);
   }
 }
 

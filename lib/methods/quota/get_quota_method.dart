@@ -3,6 +3,7 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/methods/quota/get_quota_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/properties_converter.dart';
@@ -14,7 +15,7 @@ part 'get_quota_method.g.dart';
 @AccountIdConverter()
 @PropertiesConverter()
 @JsonSerializable(explicitToJson: true)
-class GetQuotaMethod extends GetMethod {
+class GetQuotaMethod extends GetMethod<GetQuotaResponse> {
   GetQuotaMethod(AccountId accountId) : super(accountId);
 
   @override
@@ -32,4 +33,9 @@ class GetQuotaMethod extends GetMethod {
 
   @override
   Map<String, dynamic> toJson() => _$GetQuotaMethodToJson(this);
+
+  @override
+  GetQuotaResponse deserializeResponse(Map<String, dynamic> json) {
+    return GetQuotaResponse.deserialize(json);
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:jmap_dart_client/api/method/method.dart';
+import 'package:jmap_dart_client/api/method/method_response.dart';
 import 'package:jmap_dart_client/api/properties/properties.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
@@ -7,7 +8,8 @@ import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-abstract class GetMethod extends MethodRequiringAccountId
+abstract class GetMethod<R extends MethodResponse>
+    extends MethodRequiringAccountId<R>
     with
         OptionalIds,
         OptionalProperties,
@@ -16,7 +18,8 @@ abstract class GetMethod extends MethodRequiringAccountId
   GetMethod(AccountId accountId) : super(accountId);
 }
 
-abstract class GetMethodNoNeedAccountId extends Method
+abstract class GetMethodNoNeedAccountId<R extends MethodResponse>
+    extends Method<R>
     with
         OptionalIds,
         OptionalProperties,

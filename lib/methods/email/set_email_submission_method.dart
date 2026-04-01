@@ -5,13 +5,15 @@ import 'package:jmap_dart_client/entities/capability/capability_identifier.dart'
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/email/email_submission.dart';
 import 'package:jmap_dart_client/entities/email/email_submission_id.dart';
+import 'package:jmap_dart_client/methods/email/set_email_submission_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/references_email_submission_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/set/set_method_properties_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-class SetEmailSubmissionMethod extends SetMethod<EmailSubmission>
+class SetEmailSubmissionMethod
+    extends SetMethod<SetEmailSubmissionResponse, EmailSubmission>
     with OptionalOnSuccessUpdateEmail, OptionalOnSuccessDestroyEmail {
   SetEmailSubmissionMethod(AccountId accountId) : super(accountId);
 
@@ -76,6 +78,11 @@ class SetEmailSubmissionMethod extends SetMethod<EmailSubmission>
     );
 
     return val;
+  }
+
+  @override
+  SetEmailSubmissionResponse deserializeResponse(Map<String, dynamic> json) {
+    return SetEmailSubmissionResponse.deserialize(json);
   }
 }
 

@@ -2,6 +2,7 @@ import 'package:jmap_dart_client/api/method/request/get_method.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
+import 'package:jmap_dart_client/methods/thread/get_thread_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/properties_converter.dart';
@@ -14,7 +15,7 @@ part 'get_thread_method.g.dart';
   explicitToJson: true,
   converters: [AccountIdConverter(), IdConverter(), PropertiesConverter()],
 )
-class GetThreadMethod extends GetMethod {
+class GetThreadMethod extends GetMethod<GetThreadResponse> {
   GetThreadMethod(super.accountId);
 
   @override
@@ -28,4 +29,9 @@ class GetThreadMethod extends GetMethod {
 
   @override
   Map<String, dynamic> toJson() => _$GetThreadMethodToJson(this);
+
+  @override
+  GetThreadResponse deserializeResponse(Map<String, dynamic> json) {
+    return GetThreadResponse.deserialize(json);
+  }
 }

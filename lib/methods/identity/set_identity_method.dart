@@ -3,11 +3,12 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/identity/identity.dart';
+import 'package:jmap_dart_client/methods/identity/set_identity_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/set/set_method_properties_converter.dart';
 
-class SetIdentityMethod extends SetMethod<Identity> {
+class SetIdentityMethod extends SetMethod<SetIdentityResponse, Identity> {
   SetIdentityMethod(AccountId accountId) : super(accountId);
 
   @override
@@ -60,5 +61,10 @@ class SetIdentityMethod extends SetMethod<Identity> {
     );
 
     return val;
+  }
+
+  @override
+  SetIdentityResponse deserializeResponse(Map<String, dynamic> json) {
+    return SetIdentityResponse.deserialize(json);
   }
 }

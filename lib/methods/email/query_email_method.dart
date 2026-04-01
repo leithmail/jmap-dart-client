@@ -4,12 +4,14 @@ import 'package:jmap_dart_client/entities/capability/capability_identifier.dart'
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/email/email_comparator.dart';
 import 'package:jmap_dart_client/entities/email/email_filter_condition.dart';
+import 'package:jmap_dart_client/methods/email/query_email_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/unsigned_int_nullable_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-class QueryEmailMethod extends QueryMethod with OptionalCollapseThreads {
+class QueryEmailMethod extends QueryMethod<QueryEmailResponse>
+    with OptionalCollapseThreads {
   QueryEmailMethod(AccountId accountId) : super(accountId);
 
   @override
@@ -64,6 +66,11 @@ class QueryEmailMethod extends QueryMethod with OptionalCollapseThreads {
     writeNotNull('anchor', const IdNullableConverter().toJson(anchor));
     writeNotNull('limit', const UnsignedIntNullableConverter().toJson(limit));
     return val;
+  }
+
+  @override
+  QueryEmailResponse deserializeResponse(Map<String, dynamic> json) {
+    return QueryEmailResponse.fromJson(json);
   }
 }
 

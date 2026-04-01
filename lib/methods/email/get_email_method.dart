@@ -5,6 +5,7 @@ import 'package:jmap_dart_client/entities/capability/capability_identifier.dart'
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/email/email_body_properties.dart';
+import 'package:jmap_dart_client/methods/email/get_email_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/properties_converter.dart';
@@ -18,7 +19,7 @@ part 'get_email_method.g.dart';
 @AccountIdConverter()
 @PropertiesConverter()
 @JsonSerializable(explicitToJson: true)
-class GetEmailMethod extends GetMethod
+class GetEmailMethod extends GetMethod<GetEmailResponse>
     with
         OptionalEmailBodyProperties,
         OptionalFetchTextBodyValues,
@@ -41,6 +42,11 @@ class GetEmailMethod extends GetMethod
 
   @override
   Map<String, dynamic> toJson() => _$GetEmailMethodToJson(this);
+
+  @override
+  GetEmailResponse deserializeResponse(Map<String, dynamic> json) {
+    return GetEmailResponse.deserialize(json);
+  }
 }
 
 mixin OptionalEmailBodyProperties {

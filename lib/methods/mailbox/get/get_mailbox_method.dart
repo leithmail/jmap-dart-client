@@ -3,6 +3,7 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/methods/mailbox/get/get_mailbox_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/properties_converter.dart';
@@ -14,7 +15,7 @@ part 'get_mailbox_method.g.dart';
 @AccountIdConverter()
 @PropertiesConverter()
 @JsonSerializable(explicitToJson: true)
-class GetMailboxMethod extends GetMethod {
+class GetMailboxMethod extends GetMethod<GetMailboxResponse> {
   GetMailboxMethod(AccountId accountId) : super(accountId);
 
   @override
@@ -37,4 +38,9 @@ class GetMailboxMethod extends GetMethod {
 
   @override
   Map<String, dynamic> toJson() => _$GetMailboxMethodToJson(this);
+
+  @override
+  GetMailboxResponse deserializeResponse(Map<String, dynamic> json) {
+    return GetMailboxResponse.deserialize(json);
+  }
 }

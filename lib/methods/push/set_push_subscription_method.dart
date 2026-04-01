@@ -2,11 +2,16 @@ import 'package:jmap_dart_client/api/method/request/set_method.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/push/push_subscription.dart';
+import 'package:jmap_dart_client/methods/push/set_push_subscription_response.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/set/set_method_properties_converter.dart';
 
 class SetPushSubscriptionMethod
-    extends SetMethodNoNeedAccountId<PushSubscription> {
+    extends
+        SetMethodNoNeedAccountId<
+          SetPushSubscriptionResponse,
+          PushSubscription
+        > {
   SetPushSubscriptionMethod() : super();
 
   @override
@@ -49,5 +54,10 @@ class SetPushSubscriptionMethod
     );
 
     return val;
+  }
+
+  @override
+  SetPushSubscriptionResponse deserializeResponse(Map<String, dynamic> json) {
+    return SetPushSubscriptionResponse.deserialize(json);
   }
 }

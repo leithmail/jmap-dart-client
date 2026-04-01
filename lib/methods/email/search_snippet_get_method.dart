@@ -5,10 +5,11 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/email/email_filter_condition.dart';
+import 'package:jmap_dart_client/methods/email/search_snippet_get_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-class SearchSnippetGetMethod extends GetMethod
+class SearchSnippetGetMethod extends GetMethod<SearchSnippetGetResponse>
     with OptionalFilter, OptionalReferenceEmailIds {
   SearchSnippetGetMethod(super.accountId);
 
@@ -51,6 +52,11 @@ class SearchSnippetGetMethod extends GetMethod
     writeNotNull('#emailIds', referenceEmailIds?.toJson());
 
     return val;
+  }
+
+  @override
+  SearchSnippetGetResponse deserializeResponse(Map<String, dynamic> json) {
+    return SearchSnippetGetResponse.fromJson(json);
   }
 }
 

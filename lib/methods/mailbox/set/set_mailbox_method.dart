@@ -3,12 +3,13 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/methods/mailbox/set/set_mailbox_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/set/set_method_properties_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-class SetMailboxMethod extends SetMethod<Mailbox>
+class SetMailboxMethod extends SetMethod<SetMailboxResponse, Mailbox>
     with OptionalOnDestroyRemoveEmails {
   SetMailboxMethod(AccountId accountId) : super(accountId);
 
@@ -57,6 +58,11 @@ class SetMailboxMethod extends SetMethod<Mailbox>
     writeNotNull('onDestroyRemoveEmails', onDestroyRemoveEmails);
 
     return val;
+  }
+
+  @override
+  SetMailboxResponse deserializeResponse(Map<String, dynamic> json) {
+    return SetMailboxResponse.deserialize(json);
   }
 }
 
