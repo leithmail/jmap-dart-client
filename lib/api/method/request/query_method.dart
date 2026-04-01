@@ -77,7 +77,7 @@ mixin OptionalLimit {
   @JsonKey(includeIfNull: false)
   UnsignedInt? limit;
 
-  void addLimit(UnsignedInt value) {
-    limit = value;
+  void addLimit(int value) {
+    limit = UnsignedInt(value);
   }
 }

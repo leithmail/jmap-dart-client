@@ -117,7 +117,7 @@ Future<GetEmailResponse> fetchInboxEmails(
 
     final queryEmailMethod = QueryEmailMethod(accountId)
       ..addPosition(0)
-      ..addLimit(UnsignedInt(20))
+      ..addLimit(20)
       ..addSorts([
         EmailComparator(EmailComparatorProperty.sentAt)..setIsAscending(false),
       ])

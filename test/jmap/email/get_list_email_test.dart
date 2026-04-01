@@ -4,7 +4,6 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
@@ -216,7 +215,7 @@ void main() {
       );
 
       final queryEmailMethod = QueryEmailMethod(accountId)
-        ..addLimit(UnsignedInt(20))
+        ..addLimit(20)
         ..addSorts([
           EmailComparator(EmailComparatorProperty.sentAt)
             ..setIsAscending(false),

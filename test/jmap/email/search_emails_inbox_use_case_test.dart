@@ -175,7 +175,7 @@ void main() {
     );
 
     final queryEmailMethod = QueryEmailMethod(accountId)
-      ..addLimit(UnsignedInt(3))
+      ..addLimit(3)
       ..addFilters(
         EmailFilterCondition(
           text: 'report',

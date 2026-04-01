@@ -137,7 +137,7 @@ void main() {
             );
             final queryMailboxMethod = QueryMailboxMethod(accountId)
               ..addFilters(MailboxFilterCondition(role: Role('Spam')))
-              ..addLimit(UnsignedInt(1));
+              ..addLimit(1);
             final queryMailboxInvocation = jmapRequestBuilder.addInvocation(
               queryMailboxMethod,
               methodCallId: MethodCallId('c2'),

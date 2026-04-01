@@ -227,7 +227,7 @@ void main() {
     );
 
     final queryEmailMethod = QueryEmailMethod(accountId)
-      ..addLimit(UnsignedInt(20))
+      ..addLimit(20)
       ..addSorts([
         EmailComparator(EmailComparatorProperty.sentAt)..setIsAscending(false),
       ])
