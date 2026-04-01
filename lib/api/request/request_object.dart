@@ -1,4 +1,3 @@
-import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 
@@ -10,13 +9,13 @@ import 'package:jmap_dart_client/api/request/require_using.dart';
 import 'package:jmap_dart_client/api/response/response_object.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/errors/exceptions.dart';
-import 'package:jmap_dart_client/src/converters/capability_identifier_converter.dart';
+import 'package:jmap_dart_client/src/converters/capability_identifier_set_converter.dart';
 import 'package:jmap_dart_client/src/converters/request_invocation_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'request_object.g.dart';
 
-@CapabilityIdentifierConverter()
+@CapabilityIdentifierSetConverter()
 @RequestInvocationConverter()
 @JsonSerializable()
 class RequestObject with EquatableMixin {
@@ -67,12 +66,8 @@ class RequestObject with EquatableMixin {
 
 class RequestObjectBuilder with RequiredUsing, RequireMethodCall {
   RequestObject build() {
-    final sortedCapabilities = SplayTreeSet<CapabilityIdentifier>(
-      (a, b) => a.value.toString().compareTo(b.value.toString()),
-    )..addAll(capabilitiesBuilder.build());
-
     return RequestObject(
-      sortedCapabilities,
+      capabilitiesBuilder.build().toSet(),
       invocationsBuilder.build().asList(),
     );
   }

@@ -8,11 +8,9 @@ part of 'request_object.dart';
 
 RequestObject _$RequestObjectFromJson(Map<String, dynamic> json) =>
     RequestObject(
-      (json['using'] as List<dynamic>)
-          .map(
-            (e) => const CapabilityIdentifierConverter().fromJson(e as String),
-          )
-          .toSet(),
+      const CapabilityIdentifierSetConverter().fromJson(
+        json['using'] as List<String>,
+      ),
       (json['methodCalls'] as List<dynamic>)
           .map((e) => const RequestInvocationConverter().fromJson(e as List))
           .toList(),
@@ -20,9 +18,7 @@ RequestObject _$RequestObjectFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$RequestObjectToJson(RequestObject instance) =>
     <String, dynamic>{
-      'using': instance.using
-          .map(const CapabilityIdentifierConverter().toJson)
-          .toList(),
+      'using': const CapabilityIdentifierSetConverter().toJson(instance.using),
       'methodCalls': instance.methodCalls
           .map(const RequestInvocationConverter().toJson)
           .toList(),
