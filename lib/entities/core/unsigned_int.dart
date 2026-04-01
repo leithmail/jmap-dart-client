@@ -4,7 +4,7 @@ import 'package:quiver/check.dart';
 class UnsignedInt with EquatableMixin {
   static final defaultValue = UnsignedInt(0);
 
-  final num value;
+  final int value;
 
   // UnsignedInt in range [0...2^53-1].
   UnsignedInt(this.value) {
