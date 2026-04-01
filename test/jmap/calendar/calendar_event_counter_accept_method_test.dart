@@ -68,7 +68,7 @@ void main() {
         responseBody: constructResponse(method),
         expectedBody: constructData(method),
       );
-      
+
       final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(
         method,

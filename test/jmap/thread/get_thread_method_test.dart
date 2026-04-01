@@ -60,7 +60,6 @@ void main() {
         ],
       };
 
-      
       final httpMockClient = HttpMockResponseClient(
         responseBody: sampleResponse,
         expectedBody: sampleRequest,

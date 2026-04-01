@@ -75,7 +75,7 @@ void main() {
         responseBody: sampleResponse,
         expectedBody: sampleRequest,
       );
-      
+
       final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(
         getCalendarEventAttendanceMethod,
@@ -148,7 +148,7 @@ void main() {
         responseBody: sampleResponse,
         expectedBody: sampleRequest,
       );
-      
+
       final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(
         getCalendarEventAttendanceMethod,
@@ -216,7 +216,7 @@ void main() {
         responseBody: sampleResponse,
         expectedBody: sampleRequest,
       );
-      
+
       final requestBuilder = JmapRequestBuilder();
       final invocation = requestBuilder.invocation(
         getCalendarEventAttendanceMethod,

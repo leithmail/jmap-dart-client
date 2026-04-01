@@ -129,7 +129,6 @@ void main() {
               },
             );
 
-            
             final jmapRequestBuilder = JmapRequestBuilder();
             final accountId = AccountId(
               Id(
