@@ -23,7 +23,7 @@ void main() {
 
         // act + assert
         expect(
-          () => request.execute(client, MockEndpointHttpClient.endpointUri),
+          () => request.execute(client, HttpMockResponseClient.defaultUri),
           throwsA(isA<JmapUnauthorizedException>()),
         );
       });
@@ -40,7 +40,7 @@ void main() {
 
         // act + assert
         await expectLater(
-          () => request.execute(client, MockEndpointHttpClient.endpointUri),
+          () => request.execute(client, HttpMockResponseClient.defaultUri),
           throwsA(
             isA<JmapHttpException>().having(
               (e) => e.statusCode,
@@ -63,7 +63,7 @@ void main() {
 
         // act + assert
         expect(
-          () => request.execute(client, MockEndpointHttpClient.endpointUri),
+          () => request.execute(client, HttpMockResponseClient.defaultUri),
           throwsA(isA<JmapConnectionException>()),
         );
       });
@@ -78,7 +78,7 @@ void main() {
 
         // act + assert
         expect(
-          () => request.execute(client, MockEndpointHttpClient.endpointUri),
+          () => request.execute(client, HttpMockResponseClient.defaultUri),
           throwsA(isA<JmapConnectionException>()),
         );
       });
@@ -95,7 +95,7 @@ void main() {
 
         // act + assert
         expect(
-          () => request.execute(client, MockEndpointHttpClient.endpointUri),
+          () => request.execute(client, HttpMockResponseClient.defaultUri),
           throwsA(isA<JmapParseResponseException>()),
         );
       });
@@ -112,7 +112,7 @@ void main() {
 
           // act + assert
           expect(
-            () => request.execute(client, MockEndpointHttpClient.endpointUri),
+            () => request.execute(client, HttpMockResponseClient.defaultUri),
             throwsA(
               isA<JmapParseResponseException>().having(
                 (e) => e,

@@ -127,7 +127,7 @@ void main() {
       // act
       final result = await jmapRequestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       final searchSnippetGetResponse = result.parse<SearchSnippetGetResponse>(
@@ -176,7 +176,7 @@ void main() {
       // act
       final result = await jmapRequestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       final searchSnippetGetResponse = result.parse<SearchSnippetGetResponse>(
@@ -244,7 +244,7 @@ void main() {
       // act
       final result = await jmapRequestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       // assert

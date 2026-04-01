@@ -158,7 +158,7 @@ void main() {
                 getMailboxMethod.requiredCapabilitiesSupportTeamMailboxes,
               ))
               .build()
-              .execute(httpMockClient, MockEndpointHttpClient.endpointUri);
+              .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
       final getMailboxResponse = response.parse<GetMailboxResponse>(
         getMailboxInvocation.methodCallId,
@@ -241,7 +241,7 @@ void main() {
         );
         final response = await requestBuilder.build().execute(
           httpMockClient,
-          MockEndpointHttpClient.endpointUri,
+          HttpMockResponseClient.defaultUri,
         );
 
         final getMailboxResponse = response.parse<GetMailboxResponse>(

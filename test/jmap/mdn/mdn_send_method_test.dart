@@ -128,7 +128,7 @@ void main() {
       final mdnSendInvocation = requestBuilder.addInvocation(mdnSendMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       final mdnSendResponse = response.parse<MDNSendResponse>(

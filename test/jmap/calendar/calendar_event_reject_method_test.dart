@@ -76,7 +76,7 @@ void main() {
       final response =
           (await requestBuilder.build().execute(
             httpMockClient,
-            MockEndpointHttpClient.endpointUri,
+            HttpMockResponseClient.defaultUri,
           )).parse<CalendarEventRejectResponse>(
             invocation.methodCallId,
             CalendarEventRejectResponse.deserialize,

@@ -1,12 +1,12 @@
 library jmap_dart_client;
 
-// HTTP client
-export 'api/endpoint_http_client.dart';
 // Query/filter/sort building blocks
 export 'api/filter/filter.dart';
 export 'api/filter/filter_condition.dart';
 export 'api/filter/filter_operator.dart';
 export 'api/filter/operator/logic_filter_operator.dart';
+// HTTP client
+export 'api/http_client.dart';
 // Shared method abstractions
 export 'api/method/method.dart';
 export 'api/method/method_response.dart';

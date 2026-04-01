@@ -132,7 +132,7 @@ void main() {
                 CapabilityIdentifier.jmapMail,
               }))
               .build()
-              .execute(httpMockClient, MockEndpointHttpClient.endpointUri);
+              .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
       final resulQuery = result.parse<QueryEmailResponse>(
         queryEmailInvocation.methodCallId,

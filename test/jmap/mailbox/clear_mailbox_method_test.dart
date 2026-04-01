@@ -66,7 +66,7 @@ void main() {
       // Act
       final responseObject = await requestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       // Assert
@@ -136,7 +136,7 @@ void main() {
       final responseObject =
           await (requestBuilder..addUsings(listCapabilitiesUsed))
               .build()
-              .execute(httpMockClient, MockEndpointHttpClient.endpointUri);
+              .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
       // Assert
       expect(
@@ -199,7 +199,7 @@ void main() {
       // Act
       final responseObject = await requestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
@@ -263,7 +263,7 @@ void main() {
       // Act
       final responseObject = await requestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
@@ -329,7 +329,7 @@ void main() {
       // Act
       final responseObject = await requestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
@@ -395,7 +395,7 @@ void main() {
       // Act
       final responseObject = await requestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
@@ -464,7 +464,7 @@ void main() {
                 clearMailboxMethod.requiredCapabilitiesSupportTeamMailboxes,
               ))
               .build()
-              .execute(httpMockClient, MockEndpointHttpClient.endpointUri);
+              .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,
@@ -534,7 +534,7 @@ void main() {
       final responseObject =
           await (requestBuilder..addUsings(listCapabilitiesUsed))
               .build()
-              .execute(httpMockClient, MockEndpointHttpClient.endpointUri);
+              .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,

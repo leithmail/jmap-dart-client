@@ -96,7 +96,7 @@ void main() {
       final invocation = requestBuilder.addInvocation(parseEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       final emailParsed = response.parse<ParseEmailResponse>(
@@ -166,7 +166,7 @@ void main() {
       final invocation = requestBuilder.addInvocation(parseEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       final emailParsed = response.parse<ParseEmailResponse>(
@@ -221,7 +221,7 @@ void main() {
         final invocation = requestBuilder.addInvocation(parseEmailMethod);
         final response = await requestBuilder.build().execute(
           httpMockClient,
-          MockEndpointHttpClient.endpointUri,
+          HttpMockResponseClient.defaultUri,
         );
 
         final emailParsed = response.parse<ParseEmailResponse>(
@@ -269,7 +269,7 @@ void main() {
       final invocation = requestBuilder.addInvocation(parseEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       final emailParsed = response.parse<ParseEmailResponse>(
@@ -324,7 +324,7 @@ void main() {
       final invocation = requestBuilder.addInvocation(parseEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       final emailParsed = response.parse<ParseEmailResponse>(

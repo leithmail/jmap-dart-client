@@ -18,15 +18,11 @@ void main() {
           statusCode: 401,
           responseBody: '',
         );
-        final httpEndpointClient = MockEndpointHttpClient(
-          httpClient,
-          'https://example.org/.well-known/jmap',
-        );
 
         // act + assert
         expect(
           () => Session.fetch(
-            httpEndpointClient,
+            httpClient,
             Uri.parse('https://example.org/.well-known/jmap'),
           ),
           throwsA(isA<JmapUnauthorizedException>()),
@@ -44,15 +40,11 @@ void main() {
           statusCode: 500,
           responseBody: '',
         );
-        final httpEndpointClient = MockEndpointHttpClient(
-          httpClient,
-          'https://example.org/.well-known/jmap',
-        );
 
         // act + assert
         await expectLater(
           () => Session.fetch(
-            httpEndpointClient,
+            httpClient,
             Uri.parse('https://example.org/.well-known/jmap'),
           ),
           throwsA(
@@ -76,15 +68,11 @@ void main() {
           handler: (_) => throw const SocketException('Connection refused'),
           responseBody: null,
         );
-        final httpEndpointClient = MockEndpointHttpClient(
-          httpClient,
-          'https://example.org/.well-known/jmap',
-        );
 
         // act + assert
         expect(
           () => Session.fetch(
-            httpEndpointClient,
+            httpClient,
             Uri.parse('https://example.org/.well-known/jmap'),
           ),
           throwsA(isA<JmapConnectionException>()),
@@ -100,15 +88,10 @@ void main() {
           handler: (_) => throw Exception('custom transport error'),
           responseBody: null,
         );
-        final httpEndpointClient = MockEndpointHttpClient(
-          httpClient,
-          'https://example.org/.well-known/jmap',
-        );
-
         // act + assert
         expect(
           () => Session.fetch(
-            httpEndpointClient,
+            httpClient,
             Uri.parse('https://example.org/.well-known/jmap'),
           ),
           throwsA(isA<JmapConnectionException>()),
@@ -128,15 +111,11 @@ void main() {
             statusCode: 200,
             responseBody: {'invalid': true},
           );
-          final httpEndpointClient = MockEndpointHttpClient(
-            httpClient,
-            'https://example.org/.well-known/jmap',
-          );
 
           // act + assert
           expect(
             () => Session.fetch(
-              httpEndpointClient,
+              httpClient,
               Uri.parse('https://example.org/.well-known/jmap'),
             ),
             throwsA(

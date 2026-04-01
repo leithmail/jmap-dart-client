@@ -95,7 +95,7 @@ void main() {
       );
       final response = await requestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       final setMailboxResponse = response.parse<SetMailboxResponse>(

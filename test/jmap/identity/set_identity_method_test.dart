@@ -88,7 +88,7 @@ void main() {
       );
       final response = await requestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       final setIdentityResponse = response.parse<SetIdentityResponse>(

@@ -88,7 +88,7 @@ void main() {
                     getCalendarEventAttendanceMethod.requiredCapabilities,
                   ))
                   .build()
-                  .execute(httpMockClient, MockEndpointHttpClient.endpointUri))
+                  .execute(httpMockClient, HttpMockResponseClient.defaultUri))
               .parse<GetCalendarEventAttendanceResponse>(
                 invocation.methodCallId,
                 GetCalendarEventAttendanceResponse.deserialize,
@@ -161,7 +161,7 @@ void main() {
                     getCalendarEventAttendanceMethod.requiredCapabilities,
                   ))
                   .build()
-                  .execute(httpMockClient, MockEndpointHttpClient.endpointUri))
+                  .execute(httpMockClient, HttpMockResponseClient.defaultUri))
               .parse<GetCalendarEventAttendanceResponse>(
                 invocation.methodCallId,
                 GetCalendarEventAttendanceResponse.deserialize,
@@ -226,7 +226,7 @@ void main() {
       // act
       final response = (await requestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       ));
 
       // assert

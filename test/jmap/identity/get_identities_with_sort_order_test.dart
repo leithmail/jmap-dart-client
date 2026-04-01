@@ -94,7 +94,7 @@ void main() {
                 getIdentityMethod.requiredCapabilitiesSupportSortOrder,
               ))
               .build()
-              .execute(httpMockClient, MockEndpointHttpClient.endpointUri);
+              .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
       final resultList = response.parse<GetIdentityResponse>(
         getIdentityInvocation.methodCallId,

@@ -74,7 +74,7 @@ void main() {
       );
       final response = (await requestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       )).parse(invocation.methodCallId, GetThreadResponse.deserialize);
 
       // assert

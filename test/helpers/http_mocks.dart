@@ -4,19 +4,6 @@ import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:jmap_dart_client/api/endpoint_http_client.dart';
-
-class MockEndpointHttpClient extends EndpointHttpClient {
-  static final Uri endpointUri = Uri.parse('https://example.org/jmap');
-
-  MockEndpointHttpClient(http.Client client, [String? endpointUri])
-    : super(
-        client,
-        endpointUri != null
-            ? Uri.parse(endpointUri)
-            : MockEndpointHttpClient.endpointUri,
-      );
-}
 
 class HttpMockException implements Exception {
   final String message;
@@ -84,6 +71,8 @@ class HttpMockException implements Exception {
 /// );
 /// ```
 class HttpMockResponseClient extends MockClient {
+  static final Uri defaultUri = Uri.parse('https://example.org/jmap');
+
   /// Creates a mock HTTP client with built-in request assertions and a default
   /// response.
   ///

@@ -76,7 +76,7 @@ void main() {
         final response =
             (await requestBuilder.build().execute(
               httpMockClient,
-              MockEndpointHttpClient.endpointUri,
+              HttpMockResponseClient.defaultUri,
             )).parse<GetPublicAssetResponse>(
               invocation.methodCallId,
               GetPublicAssetResponse.deserialize,
@@ -139,7 +139,7 @@ void main() {
         final response =
             (await requestBuilder.build().execute(
               httpMockClient,
-              MockEndpointHttpClient.endpointUri,
+              HttpMockResponseClient.defaultUri,
             )).parse<GetPublicAssetResponse>(
               invocation.methodCallId,
               GetPublicAssetResponse.deserialize,

@@ -97,7 +97,7 @@ void main() {
                 setIdentityMethod.requiredCapabilitiesSupportSortOrder,
               ))
               .build()
-              .execute(httpMockClient, MockEndpointHttpClient.endpointUri);
+              .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
       final setIdentityResponse = response.parse<SetIdentityResponse>(
         setIdentityInvocation.methodCallId,
@@ -208,7 +208,7 @@ void main() {
                     setIdentityMethod.requiredCapabilitiesSupportSortOrder,
                   ))
                   .build()
-                  .execute(httpMockClient, MockEndpointHttpClient.endpointUri);
+                  .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
           final setIdentityResponse = response.parse<SetIdentityResponse>(
             setIdentityInvocation.methodCallId,

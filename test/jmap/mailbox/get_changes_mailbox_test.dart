@@ -180,7 +180,7 @@ void main() {
 
       final result = await jmapRequestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       final resultUpdated = result.parse<GetMailboxResponse>(

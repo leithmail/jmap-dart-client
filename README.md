@@ -199,7 +199,7 @@ Future<Session> loadSessionWithDio(Uri sessionEndpoint) async {
     final endpointClient = EndpointHttpClient(dioClient, sessionEndpoint);
     return await GetSessionBuilder(endpointClient).execute(
             httpMockClient,
-            MockEndpointHttpClient.endpointUri,
+            HttpMockResponseClient.defaultUri,
           );
   } finally {
     dioClient.close();

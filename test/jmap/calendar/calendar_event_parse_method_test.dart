@@ -249,7 +249,7 @@ void main() {
       final invocation = requestBuilder.addInvocation(calendarEventParseMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       final calendarEventParsed = response.parse<CalendarEventParseResponse>(
@@ -427,7 +427,7 @@ void main() {
         );
         final response = await requestBuilder.build().execute(
           httpMockClient,
-          MockEndpointHttpClient.endpointUri,
+          HttpMockResponseClient.defaultUri,
         );
 
         final calendarEventParsed = response.parse<CalendarEventParseResponse>(
@@ -498,7 +498,7 @@ void main() {
         );
         final response = await requestBuilder.build().execute(
           httpMockClient,
-          MockEndpointHttpClient.endpointUri,
+          HttpMockResponseClient.defaultUri,
         );
 
         final calendarEventParsed = response.parse<CalendarEventParseResponse>(
@@ -550,7 +550,7 @@ void main() {
       final invocation = requestBuilder.addInvocation(calendarEventParseMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       final calendarEventParsed = response.parse<CalendarEventParseResponse>(
@@ -614,7 +614,7 @@ void main() {
         );
         final response = await requestBuilder.build().execute(
           httpMockClient,
-          MockEndpointHttpClient.endpointUri,
+          HttpMockResponseClient.defaultUri,
         );
 
         final calendarEventParsed = response.parse<CalendarEventParseResponse>(

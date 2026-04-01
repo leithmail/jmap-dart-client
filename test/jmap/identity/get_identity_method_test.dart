@@ -96,7 +96,7 @@ void main() {
       );
       final response = await requestBuilder.build().execute(
         httpMockClient,
-        MockEndpointHttpClient.endpointUri,
+        HttpMockResponseClient.defaultUri,
       );
 
       final resultList = response.parse<GetIdentityResponse>(
