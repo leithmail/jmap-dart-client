@@ -68,7 +68,7 @@ void main() {
       final requestBuilder = RequestBuilder();
 
       // act
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         getThreadMethod,
         methodCallId: methodCallId,
       );

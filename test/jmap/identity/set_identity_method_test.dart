@@ -83,7 +83,7 @@ void main() {
           );
 
       final requestBuilder = RequestBuilder();
-      final setIdentityInvocation = requestBuilder.invocation(
+      final setIdentityInvocation = requestBuilder.addInvocation(
         setIdentityMethod,
       );
       final response = await requestBuilder.build().execute(

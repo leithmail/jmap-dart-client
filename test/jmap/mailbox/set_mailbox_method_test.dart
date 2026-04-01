@@ -90,7 +90,9 @@ void main() {
           );
 
       final requestBuilder = RequestBuilder();
-      final setMailboxInvocation = requestBuilder.invocation(setMailboxMethod);
+      final setMailboxInvocation = requestBuilder.addInvocation(
+        setMailboxMethod,
+      );
       final response = await requestBuilder.build().execute(
         httpMockClient,
         MockEndpointHttpClient.endpointUri,

@@ -91,7 +91,7 @@ void main() {
       );
 
       final getIdentityMethod = GetIdentityMethod(accountId);
-      final getIdentityInvocation = requestBuilder.invocation(
+      final getIdentityInvocation = requestBuilder.addInvocation(
         getIdentityMethod,
       );
       final response = await requestBuilder.build().execute(

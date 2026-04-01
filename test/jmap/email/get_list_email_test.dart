@@ -226,7 +226,7 @@ void main() {
             inMailbox: MailboxId((Id('aba7e8d0-18d9-11eb-a677-2990b970028d'))),
           ),
         );
-      final queryEmailInvocation = jmapRequestBuilder.invocation(
+      final queryEmailInvocation = jmapRequestBuilder.addInvocation(
         queryEmailMethod,
         methodCallId: MethodCallId('c2'),
       );
@@ -244,7 +244,7 @@ void main() {
           }),
         )
         ..addReferenceIds(queryEmailInvocation, ReferencePath.idsPath);
-      final getEmailInvocation = jmapRequestBuilder.invocation(
+      final getEmailInvocation = jmapRequestBuilder.addInvocation(
         getEmailMethod,
         methodCallId: MethodCallId('c3'),
       );

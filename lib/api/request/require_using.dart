@@ -8,7 +8,7 @@ mixin RequiredUsing {
     capabilitiesBuilder.add(capabilityIdentifier);
   }
 
-  void usings(Set<CapabilityIdentifier> capabilityIdentifiers) {
+  void addUsings(Set<CapabilityIdentifier> capabilityIdentifiers) {
     capabilitiesBuilder.addAll(capabilityIdentifiers);
   }
 }

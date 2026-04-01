@@ -86,11 +86,11 @@ void main() {
 
       final getIdentityMethod = GetIdentityMethod(accountId)
         ..addProperties(Properties({"email", "bcc", "sortOrder"}));
-      final getIdentityInvocation = requestBuilder.invocation(
+      final getIdentityInvocation = requestBuilder.addInvocation(
         getIdentityMethod,
       );
       final response =
-          await (requestBuilder..usings(
+          await (requestBuilder..addUsings(
                 getIdentityMethod.requiredCapabilitiesSupportSortOrder,
               ))
               .build()

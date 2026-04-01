@@ -7,7 +7,7 @@ import 'request/request_invocation.dart';
 import 'request/request_object.dart';
 
 class RequestBuilder {
-  static const String methodCallIdPrefix = 'c';
+  static const String _methodCallIdPrefix = 'c';
   late BuiltMap<MethodCallId, RequestInvocation> _invocations;
   final SetBuilder<CapabilityIdentifier> _capabilitiesBuilder = SetBuilder();
 
@@ -15,42 +15,42 @@ class RequestBuilder {
     _invocations = BuiltMap();
   }
 
-  RequestInvocation invocation(
+  RequestInvocation addInvocation(
     Method method, {
     MethodCallId? methodCallId,
     bool withRequiredCapabilities = true,
   }) {
-    final callId = methodCallId ?? generateMethodCallId();
+    final callId = methodCallId ?? _generateMethodCallId();
     final RequestInvocation invocation = RequestInvocation(
       method.methodName,
       Arguments(method),
       callId,
     );
-    addMethod(callId, invocation);
+    _addMethod(callId, invocation);
     if (withRequiredCapabilities) {
-      usings(method.requiredCapabilities);
+      addUsings(method.requiredCapabilities);
     }
     return invocation;
   }
 
-  void usings(Set<CapabilityIdentifier> capabilityIdentifiers) {
+  void addUsings(Set<CapabilityIdentifier> capabilityIdentifiers) {
     _capabilitiesBuilder.addAll(capabilityIdentifiers);
   }
 
   RequestObject build() {
     return (RequestObject.builder()
-          ..usings(_capabilitiesBuilder.build().asSet())
+          ..addUsings(_capabilitiesBuilder.build().asSet())
           ..methodCalls(_invocations.values.toList()))
         .build();
   }
 
-  MethodCallId generateMethodCallId() {
+  MethodCallId _generateMethodCallId() {
     return positiveIntegers
-        .map((item) => MethodCallId(methodCallIdPrefix + item.toString()))
+        .map((item) => MethodCallId(_methodCallIdPrefix + item.toString()))
         .firstWhere((callId) => !_invocations.keys.contains(callId));
   }
 
-  void addMethod(MethodCallId callId, RequestInvocation requestInvocation) {
+  void _addMethod(MethodCallId callId, RequestInvocation requestInvocation) {
     _invocations =
         (_invocations.toBuilder()..addAll({callId: requestInvocation})).build();
   }

@@ -104,10 +104,10 @@ void main() {
           ),
         });
 
-      final requestBuilder = RequestBuilder()..invocation(setVacationMethod);
+      final requestBuilder = RequestBuilder()..addInvocation(setVacationMethod);
 
       final getVacationMethod = GetVacationMethod(accountId);
-      final getVacationInvocation = requestBuilder.invocation(
+      final getVacationInvocation = requestBuilder.addInvocation(
         getVacationMethod,
       );
 

@@ -235,7 +235,7 @@ void main() {
             EmailFilterCondition(hasKeyword: "video"),
           }),
         );
-      final queryEmailInvocation = jmapRequestBuilder.invocation(
+      final queryEmailInvocation = jmapRequestBuilder.addInvocation(
         queryEmailMethod,
         methodCallId: MethodCallId('c2'),
       );
@@ -253,7 +253,7 @@ void main() {
           }),
         )
         ..addReferenceIds(queryEmailInvocation, ReferencePath.idsPath);
-      final getEmailInvocation = jmapRequestBuilder.invocation(
+      final getEmailInvocation = jmapRequestBuilder.addInvocation(
         getEmailMethod,
         methodCallId: MethodCallId('c3'),
       );

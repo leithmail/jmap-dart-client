@@ -93,7 +93,7 @@ void main() {
       final parseEmailMethod = ParseEmailMethod(accountId, {blobId1});
 
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(parseEmailMethod);
+      final invocation = requestBuilder.addInvocation(parseEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
         MockEndpointHttpClient.endpointUri,
@@ -163,7 +163,7 @@ void main() {
       final parseEmailMethod = ParseEmailMethod(accountId, {blobId1, blobId2});
 
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(parseEmailMethod);
+      final invocation = requestBuilder.addInvocation(parseEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
         MockEndpointHttpClient.endpointUri,
@@ -218,7 +218,7 @@ void main() {
         final parseEmailMethod = ParseEmailMethod(accountId, {blobIdNotFound});
 
         final requestBuilder = RequestBuilder();
-        final invocation = requestBuilder.invocation(parseEmailMethod);
+        final invocation = requestBuilder.addInvocation(parseEmailMethod);
         final response = await requestBuilder.build().execute(
           httpMockClient,
           MockEndpointHttpClient.endpointUri,
@@ -266,7 +266,7 @@ void main() {
       final parseEmailMethod = ParseEmailMethod(accountId, {blobIdNotParsable});
 
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(parseEmailMethod);
+      final invocation = requestBuilder.addInvocation(parseEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
         MockEndpointHttpClient.endpointUri,
@@ -321,7 +321,7 @@ void main() {
         ..addProperties(Properties({"id", "preview", "subject"}));
 
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(parseEmailMethod);
+      final invocation = requestBuilder.addInvocation(parseEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
         MockEndpointHttpClient.endpointUri,

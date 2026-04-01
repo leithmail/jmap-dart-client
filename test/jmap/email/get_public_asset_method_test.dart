@@ -67,7 +67,7 @@ void main() {
         );
 
         final requestBuilder = RequestBuilder();
-        final invocation = requestBuilder.invocation(
+        final invocation = requestBuilder.addInvocation(
           getPublicAssetMethod,
           methodCallId: methodCallId,
         );
@@ -130,7 +130,7 @@ void main() {
         );
 
         final requestBuilder = RequestBuilder();
-        final invocation = requestBuilder.invocation(
+        final invocation = requestBuilder.addInvocation(
           getPublicAssetMethod,
           methodCallId: methodCallId,
         );

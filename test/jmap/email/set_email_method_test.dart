@@ -134,7 +134,7 @@ void main() {
           );
 
       final requestBuilder = RequestBuilder();
-      final setEmailInvocation = requestBuilder.invocation(setEmailMethod);
+      final setEmailInvocation = requestBuilder.addInvocation(setEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
         MockEndpointHttpClient.endpointUri,
@@ -262,7 +262,7 @@ void main() {
           );
 
       final requestBuilder = RequestBuilder();
-      final setEmailInvocation = requestBuilder.invocation(setEmailMethod);
+      final setEmailInvocation = requestBuilder.addInvocation(setEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
         MockEndpointHttpClient.endpointUri,
@@ -384,7 +384,7 @@ void main() {
           );
 
       final requestBuilder = RequestBuilder();
-      final setEmailInvocation = requestBuilder.invocation(setEmailMethod);
+      final setEmailInvocation = requestBuilder.addInvocation(setEmailMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
         MockEndpointHttpClient.endpointUri,

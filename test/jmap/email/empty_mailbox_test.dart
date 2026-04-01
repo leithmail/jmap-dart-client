@@ -1,6 +1,6 @@
-import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
+import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
@@ -114,20 +114,20 @@ void main() {
             inMailbox: MailboxId((Id('025b0580-6422-11ef-a702-5d10e1ebf1c3'))),
           ),
         );
-      final queryEmailInvocation = jmapRequestBuilder.invocation(
+      final queryEmailInvocation = jmapRequestBuilder.addInvocation(
         queryEmailMethod,
         methodCallId: MethodCallId('c0'),
       );
 
       final setEmailMethod = SetEmailMethod(accountId)
         ..addReferenceDestroy(queryEmailInvocation, ReferencePath.idsPath);
-      final setEmailInvocation = jmapRequestBuilder.invocation(
+      final setEmailInvocation = jmapRequestBuilder.addInvocation(
         setEmailMethod,
         methodCallId: MethodCallId('c1'),
       );
 
       final result =
-          await (jmapRequestBuilder..usings({
+          await (jmapRequestBuilder..addUsings({
                 CapabilityIdentifier.jmapCore,
                 CapabilityIdentifier.jmapMail,
               }))

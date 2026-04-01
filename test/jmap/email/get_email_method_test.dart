@@ -131,7 +131,7 @@ void main() {
               'header:X-MEETING-UID:asText',
             }),
           );
-        final getEmailForCreatedInvocation = jmapRequestBuilder.invocation(
+        final getEmailForCreatedInvocation = jmapRequestBuilder.addInvocation(
           getEmailMethodForCreated,
         );
 

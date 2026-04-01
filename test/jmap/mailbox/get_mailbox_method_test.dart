@@ -150,9 +150,11 @@ void main() {
       );
 
       final requestBuilder = RequestBuilder();
-      final getMailboxInvocation = requestBuilder.invocation(getMailboxMethod);
+      final getMailboxInvocation = requestBuilder.addInvocation(
+        getMailboxMethod,
+      );
       final response =
-          await (requestBuilder..usings(
+          await (requestBuilder..addUsings(
                 getMailboxMethod.requiredCapabilitiesSupportTeamMailboxes,
               ))
               .build()
@@ -234,7 +236,7 @@ void main() {
         );
 
         final requestBuilder = RequestBuilder();
-        final getMailboxInvocation = requestBuilder.invocation(
+        final getMailboxInvocation = requestBuilder.addInvocation(
           getMailboxMethod,
         );
         final response = await requestBuilder.build().execute(

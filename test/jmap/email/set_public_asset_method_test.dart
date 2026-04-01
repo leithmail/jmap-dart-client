@@ -72,7 +72,7 @@ void main() {
       );
 
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         method,
         methodCallId: methodCallId,
       );
@@ -143,7 +143,7 @@ void main() {
       );
 
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         method,
         methodCallId: methodCallId,
       );
@@ -205,7 +205,7 @@ void main() {
       );
 
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         method,
         methodCallId: methodCallId,
       );
@@ -271,7 +271,7 @@ void main() {
       );
 
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         method,
         methodCallId: methodCallId,
       );
@@ -340,7 +340,7 @@ void main() {
       );
 
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         method,
         methodCallId: methodCallId,
       );
@@ -410,7 +410,7 @@ void main() {
       );
 
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         method,
         methodCallId: methodCallId,
       );

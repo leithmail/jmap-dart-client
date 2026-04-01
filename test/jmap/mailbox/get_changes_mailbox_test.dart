@@ -155,7 +155,7 @@ void main() {
       final state = State('94bbff21-e87c-11ec-aae4-43ebf0340ebd');
 
       final changesMailboxMethod = ChangesMailboxMethod(accountId, state);
-      final changesMailboxInvocation = jmapRequestBuilder.invocation(
+      final changesMailboxInvocation = jmapRequestBuilder.addInvocation(
         changesMailboxMethod,
         methodCallId: MethodCallId('c0'),
       );
@@ -163,7 +163,7 @@ void main() {
       final getMailboxMethodForUpdate = GetMailboxMethod(accountId)
         ..addReferenceIds(changesMailboxInvocation, ReferencePath.updatedPath);
 
-      final getMailboxForUpdateInvocation = jmapRequestBuilder.invocation(
+      final getMailboxForUpdateInvocation = jmapRequestBuilder.addInvocation(
         getMailboxMethodForUpdate,
         methodCallId: MethodCallId('c1'),
       );
@@ -173,7 +173,7 @@ void main() {
           changesMailboxInvocation,
           ReferencePath('/destroyed/*'),
         );
-      final getMailboxForDestroyInvocation = jmapRequestBuilder.invocation(
+      final getMailboxForDestroyInvocation = jmapRequestBuilder.addInvocation(
         getMailboxMethodForDestroyed,
         methodCallId: MethodCallId('c2'),
       );

@@ -246,7 +246,7 @@ void main() {
         blobId1,
       });
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(calendarEventParseMethod);
+      final invocation = requestBuilder.addInvocation(calendarEventParseMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
         MockEndpointHttpClient.endpointUri,
@@ -422,7 +422,9 @@ void main() {
           blobId2,
         });
         final requestBuilder = RequestBuilder();
-        final invocation = requestBuilder.invocation(calendarEventParseMethod);
+        final invocation = requestBuilder.addInvocation(
+          calendarEventParseMethod,
+        );
         final response = await requestBuilder.build().execute(
           httpMockClient,
           MockEndpointHttpClient.endpointUri,
@@ -491,7 +493,9 @@ void main() {
           blobIdNotFound,
         });
         final requestBuilder = RequestBuilder();
-        final invocation = requestBuilder.invocation(calendarEventParseMethod);
+        final invocation = requestBuilder.addInvocation(
+          calendarEventParseMethod,
+        );
         final response = await requestBuilder.build().execute(
           httpMockClient,
           MockEndpointHttpClient.endpointUri,
@@ -543,7 +547,7 @@ void main() {
         blobIdNotParsable,
       });
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(calendarEventParseMethod);
+      final invocation = requestBuilder.addInvocation(calendarEventParseMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
         MockEndpointHttpClient.endpointUri,
@@ -605,7 +609,9 @@ void main() {
           blobId1,
         })..addProperties(Properties({"uid", "title", "description"}));
         final requestBuilder = RequestBuilder();
-        final invocation = requestBuilder.invocation(calendarEventParseMethod);
+        final invocation = requestBuilder.addInvocation(
+          calendarEventParseMethod,
+        );
         final response = await requestBuilder.build().execute(
           httpMockClient,
           MockEndpointHttpClient.endpointUri,

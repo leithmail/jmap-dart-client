@@ -126,7 +126,7 @@ void main() {
           from: 'manh',
         ),
       );
-    final queryEmailInvocation = jmapRequestBuilder.invocation(
+    final queryEmailInvocation = jmapRequestBuilder.addInvocation(
       queryEmailMethod,
       methodCallId: MethodCallId('c1'),
     );
@@ -145,7 +145,7 @@ void main() {
         }),
       )
       ..addReferenceIds(queryEmailInvocation, ReferencePath.idsPath);
-    final getEmailInvocation = jmapRequestBuilder.invocation(
+    final getEmailInvocation = jmapRequestBuilder.addInvocation(
       getEmailMethod,
       methodCallId: MethodCallId('c2'),
     );

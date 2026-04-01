@@ -77,14 +77,14 @@ void main() {
       );
 
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         getCalendarEventAttendanceMethod,
         methodCallId: methodCallId,
       );
 
       // act
       final response =
-          (await (requestBuilder..usings(
+          (await (requestBuilder..addUsings(
                     getCalendarEventAttendanceMethod.requiredCapabilities,
                   ))
                   .build()
@@ -150,14 +150,14 @@ void main() {
       );
 
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         getCalendarEventAttendanceMethod,
         methodCallId: methodCallId,
       );
 
       // act
       final response =
-          (await (requestBuilder..usings(
+          (await (requestBuilder..addUsings(
                     getCalendarEventAttendanceMethod.requiredCapabilities,
                   ))
                   .build()
@@ -218,7 +218,7 @@ void main() {
       );
 
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         getCalendarEventAttendanceMethod,
         methodCallId: methodCallId,
       );

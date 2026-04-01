@@ -89,11 +89,11 @@ void main() {
           );
 
       final requestBuilder = RequestBuilder();
-      final setIdentityInvocation = requestBuilder.invocation(
+      final setIdentityInvocation = requestBuilder.addInvocation(
         setIdentityMethod,
       );
       final response =
-          await (requestBuilder..usings(
+          await (requestBuilder..addUsings(
                 setIdentityMethod.requiredCapabilitiesSupportSortOrder,
               ))
               .build()
@@ -200,11 +200,11 @@ void main() {
                 });
 
           final requestBuilder = RequestBuilder();
-          final setIdentityInvocation = requestBuilder.invocation(
+          final setIdentityInvocation = requestBuilder.addInvocation(
             setIdentityMethod,
           );
           final response =
-              await (requestBuilder..usings(
+              await (requestBuilder..addUsings(
                     setIdentityMethod.requiredCapabilitiesSupportSortOrder,
                   ))
                   .build()

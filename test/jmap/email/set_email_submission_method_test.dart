@@ -218,9 +218,9 @@ void main() {
 
       final requestBuilder = RequestBuilder();
 
-      final setEmailInvocation = requestBuilder.invocation(setEmailMethod);
+      final setEmailInvocation = requestBuilder.addInvocation(setEmailMethod);
 
-      final setEmailSubmissionInvocation = requestBuilder.invocation(
+      final setEmailSubmissionInvocation = requestBuilder.addInvocation(
         setEmailSubmissionMethod,
       );
 
@@ -440,9 +440,9 @@ void main() {
 
       final requestBuilder = RequestBuilder();
 
-      final setEmailInvocation = requestBuilder.invocation(setEmailMethod);
+      final setEmailInvocation = requestBuilder.addInvocation(setEmailMethod);
 
-      final setEmailSubmissionInvocation = requestBuilder.invocation(
+      final setEmailSubmissionInvocation = requestBuilder.addInvocation(
         setEmailSubmissionMethod,
       );
 

@@ -65,7 +65,7 @@ void main() {
         );
 
       final requestBuilder = RequestBuilder();
-      final setPushSubscriptionInvocation = requestBuilder.invocation(
+      final setPushSubscriptionInvocation = requestBuilder.addInvocation(
         setPushSubscriptionMethod,
       );
       final response = await requestBuilder.build().execute(

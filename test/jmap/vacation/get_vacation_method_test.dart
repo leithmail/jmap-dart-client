@@ -67,7 +67,7 @@ void main() {
       final getVacationMethod = GetVacationMethod(accountId);
 
       final requestBuilder = RequestBuilder();
-      final getVacationInvocation = requestBuilder.invocation(
+      final getVacationInvocation = requestBuilder.addInvocation(
         getVacationMethod,
       );
       final response = await requestBuilder.build().execute(

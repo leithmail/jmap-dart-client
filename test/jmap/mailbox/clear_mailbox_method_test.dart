@@ -58,7 +58,7 @@ void main() {
         },
       );
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
       );
@@ -126,7 +126,7 @@ void main() {
         },
       );
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
         withRequiredCapabilities: false,
@@ -134,10 +134,9 @@ void main() {
 
       // Act
       final responseObject =
-          await (requestBuilder..usings(listCapabilitiesUsed)).build().execute(
-            httpMockClient,
-            MockEndpointHttpClient.endpointUri,
-          );
+          await (requestBuilder..addUsings(listCapabilitiesUsed))
+              .build()
+              .execute(httpMockClient, MockEndpointHttpClient.endpointUri);
 
       // Assert
       expect(
@@ -192,7 +191,7 @@ void main() {
         },
       );
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
       );
@@ -256,7 +255,7 @@ void main() {
         },
       );
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
       );
@@ -322,7 +321,7 @@ void main() {
         },
       );
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
       );
@@ -388,7 +387,7 @@ void main() {
         },
       );
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
       );
@@ -454,14 +453,14 @@ void main() {
         },
       );
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
       );
 
       // Act
       final responseObject =
-          await (requestBuilder..usings(
+          await (requestBuilder..addUsings(
                 clearMailboxMethod.requiredCapabilitiesSupportTeamMailboxes,
               ))
               .build()
@@ -526,17 +525,16 @@ void main() {
         },
       );
       final requestBuilder = RequestBuilder();
-      final invocation = requestBuilder.invocation(
+      final invocation = requestBuilder.addInvocation(
         clearMailboxMethod,
         methodCallId: methodCallId,
       );
 
       // Act
       final responseObject =
-          await (requestBuilder..usings(listCapabilitiesUsed)).build().execute(
-            httpMockClient,
-            MockEndpointHttpClient.endpointUri,
-          );
+          await (requestBuilder..addUsings(listCapabilitiesUsed))
+              .build()
+              .execute(httpMockClient, MockEndpointHttpClient.endpointUri);
 
       final clearMailboxResponse = responseObject.parse<ClearMailboxResponse>(
         invocation.methodCallId,

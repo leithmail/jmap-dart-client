@@ -208,7 +208,7 @@ void main() {
       final state = State('57c15230-2588-11ec-a759-2fef1ee78d9e');
 
       final changesEmailMethod = ChangesEmailMethod(accountId, state);
-      final changesEmailInvocation = jmapRequestBuilder.invocation(
+      final changesEmailInvocation = jmapRequestBuilder.addInvocation(
         changesEmailMethod,
         methodCallId: MethodCallId('c1'),
       );
@@ -216,7 +216,7 @@ void main() {
       final getEmailMethodForUpdate = GetEmailMethod(accountId)
         ..addProperties(Properties({'mailboxIds', 'keywords'}))
         ..addReferenceIds(changesEmailInvocation, ReferencePath('/updated'));
-      final getEmailForUpdateInvocation = jmapRequestBuilder.invocation(
+      final getEmailForUpdateInvocation = jmapRequestBuilder.addInvocation(
         getEmailMethodForUpdate,
         methodCallId: MethodCallId('c2'),
       );
@@ -240,7 +240,7 @@ void main() {
           }),
         )
         ..addReferenceIds(changesEmailInvocation, ReferencePath('/created'));
-      final getEmailForCreatedInvocation = jmapRequestBuilder.invocation(
+      final getEmailForCreatedInvocation = jmapRequestBuilder.addInvocation(
         getEmailMethodForCreated,
         methodCallId: MethodCallId('c3'),
       );

@@ -87,7 +87,7 @@ Future<GetMailboxResponse> fetchMailboxes(
     final getMailboxMethod = GetMailboxMethod(accountId)
       ..addProperties(Properties({'id', 'name', 'role', 'totalEmails'}));
 
-    final getMailboxInvocation = requestBuilder.invocation(getMailboxMethod);
+    final getMailboxInvocation = requestBuilder.addInvocation(getMailboxMethod);
 
     final response = await requestBuilder.build().execute(client, apiEndpoint);
     return response.parse<GetMailboxResponse>(
@@ -123,7 +123,7 @@ Future<GetEmailResponse> fetchInboxEmails(
       ])
       ..addFilters(EmailFilterCondition(inMailbox: inboxId));
 
-    final queryInvocation = requestBuilder.invocation(queryEmailMethod);
+    final queryInvocation = requestBuilder.addInvocation(queryEmailMethod);
 
     final getEmailMethod = GetEmailMethod(accountId)
       ..addProperties(
@@ -134,7 +134,7 @@ Future<GetEmailResponse> fetchInboxEmails(
           ReferencePath.idsPath,
       );
 
-    final getEmailInvocation = requestBuilder.invocation(getEmailMethod);
+    final getEmailInvocation = requestBuilder.addInvocation(getEmailMethod);
 
     final response = await requestBuilder.build().execute(client, apiEndpoint);
     return response.parse<GetEmailResponse>(

@@ -107,7 +107,7 @@ void main() {
       );
       final getQuotaMethod = GetQuotaMethod(accountId);
       final requestBuilder = RequestBuilder();
-      final getQuotaInvocation = requestBuilder.invocation(getQuotaMethod);
+      final getQuotaInvocation = requestBuilder.addInvocation(getQuotaMethod);
       final response = await requestBuilder.build().execute(
         httpMockClient,
         MockEndpointHttpClient.endpointUri,

@@ -110,7 +110,7 @@ void main() {
       final jmapRequestBuilder = RequestBuilder();
 
       final emailQueryMethod = QueryEmailMethod(accountId)..filter = filter;
-      final emailQueryMethodInvocation = jmapRequestBuilder.invocation(
+      final emailQueryMethodInvocation = jmapRequestBuilder.addInvocation(
         emailQueryMethod,
       );
 
@@ -120,7 +120,7 @@ void main() {
         emailQueryMethodInvocation,
         ReferencePath.idsPath,
       );
-      final searchSnippetGetMethodInvocation = jmapRequestBuilder.invocation(
+      final searchSnippetGetMethodInvocation = jmapRequestBuilder.addInvocation(
         searchSnippetGetMethod,
       );
 
@@ -159,7 +159,7 @@ void main() {
       final jmapRequestBuilder = RequestBuilder();
 
       final emailQueryMethod = QueryEmailMethod(accountId)..filter = filter;
-      final emailQueryMethodInvocation = jmapRequestBuilder.invocation(
+      final emailQueryMethodInvocation = jmapRequestBuilder.addInvocation(
         emailQueryMethod,
       );
 
@@ -169,7 +169,7 @@ void main() {
         emailQueryMethodInvocation,
         ReferencePath.idsPath,
       );
-      final methodInvocation = jmapRequestBuilder.invocation(
+      final methodInvocation = jmapRequestBuilder.addInvocation(
         searchSnippetGetMethod,
       );
 
@@ -227,7 +227,7 @@ void main() {
       final jmapRequestBuilder = RequestBuilder();
 
       final emailQueryMethod = QueryEmailMethod(accountId)..filter = filter;
-      final emailQueryMethodInvocation = jmapRequestBuilder.invocation(
+      final emailQueryMethodInvocation = jmapRequestBuilder.addInvocation(
         emailQueryMethod,
       );
 
@@ -237,7 +237,7 @@ void main() {
         emailQueryMethodInvocation,
         ReferencePath.idsPath,
       );
-      final methodInvocation = jmapRequestBuilder.invocation(
+      final methodInvocation = jmapRequestBuilder.addInvocation(
         searchSnippetGetMethod,
       );
 
