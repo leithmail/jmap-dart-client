@@ -61,7 +61,9 @@ void main() {
                 "accountId":
                     "3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12",
                 "newState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
-                "created": {"a1234": "6a4cf0b9-956e-41d5-9122-4824e3ea9baf"},
+                "created": {
+                  "a1234": {"id": "6a4cf0b9-956e-41d5-9122-4824e3ea9baf"},
+                },
               },
               "c1",
             ],
@@ -272,7 +274,9 @@ void main() {
                 "accountId":
                     "3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12",
                 "newState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
-                "created": {"a1234": "6a4cf0b9-956e-41d5-9122-4824e3ea9baf"},
+                "created": {
+                  "a1234": {"id": "6a4cf0b9-956e-41d5-9122-4824e3ea9baf"},
+                },
               },
               "c1",
             ],
