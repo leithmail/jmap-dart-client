@@ -5,8 +5,8 @@ import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/method_response.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
+import 'package:jmap_dart_client/api/response/response.dart';
 import 'package:jmap_dart_client/api/response/response_invocation.dart';
-import 'package:jmap_dart_client/api/response/response_object.dart';
 import 'package:jmap_dart_client/errors/error_method_response.dart';
 import 'package:jmap_dart_client/errors/error_type.dart';
 import 'package:jmap_dart_client/errors/exceptions.dart';
@@ -22,7 +22,7 @@ class RequestInvocation<R extends MethodResponse> {
     return ResultReference(methodCallId, arguments.value.methodName, path);
   }
 
-  R parse(ResponseObject response) {
+  R parse(Response response) {
     final matchedResponse = response.methodResponses.firstWhere(
       (method) =>
           method.methodCallId == methodCallId &&

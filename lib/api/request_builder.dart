@@ -3,8 +3,8 @@ import 'package:jmap_dart_client/entities/capability/capability_identifier.dart'
 import 'package:jmap_dart_client/src/utils/utils.dart';
 
 import 'method/method.dart';
+import 'request/request.dart';
 import 'request/request_invocation.dart';
-import 'request/request_object.dart';
 
 class RequestBuilder {
   static const String _methodCallIdPrefix = 'c';
@@ -34,8 +34,8 @@ class RequestBuilder {
     _capabilities.addAll(capabilityIdentifiers);
   }
 
-  RequestObject build() {
-    return RequestObject(_capabilities, _invocations);
+  Request build() {
+    return Request(_capabilities, _invocations);
   }
 
   MethodCallId _generateMethodCallId() {
