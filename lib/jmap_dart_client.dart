@@ -73,8 +73,6 @@ export 'entities/calendar/properties/recurrence_rule/recurrence_rule_rscale.dart
 export 'entities/calendar/properties/recurrence_rule/recurrence_rule_skip.dart';
 // Entity models: Capabilities
 export 'entities/capability/calendar_event_capability.dart';
-export 'entities/capability/capability_identifier.dart';
-export 'entities/capability/capability_properties.dart';
 export 'entities/capability/core_capability.dart';
 export 'entities/capability/default_capability.dart';
 export 'entities/capability/empty_capability.dart';
@@ -87,6 +85,8 @@ export 'entities/capability/websocket_capability.dart';
 // Entity models: Core
 export 'entities/core/account.dart';
 export 'entities/core/account_id.dart';
+export 'entities/core/capability_identifier.dart';
+export 'entities/core/capability_properties.dart';
 export 'entities/core/id.dart';
 export 'entities/core/session.dart';
 export 'entities/core/state.dart';

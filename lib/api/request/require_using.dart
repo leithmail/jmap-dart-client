@@ -1,5 +1,5 @@
 import 'package:built_collection/built_collection.dart';
-import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
+import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 
 mixin RequiredUsing {
   final SetBuilder<CapabilityIdentifier> capabilitiesBuilder = SetBuilder();

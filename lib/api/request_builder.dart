@@ -1,5 +1,5 @@
 import 'package:jmap_dart_client/api/method/method_response.dart';
-import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
+import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/src/utils/utils.dart';
 
 import 'method/method.dart';

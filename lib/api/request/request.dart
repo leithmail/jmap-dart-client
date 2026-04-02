@@ -5,7 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:http/http.dart' as http;
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/response/response.dart';
-import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
+import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/errors/exceptions.dart';
 import 'package:jmap_dart_client/src/converters/capability_identifier_set_converter.dart';
 import 'package:jmap_dart_client/src/converters/request_invocation_converter.dart';
