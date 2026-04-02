@@ -1,6 +1,6 @@
 import 'package:jmap_dart_client/api/method/request/set_method.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
-import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
+import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/email/public_asset.dart';
 import 'package:jmap_dart_client/methods/email/set_public_asset_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';

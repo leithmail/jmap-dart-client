@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/entities/capability/capability_properties.dart';
+import 'package:jmap_dart_client/entities/core/capability_properties.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'empty_capability.g.dart';

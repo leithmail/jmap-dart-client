@@ -29,7 +29,11 @@ jobs:
         uses: dart-lang/setup-dart@v1
 
       - name: Install dependencies
-        run: dart pub get
+        run: |
+          dart pub get
+          pushd tools/custom_lints
+          dart pub get
+          popd
 
       - name: Check formatting
         run: dart format --output=none --set-exit-if-changed .

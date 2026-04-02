@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
-import 'package:jmap_dart_client/entities/capability/capability_properties.dart';
+import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
+import 'package:jmap_dart_client/entities/core/capability_properties.dart';
 
 class Account with EquatableMixin {
   final AccountName name;

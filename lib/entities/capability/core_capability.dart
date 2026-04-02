@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/api/sort/collation_identifier.dart';
-import 'package:jmap_dart_client/entities/capability/capability_properties.dart';
+import 'package:jmap_dart_client/entities/core/capability_properties.dart';
 import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/src/converters/collation_identifier_converter.dart';
 import 'package:jmap_dart_client/src/converters/unsigned_int_nullable_converter.dart';
@@ -29,16 +29,15 @@ class CoreCapability extends CapabilityProperties with EquatableMixin {
     this.maxCallsInRequest,
     this.maxObjectsInGet,
     this.maxObjectsInSet,
-    this.collationAlgorithms,
-  });
+    Set<CollationIdentifier>? collationAlgorithms,
+  }) : collationAlgorithms = collationAlgorithms == null
+           ? null
+           : Set.unmodifiable(collationAlgorithms);
 
   factory CoreCapability.fromJson(Map<String, dynamic> json) =>
       _$CoreCapabilityFromJson(json);
 
   Map<String, dynamic> toJson() => _$CoreCapabilityToJson(this);
-
-  static CoreCapability deserialize(Map<String, dynamic> json) =>
-      CoreCapability.fromJson(json);
 
   @override
   List<Object?> get props => [

@@ -5,21 +5,21 @@ import 'package:jmap_dart_client/src/converters/response_invocation_converter.da
 import 'package:jmap_dart_client/src/converters/state_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'response_object.g.dart';
+part 'response.g.dart';
 
 @StateConverter()
 @ResponseInvocationConverter()
 @JsonSerializable()
-class ResponseObject with EquatableMixin {
+class Response with EquatableMixin {
   final List<ResponseInvocation> methodResponses;
   final State sessionState;
 
-  ResponseObject(this.methodResponses, this.sessionState);
+  Response(this.methodResponses, this.sessionState);
 
-  factory ResponseObject.fromJson(Map<String, dynamic> json) =>
-      _$ResponseObjectFromJson(json);
+  factory Response.fromJson(Map<String, dynamic> json) =>
+      _$ResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ResponseObjectToJson(this);
+  Map<String, dynamic> toJson() => _$ResponseToJson(this);
 
   @override
   List<Object?> get props => [methodResponses, sessionState];

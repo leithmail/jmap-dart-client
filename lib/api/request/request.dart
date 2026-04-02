@@ -1,40 +1,38 @@
-import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
 import 'package:http/http.dart' as http;
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
-import 'package:jmap_dart_client/api/request/require_method_call.dart';
-import 'package:jmap_dart_client/api/request/require_using.dart';
-import 'package:jmap_dart_client/api/response/response_object.dart';
-import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
+import 'package:jmap_dart_client/api/response/response.dart';
+import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/errors/exceptions.dart';
-import 'package:jmap_dart_client/src/converters/capability_identifier_converter.dart';
+import 'package:jmap_dart_client/src/converters/capability_identifier_set_converter.dart';
 import 'package:jmap_dart_client/src/converters/request_invocation_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'request_object.g.dart';
+part 'request.g.dart';
 
-@CapabilityIdentifierConverter()
+@CapabilityIdentifierSetConverter()
 @RequestInvocationConverter()
 @JsonSerializable()
-class RequestObject with EquatableMixin {
+class Request with EquatableMixin {
   final Set<CapabilityIdentifier> using;
   final List<RequestInvocation> methodCalls;
 
-  RequestObject(this.using, this.methodCalls);
+  Request(Set<CapabilityIdentifier> using, List<RequestInvocation> methodCalls)
+    : using = Set.unmodifiable(using),
+      methodCalls = List.unmodifiable(methodCalls);
 
   @override
+  @JsonKey(includeToJson: false)
   List<Object> get props => [using, methodCalls];
 
-  Map<String, dynamic> toJson() => _$RequestObjectToJson(this);
+  Map<String, dynamic> toJson() => _$RequestToJson(this);
+  factory Request.fromJson(Map<String, dynamic> json) =>
+      _$RequestFromJson(json);
 
-  static RequestObjectBuilder builder() {
-    return RequestObjectBuilder();
-  }
-
-  Future<ResponseObject> execute(http.Client client, Uri url) async {
+  Future<Response> execute(http.Client client, Uri url) async {
     try {
       final response = await client.post(
         url,
@@ -56,24 +54,11 @@ class RequestObject with EquatableMixin {
     }
   }
 
-  ResponseObject _extractData(String body) {
+  Response _extractData(String body) {
     try {
-      return ResponseObject.fromJson(jsonDecode(body) as Map<String, dynamic>);
+      return Response.fromJson(jsonDecode(body));
     } catch (e) {
       throw JmapParseResponseException(message: e.toString());
     }
-  }
-}
-
-class RequestObjectBuilder with RequiredUsing, RequireMethodCall {
-  RequestObject build() {
-    final sortedCapabilities = SplayTreeSet<CapabilityIdentifier>(
-      (a, b) => a.value.toString().compareTo(b.value.toString()),
-    )..addAll(capabilitiesBuilder.build());
-
-    return RequestObject(
-      sortedCapabilities,
-      invocationsBuilder.build().asList(),
-    );
   }
 }

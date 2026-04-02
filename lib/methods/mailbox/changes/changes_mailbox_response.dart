@@ -15,7 +15,7 @@ part 'changes_mailbox_response.g.dart';
 @IdConverter()
 @StateConverter()
 @AccountIdConverter()
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class ChangesMailboxResponse extends ChangesResponse {
   final Properties? updatedProperties;
 

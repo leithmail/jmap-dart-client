@@ -1,15 +1,15 @@
 import 'dart:io';
 
-import 'package:jmap_dart_client/api/request/request_object.dart';
+import 'package:jmap_dart_client/api/request/request.dart';
 import 'package:jmap_dart_client/errors/exceptions.dart';
 import 'package:test/test.dart';
 
 import '../helpers/http_mocks.dart';
 
 void main() {
-  group('RequestObject.execute() exception behaviour', () {
-    RequestObject buildRequest() {
-      return RequestObject({}, []);
+  group('Request.execute() exception behaviour', () {
+    Request buildRequest() {
+      return Request({}, []);
     }
 
     group('401 response', () {

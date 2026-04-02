@@ -1,7 +1,5 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:jmap_dart_client/entities/capability/calendar_event_capability.dart';
-import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
-import 'package:jmap_dart_client/entities/capability/capability_properties.dart';
 import 'package:jmap_dart_client/entities/capability/core_capability.dart';
 import 'package:jmap_dart_client/entities/capability/default_capability.dart';
 import 'package:jmap_dart_client/entities/capability/empty_capability.dart';
@@ -11,6 +9,8 @@ import 'package:jmap_dart_client/entities/capability/submission_capability.dart'
 import 'package:jmap_dart_client/entities/capability/vacation_capability.dart';
 import 'package:jmap_dart_client/entities/capability/web_socket_ticket_capability.dart';
 import 'package:jmap_dart_client/entities/capability/websocket_capability.dart';
+import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
+import 'package:jmap_dart_client/entities/core/capability_properties.dart';
 
 class CapabilitiesConverter {
   static final defaultConverter = CapabilitiesConverter();
@@ -28,16 +28,15 @@ class CapabilitiesConverter {
 
   CapabilitiesConverter() {
     _mapCapabilityConverterBuilder.addAll({
-      CapabilityIdentifier.jmapMail: MailCapability.deserialize,
-      CapabilityIdentifier.jmapCore: CoreCapability.deserialize,
-      CapabilityIdentifier.jmapSubmission: SubmissionCapability.deserialize,
-      CapabilityIdentifier.jamesCalendarEvent:
-          CalendarEventCapability.deserialize,
-      CapabilityIdentifier.jmapVacationResponse: VacationCapability.deserialize,
-      CapabilityIdentifier.jmapWebSocket: WebSocketCapability.deserialize,
+      CapabilityIdentifier.jmapMail: MailCapability.fromJson,
+      CapabilityIdentifier.jmapCore: CoreCapability.fromJson,
+      CapabilityIdentifier.jmapSubmission: SubmissionCapability.fromJson,
+      CapabilityIdentifier.jamesCalendarEvent: CalendarEventCapability.fromJson,
+      CapabilityIdentifier.jmapVacationResponse: VacationCapability.fromJson,
+      CapabilityIdentifier.jmapWebSocket: WebSocketCapability.fromJson,
       CapabilityIdentifier.jmapWebSocketTicket:
-          WebSocketTicketCapability.deserialize,
-      CapabilityIdentifier.jmapMdn: MdnCapability.deserialize,
+          WebSocketTicketCapability.fromJson,
+      CapabilityIdentifier.jmapMdn: MdnCapability.fromJson,
     });
   }
 

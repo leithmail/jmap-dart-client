@@ -14,19 +14,8 @@ CalendarOrganizer _$CalendarOrganizerFromJson(Map<String, dynamic> json) =>
       ),
     );
 
-Map<String, dynamic> _$CalendarOrganizerToJson(CalendarOrganizer instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('name', instance.name);
-  writeNotNull(
-    'mailto',
-    const MailAddressNullableConverter().toJson(instance.mailto),
-  );
-  return val;
-}
+Map<String, dynamic> _$CalendarOrganizerToJson(CalendarOrganizer instance) =>
+    <String, dynamic>{
+      'name': ?instance.name,
+      'mailto': ?const MailAddressNullableConverter().toJson(instance.mailto),
+    };

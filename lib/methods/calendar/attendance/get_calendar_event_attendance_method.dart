@@ -1,7 +1,7 @@
 import 'package:jmap_dart_client/api/method/request/get_method.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
-import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
+import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/methods/calendar/attendance/get_calendar_event_attendance_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
@@ -42,6 +42,6 @@ class GetCalendarEventAttendanceMethod
   GetCalendarEventAttendanceResponse deserializeResponse(
     Map<String, dynamic> json,
   ) {
-    return GetCalendarEventAttendanceResponse.deserialize(json);
+    return GetCalendarEventAttendanceResponse.fromJson(json);
   }
 }

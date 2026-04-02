@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 import 'package:quiver/check.dart';
 
+@immutable
 class UnsignedInt with EquatableMixin {
-  static final defaultValue = UnsignedInt(0);
-
   final int value;
 
   // UnsignedInt in range [0...2^53-1].

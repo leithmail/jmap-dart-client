@@ -26,18 +26,3 @@ ChangesMailboxResponse _$ChangesMailboxResponseFromJson(
     json['updatedProperties'] as List<String>?,
   ),
 );
-
-Map<String, dynamic> _$ChangesMailboxResponseToJson(
-  ChangesMailboxResponse instance,
-) => <String, dynamic>{
-  'accountId': const AccountIdConverter().toJson(instance.accountId),
-  'oldState': const StateConverter().toJson(instance.oldState),
-  'newState': const StateConverter().toJson(instance.newState),
-  'hasMoreChanges': instance.hasMoreChanges,
-  'created': instance.created.map(const IdConverter().toJson).toList(),
-  'updated': instance.updated.map(const IdConverter().toJson).toList(),
-  'destroyed': instance.destroyed.map(const IdConverter().toJson).toList(),
-  'updatedProperties': const PropertiesConverter().toJson(
-    instance.updatedProperties,
-  ),
-};

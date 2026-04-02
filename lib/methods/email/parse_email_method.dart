@@ -1,6 +1,6 @@
 import 'package:jmap_dart_client/api/method/request/parse_method.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
-import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
+import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/email/email_body_properties.dart';
 import 'package:jmap_dart_client/methods/email/get_email_method.dart';
 import 'package:jmap_dart_client/methods/email/parse_email_response.dart';

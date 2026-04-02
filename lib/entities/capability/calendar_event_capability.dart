@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/entities/capability/capability_properties.dart';
+import 'package:jmap_dart_client/entities/core/capability_properties.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'calendar_event_capability.g.dart';
@@ -10,19 +10,17 @@ class CalendarEventCapability extends CapabilityProperties {
   final bool? counterSupport;
 
   CalendarEventCapability({
-    this.replySupportedLanguage,
+    List<String>? replySupportedLanguage,
     this.supportFreeBusyQuery,
     this.counterSupport,
-  });
+  }) : replySupportedLanguage = replySupportedLanguage == null
+           ? null
+           : List.unmodifiable(replySupportedLanguage);
 
   factory CalendarEventCapability.fromJson(Map<String, dynamic> json) =>
       _$CalendarEventCapabilityFromJson(json);
 
   Map<String, dynamic> toJson() => _$CalendarEventCapabilityToJson(this);
-
-  static CalendarEventCapability deserialize(Map<String, dynamic> json) {
-    return CalendarEventCapability.fromJson(json);
-  }
 
   @override
   List<Object?> get props => [

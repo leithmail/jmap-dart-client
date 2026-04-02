@@ -1,8 +1,8 @@
 import 'package:jmap_dart_client/api/method/request/set_method.dart';
 import 'package:jmap_dart_client/api/request/patch_object.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
-import 'package:jmap_dart_client/entities/capability/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/email/email_submission.dart';
 import 'package:jmap_dart_client/entities/email/email_submission_id.dart';
 import 'package:jmap_dart_client/methods/email/set_email_submission_response.dart';

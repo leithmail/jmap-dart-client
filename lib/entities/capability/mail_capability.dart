@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:jmap_dart_client/entities/capability/capability_properties.dart';
+import 'package:jmap_dart_client/entities/core/capability_properties.dart';
 import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/src/converters/unsigned_int_nullable_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -24,10 +24,15 @@ class MailCapability extends CapabilityProperties with EquatableMixin {
     this.maxSizeMailboxName,
     this.maxKeywordsPerEmail,
     this.maxSizeAttachmentsPerEmail,
-    this.emailQuerySortOptions,
-    this.emailsListSortOptions,
+    Set<String>? emailQuerySortOptions,
+    Set<String>? emailsListSortOptions,
     this.mayCreateTopLevelMailbox,
-  });
+  }) : emailQuerySortOptions = emailQuerySortOptions == null
+           ? null
+           : Set.unmodifiable(emailQuerySortOptions),
+       emailsListSortOptions = emailsListSortOptions == null
+           ? null
+           : Set.unmodifiable(emailsListSortOptions);
 
   factory MailCapability.fromJson(Map<String, dynamic> json) =>
       _$MailCapabilityFromJson(json);

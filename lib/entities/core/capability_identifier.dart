@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 
+@immutable
 class CapabilityIdentifier with EquatableMixin {
   static final jmapCore = CapabilityIdentifier(
     Uri.parse('urn:ietf:params:jmap:core'),

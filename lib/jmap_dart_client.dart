@@ -31,14 +31,14 @@ export 'api/request/ready_to_build.dart';
 export 'api/request/reference_id.dart';
 export 'api/request/reference_path.dart';
 export 'api/request/reference_prefix.dart';
+export 'api/request/request.dart';
 export 'api/request/request_invocation.dart';
-export 'api/request/request_object.dart';
 export 'api/request/require_method_call.dart';
 export 'api/request/require_using.dart';
 export 'api/request/result_reference.dart';
 export 'api/request_builder.dart';
+export 'api/response/response.dart';
 export 'api/response/response_invocation.dart';
-export 'api/response/response_object.dart';
 export 'api/sort/collation_identifier.dart';
 export 'api/sort/comparator.dart';
 export 'api/sort/comparator_property.dart';
@@ -73,8 +73,6 @@ export 'entities/calendar/properties/recurrence_rule/recurrence_rule_rscale.dart
 export 'entities/calendar/properties/recurrence_rule/recurrence_rule_skip.dart';
 // Entity models: Capabilities
 export 'entities/capability/calendar_event_capability.dart';
-export 'entities/capability/capability_identifier.dart';
-export 'entities/capability/capability_properties.dart';
 export 'entities/capability/core_capability.dart';
 export 'entities/capability/default_capability.dart';
 export 'entities/capability/empty_capability.dart';
@@ -87,6 +85,8 @@ export 'entities/capability/websocket_capability.dart';
 // Entity models: Core
 export 'entities/core/account.dart';
 export 'entities/core/account_id.dart';
+export 'entities/core/capability_identifier.dart';
+export 'entities/core/capability_properties.dart';
 export 'entities/core/id.dart';
 export 'entities/core/session.dart';
 export 'entities/core/state.dart';
