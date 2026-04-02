@@ -29,14 +29,14 @@ class ChangesMailboxResponse extends ChangesResponse {
     Set<Id> destroyed, {
     this.updatedProperties,
   }) : super(
-          accountId,
-          oldState,
-          newState,
-          hasMoreChanges,
-          created,
-          updated,
-          destroyed,
-        );
+         accountId,
+         oldState,
+         newState,
+         hasMoreChanges,
+         created,
+         updated,
+         destroyed,
+       );
 
   factory ChangesMailboxResponse.fromJson(Map<String, dynamic> json) =>
       _$ChangesMailboxResponseFromJson(json);
@@ -47,13 +47,13 @@ class ChangesMailboxResponse extends ChangesResponse {
 
   @override
   List<Object?> get props => [
-        accountId,
-        oldState,
-        newState,
-        hasMoreChanges,
-        created,
-        updated,
-        destroyed,
-        updatedProperties,
-      ];
+    accountId,
+    oldState,
+    newState,
+    hasMoreChanges,
+    created,
+    updated,
+    destroyed,
+    updatedProperties,
+  ];
 }

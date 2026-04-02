@@ -37,6 +37,5 @@ class GetCalendarEventAttendanceResponse extends ResponseRequiringAccountId {
 
   factory GetCalendarEventAttendanceResponse.fromJson(
     Map<String, dynamic> json,
-  ) =>
-      _$GetCalendarEventAttendanceResponseFromJson(json);
+  ) => _$GetCalendarEventAttendanceResponseFromJson(json);
 }

@@ -23,20 +23,6 @@ class ChangesEmailResponse extends ChangesResponse {
     Set<Id> updated,
     Set<Id> destroyed,
   ) : super(
-          accountId,
-          oldState,
-          newState,
-          hasMoreChanges,
-          created,
-          updated,
-          destroyed,
-        );
-
-  factory ChangesEmailResponse.fromJson(Map<String, dynamic> json) =>
-      _$ChangesEmailResponseFromJson(json);
-
-  @override
-  List<Object?> get props => [
         accountId,
         oldState,
         newState,
@@ -44,5 +30,19 @@ class ChangesEmailResponse extends ChangesResponse {
         created,
         updated,
         destroyed,
-      ];
+      );
+
+  factory ChangesEmailResponse.fromJson(Map<String, dynamic> json) =>
+      _$ChangesEmailResponseFromJson(json);
+
+  @override
+  List<Object?> get props => [
+    accountId,
+    oldState,
+    newState,
+    hasMoreChanges,
+    created,
+    updated,
+    destroyed,
+  ];
 }
