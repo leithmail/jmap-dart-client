@@ -7,23 +7,27 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/error/error.dart';
 
 class RequireJsonSerializableToJson extends AnalysisRule {
-  static const LintCode code = LintCode('require_json_serializable_to_json',
-      '@JsonSerializable classes must declare `Map<String, dynamic> toJson()`.',
-      severity: DiagnosticSeverity.WARNING);
+  static const LintCode code = LintCode(
+    'require_json_serializable_to_json',
+    '@JsonSerializable classes must declare `Map<String, dynamic> toJson()`.',
+    severity: DiagnosticSeverity.WARNING,
+  );
 
   RequireJsonSerializableToJson()
-      : super(
-          name: 'require_json_serializable_to_json',
-          description:
-              '@JsonSerializable classes must declare `Map<String, dynamic> toJson()`.',
-        );
+    : super(
+        name: 'require_json_serializable_to_json',
+        description:
+            '@JsonSerializable classes must declare `Map<String, dynamic> toJson()`.',
+      );
 
   @override
   LintCode get diagnosticCode => code;
 
   @override
   void registerNodeProcessors(
-      RuleVisitorRegistry registry, RuleContext context) {
+    RuleVisitorRegistry registry,
+    RuleContext context,
+  ) {
     var visitor = _Visitor(this, context);
     registry.addClassDeclaration(this, visitor);
   }
@@ -59,11 +63,13 @@ class _Visitor extends SimpleAstVisitor<void> {
     }
 
     final args = annotation.arguments?.arguments ?? const <Expression>[];
-    final hasCreateToJsonFalse = args.any((arg) =>
-        arg is NamedExpression &&
-        arg.name.label.name == 'createToJson' &&
-        arg.expression is BooleanLiteral &&
-        (arg.expression as BooleanLiteral).value == false);
+    final hasCreateToJsonFalse = args.any(
+      (arg) =>
+          arg is NamedExpression &&
+          arg.name.label.name == 'createToJson' &&
+          arg.expression is BooleanLiteral &&
+          (arg.expression as BooleanLiteral).value == false,
+    );
     return !hasCreateToJsonFalse;
   }
 

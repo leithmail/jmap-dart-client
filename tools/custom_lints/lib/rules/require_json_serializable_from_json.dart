@@ -7,23 +7,27 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/error/error.dart';
 
 class RequireJsonSerializableFromJson extends AnalysisRule {
-  static const LintCode code = LintCode('require_json_serializable_from_json',
-      '@JsonSerializable classes must declare `factory ClassName.fromJson(Map<String, dynamic> json)`.',
-      severity: DiagnosticSeverity.WARNING);
+  static const LintCode code = LintCode(
+    'require_json_serializable_from_json',
+    '@JsonSerializable classes must declare `factory ClassName.fromJson(Map<String, dynamic> json)`.',
+    severity: DiagnosticSeverity.WARNING,
+  );
 
   RequireJsonSerializableFromJson()
-      : super(
-          name: 'require_json_serializable_from_json',
-          description:
-              '@JsonSerializable classes must declare `factory ClassName.fromJson(Map<String, dynamic> json)`.',
-        );
+    : super(
+        name: 'require_json_serializable_from_json',
+        description:
+            '@JsonSerializable classes must declare `factory ClassName.fromJson(Map<String, dynamic> json)`.',
+      );
 
   @override
   LintCode get diagnosticCode => code;
 
   @override
   void registerNodeProcessors(
-      RuleVisitorRegistry registry, RuleContext context) {
+    RuleVisitorRegistry registry,
+    RuleContext context,
+  ) {
     var visitor = _Visitor(this, context);
     registry.addClassDeclaration(this, visitor);
   }
@@ -59,11 +63,13 @@ class _Visitor extends SimpleAstVisitor<void> {
     }
 
     final args = annotation.arguments?.arguments ?? const <Expression>[];
-    final hasCreateFactoryFalse = args.any((arg) =>
-        arg is NamedExpression &&
-        arg.name.label.name == 'createFactory' &&
-        arg.expression is BooleanLiteral &&
-        (arg.expression as BooleanLiteral).value == false);
+    final hasCreateFactoryFalse = args.any(
+      (arg) =>
+          arg is NamedExpression &&
+          arg.name.label.name == 'createFactory' &&
+          arg.expression is BooleanLiteral &&
+          (arg.expression as BooleanLiteral).value == false,
+    );
     return !hasCreateFactoryFalse;
   }
 
