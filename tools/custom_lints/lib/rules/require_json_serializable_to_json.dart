@@ -1,52 +1,52 @@
+import 'package:analyzer/analysis_rule/analysis_rule.dart';
+import 'package:analyzer/analysis_rule/rule_context.dart';
+import 'package:analyzer/analysis_rule/rule_visitor_registry.dart';
 import 'package:analyzer/dart/ast/ast.dart';
-import 'package:analyzer/error/error.dart' show DiagnosticSeverity;
-import 'package:analyzer/error/listener.dart';
-import 'package:custom_lint_builder/custom_lint_builder.dart';
+import 'package:analyzer/dart/ast/visitor.dart';
+import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/error/error.dart';
 
-class RequireJsonSerializableToJson extends DartLintRule {
+class RequireJsonSerializableToJson extends AnalysisRule {
+  static const LintCode code = LintCode('require_json_serializable_to_json',
+      '@JsonSerializable classes must declare `Map<String, dynamic> toJson()`.',
+      severity: DiagnosticSeverity.WARNING);
+
   RequireJsonSerializableToJson()
       : super(
-          code: const LintCode(
-            errorSeverity: DiagnosticSeverity.WARNING,
-            name: 'require_json_serializable_to_json',
-            problemMessage:
-                '@JsonSerializable classes must declare `Map<String, dynamic> toJson()`.',
-          ),
+          name: 'require_json_serializable_to_json',
+          description:
+              '@JsonSerializable classes must declare `Map<String, dynamic> toJson()`.',
         );
 
   @override
-  void run(
-    CustomLintResolver resolver,
-    DiagnosticReporter reporter,
-    CustomLintContext context,
-  ) {
-    context.registry.addClassDeclaration((ClassDeclaration node) {
-      if (!_hasJsonSerializableAnnotation(node)) return;
+  LintCode get diagnosticCode => code;
 
-      final hasValidToJson = node.members.whereType<MethodDeclaration>().any(
-            _isValidToJson,
-          );
-
-      if (!hasValidToJson) {
-        reporter.atNode(node, code);
-      }
-    });
+  @override
+  void registerNodeProcessors(
+      RuleVisitorRegistry registry, RuleContext context) {
+    var visitor = _Visitor(this, context);
+    registry.addClassDeclaration(this, visitor);
   }
+}
 
-  bool _isValidToJson(MethodDeclaration method) {
-    if (method.name.lexeme != 'toJson' ||
-        method.isStatic ||
-        method.isGetter ||
-        method.isSetter) {
-      return false;
+class _Visitor extends SimpleAstVisitor<void> {
+  final AnalysisRule rule;
+
+  final RuleContext context;
+
+  _Visitor(this.rule, this.context);
+
+  @override
+  void visitClassDeclaration(ClassDeclaration node) {
+    if (!_hasJsonSerializableAnnotation(node)) return;
+    final element = node.declaredFragment?.element;
+    if (element == null) return;
+
+    final hasValidToJson = element.methods.any(_isValidToJson);
+
+    if (!hasValidToJson) {
+      rule.reportAtNode(node);
     }
-
-    final parameters =
-        method.parameters?.parameters ?? const <FormalParameter>[];
-    final returnType = method.returnType?.toSource();
-
-    return parameters.isEmpty &&
-        _normalizeTypeSource(returnType) == 'Map<String,dynamic>';
   }
 
   static bool _hasJsonSerializableAnnotation(ClassDeclaration node) {
@@ -65,6 +65,14 @@ class RequireJsonSerializableToJson extends DartLintRule {
         arg.expression is BooleanLiteral &&
         (arg.expression as BooleanLiteral).value == false);
     return !hasCreateToJsonFalse;
+  }
+
+  bool _isValidToJson(MethodElement method) {
+    return method.name == 'toJson' &&
+        !method.isStatic &&
+        method.formalParameters.isEmpty &&
+        _normalizeTypeSource(method.returnType.getDisplayString()) ==
+            'Map<String,dynamic>';
   }
 
   static String _normalizeTypeSource(String? source) {

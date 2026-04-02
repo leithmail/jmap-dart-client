@@ -4,6 +4,5 @@ environment:
   sdk: ^3.0.0
 
 dependencies:
+  analysis_server_plugin: ^0.3.13
   analyzer:
-  analyzer_plugin:
-  custom_lint_builder:

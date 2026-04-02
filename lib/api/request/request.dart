@@ -29,6 +29,8 @@ class Request with EquatableMixin {
   List<Object> get props => [using, methodCalls];
 
   Map<String, dynamic> toJson() => _$RequestToJson(this);
+  factory Request.fromJson(Map<String, dynamic> json) =>
+      _$RequestFromJson(json);
 
   Future<Response> execute(http.Client client, Uri url) async {
     try {

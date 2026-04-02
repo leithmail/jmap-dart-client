@@ -1,54 +1,52 @@
+import 'package:analyzer/analysis_rule/analysis_rule.dart';
+import 'package:analyzer/analysis_rule/rule_context.dart';
+import 'package:analyzer/analysis_rule/rule_visitor_registry.dart';
 import 'package:analyzer/dart/ast/ast.dart';
-import 'package:analyzer/error/error.dart' show DiagnosticSeverity;
-import 'package:analyzer/error/listener.dart';
-import 'package:custom_lint_builder/custom_lint_builder.dart';
+import 'package:analyzer/dart/ast/visitor.dart';
+import 'package:analyzer/dart/element/element.dart';
+import 'package:analyzer/error/error.dart';
 
-class RequireJsonSerializableFromJson extends DartLintRule {
+class RequireJsonSerializableFromJson extends AnalysisRule {
+  static const LintCode code = LintCode('require_json_serializable_from_json',
+      '@JsonSerializable classes must declare `factory ClassName.fromJson(Map<String, dynamic> json)`.',
+      severity: DiagnosticSeverity.WARNING);
+
   RequireJsonSerializableFromJson()
       : super(
-          code: const LintCode(
-            errorSeverity: DiagnosticSeverity.WARNING,
-            name: 'require_json_serializable_from_json',
-            problemMessage:
-                '@JsonSerializable classes must declare `factory ClassName.fromJson(Map<String, dynamic> json)`.',
-          ),
+          name: 'require_json_serializable_from_json',
+          description:
+              '@JsonSerializable classes must declare `factory ClassName.fromJson(Map<String, dynamic> json)`.',
         );
 
   @override
-  void run(
-    CustomLintResolver resolver,
-    DiagnosticReporter reporter,
-    CustomLintContext context,
-  ) {
-    context.registry.addClassDeclaration((ClassDeclaration node) {
-      if (!_hasJsonSerializableAnnotation(node)) return;
+  LintCode get diagnosticCode => code;
 
-      final hasValidFromJson = node.members
-          .whereType<ConstructorDeclaration>()
-          .any(_isValidFromJson);
-
-      if (!hasValidFromJson) {
-        reporter.atNode(node, code);
-      }
-    });
+  @override
+  void registerNodeProcessors(
+      RuleVisitorRegistry registry, RuleContext context) {
+    var visitor = _Visitor(this, context);
+    registry.addClassDeclaration(this, visitor);
   }
+}
 
-  bool _isValidFromJson(ConstructorDeclaration constructor) {
-    if (constructor.factoryKeyword == null ||
-        constructor.name?.lexeme != 'fromJson') {
-      return false;
+class _Visitor extends SimpleAstVisitor<void> {
+  final AnalysisRule rule;
+
+  final RuleContext context;
+
+  _Visitor(this.rule, this.context);
+
+  @override
+  void visitClassDeclaration(ClassDeclaration node) {
+    if (!_hasJsonSerializableAnnotation(node)) return;
+    final element = node.declaredFragment?.element;
+    if (element == null) return;
+
+    final hasValidFromJson = element.constructors.any(_isValidFromJson);
+
+    if (!hasValidFromJson) {
+      rule.reportAtNode(node);
     }
-
-    final parameters = constructor.parameters.parameters;
-    if (parameters.length != 1) return false;
-
-    final parameter = parameters.single;
-    if (parameter is! SimpleFormalParameter) return false;
-
-    final type = _normalizeTypeSource(parameter.type?.toSource());
-    final name = parameter.name?.lexeme;
-
-    return type == 'Map<String,dynamic>' && name == 'json';
   }
 
   static bool _hasJsonSerializableAnnotation(ClassDeclaration node) {
@@ -67,6 +65,20 @@ class RequireJsonSerializableFromJson extends DartLintRule {
         arg.expression is BooleanLiteral &&
         (arg.expression as BooleanLiteral).value == false);
     return !hasCreateFactoryFalse;
+  }
+
+  bool _isValidFromJson(ConstructorElement constructor) {
+    if (!constructor.isFactory || constructor.name != 'fromJson') {
+      return false;
+    }
+
+    final parameters = constructor.formalParameters;
+    if (parameters.length != 1) return false;
+
+    final parameter = parameters.single;
+    final type = _normalizeTypeSource(parameter.type.getDisplayString());
+
+    return type == 'Map<String,dynamic>' && parameter.name == 'json';
   }
 
   static String _normalizeTypeSource(String? source) {
