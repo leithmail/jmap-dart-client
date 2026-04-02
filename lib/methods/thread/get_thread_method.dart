@@ -1,6 +1,5 @@
 import 'package:jmap_dart_client/api/method/request/get_method.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
-import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/methods/thread/get_thread_response.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
@@ -12,16 +11,18 @@ part 'get_thread_method.g.dart';
 
 @JsonSerializable(
   includeIfNull: false,
-  explicitToJson: true,
+  createFactory: false,
   converters: [AccountIdConverter(), IdConverter(), PropertiesConverter()],
 )
 class GetThreadMethod extends GetMethod<GetThreadResponse> {
   GetThreadMethod(super.accountId);
 
   @override
+  @JsonKey(includeToJson: false)
   MethodName get methodName => MethodName('Thread/get');
 
   @override
+  @JsonKey(includeToJson: false)
   Set<CapabilityIdentifier> get requiredCapabilities => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jmapMail,
@@ -32,6 +33,6 @@ class GetThreadMethod extends GetMethod<GetThreadResponse> {
 
   @override
   GetThreadResponse deserializeResponse(Map<String, dynamic> json) {
-    return GetThreadResponse.deserialize(json);
+    return GetThreadResponse.fromJson(json);
   }
 }

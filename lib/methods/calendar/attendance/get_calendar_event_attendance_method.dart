@@ -42,6 +42,6 @@ class GetCalendarEventAttendanceMethod
   GetCalendarEventAttendanceResponse deserializeResponse(
     Map<String, dynamic> json,
   ) {
-    return GetCalendarEventAttendanceResponse.deserialize(json);
+    return GetCalendarEventAttendanceResponse.fromJson(json);
   }
 }

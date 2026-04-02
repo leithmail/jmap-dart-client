@@ -9,16 +9,21 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'get_public_asset_method.g.dart';
 
-@JsonSerializable(converters: [AccountIdConverter(), IdConverter()])
+@JsonSerializable(
+  createFactory: false,
+  converters: [AccountIdConverter(), IdConverter()],
+)
 class GetPublicAssetMethod
     extends MethodRequiringAccountId<GetPublicAssetResponse>
     with OptionalIds {
   GetPublicAssetMethod(super.accountId);
 
   @override
+  @JsonKey(includeToJson: false)
   MethodName get methodName => MethodName('PublicAsset/get');
 
   @override
+  @JsonKey(includeToJson: false)
   Set<CapabilityIdentifier> get requiredCapabilities => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jmapPublicAsset,
@@ -29,6 +34,6 @@ class GetPublicAssetMethod
 
   @override
   GetPublicAssetResponse deserializeResponse(Map<String, dynamic> json) {
-    return GetPublicAssetResponse.deserialize(json);
+    return GetPublicAssetResponse.fromJson(json);
   }
 }

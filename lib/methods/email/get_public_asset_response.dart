@@ -10,7 +10,7 @@ part 'get_public_asset_response.g.dart';
 @StateConverter()
 @AccountIdConverter()
 @IdConverter()
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class GetPublicAssetResponse extends GetResponse<PublicAsset> {
   GetPublicAssetResponse(
     super.accountId,
@@ -22,6 +22,6 @@ class GetPublicAssetResponse extends GetResponse<PublicAsset> {
   @override
   List<Object?> get props => [accountId, state, list, notFound];
 
-  static GetPublicAssetResponse deserialize(Map<String, dynamic> json) =>
+  factory GetPublicAssetResponse.fromJson(Map<String, dynamic> json) =>
       _$GetPublicAssetResponseFromJson(json);
 }

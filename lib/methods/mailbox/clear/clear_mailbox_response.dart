@@ -20,7 +20,7 @@ class ClearMailboxResponse extends ClearResponse {
     SetError? notCleared,
   ) : super(accountId, totalDeletedMessagesCount, notCleared);
 
-  static ClearMailboxResponse deserialize(Map<String, dynamic> json) =>
+  factory ClearMailboxResponse.fromJson(Map<String, dynamic> json) =>
       _$ClearMailboxResponseFromJson(json);
 
   @override

@@ -5,14 +5,14 @@ import 'package:custom_lint_builder/custom_lint_builder.dart';
 
 class RequireJsonSerializableFromJson extends DartLintRule {
   RequireJsonSerializableFromJson()
-    : super(
-        code: const LintCode(
-          errorSeverity: DiagnosticSeverity.WARNING,
-          name: 'require_json_serializable_from_json',
-          problemMessage:
-              '@JsonSerializable classes must declare `factory ClassName.fromJson(Map<String, dynamic> json)`.',
-        ),
-      );
+      : super(
+          code: const LintCode(
+            errorSeverity: DiagnosticSeverity.WARNING,
+            name: 'require_json_serializable_from_json',
+            problemMessage:
+                '@JsonSerializable classes must declare `factory ClassName.fromJson(Map<String, dynamic> json)`.',
+          ),
+        );
 
   @override
   void run(
@@ -52,9 +52,21 @@ class RequireJsonSerializableFromJson extends DartLintRule {
   }
 
   static bool _hasJsonSerializableAnnotation(ClassDeclaration node) {
-    return node.metadata.any(
-      (annotation) => annotation.name.name == 'JsonSerializable',
-    );
+    final matches = node.metadata.whereType<Annotation>();
+    final annotation = matches.any((a) => a.name.name == 'JsonSerializable')
+        ? matches.firstWhere((a) => a.name.name == 'JsonSerializable')
+        : null;
+    if (annotation == null) {
+      return false;
+    }
+
+    final args = annotation.arguments?.arguments ?? const <Expression>[];
+    final hasCreateFactoryFalse = args.any((arg) =>
+        arg is NamedExpression &&
+        arg.name.label.name == 'createFactory' &&
+        arg.expression is BooleanLiteral &&
+        (arg.expression as BooleanLiteral).value == false);
+    return !hasCreateFactoryFalse;
   }
 
   static String _normalizeTypeSource(String? source) {

@@ -40,6 +40,6 @@ class ChangesEmailMethod extends ChangesMethod<ChangesEmailResponse> {
 
   @override
   ChangesEmailResponse deserializeResponse(Map<String, dynamic> json) {
-    return ChangesEmailResponse.deserialize(json);
+    return ChangesEmailResponse.fromJson(json);
   }
 }

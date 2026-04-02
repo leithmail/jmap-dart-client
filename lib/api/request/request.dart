@@ -25,6 +25,7 @@ class Request with EquatableMixin {
       methodCalls = List.unmodifiable(methodCalls);
 
   @override
+  @JsonKey(includeToJson: false)
   List<Object> get props => [using, methodCalls];
 
   Map<String, dynamic> toJson() => _$RequestToJson(this);

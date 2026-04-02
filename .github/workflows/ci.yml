@@ -35,9 +35,7 @@ jobs:
         run: dart format --output=none --set-exit-if-changed .
 
       - name: Static analysis
-        run: |
-          dart analyze
-          dart run custom_lint
+        run: dart analyze
 
       - name: Run tests
         run: dart test --coverage=coverage

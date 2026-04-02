@@ -8,15 +8,20 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'calendar_event_maybe_method.g.dart';
 
-@JsonSerializable(converters: [AccountIdConverter(), IdConverter()])
+@JsonSerializable(
+  createFactory: false,
+  converters: [AccountIdConverter(), IdConverter()],
+)
 class CalendarEventMaybeMethod
     extends CalendarEventReplyMethod<CalendarEventMaybeResponse> {
   CalendarEventMaybeMethod(super.accountId, {required super.blobIds});
 
   @override
+  @JsonKey(includeToJson: false)
   MethodName get methodName => MethodName('CalendarEvent/maybe');
 
   @override
+  @JsonKey(includeToJson: false)
   Set<CapabilityIdentifier> get requiredCapabilities => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jamesCalendarEvent,

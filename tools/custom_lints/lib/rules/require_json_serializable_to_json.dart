@@ -50,9 +50,21 @@ class RequireJsonSerializableToJson extends DartLintRule {
   }
 
   static bool _hasJsonSerializableAnnotation(ClassDeclaration node) {
-    return node.metadata.any(
-      (annotation) => annotation.name.name == 'JsonSerializable',
-    );
+    final matches = node.metadata.whereType<Annotation>();
+    final annotation = matches.any((a) => a.name.name == 'JsonSerializable')
+        ? matches.firstWhere((a) => a.name.name == 'JsonSerializable')
+        : null;
+    if (annotation == null) {
+      return false;
+    }
+
+    final args = annotation.arguments?.arguments ?? const <Expression>[];
+    final hasCreateToJsonFalse = args.any((arg) =>
+        arg is NamedExpression &&
+        arg.name.label.name == 'createToJson' &&
+        arg.expression is BooleanLiteral &&
+        (arg.expression as BooleanLiteral).value == false);
+    return !hasCreateToJsonFalse;
   }
 
   static String _normalizeTypeSource(String? source) {

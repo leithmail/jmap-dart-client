@@ -10,9 +10,10 @@ class CapabilityIdentifierSetConverter
       json.map((String json) => CapabilityIdentifier(Uri.parse(json))).toSet();
 
   @override
-  List<String> toJson(Set<CapabilityIdentifier> object) =>
-      object
-          .map((CapabilityIdentifier object) => object.value.toString())
-          .toList()
-        ..sort(); // sort to ensure consistent order for testing and readability
+  List<String> toJson(Set<CapabilityIdentifier> object) {
+    return object
+        .map((CapabilityIdentifier object) => object.value.toString())
+        .toList()
+      ..sort(); // sort to ensure consistent order for testing and readability
+  }
 }

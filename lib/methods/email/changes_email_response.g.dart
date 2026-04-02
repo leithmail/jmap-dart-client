@@ -23,15 +23,3 @@ ChangesEmailResponse _$ChangesEmailResponseFromJson(
       .map((e) => const IdConverter().fromJson(e as String))
       .toSet(),
 );
-
-Map<String, dynamic> _$ChangesEmailResponseToJson(
-  ChangesEmailResponse instance,
-) => <String, dynamic>{
-  'accountId': const AccountIdConverter().toJson(instance.accountId),
-  'oldState': const StateConverter().toJson(instance.oldState),
-  'newState': const StateConverter().toJson(instance.newState),
-  'hasMoreChanges': instance.hasMoreChanges,
-  'created': instance.created.map(const IdConverter().toJson).toList(),
-  'updated': instance.updated.map(const IdConverter().toJson).toList(),
-  'destroyed': instance.destroyed.map(const IdConverter().toJson).toList(),
-};

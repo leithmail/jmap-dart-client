@@ -35,7 +35,8 @@ class GetCalendarEventAttendanceResponse extends ResponseRequiringAccountId {
   @override
   List<Object?> get props => [accountId, list, notFound, notDone];
 
-  static GetCalendarEventAttendanceResponse deserialize(
+  factory GetCalendarEventAttendanceResponse.fromJson(
     Map<String, dynamic> json,
-  ) => _$GetCalendarEventAttendanceResponseFromJson(json);
+  ) =>
+      _$GetCalendarEventAttendanceResponseFromJson(json);
 }
