@@ -3,6 +3,4 @@ analyzer:
     - lib/**/*.g.dart
 
 plugins:
-  custom_lints:
-    path: tools/custom_lints
-
+  json_serializable_lints: any
