@@ -1,15 +1,15 @@
 import 'dart:developer' as developer;
 
 import 'package:equatable/equatable.dart';
+import 'package:jmap_dart_client/api/errors/error_method_response.dart';
+import 'package:jmap_dart_client/api/errors/error_type.dart';
+import 'package:jmap_dart_client/api/errors/exceptions.dart';
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/method_response.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/api/response/response.dart';
 import 'package:jmap_dart_client/api/response/response_invocation.dart';
-import 'package:jmap_dart_client/errors/error_method_response.dart';
-import 'package:jmap_dart_client/errors/error_type.dart';
-import 'package:jmap_dart_client/errors/exceptions.dart';
 
 class RequestInvocation<R extends MethodResponse> {
   final MethodName methodName;

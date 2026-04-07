@@ -2,6 +2,11 @@ library jmap_dart_client;
 
 // Core API building blocks
 export 'api/capabilities_converter.dart';
+// Errors and exceptions
+export 'api/errors/error_method_response.dart';
+export 'api/errors/error_type.dart';
+export 'api/errors/exceptions.dart';
+export 'api/errors/set_error.dart';
 export 'api/filter/filter.dart';
 export 'api/filter/filter_condition.dart';
 export 'api/filter/filter_operator.dart';
@@ -135,11 +140,6 @@ export 'entities/thread/thread.dart';
 // Entity models: Vacation
 export 'entities/vacation/vacation_id.dart';
 export 'entities/vacation/vacation_response.dart';
-// Errors and exceptions
-export 'errors/error_method_response.dart';
-export 'errors/error_type.dart';
-export 'errors/exceptions.dart';
-export 'errors/set_error.dart';
 // Methods: Calendar
 export 'methods/calendar/attendance/get_calendar_event_attendance_method.dart';
 export 'methods/calendar/attendance/get_calendar_event_attendance_response.dart';

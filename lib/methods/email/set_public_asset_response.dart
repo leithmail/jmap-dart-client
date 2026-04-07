@@ -1,6 +1,6 @@
+import 'package:jmap_dart_client/api/errors/set_error.dart';
 import 'package:jmap_dart_client/api/method/response/set_response.dart';
 import 'package:jmap_dart_client/entities/email/public_asset.dart';
-import 'package:jmap_dart_client/errors/set_error.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/state_nullable_converter.dart';

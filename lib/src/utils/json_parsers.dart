@@ -1,8 +1,8 @@
+import 'package:jmap_dart_client/api/errors/set_error.dart';
 import 'package:jmap_dart_client/entities/calendar/properties/event_id.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
-import 'package:jmap_dart_client/errors/set_error.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/calendar/event_id_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';

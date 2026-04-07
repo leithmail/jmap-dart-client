@@ -1,5 +1,5 @@
+import 'package:jmap_dart_client/api/errors/set_error.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/errors/set_error.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 class SetErrorConverter

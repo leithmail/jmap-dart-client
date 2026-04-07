@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/errors/exceptions.dart';
+import 'package:jmap_dart_client/api/errors/exceptions.dart';
 import 'package:test/test.dart';
 
 void main() {

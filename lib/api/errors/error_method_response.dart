@@ -1,6 +1,6 @@
-import 'package:jmap_dart_client/api/request/request_invocation.dart';
-import 'package:jmap_dart_client/errors/error_type.dart';
+import 'package:jmap_dart_client/api/errors/error_type.dart';
 import 'package:jmap_dart_client/api/method/method_response.dart';
+import 'package:jmap_dart_client/api/request/request_invocation.dart';
 
 abstract class ErrorMethodResponse extends MethodResponse {
   static final errorMethodName = MethodName("error");

@@ -1,10 +1,10 @@
+import 'package:jmap_dart_client/api/errors/set_error.dart';
 import 'package:jmap_dart_client/api/method/request/calendar_event_reply_method.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/calendar/properties/event_id.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/errors/set_error.dart';
 import 'package:jmap_dart_client/methods/calendar/reply/calendar_event_counter_accept_method.dart';
 import 'package:test/test.dart';
 

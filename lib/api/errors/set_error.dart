@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
-import 'package:jmap_dart_client/errors/error_type.dart';
+import 'package:jmap_dart_client/api/errors/error_type.dart';
 import 'package:jmap_dart_client/src/converters/error_type_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'set_error.g.dart';
+part './set_error.g.dart';
 
 @ErrorTypeConverter()
 @JsonSerializable(explicitToJson: true)

@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/errors/set_error.dart';
 import 'package:jmap_dart_client/api/request/patch_object.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
@@ -5,7 +6,6 @@ import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/email/public_asset.dart';
 import 'package:jmap_dart_client/entities/identity/identity.dart';
-import 'package:jmap_dart_client/errors/set_error.dart';
 import 'package:jmap_dart_client/methods/email/set_public_asset_method.dart';
 import 'package:jmap_dart_client/src/converters/identities/public_asset_identities_converter.dart';
 import 'package:test/test.dart';

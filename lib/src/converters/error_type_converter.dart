@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/errors/error_type.dart';
+import 'package:jmap_dart_client/api/errors/error_type.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 class ErrorTypeConverter implements JsonConverter<ErrorType, String> {
