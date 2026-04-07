@@ -10,7 +10,7 @@ part 'core_capability.g.dart';
 
 @CollationIdentifierConverter()
 @UnsignedIntNullableConverter()
-@JsonSerializable(explicitToJson: true, includeIfNull: false)
+@JsonSerializable(createToJson: false)
 class CoreCapability extends CapabilityProperties with EquatableMixin {
   final UnsignedInt? maxSizeUpload;
   final UnsignedInt? maxConcurrentUpload;
@@ -36,8 +36,6 @@ class CoreCapability extends CapabilityProperties with EquatableMixin {
 
   factory CoreCapability.fromJson(Map<String, dynamic> json) =>
       _$CoreCapabilityFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CoreCapabilityToJson(this);
 
   @override
   List<Object?> get props => [

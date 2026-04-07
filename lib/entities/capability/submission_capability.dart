@@ -7,7 +7,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'submission_capability.g.dart';
 
 @UnsignedIntNullableConverter()
-@JsonSerializable(explicitToJson: true, includeIfNull: false)
+@JsonSerializable(createToJson: false)
 class SubmissionCapability extends CapabilityProperties with EquatableMixin {
   final UnsignedInt? maxDelayedSend;
   final Map<String, List<String>>? submissionExtensions;
@@ -21,11 +21,6 @@ class SubmissionCapability extends CapabilityProperties with EquatableMixin {
 
   factory SubmissionCapability.fromJson(Map<String, dynamic> json) =>
       _$SubmissionCapabilityFromJson(json);
-
-  Map<String, dynamic> toJson() => _$SubmissionCapabilityToJson(this);
-
-  static SubmissionCapability deserialize(Map<String, dynamic> json) =>
-      SubmissionCapability.fromJson(json);
 
   @override
   List<Object?> get props => [maxDelayedSend, submissionExtensions];

@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'web_socket_ticket_capability.g.dart';
 
-@JsonSerializable(explicitToJson: true, includeIfNull: false)
+@JsonSerializable(createToJson: false)
 class WebSocketTicketCapability extends CapabilityProperties {
   final Uri? generationEndpoint;
   final Uri? revocationEndpoint;
@@ -15,11 +15,6 @@ class WebSocketTicketCapability extends CapabilityProperties {
 
   factory WebSocketTicketCapability.fromJson(Map<String, dynamic> json) =>
       _$WebSocketTicketCapabilityFromJson(json);
-
-  Map<String, dynamic> toJson() => _$WebSocketTicketCapabilityToJson(this);
-
-  static WebSocketTicketCapability deserialize(Map<String, dynamic> json) =>
-      WebSocketTicketCapability.fromJson(json);
 
   @override
   List<Object?> get props => [generationEndpoint, revocationEndpoint];

@@ -7,7 +7,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'mail_capability.g.dart';
 
 @UnsignedIntNullableConverter()
-@JsonSerializable(explicitToJson: true, includeIfNull: false)
+@JsonSerializable(createToJson: false)
 class MailCapability extends CapabilityProperties with EquatableMixin {
   final UnsignedInt? maxMailboxesPerEmail;
   final UnsignedInt? maxMailboxDepth;
@@ -36,12 +36,6 @@ class MailCapability extends CapabilityProperties with EquatableMixin {
 
   factory MailCapability.fromJson(Map<String, dynamic> json) =>
       _$MailCapabilityFromJson(json);
-
-  Map<String, dynamic> toJson() => _$MailCapabilityToJson(this);
-
-  static MailCapability deserialize(Map<String, dynamic> json) {
-    return MailCapability.fromJson(json);
-  }
 
   @override
   List<Object?> get props => [

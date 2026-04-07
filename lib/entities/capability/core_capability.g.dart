@@ -35,31 +35,3 @@ CoreCapability _$CoreCapabilityFromJson(Map<String, dynamic> json) =>
           )
           .toSet(),
     );
-
-Map<String, dynamic> _$CoreCapabilityToJson(CoreCapability instance) =>
-    <String, dynamic>{
-      'maxSizeUpload': ?const UnsignedIntNullableConverter().toJson(
-        instance.maxSizeUpload,
-      ),
-      'maxConcurrentUpload': ?const UnsignedIntNullableConverter().toJson(
-        instance.maxConcurrentUpload,
-      ),
-      'maxSizeRequest': ?const UnsignedIntNullableConverter().toJson(
-        instance.maxSizeRequest,
-      ),
-      'maxConcurrentRequests': ?const UnsignedIntNullableConverter().toJson(
-        instance.maxConcurrentRequests,
-      ),
-      'maxCallsInRequest': ?const UnsignedIntNullableConverter().toJson(
-        instance.maxCallsInRequest,
-      ),
-      'maxObjectsInGet': ?const UnsignedIntNullableConverter().toJson(
-        instance.maxObjectsInGet,
-      ),
-      'maxObjectsInSet': ?const UnsignedIntNullableConverter().toJson(
-        instance.maxObjectsInSet,
-      ),
-      'collationAlgorithms': ?instance.collationAlgorithms
-          ?.map(const CollationIdentifierConverter().toJson)
-          .toList(),
-    };

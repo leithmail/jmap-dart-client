@@ -16,10 +16,3 @@ WebSocketTicketCapability _$WebSocketTicketCapabilityFromJson(
       ? null
       : Uri.parse(json['revocationEndpoint'] as String),
 );
-
-Map<String, dynamic> _$WebSocketTicketCapabilityToJson(
-  WebSocketTicketCapability instance,
-) => <String, dynamic>{
-  'generationEndpoint': ?instance.generationEndpoint?.toString(),
-  'revocationEndpoint': ?instance.revocationEndpoint?.toString(),
-};

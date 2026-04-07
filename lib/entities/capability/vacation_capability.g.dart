@@ -8,6 +8,3 @@ part of 'vacation_capability.dart';
 
 VacationCapability _$VacationCapabilityFromJson(Map<String, dynamic> json) =>
     VacationCapability();
-
-Map<String, dynamic> _$VacationCapabilityToJson(VacationCapability instance) =>
-    <String, dynamic>{};

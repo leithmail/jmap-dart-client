@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'websocket_capability.g.dart';
 
-@JsonSerializable(explicitToJson: true, includeIfNull: false)
+@JsonSerializable(createToJson: false)
 class WebSocketCapability extends CapabilityProperties {
   final bool? supportsPush;
   final Uri? url;
@@ -12,11 +12,6 @@ class WebSocketCapability extends CapabilityProperties {
 
   factory WebSocketCapability.fromJson(Map<String, dynamic> json) =>
       _$WebSocketCapabilityFromJson(json);
-
-  Map<String, dynamic> toJson() => _$WebSocketCapabilityToJson(this);
-
-  static WebSocketCapability deserialize(Map<String, dynamic> json) =>
-      WebSocketCapability.fromJson(json);
 
   @override
   List<Object?> get props => [supportsPush, url];

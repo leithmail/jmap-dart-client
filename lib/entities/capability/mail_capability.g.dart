@@ -31,24 +31,3 @@ MailCapability _$MailCapabilityFromJson(Map<String, dynamic> json) =>
           .toSet(),
       mayCreateTopLevelMailbox: json['mayCreateTopLevelMailbox'] as bool?,
     );
-
-Map<String, dynamic> _$MailCapabilityToJson(MailCapability instance) =>
-    <String, dynamic>{
-      'maxMailboxesPerEmail': ?const UnsignedIntNullableConverter().toJson(
-        instance.maxMailboxesPerEmail,
-      ),
-      'maxMailboxDepth': ?const UnsignedIntNullableConverter().toJson(
-        instance.maxMailboxDepth,
-      ),
-      'maxSizeMailboxName': ?const UnsignedIntNullableConverter().toJson(
-        instance.maxSizeMailboxName,
-      ),
-      'maxKeywordsPerEmail': ?const UnsignedIntNullableConverter().toJson(
-        instance.maxKeywordsPerEmail,
-      ),
-      'maxSizeAttachmentsPerEmail': ?const UnsignedIntNullableConverter()
-          .toJson(instance.maxSizeAttachmentsPerEmail),
-      'emailQuerySortOptions': ?instance.emailQuerySortOptions?.toList(),
-      'emailsListSortOptions': ?instance.emailsListSortOptions?.toList(),
-      'mayCreateTopLevelMailbox': ?instance.mayCreateTopLevelMailbox,
-    };

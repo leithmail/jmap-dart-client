@@ -15,11 +15,3 @@ CalendarEventCapability _$CalendarEventCapabilityFromJson(
   supportFreeBusyQuery: json['supportFreeBusyQuery'] as bool?,
   counterSupport: json['counterSupport'] as bool?,
 );
-
-Map<String, dynamic> _$CalendarEventCapabilityToJson(
-  CalendarEventCapability instance,
-) => <String, dynamic>{
-  'replySupportedLanguage': ?instance.replySupportedLanguage,
-  'supportFreeBusyQuery': ?instance.supportFreeBusyQuery,
-  'counterSupport': ?instance.counterSupport,
-};

@@ -18,12 +18,3 @@ SubmissionCapability _$SubmissionCapabilityFromJson(
             MapEntry(k, (e as List<dynamic>).map((e) => e as String).toList()),
       ),
 );
-
-Map<String, dynamic> _$SubmissionCapabilityToJson(
-  SubmissionCapability instance,
-) => <String, dynamic>{
-  'maxDelayedSend': ?const UnsignedIntNullableConverter().toJson(
-    instance.maxDelayedSend,
-  ),
-  'submissionExtensions': ?instance.submissionExtensions,
-};

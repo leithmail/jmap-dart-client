@@ -8,6 +8,3 @@ part of 'mdn_capability.dart';
 
 MdnCapability _$MdnCapabilityFromJson(Map<String, dynamic> json) =>
     MdnCapability();
-
-Map<String, dynamic> _$MdnCapabilityToJson(MdnCapability instance) =>
-    <String, dynamic>{};
