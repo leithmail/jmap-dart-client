@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/api/response/response_invocation.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:jmap_dart_client/src/converters/response_invocation_converter.dart';
@@ -9,8 +8,8 @@ part 'response.g.dart';
 
 @StateConverter()
 @ResponseInvocationConverter()
-@JsonSerializable()
-class Response with EquatableMixin {
+@JsonSerializable(createToJson: false)
+class Response {
   final List<ResponseInvocation> methodResponses;
   final State sessionState;
 
@@ -18,9 +17,4 @@ class Response with EquatableMixin {
 
   factory Response.fromJson(Map<String, dynamic> json) =>
       _$ResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ResponseToJson(this);
-
-  @override
-  List<Object?> get props => [methodResponses, sessionState];
 }

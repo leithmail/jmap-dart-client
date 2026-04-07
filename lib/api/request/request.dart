@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:equatable/equatable.dart';
 import 'package:http/http.dart' as http;
 import 'package:jmap_dart_client/api/errors/exceptions.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
@@ -15,8 +14,8 @@ part 'request.g.dart';
 
 @CapabilityIdentifierSetConverter()
 @RequestInvocationConverter()
-@JsonSerializable()
-class Request with EquatableMixin {
+@JsonSerializable(createFactory: false)
+class Request {
   final Set<CapabilityIdentifier> using;
   final List<RequestInvocation> methodCalls;
 
@@ -24,22 +23,18 @@ class Request with EquatableMixin {
     : using = Set.unmodifiable(using),
       methodCalls = List.unmodifiable(methodCalls);
 
-  @override
-  @JsonKey(includeToJson: false)
-  List<Object> get props => [using, methodCalls];
-
   Map<String, dynamic> toJson() => _$RequestToJson(this);
-  factory Request.fromJson(Map<String, dynamic> json) =>
-      _$RequestFromJson(json);
 
   Future<Response> execute(http.Client client, Uri url) async {
     final String encodedRequest;
+    // coverage:ignore-start
     try {
       encodedRequest = jsonEncode(toJson());
     } catch (e) {
       // This should never happen since toJson should only produce JSON-serializable data, but we catch it just in case.
       throw Exception('Failed to encode request: $e');
     }
+    // coverage:ignore-end
     try {
       final response = await client.post(
         url,
