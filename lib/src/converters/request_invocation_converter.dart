@@ -9,18 +9,14 @@ class RequestInvocationConverter
 
   @override
   RequestInvocation fromJson(List<dynamic> json) {
-    return RequestInvocation(
-      MethodName(json[0]),
-      jsonDecode(json[1]),
-      jsonDecode(json[2]),
-    );
+    return RequestInvocation(jsonDecode(json[1]), jsonDecode(json[2]));
   }
 
   @override
   List toJson(RequestInvocation object) {
     List<dynamic> list = List.empty(growable: true);
-    list.add(object.methodName.value);
-    list.add(object.arguments.value.toJson());
+    list.add(object.method.methodName.value);
+    list.add(object.method.toJson());
     list.add(object.methodCallId.value);
     return list;
   }

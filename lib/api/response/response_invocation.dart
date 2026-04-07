@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 
 class ResponseInvocation {

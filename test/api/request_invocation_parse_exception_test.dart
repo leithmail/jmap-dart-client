@@ -16,8 +16,7 @@ void main() {
         () {
           // arrange
           final requestInvocation = RequestInvocation<ErrorMethodResponse>(
-            MethodName('Email/get'),
-            Arguments(_FakeErrorMethod()),
+            _FakeErrorMethod(),
             MethodCallId('c99'),
           );
           final responseInvocation = ResponseInvocation(
@@ -46,8 +45,7 @@ void main() {
       test('throws JmapMethodErrorException when server returns an error', () {
         // arrange
         final requestInvocation = RequestInvocation<ErrorMethodResponse>(
-          MethodName('Email/get'),
-          Arguments(_FakeErrorMethod()),
+          _FakeErrorMethod(),
           MethodCallId('c1'),
         );
         final errorInvocation = ResponseInvocation(

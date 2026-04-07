@@ -1,5 +1,5 @@
+import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/request/query_method.dart';
-import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/email/email_comparator.dart';

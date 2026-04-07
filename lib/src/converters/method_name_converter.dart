@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/request/request_invocation.dart';
+import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 class MethodNameConverter implements JsonConverter<MethodName, String> {

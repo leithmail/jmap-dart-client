@@ -12,21 +12,20 @@ import 'package:jmap_dart_client/api/response/response.dart';
 import 'package:jmap_dart_client/api/response/response_invocation.dart';
 
 class RequestInvocation<R extends MethodResponse> {
-  final MethodName methodName;
-  final Arguments<R> arguments;
+  final Method<R> method;
   final MethodCallId methodCallId;
 
-  RequestInvocation(this.methodName, this.arguments, this.methodCallId);
+  RequestInvocation(this.method, this.methodCallId);
 
   ResultReference createResultReference(ReferencePath path) {
-    return ResultReference(methodCallId, arguments.value.methodName, path);
+    return ResultReference(methodCallId, method.methodName, path);
   }
 
   R parse(Response response) {
     final matchedResponse = response.methodResponses.firstWhere(
       (method) =>
           method.methodCallId == methodCallId &&
-          _validMethodResponseName(method, methodName),
+          _validMethodResponseName(method, method.methodName),
       orElse: () =>
           throw JmapParseResponseException(methodCallId: methodCallId),
     );
@@ -38,7 +37,7 @@ class RequestInvocation<R extends MethodResponse> {
       throw JmapMethodErrorException(errorResponse);
     }
 
-    return arguments.value.deserializeResponse(matchedResponse.arguments.value);
+    return method.deserializeResponse(matchedResponse.arguments.value);
   }
 
   static bool _validMethodResponseName(
@@ -88,21 +87,6 @@ class RequestInvocation<R extends MethodResponse> {
       return ServerFailMethodResponse();
     }
   }
-}
-
-class MethodName with EquatableMixin {
-  final String value;
-
-  MethodName(this.value);
-
-  @override
-  List<Object> get props => [value];
-}
-
-class Arguments<R extends MethodResponse> {
-  final Method<R> value;
-
-  Arguments(this.value);
 }
 
 class MethodCallId with EquatableMixin {

@@ -19,8 +19,7 @@ class RequestBuilder {
   }) {
     final callId = methodCallId ?? _generateMethodCallId();
     final RequestInvocation<R> invocation = RequestInvocation<R>(
-      method.methodName,
-      Arguments<R>(method),
+      method,
       callId,
     );
     _addMethod(callId, invocation);

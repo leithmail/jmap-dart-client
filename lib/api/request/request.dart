@@ -33,10 +33,17 @@ class Request with EquatableMixin {
       _$RequestFromJson(json);
 
   Future<Response> execute(http.Client client, Uri url) async {
+    final String encodedRequest;
+    try {
+      encodedRequest = jsonEncode(toJson());
+    } catch (e) {
+      // This should never happen since toJson should only produce JSON-serializable data, but we catch it just in case.
+      throw Exception('Failed to encode request: $e');
+    }
     try {
       final response = await client.post(
         url,
-        body: jsonEncode(toJson()),
+        body: encodedRequest,
         headers: {
           HttpHeaders.acceptHeader: 'application/json',
           HttpHeaders.contentTypeHeader: 'application/json',
