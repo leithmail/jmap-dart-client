@@ -1,5 +1,3 @@
-export 'capabilities_converter.dart';
-// Errors and exceptions
 export 'errors/error_method_response.dart';
 export 'errors/error_type.dart';
 export 'errors/exceptions.dart';

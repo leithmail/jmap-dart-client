@@ -2,16 +2,26 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 import 'package:http/http.dart' as http;
-import 'package:jmap_dart_client/api/capabilities_converter.dart';
 import 'package:jmap_dart_client/api/errors/exceptions.dart';
+import 'package:jmap_dart_client/entities/capability/calendar_event_capability.dart';
+import 'package:jmap_dart_client/entities/capability/core_capability.dart';
+import 'package:jmap_dart_client/entities/capability/default_capability.dart';
+import 'package:jmap_dart_client/entities/capability/empty_capability.dart';
+import 'package:jmap_dart_client/entities/capability/mail_capability.dart';
+import 'package:jmap_dart_client/entities/capability/mdn_capability.dart';
+import 'package:jmap_dart_client/entities/capability/submission_capability.dart';
+import 'package:jmap_dart_client/entities/capability/vacation_capability.dart';
+import 'package:jmap_dart_client/entities/capability/web_socket_ticket_capability.dart';
+import 'package:jmap_dart_client/entities/capability/websocket_capability.dart';
 import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/capability_properties.dart';
+import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:jmap_dart_client/entities/core/user_name.dart';
-import 'package:jmap_dart_client/src/converters/account_converter.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
+import 'package:jmap_dart_client/src/converters/account_name_converter.dart';
 import 'package:jmap_dart_client/src/converters/state_converter.dart';
 import 'package:jmap_dart_client/src/converters/user_name_converter.dart';
 import 'package:meta/meta.dart';
@@ -44,16 +54,20 @@ class Session with EquatableMixin {
 
   factory Session.fromJson(
     Map<String, dynamic> json, {
-    CapabilitiesConverter? converter,
+    Map<
+      CapabilityIdentifier,
+      CapabilityProperties Function(Map<String, dynamic>)
+    >?
+    customCapabilityConverters,
   }) {
-    converter ??= CapabilitiesConverter.defaultConverter;
+    final converter = _CapabilitiesConverter(customCapabilityConverters);
     return Session(
       capabilities: (json['capabilities'] as Map<String, dynamic>).map(
-        (key, value) => converter!.convert(key, value),
+        (key, value) => converter.convert(key, value),
       ),
       accounts: (json['accounts'] as Map<String, dynamic>).map(
         (key, value) =>
-            const AccountConverter().convert(key, value, converter!),
+            const _AccountConverter().convert(key, value, converter),
       ),
       primaryAccounts: (json['primaryAccounts'] as Map<String, dynamic>).map(
         (key, value) => MapEntry(
@@ -73,9 +87,14 @@ class Session with EquatableMixin {
   static Future<Session> fetch(
     http.Client client,
     Uri url, {
-    CapabilitiesConverter? converter,
+    Map<
+      CapabilityIdentifier,
+      CapabilityProperties Function(Map<String, dynamic>)
+    >?
+    customCapabilityConverters,
   }) async {
     try {
+      final converter = _CapabilitiesConverter(customCapabilityConverters);
       final response = await client.get(url);
       if (response.statusCode == 401) throw JmapUnauthorizedException();
       if (response.statusCode >= 400) {
@@ -89,9 +108,15 @@ class Session with EquatableMixin {
     }
   }
 
-  static Session _extractData(String body, {CapabilitiesConverter? converter}) {
+  static Session _extractData(
+    String body, {
+    _CapabilitiesConverter? converter,
+  }) {
     try {
-      return Session.fromJson(jsonDecode(body), converter: converter);
+      return Session.fromJson(
+        jsonDecode(body),
+        customCapabilityConverters: converter?.converters,
+      );
     } catch (e) {
       throw JmapParseResponseException(message: e.toString());
     }
@@ -109,4 +134,78 @@ class Session with EquatableMixin {
     eventSourceUrl,
     state,
   ];
+}
+
+class _CapabilitiesConverter {
+  final Map<
+    CapabilityIdentifier,
+    CapabilityProperties Function(Map<String, dynamic>)
+  >
+  converters = {
+    CapabilityIdentifier.jmapMail: MailCapability.fromJson,
+    CapabilityIdentifier.jmapCore: CoreCapability.fromJson,
+    CapabilityIdentifier.jmapSubmission: SubmissionCapability.fromJson,
+    CapabilityIdentifier.jamesCalendarEvent: CalendarEventCapability.fromJson,
+    CapabilityIdentifier.jmapVacationResponse: VacationCapability.fromJson,
+    CapabilityIdentifier.jmapWebSocket: WebSocketCapability.fromJson,
+    CapabilityIdentifier.jmapWebSocketTicket:
+        WebSocketTicketCapability.fromJson,
+    CapabilityIdentifier.jmapMdn: MdnCapability.fromJson,
+  };
+
+  _CapabilitiesConverter([
+    Map<
+      CapabilityIdentifier,
+      CapabilityProperties Function(Map<String, dynamic>)
+    >?
+    customConverters,
+  ]) {
+    if (customConverters != null) {
+      converters.addAll(customConverters);
+    }
+  }
+
+  MapEntry<CapabilityIdentifier, CapabilityProperties> convert(
+    String key,
+    dynamic value,
+  ) {
+    final identifier = CapabilityIdentifier(Uri.parse(key));
+    final converter = converters[identifier];
+    if (converter != null) {
+      try {
+        return MapEntry(identifier, converter.call(value));
+      } catch (e) {
+        return MapEntry(identifier, EmptyCapability());
+      }
+    } else {
+      return MapEntry(identifier, DefaultCapability(value));
+    }
+  }
+}
+
+class _AccountConverter {
+  const _AccountConverter();
+
+  MapEntry<AccountId, Account> convert(
+    String key,
+    dynamic value,
+    _CapabilitiesConverter converter,
+  ) {
+    final accountId = AccountId(Id(key));
+    final account = accountFromJson(value, converter);
+    return MapEntry(accountId, account);
+  }
+
+  Account accountFromJson(
+    Map<String, dynamic> json,
+    _CapabilitiesConverter converter,
+  ) {
+    return Account(
+      name: const AccountNameConverter().fromJson(json['name'] as String),
+      isPersonal: json['isPersonal'] as bool,
+      isReadOnly: json['isReadOnly'] as bool,
+      accountCapabilities: (json['accountCapabilities'] as Map<String, dynamic>)
+          .map((key, value) => converter.convert(key, value)),
+    );
+  }
 }

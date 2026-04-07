@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:jmap_dart_client/api/capabilities_converter.dart';
 import 'package:jmap_dart_client/api/sort/collation_identifier.dart';
 import 'package:jmap_dart_client/entities/capability/calendar_event_capability.dart';
 import 'package:jmap_dart_client/entities/capability/core_capability.dart';
@@ -1348,11 +1347,9 @@ void main() {
 
       final parsedSession = Session.fromJson(
         json.decode(sessionString),
-        converter: CapabilitiesConverter()
-          ..addConverters({
-            TestCapability.testCapabilityIdentifier: TestCapability.deserialize,
-          })
-          ..build(),
+        customCapabilityConverters: {
+          TestCapability.testCapabilityIdentifier: TestCapability.deserialize,
+        },
       );
 
       expect(parsedSession, equals(expectedSession));
