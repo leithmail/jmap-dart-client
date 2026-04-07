@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:jmap_dart_client/api/errors/exceptions.dart';
-import 'package:jmap_dart_client/entities/core/session.dart';
+import 'package:jmap_dart_client/api/fetch_session.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -21,7 +21,7 @@ void main() {
 
         // act + assert
         expect(
-          () => Session.fetch(
+          () => fetchSession(
             httpClient,
             Uri.parse('https://example.org/.well-known/jmap'),
           ),
@@ -43,7 +43,7 @@ void main() {
 
         // act + assert
         await expectLater(
-          () => Session.fetch(
+          () => fetchSession(
             httpClient,
             Uri.parse('https://example.org/.well-known/jmap'),
           ),
@@ -71,7 +71,7 @@ void main() {
 
         // act + assert
         expect(
-          () => Session.fetch(
+          () => fetchSession(
             httpClient,
             Uri.parse('https://example.org/.well-known/jmap'),
           ),
@@ -90,7 +90,7 @@ void main() {
         );
         // act + assert
         expect(
-          () => Session.fetch(
+          () => fetchSession(
             httpClient,
             Uri.parse('https://example.org/.well-known/jmap'),
           ),
@@ -114,7 +114,7 @@ void main() {
 
           // act + assert
           expect(
-            () => Session.fetch(
+            () => fetchSession(
               httpClient,
               Uri.parse('https://example.org/.well-known/jmap'),
             ),

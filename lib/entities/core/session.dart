@@ -1,8 +1,4 @@
-import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
-import 'package:http/http.dart' as http;
-import 'package:jmap_dart_client/api/errors/exceptions.dart';
 import 'package:jmap_dart_client/entities/capability/calendar_event_capability.dart';
 import 'package:jmap_dart_client/entities/capability/core_capability.dart';
 import 'package:jmap_dart_client/entities/capability/custom_capability.dart';
@@ -83,44 +79,6 @@ class Session with EquatableMixin {
     );
   }
 
-  static Future<Session> fetch(
-    http.Client client,
-    Uri url, {
-    Map<
-      CapabilityIdentifier,
-      CapabilityProperties Function(Map<String, dynamic>)
-    >?
-    customCapabilityConverters,
-  }) async {
-    try {
-      final converter = _CapabilitiesConverter(customCapabilityConverters);
-      final response = await client.get(url);
-      if (response.statusCode == 401) throw JmapUnauthorizedException();
-      if (response.statusCode >= 400) {
-        throw JmapHttpException(response.statusCode);
-      }
-      return _extractData(response.body, converter: converter);
-    } on JmapException {
-      rethrow;
-    } catch (e) {
-      throw JmapConnectionException(e);
-    }
-  }
-
-  static Session _extractData(
-    String body, {
-    _CapabilitiesConverter? converter,
-  }) {
-    try {
-      return Session.fromJson(
-        jsonDecode(body),
-        customCapabilityConverters: converter?.converters,
-      );
-    } catch (e) {
-      throw JmapParseResponseException(message: e.toString());
-    }
-  }
-
   @override
   List<Object?> get props => [
     capabilities,
@@ -140,7 +98,7 @@ class _CapabilitiesConverter {
     CapabilityIdentifier,
     CapabilityProperties Function(Map<String, dynamic>)
   >
-  converters = {
+  _converters = {
     CapabilityIdentifier.jmapMail: MailCapability.fromJson,
     CapabilityIdentifier.jmapCore: CoreCapability.fromJson,
     CapabilityIdentifier.jmapSubmission: SubmissionCapability.fromJson,
@@ -160,7 +118,7 @@ class _CapabilitiesConverter {
     customConverters,
   ]) {
     if (customConverters != null) {
-      converters.addAll(customConverters);
+      _converters.addAll(customConverters);
     }
   }
 
@@ -169,7 +127,7 @@ class _CapabilitiesConverter {
     dynamic value,
   ) {
     final identifier = CapabilityIdentifier(Uri.parse(key));
-    final converter = converters[identifier];
+    final converter = _converters[identifier];
     if (converter != null) {
       return MapEntry(identifier, converter.call(value));
     } else {

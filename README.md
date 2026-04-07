@@ -69,7 +69,7 @@ Future<jmap.Session> fetchSession(Uri sessionUrl) async {
   final client = http.Client();
 
   try {
-    return await jmap.Session.fetch(client, sessionUrl);
+    return await jmap.fetchSession(client, sessionUrl);
   } finally {
     client.close();
   }
@@ -200,7 +200,7 @@ Future<jmap.Session> loadSessionWithDio(Uri sessionEndpoint) async {
   final dioClient = DioHttpClient(Dio());
 
   try {
-    return await jmap.Session.fetch(dioClient, sessionEndpoint);
+    return await jmap.fetchSession(dioClient, sessionEndpoint);
   } finally {
     dioClient.close();
   }
