@@ -30,8 +30,7 @@ export 'calendar/properties/recurrence_rule/recurrence_rule_skip.dart';
 // Entity models: Capabilities
 export 'capability/calendar_event_capability.dart';
 export 'capability/core_capability.dart';
-export 'capability/default_capability.dart';
-export 'capability/empty_capability.dart';
+export 'capability/custom_capability.dart';
 export 'capability/mail_capability.dart';
 export 'capability/mdn_capability.dart';
 export 'capability/submission_capability.dart';

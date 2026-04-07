@@ -5,8 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:jmap_dart_client/api/errors/exceptions.dart';
 import 'package:jmap_dart_client/entities/capability/calendar_event_capability.dart';
 import 'package:jmap_dart_client/entities/capability/core_capability.dart';
-import 'package:jmap_dart_client/entities/capability/default_capability.dart';
-import 'package:jmap_dart_client/entities/capability/empty_capability.dart';
+import 'package:jmap_dart_client/entities/capability/custom_capability.dart';
 import 'package:jmap_dart_client/entities/capability/mail_capability.dart';
 import 'package:jmap_dart_client/entities/capability/mdn_capability.dart';
 import 'package:jmap_dart_client/entities/capability/submission_capability.dart';
@@ -172,13 +171,9 @@ class _CapabilitiesConverter {
     final identifier = CapabilityIdentifier(Uri.parse(key));
     final converter = converters[identifier];
     if (converter != null) {
-      try {
-        return MapEntry(identifier, converter.call(value));
-      } catch (e) {
-        return MapEntry(identifier, EmptyCapability());
-      }
+      return MapEntry(identifier, converter.call(value));
     } else {
-      return MapEntry(identifier, DefaultCapability(value));
+      return MapEntry(identifier, CustomCapability(value));
     }
   }
 }

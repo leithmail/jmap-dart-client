@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:jmap_dart_client/api/sort/collation_identifier.dart';
 import 'package:jmap_dart_client/entities/capability/calendar_event_capability.dart';
 import 'package:jmap_dart_client/entities/capability/core_capability.dart';
-import 'package:jmap_dart_client/entities/capability/default_capability.dart';
+import 'package:jmap_dart_client/entities/capability/custom_capability.dart';
 import 'package:jmap_dart_client/entities/capability/mail_capability.dart';
 import 'package:jmap_dart_client/entities/capability/mdn_capability.dart';
 import 'package:jmap_dart_client/entities/capability/submission_capability.dart';
@@ -190,12 +190,12 @@ void main() {
           ),
           CapabilityIdentifier(
             Uri.parse('urn:apache:james:params:jmap:mail:quota'),
-          ): DefaultCapability(
+          ): CustomCapability(
             <String, dynamic>{},
           ),
           CapabilityIdentifier(
             Uri.parse('urn:apache:james:params:jmap:mail:shares'),
-          ): DefaultCapability(
+          ): CustomCapability(
             <String, dynamic>{},
           ),
           CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
@@ -245,12 +245,12 @@ void main() {
               ),
               CapabilityIdentifier(
                 Uri.parse('urn:apache:james:params:jmap:mail:quota'),
-              ): DefaultCapability(
+              ): CustomCapability(
                 <String, dynamic>{},
               ),
               CapabilityIdentifier(
                 Uri.parse('urn:apache:james:params:jmap:mail:shares'),
-              ): DefaultCapability(
+              ): CustomCapability(
                 <String, dynamic>{},
               ),
               CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
@@ -839,7 +839,7 @@ void main() {
       final customCapabilityIdentifier = CapabilityIdentifier(
         Uri.parse('urn:tmail:custom:params:mailbox'),
       );
-      final customCapability = DefaultCapability({
+      final customCapability = CustomCapability({
         "param1": 1,
         "param2": "good",
         "param3": {"custom", "capability"}.toList(),
@@ -882,12 +882,12 @@ void main() {
           ),
           CapabilityIdentifier(
             Uri.parse('urn:apache:james:params:jmap:mail:quota'),
-          ): DefaultCapability(
+          ): CustomCapability(
             <String, dynamic>{},
           ),
           CapabilityIdentifier(
             Uri.parse('urn:apache:james:params:jmap:mail:shares'),
-          ): DefaultCapability(
+          ): CustomCapability(
             <String, dynamic>{},
           ),
           CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
@@ -938,12 +938,12 @@ void main() {
               ),
               CapabilityIdentifier(
                 Uri.parse('urn:apache:james:params:jmap:mail:quota'),
-              ): DefaultCapability(
+              ): CustomCapability(
                 <String, dynamic>{},
               ),
               CapabilityIdentifier(
                 Uri.parse('urn:apache:james:params:jmap:mail:shares'),
-              ): DefaultCapability(
+              ): CustomCapability(
                 <String, dynamic>{},
               ),
               CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
@@ -1164,7 +1164,7 @@ void main() {
       final customCapabilityIdentifier = CapabilityIdentifier(
         Uri.parse('urn:tmail:custom:params:mailbox'),
       );
-      final customCapability = DefaultCapability({
+      final customCapability = CustomCapability({
         "param1": 1,
         "param2": "good",
         "param3": {"custom", "capability"}.toList(),
@@ -1213,12 +1213,12 @@ void main() {
           ),
           CapabilityIdentifier(
             Uri.parse('urn:apache:james:params:jmap:mail:quota'),
-          ): DefaultCapability(
+          ): CustomCapability(
             <String, dynamic>{},
           ),
           CapabilityIdentifier(
             Uri.parse('urn:apache:james:params:jmap:mail:shares'),
-          ): DefaultCapability(
+          ): CustomCapability(
             <String, dynamic>{},
           ),
           CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
@@ -1269,12 +1269,12 @@ void main() {
               ),
               CapabilityIdentifier(
                 Uri.parse('urn:apache:james:params:jmap:mail:quota'),
-              ): DefaultCapability(
+              ): CustomCapability(
                 <String, dynamic>{},
               ),
               CapabilityIdentifier(
                 Uri.parse('urn:apache:james:params:jmap:mail:shares'),
-              ): DefaultCapability(
+              ): CustomCapability(
                 <String, dynamic>{},
               ),
               CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
@@ -1676,7 +1676,7 @@ void main() {
           CapabilityIdentifier.jmapMdn: MdnCapability(),
           CapabilityIdentifier(
             Uri.parse('https://cyrusimap.org/ns/jmap/sieve'),
-          ): DefaultCapability(
+          ): CustomCapability(
             <String, dynamic>{},
           ),
         },
@@ -1715,7 +1715,7 @@ void main() {
               CapabilityIdentifier.jmapMdn: MdnCapability(),
               CapabilityIdentifier(
                 Uri.parse('https://cyrusimap.org/ns/jmap/sieve'),
-              ): DefaultCapability({
+              ): CustomCapability({
                 "supportsTest": true,
                 "maxRedirects": null,
                 "maxNumberScripts": 5,
