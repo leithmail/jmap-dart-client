@@ -7,7 +7,6 @@ environment:
   sdk: ^3.8.0
 
 dependencies:
-  built_collection: ^5.1.1
   collection: ^1.18.0
   equatable: ^2.0.5
   http: ^1.6.0
