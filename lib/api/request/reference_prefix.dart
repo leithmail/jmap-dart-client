@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:quiver/check.dart';
 
 class ReferencePrefix with EquatableMixin {
   static final defaultPrefix = ReferencePrefix('#');
@@ -7,8 +6,9 @@ class ReferencePrefix with EquatableMixin {
   final String value;
 
   ReferencePrefix(this.value) {
-    checkArgument(value.isNotEmpty, message: 'invalid length');
-    checkArgument(value.length < 255, message: 'invalid length');
+    if (value.isEmpty || value.length >= 255) {
+      throw ArgumentError('invalid length');
+    }
   }
 
   @override
