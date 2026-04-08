@@ -13,7 +13,7 @@ class MDNSendResponse extends SendResponse<MDN> {
     Map<Id, SetError>? notSent,
   }) : super(accountId, sent: sent, notSent: notSent);
 
-  static MDNSendResponse deserialize(Map<String, dynamic> json) {
+  factory MDNSendResponse.fromJson(Map<String, dynamic> json) {
     return MDNSendResponse(
       const AccountIdConverter().fromJson(json['accountId'] as String),
       sent: (json['sent'] as Map<String, dynamic>?)?.map(

@@ -38,6 +38,6 @@ class CalendarEventParseMethod extends ParseMethod<CalendarEventParseResponse> {
 
   @override
   CalendarEventParseResponse responseFromJson(Map<String, dynamic> json) {
-    return CalendarEventParseResponse.deserialize(json);
+    return CalendarEventParseResponse.fromJson(json);
   }
 }

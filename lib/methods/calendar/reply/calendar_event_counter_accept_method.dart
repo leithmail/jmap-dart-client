@@ -32,6 +32,6 @@ class CalendarEventCounterAcceptMethod
 
   @override
   CalendarEventAcceptResponse responseFromJson(Map<String, dynamic> json) {
-    return CalendarEventAcceptResponse.deserialize(json);
+    return CalendarEventAcceptResponse.fromJson(json);
   }
 }

@@ -31,7 +31,7 @@ class SetEmailSubmissionResponse extends SetResponse<EmailSubmission> {
          notDestroyed: notDestroyed,
        );
 
-  static SetEmailSubmissionResponse deserialize(Map<String, dynamic> json) {
+  factory SetEmailSubmissionResponse.fromJson(Map<String, dynamic> json) {
     return SetEmailSubmissionResponse(
       const AccountIdConverter().fromJson(json['accountId'] as String),
       newState: const StateNullableConverter().fromJson(

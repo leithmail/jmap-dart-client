@@ -24,8 +24,4 @@ class GetMailboxResponse extends GetResponse<Mailbox> {
 
   factory GetMailboxResponse.fromJson(Map<String, dynamic> json) =>
       _$GetMailboxResponseFromJson(json);
-
-  static GetMailboxResponse deserialize(Map<String, dynamic> json) {
-    return GetMailboxResponse.fromJson(json);
-  }
 }

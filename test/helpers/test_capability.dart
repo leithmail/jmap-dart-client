@@ -21,9 +21,6 @@ class TestCapability extends CapabilityProperties {
 
   Map<String, dynamic> toJson() => _$TestCapabilityToJson(this);
 
-  static TestCapability deserialize(Map<String, dynamic> json) =>
-      TestCapability.fromJson(json);
-
   @override
   List<Object?> get props => [testParam1, testParam2, testParam3];
 }

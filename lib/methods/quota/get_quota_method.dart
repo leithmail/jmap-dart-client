@@ -36,6 +36,6 @@ class GetQuotaMethod extends GetMethod<GetQuotaResponse> {
 
   @override
   GetQuotaResponse responseFromJson(Map<String, dynamic> json) {
-    return GetQuotaResponse.deserialize(json);
+    return GetQuotaResponse.fromJson(json);
   }
 }

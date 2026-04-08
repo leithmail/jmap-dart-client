@@ -31,7 +31,7 @@ class SetIdentityResponse extends SetResponse<Identity> {
          notDestroyed: notDestroyed,
        );
 
-  static SetIdentityResponse deserialize(Map<String, dynamic> json) {
+  factory SetIdentityResponse.fromJson(Map<String, dynamic> json) {
     return SetIdentityResponse(
       const AccountIdConverter().fromJson(json['accountId'] as String),
       newState: const StateNullableConverter().fromJson(

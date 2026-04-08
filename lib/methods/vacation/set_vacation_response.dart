@@ -31,7 +31,7 @@ class SetVacationResponse extends SetResponse<VacationResponse> {
          notDestroyed: notDestroyed,
        );
 
-  static SetVacationResponse deserialize(Map<String, dynamic> json) {
+  factory SetVacationResponse.fromJson(Map<String, dynamic> json) {
     return SetVacationResponse(
       const AccountIdConverter().fromJson(json['accountId'] as String),
       newState: const StateNullableConverter().fromJson(

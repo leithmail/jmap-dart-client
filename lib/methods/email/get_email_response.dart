@@ -32,10 +32,6 @@ class GetEmailResponse extends GetResponse<Email> {
   factory GetEmailResponse.fromJson(Map<String, dynamic> json) =>
       _$GetEmailResponseFromJson(json);
 
-  static GetEmailResponse deserialize(Map<String, dynamic> json) {
-    return GetEmailResponse.fromJson(json);
-  }
-
   void sortEmails(Comparator comparator) {
     list.sort((email1, email2) {
       if (comparator.property == EmailComparatorProperty.receivedAt) {

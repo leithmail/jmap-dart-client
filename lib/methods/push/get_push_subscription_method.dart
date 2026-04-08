@@ -32,6 +32,6 @@ class GetPushSubscriptionMethod
 
   @override
   GetPushSubscriptionResponse responseFromJson(Map<String, dynamic> json) {
-    return GetPushSubscriptionResponse.deserialize(json);
+    return GetPushSubscriptionResponse.fromJson(json);
   }
 }

@@ -43,6 +43,6 @@ class ParseEmailMethod extends ParseMethod<ParseEmailResponse>
 
   @override
   ParseEmailResponse responseFromJson(Map<String, dynamic> json) {
-    return ParseEmailResponse.deserialize(json);
+    return ParseEmailResponse.fromJson(json);
   }
 }

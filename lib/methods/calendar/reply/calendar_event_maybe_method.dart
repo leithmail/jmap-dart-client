@@ -31,6 +31,6 @@ class CalendarEventMaybeMethod
 
   @override
   CalendarEventMaybeResponse responseFromJson(Map<String, dynamic> json) {
-    return CalendarEventMaybeResponse.deserialize(json);
+    return CalendarEventMaybeResponse.fromJson(json);
   }
 }

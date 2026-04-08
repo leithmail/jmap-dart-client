@@ -31,7 +31,7 @@ class SetEmailResponse extends SetResponse<Email> {
          notDestroyed: notDestroyed,
        );
 
-  static SetEmailResponse deserialize(Map<String, dynamic> json) {
+  factory SetEmailResponse.fromJson(Map<String, dynamic> json) {
     return SetEmailResponse(
       const AccountIdConverter().fromJson(json['accountId'] as String),
       newState: const StateNullableConverter().fromJson(

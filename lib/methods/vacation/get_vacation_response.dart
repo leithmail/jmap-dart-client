@@ -24,8 +24,4 @@ class GetVacationResponse extends GetResponse<VacationResponse> {
 
   factory GetVacationResponse.fromJson(Map<String, dynamic> json) =>
       _$GetVacationResponseFromJson(json);
-
-  static GetVacationResponse deserialize(Map<String, dynamic> json) {
-    return GetVacationResponse.fromJson(json);
-  }
 }

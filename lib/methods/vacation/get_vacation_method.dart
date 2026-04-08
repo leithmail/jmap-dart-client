@@ -35,6 +35,6 @@ class GetVacationMethod extends GetMethod<GetVacationResponse> {
 
   @override
   GetVacationResponse responseFromJson(Map<String, dynamic> json) {
-    return GetVacationResponse.deserialize(json);
+    return GetVacationResponse.fromJson(json);
   }
 }

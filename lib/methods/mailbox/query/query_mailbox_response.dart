@@ -37,8 +37,4 @@ class QueryMailboxResponse extends QueryResponse {
 
   factory QueryMailboxResponse.fromJson(Map<String, dynamic> json) =>
       _$QueryMailboxResponseFromJson(json);
-
-  static QueryMailboxResponse deserialize(Map<String, dynamic> json) {
-    return QueryMailboxResponse.fromJson(json);
-  }
 }

@@ -1348,7 +1348,7 @@ void main() {
       final parsedSession = Session.fromJson(
         json.decode(sessionString),
         customCapabilityConverters: {
-          TestCapability.testCapabilityIdentifier: TestCapability.deserialize,
+          TestCapability.testCapabilityIdentifier: TestCapability.fromJson,
         },
       );
 

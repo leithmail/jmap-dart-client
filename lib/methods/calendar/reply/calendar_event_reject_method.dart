@@ -31,6 +31,6 @@ class CalendarEventRejectMethod
 
   @override
   CalendarEventRejectResponse responseFromJson(Map<String, dynamic> json) {
-    return CalendarEventRejectResponse.deserialize(json);
+    return CalendarEventRejectResponse.fromJson(json);
   }
 }

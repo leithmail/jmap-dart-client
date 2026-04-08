@@ -15,7 +15,7 @@ class CalendarEventRejectResponse extends CalendarEventReplyResponse {
   final List<EventId>? rejected;
   final Map<Id, SetError>? notRejected;
 
-  static CalendarEventRejectResponse deserialize(Map<String, dynamic> json) {
+  factory CalendarEventRejectResponse.fromJson(Map<String, dynamic> json) {
     return CalendarEventRejectResponse(
       JsonParsers().parsingAccountId(json),
       JsonParsers().parsingListId(json, 'notFound'),

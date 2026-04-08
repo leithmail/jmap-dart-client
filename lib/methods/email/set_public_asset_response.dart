@@ -17,7 +17,7 @@ class SetPublicAssetResponse extends SetResponse<PublicAsset> {
     super.notDestroyed,
   });
 
-  static SetPublicAssetResponse deserialize(Map<String, dynamic> json) {
+  factory SetPublicAssetResponse.fromJson(Map<String, dynamic> json) {
     return SetPublicAssetResponse(
       const AccountIdConverter().fromJson(json['accountId'] as String),
       newState: const StateNullableConverter().fromJson(

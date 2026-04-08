@@ -15,7 +15,7 @@ class CalendarEventMaybeResponse extends CalendarEventReplyResponse {
   final List<EventId>? maybe;
   final Map<Id, SetError>? notMaybe;
 
-  static CalendarEventMaybeResponse deserialize(Map<String, dynamic> json) {
+  factory CalendarEventMaybeResponse.fromJson(Map<String, dynamic> json) {
     return CalendarEventMaybeResponse(
       JsonParsers().parsingAccountId(json),
       JsonParsers().parsingListId(json, 'notFound'),

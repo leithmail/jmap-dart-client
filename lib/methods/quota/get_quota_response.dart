@@ -24,8 +24,4 @@ class GetQuotaResponse extends GetResponse<Quota> {
 
   factory GetQuotaResponse.fromJson(Map<String, dynamic> json) =>
       _$GetQuotaResponseFromJson(json);
-
-  static GetQuotaResponse deserialize(Map<String, dynamic> json) {
-    return GetQuotaResponse.fromJson(json);
-  }
 }

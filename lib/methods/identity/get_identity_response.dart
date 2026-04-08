@@ -24,8 +24,4 @@ class GetIdentityResponse extends GetResponse<Identity> {
 
   factory GetIdentityResponse.fromJson(Map<String, dynamic> json) =>
       _$GetIdentityResponseFromJson(json);
-
-  static GetIdentityResponse deserialize(Map<String, dynamic> json) {
-    return GetIdentityResponse.fromJson(json);
-  }
 }

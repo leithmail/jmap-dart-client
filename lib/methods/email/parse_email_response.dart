@@ -10,7 +10,7 @@ class ParseEmailResponse extends ParseResponse<Email> {
     super.notFound,
   });
 
-  static ParseEmailResponse deserialize(Map<String, dynamic> json) {
+  factory ParseEmailResponse.fromJson(Map<String, dynamic> json) {
     return ParseEmailResponse(
       JsonParsers().parsingAccountId(json),
       parsed: JsonParsers().parsingMapEmail(json, 'parsed'),

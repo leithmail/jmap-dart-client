@@ -55,6 +55,6 @@ class MDNSendMethod extends SendMethod<MDNSendResponse, MDN>
 
   @override
   MDNSendResponse responseFromJson(Map<String, dynamic> json) {
-    return MDNSendResponse.deserialize(json);
+    return MDNSendResponse.fromJson(json);
   }
 }

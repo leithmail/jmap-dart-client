@@ -15,8 +15,4 @@ class GetPushSubscriptionResponse
 
   factory GetPushSubscriptionResponse.fromJson(Map<String, dynamic> json) =>
       _$GetPushSubscriptionResponseFromJson(json);
-
-  static GetPushSubscriptionResponse deserialize(Map<String, dynamic> json) {
-    return GetPushSubscriptionResponse.fromJson(json);
-  }
 }

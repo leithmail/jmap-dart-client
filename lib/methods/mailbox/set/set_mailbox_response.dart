@@ -31,7 +31,7 @@ class SetMailboxResponse extends SetResponse<Mailbox> {
          notDestroyed: notDestroyed,
        );
 
-  static SetMailboxResponse deserialize(Map<String, dynamic> json) {
+  factory SetMailboxResponse.fromJson(Map<String, dynamic> json) {
     return SetMailboxResponse(
       const AccountIdConverter().fromJson(json['accountId'] as String),
       newState: const StateNullableConverter().fromJson(

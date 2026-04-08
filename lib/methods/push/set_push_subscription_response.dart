@@ -22,7 +22,7 @@ class SetPushSubscriptionResponse
          notDestroyed: notDestroyed,
        );
 
-  static SetPushSubscriptionResponse deserialize(Map<String, dynamic> json) {
+  factory SetPushSubscriptionResponse.fromJson(Map<String, dynamic> json) {
     return SetPushSubscriptionResponse(
       created: (json['created'] as Map<String, dynamic>?)?.map(
         (key, value) => MapEntry(

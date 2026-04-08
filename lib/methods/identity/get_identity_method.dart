@@ -41,6 +41,6 @@ class GetIdentityMethod extends GetMethod<GetIdentityResponse> {
 
   @override
   GetIdentityResponse responseFromJson(Map<String, dynamic> json) {
-    return GetIdentityResponse.deserialize(json);
+    return GetIdentityResponse.fromJson(json);
   }
 }

@@ -41,6 +41,6 @@ class GetMailboxMethod extends GetMethod<GetMailboxResponse> {
 
   @override
   GetMailboxResponse responseFromJson(Map<String, dynamic> json) {
-    return GetMailboxResponse.deserialize(json);
+    return GetMailboxResponse.fromJson(json);
   }
 }

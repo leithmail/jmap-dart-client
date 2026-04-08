@@ -18,7 +18,7 @@ class CalendarEventParseResponse extends ParseResponse<List<CalendarEvent>> {
          notFound: notFound,
        );
 
-  static CalendarEventParseResponse deserialize(Map<String, dynamic> json) {
+  factory CalendarEventParseResponse.fromJson(Map<String, dynamic> json) {
     return CalendarEventParseResponse(
       const AccountIdConverter().fromJson(json['accountId'] as String),
       parsed: (json['parsed'] as Map<String, dynamic>?)?.map(

@@ -45,7 +45,7 @@ class GetEmailMethod extends GetMethod<GetEmailResponse>
 
   @override
   GetEmailResponse responseFromJson(Map<String, dynamic> json) {
-    return GetEmailResponse.deserialize(json);
+    return GetEmailResponse.fromJson(json);
   }
 }
 

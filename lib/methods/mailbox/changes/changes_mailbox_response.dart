@@ -40,8 +40,4 @@ class ChangesMailboxResponse extends ChangesResponse {
 
   factory ChangesMailboxResponse.fromJson(Map<String, dynamic> json) =>
       _$ChangesMailboxResponseFromJson(json);
-
-  static ChangesMailboxResponse deserialize(Map<String, dynamic> json) {
-    return ChangesMailboxResponse.fromJson(json);
-  }
 }
