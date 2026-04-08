@@ -33,7 +33,7 @@ Map<String, dynamic> _$MDNToJson(MDN instance) => <String, dynamic>{
   'textBody': ?instance.textBody,
   'includeOriginalMessage': ?instance.includeOriginalMessage,
   'reportingUA': ?instance.reportingUA,
-  'disposition': ?instance.disposition?.toJson(),
+  'disposition': ?instance.disposition,
   'mdnGateway': ?instance.mdnGateway,
   'originalRecipient': ?instance.originalRecipient,
   'finalRecipient': ?instance.finalRecipient,

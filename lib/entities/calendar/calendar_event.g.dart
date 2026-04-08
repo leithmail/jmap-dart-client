@@ -81,14 +81,12 @@ Map<String, dynamic> _$CalendarEventToJson(
   ),
   'freeBusyStatus': ?_$CalendarFreeBusyStatusEnumMap[instance.freeBusyStatus],
   'status': ?_$CalendarEventStatusEnumMap[instance.status],
-  'organizer': ?instance.organizer?.toJson(),
-  'participants': ?instance.participants?.map((e) => e.toJson()).toList(),
+  'organizer': ?instance.organizer,
+  'participants': ?instance.participants,
   'extensionFields': ?const CalendarAttendeeExtensionFieldsNullableConverter()
       .toJson(instance.extensionFields),
-  'recurrenceRules': ?instance.recurrenceRules?.map((e) => e.toJson()).toList(),
-  'excludedCalendarEvents': ?instance.excludedCalendarEvents
-      ?.map((e) => e.toJson())
-      .toList(),
+  'recurrenceRules': ?instance.recurrenceRules,
+  'excludedCalendarEvents': ?instance.excludedCalendarEvents,
 };
 
 const _$EventMethodEnumMap = {

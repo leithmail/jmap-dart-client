@@ -33,7 +33,7 @@ Map<String, dynamic> _$ParseEmailMethodToJson(ParseEmailMethod instance) =>
       'accountId': const AccountIdConverter().toJson(instance.accountId),
       'properties': ?const PropertiesConverter().toJson(instance.properties),
       'blobIds': instance.blobIds.map(const IdConverter().toJson).toList(),
-      'bodyProperties': ?instance.bodyProperties?.toJson(),
+      'bodyProperties': ?instance.bodyProperties,
       'fetchTextBodyValues': ?instance.fetchTextBodyValues,
       'fetchHTMLBodyValues': ?instance.fetchHTMLBodyValues,
       'fetchAllBodyValues': ?instance.fetchAllBodyValues,

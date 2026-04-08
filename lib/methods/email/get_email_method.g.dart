@@ -40,10 +40,10 @@ Map<String, dynamic> _$GetEmailMethodToJson(GetEmailMethod instance) =>
     <String, dynamic>{
       'accountId': const AccountIdConverter().toJson(instance.accountId),
       'ids': ?instance.ids?.map(const IdConverter().toJson).toList(),
-      '#ids': ?instance.referenceIds?.toJson(),
+      '#ids': ?instance.referenceIds,
       'properties': ?const PropertiesConverter().toJson(instance.properties),
-      '#properties': ?instance.referenceProperties?.toJson(),
-      'bodyProperties': ?instance.bodyProperties?.toJson(),
+      '#properties': ?instance.referenceProperties,
+      'bodyProperties': ?instance.bodyProperties,
       'fetchTextBodyValues': ?instance.fetchTextBodyValues,
       'fetchHTMLBodyValues': ?instance.fetchHTMLBodyValues,
       'fetchAllBodyValues': ?instance.fetchAllBodyValues,
