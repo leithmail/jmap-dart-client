@@ -81,7 +81,7 @@ void main() {
         httpMockClient,
         HttpMockResponseClient.defaultUri,
       );
-      final response = invocation.parse(requestResponse);
+      final response = invocation.parseResponse(requestResponse);
 
       // assert
       expect(response.created, equals({createId: publicAsset}));
@@ -149,7 +149,7 @@ void main() {
         httpMockClient,
         HttpMockResponseClient.defaultUri,
       );
-      final response = invocation.parse(requestResponse);
+      final response = invocation.parseResponse(requestResponse);
 
       // assert
       expect(
@@ -208,7 +208,7 @@ void main() {
         httpMockClient,
         HttpMockResponseClient.defaultUri,
       );
-      final response = invocation.parse(requestResponse);
+      final response = invocation.parseResponse(requestResponse);
 
       // assert
       expect(response.destroyed, equals({publicAsset.id}));
@@ -271,7 +271,7 @@ void main() {
         httpMockClient,
         HttpMockResponseClient.defaultUri,
       );
-      final response = invocation.parse(requestResponse);
+      final response = invocation.parseResponse(requestResponse);
 
       // assert
       expect(
@@ -337,7 +337,7 @@ void main() {
         httpMockClient,
         HttpMockResponseClient.defaultUri,
       );
-      final response = invocation.parse(requestResponse);
+      final response = invocation.parseResponse(requestResponse);
 
       // assert
       expect(response.updated, equals({publicAsset.id: null}));
@@ -404,7 +404,7 @@ void main() {
         httpMockClient,
         HttpMockResponseClient.defaultUri,
       );
-      final response = invocation.parse(requestResponse);
+      final response = invocation.parseResponse(requestResponse);
 
       // assert
       expect(

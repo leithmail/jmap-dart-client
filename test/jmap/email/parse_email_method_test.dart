@@ -98,7 +98,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final emailParsed = invocation.parse(response);
+      final emailParsed = invocation.parseResponse(response);
       expect(emailParsed.parsed![blobId1]!.id, equals(expectMail1.id));
     });
 
@@ -164,7 +164,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final emailParsed = invocation.parse(response);
+      final emailParsed = invocation.parseResponse(response);
       expect(emailParsed.parsed!.length, 2);
       expect(
         emailParsed.parsed!.values.map((email) => email.id),
@@ -215,7 +215,7 @@ void main() {
           HttpMockResponseClient.defaultUri,
         );
 
-        final emailParsed = invocation.parse(response);
+        final emailParsed = invocation.parseResponse(response);
         expect(emailParsed.notFound, contains(blobIdNotFound));
       },
     );
@@ -259,7 +259,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final emailParsed = invocation.parse(response);
+      final emailParsed = invocation.parseResponse(response);
 
       expect(emailParsed.notParsable, contains(blobIdNotParsable));
     });
@@ -311,7 +311,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final emailParsed = invocation.parse(response);
+      final emailParsed = invocation.parseResponse(response);
       expect(emailParsed.parsed![blobId3]!.id, equals(expectMail3.id));
     });
   });

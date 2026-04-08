@@ -153,7 +153,7 @@ void main() {
               HttpMockResponseClient.defaultUri,
             );
 
-            final resultList = getMailboxInvocation.parse(result);
+            final resultList = getMailboxInvocation.parseResponse(result);
 
             expect(resultList.list.first.name?.name, 'Spam');
             expect(resultList.list.first.role?.value, 'junk');

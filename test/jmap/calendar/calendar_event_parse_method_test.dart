@@ -251,7 +251,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final calendarEventParsed = invocation.parse(response);
+      final calendarEventParsed = invocation.parseResponse(response);
 
       expect(
         calendarEventParsed.parsed![blobId1],
@@ -426,7 +426,7 @@ void main() {
           HttpMockResponseClient.defaultUri,
         );
 
-        final calendarEventParsed = invocation.parse(response);
+        final calendarEventParsed = invocation.parseResponse(response);
 
         expect(calendarEventParsed.parsed!.length, 2);
         expect(
@@ -494,7 +494,7 @@ void main() {
           HttpMockResponseClient.defaultUri,
         );
 
-        final calendarEventParsed = invocation.parse(response);
+        final calendarEventParsed = invocation.parseResponse(response);
         expect(calendarEventParsed.notFound, contains(blobIdNotFound));
       },
     );
@@ -542,7 +542,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final calendarEventParsed = invocation.parse(response);
+      final calendarEventParsed = invocation.parseResponse(response);
       expect(calendarEventParsed.notParsable, contains(blobIdNotParsable));
     });
 
@@ -602,7 +602,7 @@ void main() {
           HttpMockResponseClient.defaultUri,
         );
 
-        final calendarEventParsed = invocation.parse(response);
+        final calendarEventParsed = invocation.parseResponse(response);
         expect(
           calendarEventParsed.parsed![blobId1],
           containsOnce(expectedCalendarEvent3),

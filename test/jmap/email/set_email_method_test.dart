@@ -139,7 +139,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final setEmailResponse = setEmailInvocation.parse(response);
+      final setEmailResponse = setEmailInvocation.parseResponse(response);
       expect(setEmailResponse.created![Id('aa1234')], equals(expectedCreated));
     });
 
@@ -263,7 +263,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final setEmailResponse = setEmailInvocation.parse(response);
+      final setEmailResponse = setEmailInvocation.parseResponse(response);
       expect(setEmailResponse.created![Id('aa1234')], equals(expectedCreated));
     });
 
@@ -381,7 +381,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final setEmailResponse = setEmailInvocation.parse(response);
+      final setEmailResponse = setEmailInvocation.parseResponse(response);
       final expectedCreated1 = Email(
         id: EmailId(Id("77664010-4ab1-11ed-88ee-ffc86e0cde67")),
         blobId: Id("77664010-4ab1-11ed-88ee-ffc86e0cde67"),

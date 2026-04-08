@@ -76,7 +76,7 @@ void main() {
         httpMockClient,
         HttpMockResponseClient.defaultUri,
       );
-      final response = invocation.parse(requestResponse);
+      final response = invocation.parseResponse(requestResponse);
 
       // assert
       expect(response.rejected, equals([EventId(successBlobId.value)]));

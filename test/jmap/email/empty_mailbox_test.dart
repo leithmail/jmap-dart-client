@@ -132,11 +132,11 @@ void main() {
               .build()
               .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
-      final resulQuery = queryEmailInvocation.parse(result);
+      final resulQuery = queryEmailInvocation.parseResponse(result);
       expect(resulQuery.canCalculateChanges, isFalse);
       expect(resulQuery.ids, hasLength(8));
 
-      final resultSet = setEmailInvocation.parse(result);
+      final resultSet = setEmailInvocation.parseResponse(result);
       expect(resultSet.destroyed, hasLength(8));
       expect(resultSet.destroyed, containsAll(resulQuery.ids));
     });

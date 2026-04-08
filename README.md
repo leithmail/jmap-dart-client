@@ -100,7 +100,7 @@ Future<jmap.GetMailboxResponse> fetchMailboxes(
 
     final response = await requestBuilder.build().execute(client, apiEndpoint);
 
-    return getMailboxInvocation.parse(response);
+    return getMailboxInvocation.parseResponse(response);
   } finally {
     client.close();
   }
@@ -144,7 +144,7 @@ Future<jmap.GetEmailResponse> fetchInboxEmails(
 
     final response = await requestBuilder.build().execute(client, apiEndpoint);
 
-    return getEmailInvocation.parse(response);
+    return getEmailInvocation.parseResponse(response);
   } finally {
     client.close();
   }
@@ -216,7 +216,7 @@ The library exposes distinct exception types so callers can react precisely:
 - `JmapHttpException`: any HTTP status >= 400.
 - `JmapConnectionException`: transport/client failures.
 - `JmapParseResponseException`: invalid or unexpected response payload.
-- `JmapMethodErrorException`: typed JMAP method-level error from `RequestInvocation.parse(...)`.
+- `JmapMethodErrorException`: typed JMAP method-level error from `RequestInvocation.parseResponse(...)`.
 
 ```dart
 import 'package:http/http.dart' as http;
@@ -235,7 +235,7 @@ Future<void> runRequest(
 
   try {
     final response = await request.execute(client, url);
-    getMailboxInvocation.parse(response);
+    getMailboxInvocation.parseResponse(response);
   } on jmap.JmapUnauthorizedException {
     // Ask user to re-authenticate.
   } on jmap.JmapHttpException catch (e) {

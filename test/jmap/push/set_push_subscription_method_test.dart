@@ -72,9 +72,8 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final setPushSubscriptionResponse = setPushSubscriptionInvocation.parse(
-        response,
-      );
+      final setPushSubscriptionResponse = setPushSubscriptionInvocation
+          .parseResponse(response);
       expect(
         setPushSubscriptionResponse.created![Id('dab246')]!.id,
         equals(expectedCreated.id),

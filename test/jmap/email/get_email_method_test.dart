@@ -139,7 +139,9 @@ void main() {
           HttpMockResponseClient.defaultUri,
         );
 
-        final resultCreated = getEmailForCreatedInvocation.parse(result);
+        final resultCreated = getEmailForCreatedInvocation.parseResponse(
+          result,
+        );
 
         expect(resultCreated.list.length, equals(1));
         expect(resultCreated.list, containsAll([expectMail]));

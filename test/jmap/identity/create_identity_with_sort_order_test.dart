@@ -98,7 +98,7 @@ void main() {
               .build()
               .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
-      final setIdentityResponse = setIdentityInvocation.parse(response);
+      final setIdentityResponse = setIdentityInvocation.parseResponse(response);
       expect(
         setIdentityResponse.created![Id('dab246')]!.id,
         equals(expectedCreated.id),
@@ -205,7 +205,9 @@ void main() {
                   .build()
                   .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
-          final setIdentityResponse = setIdentityInvocation.parse(response);
+          final setIdentityResponse = setIdentityInvocation.parseResponse(
+            response,
+          );
 
           expect(
             setIdentityResponse.created![Id('xyz123')]!.id,

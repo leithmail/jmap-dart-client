@@ -230,8 +230,8 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final setEmailResponse = setEmailInvocation.parse(response);
-      final setEmailUpdateResponse = setEmailSubmissionInvocation.parse(
+      final setEmailResponse = setEmailInvocation.parseResponse(response);
+      final setEmailUpdateResponse = setEmailSubmissionInvocation.parseResponse(
         response,
       );
 
@@ -448,8 +448,8 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final setEmailResponse = setEmailInvocation.parse(response);
-      final setEmailUpdateResponse = setEmailSubmissionInvocation.parse(
+      final setEmailResponse = setEmailInvocation.parseResponse(response);
+      final setEmailUpdateResponse = setEmailSubmissionInvocation.parseResponse(
         response,
       );
 

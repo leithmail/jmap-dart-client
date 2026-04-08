@@ -97,7 +97,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final setMailboxResponse = setMailboxInvocation.parse(response);
+      final setMailboxResponse = setMailboxInvocation.parseResponse(response);
 
       expect(
         setMailboxResponse.created![Id('dab246')]!.id,

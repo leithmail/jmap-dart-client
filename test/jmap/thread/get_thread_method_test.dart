@@ -75,7 +75,7 @@ void main() {
         httpMockClient,
         HttpMockResponseClient.defaultUri,
       );
-      final response = invocation.parse(responseObject);
+      final response = invocation.parseResponse(responseObject);
 
       // assert
       expect(response.accountId, accountId);

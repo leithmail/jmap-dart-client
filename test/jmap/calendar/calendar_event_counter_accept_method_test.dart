@@ -79,7 +79,7 @@ void main() {
         httpMockClient,
         HttpMockResponseClient.defaultUri,
       );
-      final response = invocation.parse(result);
+      final response = invocation.parseResponse(result);
 
       // assert
       expect(response.accepted, equals([EventId(successBlobId.value)]));

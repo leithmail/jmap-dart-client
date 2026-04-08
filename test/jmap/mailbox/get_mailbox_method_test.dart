@@ -159,7 +159,7 @@ void main() {
               .build()
               .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
-      final getMailboxResponse = getMailboxInvocation.parse(response);
+      final getMailboxResponse = getMailboxInvocation.parseResponse(response);
 
       expect(getMailboxResponse.list.length, equals(1));
       expect(getMailboxResponse.list, containsAll([expectedMailbox1]));
@@ -240,7 +240,7 @@ void main() {
           HttpMockResponseClient.defaultUri,
         );
 
-        final getMailboxResponse = getMailboxInvocation.parse(response);
+        final getMailboxResponse = getMailboxInvocation.parseResponse(response);
         expect(getMailboxResponse.list.length, equals(1));
         expect(getMailboxResponse.list, containsAll([expectedMailbox2]));
       },

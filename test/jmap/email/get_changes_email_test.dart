@@ -249,9 +249,9 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final resultUpdated = getEmailForUpdateInvocation.parse(result);
+      final resultUpdated = getEmailForUpdateInvocation.parseResponse(result);
 
-      final resultCreated = getEmailForCreatedInvocation.parse(result);
+      final resultCreated = getEmailForCreatedInvocation.parseResponse(result);
 
       expect(resultUpdated.list[0], equals(expectMail1));
       expect(resultCreated.list[0], equals(expectMail2));

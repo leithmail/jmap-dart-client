@@ -130,7 +130,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final mdnSendResponse = mdnSendInvocation.parse(response);
+      final mdnSendResponse = mdnSendInvocation.parseResponse(response);
 
       expect(mdnSendResponse.sent![Id('k1546')]!, equals(expectedResult));
     });

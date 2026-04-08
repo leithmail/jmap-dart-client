@@ -154,7 +154,7 @@ void main() {
       HttpMockResponseClient.defaultUri,
     );
 
-    final resultList = getEmailInvocation.parse(result);
+    final resultList = getEmailInvocation.parseResponse(result);
     resultList.sortEmails(comparator);
     return resultList.list;
   }

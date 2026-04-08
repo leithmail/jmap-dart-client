@@ -9,7 +9,7 @@ import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('RequestInvocation.parse() exception behaviour', () {
+  group('RequestInvocation.parseResponse() exception behaviour', () {
     group('no matching methodCallId', () {
       test(
         'throws JmapParseResponseException with the requested methodCallId',
@@ -28,7 +28,7 @@ void main() {
 
           // act + assert
           expect(
-            () => requestInvocation.parse(responseObject),
+            () => requestInvocation.parseResponse(responseObject),
             throwsA(
               isA<JmapParseResponseException>().having(
                 (e) => e.methodCallId?.value,
@@ -57,7 +57,7 @@ void main() {
 
         // act + assert
         expect(
-          () => requestInvocation.parse(responseObject),
+          () => requestInvocation.parseResponse(responseObject),
           throwsA(isA<JmapMethodErrorException>()),
         );
       });

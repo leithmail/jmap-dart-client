@@ -76,7 +76,7 @@ void main() {
           httpMockClient,
           HttpMockResponseClient.defaultUri,
         ));
-        final invocationResponse = invocation.parse(response);
+        final invocationResponse = invocation.parseResponse(response);
 
         // assert
         expect(invocationResponse.list, equals([publicAsset]));
@@ -137,7 +137,7 @@ void main() {
           HttpMockResponseClient.defaultUri,
         );
 
-        final response = invocation.parse(requestResponse);
+        final response = invocation.parseResponse(requestResponse);
 
         // assert
         expect(response.notFound, equals([publicAsset.id]));

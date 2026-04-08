@@ -112,7 +112,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final resultList = getQuotaInvocation.parse(response);
+      final resultList = getQuotaInvocation.parseResponse(response);
 
       expect(resultList.list.length, equals(2));
       expect(resultList.list, containsAll([expectQuota1, expectQuota2]));

@@ -90,7 +90,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final response = invocation.parse(requestResponse);
+      final response = invocation.parseResponse(requestResponse);
       // assert
       expect(response.accountId, equals(accountId));
       expect(response.list, equals([freeAttendance, busyAttendance]));
@@ -159,7 +159,7 @@ void main() {
         httpMockClient,
         HttpMockResponseClient.defaultUri,
       );
-      final response = invocation.parse(requestResponse);
+      final response = invocation.parseResponse(requestResponse);
 
       // assert
       expect(response.accountId, equals(accountId));
@@ -225,7 +225,7 @@ void main() {
 
       // assert
       expect(
-        () => invocation.parse(response),
+        () => invocation.parseResponse(response),
         throwsA(isA<JmapMethodErrorException>()),
       );
     });

@@ -98,7 +98,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final resultList = getIdentityInvocation.parse(response);
+      final resultList = getIdentityInvocation.parseResponse(response);
       expect(resultList.list.length, equals(2));
       expect(resultList.list, containsAll({expectIdentity1, expectIdentity2}));
     });

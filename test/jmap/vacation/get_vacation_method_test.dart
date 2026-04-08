@@ -74,7 +74,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final resultList = getVacationInvocation.parse(response);
+      final resultList = getVacationInvocation.parseResponse(response);
 
       expect(resultList.list.length, equals(1));
       expect(resultList.list, contains(expectVacation));

@@ -21,7 +21,7 @@ class RequestInvocation<R extends MethodResponse> {
     return ResultReference(methodCallId, method.methodName, path);
   }
 
-  R parse(Response response) {
+  R parseResponse(Response response) {
     final matchedResponse = response.methodResponses.firstWhere(
       (method) =>
           method.methodCallId == methodCallId &&

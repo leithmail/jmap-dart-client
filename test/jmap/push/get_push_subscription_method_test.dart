@@ -61,9 +61,8 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final getPushSubscriptionResponse = getPushSubscriptionInvocation.parse(
-        response,
-      );
+      final getPushSubscriptionResponse = getPushSubscriptionInvocation
+          .parseResponse(response);
       expect(getPushSubscriptionResponse.list.first.id, equals(expectedGet.id));
     });
   });

@@ -182,8 +182,10 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final resultUpdated = getMailboxForUpdateInvocation.parse(result);
-      final resultDestroyed = getMailboxForDestroyInvocation.parse(result);
+      final resultUpdated = getMailboxForUpdateInvocation.parseResponse(result);
+      final resultDestroyed = getMailboxForDestroyInvocation.parseResponse(
+        result,
+      );
 
       expect(resultUpdated.list[0], equals(expectedUpdated));
       expect(resultDestroyed.list.length, equals(0));

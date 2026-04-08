@@ -115,7 +115,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final getVacationResponse = getVacationInvocation.parse(response);
+      final getVacationResponse = getVacationInvocation.parseResponse(response);
       expect(getVacationResponse.list, contains(expectedUpdated));
     });
   });

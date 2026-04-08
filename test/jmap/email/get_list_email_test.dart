@@ -252,7 +252,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final resultList = getEmailInvocation.parse(result);
+      final resultList = getEmailInvocation.parseResponse(result);
 
       expect(resultList.list.length, equals(5));
       expect(

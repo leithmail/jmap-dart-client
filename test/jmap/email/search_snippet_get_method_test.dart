@@ -129,9 +129,8 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final searchSnippetGetResponse = searchSnippetGetMethodInvocation.parse(
-        result,
-      );
+      final searchSnippetGetResponse = searchSnippetGetMethodInvocation
+          .parseResponse(result);
       // assert
       expect(searchSnippetGetResponse.list, equals(foundSearchSnippets));
       expect(searchSnippetGetResponse.notFound, isEmpty);
@@ -176,7 +175,7 @@ void main() {
         HttpMockResponseClient.defaultUri,
       );
 
-      final searchSnippetGetResponse = methodInvocation.parse(result);
+      final searchSnippetGetResponse = methodInvocation.parseResponse(result);
       // assert
       expect(searchSnippetGetResponse.list, isEmpty);
       expect(
@@ -242,7 +241,7 @@ void main() {
 
       // assert
       expect(
-        () => methodInvocation.parse(result),
+        () => methodInvocation.parseResponse(result),
         throwsA(
           isA<JmapMethodErrorException>().having(
             (e) => e.errorResponse,
