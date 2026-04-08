@@ -44,16 +44,4 @@ class ChangesMailboxResponse extends ChangesResponse {
   static ChangesMailboxResponse deserialize(Map<String, dynamic> json) {
     return ChangesMailboxResponse.fromJson(json);
   }
-
-  @override
-  List<Object?> get props => [
-    accountId,
-    oldState,
-    newState,
-    hasMoreChanges,
-    created,
-    updated,
-    destroyed,
-    updatedProperties,
-  ];
 }

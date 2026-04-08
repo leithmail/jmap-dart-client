@@ -7,7 +7,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'get_push_subscription_response.g.dart';
 
 @IdConverter()
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class GetPushSubscriptionResponse
     extends GetResponseNoAccountId<PushSubscription> {
   GetPushSubscriptionResponse(List<PushSubscription> list, List<Id>? notFound)
@@ -19,9 +19,4 @@ class GetPushSubscriptionResponse
   static GetPushSubscriptionResponse deserialize(Map<String, dynamic> json) {
     return GetPushSubscriptionResponse.fromJson(json);
   }
-
-  Map<String, dynamic> toJson() => _$GetPushSubscriptionResponseToJson(this);
-
-  @override
-  List<Object?> get props => [list, notFound];
 }

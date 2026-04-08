@@ -1,7 +1,6 @@
-import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 
-abstract class MethodResponse with EquatableMixin {}
+abstract class MethodResponse {}
 
 abstract class ResponseRequiringAccountId extends MethodResponse {
   final AccountId accountId;

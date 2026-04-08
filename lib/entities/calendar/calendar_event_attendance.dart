@@ -7,7 +7,8 @@ part 'calendar_event_attendance.g.dart';
 
 enum AttendanceStatus { accepted, rejected, tentativelyAccepted, needsAction }
 
-@JsonSerializable(includeIfNull: false, converters: [IdNullableConverter()])
+@IdNullableConverter()
+@JsonSerializable(includeIfNull: false)
 class CalendarEventAttendance with EquatableMixin {
   final Id? blobId;
   final AttendanceStatus? eventAttendanceStatus;

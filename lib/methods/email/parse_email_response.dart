@@ -18,7 +18,4 @@ class ParseEmailResponse extends ParseResponse<Email> {
       notFound: JsonParsers().parsingListId(json, 'notFound'),
     );
   }
-
-  @override
-  List<Object?> get props => [accountId, parsed, notParsable, notFound];
 }

@@ -8,10 +8,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'calendar_event_reject_method.g.dart';
 
-@JsonSerializable(
-  createFactory: false,
-  converters: [AccountIdConverter(), IdConverter()],
-)
+@AccountIdConverter()
+@IdConverter()
+@JsonSerializable(createFactory: false)
 class CalendarEventRejectMethod
     extends CalendarEventReplyMethod<CalendarEventRejectResponse> {
   CalendarEventRejectMethod(super.accountId, {required super.blobIds});

@@ -25,29 +25,7 @@ QueryEmailResponse _$QueryEmailResponseFromJson(Map<String, dynamic> json) =>
       ),
     );
 
-Map<String, dynamic> _$QueryEmailResponseToJson(QueryEmailResponse instance) =>
-    <String, dynamic>{
-      'accountId': const AccountIdConverter().toJson(instance.accountId),
-      'queryState': const StateConverter().toJson(instance.queryState),
-      'canCalculateChanges': instance.canCalculateChanges,
-      'position': const UnsignedIntConverter().toJson(instance.position),
-      'ids': instance.ids.map(const IdConverter().toJson).toList(),
-      'total': _$JsonConverterToJson<int, UnsignedInt>(
-        instance.total,
-        const UnsignedIntConverter().toJson,
-      ),
-      'limit': _$JsonConverterToJson<int, UnsignedInt>(
-        instance.limit,
-        const UnsignedIntConverter().toJson,
-      ),
-    };
-
 Value? _$JsonConverterFromJson<Json, Value>(
   Object? json,
   Value? Function(Json json) fromJson,
 ) => json == null ? null : fromJson(json as Json);
-
-Json? _$JsonConverterToJson<Json, Value>(
-  Value? value,
-  Json? Function(Value value) toJson,
-) => value == null ? null : toJson(value);

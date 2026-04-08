@@ -10,10 +10,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'clear_mailbox_method.g.dart';
 
-@JsonSerializable(
-  explicitToJson: true,
-  converters: [AccountIdConverter(), MailboxIdConverter()],
-)
+@AccountIdConverter()
+@MailboxIdConverter()
+@JsonSerializable(explicitToJson: true)
 class ClearMailboxMethod extends ClearMethod<ClearMailboxResponse> {
   final MailboxId mailboxId;
 

@@ -23,9 +23,6 @@ abstract class ErrorMethodResponse extends MethodResponse {
   final String? description;
 
   ErrorMethodResponse(this.type, {this.description});
-
-  @override
-  List<Object?> get props => [type, description];
 }
 
 class ServerPartialFailMethodResponse extends ErrorMethodResponse {

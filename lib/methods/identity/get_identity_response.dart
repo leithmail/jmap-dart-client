@@ -13,7 +13,7 @@ part 'get_identity_response.g.dart';
 @StateConverter()
 @AccountIdConverter()
 @IdConverter()
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class GetIdentityResponse extends GetResponse<Identity> {
   GetIdentityResponse(
     AccountId accountId,
@@ -28,9 +28,4 @@ class GetIdentityResponse extends GetResponse<Identity> {
   static GetIdentityResponse deserialize(Map<String, dynamic> json) {
     return GetIdentityResponse.fromJson(json);
   }
-
-  Map<String, dynamic> toJson() => _$GetIdentityResponseToJson(this);
-
-  @override
-  List<Object?> get props => [accountId, state, list, notFound];
 }

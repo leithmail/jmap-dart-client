@@ -11,10 +11,10 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'get_calendar_event_attendance_method.g.dart';
 
-@JsonSerializable(
-  converters: [IdConverter(), AccountIdConverter(), PropertiesConverter()],
-  explicitToJson: true,
-)
+@IdConverter()
+@AccountIdConverter()
+@PropertiesConverter()
+@JsonSerializable(explicitToJson: true)
 class GetCalendarEventAttendanceMethod
     extends GetMethod<GetCalendarEventAttendanceResponse> {
   GetCalendarEventAttendanceMethod(super.accountId, this.blobIds);

@@ -13,7 +13,7 @@ part 'get_quota_response.g.dart';
 @StateConverter()
 @AccountIdConverter()
 @IdConverter()
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class GetQuotaResponse extends GetResponse<Quota> {
   GetQuotaResponse(
     AccountId accountId,
@@ -28,9 +28,4 @@ class GetQuotaResponse extends GetResponse<Quota> {
   static GetQuotaResponse deserialize(Map<String, dynamic> json) {
     return GetQuotaResponse.fromJson(json);
   }
-
-  Map<String, dynamic> toJson() => _$GetQuotaResponseToJson(this);
-
-  @override
-  List<Object?> get props => [accountId, state, list, notFound];
 }

@@ -13,7 +13,7 @@ part 'get_mailbox_response.g.dart';
 @StateConverter()
 @AccountIdConverter()
 @IdConverter()
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class GetMailboxResponse extends GetResponse<Mailbox> {
   GetMailboxResponse(
     AccountId accountId,
@@ -28,9 +28,4 @@ class GetMailboxResponse extends GetResponse<Mailbox> {
   static GetMailboxResponse deserialize(Map<String, dynamic> json) {
     return GetMailboxResponse.fromJson(json);
   }
-
-  Map<String, dynamic> toJson() => _$GetMailboxResponseToJson(this);
-
-  @override
-  List<Object?> get props => [accountId, state, list, notFound];
 }

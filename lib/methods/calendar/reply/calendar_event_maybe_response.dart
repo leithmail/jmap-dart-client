@@ -23,7 +23,4 @@ class CalendarEventMaybeResponse extends CalendarEventReplyResponse {
       notMaybe: JsonParsers().parsingMapSetError(json, 'notMaybe'),
     );
   }
-
-  @override
-  List<Object?> get props => [...super.props, maybe, notMaybe];
 }

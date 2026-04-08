@@ -19,9 +19,6 @@ class GetPublicAssetResponse extends GetResponse<PublicAsset> {
     super.notFound,
   );
 
-  @override
-  List<Object?> get props => [accountId, state, list, notFound];
-
   factory GetPublicAssetResponse.fromJson(Map<String, dynamic> json) =>
       _$GetPublicAssetResponseFromJson(json);
 }

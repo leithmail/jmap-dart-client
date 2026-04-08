@@ -15,7 +15,7 @@ part 'query_email_response.g.dart';
 @IdConverter()
 @StateConverter()
 @AccountIdConverter()
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class QueryEmailResponse extends QueryResponse {
   QueryEmailResponse(
     AccountId accountId,
@@ -37,16 +37,4 @@ class QueryEmailResponse extends QueryResponse {
 
   factory QueryEmailResponse.fromJson(Map<String, dynamic> json) =>
       _$QueryEmailResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$QueryEmailResponseToJson(this);
-
-  @override
-  List<Object?> get props => [
-    accountId,
-    queryState,
-    canCalculateChanges,
-    position,
-    total,
-    ids,
-  ];
 }

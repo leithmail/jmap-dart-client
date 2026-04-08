@@ -17,11 +17,3 @@ GetMailboxResponse _$GetMailboxResponseFromJson(Map<String, dynamic> json) =>
           ?.map((e) => const IdConverter().fromJson(e as String))
           .toList(),
     );
-
-Map<String, dynamic> _$GetMailboxResponseToJson(GetMailboxResponse instance) =>
-    <String, dynamic>{
-      'accountId': const AccountIdConverter().toJson(instance.accountId),
-      'state': const StateConverter().toJson(instance.state),
-      'list': instance.list,
-      'notFound': instance.notFound?.map(const IdConverter().toJson).toList(),
-    };

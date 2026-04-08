@@ -9,11 +9,10 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'get_thread_method.g.dart';
 
-@JsonSerializable(
-  includeIfNull: false,
-  createFactory: false,
-  converters: [AccountIdConverter(), IdConverter(), PropertiesConverter()],
-)
+@AccountIdConverter()
+@IdConverter()
+@PropertiesConverter()
+@JsonSerializable(includeIfNull: false, createFactory: false)
 class GetThreadMethod extends GetMethod<GetThreadResponse> {
   GetThreadMethod(super.accountId);
 

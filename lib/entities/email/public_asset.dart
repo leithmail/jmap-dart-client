@@ -9,10 +9,9 @@ part 'public_asset.g.dart';
 
 typedef PublicAssetIdentities = Map<IdentityId, bool>;
 
-@JsonSerializable(
-  converters: [IdNullableConverter(), PublicAssetIdentitiesConverter()],
-  includeIfNull: false,
-)
+@IdNullableConverter()
+@PublicAssetIdentitiesConverter()
+@JsonSerializable(includeIfNull: false)
 class PublicAsset with EquatableMixin {
   final Id? id;
   final String? publicURI;

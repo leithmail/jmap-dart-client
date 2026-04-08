@@ -12,16 +12,11 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'parse_email_method.g.dart';
 
-@JsonSerializable(
-  explicitToJson: true,
-  includeIfNull: false,
-  converters: [
-    AccountIdConverter(),
-    IdConverter(),
-    UnsignedIntNullableConverter(),
-    PropertiesConverter(),
-  ],
-)
+@AccountIdConverter()
+@IdConverter()
+@UnsignedIntNullableConverter()
+@PropertiesConverter()
+@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class ParseEmailMethod extends ParseMethod<ParseEmailResponse>
     with
         OptionalEmailBodyProperties,

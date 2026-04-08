@@ -6,7 +6,6 @@ import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/thread/thread.dart';
 import 'package:jmap_dart_client/methods/thread/get_thread_method.dart';
-import 'package:jmap_dart_client/methods/thread/get_thread_response.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -79,17 +78,10 @@ void main() {
       final response = invocation.parse(responseObject);
 
       // assert
-      expect(
-        response,
-        equals(
-          GetThreadResponse(
-            accountId,
-            State('state'),
-            [foundThread],
-            [notFoundId],
-          ),
-        ),
-      );
+      expect(response.accountId, accountId);
+      expect(response.state, State('state'));
+      expect(response.list, [foundThread]);
+      expect(response.notFound, [notFoundId]);
     });
   });
 }

@@ -13,7 +13,7 @@ part 'get_vacation_response.g.dart';
 @StateConverter()
 @AccountIdConverter()
 @IdConverter()
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class GetVacationResponse extends GetResponse<VacationResponse> {
   GetVacationResponse(
     AccountId accountId,
@@ -28,9 +28,4 @@ class GetVacationResponse extends GetResponse<VacationResponse> {
   static GetVacationResponse deserialize(Map<String, dynamic> json) {
     return GetVacationResponse.fromJson(json);
   }
-
-  Map<String, dynamic> toJson() => _$GetVacationResponseToJson(this);
-
-  @override
-  List<Object?> get props => [accountId, state, list, notFound];
 }

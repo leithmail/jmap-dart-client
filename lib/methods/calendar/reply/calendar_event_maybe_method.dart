@@ -8,10 +8,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'calendar_event_maybe_method.g.dart';
 
-@JsonSerializable(
-  createFactory: false,
-  converters: [AccountIdConverter(), IdConverter()],
-)
+@AccountIdConverter()
+@IdConverter()
+@JsonSerializable(createFactory: false)
 class CalendarEventMaybeMethod
     extends CalendarEventReplyMethod<CalendarEventMaybeResponse> {
   CalendarEventMaybeMethod(super.accountId, {required super.blobIds});

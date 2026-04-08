@@ -17,11 +17,3 @@ SearchSnippetGetResponse _$SearchSnippetGetResponseFromJson(
       ?.map((e) => const IdConverter().fromJson(e as String))
       .toList(),
 );
-
-Map<String, dynamic> _$SearchSnippetGetResponseToJson(
-  SearchSnippetGetResponse instance,
-) => <String, dynamic>{
-  'accountId': const AccountIdConverter().toJson(instance.accountId),
-  'list': ?instance.list?.map((e) => e.toJson()).toList(),
-  'notFound': ?instance.notFound?.map(const IdConverter().toJson).toList(),
-};

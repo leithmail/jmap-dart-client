@@ -61,14 +61,4 @@ class SetPushSubscriptionResponse
       ),
     );
   }
-
-  @override
-  List<Object?> get props => [
-    created,
-    updated,
-    destroyed,
-    notCreated,
-    notUpdated,
-    notDestroyed,
-  ];
 }

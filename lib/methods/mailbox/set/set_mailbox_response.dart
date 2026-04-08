@@ -77,16 +77,4 @@ class SetMailboxResponse extends SetResponse<Mailbox> {
       ),
     );
   }
-
-  @override
-  List<Object?> get props => [
-    oldState,
-    newState,
-    created,
-    updated,
-    destroyed,
-    notCreated,
-    notUpdated,
-    notDestroyed,
-  ];
 }

@@ -20,7 +20,7 @@ part 'get_email_response.g.dart';
 @StateConverter()
 @AccountIdConverter()
 @IdConverter()
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class GetEmailResponse extends GetResponse<Email> {
   GetEmailResponse(
     AccountId accountId,
@@ -60,9 +60,4 @@ class GetEmailResponse extends GetResponse<Email> {
       }
     });
   }
-
-  Map<String, dynamic> toJson() => _$GetEmailResponseToJson(this);
-
-  @override
-  List<Object?> get props => [accountId, state, list, notFound];
 }

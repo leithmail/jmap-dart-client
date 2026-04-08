@@ -34,15 +34,4 @@ class ChangesEmailResponse extends ChangesResponse {
 
   factory ChangesEmailResponse.fromJson(Map<String, dynamic> json) =>
       _$ChangesEmailResponseFromJson(json);
-
-  @override
-  List<Object?> get props => [
-    accountId,
-    oldState,
-    newState,
-    hasMoreChanges,
-    created,
-    updated,
-    destroyed,
-  ];
 }

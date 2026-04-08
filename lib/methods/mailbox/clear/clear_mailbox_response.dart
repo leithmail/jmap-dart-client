@@ -8,11 +8,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'clear_mailbox_response.g.dart';
 
-@JsonSerializable(
-  includeIfNull: false,
-  createToJson: false,
-  converters: [AccountIdConverter(), UnsignedIntNullableConverter()],
-)
+@AccountIdConverter()
+@UnsignedIntNullableConverter()
+@JsonSerializable(createToJson: false)
 class ClearMailboxResponse extends ClearResponse {
   ClearMailboxResponse(
     AccountId accountId,
@@ -22,7 +20,4 @@ class ClearMailboxResponse extends ClearResponse {
 
   factory ClearMailboxResponse.fromJson(Map<String, dynamic> json) =>
       _$ClearMailboxResponseFromJson(json);
-
-  @override
-  List<Object?> get props => [accountId, totalDeletedMessagesCount, notCleared];
 }

@@ -17,9 +17,6 @@ class SetPublicAssetResponse extends SetResponse<PublicAsset> {
     super.notDestroyed,
   });
 
-  @override
-  List<Object?> get props => [accountId, newState, created, updated, destroyed];
-
   static SetPublicAssetResponse deserialize(Map<String, dynamic> json) {
     return SetPublicAssetResponse(
       const AccountIdConverter().fromJson(json['accountId'] as String),

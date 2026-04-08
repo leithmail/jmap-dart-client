@@ -23,7 +23,4 @@ class CalendarEventRejectResponse extends CalendarEventReplyResponse {
       notRejected: JsonParsers().parsingMapSetError(json, 'notRejected'),
     );
   }
-
-  @override
-  List<Object?> get props => [...super.props, rejected, notRejected];
 }

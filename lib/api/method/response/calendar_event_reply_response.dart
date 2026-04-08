@@ -5,7 +5,4 @@ abstract class CalendarEventReplyResponse extends ResponseRequiringAccountId {
   CalendarEventReplyResponse(super.accountId, this.notFound);
 
   final List<Id>? notFound;
-
-  @override
-  List<Object?> get props => [accountId, notFound];
 }

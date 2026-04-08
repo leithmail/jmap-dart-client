@@ -8,10 +8,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'get_public_asset_method.g.dart';
 
-@JsonSerializable(
-  createFactory: false,
-  converters: [AccountIdConverter(), IdConverter()],
-)
+@AccountIdConverter()
+@IdConverter()
+@JsonSerializable(createFactory: false)
 class GetPublicAssetMethod
     extends MethodRequiringAccountId<GetPublicAssetResponse>
     with OptionalIds {

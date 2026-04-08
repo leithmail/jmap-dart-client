@@ -16,10 +16,3 @@ GetPushSubscriptionResponse _$GetPushSubscriptionResponseFromJson(
       ?.map((e) => const IdConverter().fromJson(e as String))
       .toList(),
 );
-
-Map<String, dynamic> _$GetPushSubscriptionResponseToJson(
-  GetPushSubscriptionResponse instance,
-) => <String, dynamic>{
-  'list': instance.list,
-  'notFound': instance.notFound?.map(const IdConverter().toJson).toList(),
-};

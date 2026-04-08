@@ -77,16 +77,4 @@ class SetIdentityResponse extends SetResponse<Identity> {
       ),
     );
   }
-
-  @override
-  List<Object?> get props => [
-    oldState,
-    newState,
-    created,
-    updated,
-    destroyed,
-    notCreated,
-    notUpdated,
-    notDestroyed,
-  ];
 }

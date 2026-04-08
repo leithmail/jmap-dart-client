@@ -10,16 +10,11 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'get_calendar_event_attendance_response.g.dart';
 
-@JsonSerializable(
-  includeIfNull: false,
-  createToJson: false,
-  converters: [
-    StateConverter(),
-    AccountIdConverter(),
-    IdConverter(),
-    SetErrorConverter(),
-  ],
-)
+@StateConverter()
+@AccountIdConverter()
+@IdConverter()
+@SetErrorConverter()
+@JsonSerializable(createToJson: false)
 class GetCalendarEventAttendanceResponse extends ResponseRequiringAccountId {
   GetCalendarEventAttendanceResponse(
     super.accountId,
@@ -31,9 +26,6 @@ class GetCalendarEventAttendanceResponse extends ResponseRequiringAccountId {
   final List<CalendarEventAttendance> list;
   final List<Id>? notFound;
   final Map<Id, SetError>? notDone;
-
-  @override
-  List<Object?> get props => [accountId, list, notFound, notDone];
 
   factory GetCalendarEventAttendanceResponse.fromJson(
     Map<String, dynamic> json,

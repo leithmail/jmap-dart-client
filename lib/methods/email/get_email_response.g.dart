@@ -19,11 +19,3 @@ GetEmailResponse _$GetEmailResponseFromJson(Map<String, dynamic> json) =>
           ?.map((e) => const IdConverter().fromJson(e as String))
           .toList(),
     );
-
-Map<String, dynamic> _$GetEmailResponseToJson(GetEmailResponse instance) =>
-    <String, dynamic>{
-      'accountId': const AccountIdConverter().toJson(instance.accountId),
-      'state': const StateConverter().toJson(instance.state),
-      'list': instance.list.map(const EmailConverter().toJson).toList(),
-      'notFound': instance.notFound?.map(const IdConverter().toJson).toList(),
-    };

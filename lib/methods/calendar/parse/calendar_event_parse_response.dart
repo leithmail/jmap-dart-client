@@ -37,7 +37,4 @@ class CalendarEventParseResponse extends ParseResponse<List<CalendarEvent>> {
           .toList(),
     );
   }
-
-  @override
-  List<Object?> get props => [accountId, parsed, notParsable, notFound];
 }

@@ -30,7 +30,4 @@ class MDNSendResponse extends SendResponse<MDN> {
       ),
     );
   }
-
-  @override
-  List<Object?> get props => [accountId, sent, notSent];
 }

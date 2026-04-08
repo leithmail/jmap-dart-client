@@ -6,10 +6,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'thread.g.dart';
 
-@JsonSerializable(
-  includeIfNull: false,
-  converters: [ThreadIdConverter(), EmailIdConverter()],
-)
+@ThreadIdConverter()
+@EmailIdConverter()
+@JsonSerializable(includeIfNull: false)
 class Thread with EquatableMixin {
   final ThreadId id;
   final List<EmailId> emailIds;
