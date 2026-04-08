@@ -69,7 +69,7 @@ class QueryEmailMethod extends QueryMethod<QueryEmailResponse>
   }
 
   @override
-  QueryEmailResponse deserializeResponse(Map<String, dynamic> json) {
+  QueryEmailResponse responseFromJson(Map<String, dynamic> json) {
     return QueryEmailResponse.fromJson(json);
   }
 }

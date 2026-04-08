@@ -56,7 +56,7 @@ class SearchSnippetGetMethod extends GetMethod<SearchSnippetGetResponse>
   }
 
   @override
-  SearchSnippetGetResponse deserializeResponse(Map<String, dynamic> json) {
+  SearchSnippetGetResponse responseFromJson(Map<String, dynamic> json) {
     return SearchSnippetGetResponse.fromJson(json);
   }
 }

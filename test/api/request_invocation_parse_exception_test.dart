@@ -76,7 +76,7 @@ class _FakeErrorMethod extends Method<ErrorMethodResponse> {
   Map<String, dynamic> toJson() => <String, dynamic>{};
 
   @override
-  ErrorMethodResponse deserializeResponse(Map<String, dynamic> json) {
+  ErrorMethodResponse responseFromJson(Map<String, dynamic> json) {
     return ServerFailMethodResponse();
   }
 }

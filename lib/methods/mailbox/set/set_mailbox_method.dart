@@ -61,7 +61,7 @@ class SetMailboxMethod extends SetMethod<SetMailboxResponse, Mailbox>
   }
 
   @override
-  SetMailboxResponse deserializeResponse(Map<String, dynamic> json) {
+  SetMailboxResponse responseFromJson(Map<String, dynamic> json) {
     return SetMailboxResponse.deserialize(json);
   }
 }

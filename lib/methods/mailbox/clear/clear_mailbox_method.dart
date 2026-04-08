@@ -42,7 +42,7 @@ class ClearMailboxMethod extends ClearMethod<ClearMailboxResponse> {
   Map<String, dynamic> toJson() => _$ClearMailboxMethodToJson(this);
 
   @override
-  ClearMailboxResponse deserializeResponse(Map<String, dynamic> json) {
+  ClearMailboxResponse responseFromJson(Map<String, dynamic> json) {
     return ClearMailboxResponse.fromJson(json);
   }
 }

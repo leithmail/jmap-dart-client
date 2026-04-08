@@ -57,7 +57,7 @@ class SetPublicAssetMethod
   }
 
   @override
-  SetPublicAssetResponse deserializeResponse(Map<String, dynamic> json) {
+  SetPublicAssetResponse responseFromJson(Map<String, dynamic> json) {
     return SetPublicAssetResponse.deserialize(json);
   }
 }

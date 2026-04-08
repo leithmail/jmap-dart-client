@@ -45,7 +45,7 @@ class SetVacationMethod extends SetMethod<SetVacationResponse, VacationResponse>
   }
 
   @override
-  SetVacationResponse deserializeResponse(Map<String, dynamic> json) {
+  SetVacationResponse responseFromJson(Map<String, dynamic> json) {
     return SetVacationResponse.deserialize(json);
   }
 }

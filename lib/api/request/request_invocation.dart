@@ -37,7 +37,7 @@ class RequestInvocation<R extends MethodResponse> {
       throw JmapMethodErrorException(errorResponse);
     }
 
-    return method.deserializeResponse(matchedResponse.arguments.value);
+    return method.responseFromJson(matchedResponse.arguments.value);
   }
 
   static bool _validMethodResponseName(

@@ -9,7 +9,7 @@ abstract class Method<R extends MethodResponse> {
   Set<CapabilityIdentifier> get requiredCapabilities;
 
   Map<String, dynamic> toJson();
-  R deserializeResponse(Map<String, dynamic> json);
+  R responseFromJson(Map<String, dynamic> json);
 }
 
 abstract class MethodRequiringAccountId<R extends MethodResponse>

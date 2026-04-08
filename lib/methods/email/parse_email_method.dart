@@ -42,7 +42,7 @@ class ParseEmailMethod extends ParseMethod<ParseEmailResponse>
   Map<String, dynamic> toJson() => _$ParseEmailMethodToJson(this);
 
   @override
-  ParseEmailResponse deserializeResponse(Map<String, dynamic> json) {
+  ParseEmailResponse responseFromJson(Map<String, dynamic> json) {
     return ParseEmailResponse.deserialize(json);
   }
 }

@@ -59,7 +59,7 @@ class SetEmailMethod extends SetMethod<SetEmailResponse, Email> {
   }
 
   @override
-  SetEmailResponse deserializeResponse(Map<String, dynamic> json) {
+  SetEmailResponse responseFromJson(Map<String, dynamic> json) {
     return SetEmailResponse.deserialize(json);
   }
 }

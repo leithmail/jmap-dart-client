@@ -64,7 +64,7 @@ class SetIdentityMethod extends SetMethod<SetIdentityResponse, Identity> {
   }
 
   @override
-  SetIdentityResponse deserializeResponse(Map<String, dynamic> json) {
+  SetIdentityResponse responseFromJson(Map<String, dynamic> json) {
     return SetIdentityResponse.deserialize(json);
   }
 }

@@ -44,7 +44,7 @@ class GetEmailMethod extends GetMethod<GetEmailResponse>
   Map<String, dynamic> toJson() => _$GetEmailMethodToJson(this);
 
   @override
-  GetEmailResponse deserializeResponse(Map<String, dynamic> json) {
+  GetEmailResponse responseFromJson(Map<String, dynamic> json) {
     return GetEmailResponse.deserialize(json);
   }
 }

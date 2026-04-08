@@ -40,7 +40,7 @@ class GetMailboxMethod extends GetMethod<GetMailboxResponse> {
   Map<String, dynamic> toJson() => _$GetMailboxMethodToJson(this);
 
   @override
-  GetMailboxResponse deserializeResponse(Map<String, dynamic> json) {
+  GetMailboxResponse responseFromJson(Map<String, dynamic> json) {
     return GetMailboxResponse.deserialize(json);
   }
 }

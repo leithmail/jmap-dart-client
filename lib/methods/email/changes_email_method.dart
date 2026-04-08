@@ -39,7 +39,7 @@ class ChangesEmailMethod extends ChangesMethod<ChangesEmailResponse> {
   Map<String, dynamic> toJson() => _$ChangesEmailMethodToJson(this);
 
   @override
-  ChangesEmailResponse deserializeResponse(Map<String, dynamic> json) {
+  ChangesEmailResponse responseFromJson(Map<String, dynamic> json) {
     return ChangesEmailResponse.fromJson(json);
   }
 }

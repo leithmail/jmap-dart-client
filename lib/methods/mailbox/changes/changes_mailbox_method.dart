@@ -38,7 +38,7 @@ class ChangesMailboxMethod extends ChangesMethod<ChangesMailboxResponse> {
   Map<String, dynamic> toJson() => _$ChangesMailboxMethodToJson(this);
 
   @override
-  ChangesMailboxResponse deserializeResponse(Map<String, dynamic> json) {
+  ChangesMailboxResponse responseFromJson(Map<String, dynamic> json) {
     return ChangesMailboxResponse.fromJson(json);
   }
 }

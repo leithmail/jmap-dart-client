@@ -35,7 +35,7 @@ class GetQuotaMethod extends GetMethod<GetQuotaResponse> {
   Map<String, dynamic> toJson() => _$GetQuotaMethodToJson(this);
 
   @override
-  GetQuotaResponse deserializeResponse(Map<String, dynamic> json) {
+  GetQuotaResponse responseFromJson(Map<String, dynamic> json) {
     return GetQuotaResponse.deserialize(json);
   }
 }

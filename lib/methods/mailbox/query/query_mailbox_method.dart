@@ -57,7 +57,7 @@ class QueryMailboxMethod extends QueryMethod<QueryMailboxResponse>
   }
 
   @override
-  QueryMailboxResponse deserializeResponse(Map<String, dynamic> json) {
+  QueryMailboxResponse responseFromJson(Map<String, dynamic> json) {
     return QueryMailboxResponse.fromJson(json);
   }
 }

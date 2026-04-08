@@ -39,7 +39,7 @@ class GetCalendarEventAttendanceMethod
       _$GetCalendarEventAttendanceMethodToJson(this);
 
   @override
-  GetCalendarEventAttendanceResponse deserializeResponse(
+  GetCalendarEventAttendanceResponse responseFromJson(
     Map<String, dynamic> json,
   ) {
     return GetCalendarEventAttendanceResponse.fromJson(json);

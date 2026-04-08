@@ -31,7 +31,7 @@ class GetPublicAssetMethod
   Map<String, dynamic> toJson() => _$GetPublicAssetMethodToJson(this);
 
   @override
-  GetPublicAssetResponse deserializeResponse(Map<String, dynamic> json) {
+  GetPublicAssetResponse responseFromJson(Map<String, dynamic> json) {
     return GetPublicAssetResponse.fromJson(json);
   }
 }

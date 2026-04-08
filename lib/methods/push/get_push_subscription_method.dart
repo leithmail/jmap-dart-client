@@ -31,7 +31,7 @@ class GetPushSubscriptionMethod
   Map<String, dynamic> toJson() => _$GetPushSubscriptionMethodToJson(this);
 
   @override
-  GetPushSubscriptionResponse deserializeResponse(Map<String, dynamic> json) {
+  GetPushSubscriptionResponse responseFromJson(Map<String, dynamic> json) {
     return GetPushSubscriptionResponse.deserialize(json);
   }
 }

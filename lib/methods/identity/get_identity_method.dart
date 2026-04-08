@@ -40,7 +40,7 @@ class GetIdentityMethod extends GetMethod<GetIdentityResponse> {
   Map<String, dynamic> toJson() => _$GetIdentityMethodToJson(this);
 
   @override
-  GetIdentityResponse deserializeResponse(Map<String, dynamic> json) {
+  GetIdentityResponse responseFromJson(Map<String, dynamic> json) {
     return GetIdentityResponse.deserialize(json);
   }
 }

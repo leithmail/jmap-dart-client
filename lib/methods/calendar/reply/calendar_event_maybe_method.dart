@@ -30,7 +30,7 @@ class CalendarEventMaybeMethod
   Map<String, dynamic> toJson() => _$CalendarEventMaybeMethodToJson(this);
 
   @override
-  CalendarEventMaybeResponse deserializeResponse(Map<String, dynamic> json) {
+  CalendarEventMaybeResponse responseFromJson(Map<String, dynamic> json) {
     return CalendarEventMaybeResponse.deserialize(json);
   }
 }

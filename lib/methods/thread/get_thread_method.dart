@@ -31,7 +31,7 @@ class GetThreadMethod extends GetMethod<GetThreadResponse> {
   Map<String, dynamic> toJson() => _$GetThreadMethodToJson(this);
 
   @override
-  GetThreadResponse deserializeResponse(Map<String, dynamic> json) {
+  GetThreadResponse responseFromJson(Map<String, dynamic> json) {
     return GetThreadResponse.fromJson(json);
   }
 }

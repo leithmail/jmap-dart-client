@@ -57,7 +57,7 @@ class SetPushSubscriptionMethod
   }
 
   @override
-  SetPushSubscriptionResponse deserializeResponse(Map<String, dynamic> json) {
+  SetPushSubscriptionResponse responseFromJson(Map<String, dynamic> json) {
     return SetPushSubscriptionResponse.deserialize(json);
   }
 }

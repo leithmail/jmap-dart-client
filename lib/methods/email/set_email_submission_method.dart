@@ -81,7 +81,7 @@ class SetEmailSubmissionMethod
   }
 
   @override
-  SetEmailSubmissionResponse deserializeResponse(Map<String, dynamic> json) {
+  SetEmailSubmissionResponse responseFromJson(Map<String, dynamic> json) {
     return SetEmailSubmissionResponse.deserialize(json);
   }
 }
