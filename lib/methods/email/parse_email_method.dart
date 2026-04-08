@@ -16,7 +16,7 @@ part 'parse_email_method.g.dart';
 @IdConverter()
 @UnsignedIntNullableConverter()
 @PropertiesConverter()
-@JsonSerializable(explicitToJson: true, includeIfNull: false)
+@JsonSerializable(includeIfNull: false)
 class ParseEmailMethod extends ParseMethod<ParseEmailResponse>
     with
         OptionalEmailBodyProperties,

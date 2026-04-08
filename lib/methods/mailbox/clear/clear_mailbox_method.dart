@@ -12,7 +12,7 @@ part 'clear_mailbox_method.g.dart';
 
 @AccountIdConverter()
 @MailboxIdConverter()
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class ClearMailboxMethod extends ClearMethod<ClearMailboxResponse> {
   final MailboxId mailboxId;
 

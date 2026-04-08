@@ -21,7 +21,7 @@ part 'recurrence_rule.g.dart';
 @UnsignedIntConverter()
 @RecurrenceRuleRScaleNullableConverter()
 @UTCDateNullableConverter()
-@JsonSerializable(explicitToJson: true, includeIfNull: false)
+@JsonSerializable(includeIfNull: false)
 class RecurrenceRule with EquatableMixin {
   final RecurrenceRuleFrequency? frequency;
   final RecurrenceRuleInterval? interval;

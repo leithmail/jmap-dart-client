@@ -18,7 +18,7 @@ part 'get_email_method.g.dart';
 @IdConverter()
 @AccountIdConverter()
 @PropertiesConverter()
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class GetEmailMethod extends GetMethod<GetEmailResponse>
     with
         OptionalEmailBodyProperties,

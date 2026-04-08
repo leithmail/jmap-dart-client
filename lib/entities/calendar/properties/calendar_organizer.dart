@@ -6,7 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'calendar_organizer.g.dart';
 
 @MailAddressNullableConverter()
-@JsonSerializable(explicitToJson: true, includeIfNull: false)
+@JsonSerializable(includeIfNull: false)
 class CalendarOrganizer with EquatableMixin {
   final String? name;
   final MailAddress? mailto;

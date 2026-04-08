@@ -14,7 +14,7 @@ part 'get_quota_method.g.dart';
 @IdConverter()
 @AccountIdConverter()
 @PropertiesConverter()
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class GetQuotaMethod extends GetMethod<GetQuotaResponse> {
   GetQuotaMethod(AccountId accountId) : super(accountId);
 

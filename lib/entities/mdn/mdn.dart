@@ -7,7 +7,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'mdn.g.dart';
 
 @EmailIdNullableConverter()
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class MDN with EquatableMixin {
   @JsonKey(includeIfNull: false)
   final EmailId? forEmailId;

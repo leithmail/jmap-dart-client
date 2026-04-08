@@ -14,7 +14,7 @@ part 'get_calendar_event_attendance_method.g.dart';
 @IdConverter()
 @AccountIdConverter()
 @PropertiesConverter()
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class GetCalendarEventAttendanceMethod
     extends GetMethod<GetCalendarEventAttendanceResponse> {
   GetCalendarEventAttendanceMethod(super.accountId, this.blobIds);

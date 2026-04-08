@@ -9,7 +9,7 @@ part 'vacation_response.g.dart';
 
 @VacationIdNullableConverter()
 @UTCDateNullableConverter()
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class VacationResponse with EquatableMixin {
   @JsonKey(includeIfNull: false)
   final VacationId? id;

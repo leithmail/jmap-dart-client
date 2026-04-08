@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'envelope.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class Envelope with EquatableMixin {
   final Address mailFrom;
   final Set<Address> rcptTo;

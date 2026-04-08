@@ -12,7 +12,7 @@ part 'quota.g.dart';
 @DataTypeConverter()
 @IdConverter()
 @UnsignedIntNullableConverter()
-@JsonSerializable(explicitToJson: true, includeIfNull: false)
+@JsonSerializable(includeIfNull: false)
 class Quota with EquatableMixin {
   final Id id;
   final ResourceType resourceType;

@@ -6,7 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'search_snippet.g.dart';
 
 @EmailIdConverter()
-@JsonSerializable(includeIfNull: false, explicitToJson: true)
+@JsonSerializable(includeIfNull: false)
 class SearchSnippet with EquatableMixin {
   final EmailId emailId;
   final String? subject;

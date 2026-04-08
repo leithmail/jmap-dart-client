@@ -6,7 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'set_error.g.dart';
 
 @ErrorTypeConverter()
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class SetError with EquatableMixin {
   static final forbidden = ErrorType("forbidden");
   static final overQuota = ErrorType("overQuota");

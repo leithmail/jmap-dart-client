@@ -28,7 +28,7 @@ part 'calendar_event.g.dart';
 @CalendarDurationNullableConverter()
 @EventIdNullableConverter()
 @CalendarAttendeeExtensionFieldsNullableConverter()
-@JsonSerializable(explicitToJson: true, includeIfNull: false)
+@JsonSerializable(includeIfNull: false)
 class CalendarEvent with EquatableMixin {
   @JsonKey(name: 'uid')
   final EventId? eventId;

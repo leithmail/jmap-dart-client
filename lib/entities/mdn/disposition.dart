@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'disposition.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class Disposition with EquatableMixin {
   final ActionMode actionMode;
   final SendingMode sendingMode;

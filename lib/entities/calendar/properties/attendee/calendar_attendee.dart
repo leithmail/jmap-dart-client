@@ -21,7 +21,7 @@ part 'calendar_attendee.g.dart';
 @CalendarAttendeeKindNullableConverter()
 @CalendarAttendeeMailToNullableConverter()
 @CalendarAttendeeNameNullableConverter()
-@JsonSerializable(explicitToJson: true, includeIfNull: false)
+@JsonSerializable(includeIfNull: false)
 class CalendarAttendee with EquatableMixin {
   final CalendarAttendeeName? name;
   final CalendarAttendeeMailTo? mailto;
