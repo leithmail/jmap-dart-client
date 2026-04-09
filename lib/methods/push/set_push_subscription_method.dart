@@ -15,10 +15,10 @@ class SetPushSubscriptionMethod
   SetPushSubscriptionMethod() : super();
 
   @override
-  MethodName get methodName => MethodName('PushSubscription/set');
+  MethodName methodName() => MethodName('PushSubscription/set');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapCore,
   };
 

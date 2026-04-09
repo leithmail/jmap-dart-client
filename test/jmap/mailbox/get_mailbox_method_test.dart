@@ -69,7 +69,7 @@ void main() {
       isSubscribed: IsSubscribed(false),
     );
 
-    test('get mailbox method and response parsing has team mailboxes', () async {
+    test('get mailbox method and response parsing', () async {
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
           "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
@@ -122,11 +122,7 @@ void main() {
           ],
         },
         expectedBody: {
-          "using": [
-            "urn:apache:james:params:jmap:mail:shares",
-            "urn:ietf:params:jmap:core",
-            "urn:ietf:params:jmap:mail",
-          ],
+          "using": ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail"],
           "methodCalls": [
             [
               "Mailbox/get",
@@ -153,9 +149,8 @@ void main() {
         getMailboxMethod,
       );
       final response =
-          await (requestBuilder..addUsings(
-                getMailboxMethod.requiredCapabilitiesSupportTeamMailboxes,
-              ))
+          await (requestBuilder
+                ..addUsings(getMailboxMethod.requiredCapabilities()))
               .build()
               .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 

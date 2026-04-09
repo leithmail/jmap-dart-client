@@ -16,7 +16,7 @@ void main() {
       sortOrder: UnsignedInt(99999),
     );
 
-    test('create new identity with sort order method and response parsing', () async {
+    test('create new identity with response parsing', () async {
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
           "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
@@ -40,7 +40,6 @@ void main() {
         },
         expectedBody: {
           "using": [
-            "urn:apache:james:params:jmap:mail:identity:sortorder",
             "urn:ietf:params:jmap:core",
             "urn:ietf:params:jmap:submission",
           ],
@@ -92,9 +91,8 @@ void main() {
         setIdentityMethod,
       );
       final response =
-          await (requestBuilder..addUsings(
-                setIdentityMethod.requiredCapabilitiesSupportSortOrder,
-              ))
+          await (requestBuilder
+                ..addUsings(setIdentityMethod.requiredCapabilities()))
               .build()
               .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
@@ -141,7 +139,6 @@ void main() {
             },
             expectedBody: {
               "using": [
-                "urn:apache:james:params:jmap:mail:identity:sortorder",
                 "urn:ietf:params:jmap:core",
                 "urn:ietf:params:jmap:submission",
               ],
@@ -199,9 +196,8 @@ void main() {
             setIdentityMethod,
           );
           final response =
-              await (requestBuilder..addUsings(
-                    setIdentityMethod.requiredCapabilitiesSupportSortOrder,
-                  ))
+              await (requestBuilder
+                    ..addUsings(setIdentityMethod.requiredCapabilities()))
                   .build()
                   .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 

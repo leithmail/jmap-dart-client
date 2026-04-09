@@ -41,7 +41,7 @@ void main() {
           "sessionState": "abcdefghij",
           "methodResponses": [
             [
-              method.methodName.value,
+              method.methodName().value,
               {
                 "accountId": accountId.id.value,
                 "newState": 'some-state',
@@ -53,13 +53,14 @@ void main() {
         },
         expectedBody: {
           "using":
-              method.requiredCapabilities
+              method
+                  .requiredCapabilities()
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              method.methodName.value,
+              method.methodName().value,
               {
                 "accountId": accountId.id.value,
                 "create": {createId.value: createObject.toJson()},
@@ -103,7 +104,7 @@ void main() {
           "sessionState": "abcdefghij",
           "methodResponses": [
             [
-              method.methodName.value,
+              method.methodName().value,
               {
                 "accountId": accountId.id.value,
                 "oldState": 'some-old-state',
@@ -121,13 +122,14 @@ void main() {
         },
         expectedBody: {
           "using":
-              method.requiredCapabilities
+              method
+                  .requiredCapabilities()
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              method.methodName.value,
+              method.methodName().value,
               {
                 "accountId": accountId.id.value,
                 "create": {createId.value: createObject.toJson()},
@@ -168,7 +170,7 @@ void main() {
           "sessionState": "abcdefghij",
           "methodResponses": [
             [
-              method.methodName.value,
+              method.methodName().value,
               {
                 "accountId": accountId.id.value,
                 "newState": 'some-state',
@@ -180,13 +182,14 @@ void main() {
         },
         expectedBody: {
           "using":
-              method.requiredCapabilities
+              method
+                  .requiredCapabilities()
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              method.methodName.value,
+              method.methodName().value,
               {
                 "accountId": accountId.id.value,
                 "destroy": [publicAsset.id?.value],
@@ -225,7 +228,7 @@ void main() {
           "sessionState": "abcdefghij",
           "methodResponses": [
             [
-              method.methodName.value,
+              method.methodName().value,
               {
                 "accountId": accountId.id.value,
                 "oldState": 'some-old-state',
@@ -243,13 +246,14 @@ void main() {
         },
         expectedBody: {
           "using":
-              method.requiredCapabilities
+              method
+                  .requiredCapabilities()
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              method.methodName.value,
+              method.methodName().value,
               {
                 "accountId": accountId.id.value,
                 "destroy": [publicAsset.id?.value],
@@ -297,7 +301,7 @@ void main() {
           "sessionState": "abcdefghij",
           "methodResponses": [
             [
-              method.methodName.value,
+              method.methodName().value,
               {
                 "accountId": accountId.id.value,
                 "newState": 'some-state',
@@ -309,13 +313,14 @@ void main() {
         },
         expectedBody: {
           "using":
-              method.requiredCapabilities
+              method
+                  .requiredCapabilities()
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              method.methodName.value,
+              method.methodName().value,
               {
                 "accountId": accountId.id.value,
                 "update": {publicAsset.id?.value: updateObject.toJson()},
@@ -358,7 +363,7 @@ void main() {
           "sessionState": "abcdefghij",
           "methodResponses": [
             [
-              method.methodName.value,
+              method.methodName().value,
               {
                 "accountId": accountId.id.value,
                 "oldState": 'some-old-state',
@@ -376,13 +381,14 @@ void main() {
         },
         expectedBody: {
           "using":
-              method.requiredCapabilities
+              method
+                  .requiredCapabilities()
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              method.methodName.value,
+              method.methodName().value,
               {
                 "accountId": accountId.id.value,
                 "update": {publicAsset.id?.value: updateObject.toJson()},

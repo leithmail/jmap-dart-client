@@ -16,12 +16,10 @@ class CalendarEventCounterAcceptMethod
   CalendarEventCounterAcceptMethod(super.accountId, {required super.blobIds});
 
   @override
-  @JsonKey(includeToJson: false)
-  MethodName get methodName => MethodName('CalendarEventCounter/accept');
+  MethodName methodName() => MethodName('CalendarEventCounter/accept');
 
   @override
-  @JsonKey(includeToJson: false)
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jamesCalendarEvent,
   };

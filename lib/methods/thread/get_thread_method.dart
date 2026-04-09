@@ -17,12 +17,10 @@ class GetThreadMethod extends GetMethod<GetThreadResponse> {
   GetThreadMethod(super.accountId);
 
   @override
-  @JsonKey(includeToJson: false)
-  MethodName get methodName => MethodName('Thread/get');
+  MethodName methodName() => MethodName('Thread/get');
 
   @override
-  @JsonKey(includeToJson: false)
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jmapMail,
   };

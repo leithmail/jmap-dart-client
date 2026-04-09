@@ -14,10 +14,10 @@ class SetMailboxMethod extends SetMethod<SetMailboxResponse, Mailbox>
   SetMailboxMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName get methodName => MethodName('Mailbox/set');
+  MethodName methodName() => MethodName('Mailbox/set');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapMail,
     CapabilityIdentifier.jmapCore,
   };

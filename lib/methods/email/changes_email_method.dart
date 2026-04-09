@@ -24,10 +24,10 @@ class ChangesEmailMethod extends ChangesMethod<ChangesEmailResponse> {
   }) : super(accountId, sinceState);
 
   @override
-  MethodName get methodName => MethodName('Email/changes');
+  MethodName methodName() => MethodName('Email/changes');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jmapMail,
   };

@@ -21,13 +21,14 @@ void main() {
 
   Map<String, dynamic> constructData(CalendarEventReplyMethod method) => {
     "using":
-        method.requiredCapabilities
+        method
+            .requiredCapabilities()
             .map((capability) => capability.value.toString())
             .toList()
           ..sort(),
     "methodCalls": [
       [
-        method.methodName.value,
+        method.methodName().value,
         {
           "accountId": accountId.id.value,
           "blobIds": blobIds.map((id) => id.value).toList(),
@@ -41,7 +42,7 @@ void main() {
     "sessionState": "abcdefghij",
     "methodResponses": [
       [
-        method.methodName.value,
+        method.methodName().value,
         {
           "accountId": accountId.id.value,
           "maybe": [successBlobId.value],

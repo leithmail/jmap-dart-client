@@ -13,10 +13,10 @@ class QueryMailboxMethod extends QueryMethod<QueryMailboxResponse>
   QueryMailboxMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName get methodName => MethodName('Mailbox/query');
+  MethodName methodName() => MethodName('Mailbox/query');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jmapMail,
   };

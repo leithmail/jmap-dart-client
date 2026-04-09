@@ -1,6 +1,5 @@
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/request/get_method.dart';
-import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/methods/mailbox/get/get_mailbox_response.dart';
@@ -14,27 +13,18 @@ part 'get_mailbox_method.g.dart';
 @IdConverter()
 @AccountIdConverter()
 @PropertiesConverter()
-@JsonSerializable()
+@JsonSerializable(createFactory: false)
 class GetMailboxMethod extends GetMethod<GetMailboxResponse> {
   GetMailboxMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName get methodName => MethodName('Mailbox/get');
+  MethodName methodName() => MethodName('Mailbox/get');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jmapMail,
   };
-
-  Set<CapabilityIdentifier> get requiredCapabilitiesSupportTeamMailboxes => {
-    CapabilityIdentifier.jmapCore,
-    CapabilityIdentifier.jmapMail,
-    CapabilityIdentifier.jmapTeamMailboxes,
-  };
-
-  factory GetMailboxMethod.fromJson(Map<String, dynamic> json) =>
-      _$GetMailboxMethodFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$GetMailboxMethodToJson(this);

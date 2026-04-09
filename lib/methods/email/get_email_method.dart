@@ -1,6 +1,5 @@
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/request/get_method.dart';
-import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
@@ -18,7 +17,7 @@ part 'get_email_method.g.dart';
 @IdConverter()
 @AccountIdConverter()
 @PropertiesConverter()
-@JsonSerializable()
+@JsonSerializable(createFactory: false)
 class GetEmailMethod extends GetMethod<GetEmailResponse>
     with
         OptionalEmailBodyProperties,
@@ -29,16 +28,13 @@ class GetEmailMethod extends GetMethod<GetEmailResponse>
   GetEmailMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName get methodName => MethodName('Email/get');
+  MethodName methodName() => MethodName('Email/get');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jmapMail,
   };
-
-  factory GetEmailMethod.fromJson(Map<String, dynamic> json) =>
-      _$GetEmailMethodFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$GetEmailMethodToJson(this);

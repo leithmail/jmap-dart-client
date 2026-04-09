@@ -1,5 +1,5 @@
 import 'package:jmap_dart_client/api/method/method_response.dart';
-import 'package:jmap_dart_client/api/method/result_references.dart';
+import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/src/utils/utils.dart';
 
@@ -14,7 +14,7 @@ class RequestBuilder {
   final Set<MethodCallId> _methodCallIds = {};
 
   RequestInvocation<R, F>
-  addInvocation<R extends MethodResponse, F extends ResultReferences>(
+  addInvocation<R extends MethodResponse, F extends ResultReferenceTree>(
     Method<R, F> method, {
     MethodCallId? methodCallId,
     bool withRequiredCapabilities = true,
@@ -26,7 +26,7 @@ class RequestBuilder {
     );
     _addMethod(callId, invocation);
     if (withRequiredCapabilities) {
-      addUsings(method.requiredCapabilities);
+      addUsings(method.requiredCapabilities());
     }
     return invocation;
   }

@@ -17,10 +17,10 @@ class MDNSendMethod extends SendMethod<MDNSendResponse, MDN>
   MDNSendMethod(super.accountId, super.send, this.identityId);
 
   @override
-  MethodName get methodName => MethodName('MDN/send');
+  MethodName methodName() => MethodName('MDN/send');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jmapMail,
     CapabilityIdentifier.jmapMdn,

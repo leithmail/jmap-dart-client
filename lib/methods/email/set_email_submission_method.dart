@@ -18,10 +18,10 @@ class SetEmailSubmissionMethod
   SetEmailSubmissionMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName get methodName => MethodName('EmailSubmission/set');
+  MethodName methodName() => MethodName('EmailSubmission/set');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapSubmission,
     CapabilityIdentifier.jmapMail,
     CapabilityIdentifier.jmapCore,

@@ -12,10 +12,10 @@ class SetPublicAssetMethod
   SetPublicAssetMethod(super.accountId);
 
   @override
-  MethodName get methodName => MethodName('PublicAsset/set');
+  MethodName methodName() => MethodName('PublicAsset/set');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jmapPublicAsset,
   };

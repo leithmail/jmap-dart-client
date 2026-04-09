@@ -15,7 +15,7 @@ class RequestInvocationConverter
   @override
   List toJson(RequestInvocation object) {
     List<dynamic> list = List.empty(growable: true);
-    list.add(object.method.methodName.value);
+    list.add(object.method.methodName().value);
     list.add(object.method.toJson());
     list.add(object.methodCallId.value);
     return list;

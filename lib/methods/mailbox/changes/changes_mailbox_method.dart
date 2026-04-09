@@ -24,10 +24,10 @@ class ChangesMailboxMethod extends ChangesMethod<ChangesMailboxResponse> {
   }) : super(accountId, sinceState, maxChanges: maxChanges);
 
   @override
-  MethodName get methodName => MethodName('Mailbox/changes');
+  MethodName methodName() => MethodName('Mailbox/changes');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapMail,
   };
 

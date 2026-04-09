@@ -60,7 +60,6 @@ void main() {
         },
         expectedBody: {
           "using": [
-            "urn:apache:james:params:jmap:mail:identity:sortorder",
             "urn:ietf:params:jmap:core",
             "urn:ietf:params:jmap:submission",
           ],
@@ -89,9 +88,8 @@ void main() {
         getIdentityMethod,
       );
       final response =
-          await (requestBuilder..addUsings(
-                getIdentityMethod.requiredCapabilitiesSupportSortOrder,
-              ))
+          await (requestBuilder
+                ..addUsings(getIdentityMethod.requiredCapabilities()))
               .build()
               .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 

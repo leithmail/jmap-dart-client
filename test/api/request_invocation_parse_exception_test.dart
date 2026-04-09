@@ -1,10 +1,4 @@
-import 'package:jmap_dart_client/api/errors/error_method_response.dart';
-import 'package:jmap_dart_client/api/errors/exceptions.dart';
-import 'package:jmap_dart_client/api/method/method.dart';
-import 'package:jmap_dart_client/api/method/result_references.dart';
-import 'package:jmap_dart_client/api/request/request_invocation.dart';
-import 'package:jmap_dart_client/api/response/response.dart';
-import 'package:jmap_dart_client/api/response/response_invocation.dart';
+import 'package:jmap_dart_client/api/api.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:test/test.dart';
@@ -17,7 +11,7 @@ void main() {
         () {
           // arrange
           final requestInvocation =
-              RequestInvocation<ErrorMethodResponse, ResultReferences>(
+              RequestInvocation<ErrorMethodResponse, ResultReferenceTree>(
                 _FakeErrorMethod(),
                 MethodCallId('c99'),
               );
@@ -47,7 +41,7 @@ void main() {
       test('throws JmapMethodErrorException when server returns an error', () {
         // arrange
         final requestInvocation =
-            RequestInvocation<ErrorMethodResponse, ResultReferences>(
+            RequestInvocation<ErrorMethodResponse, ResultReferenceTree>(
               _FakeErrorMethod(),
               MethodCallId('c1'),
             );
@@ -68,12 +62,13 @@ void main() {
   });
 }
 
-class _FakeErrorMethod extends Method<ErrorMethodResponse, ResultReferences> {
+class _FakeErrorMethod
+    extends Method<ErrorMethodResponse, ResultReferenceTree> {
   @override
-  MethodName get methodName => MethodName('Email/get');
+  MethodName methodName() => MethodName('Email/get');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {};
+  Set<CapabilityIdentifier> requiredCapabilities() => {};
 
   @override
   Map<String, dynamic> toJson() => <String, dynamic>{};
@@ -84,6 +79,12 @@ class _FakeErrorMethod extends Method<ErrorMethodResponse, ResultReferences> {
   }
 
   @override
-  ResultReferences resultReferences(MethodCallId resultOf) =>
-      ResultReferences(resultOf: resultOf, name: methodName);
+  ResultReferenceTree resultReferenceTree(MethodCallId resultOf) =>
+      ResultReferenceTree(
+        ResultReference(
+          resultOf: resultOf,
+          name: methodName(),
+          path: ReferencePath.root,
+        ),
+      );
 }

@@ -170,7 +170,7 @@ void main() {
       final getMailboxMethodForDestroyed = GetMailboxMethod(accountId)
         ..addReferenceIds(
           changesMailboxInvocation,
-          ReferencePath('/destroyed/*'),
+          ReferencePath.root.append('destroyed').each,
         );
       final getMailboxForDestroyInvocation = jmapRequestBuilder.addInvocation(
         getMailboxMethodForDestroyed,

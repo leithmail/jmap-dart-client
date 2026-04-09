@@ -1,6 +1,5 @@
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/request/get_method.dart';
-import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/methods/quota/get_quota_response.dart';
@@ -14,22 +13,19 @@ part 'get_quota_method.g.dart';
 @IdConverter()
 @AccountIdConverter()
 @PropertiesConverter()
-@JsonSerializable()
+@JsonSerializable(createFactory: false)
 class GetQuotaMethod extends GetMethod<GetQuotaResponse> {
   GetQuotaMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName get methodName => MethodName('Quota/get');
+  MethodName methodName() => MethodName('Quota/get');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jmapMail,
     CapabilityIdentifier.jmapQuota,
   };
-
-  factory GetQuotaMethod.fromJson(Map<String, dynamic> json) =>
-      _$GetQuotaMethodFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$GetQuotaMethodToJson(this);

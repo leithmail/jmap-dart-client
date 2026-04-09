@@ -1,6 +1,5 @@
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/request/get_method.dart';
-import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/methods/vacation/get_vacation_response.dart';
@@ -14,21 +13,18 @@ part 'get_vacation_method.g.dart';
 @IdConverter()
 @AccountIdConverter()
 @PropertiesConverter()
-@JsonSerializable()
+@JsonSerializable(createFactory: false)
 class GetVacationMethod extends GetMethod<GetVacationResponse> {
   GetVacationMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName get methodName => MethodName('VacationResponse/get');
+  MethodName methodName() => MethodName('VacationResponse/get');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jmapVacationResponse,
   };
-
-  factory GetVacationMethod.fromJson(Map<String, dynamic> json) =>
-      _$GetVacationMethodFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$GetVacationMethodToJson(this);

@@ -1,6 +1,5 @@
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/request/get_method.dart';
-import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/methods/identity/get_identity_response.dart';
@@ -14,27 +13,18 @@ part 'get_identity_method.g.dart';
 @IdConverter()
 @AccountIdConverter()
 @PropertiesConverter()
-@JsonSerializable()
+@JsonSerializable(createFactory: false)
 class GetIdentityMethod extends GetMethod<GetIdentityResponse> {
   GetIdentityMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName get methodName => MethodName('Identity/get');
+  MethodName methodName() => MethodName('Identity/get');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jmapSubmission,
   };
-
-  Set<CapabilityIdentifier> get requiredCapabilitiesSupportSortOrder => {
-    CapabilityIdentifier.jmapCore,
-    CapabilityIdentifier.jmapSubmission,
-    CapabilityIdentifier.jamesSortOrder,
-  };
-
-  factory GetIdentityMethod.fromJson(Map<String, dynamic> json) =>
-      _$GetIdentityMethodFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$GetIdentityMethodToJson(this);

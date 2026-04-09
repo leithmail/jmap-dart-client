@@ -40,13 +40,14 @@ void main() {
         },
         expectedBody: {
           "using":
-              clearMailboxMethod.requiredCapabilities
+              clearMailboxMethod
+                  .requiredCapabilities()
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              clearMailboxMethod.methodName.value,
+              clearMailboxMethod.methodName().value,
               {
                 "accountId": unknownAccountId.id.value,
                 "mailboxId": bobTrashId.id.value,
@@ -111,7 +112,7 @@ void main() {
                 ..sort(),
           "methodCalls": [
             [
-              clearMailboxMethod.methodName.value,
+              clearMailboxMethod.methodName().value,
               {
                 "accountId": bobAccountId.id.value,
                 "mailboxId": bobTrashId.id.value,
@@ -167,13 +168,14 @@ void main() {
         },
         expectedBody: {
           "using":
-              clearMailboxMethod.requiredCapabilities
+              clearMailboxMethod
+                  .requiredCapabilities()
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              clearMailboxMethod.methodName.value,
+              clearMailboxMethod.methodName().value,
               {
                 "accountId": bobAccountId.id.value,
                 "mailboxId": bobTrashId.id.value,
@@ -227,13 +229,14 @@ void main() {
         },
         expectedBody: {
           "using":
-              clearMailboxMethod.requiredCapabilities
+              clearMailboxMethod
+                  .requiredCapabilities()
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              clearMailboxMethod.methodName.value,
+              clearMailboxMethod.methodName().value,
               {
                 "accountId": bobAccountId.id.value,
                 "mailboxId": invalidMailboxId.id.value,
@@ -289,13 +292,14 @@ void main() {
         },
         expectedBody: {
           "using":
-              clearMailboxMethod.requiredCapabilities
+              clearMailboxMethod
+                  .requiredCapabilities()
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              clearMailboxMethod.methodName.value,
+              clearMailboxMethod.methodName().value,
               {
                 "accountId": bobAccountId.id.value,
                 "mailboxId": notFoundMailboxId.id.value,
@@ -352,13 +356,14 @@ void main() {
         },
         expectedBody: {
           "using":
-              clearMailboxMethod.requiredCapabilities
+              clearMailboxMethod
+                  .requiredCapabilities()
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              clearMailboxMethod.methodName.value,
+              clearMailboxMethod.methodName().value,
               {
                 "accountId": bobAccountId.id.value,
                 "mailboxId": bobTrashId.id.value,
@@ -415,13 +420,14 @@ void main() {
         },
         expectedBody: {
           "using":
-              clearMailboxMethod.requiredCapabilitiesSupportTeamMailboxes
+              clearMailboxMethod
+                  .requiredCapabilities()
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              clearMailboxMethod.methodName.value,
+              clearMailboxMethod.methodName().value,
               {
                 "accountId": bobAccountId.id.value,
                 "mailboxId": teamMailboxId.id.value,
@@ -439,9 +445,8 @@ void main() {
 
       // Act
       final responseObject =
-          await (requestBuilder..addUsings(
-                clearMailboxMethod.requiredCapabilitiesSupportTeamMailboxes,
-              ))
+          await (requestBuilder
+                ..addUsings(clearMailboxMethod.requiredCapabilities()))
               .build()
               .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
@@ -490,7 +495,7 @@ void main() {
                 ..sort(),
           "methodCalls": [
             [
-              clearMailboxMethod.methodName.value,
+              clearMailboxMethod.methodName().value,
               {
                 "accountId": bobAccountId.id.value,
                 "mailboxId": teamMailboxId.id.value,

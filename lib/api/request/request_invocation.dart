@@ -6,20 +6,26 @@ import 'package:jmap_dart_client/api/errors/error_type.dart';
 import 'package:jmap_dart_client/api/errors/exceptions.dart';
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/method_response.dart';
-import 'package:jmap_dart_client/api/method/result_references.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/api/response/response.dart';
 import 'package:jmap_dart_client/api/response/response_invocation.dart';
 
-class RequestInvocation<R extends MethodResponse, F extends ResultReferences> {
+class RequestInvocation<
+  R extends MethodResponse,
+  F extends ResultReferenceTree
+> {
   final Method<R, F> method;
   final MethodCallId methodCallId;
 
   RequestInvocation(this.method, this.methodCallId);
 
   ResultReference createResultReference(ReferencePath path) {
-    return ResultReference(methodCallId, method.methodName, path);
+    return ResultReference(
+      resultOf: methodCallId,
+      name: method.methodName(),
+      path: path,
+    );
   }
 
   R parseResponse(Response response) {
@@ -41,7 +47,7 @@ class RequestInvocation<R extends MethodResponse, F extends ResultReferences> {
     return method.responseFromJson(matchedResponse.arguments.value);
   }
 
-  F resultReferences() => method.resultReferences(methodCallId);
+  F resultReferenceTree() => method.resultReferenceTree(methodCallId);
 
   static bool _validMethodResponseName(
     ResponseInvocation responseInvocation,

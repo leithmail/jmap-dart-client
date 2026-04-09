@@ -17,12 +17,10 @@ class GetPublicAssetMethod
   GetPublicAssetMethod(super.accountId);
 
   @override
-  @JsonKey(includeToJson: false)
-  MethodName get methodName => MethodName('PublicAsset/get');
+  MethodName methodName() => MethodName('PublicAsset/get');
 
   @override
-  @JsonKey(includeToJson: false)
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jmapPublicAsset,
   };

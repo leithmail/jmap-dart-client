@@ -1,6 +1,5 @@
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/method_response.dart';
-import 'package:jmap_dart_client/api/method/result_references.dart';
 import 'package:jmap_dart_client/api/request/patch_object.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
@@ -22,7 +21,7 @@ abstract class SetMethod<R extends MethodResponse, T>
 }
 
 abstract class SetMethodNoNeedAccountId<R extends MethodResponse, T>
-    extends Method<R, ResultReferences>
+    extends Method<R, ResultReferenceTree>
     with
         OptionalCreate<T>,
         OptionalDestroy,
@@ -31,8 +30,14 @@ abstract class SetMethodNoNeedAccountId<R extends MethodResponse, T>
   SetMethodNoNeedAccountId() : super();
 
   @override
-  ResultReferences resultReferences(MethodCallId resultOf) =>
-      ResultReferences(resultOf: resultOf, name: methodName);
+  ResultReferenceTree resultReferenceTree(MethodCallId resultOf) =>
+      ResultReferenceTree(
+        ResultReference(
+          name: methodName(),
+          resultOf: resultOf,
+          path: ReferencePath.root,
+        ),
+      );
 }
 
 mixin OptionalIfInState {

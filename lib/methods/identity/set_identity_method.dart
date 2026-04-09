@@ -12,18 +12,12 @@ class SetIdentityMethod extends SetMethod<SetIdentityResponse, Identity> {
   SetIdentityMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName get methodName => MethodName('Identity/set');
+  MethodName methodName() => MethodName('Identity/set');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jmapSubmission,
-  };
-
-  Set<CapabilityIdentifier> get requiredCapabilitiesSupportSortOrder => {
-    CapabilityIdentifier.jmapCore,
-    CapabilityIdentifier.jmapSubmission,
-    CapabilityIdentifier.jamesSortOrder,
   };
 
   @override

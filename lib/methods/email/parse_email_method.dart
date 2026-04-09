@@ -27,10 +27,10 @@ class ParseEmailMethod extends ParseMethod<ParseEmailResponse>
   ParseEmailMethod(super.accountId, super.blobIds);
 
   @override
-  MethodName get methodName => MethodName('Email/parse');
+  MethodName methodName() => MethodName('Email/parse');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jmapMail,
   };

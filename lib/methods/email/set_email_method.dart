@@ -12,10 +12,10 @@ class SetEmailMethod extends SetMethod<SetEmailResponse, Email> {
   SetEmailMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName get methodName => MethodName('Email/set');
+  MethodName methodName() => MethodName('Email/set');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapMail,
     CapabilityIdentifier.jmapCore,
   };

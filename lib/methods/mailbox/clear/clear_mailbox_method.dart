@@ -19,19 +19,12 @@ class ClearMailboxMethod extends ClearMethod<ClearMailboxResponse> {
   ClearMailboxMethod(AccountId accountId, this.mailboxId) : super(accountId);
 
   @override
-  MethodName get methodName => MethodName('Mailbox/clear');
+  MethodName methodName() => MethodName('Mailbox/clear');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jmapMail,
-    CapabilityIdentifier.jmapMailboxClear,
-  };
-
-  Set<CapabilityIdentifier> get requiredCapabilitiesSupportTeamMailboxes => {
-    CapabilityIdentifier.jmapCore,
-    CapabilityIdentifier.jmapMail,
-    CapabilityIdentifier.jmapTeamMailboxes,
     CapabilityIdentifier.jmapMailboxClear,
   };
 

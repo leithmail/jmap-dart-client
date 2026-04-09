@@ -1,12 +1,7 @@
-import 'package:jmap_dart_client/api/method/result_references.dart';
 import 'package:jmap_dart_client/jmap_dart_client.dart';
 import 'package:test/test.dart';
 
-class TestResultReferences extends ResultReferences {
-  final String blabla = "bla";
-
-  TestResultReferences({required super.resultOf, required super.name});
-}
+import 'test_result_reference_tree.dart';
 
 class TestMethodResponse extends MethodResponse {
   final int value;
@@ -14,12 +9,12 @@ class TestMethodResponse extends MethodResponse {
   TestMethodResponse({required this.value});
 }
 
-class TestMethod extends Method<TestMethodResponse, TestResultReferences> {
+class TestMethod extends Method<TestMethodResponse, TestResultReferenceTree> {
   @override
-  MethodName get methodName => MethodName('test');
+  MethodName methodName() => MethodName('test');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {};
+  Set<CapabilityIdentifier> requiredCapabilities() => {};
 
   @override
   TestMethodResponse responseFromJson(Map<String, dynamic> json) {
@@ -32,8 +27,14 @@ class TestMethod extends Method<TestMethodResponse, TestResultReferences> {
   }
 
   @override
-  TestResultReferences resultReferences(MethodCallId resultOf) =>
-      TestResultReferences(resultOf: resultOf, name: methodName);
+  TestResultReferenceTree resultReferenceTree(MethodCallId resultOf) =>
+      TestResultReferenceTree(
+        ResultReference(
+          resultOf: resultOf,
+          name: methodName(),
+          path: ReferencePath.root,
+        ),
+      );
 }
 
 void main() {
@@ -41,7 +42,7 @@ void main() {
     final requestBuilder = RequestBuilder();
     final testMethod = TestMethod();
     final testInvocation = requestBuilder.addInvocation(testMethod);
-    testInvocation.resultReferences().blabla;
+    testInvocation.resultReferenceTree().blabla.another;
 
     expect(true, isTrue);
   });

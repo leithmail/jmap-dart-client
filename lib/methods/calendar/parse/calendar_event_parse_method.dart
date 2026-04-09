@@ -10,10 +10,10 @@ class CalendarEventParseMethod extends ParseMethod<CalendarEventParseResponse> {
   CalendarEventParseMethod(super.accountId, super.blobIds);
 
   @override
-  MethodName get methodName => MethodName('CalendarEvent/parse');
+  MethodName methodName() => MethodName('CalendarEvent/parse');
 
   @override
-  Set<CapabilityIdentifier> get requiredCapabilities => {
+  Set<CapabilityIdentifier> requiredCapabilities() => {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jamesCalendarEvent,
   };
