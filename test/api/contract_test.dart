@@ -42,7 +42,10 @@ void main() {
     final requestBuilder = RequestBuilder();
     final testMethod = TestMethod();
     final testInvocation = requestBuilder.addInvocation(testMethod);
-    testInvocation.resultReferenceTree().example.another;
+    testInvocation.resultReferenceTree().list.$ref;
+    testInvocation.resultReferenceTree().list.$each.ids.$each;
+    testInvocation.resultReferenceTree().simpleList.$ref;
+    testInvocation.resultReferenceTree().simpleList.$each;
 
     expect(true, isTrue);
   });

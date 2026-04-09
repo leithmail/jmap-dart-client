@@ -1,32 +1,75 @@
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:meta/meta.dart';
 
-/// A typed tree for navigating the response shape of a previous JMAP method
-/// call and producing [ResultReference] values for use in subsequent method
-/// calls within the same request.
+/// Base class for typed navigation trees over a JMAP method response.
 ///
-/// Subclasses are generated for each [MethodResponse] type and mirror its
-/// field structure. Leaf fields are [ResultReference] instances; nested
-/// objects are sub-[ResultReferenceTree] instances; arrays are
-/// [ResultReferenceArray] instances exposing [ResultReferenceArray.each].
+/// Extend this class to describe the shape of a response, with three kinds
+/// of fields:
 ///
-/// Example:
+/// - **Scalar leaf** — a [ResultReference] for a primitive value:
+///   ```dart
+///   late final ResultReference id;
+///   id = $('id');
+///   ```
+///
+/// - **Nested object** — a sub-[ResultReferenceTree] for an object field:
+///   ```dart
+///   late final AddressResultReferenceTree from;
+///   from = AddressResultReferenceTree($('from'));
+///   ```
+///
+/// - **Array** — a [ResultReferenceArray] for an array field:
+///   ```dart
+///   late final ResultReferenceArray<ResultReference> tags;
+///   tags = ResultReferenceArray($('tags'), (ref) => ref);
+///   ```
+///
+/// Use [$ref] to obtain the [ResultReference] for this node's path as-is,
+/// and [$] to build child paths in subclass constructors.
+///
+/// Full example:
 /// ```dart
-/// // Given a generated tree for Email/query response:
-/// class QueryEmailResultReferenceTree extends ResultReferenceTree {
-///   late final ResultReference ids;
+/// class AddressResultReferenceTree extends ResultReferenceTree {
+///   late final ResultReference email;
+///   late final ResultReference name;
 ///
-///   QueryEmailResultReferenceTree(super.resultReference) {
-///     ids = $('ids');
+///   AddressResultReferenceTree(super.resultReference) {
+///     email = $('email');
+///     name  = $('name');
 ///   }
 /// }
 ///
-/// // Use it to chain Email/query → Email/get in a single request:
-/// final queryInvocation = requestBuilder.addInvocation(queryEmailMethod);
+/// class EmailResultReferenceTree extends ResultReferenceTree {
+///   late final ResultReference id;
+///   late final ResultReference subject;
+///   late final AddressResultReferenceTree from;
+///   late final ResultReferenceArray<ResultReference> tags;
 ///
-/// final getEmailMethod = GetEmailMethod()
-///   ..accountId.set(accountId)
-///   ..ids.ref(queryInvocation.resultReferenceTree.ids);
+///   EmailResultReferenceTree(super.resultReference) {
+///     id      = $('id');
+///     subject = $('subject');
+///     from    = AddressResultReferenceTree($('from'));
+///     tags    = ResultReferenceArray($('tags'), (ref) => ref);
+///   }
+/// }
+///
+/// class GetEmailResultReferenceTree extends ResultReferenceTree {
+///   late final ResultReferenceArray<EmailResultReferenceTree> list;
+///   late final ResultReferenceArray<ResultReference> notFound;
+///
+///   GetEmailResultReferenceTree(super.resultReference) {
+///     list     = ResultReferenceArray($('list'), EmailResultReferenceTree.new);
+///     notFound = ResultReferenceArray($('notFound'), (ref) => ref);
+///   }
+/// }
+///
+/// // Usage:
+/// tree.list.$ref                 // /list
+/// tree.list.$each.id             // /list/*/id
+/// tree.list.$each.from.email     // /list/*/from/email
+/// tree.list.$each.tags.$ref      // /list/*/tags
+/// tree.list.$each.tags.$each     // /list/*/tags/*
+/// tree.notFound.$ref             // /notFound
 /// ```
 class ResultReferenceTree {
   final ResultReference _resultReference;
@@ -34,28 +77,46 @@ class ResultReferenceTree {
   ResultReferenceTree(ResultReference resultReference)
     : _resultReference = resultReference;
 
-  /// Produces a [ResultReference] pointing to [ref] within this node's
-  /// path. For use by subclasses only — call this in the constructor to
-  /// initialise leaf and sub-tree fields.
-  ///
-  /// Example:
-  /// ```dart
-  /// class MyTree extends ResultReferenceTree {
-  ///   late final ResultReference id;
-  ///   late final MySubTree nested;
-  ///
-  ///   MyTree(super.resultReference) {
-  ///     id     = $('id');
-  ///     nested = MySubTree($('nested'));
-  ///   }
-  /// }
-  /// ```
+  /// Appends [segment] to the current path, returning a [ResultReference]
+  /// for use as a scalar leaf or as input to a sub-tree constructor.
+  /// For use by subclasses only.
   @protected
-  ResultReference $(String ref) {
+  @nonVirtual
+  ResultReference $(String segment) {
     return ResultReference(
       resultOf: _resultReference.resultOf,
       name: _resultReference.name,
-      path: _resultReference.path.append(ref),
+      path: _resultReference.path.append(segment),
     );
+  }
+
+  /// The [ResultReference] for this node's path as-is.
+  @nonVirtual
+  ResultReference get $ref => _resultReference;
+}
+
+/// A [ResultReferenceTree] node representing an array field.
+///
+/// [T] is the element type after traversal via [$each]:
+/// - [ResultReference] for scalar arrays (`String[]`, `Id[]`, etc.)
+/// - A sub-[ResultReferenceTree] for arrays of objects
+///
+/// ```dart
+/// // Scalar array:
+/// ResultReferenceArray<ResultReference>($('ids'), (ref) => ref)
+///
+/// // Array of objects:
+/// ResultReferenceArray<EmailResultReferenceTree>($('list'), EmailResultReferenceTree.new)
+/// ```
+class ResultReferenceArray<T> extends ResultReferenceTree {
+  /// Traverses into each element by appending `*` to the current path.
+  @nonVirtual
+  late final T $each;
+
+  ResultReferenceArray(
+    super.resultReference,
+    T Function(ResultReference) eachFactory,
+  ) {
+    $each = eachFactory($('*'));
   }
 }
