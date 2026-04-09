@@ -119,7 +119,7 @@ void main() {
                       "#ids": {
                         "resultOf": "c2",
                         "name": "Mailbox/query",
-                        "path": "ids/*",
+                        "path": "/ids/*",
                       },
                     },
                     "c3",
