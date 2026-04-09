@@ -12,6 +12,6 @@ extension type ReferencePath._(String _value) {
 
   ReferencePath get each => append('*');
 
-  String toPointer() => _value.isEmpty ? '' : '/$_value';
+  String toPointer() => _value;
   String toJson() => toPointer();
 }

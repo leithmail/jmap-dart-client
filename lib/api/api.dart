@@ -33,6 +33,7 @@ export 'request/reference_prefix.dart';
 export 'request/request.dart';
 export 'request/request_invocation.dart';
 export 'request/result_reference.dart';
+export 'request/result_reference_tree.dart';
 export 'request_builder.dart';
 export 'response/response.dart';
 export 'response/response_invocation.dart';
