@@ -23,18 +23,3 @@ class ResultReference {
 
   Map<String, dynamic> toJson() => _$ResultReferenceToJson(this);
 }
-
-class ResultReferenceTree {
-  final ResultReference _resultReference;
-
-  ResultReferenceTree(ResultReference resultReference)
-    : _resultReference = resultReference;
-
-  ResultReference child(String pathSegment) {
-    return ResultReference(
-      resultOf: _resultReference.resultOf,
-      name: _resultReference.name,
-      path: _resultReference.path.append(pathSegment),
-    );
-  }
-}

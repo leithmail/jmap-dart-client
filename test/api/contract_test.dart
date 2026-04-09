@@ -42,7 +42,7 @@ void main() {
     final requestBuilder = RequestBuilder();
     final testMethod = TestMethod();
     final testInvocation = requestBuilder.addInvocation(testMethod);
-    testInvocation.resultReferenceTree().blabla.another;
+    testInvocation.resultReferenceTree().example.another;
 
     expect(true, isTrue);
   });

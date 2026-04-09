@@ -1,4 +1,5 @@
 import 'package:jmap_dart_client/api/api.dart';
+import 'package:jmap_dart_client/api/request/result_reference_tree.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:test/test.dart';

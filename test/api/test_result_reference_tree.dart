@@ -1,16 +1,20 @@
 import 'package:jmap_dart_client/api/request/result_reference.dart';
+import 'package:jmap_dart_client/api/request/result_reference_tree.dart';
 
-class _BlalaRef extends ResultReferenceTree {
-  final String value = "bla";
-  final String another = "bla";
+class _ExampleReference extends ResultReferenceTree {
+  late final ResultReference first;
+  late final ResultReference another;
 
-  _BlalaRef(super.resultReference);
+  _ExampleReference(super.resultReference) {
+    first = $("first");
+    another = $("another");
+  }
 }
 
 class TestResultReferenceTree extends ResultReferenceTree {
-  late final _BlalaRef blabla;
+  late final _ExampleReference example;
 
   TestResultReferenceTree(super.resultReference) {
-    blabla = _BlalaRef(child("blabla"));
+    example = _ExampleReference($("example"));
   }
 }
