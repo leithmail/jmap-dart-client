@@ -1,17 +1,17 @@
-import 'package:equatable/equatable.dart';
+extension type ReferencePath._(String _value) {
+  static final root = ReferencePath._('');
 
-class ReferencePath with EquatableMixin {
-  static ReferencePath idsPath = ReferencePath('/ids/*');
-  static ReferencePath createdPath = ReferencePath('/created/*');
-  static ReferencePath updatedPath = ReferencePath('/updated/*');
-  static ReferencePath updatedPropertiesPath = ReferencePath(
-    '/updatedProperties',
+  static ReferencePath idsPath = ReferencePath.root.append('ids').each;
+  static ReferencePath createdPath = ReferencePath.root.append('created').each;
+  static ReferencePath updatedPath = ReferencePath.root.append('updated').each;
+  static ReferencePath updatedPropertiesPath = ReferencePath.root.append(
+    'updatedProperties',
   );
 
-  final String value;
+  ReferencePath append(String segment) => ReferencePath._('$_value/$segment');
 
-  ReferencePath(this.value);
+  ReferencePath get each => append('*');
 
-  @override
-  List<Object?> get props => [value];
+  String toPointer() => _value.isEmpty ? '' : '/$_value';
+  String toJson() => toPointer();
 }
