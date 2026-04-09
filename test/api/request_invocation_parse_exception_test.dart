@@ -1,6 +1,7 @@
 import 'package:jmap_dart_client/api/errors/error_method_response.dart';
 import 'package:jmap_dart_client/api/errors/exceptions.dart';
 import 'package:jmap_dart_client/api/method/method.dart';
+import 'package:jmap_dart_client/api/method/result_references.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/response/response.dart';
 import 'package:jmap_dart_client/api/response/response_invocation.dart';
@@ -15,10 +16,11 @@ void main() {
         'throws JmapParseResponseException with the requested methodCallId',
         () {
           // arrange
-          final requestInvocation = RequestInvocation<ErrorMethodResponse>(
-            _FakeErrorMethod(),
-            MethodCallId('c99'),
-          );
+          final requestInvocation =
+              RequestInvocation<ErrorMethodResponse, ResultReferences>(
+                _FakeErrorMethod(),
+                MethodCallId('c99'),
+              );
           final responseInvocation = ResponseInvocation(
             MethodName('Email/get'),
             ResponseArguments({'list': []}),
@@ -44,10 +46,11 @@ void main() {
     group('method error response (regression)', () {
       test('throws JmapMethodErrorException when server returns an error', () {
         // arrange
-        final requestInvocation = RequestInvocation<ErrorMethodResponse>(
-          _FakeErrorMethod(),
-          MethodCallId('c1'),
-        );
+        final requestInvocation =
+            RequestInvocation<ErrorMethodResponse, ResultReferences>(
+              _FakeErrorMethod(),
+              MethodCallId('c1'),
+            );
         final errorInvocation = ResponseInvocation(
           ErrorMethodResponse.errorMethodName,
           ResponseArguments({'type': 'serverFail', 'description': null}),
@@ -65,7 +68,7 @@ void main() {
   });
 }
 
-class _FakeErrorMethod extends Method<ErrorMethodResponse> {
+class _FakeErrorMethod extends Method<ErrorMethodResponse, ResultReferences> {
   @override
   MethodName get methodName => MethodName('Email/get');
 
@@ -79,4 +82,8 @@ class _FakeErrorMethod extends Method<ErrorMethodResponse> {
   ErrorMethodResponse responseFromJson(Map<String, dynamic> json) {
     return ServerFailMethodResponse();
   }
+
+  @override
+  ResultReferences resultReferences(MethodCallId resultOf) =>
+      ResultReferences(resultOf: resultOf, name: methodName);
 }

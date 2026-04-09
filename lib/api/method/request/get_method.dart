@@ -1,5 +1,6 @@
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/method_response.dart';
+import 'package:jmap_dart_client/api/method/result_references.dart';
 import 'package:jmap_dart_client/api/properties/properties.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
@@ -19,13 +20,16 @@ abstract class GetMethod<R extends MethodResponse>
 }
 
 abstract class GetMethodNoNeedAccountId<R extends MethodResponse>
-    extends Method<R>
+    extends Method<R, ResultReferences>
     with
         OptionalIds,
         OptionalProperties,
         OptionalReferenceIds,
         OptionalReferenceProperties {
   GetMethodNoNeedAccountId() : super();
+  @override
+  ResultReferences resultReferences(MethodCallId resultOf) =>
+      ResultReferences(resultOf: resultOf, name: methodName);
 }
 
 mixin OptionalIds {
