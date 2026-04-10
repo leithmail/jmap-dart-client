@@ -11,7 +11,7 @@ void main() {
         () {
           // arrange
           final requestInvocation =
-              RequestInvocation<ErrorMethodResponse, ResultReferenceTree>(
+              RequestInvocation<ErrorMethodResponse, ResultReference>(
                 _FakeErrorMethod(),
                 MethodCallId('c99'),
               );
@@ -41,7 +41,7 @@ void main() {
       test('throws JmapMethodErrorException when server returns an error', () {
         // arrange
         final requestInvocation =
-            RequestInvocation<ErrorMethodResponse, ResultReferenceTree>(
+            RequestInvocation<ErrorMethodResponse, ResultReference>(
               _FakeErrorMethod(),
               MethodCallId('c1'),
             );
@@ -62,8 +62,7 @@ void main() {
   });
 }
 
-class _FakeErrorMethod
-    extends Method<ErrorMethodResponse, ResultReferenceTree> {
+class _FakeErrorMethod extends Method<ErrorMethodResponse, ResultReference> {
   @override
   MethodName methodName() => MethodName('Email/get');
 
@@ -79,12 +78,6 @@ class _FakeErrorMethod
   }
 
   @override
-  ResultReferenceTree resultReferenceTree(MethodCallId resultOf) =>
-      ResultReferenceTree(
-        ResultReference(
-          resultOf: resultOf,
-          name: methodName(),
-          path: ReferencePath.root,
-        ),
-      );
+  ResultReference resultReferencePaths(MethodCallId resultOf) =>
+      resultReferenceDefault(resultOf);
 }

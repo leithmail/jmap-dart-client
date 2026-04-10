@@ -8,14 +8,10 @@ import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/method_response.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
-import 'package:jmap_dart_client/api/request/result_reference_tree.dart';
 import 'package:jmap_dart_client/api/response/response.dart';
 import 'package:jmap_dart_client/api/response/response_invocation.dart';
 
-class RequestInvocation<
-  R extends MethodResponse,
-  F extends ResultReferenceTree
-> {
+class RequestInvocation<R extends MethodResponse, F extends ResultReference> {
   final Method<R, F> method;
   final MethodCallId methodCallId;
 
@@ -48,7 +44,7 @@ class RequestInvocation<
     return method.responseFromJson(matchedResponse.arguments.value);
   }
 
-  F resultReferenceTree() => method.resultReferenceTree(methodCallId);
+  F resultReferencePaths() => method.resultReferencePaths(methodCallId);
 
   static bool _validMethodResponseName(
     ResponseInvocation responseInvocation,

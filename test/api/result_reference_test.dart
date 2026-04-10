@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 class _TestMethodResponse extends MethodResponse {}
 
-class _ExampleReference extends ResultReferenceTree {
+class _ExampleReference extends ResultReferenceMap {
   late final ResultReference first;
   late final ResultReference another;
   late final ResultReferenceArray<ResultReference> ids;
@@ -15,20 +15,19 @@ class _ExampleReference extends ResultReferenceTree {
   }
 }
 
-class _TestResultReferenceTree extends ResultReferenceTree {
+class _TestResultReferenceMap extends ResultReferenceMap {
   late final _ExampleReference example;
   late final ResultReferenceArray<_ExampleReference> list;
   late final ResultReferenceArray<ResultReference> simpleList;
 
-  _TestResultReferenceTree(super.resultReference) {
+  _TestResultReferenceMap(super.resultReference) {
     example = _ExampleReference($('example'));
     list = ResultReferenceArray($('list'), _ExampleReference.new);
     simpleList = ResultReferenceArray($('simpleList'), (ref) => ref);
   }
 }
 
-class _TestMethod
-    extends Method<_TestMethodResponse, _TestResultReferenceTree> {
+class _TestMethod extends Method<_TestMethodResponse, _TestResultReferenceMap> {
   @override
   MethodName methodName() => MethodName('test');
 
@@ -44,8 +43,8 @@ class _TestMethod
   Map<String, dynamic> toJson() => {};
 
   @override
-  _TestResultReferenceTree resultReferenceTree(MethodCallId resultOf) {
-    return _TestResultReferenceTree(
+  _TestResultReferenceMap resultReferencePaths(MethodCallId resultOf) {
+    return _TestResultReferenceMap(
       ResultReference(
         resultOf: resultOf,
         name: methodName(),
@@ -61,13 +60,14 @@ void _expectReference(
   required String name,
   required String path,
 }) {
-  expect(reference.resultOf, equals(MethodCallId(resultOf)));
-  expect(reference.name, equals(MethodName(name)));
-  expect(reference.path.toJson(), equals(path));
+  final json = reference.toJson();
+  expect(json['resultOf'], equals(resultOf));
+  expect(json['name'], equals(name));
+  expect(json['path'], equals(path));
 }
 
 void main() {
-  group('RequestInvocation.resultReferenceTree', () {
+  group('RequestInvocation.resultReferencePaths', () {
     test(
       'creates a root reference with the invocation call id and method name',
       () {
@@ -76,10 +76,10 @@ void main() {
           methodCallId: MethodCallId('firstCall'),
         );
 
-        final tree = invocation.resultReferenceTree();
+        final refPaths = invocation.resultReferencePaths();
 
         _expectReference(
-          tree.$ref,
+          refPaths,
           resultOf: 'firstCall',
           name: 'test',
           path: '',
@@ -95,22 +95,22 @@ void main() {
           methodCallId: MethodCallId('nestedCall'),
         );
 
-        final tree = invocation.resultReferenceTree();
+        final refPaths = invocation.resultReferencePaths();
 
         _expectReference(
-          tree.example.$ref,
+          refPaths.example,
           resultOf: 'nestedCall',
           name: 'test',
           path: '/example',
         );
         _expectReference(
-          tree.example.first,
+          refPaths.example.first,
           resultOf: 'nestedCall',
           name: 'test',
           path: '/example/first',
         );
         _expectReference(
-          tree.example.another,
+          refPaths.example.another,
           resultOf: 'nestedCall',
           name: 'test',
           path: '/example/another',
@@ -124,28 +124,28 @@ void main() {
         methodCallId: MethodCallId('arrayCall'),
       );
 
-      final tree = invocation.resultReferenceTree();
+      final refPaths = invocation.resultReferencePaths();
 
       _expectReference(
-        tree.list.$ref,
+        refPaths.list,
         resultOf: 'arrayCall',
         name: 'test',
         path: '/list',
       );
       _expectReference(
-        tree.list.$each.$ref,
+        refPaths.list.$each,
         resultOf: 'arrayCall',
         name: 'test',
         path: '/list/*',
       );
       _expectReference(
-        tree.list.$each.ids.$ref,
+        refPaths.list.$each.ids,
         resultOf: 'arrayCall',
         name: 'test',
         path: '/list/*/ids',
       );
       _expectReference(
-        tree.list.$each.ids.$each,
+        refPaths.list.$each.ids.$each,
         resultOf: 'arrayCall',
         name: 'test',
         path: '/list/*/ids/*',
@@ -158,16 +158,16 @@ void main() {
         methodCallId: MethodCallId('simpleArrayCall'),
       );
 
-      final tree = invocation.resultReferenceTree();
+      final refPaths = invocation.resultReferencePaths();
 
       _expectReference(
-        tree.simpleList.$ref,
+        refPaths.simpleList,
         resultOf: 'simpleArrayCall',
         name: 'test',
         path: '/simpleList',
       );
       _expectReference(
-        tree.simpleList.$each,
+        refPaths.simpleList.$each,
         resultOf: 'simpleArrayCall',
         name: 'test',
         path: '/simpleList/*',
@@ -182,14 +182,14 @@ void main() {
           methodCallId: MethodCallId('jsonCall'),
         );
 
-        final tree = invocation.resultReferenceTree();
+        final refPaths = invocation.resultReferencePaths();
 
-        expect(tree.example.first.toJson(), {
+        expect(refPaths.example.first.toJson(), {
           'resultOf': 'jsonCall',
           'name': 'test',
           'path': '/example/first',
         });
-        expect(tree.list.$each.ids.$each.toJson(), {
+        expect(refPaths.list.$each.ids.$each.toJson(), {
           'resultOf': 'jsonCall',
           'name': 'test',
           'path': '/list/*/ids/*',
@@ -198,7 +198,7 @@ void main() {
     );
 
     test(
-      'keeps the same tree shape across invocations while using each call id',
+      'keeps the same refPaths shape across invocations while using each call id',
       () {
         final requestBuilder = RequestBuilder();
         final firstInvocation = requestBuilder.addInvocation(
@@ -210,17 +210,17 @@ void main() {
           methodCallId: MethodCallId('second'),
         );
 
-        final firstTree = firstInvocation.resultReferenceTree();
-        final secondTree = secondInvocation.resultReferenceTree();
+        final firstRefPaths = firstInvocation.resultReferencePaths();
+        final secondRefPaths = secondInvocation.resultReferencePaths();
 
         _expectReference(
-          firstTree.simpleList.$each,
+          firstRefPaths.simpleList.$each,
           resultOf: 'first',
           name: 'test',
           path: '/simpleList/*',
         );
         _expectReference(
-          secondTree.simpleList.$each,
+          secondRefPaths.simpleList.$each,
           resultOf: 'second',
           name: 'test',
           path: '/simpleList/*',
