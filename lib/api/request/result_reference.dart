@@ -20,7 +20,7 @@ import 'package:meta/meta.dart';
 /// ```
 ///
 /// In most cases, you do not construct this class directly. Instead, obtain
-/// typed references from [RequestInvocation.resultReferencePaths] and use the
+/// typed references from [RequestInvocation.resultReference] and use the
 /// generated [ResultReferenceMap] / [ResultReferenceArray] structure to
 /// navigate to the value you want to reference.
 class ResultReference {
@@ -55,7 +55,7 @@ class ResultReference {
 /// Base class for typed navigation over a JMAP method result.
 ///
 /// Extend this class to describe the shape of a response returned by
-/// [RequestInvocation.resultReferencePaths]. A subclass typically exposes
+/// [RequestInvocation.resultReference]. A subclass typically exposes
 /// three kinds of fields:
 ///
 /// - **Scalar leaf** — a [ResultReference] for a primitive value:
@@ -117,7 +117,7 @@ class ResultReference {
 /// }
 ///
 /// // Usage:
-/// final refs = invocation.resultReferencePaths();
+/// final refs = invocation.resultReference();
 ///
 /// refs.list                      // /list
 /// refs.list.$each.id             // /list/*/id

@@ -30,7 +30,7 @@ abstract class SetMethodNoNeedAccountId<R extends MethodResponse, T>
   SetMethodNoNeedAccountId() : super();
 
   @override
-  ResultReference resultReferencePaths(MethodCallId resultOf) =>
+  ResultReference resultReference(MethodCallId resultOf) =>
       resultReferenceDefault(resultOf);
 }
 

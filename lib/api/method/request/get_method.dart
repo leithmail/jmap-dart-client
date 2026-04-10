@@ -28,7 +28,7 @@ abstract class GetMethodNoNeedAccountId<R extends MethodResponse>
   GetMethodNoNeedAccountId() : super();
 
   @override
-  ResultReference resultReferencePaths(MethodCallId resultOf) =>
+  ResultReference resultReference(MethodCallId resultOf) =>
       resultReferenceDefault(resultOf);
 }
 

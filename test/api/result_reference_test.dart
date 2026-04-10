@@ -43,7 +43,7 @@ class _TestMethod extends Method<_TestMethodResponse, _TestResultReferenceMap> {
   Map<String, dynamic> toJson() => {};
 
   @override
-  _TestResultReferenceMap resultReferencePaths(MethodCallId resultOf) {
+  _TestResultReferenceMap resultReference(MethodCallId resultOf) {
     return _TestResultReferenceMap(
       ResultReference(
         resultOf: resultOf,
@@ -67,7 +67,7 @@ void _expectReference(
 }
 
 void main() {
-  group('RequestInvocation.resultReferencePaths', () {
+  group('RequestInvocation.resultReference', () {
     test(
       'creates a root reference with the invocation call id and method name',
       () {
@@ -76,14 +76,9 @@ void main() {
           methodCallId: MethodCallId('firstCall'),
         );
 
-        final refPaths = invocation.resultReferencePaths();
+        final refs = invocation.resultReference();
 
-        _expectReference(
-          refPaths,
-          resultOf: 'firstCall',
-          name: 'test',
-          path: '',
-        );
+        _expectReference(refs, resultOf: 'firstCall', name: 'test', path: '');
       },
     );
 
@@ -95,22 +90,22 @@ void main() {
           methodCallId: MethodCallId('nestedCall'),
         );
 
-        final refPaths = invocation.resultReferencePaths();
+        final refs = invocation.resultReference();
 
         _expectReference(
-          refPaths.example,
+          refs.example,
           resultOf: 'nestedCall',
           name: 'test',
           path: '/example',
         );
         _expectReference(
-          refPaths.example.first,
+          refs.example.first,
           resultOf: 'nestedCall',
           name: 'test',
           path: '/example/first',
         );
         _expectReference(
-          refPaths.example.another,
+          refs.example.another,
           resultOf: 'nestedCall',
           name: 'test',
           path: '/example/another',
@@ -124,28 +119,28 @@ void main() {
         methodCallId: MethodCallId('arrayCall'),
       );
 
-      final refPaths = invocation.resultReferencePaths();
+      final refs = invocation.resultReference();
 
       _expectReference(
-        refPaths.list,
+        refs.list,
         resultOf: 'arrayCall',
         name: 'test',
         path: '/list',
       );
       _expectReference(
-        refPaths.list.$each,
+        refs.list.$each,
         resultOf: 'arrayCall',
         name: 'test',
         path: '/list/*',
       );
       _expectReference(
-        refPaths.list.$each.ids,
+        refs.list.$each.ids,
         resultOf: 'arrayCall',
         name: 'test',
         path: '/list/*/ids',
       );
       _expectReference(
-        refPaths.list.$each.ids.$each,
+        refs.list.$each.ids.$each,
         resultOf: 'arrayCall',
         name: 'test',
         path: '/list/*/ids/*',
@@ -158,16 +153,16 @@ void main() {
         methodCallId: MethodCallId('simpleArrayCall'),
       );
 
-      final refPaths = invocation.resultReferencePaths();
+      final refs = invocation.resultReference();
 
       _expectReference(
-        refPaths.simpleList,
+        refs.simpleList,
         resultOf: 'simpleArrayCall',
         name: 'test',
         path: '/simpleList',
       );
       _expectReference(
-        refPaths.simpleList.$each,
+        refs.simpleList.$each,
         resultOf: 'simpleArrayCall',
         name: 'test',
         path: '/simpleList/*',
@@ -182,14 +177,14 @@ void main() {
           methodCallId: MethodCallId('jsonCall'),
         );
 
-        final refPaths = invocation.resultReferencePaths();
+        final refs = invocation.resultReference();
 
-        expect(refPaths.example.first.toJson(), {
+        expect(refs.example.first.toJson(), {
           'resultOf': 'jsonCall',
           'name': 'test',
           'path': '/example/first',
         });
-        expect(refPaths.list.$each.ids.$each.toJson(), {
+        expect(refs.list.$each.ids.$each.toJson(), {
           'resultOf': 'jsonCall',
           'name': 'test',
           'path': '/list/*/ids/*',
@@ -198,7 +193,7 @@ void main() {
     );
 
     test(
-      'keeps the same refPaths shape across invocations while using each call id',
+      'keeps the same refs shape across invocations while using each call id',
       () {
         final requestBuilder = RequestBuilder();
         final firstInvocation = requestBuilder.addInvocation(
@@ -210,17 +205,17 @@ void main() {
           methodCallId: MethodCallId('second'),
         );
 
-        final firstRefPaths = firstInvocation.resultReferencePaths();
-        final secondRefPaths = secondInvocation.resultReferencePaths();
+        final firstRefs = firstInvocation.resultReference();
+        final secondRefs = secondInvocation.resultReference();
 
         _expectReference(
-          firstRefPaths.simpleList.$each,
+          firstRefs.simpleList.$each,
           resultOf: 'first',
           name: 'test',
           path: '/simpleList/*',
         );
         _expectReference(
-          secondRefPaths.simpleList.$each,
+          secondRefs.simpleList.$each,
           resultOf: 'second',
           name: 'test',
           path: '/simpleList/*',

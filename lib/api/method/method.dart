@@ -14,7 +14,7 @@ abstract class Method<R extends MethodResponse, F extends ResultReference> {
 
   Map<String, dynamic> toJson();
   R responseFromJson(Map<String, dynamic> json);
-  F resultReferencePaths(MethodCallId resultOf);
+  F resultReference(MethodCallId resultOf);
 
   @protected
   ResultReference resultReferenceDefault(MethodCallId resultOf) =>
@@ -32,7 +32,7 @@ abstract class MethodRequiringAccountId<R extends MethodResponse>
   MethodRequiringAccountId(this.accountId);
 
   @override
-  ResultReference resultReferencePaths(MethodCallId resultOf) =>
+  ResultReference resultReference(MethodCallId resultOf) =>
       resultReferenceDefault(resultOf);
 }
 

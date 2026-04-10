@@ -78,6 +78,6 @@ class _FakeErrorMethod extends Method<ErrorMethodResponse, ResultReference> {
   }
 
   @override
-  ResultReference resultReferencePaths(MethodCallId resultOf) =>
+  ResultReference resultReference(MethodCallId resultOf) =>
       resultReferenceDefault(resultOf);
 }
