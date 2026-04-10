@@ -5,6 +5,24 @@ import 'package:jmap_dart_client/src/converters/method_call_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/method_name_converter.dart';
 import 'package:meta/meta.dart';
 
+/// A JMAP result reference to data produced by an earlier method call.
+///
+/// Result references are used in later invocations in the same request to
+/// refer to values returned by previous method calls. The serialized form is
+/// the standard JMAP object:
+///
+/// ```json
+/// {
+///   "resultOf": "c0",
+///   "name": "Email/get",
+///   "path": "/list/*/id"
+/// }
+/// ```
+///
+/// In most cases, you do not construct this class directly. Instead, obtain
+/// typed references from [RequestInvocation.resultReferencePaths] and use the
+/// generated [ResultReferenceMap] / [ResultReferenceArray] structure to
+/// navigate to the value you want to reference.
 class ResultReference {
   @nonVirtual
   final MethodCallId _resultOf;
@@ -15,6 +33,8 @@ class ResultReference {
   @nonVirtual
   final ReferencePath _path;
 
+  /// Creates a reference to [path] in the result of the method call
+  /// identified by [resultOf] and [name].
   ResultReference({
     required MethodCallId resultOf,
     required MethodName name,
@@ -23,6 +43,8 @@ class ResultReference {
        _name = name,
        _path = path;
 
+  /// Serializes this reference into the JMAP JSON shape expected for
+  /// `#resultReference` arguments.
   Map<String, dynamic> toJson() => <String, dynamic>{
     'resultOf': const MethodCallIdConverter().toJson(_resultOf),
     'name': const MethodNameConverter().toJson(_name),
@@ -30,10 +52,11 @@ class ResultReference {
   };
 }
 
-/// Base class for typed navigation trees over a JMAP method response.
+/// Base class for typed navigation over a JMAP method result.
 ///
-/// Extend this class to describe the shape of a response, with three kinds
-/// of fields:
+/// Extend this class to describe the shape of a response returned by
+/// [RequestInvocation.resultReferencePaths]. A subclass typically exposes
+/// three kinds of fields:
 ///
 /// - **Scalar leaf** — a [ResultReference] for a primitive value:
 ///   ```dart
@@ -53,8 +76,9 @@ class ResultReference {
 ///   tags = ResultReferenceArray($('tags'), (ref) => ref);
 ///   ```
 ///
-/// Use [$ref] to obtain the [ResultReference] for this node's path as-is,
-/// and [$] to build child paths in subclass constructors.
+/// Since [ResultReferenceMap] extends [ResultReference], each node is already
+/// a usable JMAP result reference for its current path. Use [$] in subclass
+/// constructors to build child paths.
 ///
 /// Full example:
 /// ```dart
@@ -93,12 +117,14 @@ class ResultReference {
 /// }
 ///
 /// // Usage:
-/// tree.list.$ref                 // /list
-/// tree.list.$each.id             // /list/*/id
-/// tree.list.$each.from.email     // /list/*/from/email
-/// tree.list.$each.tags.$ref      // /list/*/tags
-/// tree.list.$each.tags.$each     // /list/*/tags/*
-/// tree.notFound.$ref             // /notFound
+/// final refs = invocation.resultReferencePaths();
+///
+/// refs.list                      // /list
+/// refs.list.$each.id             // /list/*/id
+/// refs.list.$each.from.email     // /list/*/from/email
+/// refs.list.$each.tags           // /list/*/tags
+/// refs.list.$each.tags.$each     // /list/*/tags/*
+/// refs.notFound                  // /notFound
 /// ```
 class ResultReferenceMap extends ResultReference {
   ResultReferenceMap(ResultReference resultReference)
