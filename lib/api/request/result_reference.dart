@@ -117,7 +117,7 @@ class ResultReference {
 /// }
 ///
 /// // Usage:
-/// final refs = invocation.resultReference();
+/// final refs = invocation.resultReferences();
 ///
 /// refs.list                      // /list
 /// refs.list.$each.id             // /list/*/id

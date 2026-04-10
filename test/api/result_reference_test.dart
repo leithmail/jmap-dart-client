@@ -76,7 +76,7 @@ void main() {
           methodCallId: MethodCallId('firstCall'),
         );
 
-        final refs = invocation.resultReference();
+        final refs = invocation.resultReferences();
 
         _expectReference(refs, resultOf: 'firstCall', name: 'test', path: '');
       },
@@ -90,7 +90,7 @@ void main() {
           methodCallId: MethodCallId('nestedCall'),
         );
 
-        final refs = invocation.resultReference();
+        final refs = invocation.resultReferences();
 
         _expectReference(
           refs.example,
@@ -119,7 +119,7 @@ void main() {
         methodCallId: MethodCallId('arrayCall'),
       );
 
-      final refs = invocation.resultReference();
+      final refs = invocation.resultReferences();
 
       _expectReference(
         refs.list,
@@ -153,7 +153,7 @@ void main() {
         methodCallId: MethodCallId('simpleArrayCall'),
       );
 
-      final refs = invocation.resultReference();
+      final refs = invocation.resultReferences();
 
       _expectReference(
         refs.simpleList,
@@ -177,7 +177,7 @@ void main() {
           methodCallId: MethodCallId('jsonCall'),
         );
 
-        final refs = invocation.resultReference();
+        final refs = invocation.resultReferences();
 
         expect(refs.example.first.toJson(), {
           'resultOf': 'jsonCall',
@@ -205,8 +205,8 @@ void main() {
           methodCallId: MethodCallId('second'),
         );
 
-        final firstRefs = firstInvocation.resultReference();
-        final secondRefs = secondInvocation.resultReference();
+        final firstRefs = firstInvocation.resultReferences();
+        final secondRefs = secondInvocation.resultReferences();
 
         _expectReference(
           firstRefs.simpleList.$each,
