@@ -143,7 +143,7 @@ void main() {
             );
 
             final getMailBoxMethod = GetMailboxMethod(accountId)
-              ..addReferenceIds(
+              ..setReferenceIds(
                 queryMailboxInvocation,
                 ReferencePath.root.append('ids').each,
               );

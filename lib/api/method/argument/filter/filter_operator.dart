@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/filter/filter.dart';
+import 'package:jmap_dart_client/api/method/argument/filter/filter.dart';
 
 abstract class FilterOperator extends Filter {
   final Operator operator;

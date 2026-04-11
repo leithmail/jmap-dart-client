@@ -17,7 +17,7 @@ void main() {
   final foundThread = Thread(id: ThreadId(foundId), emailIds: [emailIdFound]);
   final notFoundId = Id('not-found-thread-id');
   final getThreadMethod = GetThreadMethod(accountId)
-    ..addIds({foundId, notFoundId});
+    ..setIds({foundId, notFoundId});
   final methodCallId = MethodCallId('c0');
 
   group('get thread method test:', () {
@@ -38,7 +38,7 @@ void main() {
             getThreadMethod.methodName().value,
             {
               "accountId": accountId.id.value,
-              "ids": getThreadMethod.ids?.map((e) => e.value).toList(),
+              "ids": {foundId.value, notFoundId.value}.toList(),
             },
             methodCallId.value,
           ],

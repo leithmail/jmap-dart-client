@@ -1,23 +1,14 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/method.dart';
+import 'package:jmap_dart_client/api/method/method_response.dart';
 import 'package:jmap_dart_client/api/method/request/get_method.dart';
+import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/email/email_body_properties.dart';
 import 'package:jmap_dart_client/methods/email/get_email_response.dart';
-import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
-import 'package:jmap_dart_client/src/converters/id_converter.dart';
-import 'package:jmap_dart_client/src/converters/properties_converter.dart';
-import 'package:jmap_dart_client/src/converters/unsigned_int_nullable_converter.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'get_email_method.g.dart';
-
-@UnsignedIntNullableConverter()
-@IdConverter()
-@AccountIdConverter()
-@PropertiesConverter()
-@JsonSerializable(createFactory: false)
 class GetEmailMethod extends GetMethod<GetEmailResponse>
     with
         OptionalEmailBodyProperties,
@@ -37,55 +28,97 @@ class GetEmailMethod extends GetMethod<GetEmailResponse>
   };
 
   @override
-  Map<String, dynamic> toJson() => _$GetEmailMethodToJson(this);
-
-  @override
   GetEmailResponse responseFromJson(Map<String, dynamic> json) {
     return GetEmailResponse.fromJson(json);
   }
 }
 
-mixin OptionalEmailBodyProperties {
-  @JsonKey(includeIfNull: false)
-  EmailBodyProperties? bodyProperties;
+mixin OptionalEmailBodyProperties<
+  R extends MethodResponse,
+  F extends ResultReference
+>
+    on Method<R, F> {
+  final bodyProperties = ArgumentSlot<EmailBodyProperties?>(
+    "bodyProperties",
+    (v) => v?.toJson(),
+  );
 
   void addEmailBodyProperties(EmailBodyProperties value) {
-    bodyProperties = value;
+    bodyProperties.set(value);
   }
+
+  @override
+  get slots => [...super.slots, bodyProperties];
 }
 
-mixin OptionalFetchTextBodyValues {
-  @JsonKey(includeIfNull: false)
-  bool? fetchTextBodyValues;
+mixin OptionalFetchTextBodyValues<
+  R extends MethodResponse,
+  F extends ResultReference
+>
+    on Method<R, F> {
+  final fetchTextBodyValues = ArgumentSlot<bool?>(
+    "fetchTextBodyValues",
+    (v) => v,
+  );
 
   void addFetchTextBodyValues(bool value) {
-    fetchTextBodyValues = value;
+    fetchTextBodyValues.set(value);
   }
+
+  @override
+  get slots => [...super.slots, fetchTextBodyValues];
 }
 
-mixin OptionalFetchHTMLBodyValues {
-  @JsonKey(includeIfNull: false)
-  bool? fetchHTMLBodyValues;
+mixin OptionalFetchHTMLBodyValues<
+  R extends MethodResponse,
+  F extends ResultReference
+>
+    on Method<R, F> {
+  final fetchHTMLBodyValues = ArgumentSlot<bool?>(
+    "fetchHTMLBodyValues",
+    (v) => v,
+  );
 
   void addFetchHTMLBodyValues(bool value) {
-    fetchHTMLBodyValues = value;
+    fetchHTMLBodyValues.set(value);
   }
+
+  @override
+  get slots => [...super.slots, fetchHTMLBodyValues];
 }
 
-mixin OptionalFetchAllBodyValues {
-  @JsonKey(includeIfNull: false)
-  bool? fetchAllBodyValues;
+mixin OptionalFetchAllBodyValues<
+  R extends MethodResponse,
+  F extends ResultReference
+>
+    on Method<R, F> {
+  final fetchAllBodyValues = ArgumentSlot<bool?>(
+    "fetchAllBodyValues",
+    (v) => v,
+  );
 
   void addFetchAllBodyValues(bool value) {
-    fetchAllBodyValues = value;
+    fetchAllBodyValues.set(value);
   }
+
+  @override
+  get slots => [...super.slots, fetchAllBodyValues];
 }
 
-mixin OptionalMaxBodyValueBytes {
-  @JsonKey(includeIfNull: false)
-  UnsignedInt? maxBodyValueBytes;
+mixin OptionalMaxBodyValueBytes<
+  R extends MethodResponse,
+  F extends ResultReference
+>
+    on Method<R, F> {
+  final maxBodyValueBytes = ArgumentSlot<UnsignedInt?>(
+    "maxBodyValueBytes",
+    (v) => v?.value,
+  );
 
   void addMaxBodyValueBytes(UnsignedInt value) {
-    maxBodyValueBytes = value;
+    maxBodyValueBytes.set(value);
   }
+
+  @override
+  get slots => [...super.slots, maxBodyValueBytes];
 }

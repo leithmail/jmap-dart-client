@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/properties/properties.dart';
+import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
@@ -83,7 +83,7 @@ void main() {
       );
 
       final getIdentityMethod = GetIdentityMethod(accountId)
-        ..addProperties(Properties({"email", "bcc", "sortOrder"}));
+        ..setProperties(Properties({"email", "bcc", "sortOrder"}));
       final getIdentityInvocation = requestBuilder.addInvocation(
         getIdentityMethod,
       );

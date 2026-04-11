@@ -1,5 +1,5 @@
+import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/method/response/changes_response.dart';
-import 'package:jmap_dart_client/api/properties/properties.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';

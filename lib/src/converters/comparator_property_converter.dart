@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/sort/comparator_property.dart';
+import 'package:jmap_dart_client/api/method/argument/sort/comparator_property.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 class ComparatorPropertyConverter

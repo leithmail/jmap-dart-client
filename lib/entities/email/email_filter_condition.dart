@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/filter/filter_condition.dart';
+import 'package:jmap_dart_client/api/method/argument/filter/filter_condition.dart';
 import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';

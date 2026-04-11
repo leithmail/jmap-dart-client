@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/properties/properties.dart';
+import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
@@ -302,7 +302,7 @@ void main() {
       );
 
       final parseEmailMethod = ParseEmailMethod(accountId, {blobId3})
-        ..addProperties(Properties({"id", "preview", "subject"}));
+        ..setProperties(Properties({"id", "preview", "subject"}));
 
       final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.addInvocation(parseEmailMethod);

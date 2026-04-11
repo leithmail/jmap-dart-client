@@ -1,22 +1,22 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/request/clear_method.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/methods/mailbox/clear/clear_mailbox_response.dart';
-import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/mailbox_id_converter.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'clear_mailbox_method.g.dart';
-
-@AccountIdConverter()
-@MailboxIdConverter()
-@JsonSerializable()
 class ClearMailboxMethod extends ClearMethod<ClearMailboxResponse> {
-  final MailboxId mailboxId;
+  final mailboxId = ArgumentSlot<MailboxId>(
+    'mailboxId',
+    (v) => const MailboxIdConverter().toJson(v),
+  );
 
-  ClearMailboxMethod(AccountId accountId, this.mailboxId) : super(accountId);
+  ClearMailboxMethod(AccountId accountId, MailboxId mailboxId)
+    : super(accountId) {
+    this.mailboxId.set(mailboxId);
+  }
 
   @override
   MethodName methodName() => MethodName('Mailbox/clear');
@@ -28,11 +28,8 @@ class ClearMailboxMethod extends ClearMethod<ClearMailboxResponse> {
     CapabilityIdentifier.jmapMailboxClear,
   };
 
-  factory ClearMailboxMethod.fromJson(Map<String, dynamic> json) =>
-      _$ClearMailboxMethodFromJson(json);
-
   @override
-  Map<String, dynamic> toJson() => _$ClearMailboxMethodToJson(this);
+  get slots => [...super.slots, mailboxId];
 
   @override
   ClearMailboxResponse responseFromJson(Map<String, dynamic> json) {

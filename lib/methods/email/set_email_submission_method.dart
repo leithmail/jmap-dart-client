@@ -6,7 +6,6 @@ import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/email/email_submission.dart';
 import 'package:jmap_dart_client/entities/email/email_submission_id.dart';
 import 'package:jmap_dart_client/methods/email/set_email_submission_response.dart';
-import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/references_email_submission_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/set/set_method_properties_converter.dart';
@@ -29,9 +28,7 @@ class SetEmailSubmissionMethod
 
   @override
   Map<String, dynamic> toJson() {
-    final val = <String, dynamic>{
-      'accountId': const AccountIdConverter().toJson(accountId),
-    };
+    final val = super.toJson();
 
     void writeNotNull(String key, dynamic value) {
       if (value != null) {

@@ -1,6 +1,6 @@
 import 'package:jmap_dart_client/api/errors/error_method_response.dart';
 import 'package:jmap_dart_client/api/errors/exceptions.dart';
-import 'package:jmap_dart_client/api/filter/filter.dart';
+import 'package:jmap_dart_client/api/method/argument/filter/filter.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';

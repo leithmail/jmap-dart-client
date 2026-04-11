@@ -40,9 +40,6 @@ class _TestMethod extends Method<_TestMethodResponse, _TestResultReferenceMap> {
   }
 
   @override
-  Map<String, dynamic> toJson() => {};
-
-  @override
   _TestResultReferenceMap resultReference(MethodCallId resultOf) {
     return _TestResultReferenceMap(
       ResultReference(

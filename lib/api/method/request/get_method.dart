@@ -1,30 +1,24 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
+import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/method_response.dart';
-import 'package:jmap_dart_client/api/properties/properties.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:jmap_dart_client/src/converters/id_converter.dart';
+import 'package:jmap_dart_client/src/converters/properties_converter.dart';
 
 abstract class GetMethod<R extends MethodResponse>
     extends MethodRequiringAccountId<R>
-    with
-        OptionalIds,
-        OptionalProperties,
-        OptionalReferenceIds,
-        OptionalReferenceProperties {
+    with OptionalIds, OptionalProperties {
   GetMethod(AccountId accountId) : super(accountId);
 }
 
 abstract class GetMethodNoNeedAccountId<R extends MethodResponse>
     extends Method<R, ResultReference>
-    with
-        OptionalIds,
-        OptionalProperties,
-        OptionalReferenceIds,
-        OptionalReferenceProperties {
+    with OptionalIds, OptionalProperties {
   GetMethodNoNeedAccountId() : super();
 
   @override
@@ -32,39 +26,40 @@ abstract class GetMethodNoNeedAccountId<R extends MethodResponse>
       resultReferenceDefault(resultOf);
 }
 
-mixin OptionalIds {
-  @JsonKey(includeIfNull: false)
-  Set<Id>? ids;
+mixin OptionalIds<R extends MethodResponse, F extends ResultReference>
+    on Method<R, F> {
+  final ids = ArgumentSlot<Set<Id>?>(
+    'ids',
+    (v) => v?.map(const IdConverter().toJson).toList(),
+  );
 
-  void addIds(Set<Id> values) {
-    ids ??= <Id>{};
-    ids?.addAll(values);
+  void setIds(Set<Id>? values) {
+    ids.set(values);
   }
+
+  void setReferenceIds(RequestInvocation invocation, ReferencePath path) {
+    ids.ref(invocation.createResultReference(path));
+  }
+
+  @override
+  get slots => [...super.slots, ids];
 }
 
-mixin OptionalReferenceIds {
-  @JsonKey(name: '#ids', includeIfNull: false)
-  ResultReference? referenceIds;
+mixin OptionalProperties<R extends MethodResponse, F extends ResultReference>
+    on Method<R, F> {
+  final properties = ArgumentSlot<Properties?>(
+    'properties',
+    (v) => PropertiesConverter().toJson(v),
+  );
 
-  void addReferenceIds(RequestInvocation invocation, ReferencePath path) {
-    referenceIds = invocation.createResultReference(path);
+  void setProperties(Properties properties) {
+    this.properties.set(properties);
   }
-}
 
-mixin OptionalProperties {
-  @JsonKey(includeIfNull: false)
-  Properties? properties = Properties.empty();
-
-  void addProperties(Properties other) {
-    properties = properties?.union(other);
+  void setReferenceProperties(ResultReference resultReferenceProperties) {
+    properties.ref(resultReferenceProperties);
   }
-}
 
-mixin OptionalReferenceProperties {
-  @JsonKey(name: '#properties', includeIfNull: false)
-  ResultReference? referenceProperties;
-
-  void addReferenceProperties(ResultReference resultReferenceProperties) {
-    referenceProperties = resultReferenceProperties;
-  }
+  @override
+  get slots => [...super.slots, properties];
 }

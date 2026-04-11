@@ -4,7 +4,6 @@ import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/identity/identity.dart';
 import 'package:jmap_dart_client/methods/identity/set_identity_response.dart';
-import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/set/set_method_properties_converter.dart';
 
@@ -22,9 +21,7 @@ class SetIdentityMethod extends SetMethod<SetIdentityResponse, Identity> {
 
   @override
   Map<String, dynamic> toJson() {
-    final val = <String, dynamic>{
-      'accountId': const AccountIdConverter().toJson(accountId),
-    };
+    final val = super.toJson();
 
     void writeNotNull(String key, dynamic value) {
       if (value != null) {

@@ -146,34 +146,42 @@ class HttpMockResponseClient extends MockClient {
   };
 
   static bool _requestBodyMatches(http.Request request, Object? expectedBody) {
-    if (expectedBody is Map) {
-      return const DeepCollectionEquality().equals(
-        jsonDecode(request.body),
-        expectedBody,
-      );
+    try {
+      if (expectedBody is Map) {
+        return const DeepCollectionEquality().equals(
+          jsonDecode(request.body),
+          expectedBody,
+        );
+      }
+      return request.body == _normalizeBody(expectedBody);
+    } catch (e) {
+      throw HttpMockException('Failed body comparison: $e');
     }
-    return request.body == _normalizeBody(expectedBody);
   }
 
   static String _normalizeBody(Object? body) {
-    if (body == null) {
-      return '';
-    }
+    try {
+      if (body == null) {
+        return '';
+      }
 
-    if (body is String) {
-      return body;
-    }
+      if (body is String) {
+        return body;
+      }
 
-    if (body is Map) {
-      return jsonEncode(body);
-    }
+      if (body is Map) {
+        return jsonEncode(body);
+      }
 
-    if (body is List<int>) {
-      return utf8.decode(body);
-    }
+      if (body is List<int>) {
+        return utf8.decode(body);
+      }
 
-    throw HttpMockException(
-      'Unsupported body type: ${body.runtimeType}. Supported types are null, String, Map, and List<int>.',
-    );
+      throw HttpMockException(
+        'Unsupported body type: ${body.runtimeType}. Supported types are null, String, Map, and List<int>.',
+      );
+    } catch (e) {
+      throw HttpMockException('Failed body normalization: $e');
+    }
   }
 }

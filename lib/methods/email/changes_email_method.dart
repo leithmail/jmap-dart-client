@@ -5,17 +5,7 @@ import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/methods/email/changes_email_response.dart';
-import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
-import 'package:jmap_dart_client/src/converters/state_converter.dart';
-import 'package:jmap_dart_client/src/converters/unsigned_int_nullable_converter.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'changes_email_method.g.dart';
-
-@UnsignedIntNullableConverter()
-@StateConverter()
-@AccountIdConverter()
-@JsonSerializable()
 class ChangesEmailMethod extends ChangesMethod<ChangesEmailResponse> {
   ChangesEmailMethod(
     AccountId accountId,
@@ -31,12 +21,6 @@ class ChangesEmailMethod extends ChangesMethod<ChangesEmailResponse> {
     CapabilityIdentifier.jmapCore,
     CapabilityIdentifier.jmapMail,
   };
-
-  factory ChangesEmailMethod.fromJson(Map<String, dynamic> json) =>
-      _$ChangesEmailMethodFromJson(json);
-
-  @override
-  Map<String, dynamic> toJson() => _$ChangesEmailMethodToJson(this);
 
   @override
   ChangesEmailResponse responseFromJson(Map<String, dynamic> json) {

@@ -1,17 +1,28 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/method_response.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 abstract class ChangesMethod<R extends MethodResponse>
     extends MethodRequiringAccountId<R> {
-  final State sinceState;
+  final sinceState = ArgumentSlot<State>('sinceState', (v) => v.value);
+  final maxChanges = ArgumentSlot<UnsignedInt?>("maxChanges", (v) => v?.value);
 
-  @JsonKey(includeIfNull: false)
-  final UnsignedInt? maxChanges;
+  ChangesMethod(
+    AccountId accountId,
+    State sinceState, {
+    UnsignedInt? maxChanges,
+  }) : super(accountId) {
+    this.maxChanges.set(maxChanges);
+    this.sinceState.set(sinceState);
+  }
 
-  ChangesMethod(AccountId accountId, this.sinceState, {this.maxChanges})
-    : super(accountId);
+  @override
+  List<ArgumentSlot<dynamic>> get slots => [
+    ...super.slots,
+    sinceState,
+    maxChanges,
+  ];
 }

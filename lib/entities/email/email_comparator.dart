@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/sort/comparator.dart';
+import 'package:jmap_dart_client/api/method/argument/sort/comparator.dart';
 import 'package:jmap_dart_client/entities/email/email_comparator_property.dart';
 import 'package:jmap_dart_client/src/converters/collation_identifier_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/comparator_property_converter.dart';

@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/sort/collation_identifier.dart';
+import 'package:jmap_dart_client/entities/core/collation_identifier.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 class CollationIdentifierConverter

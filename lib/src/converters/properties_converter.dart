@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/properties/properties.dart';
+import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 class PropertiesConverter implements JsonConverter<Properties?, List<String>?> {

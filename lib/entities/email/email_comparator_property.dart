@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/sort/comparator_property.dart';
+import 'package:jmap_dart_client/api/method/argument/sort/comparator_property.dart';
 
 class EmailComparatorProperty extends ComparatorProperty {
   static final receivedAt = EmailComparatorProperty('receivedAt');

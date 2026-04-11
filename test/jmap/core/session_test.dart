@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:jmap_dart_client/api/sort/collation_identifier.dart';
 import 'package:jmap_dart_client/entities/capability/calendar_event_capability.dart';
 import 'package:jmap_dart_client/entities/capability/core_capability.dart';
 import 'package:jmap_dart_client/entities/capability/custom_capability.dart';
@@ -13,6 +12,7 @@ import 'package:jmap_dart_client/entities/capability/websocket_capability.dart';
 import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
+import 'package:jmap_dart_client/entities/core/collation_identifier.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/session.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';

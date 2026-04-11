@@ -29,7 +29,7 @@ void main() {
       () async {
         // arrange
         final getPublicAssetMethod = GetPublicAssetMethod(accountId)
-          ..addIds({publicAsset.id!});
+          ..setIds({publicAsset.id!});
         final httpMockClient = HttpMockResponseClient(
           responseBody: {
             "sessionState": "abcdefghij",
@@ -90,7 +90,7 @@ void main() {
       () async {
         // arrange
         final getPublicAssetMethod = GetPublicAssetMethod(accountId)
-          ..addIds({publicAsset.id!});
+          ..setIds({publicAsset.id!});
         final httpMockClient = HttpMockResponseClient(
           responseBody: {
             "sessionState": "abcdefghij",

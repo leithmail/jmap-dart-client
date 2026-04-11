@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:jmap_dart_client/api/sort/collation_identifier.dart';
 import 'package:jmap_dart_client/entities/core/capability_properties.dart';
+import 'package:jmap_dart_client/entities/core/collation_identifier.dart';
 import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/src/converters/collation_identifier_converter.dart';
 import 'package:jmap_dart_client/src/converters/unsigned_int_nullable_converter.dart';

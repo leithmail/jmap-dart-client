@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/properties/properties.dart';
+import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:test/test.dart';
 
 void main() {

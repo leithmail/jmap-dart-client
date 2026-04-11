@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/properties/properties.dart';
+import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
@@ -111,8 +111,8 @@ void main() {
           ),
         );
         final getEmailMethodForCreated = GetEmailMethod(accountId)
-          ..addIds({Id('54fa3000-2595-11ec-a759-2fef1ee78d9e')})
-          ..addProperties(
+          ..setIds({Id('54fa3000-2595-11ec-a759-2fef1ee78d9e')})
+          ..setProperties(
             Properties({
               'id',
               'subject',
