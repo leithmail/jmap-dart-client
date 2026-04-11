@@ -135,17 +135,18 @@ void main() {
               ),
             );
             final queryMailboxMethod = QueryMailboxMethod(accountId)
-              ..addFilters(MailboxFilterCondition(role: Role('Spam')))
-              ..addLimit(1);
+              ..filter.set(MailboxFilterCondition(role: Role('Spam')))
+              ..limit.set(UnsignedInt(1));
             final queryMailboxInvocation = jmapRequestBuilder.addInvocation(
               queryMailboxMethod,
               methodCallId: MethodCallId('c2'),
             );
 
             final getMailBoxMethod = GetMailboxMethod(accountId)
-              ..setReferenceIds(
-                queryMailboxInvocation,
-                ReferencePath.root.append('ids').each,
+              ..ids.ref(
+                queryMailboxInvocation.createResultReference(
+                  ReferencePath.root.append('ids').each,
+                ),
               );
             final getMailboxInvocation = jmapRequestBuilder.addInvocation(
               getMailBoxMethod,

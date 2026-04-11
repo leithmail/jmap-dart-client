@@ -108,16 +108,15 @@ void main() {
 
       final jmapRequestBuilder = RequestBuilder();
 
-      final emailQueryMethod = QueryEmailMethod(accountId)..addFilters(filter);
+      final emailQueryMethod = QueryEmailMethod(accountId)..filter.set(filter);
       final emailQueryMethodInvocation = jmapRequestBuilder.addInvocation(
         emailQueryMethod,
       );
 
       final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
-        ..addFilters(filter);
-      searchSnippetGetMethod.addReferenceEmailIds(
-        emailQueryMethodInvocation,
-        ReferencePath.idsPath,
+        ..filter.set(filter);
+      searchSnippetGetMethod.referenceEmailIds.ref(
+        emailQueryMethodInvocation.createResultReference(ReferencePath.idsPath),
       );
       final searchSnippetGetMethodInvocation = jmapRequestBuilder.addInvocation(
         searchSnippetGetMethod,
@@ -154,16 +153,15 @@ void main() {
 
       final jmapRequestBuilder = RequestBuilder();
 
-      final emailQueryMethod = QueryEmailMethod(accountId)..addFilters(filter);
+      final emailQueryMethod = QueryEmailMethod(accountId)..filter.set(filter);
       final emailQueryMethodInvocation = jmapRequestBuilder.addInvocation(
         emailQueryMethod,
       );
 
       final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
-        ..addFilters(filter);
-      searchSnippetGetMethod.addReferenceEmailIds(
-        emailQueryMethodInvocation,
-        ReferencePath.idsPath,
+        ..filter.set(filter);
+      searchSnippetGetMethod.referenceEmailIds.ref(
+        emailQueryMethodInvocation.createResultReference(ReferencePath.idsPath),
       );
       final methodInvocation = jmapRequestBuilder.addInvocation(
         searchSnippetGetMethod,
@@ -218,16 +216,15 @@ void main() {
 
       final jmapRequestBuilder = RequestBuilder();
 
-      final emailQueryMethod = QueryEmailMethod(accountId)..addFilters(filter);
+      final emailQueryMethod = QueryEmailMethod(accountId)..filter.set(filter);
       final emailQueryMethodInvocation = jmapRequestBuilder.addInvocation(
         emailQueryMethod,
       );
 
       final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
-        ..addFilters(filter);
-      searchSnippetGetMethod.addReferenceEmailIds(
-        emailQueryMethodInvocation,
-        ReferencePath.idsPath,
+        ..filter.set(filter);
+      searchSnippetGetMethod.referenceEmailIds.ref(
+        emailQueryMethodInvocation.createResultReference(ReferencePath.idsPath),
       );
       final methodInvocation = jmapRequestBuilder.addInvocation(
         searchSnippetGetMethod,

@@ -3,8 +3,6 @@ import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/method_response.dart';
 import 'package:jmap_dart_client/api/method/request/get_method.dart';
 import 'package:jmap_dart_client/api/method/request/query_method.dart';
-import 'package:jmap_dart_client/api/request/reference_path.dart';
-import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/methods/email/search_snippet_get_response.dart';
@@ -37,10 +35,6 @@ mixin OptionalReferenceEmailIds<
     'emailIds',
     (v) => v,
   );
-
-  void addReferenceEmailIds(RequestInvocation invocation, ReferencePath path) {
-    referenceEmailIds.ref(invocation.createResultReference(path));
-  }
 
   @override
   get slots => [...super.slots, referenceEmailIds];

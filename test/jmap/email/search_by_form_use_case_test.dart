@@ -119,14 +119,14 @@ void main() {
     );
 
     final queryEmailMethod = QueryEmailMethod(accountId)
-      ..addFilters(EmailFilterCondition(from: 'manh'));
+      ..filter.set(EmailFilterCondition(from: 'manh'));
     final queryEmailInvocation = jmapRequestBuilder.addInvocation(
       queryEmailMethod,
       methodCallId: MethodCallId('c1'),
     );
 
     final getEmailMethod = GetEmailMethod(accountId)
-      ..setProperties(
+      ..properties.set(
         Properties({
           "id",
           "subject",
@@ -138,7 +138,9 @@ void main() {
           "hasAttachment",
         }),
       )
-      ..setReferenceIds(queryEmailInvocation, ReferencePath.idsPath);
+      ..ids.ref(
+        queryEmailInvocation.createResultReference(ReferencePath.idsPath),
+      );
     final getEmailInvocation = jmapRequestBuilder.addInvocation(
       getEmailMethod,
       methodCallId: MethodCallId('c2'),

@@ -97,31 +97,34 @@ void main() {
 
       final mdnSendMethod =
           MDNSendMethod(
-            AccountId(
-              Id(
-                '0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555',
-              ),
-            ),
-            {
-              Id('k1546'): MDN(
-                forEmailId: EmailId(Id('31ed5fe0-4486-11ed-b412-4700d9090322')),
-                subject: 'Subject MDN/send',
-                textBody: 'Hello MDN/send',
-                disposition: Disposition(
-                  ActionMode.manual,
-                  SendingMode.manually,
-                  DispositionType.displayed,
+              AccountId(
+                Id(
+                  '0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555',
                 ),
               ),
-            },
-            IdentityId(Id('9ba9d77b-fbc8-4495-877d-d1261c25261f')),
-          )..addOnSuccessUpdateEmail({
-            EmailSubmissionId(
-              ReferenceId(ReferencePrefix.defaultPrefix, Id('k1546')),
-            ): PatchObject({
-              KeyWordIdentifier.mdnSent.toPatchObjectJson(): true,
-            }),
-          });
+              {
+                Id('k1546'): MDN(
+                  forEmailId: EmailId(
+                    Id('31ed5fe0-4486-11ed-b412-4700d9090322'),
+                  ),
+                  subject: 'Subject MDN/send',
+                  textBody: 'Hello MDN/send',
+                  disposition: Disposition(
+                    ActionMode.manual,
+                    SendingMode.manually,
+                    DispositionType.displayed,
+                  ),
+                ),
+              },
+              IdentityId(Id('9ba9d77b-fbc8-4495-877d-d1261c25261f')),
+            )
+            ..onSuccessUpdateEmail.set({
+              EmailSubmissionId(
+                ReferenceId(ReferencePrefix.defaultPrefix, Id('k1546')),
+              ): PatchObject({
+                KeyWordIdentifier.mdnSent.toPatchObjectJson(): true,
+              }),
+            });
 
       final requestBuilder = RequestBuilder();
       final mdnSendInvocation = requestBuilder.addInvocation(mdnSendMethod);

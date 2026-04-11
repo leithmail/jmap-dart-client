@@ -153,37 +153,38 @@ void main() {
 
       final setEmailMethod =
           SetEmailMethod(
-            AccountId(
-              Id(
-                '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+              AccountId(
+                Id(
+                  '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+                ),
               ),
-            ),
-          )..addCreates({
-            Id('dab1234'): Email(
-              id: EmailId(Id('dab1234')),
-              mailboxIds: {
-                MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')): true,
-              },
-              subject: 'test send email',
-              from: {EmailAddress("userB", 'userb@qa.open-paas.org')},
-              to: {EmailAddress("userD", 'userd@qa.open-paas.org')},
-              htmlBody: {
-                EmailBodyPart(
-                  partId: PartId('mmm'),
-                  blobId: Id('aaaa'),
-                  type: MediaType.parse('text/html'),
-                ),
-              },
-              bodyValues: {
-                PartId('mmm'): EmailBodyValue(
-                  value:
-                      '<!DOCTYPE html> <html> <body> <p><b>Hello test send 2</b></p><br><br></body> </html>',
-                  isEncodingProblem: false,
-                  isTruncated: false,
-                ),
-              },
-            ),
-          });
+            )
+            ..create.set({
+              Id('dab1234'): Email(
+                id: EmailId(Id('dab1234')),
+                mailboxIds: {
+                  MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')): true,
+                },
+                subject: 'test send email',
+                from: {EmailAddress("userB", 'userb@qa.open-paas.org')},
+                to: {EmailAddress("userD", 'userd@qa.open-paas.org')},
+                htmlBody: {
+                  EmailBodyPart(
+                    partId: PartId('mmm'),
+                    blobId: Id('aaaa'),
+                    type: MediaType.parse('text/html'),
+                  ),
+                },
+                bodyValues: {
+                  PartId('mmm'): EmailBodyValue(
+                    value:
+                        '<!DOCTYPE html> <html> <body> <p><b>Hello test send 2</b></p><br><br></body> </html>',
+                    isEncodingProblem: false,
+                    isTruncated: false,
+                  ),
+                },
+              ),
+            });
 
       final setEmailSubmissionMethod =
           SetEmailSubmissionMethod(
@@ -193,7 +194,7 @@ void main() {
                 ),
               ),
             )
-            ..addCreates({
+            ..create.set({
               Id('a1234'): EmailSubmission(
                 emailId: EmailId(
                   ReferenceId(ReferencePrefix.defaultPrefix, Id('dab1234')),
@@ -203,7 +204,7 @@ void main() {
                 }),
               ),
             })
-            ..addOnSuccessUpdateEmail({
+            ..onSuccessUpdateEmail.set({
               EmailSubmissionId(
                 ReferenceId(ReferencePrefix.defaultPrefix, Id('a1234')),
               ): PatchObject({
@@ -365,41 +366,42 @@ void main() {
 
       final setEmailMethod =
           SetEmailMethod(
-            AccountId(
-              Id(
-                '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+              AccountId(
+                Id(
+                  '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+                ),
               ),
-            ),
-          )..addCreates({
-            Id('dab1234'): Email(
-              id: EmailId(Id('dab1234')),
-              mailboxIds: {
-                MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')): true,
-              },
-              subject: 'test send email',
-              from: {EmailAddress("userB", 'userb@qa.open-paas.org')},
-              to: {EmailAddress("userD", 'userd@qa.open-paas.org')},
-              htmlBody: {
-                EmailBodyPart(
-                  partId: PartId('mmm'),
-                  blobId: Id('aaaa'),
-                  type: MediaType.parse('text/html'),
-                ),
-              },
-              bodyValues: {
-                PartId('mmm'): EmailBodyValue(
-                  value:
-                      '<!DOCTYPE html> <html> <body> <p><b>Hello test send 2</b></p><br><br></body> </html>',
-                  isEncodingProblem: false,
-                  isTruncated: false,
-                ),
-              },
-              headerUserAgent: {
-                IndividualHeaderIdentifier.headerUserAgent:
-                    'Android/1.0.0 TeamMail/1.0',
-              },
-            ),
-          });
+            )
+            ..create.set({
+              Id('dab1234'): Email(
+                id: EmailId(Id('dab1234')),
+                mailboxIds: {
+                  MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')): true,
+                },
+                subject: 'test send email',
+                from: {EmailAddress("userB", 'userb@qa.open-paas.org')},
+                to: {EmailAddress("userD", 'userd@qa.open-paas.org')},
+                htmlBody: {
+                  EmailBodyPart(
+                    partId: PartId('mmm'),
+                    blobId: Id('aaaa'),
+                    type: MediaType.parse('text/html'),
+                  ),
+                },
+                bodyValues: {
+                  PartId('mmm'): EmailBodyValue(
+                    value:
+                        '<!DOCTYPE html> <html> <body> <p><b>Hello test send 2</b></p><br><br></body> </html>',
+                    isEncodingProblem: false,
+                    isTruncated: false,
+                  ),
+                },
+                headerUserAgent: {
+                  IndividualHeaderIdentifier.headerUserAgent:
+                      'Android/1.0.0 TeamMail/1.0',
+                },
+              ),
+            });
 
       final setEmailSubmissionMethod =
           SetEmailSubmissionMethod(
@@ -409,7 +411,7 @@ void main() {
                 ),
               ),
             )
-            ..addCreates({
+            ..create.set({
               Id('a1234'): EmailSubmission(
                 emailId: EmailId(
                   ReferenceId(ReferencePrefix.defaultPrefix, Id('dab1234')),
@@ -419,7 +421,7 @@ void main() {
                 }),
               ),
             })
-            ..addOnSuccessUpdateEmail({
+            ..onSuccessUpdateEmail.set({
               EmailSubmissionId(
                 ReferenceId(ReferencePrefix.defaultPrefix, Id('a1234')),
               ): PatchObject({

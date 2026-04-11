@@ -302,7 +302,7 @@ void main() {
       );
 
       final parseEmailMethod = ParseEmailMethod(accountId, {blobId3})
-        ..setProperties(Properties({"id", "preview", "subject"}));
+        ..properties.set(Properties({"id", "preview", "subject"}));
 
       final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.addInvocation(parseEmailMethod);

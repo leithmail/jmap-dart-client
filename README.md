@@ -92,7 +92,7 @@ Future<jmap.GetMailboxResponse> fetchMailboxes(
     final requestBuilder = jmap.RequestBuilder();
 
     final getMailboxMethod = jmap.GetMailboxMethod(accountId)
-      ..setProperties(
+      ..properties.set(
         jmap.Properties({'id', 'name', 'role', 'totalEmails'}),
       );
 
@@ -124,21 +124,21 @@ Future<jmap.GetEmailResponse> fetchInboxEmails(
     final requestBuilder = jmap.RequestBuilder();
 
     final queryEmailMethod = jmap.QueryEmailMethod(accountId)
-      ..addPosition(0)
-      ..addLimit(20)
-      ..addSorts([
+      ..position.set(0)
+      ..limit.set(20)
+      ..sort.set([
         jmap.EmailComparator(jmap.EmailComparatorProperty.sentAt)
           ..setIsAscending(false),
       ])
-      ..addFilters(jmap.EmailFilterCondition(inMailbox: inboxId));
+      ..filter.set(jmap.EmailFilterCondition(inMailbox: inboxId));
 
     final queryInvocation = requestBuilder.addInvocation(queryEmailMethod);
 
     final getEmailMethod = jmap.GetEmailMethod(accountId)
-      ..setProperties(
+      ..properties.set(
         jmap.Properties({'id', 'subject', 'from', 'sentAt', 'preview'}),
       )
-      ..setReferenceIds(queryInvocation, jmap.ReferencePath.idsPath);
+      ..ids.ref(queryInvocation.createResultReference(jmap.ReferencePath.idsPath));
 
     final getEmailInvocation = requestBuilder.addInvocation(getEmailMethod);
 

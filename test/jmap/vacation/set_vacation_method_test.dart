@@ -95,7 +95,7 @@ void main() {
       );
 
       final setVacationMethod = SetVacationMethod(accountId)
-        ..addUpdatesSingleton({
+        ..updateSingleton.set({
           VacationId.singleton().id: VacationResponse(
             isEnabled: true,
             fromDate: UTCDate(DateTime.parse('2022-08-16T15:00:00.000Z')),

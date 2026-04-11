@@ -111,8 +111,8 @@ void main() {
           ),
         );
         final getEmailMethodForCreated = GetEmailMethod(accountId)
-          ..setIds({Id('54fa3000-2595-11ec-a759-2fef1ee78d9e')})
-          ..setProperties(
+          ..ids.set({Id('54fa3000-2595-11ec-a759-2fef1ee78d9e')})
+          ..properties.set(
             Properties({
               'id',
               'subject',

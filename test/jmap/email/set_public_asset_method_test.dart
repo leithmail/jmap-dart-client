@@ -35,7 +35,7 @@ void main() {
         identityIds: publicAsset.identityIds,
       );
       final method = SetPublicAssetMethod(accountId)
-        ..addCreates({createId: createObject});
+        ..create.set({createId: createObject});
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
           "sessionState": "abcdefghij",
@@ -98,7 +98,7 @@ void main() {
         identityIds: publicAsset.identityIds,
       );
       final method = SetPublicAssetMethod(accountId)
-        ..addCreates({createId: createObject});
+        ..create.set({createId: createObject});
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
           "sessionState": "abcdefghij",
@@ -164,7 +164,7 @@ void main() {
         'when PublicAsset/set destroy return success', () async {
       // arrange
       final method = SetPublicAssetMethod(accountId)
-        ..addDestroy({publicAsset.id!});
+        ..destroy.set({publicAsset.id!});
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
           "sessionState": "abcdefghij",
@@ -222,7 +222,7 @@ void main() {
       // arrange
       String errorDescription(String? id) => 'Invalid UUID string: $id';
       final method = SetPublicAssetMethod(accountId)
-        ..addDestroy({publicAsset.id!});
+        ..destroy.set({publicAsset.id!});
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
           "sessionState": "abcdefghij",
@@ -295,7 +295,7 @@ void main() {
             .toJson(publicAsset.identityIds!),
       });
       final method = SetPublicAssetMethod(accountId)
-        ..addUpdates({publicAsset.id!: updateObject});
+        ..update.set({publicAsset.id!: updateObject});
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
           "sessionState": "abcdefghij",
@@ -357,7 +357,7 @@ void main() {
             .toJson(publicAsset.identityIds!),
       });
       final method = SetPublicAssetMethod(accountId)
-        ..addUpdates({publicAsset.id!: updateObject});
+        ..update.set({publicAsset.id!: updateObject});
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
           "sessionState": "abcdefghij",

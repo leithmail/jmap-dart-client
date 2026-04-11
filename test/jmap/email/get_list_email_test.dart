@@ -1,18 +1,4 @@
-import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
-import 'package:jmap_dart_client/api/request/reference_path.dart';
-import 'package:jmap_dart_client/api/request/request_invocation.dart';
-import 'package:jmap_dart_client/api/request_builder.dart';
-import 'package:jmap_dart_client/entities/core/account_id.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/core/utc_date.dart';
-import 'package:jmap_dart_client/entities/email/email.dart';
-import 'package:jmap_dart_client/entities/email/email_address.dart';
-import 'package:jmap_dart_client/entities/email/email_comparator.dart';
-import 'package:jmap_dart_client/entities/email/email_comparator_property.dart';
-import 'package:jmap_dart_client/entities/email/email_filter_condition.dart';
-import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
-import 'package:jmap_dart_client/methods/email/get_email_method.dart';
-import 'package:jmap_dart_client/methods/email/query_email_method.dart';
+import 'package:jmap_dart_client/jmap_dart_client.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -214,12 +200,12 @@ void main() {
       );
 
       final queryEmailMethod = QueryEmailMethod(accountId)
-        ..addLimit(20)
-        ..addSorts([
+        ..limit.set(UnsignedInt(20))
+        ..sort.set([
           EmailComparator(EmailComparatorProperty.sentAt)
             ..setIsAscending(false),
         ])
-        ..addFilters(
+        ..filter.set(
           EmailFilterCondition(
             inMailbox: MailboxId((Id('aba7e8d0-18d9-11eb-a677-2990b970028d'))),
           ),
@@ -230,7 +216,7 @@ void main() {
       );
 
       final getEmailMethod = GetEmailMethod(accountId)
-        ..setProperties(
+        ..properties.set(
           Properties({
             "id",
             "subject",
@@ -241,7 +227,9 @@ void main() {
             "hasAttachment",
           }),
         )
-        ..setReferenceIds(queryEmailInvocation, ReferencePath.idsPath);
+        ..ids.ref(
+          queryEmailInvocation.createResultReference(ReferencePath.idsPath),
+        );
       final getEmailInvocation = jmapRequestBuilder.addInvocation(
         getEmailMethod,
         methodCallId: MethodCallId('c3'),

@@ -83,7 +83,7 @@ void main() {
       );
 
       final getIdentityMethod = GetIdentityMethod(accountId)
-        ..setProperties(Properties({"email", "bcc", "sortOrder"}));
+        ..properties.set(Properties({"email", "bcc", "sortOrder"}));
       final getIdentityInvocation = requestBuilder.addInvocation(
         getIdentityMethod,
       );

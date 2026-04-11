@@ -50,10 +50,6 @@ mixin OptionalOnSuccessUpdateEmail<
         ),
       );
 
-  void addOnSuccessUpdateEmail(Map<EmailSubmissionId, PatchObject> values) {
-    onSuccessUpdateEmail.set(values);
-  }
-
   @override
   get slots => [...super.slots, onSuccessUpdateEmail];
 }
@@ -72,10 +68,6 @@ mixin OptionalOnSuccessDestroyEmail<
         )
         .toList(),
   );
-
-  void addOnSuccessDestroyEmail(Set<EmailSubmissionId> values) {
-    onSuccessDestroyEmail.set(values);
-  }
 
   @override
   get slots => [...super.slots, onSuccessDestroyEmail];

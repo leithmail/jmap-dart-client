@@ -33,10 +33,6 @@ mixin OptionalCollapseThreads<
     on Method<R, F> {
   final collapseThreads = ArgumentSlot<bool?>('collapseThreads', (v) => v);
 
-  void addCollapseThreads(bool value) {
-    collapseThreads.set(value);
-  }
-
   @override
   get slots => [...super.slots, collapseThreads];
 }

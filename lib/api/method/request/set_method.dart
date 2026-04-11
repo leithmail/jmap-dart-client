@@ -4,7 +4,6 @@ import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/method_response.dart';
 import 'package:jmap_dart_client/api/request/patch_object.dart';
-import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -38,10 +37,6 @@ mixin OptionalIfInState<R extends MethodResponse, F extends ResultReference>
     on Method<R, F> {
   final ifInState = ArgumentSlot<State?>('ifInState', (v) => v?.value);
 
-  void addIfInState(State? state) {
-    ifInState.set(state);
-  }
-
   @override
   get slots => [...super.slots, ifInState];
 }
@@ -55,10 +50,6 @@ mixin OptionalCreate<T, R extends MethodResponse, F extends ResultReference>
 
   Object? typeToJson(T v);
 
-  void addCreates(Map<Id, T> creates) {
-    create.set(creates);
-  }
-
   @override
   get slots => [...super.slots, create];
 }
@@ -70,10 +61,6 @@ mixin OptionalUpdate<R extends MethodResponse, F extends ResultReference>
     (v) => v?.map((id, value) => MapEntry(id.value, value.toJson())),
   );
 
-  void addUpdates(Map<Id, PatchObject> updates) {
-    update.set(updates);
-  }
-
   @override
   get slots => [...super.slots, update];
 }
@@ -84,14 +71,6 @@ mixin OptionalDestroy<R extends MethodResponse, F extends ResultReference>
     'destroy',
     (v) => v?.map((id) => id.value).toList(),
   );
-
-  void addDestroy(Set<Id> values) {
-    destroy.set(values);
-  }
-
-  void addReferenceDestroy(RequestInvocation invocation, ReferencePath path) {
-    destroy.ref(invocation.createResultReference(path));
-  }
 
   @override
   get slots => [...super.slots, destroy];
@@ -109,10 +88,6 @@ mixin OptionalUpdateSingleton<
   );
 
   Object? typeToJson(T v);
-
-  void addUpdatesSingleton(Map<Id, T> updates) {
-    updateSingleton.set(updates);
-  }
 
   @override
   get slots => [...super.slots, updateSingleton];

@@ -98,38 +98,39 @@ void main() {
 
       final setEmailMethod =
           SetEmailMethod(
-            AccountId(
-              Id(
-                '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+              AccountId(
+                Id(
+                  '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+                ),
               ),
-            ),
-          )..addCreates({
-            Id('aa1234'): Email(
-              id: EmailId(Id('ea12345')),
-              mailboxIds: {
-                MailboxId(Id('fe00a5c0-0584-11ec-b153-2fef1ee78d9e')): true,
-              },
-              keywords: {KeyWordIdentifier.emailSeen: true},
-              replyTo: {EmailAddress('bob', 'bob@email')},
-              from: {EmailAddress('alice', 'alice@email')},
-              sender: {EmailAddress('bob', 'bob@email')},
-              to: {EmailAddress('dcu', 'dcu@email')},
-              subject: 'set email 3',
-              htmlBody: {
-                EmailBodyPart(
-                  partId: PartId('a49d'),
-                  type: MediaType.parse('text/html'),
-                ),
-              },
-              bodyValues: {
-                PartId('a49d'): EmailBodyValue(
-                  value: 'test html html',
-                  isEncodingProblem: false,
-                  isTruncated: false,
-                ),
-              },
-            ),
-          });
+            )
+            ..create.set({
+              Id('aa1234'): Email(
+                id: EmailId(Id('ea12345')),
+                mailboxIds: {
+                  MailboxId(Id('fe00a5c0-0584-11ec-b153-2fef1ee78d9e')): true,
+                },
+                keywords: {KeyWordIdentifier.emailSeen: true},
+                replyTo: {EmailAddress('bob', 'bob@email')},
+                from: {EmailAddress('alice', 'alice@email')},
+                sender: {EmailAddress('bob', 'bob@email')},
+                to: {EmailAddress('dcu', 'dcu@email')},
+                subject: 'set email 3',
+                htmlBody: {
+                  EmailBodyPart(
+                    partId: PartId('a49d'),
+                    type: MediaType.parse('text/html'),
+                  ),
+                },
+                bodyValues: {
+                  PartId('a49d'): EmailBodyValue(
+                    value: 'test html html',
+                    isEncodingProblem: false,
+                    isTruncated: false,
+                  ),
+                },
+              ),
+            });
 
       final requestBuilder = RequestBuilder();
       final setEmailInvocation = requestBuilder.addInvocation(setEmailMethod);
@@ -217,42 +218,43 @@ void main() {
 
       final setEmailMethod =
           SetEmailMethod(
-            AccountId(
-              Id(
-                '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+              AccountId(
+                Id(
+                  '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+                ),
               ),
-            ),
-          )..addCreates({
-            Id('aa1234'): Email(
-              id: EmailId(Id('ea12345')),
-              mailboxIds: {
-                MailboxId(Id('fe00a5c0-0584-11ec-b153-2fef1ee78d9e')): true,
-              },
-              keywords: {KeyWordIdentifier.emailSeen: true},
-              replyTo: {EmailAddress('bob', 'bob@email')},
-              from: {EmailAddress('alice', 'alice@email')},
-              sender: {EmailAddress('bob', 'bob@email')},
-              to: {EmailAddress('dcu', 'dcu@email')},
-              subject: 'set email 3',
-              htmlBody: {
-                EmailBodyPart(
-                  partId: PartId('a49d'),
-                  type: MediaType.parse('text/html'),
-                ),
-              },
-              bodyValues: {
-                PartId('a49d'): EmailBodyValue(
-                  value: 'test html html',
-                  isEncodingProblem: false,
-                  isTruncated: false,
-                ),
-              },
-              headerUserAgent: {
-                IndividualHeaderIdentifier.headerUserAgent:
-                    'Android/1.0.0 TeamMail/1.0',
-              },
-            ),
-          });
+            )
+            ..create.set({
+              Id('aa1234'): Email(
+                id: EmailId(Id('ea12345')),
+                mailboxIds: {
+                  MailboxId(Id('fe00a5c0-0584-11ec-b153-2fef1ee78d9e')): true,
+                },
+                keywords: {KeyWordIdentifier.emailSeen: true},
+                replyTo: {EmailAddress('bob', 'bob@email')},
+                from: {EmailAddress('alice', 'alice@email')},
+                sender: {EmailAddress('bob', 'bob@email')},
+                to: {EmailAddress('dcu', 'dcu@email')},
+                subject: 'set email 3',
+                htmlBody: {
+                  EmailBodyPart(
+                    partId: PartId('a49d'),
+                    type: MediaType.parse('text/html'),
+                  ),
+                },
+                bodyValues: {
+                  PartId('a49d'): EmailBodyValue(
+                    value: 'test html html',
+                    isEncodingProblem: false,
+                    isTruncated: false,
+                  ),
+                },
+                headerUserAgent: {
+                  IndividualHeaderIdentifier.headerUserAgent:
+                      'Android/1.0.0 TeamMail/1.0',
+                },
+              ),
+            });
 
       final requestBuilder = RequestBuilder();
       final setEmailInvocation = requestBuilder.addInvocation(setEmailMethod);
@@ -335,41 +337,42 @@ void main() {
 
       final setEmailMethod =
           SetEmailMethod(
-            AccountId(
-              Id(
-                '587a9c5a4a9c0a4d36243b7417700d5383cbbfa25f0909ab7f6f4baaa5bf4e9b',
+              AccountId(
+                Id(
+                  '587a9c5a4a9c0a4d36243b7417700d5383cbbfa25f0909ab7f6f4baaa5bf4e9b',
+                ),
               ),
-            ),
-          )..addCreates({
-            Id('e01'): Email(
-              id: EmailId(Id('e102')),
-              mailboxIds: {
-                MailboxId(Id('a6f488c0-964b-11ec-83d6-c1ded34233a9')): true,
-              },
-              from: {EmailAddress('qkdo@linagora.com', 'qkdo@linagora.com')},
-              subject: '[POSTMAN] SEND EMAIL WITH MDN MDN MDN',
-              htmlBody: {
-                EmailBodyPart(
-                  partId: PartId('abc123'),
-                  type: MediaType.parse('text/html'),
-                ),
-              },
-              bodyValues: {
-                PartId('abc123'): EmailBodyValue(
-                  value: '[POSTMAN] SEND EMAIL WITH MDN',
-                  isEncodingProblem: false,
-                  isTruncated: false,
-                ),
-              },
-              headerMdn: {
-                IndividualHeaderIdentifier.headerMdn: "qkdo@linagora.com",
-              },
-              headerReturnPath: {
-                IndividualHeaderIdentifier.headerReturnPath:
-                    "qkdo@linagora.com",
-              },
-            ),
-          });
+            )
+            ..create.set({
+              Id('e01'): Email(
+                id: EmailId(Id('e102')),
+                mailboxIds: {
+                  MailboxId(Id('a6f488c0-964b-11ec-83d6-c1ded34233a9')): true,
+                },
+                from: {EmailAddress('qkdo@linagora.com', 'qkdo@linagora.com')},
+                subject: '[POSTMAN] SEND EMAIL WITH MDN MDN MDN',
+                htmlBody: {
+                  EmailBodyPart(
+                    partId: PartId('abc123'),
+                    type: MediaType.parse('text/html'),
+                  ),
+                },
+                bodyValues: {
+                  PartId('abc123'): EmailBodyValue(
+                    value: '[POSTMAN] SEND EMAIL WITH MDN',
+                    isEncodingProblem: false,
+                    isTruncated: false,
+                  ),
+                },
+                headerMdn: {
+                  IndividualHeaderIdentifier.headerMdn: "qkdo@linagora.com",
+                },
+                headerReturnPath: {
+                  IndividualHeaderIdentifier.headerReturnPath:
+                      "qkdo@linagora.com",
+                },
+              ),
+            });
 
       final requestBuilder = RequestBuilder();
       final setEmailInvocation = requestBuilder.addInvocation(setEmailMethod);

@@ -43,10 +43,6 @@ mixin OptionalEmailBodyProperties<
     (v) => v?.toJson(),
   );
 
-  void addEmailBodyProperties(EmailBodyProperties value) {
-    bodyProperties.set(value);
-  }
-
   @override
   get slots => [...super.slots, bodyProperties];
 }
@@ -60,10 +56,6 @@ mixin OptionalFetchTextBodyValues<
     "fetchTextBodyValues",
     (v) => v,
   );
-
-  void addFetchTextBodyValues(bool value) {
-    fetchTextBodyValues.set(value);
-  }
 
   @override
   get slots => [...super.slots, fetchTextBodyValues];
@@ -79,10 +71,6 @@ mixin OptionalFetchHTMLBodyValues<
     (v) => v,
   );
 
-  void addFetchHTMLBodyValues(bool value) {
-    fetchHTMLBodyValues.set(value);
-  }
-
   @override
   get slots => [...super.slots, fetchHTMLBodyValues];
 }
@@ -97,10 +85,6 @@ mixin OptionalFetchAllBodyValues<
     (v) => v,
   );
 
-  void addFetchAllBodyValues(bool value) {
-    fetchAllBodyValues.set(value);
-  }
-
   @override
   get slots => [...super.slots, fetchAllBodyValues];
 }
@@ -114,10 +98,6 @@ mixin OptionalMaxBodyValueBytes<
     "maxBodyValueBytes",
     (v) => v?.value,
   );
-
-  void addMaxBodyValueBytes(UnsignedInt value) {
-    maxBodyValueBytes.set(value);
-  }
 
   @override
   get slots => [...super.slots, maxBodyValueBytes];

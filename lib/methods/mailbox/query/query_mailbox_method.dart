@@ -30,10 +30,6 @@ mixin FilterAsTree<R extends MethodResponse, F extends ResultReference>
     on Method<R, F> {
   final filterAsTree = ArgumentSlot<bool?>('filterAsTree', (v) => v);
 
-  void addFilterAsTree(bool value) {
-    filterAsTree.set(value);
-  }
-
   @override
   get slots => [...super.slots, filterAsTree];
 }
@@ -41,10 +37,6 @@ mixin FilterAsTree<R extends MethodResponse, F extends ResultReference>
 mixin SortAsTree<R extends MethodResponse, F extends ResultReference>
     on Method<R, F> {
   final sortAsTree = ArgumentSlot<bool?>('sortAsTree', (v) => v);
-
-  void addSortAsTree(bool value) {
-    sortAsTree.set(value);
-  }
 
   @override
   get slots => [...super.slots, sortAsTree];

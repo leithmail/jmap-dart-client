@@ -25,10 +25,6 @@ mixin OptionalPosition<R extends MethodResponse, F extends ResultReference>
     on Method<R, F> {
   final position = ArgumentSlot<int>('position', (v) => v);
 
-  void addPosition(int value) {
-    position.set(value);
-  }
-
   @override
   get slots => [...super.slots, position];
 }
@@ -36,10 +32,6 @@ mixin OptionalPosition<R extends MethodResponse, F extends ResultReference>
 mixin OptionalAnchorOffset<R extends MethodResponse, F extends ResultReference>
     on Method<R, F> {
   final anchorOffset = ArgumentSlot<int>('anchorOffset', (v) => v);
-
-  void addAnchorOffset(int value) {
-    anchorOffset.set(value);
-  }
 
   @override
   get slots => [...super.slots, anchorOffset];
@@ -52,10 +44,6 @@ mixin OptionalCalculateTotal<
     on Method<R, F> {
   final calculateTotal = ArgumentSlot<bool>('calculateTotal', (v) => v);
 
-  void addCalculateTotal(bool value) {
-    calculateTotal.set(value);
-  }
-
   @override
   get slots => [...super.slots, calculateTotal];
 }
@@ -63,10 +51,6 @@ mixin OptionalCalculateTotal<
 mixin OptionalFilter<R extends MethodResponse, F extends ResultReference>
     on Method<R, F> {
   final filter = ArgumentSlot<Filter>('filter', (v) => v.toJson());
-
-  void addFilters(Filter value) {
-    filter.set(value);
-  }
 
   @override
   get slots => [...super.slots, filter];
@@ -79,10 +63,6 @@ mixin OptionalSort<R extends MethodResponse, F extends ResultReference>
     (v) => v.map((e) => e.toJson()).toList(),
   );
 
-  void addSorts(List<Comparator> value) {
-    sort.set(value);
-  }
-
   @override
   get slots => [...super.slots, sort];
 }
@@ -91,10 +71,6 @@ mixin OptionalAnchor<R extends MethodResponse, F extends ResultReference>
     on Method<R, F> {
   final anchor = ArgumentSlot<Id>('anchor', (v) => v.value);
 
-  void addAnchor(Id value) {
-    anchor.set(value);
-  }
-
   @override
   get slots => [...super.slots, anchor];
 }
@@ -102,10 +78,6 @@ mixin OptionalAnchor<R extends MethodResponse, F extends ResultReference>
 mixin OptionalLimit<R extends MethodResponse, F extends ResultReference>
     on Method<R, F> {
   final limit = ArgumentSlot<UnsignedInt>('limit', (v) => v.value);
-
-  void addLimit(int value) {
-    limit.set(UnsignedInt(value));
-  }
 
   @override
   get slots => [...super.slots, limit];

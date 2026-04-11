@@ -40,10 +40,6 @@ mixin OptionalOnDestroyRemoveEmails<
     (v) => v,
   );
 
-  void addOnDestroyRemoveEmails(bool value) {
-    onDestroyRemoveEmails.set(value);
-  }
-
   @override
   get slots => [...super.slots, onDestroyRemoveEmails];
 }

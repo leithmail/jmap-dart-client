@@ -174,8 +174,8 @@ void main() {
     );
 
     final queryEmailMethod = QueryEmailMethod(accountId)
-      ..addLimit(3)
-      ..addFilters(
+      ..limit.set(UnsignedInt(3))
+      ..filter.set(
         EmailFilterCondition(
           text: 'report',
           inMailbox: MailboxId(Id('c2543650-32cf-11eb-995c-a3ae66e9f96a')),
@@ -188,7 +188,7 @@ void main() {
     );
 
     final getEmailMethod = GetEmailMethod(accountId)
-      ..setProperties(
+      ..properties.set(
         Properties({
           "id",
           "subject",
@@ -200,7 +200,9 @@ void main() {
           "hasAttachment",
         }),
       )
-      ..setReferenceIds(queryEmailInvocation, ReferencePath.idsPath);
+      ..ids.ref(
+        queryEmailInvocation.createResultReference(ReferencePath.idsPath),
+      );
     final getEmailInvocation = jmapRequestBuilder.addInvocation(
       getEmailMethod,
       methodCallId: MethodCallId('c3'),

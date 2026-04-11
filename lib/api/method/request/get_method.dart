@@ -2,7 +2,6 @@ import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/method_response.dart';
-import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -33,14 +32,6 @@ mixin OptionalIds<R extends MethodResponse, F extends ResultReference>
     (v) => v?.map(const IdConverter().toJson).toList(),
   );
 
-  void setIds(Set<Id>? values) {
-    ids.set(values);
-  }
-
-  void setReferenceIds(RequestInvocation invocation, ReferencePath path) {
-    ids.ref(invocation.createResultReference(path));
-  }
-
   @override
   get slots => [...super.slots, ids];
 }
@@ -51,14 +42,6 @@ mixin OptionalProperties<R extends MethodResponse, F extends ResultReference>
     'properties',
     (v) => PropertiesConverter().toJson(v),
   );
-
-  void setProperties(Properties properties) {
-    this.properties.set(properties);
-  }
-
-  void setReferenceProperties(ResultReference resultReferenceProperties) {
-    properties.ref(resultReferenceProperties);
-  }
 
   @override
   get slots => [...super.slots, properties];
