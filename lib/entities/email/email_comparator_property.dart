@@ -16,7 +16,4 @@ class EmailComparatorProperty extends ComparatorProperty {
   );
 
   EmailComparatorProperty(String value) : super(value);
-
-  @override
-  List<Object> get props => [value];
 }
