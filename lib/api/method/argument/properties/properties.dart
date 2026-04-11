@@ -12,12 +12,6 @@ class Properties with EquatableMixin {
   Properties removeAll(Properties other) =>
       Properties(value..removeAll(other.value));
 
-  bool isEmpty() => value.isEmpty;
-
-  Properties operator +(Properties other) => union(other);
-
-  Properties operator -(Properties other) => removeAll(other);
-
   @override
   List<Object?> get props => [value];
 }

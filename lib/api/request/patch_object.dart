@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-class PatchObject with EquatableMixin {
+class PatchObject {
   static const mailboxIdsProperty = 'mailboxIds';
   static const keywordsProperty = 'keywords';
   static const identityIdsProperty = 'identityIds';
@@ -10,7 +8,4 @@ class PatchObject with EquatableMixin {
   final Map<String, dynamic> patches;
 
   Map<String, dynamic> toJson() => patches;
-
-  @override
-  List<Object?> get props => [patches];
 }

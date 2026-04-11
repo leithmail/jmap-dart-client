@@ -1,5 +1,3 @@
-import 'package:equatable/equatable.dart';
-
-abstract class Filter with EquatableMixin {
+abstract class Filter {
   Map<String, dynamic> toJson();
 }

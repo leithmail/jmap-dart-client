@@ -24,10 +24,6 @@ mixin OptionalLanguage<R extends MethodResponse, F extends ResultReference>
     on Method<R, F> {
   final language = ArgumentSlot<String?>('language', (v) => v);
 
-  void addLanguage(String value) {
-    language.set(value);
-  }
-
   @override
   get slots => [...super.slots, language];
 }
