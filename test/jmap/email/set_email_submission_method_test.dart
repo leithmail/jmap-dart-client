@@ -158,9 +158,8 @@ void main() {
                 '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
               ),
             ),
-          )..addCreate(
-            Id('dab1234'),
-            Email(
+          )..addCreates({
+            Id('dab1234'): Email(
               id: EmailId(Id('dab1234')),
               mailboxIds: {
                 MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')): true,
@@ -184,7 +183,7 @@ void main() {
                 ),
               },
             ),
-          );
+          });
 
       final setEmailSubmissionMethod =
           SetEmailSubmissionMethod(
@@ -194,9 +193,8 @@ void main() {
                 ),
               ),
             )
-            ..addCreate(
-              Id('a1234'),
-              EmailSubmission(
+            ..addCreates({
+              Id('a1234'): EmailSubmission(
                 emailId: EmailId(
                   ReferenceId(ReferencePrefix.defaultPrefix, Id('dab1234')),
                 ),
@@ -204,7 +202,7 @@ void main() {
                   Address('userd@qa.open-paas.org'),
                 }),
               ),
-            )
+            })
             ..addOnSuccessUpdateEmail({
               EmailSubmissionId(
                 ReferenceId(ReferencePrefix.defaultPrefix, Id('a1234')),
@@ -372,9 +370,8 @@ void main() {
                 '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
               ),
             ),
-          )..addCreate(
-            Id('dab1234'),
-            Email(
+          )..addCreates({
+            Id('dab1234'): Email(
               id: EmailId(Id('dab1234')),
               mailboxIds: {
                 MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')): true,
@@ -402,7 +399,7 @@ void main() {
                     'Android/1.0.0 TeamMail/1.0',
               },
             ),
-          );
+          });
 
       final setEmailSubmissionMethod =
           SetEmailSubmissionMethod(
@@ -412,9 +409,8 @@ void main() {
                 ),
               ),
             )
-            ..addCreate(
-              Id('a1234'),
-              EmailSubmission(
+            ..addCreates({
+              Id('a1234'): EmailSubmission(
                 emailId: EmailId(
                   ReferenceId(ReferencePrefix.defaultPrefix, Id('dab1234')),
                 ),
@@ -422,7 +418,7 @@ void main() {
                   Address('userd@qa.open-paas.org'),
                 }),
               ),
-            )
+            })
             ..addOnSuccessUpdateEmail({
               EmailSubmissionId(
                 ReferenceId(ReferencePrefix.defaultPrefix, Id('a1234')),

@@ -35,7 +35,7 @@ void main() {
         identityIds: publicAsset.identityIds,
       );
       final method = SetPublicAssetMethod(accountId)
-        ..addCreate(createId, createObject);
+        ..addCreates({createId: createObject});
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
           "sessionState": "abcdefghij",
@@ -98,7 +98,7 @@ void main() {
         identityIds: publicAsset.identityIds,
       );
       final method = SetPublicAssetMethod(accountId)
-        ..addCreate(createId, createObject);
+        ..addCreates({createId: createObject});
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
           "sessionState": "abcdefghij",

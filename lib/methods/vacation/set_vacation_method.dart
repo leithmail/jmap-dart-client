@@ -1,13 +1,18 @@
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/request/set_method.dart';
+import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/vacation/vacation_response.dart';
 import 'package:jmap_dart_client/methods/vacation/set_vacation_response.dart';
-import 'package:jmap_dart_client/src/converters/set/set_method_properties_converter.dart';
 
 class SetVacationMethod extends SetMethod<SetVacationResponse, VacationResponse>
-    with OptionalUpdateSingleton<VacationResponse> {
+    with
+        OptionalUpdateSingleton<
+          VacationResponse,
+          SetVacationResponse,
+          ResultReference
+        > {
   SetVacationMethod(AccountId accountId) : super(accountId);
 
   @override
@@ -20,26 +25,7 @@ class SetVacationMethod extends SetMethod<SetVacationResponse, VacationResponse>
   };
 
   @override
-  Map<String, dynamic> toJson() {
-    final val = super.toJson();
-
-    void writeNotNull(String key, dynamic value) {
-      if (value != null) {
-        val[key] = value;
-      }
-    }
-
-    writeNotNull('ifInState', ifInState?.value);
-    writeNotNull(
-      'update',
-      updateSingleton?.map(
-        (id, update) =>
-            SetMethodPropertiesConverter().fromMapIdToJson(id, update.toJson()),
-      ),
-    );
-
-    return val;
-  }
+  Object? typeToJson(VacationResponse v) => v.toJson();
 
   @override
   SetVacationResponse responseFromJson(Map<String, dynamic> json) {

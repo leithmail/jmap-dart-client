@@ -4,8 +4,6 @@ import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/identity/identity.dart';
 import 'package:jmap_dart_client/methods/identity/set_identity_response.dart';
-import 'package:jmap_dart_client/src/converters/id_converter.dart';
-import 'package:jmap_dart_client/src/converters/set/set_method_properties_converter.dart';
 
 class SetIdentityMethod extends SetMethod<SetIdentityResponse, Identity> {
   SetIdentityMethod(AccountId accountId) : super(accountId);
@@ -20,39 +18,7 @@ class SetIdentityMethod extends SetMethod<SetIdentityResponse, Identity> {
   };
 
   @override
-  Map<String, dynamic> toJson() {
-    final val = super.toJson();
-
-    void writeNotNull(String key, dynamic value) {
-      if (value != null) {
-        val[key] = value;
-      }
-    }
-
-    writeNotNull('ifInState', ifInState?.value);
-    writeNotNull(
-      'create',
-      create?.map(
-        (id, create) =>
-            SetMethodPropertiesConverter().fromMapIdToJson(id, create.toJson()),
-      ),
-    );
-    writeNotNull(
-      'update',
-      update?.map(
-        (id, update) =>
-            SetMethodPropertiesConverter().fromMapIdToJson(id, update.toJson()),
-      ),
-    );
-    writeNotNull(
-      'destroy',
-      destroy
-          ?.map((destroyId) => const IdConverter().toJson(destroyId))
-          .toList(),
-    );
-
-    return val;
-  }
+  Object? typeToJson(Identity v) => v.toJson();
 
   @override
   SetIdentityResponse responseFromJson(Map<String, dynamic> json) {

@@ -103,9 +103,8 @@ void main() {
                 '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
               ),
             ),
-          )..addCreate(
-            Id('aa1234'),
-            Email(
+          )..addCreates({
+            Id('aa1234'): Email(
               id: EmailId(Id('ea12345')),
               mailboxIds: {
                 MailboxId(Id('fe00a5c0-0584-11ec-b153-2fef1ee78d9e')): true,
@@ -130,7 +129,7 @@ void main() {
                 ),
               },
             ),
-          );
+          });
 
       final requestBuilder = RequestBuilder();
       final setEmailInvocation = requestBuilder.addInvocation(setEmailMethod);
@@ -223,9 +222,8 @@ void main() {
                 '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
               ),
             ),
-          )..addCreate(
-            Id('aa1234'),
-            Email(
+          )..addCreates({
+            Id('aa1234'): Email(
               id: EmailId(Id('ea12345')),
               mailboxIds: {
                 MailboxId(Id('fe00a5c0-0584-11ec-b153-2fef1ee78d9e')): true,
@@ -254,7 +252,7 @@ void main() {
                     'Android/1.0.0 TeamMail/1.0',
               },
             ),
-          );
+          });
 
       final requestBuilder = RequestBuilder();
       final setEmailInvocation = requestBuilder.addInvocation(setEmailMethod);
@@ -342,9 +340,8 @@ void main() {
                 '587a9c5a4a9c0a4d36243b7417700d5383cbbfa25f0909ab7f6f4baaa5bf4e9b',
               ),
             ),
-          )..addCreate(
-            Id('e01'),
-            Email(
+          )..addCreates({
+            Id('e01'): Email(
               id: EmailId(Id('e102')),
               mailboxIds: {
                 MailboxId(Id('a6f488c0-964b-11ec-83d6-c1ded34233a9')): true,
@@ -372,7 +369,7 @@ void main() {
                     "qkdo@linagora.com",
               },
             ),
-          );
+          });
 
       final requestBuilder = RequestBuilder();
       final setEmailInvocation = requestBuilder.addInvocation(setEmailMethod);

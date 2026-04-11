@@ -80,13 +80,12 @@ void main() {
                 '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
               ),
             ),
-          )..addCreate(
-            Id('dab246'),
-            Mailbox(
+          )..addCreates({
+            Id('dab246'): Mailbox(
               name: MailboxName('dab135'),
               parentId: MailboxId(Id('aba7e8d0-18d9-11eb-a677-2990b970028d')),
             ),
-          );
+          });
 
       final requestBuilder = RequestBuilder();
       final setMailboxInvocation = requestBuilder.addInvocation(

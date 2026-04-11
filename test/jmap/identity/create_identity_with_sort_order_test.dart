@@ -73,9 +73,8 @@ void main() {
                 '4603645929458bf671aca134b890cbb8ac4a0d297640fsdefe9230ea28daa0b1',
               ),
             ),
-          )..addCreate(
-            Id('dab246'),
-            Identity(
+          )..addCreates({
+            Id('dab246'): Identity(
               name: 'User B23',
               email: 'lol@gmail.com',
               textSignature: Signature(''),
@@ -84,7 +83,7 @@ void main() {
               ),
               sortOrder: UnsignedInt(99999),
             ),
-          );
+          });
 
       final requestBuilder = RequestBuilder();
       final setIdentityInvocation = requestBuilder.addInvocation(
@@ -176,15 +175,14 @@ void main() {
                     ),
                   ),
                 )
-                ..addCreate(
-                  Id('xyz123'),
-                  Identity(
+                ..addCreates({
+                  Id('xyz123'): Identity(
                     id: IdentityId(Id("5ccf6d7b-77e8-467a-9064-9f7ccfb19e12")),
                     name: 'User B23',
                     email: 'lol@gmail.com',
                     sortOrder: UnsignedInt(1),
                   ),
-                )
+                })
                 ..addUpdates({
                   Id("c6ba359f-94a8-4ee9-b515-6bd2d9698618"): PatchObject({
                     "sortOrder": 8888,

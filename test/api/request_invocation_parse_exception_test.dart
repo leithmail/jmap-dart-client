@@ -70,9 +70,6 @@ class _FakeErrorMethod extends Method<ErrorMethodResponse, ResultReference> {
   Set<CapabilityIdentifier> requiredCapabilities() => {};
 
   @override
-  Map<String, dynamic> toJson() => <String, dynamic>{};
-
-  @override
   ErrorMethodResponse responseFromJson(Map<String, dynamic> json) {
     return ServerFailMethodResponse();
   }

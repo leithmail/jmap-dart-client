@@ -1,3 +1,6 @@
+import 'dart:core';
+
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/method_response.dart';
 import 'package:jmap_dart_client/api/request/patch_object.dart';
@@ -7,26 +10,23 @@ import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 abstract class SetMethod<R extends MethodResponse, T>
     extends MethodRequiringAccountId<R>
     with
         OptionalIfInState,
-        OptionalCreate<T>,
+        OptionalCreate<T, R, ResultReference>,
         OptionalDestroy,
-        OptionalUpdate,
-        OptionalReferenceDestroy {
+        OptionalUpdate {
   SetMethod(AccountId accountId) : super(accountId);
 }
 
 abstract class SetMethodNoNeedAccountId<R extends MethodResponse, T>
     extends Method<R, ResultReference>
     with
-        OptionalCreate<T>,
+        OptionalCreate<T, R, ResultReference>,
         OptionalDestroy,
-        OptionalUpdate,
-        OptionalReferenceDestroy {
+        OptionalUpdate {
   SetMethodNoNeedAccountId() : super();
 
   @override
@@ -34,65 +34,86 @@ abstract class SetMethodNoNeedAccountId<R extends MethodResponse, T>
       resultReferenceDefault(resultOf);
 }
 
-mixin OptionalIfInState {
-  @JsonKey(includeIfNull: false)
-  State? ifInState;
+mixin OptionalIfInState<R extends MethodResponse, F extends ResultReference>
+    on Method<R, F> {
+  final ifInState = ArgumentSlot<State?>('ifInState', (v) => v?.value);
 
   void addIfInState(State? state) {
-    ifInState = state;
+    ifInState.set(state);
   }
+
+  @override
+  get slots => [...super.slots, ifInState];
 }
 
-mixin OptionalCreate<T> {
-  @JsonKey(includeIfNull: false)
-  Map<Id, T>? create;
+mixin OptionalCreate<T, R extends MethodResponse, F extends ResultReference>
+    on Method<R, F> {
+  late final create = ArgumentSlot<Map<Id, T>?>(
+    'create',
+    (v) => v?.map((id, value) => MapEntry(id.value, typeToJson(value))),
+  );
+
+  Object? typeToJson(T v);
 
   void addCreates(Map<Id, T> creates) {
-    create ??= <Id, T>{};
-    create?.addAll(creates);
+    create.set(creates);
   }
 
-  void addCreate(Id id, T createItem) {
-    create ??= <Id, T>{};
-    create?.addAll({id: createItem});
-  }
+  @override
+  get slots => [...super.slots, create];
 }
 
-mixin OptionalUpdate {
-  @JsonKey(includeIfNull: false)
-  Map<Id, PatchObject>? update;
+mixin OptionalUpdate<R extends MethodResponse, F extends ResultReference>
+    on Method<R, F> {
+  final update = ArgumentSlot<Map<Id, PatchObject>?>(
+    'update',
+    (v) => v?.map((id, value) => MapEntry(id.value, value.toJson())),
+  );
 
   void addUpdates(Map<Id, PatchObject> updates) {
-    update ??= <Id, PatchObject>{};
-    update?.addAll(updates);
+    update.set(updates);
   }
+
+  @override
+  get slots => [...super.slots, update];
 }
 
-mixin OptionalDestroy {
-  @JsonKey(includeIfNull: false)
-  Set<Id>? destroy;
+mixin OptionalDestroy<R extends MethodResponse, F extends ResultReference>
+    on Method<R, F> {
+  final destroy = ArgumentSlot<Set<Id>?>(
+    'destroy',
+    (v) => v?.map((id) => id.value).toList(),
+  );
 
   void addDestroy(Set<Id> values) {
-    destroy ??= <Id>{};
-    destroy?.addAll(values);
+    destroy.set(values);
   }
-}
-
-mixin OptionalUpdateSingleton<T> {
-  @JsonKey(includeIfNull: false)
-  Map<Id, T>? updateSingleton;
-
-  void addUpdatesSingleton(Map<Id, T> updates) {
-    updateSingleton ??= <Id, T>{};
-    updateSingleton?.addAll(updates);
-  }
-}
-
-mixin OptionalReferenceDestroy {
-  @JsonKey(name: '#destroy', includeIfNull: false)
-  ResultReference? referenceDestroy;
 
   void addReferenceDestroy(RequestInvocation invocation, ReferencePath path) {
-    referenceDestroy = invocation.createResultReference(path);
+    destroy.ref(invocation.createResultReference(path));
   }
+
+  @override
+  get slots => [...super.slots, destroy];
+}
+
+mixin OptionalUpdateSingleton<
+  T,
+  R extends MethodResponse,
+  F extends ResultReference
+>
+    on Method<R, F> {
+  late final updateSingleton = ArgumentSlot<Map<Id, T>?>(
+    'update',
+    (v) => v?.map((id, value) => MapEntry(id.value, typeToJson(value))),
+  );
+
+  Object? typeToJson(T v);
+
+  void addUpdatesSingleton(Map<Id, T> updates) {
+    updateSingleton.set(updates);
+  }
+
+  @override
+  get slots => [...super.slots, updateSingleton];
 }

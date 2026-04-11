@@ -54,14 +54,13 @@ void main() {
       );
 
       final setPushSubscriptionMethod = SetPushSubscriptionMethod()
-        ..addCreate(
-          Id('dab246'),
-          PushSubscription(
+        ..addCreates({
+          Id('dab246'): PushSubscription(
             deviceClientId: 'a123-b123-c123',
             url: 'https://example.com/push/?device=abc123&client=123abc',
             types: ['Mailbox', 'Email'],
           ),
-        );
+        });
 
       final requestBuilder = RequestBuilder();
       final setPushSubscriptionInvocation = requestBuilder.addInvocation(
