@@ -20,9 +20,5 @@ abstract class ChangesMethod<R extends MethodResponse>
   }
 
   @override
-  List<ArgumentSlot<dynamic>> get slots => [
-    ...super.slots,
-    sinceState,
-    maxChanges,
-  ];
+  get slots => [...super.slots, sinceState, maxChanges];
 }

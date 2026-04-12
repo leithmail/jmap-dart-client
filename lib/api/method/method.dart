@@ -14,7 +14,7 @@ abstract class Method<R extends MethodResponse, F extends ResultReference> {
 
   Set<CapabilityIdentifier> requiredCapabilities();
 
-  List<ArgumentSlot<dynamic>> get slots => [];
+  List<ArgumentSlotBase> get slots => [];
 
   @nonVirtual
   Map<String, dynamic> toJson() => Map.fromEntries(
@@ -45,7 +45,7 @@ abstract class MethodRequiringAccountId<R extends MethodResponse>
   }
 
   @override
-  List<ArgumentSlot<dynamic>> get slots => [...super.slots, accountId];
+  get slots => [...super.slots, accountId];
 
   @override
   ResultReference resultReference(MethodCallId resultOf) =>

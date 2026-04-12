@@ -54,7 +54,7 @@ mixin OptionalFilter<
   F extends Filter
 >
     on Method<R, Q> {
-  final filter = ArgumentSlot<F>('filter', (v) => v.toJson());
+  final filter = FilterSlot<F>('filter');
 
   @override
   get slots => [...super.slots, filter];

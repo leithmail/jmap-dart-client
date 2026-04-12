@@ -17,6 +17,10 @@ final class RefArgument<T> extends Argument<T> {
   const RefArgument(this.ref);
 }
 
+abstract class ArgumentSlotBase {
+  MapEntry<String, dynamic>? toEntry();
+}
+
 /// A typed, named slot for a single JMAP method argument.
 ///
 /// Each argument on a JMAP method is represented as an [ArgumentSlot].
@@ -54,7 +58,7 @@ final class RefArgument<T> extends Argument<T> {
 ///
 /// Unset optional slots are omitted from the serialized request, which is
 /// the correct JMAP behaviour for arguments with default values (RFC 8620 §3.5).
-class ArgumentSlot<T> {
+class ArgumentSlot<T> extends ArgumentSlotBase {
   final String _key;
   final Object? Function(T) _toJson;
   Argument<T>? _argument;

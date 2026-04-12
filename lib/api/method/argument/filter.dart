@@ -1,3 +1,5 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
+
 /// JMAP filter types for use with `/query` methods (RFC 8620 §5.5).
 ///
 /// A filter is either a [FilterConditionBase] (a leaf node with
@@ -100,3 +102,38 @@ abstract class FilterOperatorBase<T extends FilterCondition> extends Filter<T> {
 
 /// Logical operator for combining filter conditions (RFC 8620 §5.5).
 enum Operator { AND, OR, NOT }
+
+/// Argument slot for the `filter` argument on JMAP `/query` methods.
+///
+/// Usage:
+///
+/// ```dart
+/// final slot = FilterSlot<MailboxFilter>('filter');
+///
+/// slot.set(
+///   MailboxFilterOperator(Operator.AND, [
+///     MailboxFilterCondition(role: Role('Inbox')),
+///     MailboxFilterCondition(isSubscribed: true),
+///   ]),
+/// );
+///
+/// final entry = slot.toEntry();
+/// // Produces: MapEntry('filter', <serialized filter json>)
+/// ```
+class FilterSlot<T extends Filter> extends ArgumentSlotBase {
+  final String _key;
+  T? _filter;
+
+  FilterSlot(this._key);
+
+  /// Stores the filter that will be serialized by [toEntry].
+  void set(T filter) => _filter = filter;
+
+  /// Returns a map entry with the configured key and serialized filter.
+  ///
+  /// Returns `null` when no filter was set.
+  MapEntry<String, dynamic>? toEntry() {
+    if (_filter == null) return null;
+    return MapEntry(_key, _filter!.toJson());
+  }
+}
