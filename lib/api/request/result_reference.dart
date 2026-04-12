@@ -2,7 +2,6 @@ import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/src/converters/method_call_id_converter.dart';
-import 'package:jmap_dart_client/src/converters/method_name_converter.dart';
 import 'package:meta/meta.dart';
 
 /// A JMAP result reference to data produced by an earlier method call.
@@ -47,7 +46,7 @@ class ResultReference {
   /// `#resultReference` arguments.
   Map<String, dynamic> toJson() => <String, dynamic>{
     'resultOf': const MethodCallIdConverter().toJson(_resultOf),
-    'name': const MethodNameConverter().toJson(_name),
+    'name': _name.value,
     'path': _path.toPointer(),
   };
 

@@ -7,9 +7,10 @@ import 'package:jmap_dart_client/entities/mdn/mdn.dart';
 
 abstract class SendMethod<R extends MethodResponse, T>
     extends MethodRequiringAccountId<R> {
-  final send = ArgumentSlot<Map<Id, MDN>>(
+  final send = MapArgumentSlot<Id, MDN>(
     'send',
-    (v) => v.map((id, value) => MapEntry(id.value, value.toJson())),
+    (k) => k.value,
+    (v) => v.toJson(),
   );
 
   SendMethod(AccountId accountId, Map<Id, MDN> send) : super(accountId) {

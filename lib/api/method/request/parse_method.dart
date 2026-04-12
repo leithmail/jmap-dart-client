@@ -8,12 +8,9 @@ import 'package:jmap_dart_client/entities/core/id.dart';
 abstract class ParseMethod<R extends MethodResponse>
     extends MethodRequiringAccountId<R>
     with OptionalProperties {
-  final blobIds = ArgumentSlot<Set<Id>>(
-    'blobIds',
-    (v) => v.map((e) => e.value).toList(),
-  );
+  final blobIds = ListArgumentSlot<Id>('blobIds', (v) => v.value);
 
-  ParseMethod(AccountId accountId, Set<Id> blobIds) : super(accountId) {
+  ParseMethod(AccountId accountId, List<Id> blobIds) : super(accountId) {
     this.blobIds.set(blobIds);
   }
 

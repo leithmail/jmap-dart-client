@@ -112,3 +112,25 @@ class ArgumentSlot<T> extends ArgumentSlotBase {
     return v == null ? null : MapEntry(_key, v);
   }
 }
+
+class ListArgumentSlot<T> extends ArgumentSlot<List<T>?> {
+  ListArgumentSlot(String key, Object? Function(T) toJson)
+    : super(key, (v) => v?.map(toJson).toList());
+}
+
+class PrimitiveArgumentSlot<T> extends ArgumentSlot<T> {
+  PrimitiveArgumentSlot(String key) : super(key, (v) => v);
+}
+
+class MapArgumentSlot<K, V> extends ArgumentSlot<Map<K, V>?> {
+  MapArgumentSlot(
+    String key,
+    Object? Function(K) keyToJson,
+    Object? Function(V) valueToJson,
+  ) : super(
+        key,
+        (m) => m == null
+            ? null
+            : m.map((k, v) => MapEntry(keyToJson(k), valueToJson(v))),
+      );
+}

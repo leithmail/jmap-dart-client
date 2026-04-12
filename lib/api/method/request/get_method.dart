@@ -27,10 +27,7 @@ abstract class GetMethodNoNeedAccountId<R extends MethodResponse>
 
 mixin OptionalIds<R extends MethodResponse, F extends ResultReference>
     on Method<R, F> {
-  final ids = ArgumentSlot<Set<Id>?>(
-    'ids',
-    (v) => v?.map(const IdConverter().toJson).toList(),
-  );
+  final ids = ListArgumentSlot<Id>('ids', IdConverter().toJson);
 
   @override
   get slots => [...super.slots, ids];
@@ -38,9 +35,9 @@ mixin OptionalIds<R extends MethodResponse, F extends ResultReference>
 
 mixin OptionalProperties<R extends MethodResponse, F extends ResultReference>
     on Method<R, F> {
-  final properties = ArgumentSlot<Properties?>(
+  final properties = ArgumentSlot<Properties>(
     'properties',
-    (v) => PropertiesConverter().toJson(v),
+    PropertiesConverter().toJson,
   );
 
   @override

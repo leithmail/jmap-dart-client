@@ -43,9 +43,10 @@ mixin OptionalIfInState<R extends MethodResponse, F extends ResultReference>
 
 mixin OptionalCreate<T, R extends MethodResponse, F extends ResultReference>
     on Method<R, F> {
-  late final create = ArgumentSlot<Map<Id, T>?>(
+  late final create = MapArgumentSlot<Id, T>(
     'create',
-    (v) => v?.map((id, value) => MapEntry(id.value, typeToJson(value))),
+    (k) => k.value,
+    (v) => typeToJson(v),
   );
 
   Object? typeToJson(T v);
@@ -56,9 +57,10 @@ mixin OptionalCreate<T, R extends MethodResponse, F extends ResultReference>
 
 mixin OptionalUpdate<R extends MethodResponse, F extends ResultReference>
     on Method<R, F> {
-  final update = ArgumentSlot<Map<Id, PatchObject>?>(
+  final update = MapArgumentSlot<Id, PatchObject>(
     'update',
-    (v) => v?.map((id, value) => MapEntry(id.value, value.toJson())),
+    (k) => k.value,
+    (v) => v.toJson(),
   );
 
   @override
@@ -67,10 +69,7 @@ mixin OptionalUpdate<R extends MethodResponse, F extends ResultReference>
 
 mixin OptionalDestroy<R extends MethodResponse, F extends ResultReference>
     on Method<R, F> {
-  final destroy = ArgumentSlot<Set<Id>?>(
-    'destroy',
-    (v) => v?.map((id) => id.value).toList(),
-  );
+  final destroy = ListArgumentSlot<Id>('destroy', (v) => v.value);
 
   @override
   get slots => [...super.slots, destroy];
@@ -82,9 +81,10 @@ mixin OptionalUpdateSingleton<
   F extends ResultReference
 >
     on Method<R, F> {
-  late final updateSingleton = ArgumentSlot<Map<Id, T>?>(
+  late final updateSingleton = MapArgumentSlot<Id, T>(
     'update',
-    (v) => v?.map((id, value) => MapEntry(id.value, typeToJson(value))),
+    (k) => k.value,
+    (v) => typeToJson(v),
   );
 
   Object? typeToJson(T v);

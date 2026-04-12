@@ -89,7 +89,7 @@ void main() {
         },
       );
 
-      final parseEmailMethod = ParseEmailMethod(accountId, {blobId1});
+      final parseEmailMethod = ParseEmailMethod(accountId, [blobId1]);
 
       final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.addInvocation(parseEmailMethod);
@@ -155,7 +155,7 @@ void main() {
         },
       );
 
-      final parseEmailMethod = ParseEmailMethod(accountId, {blobId1, blobId2});
+      final parseEmailMethod = ParseEmailMethod(accountId, [blobId1, blobId2]);
 
       final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.addInvocation(parseEmailMethod);
@@ -206,7 +206,7 @@ void main() {
           },
         );
 
-        final parseEmailMethod = ParseEmailMethod(accountId, {blobIdNotFound});
+        final parseEmailMethod = ParseEmailMethod(accountId, [blobIdNotFound]);
 
         final requestBuilder = RequestBuilder();
         final invocation = requestBuilder.addInvocation(parseEmailMethod);
@@ -250,7 +250,7 @@ void main() {
         },
       );
 
-      final parseEmailMethod = ParseEmailMethod(accountId, {blobIdNotParsable});
+      final parseEmailMethod = ParseEmailMethod(accountId, [blobIdNotParsable]);
 
       final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.addInvocation(parseEmailMethod);
@@ -301,7 +301,7 @@ void main() {
         },
       );
 
-      final parseEmailMethod = ParseEmailMethod(accountId, {blobId3})
+      final parseEmailMethod = ParseEmailMethod(accountId, [blobId3])
         ..properties.set(Properties({"id", "preview", "subject"}));
 
       final requestBuilder = RequestBuilder();

@@ -162,7 +162,7 @@ void main() {
         'when PublicAsset/set destroy return success', () async {
       // arrange
       final method = SetPublicAssetMethod(accountId)
-        ..destroy.set({publicAsset.id!});
+        ..destroy.set([publicAsset.id!]);
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
           "sessionState": "abcdefghij",
@@ -219,7 +219,7 @@ void main() {
       // arrange
       String errorDescription(String? id) => 'Invalid UUID string: $id';
       final method = SetPublicAssetMethod(accountId)
-        ..destroy.set({publicAsset.id!});
+        ..destroy.set([publicAsset.id!]);
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
           "sessionState": "abcdefghij",

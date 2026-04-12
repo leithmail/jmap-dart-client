@@ -27,7 +27,7 @@ abstract class QueryMethod<
 
 mixin OptionalPosition<R extends MethodResponse, Q extends ResultReference>
     on Method<R, Q> {
-  final position = ArgumentSlot<int>('position', (v) => v);
+  final position = PrimitiveArgumentSlot<int>('position');
 
   @override
   get slots => [...super.slots, position];
@@ -35,7 +35,7 @@ mixin OptionalPosition<R extends MethodResponse, Q extends ResultReference>
 
 mixin OptionalAnchorOffset<R extends MethodResponse, Q extends ResultReference>
     on Method<R, Q> {
-  final anchorOffset = ArgumentSlot<int>('anchorOffset', (v) => v);
+  final anchorOffset = PrimitiveArgumentSlot<int>('anchorOffset');
 
   @override
   get slots => [...super.slots, anchorOffset];

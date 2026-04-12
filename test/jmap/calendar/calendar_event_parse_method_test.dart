@@ -241,9 +241,9 @@ void main() {
         },
       );
 
-      final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
+      final calendarEventParseMethod = CalendarEventParseMethod(accountId, [
         blobId1,
-      });
+      ]);
       final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.addInvocation(calendarEventParseMethod);
       final response = await requestBuilder.build().execute(
@@ -413,10 +413,10 @@ void main() {
           },
         );
 
-        final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
+        final calendarEventParseMethod = CalendarEventParseMethod(accountId, [
           blobId1,
           blobId2,
-        });
+        ]);
         final requestBuilder = RequestBuilder();
         final invocation = requestBuilder.addInvocation(
           calendarEventParseMethod,
@@ -482,9 +482,9 @@ void main() {
           },
         );
 
-        final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
+        final calendarEventParseMethod = CalendarEventParseMethod(accountId, [
           blobIdNotFound,
-        });
+        ]);
         final requestBuilder = RequestBuilder();
         final invocation = requestBuilder.addInvocation(
           calendarEventParseMethod,
@@ -532,9 +532,9 @@ void main() {
         },
       );
 
-      final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
+      final calendarEventParseMethod = CalendarEventParseMethod(accountId, [
         blobIdNotParsable,
-      });
+      ]);
       final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.addInvocation(calendarEventParseMethod);
       final response = await requestBuilder.build().execute(
@@ -590,9 +590,9 @@ void main() {
           },
         );
 
-        final calendarEventParseMethod = CalendarEventParseMethod(accountId, {
+        final calendarEventParseMethod = CalendarEventParseMethod(accountId, [
           blobId1,
-        })..properties.set(Properties({"uid", "title", "description"}));
+        ])..properties.set(Properties({"uid", "title", "description"}));
         final requestBuilder = RequestBuilder();
         final invocation = requestBuilder.addInvocation(
           calendarEventParseMethod,
