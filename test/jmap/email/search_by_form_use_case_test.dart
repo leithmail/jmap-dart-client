@@ -10,7 +10,7 @@ import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
 import 'package:jmap_dart_client/entities/email/email_comparator.dart';
 import 'package:jmap_dart_client/entities/email/email_comparator_property.dart';
-import 'package:jmap_dart_client/entities/email/email_filter_condition.dart';
+import 'package:jmap_dart_client/methods/email/argument/email_filter.dart';
 import 'package:jmap_dart_client/methods/email/get_email_method.dart';
 import 'package:jmap_dart_client/methods/email/query_email_method.dart';
 import 'package:test/test.dart';

@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'email_filter_condition.dart';
+part of 'email_filter.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
 Map<String, dynamic> _$EmailFilterConditionToJson(
-  EmailFilterCondition instance,
+  _EmailFilterCondition instance,
 ) => <String, dynamic>{
   'inMailbox': ?const MailboxIdNullableConverter().toJson(instance.inMailbox),
   'inMailboxOtherThan': ?instance.inMailboxOtherThan

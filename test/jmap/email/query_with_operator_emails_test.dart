@@ -212,10 +212,10 @@ void main() {
             ..setIsAscending(false),
         ])
         ..filter.set(
-          LogicFilterOperator(Operator.OR, <Filter>{
+          EmailFilterOperator(Operator.OR, [
             EmailFilterCondition(hasKeyword: "music"),
             EmailFilterCondition(hasKeyword: "video"),
-          }),
+          ]),
         );
       final queryEmailInvocation = jmapRequestBuilder.addInvocation(
         queryEmailMethod,

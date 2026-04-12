@@ -1,13 +1,13 @@
 import 'package:jmap_dart_client/api/errors/error_method_response.dart';
 import 'package:jmap_dart_client/api/errors/exceptions.dart';
-import 'package:jmap_dart_client/api/method/argument/filter/filter.dart';
+import 'package:jmap_dart_client/api/method/argument/filter.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
-import 'package:jmap_dart_client/entities/email/email_filter_condition.dart';
 import 'package:jmap_dart_client/entities/email/search_snippet.dart';
+import 'package:jmap_dart_client/methods/email/argument/email_filter.dart';
 import 'package:jmap_dart_client/methods/email/query_email_method.dart';
 import 'package:jmap_dart_client/methods/email/search_snippet_get_method.dart';
 import 'package:test/test.dart';

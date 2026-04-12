@@ -1,4 +1,6 @@
 // Entity models: Calendar
+export '../methods/email/argument/email_filter.dart';
+export '../methods/mailbox/argument/mailbox_filter.dart';
 export 'calendar/calendar_event.dart';
 export 'calendar/calendar_event_attendance.dart';
 export 'calendar/properties/attendee/calendar_attendee.dart';
@@ -58,7 +60,6 @@ export 'email/email_body_properties.dart';
 export 'email/email_body_value.dart';
 export 'email/email_comparator.dart';
 export 'email/email_comparator_property.dart';
-export 'email/email_filter_condition.dart';
 export 'email/email_header.dart';
 export 'email/email_submission.dart';
 export 'email/email_submission_id.dart';
@@ -71,7 +72,6 @@ export 'email/search_snippet.dart';
 export 'identity/identity.dart';
 // Entity models: Mailbox
 export 'mailbox/mailbox.dart';
-export 'mailbox/mailbox_filter_condition.dart';
 export 'mailbox/mailbox_rights.dart';
 export 'mailbox/namespace.dart';
 // Entity models: MDN

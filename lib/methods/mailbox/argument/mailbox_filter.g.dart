@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'mailbox_filter_condition.dart';
+part of 'mailbox_filter.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
 Map<String, dynamic> _$MailboxFilterConditionToJson(
-  MailboxFilterCondition instance,
+  _MailboxFilterCondition instance,
 ) => <String, dynamic>{
   'role': ?const RoleConverter().toJson(instance.role),
   'name': ?const MailboxNameConverter().toJson(instance.name),

@@ -5,9 +5,10 @@ import 'package:jmap_dart_client/api/method/request/query_method.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
+import 'package:jmap_dart_client/methods/email/argument/email_filter.dart';
 import 'package:jmap_dart_client/methods/email/query_email_response.dart';
 
-class QueryEmailMethod extends QueryMethod<QueryEmailResponse>
+class QueryEmailMethod extends QueryMethod<QueryEmailResponse, EmailFilter>
     with OptionalCollapseThreads {
   QueryEmailMethod(AccountId accountId) : super(accountId);
 
