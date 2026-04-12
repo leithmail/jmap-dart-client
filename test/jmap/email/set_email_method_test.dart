@@ -1,4 +1,5 @@
 import 'package:http_parser/http_parser.dart';
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
@@ -98,9 +99,11 @@ void main() {
 
       final setEmailMethod =
           SetEmailMethod(
-              AccountId(
-                Id(
-                  '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+              accountId: Val(
+                AccountId(
+                  Id(
+                    '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+                  ),
                 ),
               ),
             )
@@ -218,9 +221,11 @@ void main() {
 
       final setEmailMethod =
           SetEmailMethod(
-              AccountId(
-                Id(
-                  '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+              accountId: Val(
+                AccountId(
+                  Id(
+                    '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+                  ),
                 ),
               ),
             )
@@ -337,9 +342,11 @@ void main() {
 
       final setEmailMethod =
           SetEmailMethod(
-              AccountId(
-                Id(
-                  '587a9c5a4a9c0a4d36243b7417700d5383cbbfa25f0909ab7f6f4baaa5bf4e9b',
+              accountId: Val(
+                AccountId(
+                  Id(
+                    '587a9c5a4a9c0a4d36243b7417700d5383cbbfa25f0909ab7f6f4baaa5bf4e9b',
+                  ),
                 ),
               ),
             )

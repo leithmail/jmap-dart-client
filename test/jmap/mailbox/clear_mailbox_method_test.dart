@@ -1,6 +1,7 @@
 import 'package:jmap_dart_client/api/errors/error_method_response.dart';
 import 'package:jmap_dart_client/api/errors/exceptions.dart';
 import 'package:jmap_dart_client/api/errors/set_error.dart';
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -24,8 +25,8 @@ void main() {
       // Arrange
       final unknownAccountId = AccountId(Id('unknownAccountId'));
       final clearMailboxMethod = ClearMailboxMethod(
-        unknownAccountId,
-        bobTrashId,
+        accountId: Val(unknownAccountId),
+        mailboxId: Val(bobTrashId),
       );
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
@@ -87,7 +88,10 @@ void main() {
         CapabilityIdentifier.jmapCore,
         CapabilityIdentifier.jmapMail,
       ];
-      final clearMailboxMethod = ClearMailboxMethod(bobAccountId, bobTrashId);
+      final clearMailboxMethod = ClearMailboxMethod(
+        accountId: Val(bobAccountId),
+        mailboxId: Val(bobTrashId),
+      );
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
           "sessionState": sessionState.value,
@@ -150,7 +154,10 @@ void main() {
 
     test('should clear all messages in target mailbox', () async {
       // Arrange
-      final clearMailboxMethod = ClearMailboxMethod(bobAccountId, bobTrashId);
+      final clearMailboxMethod = ClearMailboxMethod(
+        accountId: Val(bobAccountId),
+        mailboxId: Val(bobTrashId),
+      );
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
           "sessionState": sessionState.value,
@@ -205,8 +212,8 @@ void main() {
       // Arrange
       final invalidMailboxId = MailboxId(Id('invalidMailboxId'));
       final clearMailboxMethod = ClearMailboxMethod(
-        bobAccountId,
-        invalidMailboxId,
+        accountId: Val(bobAccountId),
+        mailboxId: Val(invalidMailboxId),
       );
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
@@ -266,8 +273,8 @@ void main() {
       // Arrange
       final notFoundMailboxId = MailboxId(Id('notFoundMailboxId'));
       final clearMailboxMethod = ClearMailboxMethod(
-        bobAccountId,
-        notFoundMailboxId,
+        accountId: Val(bobAccountId),
+        mailboxId: Val(notFoundMailboxId),
       );
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
@@ -331,7 +338,10 @@ void main() {
     test('should return serverFail error\n'
         'when exceptions are encountered during the deletion', () async {
       // Arrange
-      final clearMailboxMethod = ClearMailboxMethod(bobAccountId, bobTrashId);
+      final clearMailboxMethod = ClearMailboxMethod(
+        accountId: Val(bobAccountId),
+        mailboxId: Val(bobTrashId),
+      );
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
           "sessionState": sessionState.value,
@@ -396,8 +406,8 @@ void main() {
       // Arrange
       final teamMailboxId = MailboxId(Id('teamMailboxId'));
       final clearMailboxMethod = ClearMailboxMethod(
-        bobAccountId,
-        teamMailboxId,
+        accountId: Val(bobAccountId),
+        mailboxId: Val(teamMailboxId),
       );
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
@@ -461,8 +471,8 @@ void main() {
         CapabilityIdentifier.jmapMailboxClear,
       ];
       final clearMailboxMethod = ClearMailboxMethod(
-        bobAccountId,
-        teamMailboxId,
+        accountId: Val(bobAccountId),
+        mailboxId: Val(teamMailboxId),
       );
       final httpMockClient = HttpMockResponseClient(
         responseBody: {

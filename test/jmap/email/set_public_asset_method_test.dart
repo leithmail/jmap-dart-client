@@ -1,4 +1,5 @@
 import 'package:jmap_dart_client/api/errors/set_error.dart';
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request/patch_object.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
@@ -34,7 +35,7 @@ void main() {
         blobId: publicAsset.blobId,
         identityIds: publicAsset.identityIds,
       );
-      final method = SetPublicAssetMethod(accountId)
+      final method = SetPublicAssetMethod(accountId: Val(accountId))
         ..create.val({createId: createObject});
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
@@ -96,7 +97,7 @@ void main() {
         blobId: null,
         identityIds: publicAsset.identityIds,
       );
-      final method = SetPublicAssetMethod(accountId)
+      final method = SetPublicAssetMethod(accountId: Val(accountId))
         ..create.val({createId: createObject});
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
@@ -161,7 +162,7 @@ void main() {
     test('should return destroyed public asset ids '
         'when PublicAsset/set destroy return success', () async {
       // arrange
-      final method = SetPublicAssetMethod(accountId)
+      final method = SetPublicAssetMethod(accountId: Val(accountId))
         ..destroy.val([publicAsset.id!]);
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
@@ -218,7 +219,7 @@ void main() {
         'when PublicAsset/set destroy return failure', () async {
       // arrange
       String errorDescription(String? id) => 'Invalid UUID string: $id';
-      final method = SetPublicAssetMethod(accountId)
+      final method = SetPublicAssetMethod(accountId: Val(accountId))
         ..destroy.val([publicAsset.id!]);
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
@@ -290,7 +291,7 @@ void main() {
         PatchObject.identityIdsProperty: const PublicAssetIdentitiesConverter()
             .toJson(publicAsset.identityIds!),
       });
-      final method = SetPublicAssetMethod(accountId)
+      final method = SetPublicAssetMethod(accountId: Val(accountId))
         ..update.val({publicAsset.id!: updateObject});
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
@@ -351,7 +352,7 @@ void main() {
         PatchObject.identityIdsProperty: const PublicAssetIdentitiesConverter()
             .toJson(publicAsset.identityIds!),
       });
-      final method = SetPublicAssetMethod(accountId)
+      final method = SetPublicAssetMethod(accountId: Val(accountId))
         ..update.val({publicAsset.id!: updateObject});
       final httpMockClient = HttpMockResponseClient(
         responseBody: {

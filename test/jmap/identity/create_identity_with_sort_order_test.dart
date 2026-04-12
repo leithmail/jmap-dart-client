@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request/patch_object.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -68,9 +69,11 @@ void main() {
 
       final setIdentityMethod =
           SetIdentityMethod(
-              AccountId(
-                Id(
-                  '4603645929458bf671aca134b890cbb8ac4a0d297640fsdefe9230ea28daa0b1',
+              accountId: Val(
+                AccountId(
+                  Id(
+                    '4603645929458bf671aca134b890cbb8ac4a0d297640fsdefe9230ea28daa0b1',
+                  ),
                 ),
               ),
             )
@@ -170,9 +173,11 @@ void main() {
 
           final setIdentityMethod =
               SetIdentityMethod(
-                  AccountId(
-                    Id(
-                      '4603645929458bf671aca134b890cbb8ac4a0d297640fsdefe9230ea28daa0b1',
+                  accountId: Val(
+                    AccountId(
+                      Id(
+                        '4603645929458bf671aca134b890cbb8ac4a0d297640fsdefe9230ea28daa0b1',
+                      ),
                     ),
                   ),
                 )

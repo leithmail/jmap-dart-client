@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/calendar/calendar_event.dart';
@@ -241,9 +242,10 @@ void main() {
         },
       );
 
-      final calendarEventParseMethod = CalendarEventParseMethod(accountId, [
-        blobId1,
-      ]);
+      final calendarEventParseMethod = CalendarEventParseMethod(
+        accountId: Val(accountId),
+        blobIds: Val([blobId1]),
+      );
       final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.addInvocation(calendarEventParseMethod);
       final response = await requestBuilder.build().execute(
@@ -413,10 +415,10 @@ void main() {
           },
         );
 
-        final calendarEventParseMethod = CalendarEventParseMethod(accountId, [
-          blobId1,
-          blobId2,
-        ]);
+        final calendarEventParseMethod = CalendarEventParseMethod(
+          accountId: Val(accountId),
+          blobIds: Val([blobId1, blobId2]),
+        );
         final requestBuilder = RequestBuilder();
         final invocation = requestBuilder.addInvocation(
           calendarEventParseMethod,
@@ -482,9 +484,10 @@ void main() {
           },
         );
 
-        final calendarEventParseMethod = CalendarEventParseMethod(accountId, [
-          blobIdNotFound,
-        ]);
+        final calendarEventParseMethod = CalendarEventParseMethod(
+          accountId: Val(accountId),
+          blobIds: Val([blobIdNotFound]),
+        );
         final requestBuilder = RequestBuilder();
         final invocation = requestBuilder.addInvocation(
           calendarEventParseMethod,
@@ -532,9 +535,10 @@ void main() {
         },
       );
 
-      final calendarEventParseMethod = CalendarEventParseMethod(accountId, [
-        blobIdNotParsable,
-      ]);
+      final calendarEventParseMethod = CalendarEventParseMethod(
+        accountId: Val(accountId),
+        blobIds: Val([blobIdNotParsable]),
+      );
       final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.addInvocation(calendarEventParseMethod);
       final response = await requestBuilder.build().execute(
@@ -590,9 +594,10 @@ void main() {
           },
         );
 
-        final calendarEventParseMethod = CalendarEventParseMethod(accountId, [
-          blobId1,
-        ])..properties.val(Properties({"uid", "title", "description"}));
+        final calendarEventParseMethod = CalendarEventParseMethod(
+          accountId: Val(accountId),
+          blobIds: Val([blobId1]),
+        )..properties.set(Val(Properties({"uid", "title", "description"})));
         final requestBuilder = RequestBuilder();
         final invocation = requestBuilder.addInvocation(
           calendarEventParseMethod,

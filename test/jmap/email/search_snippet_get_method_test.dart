@@ -1,5 +1,6 @@
 import 'package:jmap_dart_client/api/errors/error_method_response.dart';
 import 'package:jmap_dart_client/api/errors/exceptions.dart';
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/argument/filter.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -107,13 +108,15 @@ void main() {
 
       final jmapRequestBuilder = RequestBuilder();
 
-      final emailQueryMethod = QueryEmailMethod(accountId)..filter.val(filter);
+      final emailQueryMethod = QueryEmailMethod(accountId: Val(accountId))
+        ..filter.set(filter);
       final emailQueryMethodInvocation = jmapRequestBuilder.addInvocation(
         emailQueryMethod,
       );
 
-      final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
-        ..filter.val(filter);
+      final searchSnippetGetMethod = SearchSnippetGetMethod(
+        accountId: Val(accountId),
+      )..filter.set(filter);
       searchSnippetGetMethod.referenceEmailIds.ref(
         emailQueryMethodInvocation.resultReferences().$('ids'),
       );
@@ -152,13 +155,15 @@ void main() {
 
       final jmapRequestBuilder = RequestBuilder();
 
-      final emailQueryMethod = QueryEmailMethod(accountId)..filter.val(filter);
+      final emailQueryMethod = QueryEmailMethod(accountId: Val(accountId))
+        ..filter.set(filter);
       final emailQueryMethodInvocation = jmapRequestBuilder.addInvocation(
         emailQueryMethod,
       );
 
-      final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
-        ..filter.val(filter);
+      final searchSnippetGetMethod = SearchSnippetGetMethod(
+        accountId: Val(accountId),
+      )..filter.set(filter);
       searchSnippetGetMethod.referenceEmailIds.ref(
         emailQueryMethodInvocation.resultReferences().$('ids'),
       );
@@ -215,13 +220,15 @@ void main() {
 
       final jmapRequestBuilder = RequestBuilder();
 
-      final emailQueryMethod = QueryEmailMethod(accountId)..filter.val(filter);
+      final emailQueryMethod = QueryEmailMethod(accountId: Val(accountId))
+        ..filter.set(filter);
       final emailQueryMethodInvocation = jmapRequestBuilder.addInvocation(
         emailQueryMethod,
       );
 
-      final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
-        ..filter.val(filter);
+      final searchSnippetGetMethod = SearchSnippetGetMethod(
+        accountId: Val(accountId),
+      )..filter.set(filter);
       searchSnippetGetMethod.referenceEmailIds.ref(
         emailQueryMethodInvocation.resultReferences().$('ids'),
       );

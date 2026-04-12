@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -82,7 +83,7 @@ void main() {
         Id('4603645929458bf671aca134b890cbb8ac4a0d297640f7eefe9f30ea28daa0b1'),
       );
 
-      final getIdentityMethod = GetIdentityMethod(accountId)
+      final getIdentityMethod = GetIdentityMethod(accountId: Val(accountId))
         ..properties.val(Properties({"email", "bcc", "sortOrder"}));
       final getIdentityInvocation = requestBuilder.addInvocation(
         getIdentityMethod,

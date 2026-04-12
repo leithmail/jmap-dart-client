@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -16,7 +17,7 @@ void main() {
   final emailIdFound = EmailId(Id('email-id-found'));
   final foundThread = Thread(id: ThreadId(foundId), emailIds: [emailIdFound]);
   final notFoundId = Id('not-found-thread-id');
-  final getThreadMethod = GetThreadMethod(accountId)
+  final getThreadMethod = GetThreadMethod(accountId: Val(accountId))
     ..ids.val([foundId, notFoundId]);
   final methodCallId = MethodCallId('c0');
 

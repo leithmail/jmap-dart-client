@@ -9,9 +9,14 @@ import 'package:jmap_dart_client/methods/mailbox/clear/clear_mailbox_response.da
 class ClearMailboxMethod
     extends ClearMethod<ClearMailboxResponse, ResultReference>
     with EmptyResultReferences {
-  final mailboxId = ArgumentSlot<MailboxId>('mailboxId', (v) => v.id.value);
+  final _mailboxId = ArgumentSlot<MailboxId>('mailboxId', (v) => v.id.value);
 
-  ClearMailboxMethod({required super.accountId});
+  ClearMailboxMethod({
+    required super.accountId,
+    required Argument<MailboxId> mailboxId,
+  }) {
+    _mailboxId.set(mailboxId);
+  }
 
   @override
   MethodName get methodName => MethodName('Mailbox/clear');
@@ -24,7 +29,7 @@ class ClearMailboxMethod
   ];
 
   @override
-  get slots => [...super.slots, mailboxId];
+  get slots => [...super.slots, _mailboxId];
 
   @override
   ClearMailboxResponse responseFromJson(Map<String, dynamic> json) {

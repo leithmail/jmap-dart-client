@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
@@ -205,13 +206,16 @@ void main() {
       );
       final state = State('57c15230-2588-11ec-a759-2fef1ee78d9e');
 
-      final changesEmailMethod = ChangesEmailMethod(accountId, state);
+      final changesEmailMethod = ChangesEmailMethod(
+        accountId: Val(accountId),
+        sinceState: Val(state),
+      );
       final changesEmailInvocation = jmapRequestBuilder.addInvocation(
         changesEmailMethod,
         methodCallId: MethodCallId('c1'),
       );
 
-      final getEmailMethodForUpdate = GetEmailMethod(accountId)
+      final getEmailMethodForUpdate = GetEmailMethod(accountId: Val(accountId))
         ..properties.val(Properties({'mailboxIds', 'keywords'}))
         ..ids.ref(changesEmailInvocation.resultReferences().$('updated'));
       final getEmailForUpdateInvocation = jmapRequestBuilder.addInvocation(
@@ -219,7 +223,7 @@ void main() {
         methodCallId: MethodCallId('c2'),
       );
 
-      final getEmailMethodForCreated = GetEmailMethod(accountId)
+      final getEmailMethodForCreated = GetEmailMethod(accountId: Val(accountId))
         ..properties.val(
           Properties({
             'id',

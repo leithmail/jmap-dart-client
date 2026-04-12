@@ -91,7 +91,7 @@ Future<jmap.GetMailboxResponse> fetchMailboxes(
   try {
     final requestBuilder = jmap.RequestBuilder();
 
-    final getMailboxMethod = jmap.GetMailboxMethod(accountId)
+    final getMailboxMethod = jmap.GetMailboxMethod(accountId: Val(accountId))
       ..properties.val(
         jmap.Properties({'id', 'name', 'role', 'totalEmails'}),
       );
@@ -123,7 +123,7 @@ Future<jmap.GetEmailResponse> fetchInboxEmails(
   try {
     final requestBuilder = jmap.RequestBuilder();
 
-    final queryEmailMethod = jmap.QueryEmailMethod(accountId)
+    final queryEmailMethod = jmap.QueryEmailMethod(accountId: Val(accountId))
       ..position.val(0)
       ..limit.val(20)
       ..sort.val([
@@ -133,7 +133,7 @@ Future<jmap.GetEmailResponse> fetchInboxEmails(
 
     final queryInvocation = requestBuilder.addInvocation(queryEmailMethod);
 
-    final getEmailMethod = jmap.GetEmailMethod(accountId)
+    final getEmailMethod = jmap.GetEmailMethod(accountId: Val(accountId))
       ..properties.val(
         jmap.Properties({'id', 'subject', 'from', 'sentAt', 'preview'}),
       )
@@ -228,7 +228,7 @@ Future<void> runRequest(
 ) async {
   final requestBuilder = jmap.RequestBuilder();
   final getMailboxInvocation = requestBuilder.addInvocation(
-    jmap.GetMailboxMethod(accountId),
+    jmap.GetMailboxMethod(accountId: Val(accountId)),
   );
   final request = requestBuilder.build();
 

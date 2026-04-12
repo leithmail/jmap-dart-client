@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -100,11 +101,11 @@ void main() {
         Id('871ae8d53c475bffcd0530c2c673a18862a6ab967b1ac1f78c581fd150eb4120'),
       );
 
-      final queryEmailMethod = QueryEmailMethod(accountId)
-        ..sort.val([
+      final queryEmailMethod = QueryEmailMethod(accountId: Val(accountId))
+        ..sort.set([
           EmailComparator(EmailSortProperty.receivedAt, isAscending: false),
         ])
-        ..filter.val(
+        ..filter.set(
           EmailFilterCondition(
             inMailbox: MailboxId((Id('025b0580-6422-11ef-a702-5d10e1ebf1c3'))),
           ),
@@ -114,7 +115,7 @@ void main() {
         methodCallId: MethodCallId('c0'),
       );
 
-      final setEmailMethod = SetEmailMethod(accountId)
+      final setEmailMethod = SetEmailMethod(accountId: Val(accountId))
         ..destroy.ref(queryEmailInvocation.resultReferences().$('ids'));
       final setEmailInvocation = jmapRequestBuilder.addInvocation(
         setEmailMethod,

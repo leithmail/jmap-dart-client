@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request/patch_object.dart';
 import 'package:jmap_dart_client/api/request/reference_id.dart';
 import 'package:jmap_dart_client/api/request/reference_prefix.dart';
@@ -97,12 +98,14 @@ void main() {
 
       final mdnSendMethod =
           MDNSendMethod(
-              AccountId(
-                Id(
-                  '0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555',
+              accountId: Val(
+                AccountId(
+                  Id(
+                    '0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555',
+                  ),
                 ),
               ),
-              {
+              send: Val({
                 Id('k1546'): MDN(
                   forEmailId: EmailId(
                     Id('31ed5fe0-4486-11ed-b412-4700d9090322'),
@@ -115,8 +118,10 @@ void main() {
                     DispositionType.displayed,
                   ),
                 ),
-              },
-              IdentityId(Id('9ba9d77b-fbc8-4495-877d-d1261c25261f')),
+              }),
+              identityId: Val(
+                IdentityId(Id('9ba9d77b-fbc8-4495-877d-d1261c25261f')),
+              ),
             )
             ..onSuccessUpdateEmail.val({
               EmailSubmissionId(

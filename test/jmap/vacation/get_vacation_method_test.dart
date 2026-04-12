@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
@@ -63,7 +64,7 @@ void main() {
         Id('0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555'),
       );
 
-      final getVacationMethod = GetVacationMethod(accountId);
+      final getVacationMethod = GetVacationMethod(accountId: Val(accountId));
 
       final requestBuilder = RequestBuilder();
       final getVacationInvocation = requestBuilder.addInvocation(

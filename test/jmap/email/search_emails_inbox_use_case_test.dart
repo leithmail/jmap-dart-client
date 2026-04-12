@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/argument/comparator.dart';
 import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
@@ -167,9 +168,9 @@ void main() {
       Id('0eacc7a5c74b27ab36a823bc5c34da36e16c093705f241d6ed5f48ee73a4ecfb'),
     );
 
-    final queryEmailMethod = QueryEmailMethod(accountId)
-      ..limit.val(UnsignedInt(3))
-      ..filter.val(
+    final queryEmailMethod = QueryEmailMethod(accountId: Val(accountId))
+      ..limit.val(3)
+      ..filter.set(
         EmailFilterCondition(
           text: 'report',
           inMailbox: MailboxId(Id('c2543650-32cf-11eb-995c-a3ae66e9f96a')),
@@ -181,7 +182,7 @@ void main() {
       methodCallId: MethodCallId('c2'),
     );
 
-    final getEmailMethod = GetEmailMethod(accountId)
+    final getEmailMethod = GetEmailMethod(accountId: Val(accountId))
       ..properties.val(
         Properties({
           "id",

@@ -1,4 +1,5 @@
 import 'package:jmap_dart_client/api/errors/set_error.dart';
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/request/calendar_event_reply_method.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
@@ -55,8 +56,8 @@ void main() {
 
   group('calendar event counter accept method', () {
     final method = CalendarEventCounterAcceptMethod(
-      accountId,
-      blobIds: blobIds,
+      accountId: Val(accountId),
+      blobIds: Val(blobIds),
     );
 
     test('should succeed with success blob data, '

@@ -1,5 +1,6 @@
 import 'package:jmap_dart_client/api/errors/exceptions.dart';
 import 'package:jmap_dart_client/api/errors/set_error.dart';
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/calendar/calendar_event_attendance.dart';
@@ -34,8 +35,8 @@ void main() {
       );
       final blobIds = [freeBlobId, busyBlobId, notFoundBlobId];
       final getCalendarEventAttendanceMethod = GetCalendarEventAttendanceMethod(
-        accountId,
-        blobIds,
+        accountId: Val(accountId),
+        blobIds: Val(blobIds),
       );
       final sampleRequest = {
         "using":
@@ -103,8 +104,8 @@ void main() {
       // arrange
       final blobId = Id('invalid');
       final getCalendarEventAttendanceMethod = GetCalendarEventAttendanceMethod(
-        accountId,
-        [blobId],
+        accountId: Val(accountId),
+        blobIds: Val([blobId]),
       );
       final sampleRequest = {
         "using":
@@ -176,8 +177,8 @@ void main() {
       // arrange
       final blobId = Id('invalid');
       final getCalendarEventAttendanceMethod = GetCalendarEventAttendanceMethod(
-        accountId,
-        [blobId],
+        accountId: Val(accountId),
+        blobIds: Val([blobId]),
       );
       final sampleRequest = {
         "using":

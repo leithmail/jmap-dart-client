@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -89,7 +90,10 @@ void main() {
         },
       );
 
-      final parseEmailMethod = ParseEmailMethod(accountId, [blobId1]);
+      final parseEmailMethod = ParseEmailMethod(
+        accountId: Val(accountId),
+        blobIds: Val([blobId1]),
+      );
 
       final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.addInvocation(parseEmailMethod);
@@ -155,7 +159,10 @@ void main() {
         },
       );
 
-      final parseEmailMethod = ParseEmailMethod(accountId, [blobId1, blobId2]);
+      final parseEmailMethod = ParseEmailMethod(
+        accountId: Val(accountId),
+        blobIds: Val([blobId1, blobId2]),
+      );
 
       final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.addInvocation(parseEmailMethod);
@@ -206,7 +213,10 @@ void main() {
           },
         );
 
-        final parseEmailMethod = ParseEmailMethod(accountId, [blobIdNotFound]);
+        final parseEmailMethod = ParseEmailMethod(
+          accountId: Val(accountId),
+          blobIds: Val([blobIdNotFound]),
+        );
 
         final requestBuilder = RequestBuilder();
         final invocation = requestBuilder.addInvocation(parseEmailMethod);
@@ -250,7 +260,10 @@ void main() {
         },
       );
 
-      final parseEmailMethod = ParseEmailMethod(accountId, [blobIdNotParsable]);
+      final parseEmailMethod = ParseEmailMethod(
+        accountId: Val(accountId),
+        blobIds: Val([blobIdNotParsable]),
+      );
 
       final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.addInvocation(parseEmailMethod);
@@ -301,8 +314,10 @@ void main() {
         },
       );
 
-      final parseEmailMethod = ParseEmailMethod(accountId, [blobId3])
-        ..properties.val(Properties({"id", "preview", "subject"}));
+      final parseEmailMethod = ParseEmailMethod(
+        accountId: Val(accountId),
+        blobIds: Val([blobId3]),
+      )..properties.val(Properties({"id", "preview", "subject"}));
 
       final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.addInvocation(parseEmailMethod);

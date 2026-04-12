@@ -1,4 +1,5 @@
 import 'package:http_parser/http_parser.dart';
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request/patch_object.dart';
 import 'package:jmap_dart_client/api/request/reference_id.dart';
 import 'package:jmap_dart_client/api/request/reference_prefix.dart';
@@ -153,9 +154,11 @@ void main() {
 
       final setEmailMethod =
           SetEmailMethod(
-              AccountId(
-                Id(
-                  '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+              accountId: Val(
+                AccountId(
+                  Id(
+                    '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+                  ),
                 ),
               ),
             )
@@ -188,9 +191,11 @@ void main() {
 
       final setEmailSubmissionMethod =
           SetEmailSubmissionMethod(
-              AccountId(
-                Id(
-                  '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+              accountId: Val(
+                AccountId(
+                  Id(
+                    '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+                  ),
                 ),
               ),
             )
@@ -366,9 +371,11 @@ void main() {
 
       final setEmailMethod =
           SetEmailMethod(
-              AccountId(
-                Id(
-                  '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+              accountId: Val(
+                AccountId(
+                  Id(
+                    '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+                  ),
                 ),
               ),
             )
@@ -405,9 +412,11 @@ void main() {
 
       final setEmailSubmissionMethod =
           SetEmailSubmissionMethod(
-              AccountId(
-                Id(
-                  '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+              accountId: Val(
+                AccountId(
+                  Id(
+                    '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
+                  ),
                 ),
               ),
             )

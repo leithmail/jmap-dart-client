@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -28,8 +29,9 @@ void main() {
       'when call method PublicAsset/get with exist public asset id',
       () async {
         // arrange
-        final getPublicAssetMethod = GetPublicAssetMethod(accountId)
-          ..ids.val([publicAsset.id!]);
+        final getPublicAssetMethod = GetPublicAssetMethod(
+          accountId: Val(accountId),
+        )..ids.val([publicAsset.id!]);
         final httpMockClient = HttpMockResponseClient(
           responseBody: {
             "sessionState": "abcdefghij",
@@ -88,8 +90,9 @@ void main() {
       'when call method PublicAsset/get with non-exist public asset id',
       () async {
         // arrange
-        final getPublicAssetMethod = GetPublicAssetMethod(accountId)
-          ..ids.val([publicAsset.id!]);
+        final getPublicAssetMethod = GetPublicAssetMethod(
+          accountId: Val(accountId),
+        )..ids.val([publicAsset.id!]);
         final httpMockClient = HttpMockResponseClient(
           responseBody: {
             "sessionState": "abcdefghij",

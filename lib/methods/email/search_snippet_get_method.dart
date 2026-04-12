@@ -27,4 +27,7 @@ class SearchSnippetGetMethod
   SearchSnippetGetResponse responseFromJson(Map<String, dynamic> json) {
     return SearchSnippetGetResponse.fromJson(json);
   }
+
+  @override
+  get slots => [...super.slots, filter, referenceEmailIds];
 }

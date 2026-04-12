@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -133,15 +134,16 @@ void main() {
                 '0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555',
               ),
             );
-            final queryMailboxMethod = QueryMailboxMethod(accountId)
-              ..filter.val(MailboxFilterCondition(role: Role('Spam')))
-              ..limit.val(UnsignedInt(1));
+            final queryMailboxMethod =
+                QueryMailboxMethod(accountId: Val(accountId))
+                  ..filter.set(MailboxFilterCondition(role: Role('Spam')))
+                  ..limit.val(1);
             final queryMailboxInvocation = jmapRequestBuilder.addInvocation(
               queryMailboxMethod,
               methodCallId: MethodCallId('c2'),
             );
 
-            final getMailBoxMethod = GetMailboxMethod(accountId)
+            final getMailBoxMethod = GetMailboxMethod(accountId: Val(accountId))
               ..ids.ref(queryMailboxInvocation.resultReferences().$('ids'));
             final getMailboxInvocation = jmapRequestBuilder.addInvocation(
               getMailBoxMethod,

@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -152,22 +153,27 @@ void main() {
       );
       final state = State('94bbff21-e87c-11ec-aae4-43ebf0340ebd');
 
-      final changesMailboxMethod = ChangesMailboxMethod(accountId, state);
+      final changesMailboxMethod = ChangesMailboxMethod(
+        accountId: Val(accountId),
+        sinceState: Val(state),
+      );
       final changesMailboxInvocation = jmapRequestBuilder.addInvocation(
         changesMailboxMethod,
         methodCallId: MethodCallId('c0'),
       );
 
-      final getMailboxMethodForUpdate = GetMailboxMethod(accountId)
-        ..ids.ref(changesMailboxInvocation.resultReferences().$('updated'));
+      final getMailboxMethodForUpdate = GetMailboxMethod(
+        accountId: Val(accountId),
+      )..ids.ref(changesMailboxInvocation.resultReferences().$('updated'));
 
       final getMailboxForUpdateInvocation = jmapRequestBuilder.addInvocation(
         getMailboxMethodForUpdate,
         methodCallId: MethodCallId('c1'),
       );
 
-      final getMailboxMethodForDestroyed = GetMailboxMethod(accountId)
-        ..ids.ref(changesMailboxInvocation.resultReferences().$('destroyed'));
+      final getMailboxMethodForDestroyed = GetMailboxMethod(
+        accountId: Val(accountId),
+      )..ids.ref(changesMailboxInvocation.resultReferences().$('destroyed'));
       final getMailboxForDestroyInvocation = jmapRequestBuilder.addInvocation(
         getMailboxMethodForDestroyed,
         methodCallId: MethodCallId('c2'),

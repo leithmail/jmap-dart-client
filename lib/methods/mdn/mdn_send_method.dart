@@ -9,6 +9,7 @@ import 'package:jmap_dart_client/entities/identity/identity.dart';
 import 'package:jmap_dart_client/entities/mdn/mdn.dart';
 import 'package:jmap_dart_client/methods/mdn/mdn_send_response.dart';
 import 'package:jmap_dart_client/src/converters/identities/identity_id_converter.dart';
+import 'package:jmap_dart_client/src/converters/set/set_method_properties_converter.dart';
 
 class MDNSendMethod extends SendMethod<MDNSendResponse, ResultReference, MDN>
     with EmptyResultReferences {
@@ -16,11 +17,14 @@ class MDNSendMethod extends SendMethod<MDNSendResponse, ResultReference, MDN>
     'identityId',
     (v) => IdentityIdConverter().toJson(v),
   );
-  final onSuccessUpdateEmail = MapArgumentSlot<EmailSubmissionId, PatchObject>(
-    'onSuccessUpdateEmail',
-    (k) => k.id.value,
-    (v) => v.toJson(),
-  );
+  final onSuccessUpdateEmail =
+      ArgumentSlot<Map<EmailSubmissionId, PatchObject>?>(
+        'onSuccessUpdateEmail',
+        (v) => v?.map(
+          (id, update) => SetMethodPropertiesConverter()
+              .fromMapEmailSubmissionIdToJson(id, update),
+        ),
+      );
 
   MDNSendMethod({
     required super.accountId,
