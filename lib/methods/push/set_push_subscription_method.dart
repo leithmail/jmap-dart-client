@@ -1,6 +1,5 @@
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/request/set_method.dart';
-import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/push/push_subscription.dart';
 import 'package:jmap_dart_client/methods/push/set_push_subscription_response.dart';
 
@@ -13,12 +12,7 @@ class SetPushSubscriptionMethod
   SetPushSubscriptionMethod() : super();
 
   @override
-  MethodName methodName() => MethodName('PushSubscription/set');
-
-  @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
-    CapabilityIdentifier.jmapCore,
-  };
+  MethodName get methodName => MethodName('PushSubscription/set');
 
   @override
   SetPushSubscriptionResponse responseFromJson(Map<String, dynamic> json) {

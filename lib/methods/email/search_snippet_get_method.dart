@@ -12,13 +12,13 @@ class SearchSnippetGetMethod extends GetMethod<SearchSnippetGetResponse>
   SearchSnippetGetMethod(super.accountId);
 
   @override
-  MethodName methodName() => MethodName('SearchSnippet/get');
+  MethodName get methodName => MethodName('SearchSnippet/get');
 
   @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
-    CapabilityIdentifier.jmapCore,
+  get requiredCapabilities => [
+    ...super.requiredCapabilities,
     CapabilityIdentifier.jmapMail,
-  };
+  ];
 
   @override
   SearchSnippetGetResponse responseFromJson(Map<String, dynamic> json) {

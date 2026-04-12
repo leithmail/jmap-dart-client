@@ -89,7 +89,7 @@ void main() {
       );
       final response =
           await (requestBuilder
-                ..addUsings(getIdentityMethod.requiredCapabilities()))
+                ..addUsings(getIdentityMethod.requiredCapabilities))
               .build()
               .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 

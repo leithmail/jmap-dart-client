@@ -35,7 +35,7 @@ class RequestInvocation<R extends MethodResponse, F extends ResultReference> {
     return method.responseFromJson(matchedResponse.arguments.value);
   }
 
-  F resultReferences() => method.resultReference(methodCallId);
+  F resultReferences() => method.resultReferences(methodCallId);
 
   static bool _validMethodResponseName(
     ResponseInvocation responseInvocation,

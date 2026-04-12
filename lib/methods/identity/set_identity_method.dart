@@ -9,13 +9,13 @@ class SetIdentityMethod extends SetMethod<SetIdentityResponse, Identity> {
   SetIdentityMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName methodName() => MethodName('Identity/set');
+  MethodName get methodName => MethodName('Identity/set');
 
   @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
-    CapabilityIdentifier.jmapCore,
+  get requiredCapabilities => [
+    ...super.requiredCapabilities,
     CapabilityIdentifier.jmapSubmission,
-  };
+  ];
 
   @override
   Object? typeToJson(Identity v) => v.toJson();

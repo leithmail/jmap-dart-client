@@ -35,7 +35,7 @@ void main() {
             "sessionState": "abcdefghij",
             "methodResponses": [
               [
-                getPublicAssetMethod.methodName().value,
+                getPublicAssetMethod.methodName.value,
                 {
                   "accountId": accountId.id.value,
                   "state": 'some-state',
@@ -48,14 +48,13 @@ void main() {
           },
           expectedBody: {
             "using":
-                getPublicAssetMethod
-                    .requiredCapabilities()
+                getPublicAssetMethod.requiredCapabilities
                     .map((capability) => capability.value.toString())
                     .toList()
                   ..sort(),
             "methodCalls": [
               [
-                getPublicAssetMethod.methodName().value,
+                getPublicAssetMethod.methodName.value,
                 {
                   "accountId": accountId.id.value,
                   "ids": [publicAsset.id?.value],
@@ -96,7 +95,7 @@ void main() {
             "sessionState": "abcdefghij",
             "methodResponses": [
               [
-                getPublicAssetMethod.methodName().value,
+                getPublicAssetMethod.methodName.value,
                 {
                   "accountId": accountId.id.value,
                   "state": 'some-state',
@@ -109,14 +108,13 @@ void main() {
           },
           expectedBody: {
             "using":
-                getPublicAssetMethod
-                    .requiredCapabilities()
+                getPublicAssetMethod.requiredCapabilities
                     .map((capability) => capability.value.toString())
                     .toList()
                   ..sort(),
             "methodCalls": [
               [
-                getPublicAssetMethod.methodName().value,
+                getPublicAssetMethod.methodName.value,
                 {
                   "accountId": accountId.id.value,
                   "ids": [publicAsset.id?.value],

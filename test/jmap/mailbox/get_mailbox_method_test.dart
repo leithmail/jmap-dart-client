@@ -150,7 +150,7 @@ void main() {
       );
       final response =
           await (requestBuilder
-                ..addUsings(getMailboxMethod.requiredCapabilities()))
+                ..addUsings(getMailboxMethod.requiredCapabilities))
               .build()
               .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 

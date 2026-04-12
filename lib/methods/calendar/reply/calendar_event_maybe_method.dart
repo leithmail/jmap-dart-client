@@ -8,13 +8,13 @@ class CalendarEventMaybeMethod
   CalendarEventMaybeMethod(super.accountId, {required super.blobIds});
 
   @override
-  MethodName methodName() => MethodName('CalendarEvent/maybe');
+  MethodName get methodName => MethodName('CalendarEvent/maybe');
 
   @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
-    CapabilityIdentifier.jmapCore,
+  get requiredCapabilities => [
+    ...super.requiredCapabilities,
     CapabilityIdentifier.jamesCalendarEvent,
-  };
+  ];
 
   @override
   CalendarEventMaybeResponse responseFromJson(Map<String, dynamic> json) {

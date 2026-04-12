@@ -40,14 +40,13 @@ void main() {
         },
         expectedBody: {
           "using":
-              clearMailboxMethod
-                  .requiredCapabilities()
+              clearMailboxMethod.requiredCapabilities
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              clearMailboxMethod.methodName().value,
+              clearMailboxMethod.methodName.value,
               {
                 "accountId": unknownAccountId.id.value,
                 "mailboxId": bobTrashId.id.value,
@@ -84,10 +83,10 @@ void main() {
 
     test('should fail when missing mailbox clear capability', () async {
       // Arrange
-      final listCapabilitiesUsed = {
+      final listCapabilitiesUsed = [
         CapabilityIdentifier.jmapCore,
         CapabilityIdentifier.jmapMail,
-      };
+      ];
       final clearMailboxMethod = ClearMailboxMethod(bobAccountId, bobTrashId);
       final httpMockClient = HttpMockResponseClient(
         responseBody: {
@@ -112,7 +111,7 @@ void main() {
                 ..sort(),
           "methodCalls": [
             [
-              clearMailboxMethod.methodName().value,
+              clearMailboxMethod.methodName.value,
               {
                 "accountId": bobAccountId.id.value,
                 "mailboxId": bobTrashId.id.value,
@@ -168,14 +167,13 @@ void main() {
         },
         expectedBody: {
           "using":
-              clearMailboxMethod
-                  .requiredCapabilities()
+              clearMailboxMethod.requiredCapabilities
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              clearMailboxMethod.methodName().value,
+              clearMailboxMethod.methodName.value,
               {
                 "accountId": bobAccountId.id.value,
                 "mailboxId": bobTrashId.id.value,
@@ -229,14 +227,13 @@ void main() {
         },
         expectedBody: {
           "using":
-              clearMailboxMethod
-                  .requiredCapabilities()
+              clearMailboxMethod.requiredCapabilities
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              clearMailboxMethod.methodName().value,
+              clearMailboxMethod.methodName.value,
               {
                 "accountId": bobAccountId.id.value,
                 "mailboxId": invalidMailboxId.id.value,
@@ -292,14 +289,13 @@ void main() {
         },
         expectedBody: {
           "using":
-              clearMailboxMethod
-                  .requiredCapabilities()
+              clearMailboxMethod.requiredCapabilities
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              clearMailboxMethod.methodName().value,
+              clearMailboxMethod.methodName.value,
               {
                 "accountId": bobAccountId.id.value,
                 "mailboxId": notFoundMailboxId.id.value,
@@ -356,14 +352,13 @@ void main() {
         },
         expectedBody: {
           "using":
-              clearMailboxMethod
-                  .requiredCapabilities()
+              clearMailboxMethod.requiredCapabilities
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              clearMailboxMethod.methodName().value,
+              clearMailboxMethod.methodName.value,
               {
                 "accountId": bobAccountId.id.value,
                 "mailboxId": bobTrashId.id.value,
@@ -420,14 +415,13 @@ void main() {
         },
         expectedBody: {
           "using":
-              clearMailboxMethod
-                  .requiredCapabilities()
+              clearMailboxMethod.requiredCapabilities
                   .map((capability) => capability.value.toString())
                   .toList()
                 ..sort(),
           "methodCalls": [
             [
-              clearMailboxMethod.methodName().value,
+              clearMailboxMethod.methodName.value,
               {
                 "accountId": bobAccountId.id.value,
                 "mailboxId": teamMailboxId.id.value,
@@ -446,7 +440,7 @@ void main() {
       // Act
       final responseObject =
           await (requestBuilder
-                ..addUsings(clearMailboxMethod.requiredCapabilities()))
+                ..addUsings(clearMailboxMethod.requiredCapabilities))
               .build()
               .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 
@@ -461,11 +455,11 @@ void main() {
         'when missing share capability', () async {
       // Arrange
       final teamMailboxId = MailboxId(Id('teamMailboxId'));
-      final listCapabilitiesUsed = {
+      final listCapabilitiesUsed = [
         CapabilityIdentifier.jmapCore,
         CapabilityIdentifier.jmapMail,
         CapabilityIdentifier.jmapMailboxClear,
-      };
+      ];
       final clearMailboxMethod = ClearMailboxMethod(
         bobAccountId,
         teamMailboxId,
@@ -495,7 +489,7 @@ void main() {
                 ..sort(),
           "methodCalls": [
             [
-              clearMailboxMethod.methodName().value,
+              clearMailboxMethod.methodName.value,
               {
                 "accountId": bobAccountId.id.value,
                 "mailboxId": teamMailboxId.id.value,

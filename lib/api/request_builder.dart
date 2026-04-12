@@ -26,12 +26,12 @@ class RequestBuilder {
     );
     _addMethod(callId, invocation);
     if (withRequiredCapabilities) {
-      addUsings(method.requiredCapabilities());
+      addUsings(method.requiredCapabilities);
     }
     return invocation;
   }
 
-  void addUsings(Set<CapabilityIdentifier> capabilityIdentifiers) {
+  void addUsings(List<CapabilityIdentifier> capabilityIdentifiers) {
     _capabilities.addAll(capabilityIdentifiers);
   }
 

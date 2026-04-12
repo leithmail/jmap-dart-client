@@ -15,13 +15,13 @@ class QueryEmailMethod
   QueryEmailMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName methodName() => MethodName('Email/query');
+  MethodName get methodName => MethodName('Email/query');
 
   @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
-    CapabilityIdentifier.jmapCore,
+  get requiredCapabilities => [
+    ...super.requiredCapabilities,
     CapabilityIdentifier.jmapMail,
-  };
+  ];
 
   @override
   QueryEmailResponse responseFromJson(Map<String, dynamic> json) {

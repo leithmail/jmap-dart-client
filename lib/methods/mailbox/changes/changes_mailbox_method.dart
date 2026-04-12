@@ -14,12 +14,13 @@ class ChangesMailboxMethod extends ChangesMethod<ChangesMailboxResponse> {
   }) : super(accountId, sinceState, maxChanges: maxChanges);
 
   @override
-  MethodName methodName() => MethodName('Mailbox/changes');
+  MethodName get methodName => MethodName('Mailbox/changes');
 
   @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
+  get requiredCapabilities => [
+    ...super.requiredCapabilities,
     CapabilityIdentifier.jmapMail,
-  };
+  ];
 
   @override
   ChangesMailboxResponse responseFromJson(Map<String, dynamic> json) {

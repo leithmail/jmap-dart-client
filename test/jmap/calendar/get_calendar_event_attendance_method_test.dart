@@ -39,14 +39,13 @@ void main() {
       );
       final sampleRequest = {
         "using":
-            getCalendarEventAttendanceMethod
-                .requiredCapabilities()
+            getCalendarEventAttendanceMethod.requiredCapabilities
                 .map((capability) => capability.value.toString())
                 .toList()
               ..sort(),
         "methodCalls": [
           [
-            getCalendarEventAttendanceMethod.methodName().value,
+            getCalendarEventAttendanceMethod.methodName.value,
             {
               "accountId": accountId.id.value,
               "blobIds": blobIds.map((id) => id.value).toList(),
@@ -83,7 +82,7 @@ void main() {
       );
 
       requestBuilder.addUsings(
-        getCalendarEventAttendanceMethod.requiredCapabilities(),
+        getCalendarEventAttendanceMethod.requiredCapabilities,
       );
       // act
       final requestResponse = await requestBuilder.build().execute(
@@ -109,14 +108,13 @@ void main() {
       );
       final sampleRequest = {
         "using":
-            getCalendarEventAttendanceMethod
-                .requiredCapabilities()
+            getCalendarEventAttendanceMethod.requiredCapabilities
                 .map((capability) => capability.value.toString())
                 .toList()
               ..sort(),
         "methodCalls": [
           [
-            getCalendarEventAttendanceMethod.methodName().value,
+            getCalendarEventAttendanceMethod.methodName.value,
             {
               "accountId": accountId.id.value,
               "blobIds": [blobId.value],
@@ -154,7 +152,7 @@ void main() {
         methodCallId: methodCallId,
       );
       requestBuilder.addUsings(
-        getCalendarEventAttendanceMethod.requiredCapabilities(),
+        getCalendarEventAttendanceMethod.requiredCapabilities,
       );
       // act
       final requestResponse = await requestBuilder.build().execute(
@@ -183,14 +181,13 @@ void main() {
       );
       final sampleRequest = {
         "using":
-            getCalendarEventAttendanceMethod
-                .requiredCapabilities()
+            getCalendarEventAttendanceMethod.requiredCapabilities
                 .map((capability) => capability.value.toString())
                 .toList()
               ..sort(),
         "methodCalls": [
           [
-            getCalendarEventAttendanceMethod.methodName().value,
+            getCalendarEventAttendanceMethod.methodName.value,
             {
               "accountId": accountId.id.value,
               "blobIds": [blobId.value],

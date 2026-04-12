@@ -10,9 +10,11 @@ import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:meta/meta.dart';
 
 abstract class Method<R extends MethodResponse, F extends ResultReference> {
-  MethodName methodName();
+  MethodName get methodName;
 
-  Set<CapabilityIdentifier> requiredCapabilities();
+  List<CapabilityIdentifier> get requiredCapabilities => [
+    CapabilityIdentifier.jmapCore,
+  ];
 
   List<ArgumentSlotBase> get slots => [];
 
@@ -22,12 +24,12 @@ abstract class Method<R extends MethodResponse, F extends ResultReference> {
   );
 
   R responseFromJson(Map<String, dynamic> json);
-  F resultReference(MethodCallId resultOf);
+  F resultReferences(MethodCallId resultOf);
 
   @protected
-  ResultReference resultReferenceDefault(MethodCallId resultOf) =>
+  ResultReference resultReferencesDefault(MethodCallId resultOf) =>
       ResultReference(
-        name: methodName(),
+        name: methodName,
         resultOf: resultOf,
         path: ReferencePath.root,
       );
@@ -48,8 +50,8 @@ abstract class MethodRequiringAccountId<R extends MethodResponse>
   get slots => [...super.slots, accountId];
 
   @override
-  ResultReference resultReference(MethodCallId resultOf) =>
-      resultReferenceDefault(resultOf);
+  ResultReference resultReferences(MethodCallId resultOf) =>
+      resultReferencesDefault(resultOf);
 }
 
 class MethodName with EquatableMixin {

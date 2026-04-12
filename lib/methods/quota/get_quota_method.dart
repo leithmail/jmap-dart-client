@@ -8,14 +8,14 @@ class GetQuotaMethod extends GetMethod<GetQuotaResponse> {
   GetQuotaMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName methodName() => MethodName('Quota/get');
+  MethodName get methodName => MethodName('Quota/get');
 
   @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
-    CapabilityIdentifier.jmapCore,
+  get requiredCapabilities => [
+    ...super.requiredCapabilities,
     CapabilityIdentifier.jmapMail,
     CapabilityIdentifier.jmapQuota,
-  };
+  ];
 
   @override
   GetQuotaResponse responseFromJson(Map<String, dynamic> json) {

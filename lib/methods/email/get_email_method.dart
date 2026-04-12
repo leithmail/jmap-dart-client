@@ -19,13 +19,13 @@ class GetEmailMethod extends GetMethod<GetEmailResponse>
   GetEmailMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName methodName() => MethodName('Email/get');
+  MethodName get methodName => MethodName('Email/get');
 
   @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
-    CapabilityIdentifier.jmapCore,
+  get requiredCapabilities => [
+    ...super.requiredCapabilities,
     CapabilityIdentifier.jmapMail,
-  };
+  ];
 
   @override
   GetEmailResponse responseFromJson(Map<String, dynamic> json) {

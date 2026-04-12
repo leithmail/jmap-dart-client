@@ -8,13 +8,13 @@ class GetVacationMethod extends GetMethod<GetVacationResponse> {
   GetVacationMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName methodName() => MethodName('VacationResponse/get');
+  MethodName get methodName => MethodName('VacationResponse/get');
 
   @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
-    CapabilityIdentifier.jmapCore,
+  get requiredCapabilities => [
+    ...super.requiredCapabilities,
     CapabilityIdentifier.jmapVacationResponse,
-  };
+  ];
 
   @override
   GetVacationResponse responseFromJson(Map<String, dynamic> json) {

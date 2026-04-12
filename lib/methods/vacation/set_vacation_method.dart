@@ -16,13 +16,13 @@ class SetVacationMethod extends SetMethod<SetVacationResponse, VacationResponse>
   SetVacationMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName methodName() => MethodName('VacationResponse/set');
+  MethodName get methodName => MethodName('VacationResponse/set');
 
   @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
-    CapabilityIdentifier.jmapCore,
+  get requiredCapabilities => [
+    ...super.requiredCapabilities,
     CapabilityIdentifier.jmapVacationResponse,
-  };
+  ];
 
   @override
   Object? typeToJson(VacationResponse v) => v.toJson();

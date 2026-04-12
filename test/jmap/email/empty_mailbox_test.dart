@@ -122,10 +122,10 @@ void main() {
       );
 
       final result =
-          await (jmapRequestBuilder..addUsings({
+          await (jmapRequestBuilder..addUsings([
                 CapabilityIdentifier.jmapCore,
                 CapabilityIdentifier.jmapMail,
-              }))
+              ]))
               .build()
               .execute(httpMockClient, HttpMockResponseClient.defaultUri);
 

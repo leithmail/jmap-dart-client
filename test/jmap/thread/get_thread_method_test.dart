@@ -28,14 +28,13 @@ void main() {
       // arrange
       final sampleRequest = {
         "using":
-            getThreadMethod
-                .requiredCapabilities()
+            getThreadMethod.requiredCapabilities
                 .map((capability) => capability.value.toString())
                 .toList()
               ..sort(),
         "methodCalls": [
           [
-            getThreadMethod.methodName().value,
+            getThreadMethod.methodName.value,
             {
               "accountId": accountId.id.value,
               "ids": {foundId.value, notFoundId.value}.toList(),
@@ -48,7 +47,7 @@ void main() {
         "sessionState": "abcdefghij",
         "methodResponses": [
           [
-            getThreadMethod.methodName().value,
+            getThreadMethod.methodName.value,
             {
               "accountId": accountId.id.value,
               "state": "state",

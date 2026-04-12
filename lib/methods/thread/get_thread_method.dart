@@ -7,13 +7,13 @@ class GetThreadMethod extends GetMethod<GetThreadResponse> {
   GetThreadMethod(super.accountId);
 
   @override
-  MethodName methodName() => MethodName('Thread/get');
+  MethodName get methodName => MethodName('Thread/get');
 
   @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
-    CapabilityIdentifier.jmapCore,
+  get requiredCapabilities => [
+    ...super.requiredCapabilities,
     CapabilityIdentifier.jmapMail,
-  };
+  ];
 
   @override
   GetThreadResponse responseFromJson(Map<String, dynamic> json) {

@@ -8,13 +8,13 @@ class GetMailboxMethod extends GetMethod<GetMailboxResponse> {
   GetMailboxMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName methodName() => MethodName('Mailbox/get');
+  MethodName get methodName => MethodName('Mailbox/get');
 
   @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
-    CapabilityIdentifier.jmapCore,
+  get requiredCapabilities => [
+    ...super.requiredCapabilities,
     CapabilityIdentifier.jmapMail,
-  };
+  ];
 
   @override
   GetMailboxResponse responseFromJson(Map<String, dynamic> json) {

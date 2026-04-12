@@ -9,13 +9,13 @@ class SetPublicAssetMethod
   SetPublicAssetMethod(super.accountId);
 
   @override
-  MethodName methodName() => MethodName('PublicAsset/set');
+  MethodName get methodName => MethodName('PublicAsset/set');
 
   @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
-    CapabilityIdentifier.jmapCore,
+  get requiredCapabilities => [
+    ...super.requiredCapabilities,
     CapabilityIdentifier.jmapPublicAsset,
-  };
+  ];
 
   @override
   SetPublicAssetResponse responseFromJson(Map<String, dynamic> json) {

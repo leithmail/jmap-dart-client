@@ -1,5 +1,4 @@
 import 'package:jmap_dart_client/api/api.dart';
-import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:test/test.dart';
 
@@ -64,10 +63,7 @@ void main() {
 
 class _FakeErrorMethod extends Method<ErrorMethodResponse, ResultReference> {
   @override
-  MethodName methodName() => MethodName('Email/get');
-
-  @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {};
+  MethodName get methodName => MethodName('Email/get');
 
   @override
   ErrorMethodResponse responseFromJson(Map<String, dynamic> json) {
@@ -75,6 +71,6 @@ class _FakeErrorMethod extends Method<ErrorMethodResponse, ResultReference> {
   }
 
   @override
-  ResultReference resultReference(MethodCallId resultOf) =>
-      resultReferenceDefault(resultOf);
+  ResultReference resultReferences(MethodCallId resultOf) =>
+      resultReferencesDefault(resultOf);
 }

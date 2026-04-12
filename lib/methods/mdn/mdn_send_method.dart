@@ -23,14 +23,14 @@ class MDNSendMethod extends SendMethod<MDNSendResponse, MDN>
   get slots => [...super.slots, identityId];
 
   @override
-  MethodName methodName() => MethodName('MDN/send');
+  MethodName get methodName => MethodName('MDN/send');
 
   @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
-    CapabilityIdentifier.jmapCore,
+  get requiredCapabilities => [
+    ...super.requiredCapabilities,
     CapabilityIdentifier.jmapMail,
     CapabilityIdentifier.jmapMdn,
-  };
+  ];
 
   @override
   MDNSendResponse responseFromJson(Map<String, dynamic> json) {

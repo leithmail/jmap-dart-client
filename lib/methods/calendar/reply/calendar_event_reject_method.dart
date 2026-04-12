@@ -8,13 +8,13 @@ class CalendarEventRejectMethod
   CalendarEventRejectMethod(super.accountId, {required super.blobIds});
 
   @override
-  MethodName methodName() => MethodName('CalendarEvent/reject');
+  MethodName get methodName => MethodName('CalendarEvent/reject');
 
   @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
-    CapabilityIdentifier.jmapCore,
+  get requiredCapabilities => [
+    ...super.requiredCapabilities,
     CapabilityIdentifier.jamesCalendarEvent,
-  };
+  ];
 
   @override
   CalendarEventRejectResponse responseFromJson(Map<String, dynamic> json) {

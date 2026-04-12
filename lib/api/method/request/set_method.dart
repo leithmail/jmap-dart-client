@@ -29,8 +29,8 @@ abstract class SetMethodNoNeedAccountId<R extends MethodResponse, T>
   SetMethodNoNeedAccountId() : super();
 
   @override
-  ResultReference resultReference(MethodCallId resultOf) =>
-      resultReferenceDefault(resultOf);
+  ResultReference resultReferences(MethodCallId resultOf) =>
+      resultReferencesDefault(resultOf);
 }
 
 mixin OptionalIfInState<R extends MethodResponse, F extends ResultReference>

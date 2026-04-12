@@ -29,10 +29,7 @@ class _TestResultReferenceMap extends ResultReferenceMap {
 
 class _TestMethod extends Method<_TestMethodResponse, _TestResultReferenceMap> {
   @override
-  MethodName methodName() => MethodName('test');
-
-  @override
-  Set<Never> requiredCapabilities() => <Never>{};
+  MethodName get methodName => MethodName('test');
 
   @override
   _TestMethodResponse responseFromJson(Map<String, dynamic> json) {
@@ -40,11 +37,11 @@ class _TestMethod extends Method<_TestMethodResponse, _TestResultReferenceMap> {
   }
 
   @override
-  _TestResultReferenceMap resultReference(MethodCallId resultOf) {
+  _TestResultReferenceMap resultReferences(MethodCallId resultOf) {
     return _TestResultReferenceMap(
       ResultReference(
         resultOf: resultOf,
-        name: methodName(),
+        name: methodName,
         path: ReferencePath.root,
       ),
     );

@@ -8,13 +8,13 @@ class GetIdentityMethod extends GetMethod<GetIdentityResponse> {
   GetIdentityMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName methodName() => MethodName('Identity/get');
+  MethodName get methodName => MethodName('Identity/get');
 
   @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
-    CapabilityIdentifier.jmapCore,
+  get requiredCapabilities => [
+    ...super.requiredCapabilities,
     CapabilityIdentifier.jmapSubmission,
-  };
+  ];
 
   @override
   GetIdentityResponse responseFromJson(Map<String, dynamic> json) {

@@ -18,14 +18,14 @@ class SetEmailSubmissionMethod
   SetEmailSubmissionMethod(AccountId accountId) : super(accountId);
 
   @override
-  MethodName methodName() => MethodName('EmailSubmission/set');
+  MethodName get methodName => MethodName('EmailSubmission/set');
 
   @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
+  get requiredCapabilities => [
+    ...super.requiredCapabilities,
     CapabilityIdentifier.jmapSubmission,
     CapabilityIdentifier.jmapMail,
-    CapabilityIdentifier.jmapCore,
-  };
+  ];
 
   @override
   SetEmailSubmissionResponse responseFromJson(Map<String, dynamic> json) {

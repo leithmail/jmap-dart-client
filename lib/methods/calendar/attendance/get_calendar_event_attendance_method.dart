@@ -21,13 +21,13 @@ class GetCalendarEventAttendanceMethod
   get slots => [...super.slots, blobIds];
 
   @override
-  MethodName methodName() => MethodName('CalendarEventAttendance/get');
+  MethodName get methodName => MethodName('CalendarEventAttendance/get');
 
   @override
-  Set<CapabilityIdentifier> requiredCapabilities() => {
-    CapabilityIdentifier.jmapCore,
+  get requiredCapabilities => [
+    ...super.requiredCapabilities,
     CapabilityIdentifier.jamesCalendarEvent,
-  };
+  ];
 
   @override
   GetCalendarEventAttendanceResponse responseFromJson(
