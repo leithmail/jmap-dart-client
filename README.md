@@ -127,8 +127,7 @@ Future<jmap.GetEmailResponse> fetchInboxEmails(
       ..position.set(0)
       ..limit.set(20)
       ..sort.set([
-        jmap.EmailComparator(jmap.EmailComparatorProperty.sentAt)
-          ..setIsAscending(false),
+        jmap.EmailComparator(jmap.EmailSortProperty.sentAt, isAscending: false)
       ])
       ..filter.set(jmap.EmailFilterCondition(inMailbox: inboxId));
 

@@ -1,5 +1,4 @@
 import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
-import 'package:jmap_dart_client/api/method/argument/sort/comparator.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -8,12 +7,14 @@ import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
-import 'package:jmap_dart_client/entities/email/email_comparator.dart';
-import 'package:jmap_dart_client/entities/email/email_comparator_property.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/methods/email/argument/email_comparator.dart';
 import 'package:jmap_dart_client/methods/email/argument/email_filter.dart';
 import 'package:jmap_dart_client/methods/email/get_email_method.dart';
 import 'package:jmap_dart_client/methods/email/query_email_method.dart';
+import 'package:jmap_dart_client/src/extensions/string_extension.dart';
+import 'package:jmap_dart_client/src/extensions/unsigned_int_extension.dart';
+import 'package:jmap_dart_client/src/extensions/utc_date_extension.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -76,7 +77,7 @@ void main() {
     receivedAt: UTCDate(DateTime.parse("2021-08-11T04:34:17Z")),
   );
 
-  Future<List<Email>?> getListEmailAndSortBy(Comparator comparator) async {
+  Future<List<Email>?> getListEmailAndSortBy(EmailComparator comparator) async {
     final httpMockClient = HttpMockResponseClient(
       responseBody: {
         "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
@@ -223,7 +224,7 @@ void main() {
     final queryEmailMethod = QueryEmailMethod(accountId)
       ..limit.set(UnsignedInt(20))
       ..sort.set([
-        EmailComparator(EmailComparatorProperty.sentAt)..setIsAscending(false),
+        EmailComparator(EmailSortProperty.sentAt, isAscending: false),
       ])
       ..filter.set(
         EmailFilterCondition(
@@ -259,17 +260,16 @@ void main() {
       HttpMockResponseClient.defaultUri,
     );
 
-    final resultList = getEmailInvocation.parseResponse(result);
+    final resultList = getEmailInvocation.parseResponse(result).list;
+    _sortEmails(resultList, comparator);
 
-    resultList.sortEmails(comparator);
-    return resultList.list;
+    return resultList;
   }
 
   group('sort list email test', () {
     test('sort list email by receivedAt descending', () async {
       final listEmailResponse = await getListEmailAndSortBy(
-        EmailComparator(EmailComparatorProperty.receivedAt)
-          ..setIsAscending(false),
+        EmailComparator(EmailSortProperty.receivedAt, isAscending: false),
       );
       expect(
         listEmailResponse,
@@ -285,8 +285,7 @@ void main() {
 
     test('sort list email by receivedAt ascending', () async {
       final listEmailResponse = await getListEmailAndSortBy(
-        EmailComparator(EmailComparatorProperty.receivedAt)
-          ..setIsAscending(true),
+        EmailComparator(EmailSortProperty.receivedAt, isAscending: true),
       );
       expect(
         listEmailResponse,
@@ -302,7 +301,7 @@ void main() {
 
     test('sort list email by sentAt descending', () async {
       final listEmailResponse = await getListEmailAndSortBy(
-        EmailComparator(EmailComparatorProperty.sentAt)..setIsAscending(false),
+        EmailComparator(EmailSortProperty.sentAt, isAscending: false),
       );
       expect(
         listEmailResponse,
@@ -318,7 +317,7 @@ void main() {
 
     test('sort list email by sentAt ascending', () async {
       final listEmailResponse = await getListEmailAndSortBy(
-        EmailComparator(EmailComparatorProperty.sentAt)..setIsAscending(true),
+        EmailComparator(EmailSortProperty.sentAt, isAscending: true),
       );
       expect(
         listEmailResponse,
@@ -334,7 +333,7 @@ void main() {
 
     test('sort list email by subject descending', () async {
       final listEmailResponse = await getListEmailAndSortBy(
-        EmailComparator(EmailComparatorProperty.subject)..setIsAscending(false),
+        EmailComparator(EmailSortProperty.subject, isAscending: false),
       );
       expect(
         listEmailResponse,
@@ -350,7 +349,7 @@ void main() {
 
     test('sort list email by subject ascending', () async {
       final listEmailResponse = await getListEmailAndSortBy(
-        EmailComparator(EmailComparatorProperty.subject)..setIsAscending(true),
+        EmailComparator(EmailSortProperty.subject, isAscending: true),
       );
       expect(
         listEmailResponse,
@@ -366,7 +365,7 @@ void main() {
 
     test('sort list email by size descending', () async {
       final listEmailResponse = await getListEmailAndSortBy(
-        EmailComparator(EmailComparatorProperty.size)..setIsAscending(false),
+        EmailComparator(EmailSortProperty.size, isAscending: false),
       );
       expect(
         listEmailResponse,
@@ -382,7 +381,7 @@ void main() {
 
     test('sort list email by size ascending', () async {
       final listEmailResponse = await getListEmailAndSortBy(
-        EmailComparator(EmailComparatorProperty.size)..setIsAscending(true),
+        EmailComparator(EmailSortProperty.size, isAscending: true),
       );
       expect(
         listEmailResponse,
@@ -395,5 +394,27 @@ void main() {
         ]),
       );
     });
+  });
+}
+
+void _sortEmails(List<Email> list, EmailComparator comparator) {
+  list.sort((email1, email2) {
+    if (comparator.property == EmailSortProperty.receivedAt) {
+      return email1.receivedAt.compareToSort(
+        email2.receivedAt,
+        comparator.isAscending,
+      );
+    } else if (comparator.property == EmailSortProperty.sentAt) {
+      return email1.sentAt.compareToSort(email2.sentAt, comparator.isAscending);
+    } else if (comparator.property == EmailSortProperty.subject) {
+      return email1.subject.compareToSort(
+        email2.subject,
+        comparator.isAscending,
+      );
+    } else if (comparator.property == EmailSortProperty.size) {
+      return email1.size.compareToSort(email2.size, comparator.isAscending);
+    } else {
+      return 0;
+    }
   });
 }

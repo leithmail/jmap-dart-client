@@ -58,8 +58,6 @@ export 'email/email_address.dart';
 export 'email/email_body_part.dart';
 export 'email/email_body_properties.dart';
 export 'email/email_body_value.dart';
-export 'email/email_comparator.dart';
-export 'email/email_comparator_property.dart';
 export 'email/email_header.dart';
 export 'email/email_submission.dart';
 export 'email/email_submission_id.dart';

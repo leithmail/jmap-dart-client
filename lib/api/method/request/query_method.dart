@@ -1,6 +1,6 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
+import 'package:jmap_dart_client/api/method/argument/comparator.dart';
 import 'package:jmap_dart_client/api/method/argument/filter.dart';
-import 'package:jmap_dart_client/api/method/argument/sort/comparator.dart';
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/method_response.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
@@ -8,14 +8,18 @@ import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 
-abstract class QueryMethod<R extends MethodResponse, F extends Filter>
+abstract class QueryMethod<
+  R extends MethodResponse,
+  F extends Filter,
+  S extends Comparator
+>
     extends MethodRequiringAccountId<R>
     with
         OptionalPosition,
         OptionalAnchorOffset,
         OptionalCalculateTotal,
         OptionalFilter<R, ResultReference, F>,
-        OptionalSort,
+        OptionalSort<R, ResultReference, S>,
         OptionalAnchor,
         OptionalLimit {
   QueryMethod(AccountId accountId) : super(accountId);
@@ -60,12 +64,13 @@ mixin OptionalFilter<
   get slots => [...super.slots, filter];
 }
 
-mixin OptionalSort<R extends MethodResponse, Q extends ResultReference>
+mixin OptionalSort<
+  R extends MethodResponse,
+  Q extends ResultReference,
+  S extends Comparator
+>
     on Method<R, Q> {
-  final sort = ArgumentSlot<List<Comparator>>(
-    'sort',
-    (v) => v.map((e) => e.toJson()).toList(),
-  );
+  final sort = SortSlot<Comparator>('sort');
 
   @override
   get slots => [...super.slots, sort];

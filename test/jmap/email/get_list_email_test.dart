@@ -1,4 +1,5 @@
 import 'package:jmap_dart_client/jmap_dart_client.dart';
+import 'package:jmap_dart_client/methods/email/argument/email_comparator.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -202,8 +203,7 @@ void main() {
       final queryEmailMethod = QueryEmailMethod(accountId)
         ..limit.set(UnsignedInt(20))
         ..sort.set([
-          EmailComparator(EmailComparatorProperty.sentAt)
-            ..setIsAscending(false),
+          EmailComparator(EmailSortProperty.sentAt, isAscending: false),
         ])
         ..filter.set(
           EmailFilterCondition(

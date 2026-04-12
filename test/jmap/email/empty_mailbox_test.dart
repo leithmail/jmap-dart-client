@@ -3,9 +3,8 @@ import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/email/email_comparator.dart';
-import 'package:jmap_dart_client/entities/email/email_comparator_property.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/methods/email/argument/email_comparator.dart';
 import 'package:jmap_dart_client/methods/email/argument/email_filter.dart';
 import 'package:jmap_dart_client/methods/email/query_email_method.dart';
 import 'package:jmap_dart_client/methods/email/set_email_method.dart';
@@ -103,8 +102,7 @@ void main() {
 
       final queryEmailMethod = QueryEmailMethod(accountId)
         ..sort.set([
-          EmailComparator(EmailComparatorProperty.receivedAt)
-            ..setIsAscending(false),
+          EmailComparator(EmailSortProperty.receivedAt, isAscending: false),
         ])
         ..filter.set(
           EmailFilterCondition(

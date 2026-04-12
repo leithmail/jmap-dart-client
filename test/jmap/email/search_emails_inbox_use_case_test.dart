@@ -1,5 +1,5 @@
+import 'package:jmap_dart_client/api/method/argument/comparator.dart';
 import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
-import 'package:jmap_dart_client/api/method/argument/sort/comparator.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -8,9 +8,8 @@ import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
-import 'package:jmap_dart_client/entities/email/email_comparator.dart';
-import 'package:jmap_dart_client/entities/email/email_comparator_property.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/methods/email/argument/email_comparator.dart';
 import 'package:jmap_dart_client/methods/email/argument/email_filter.dart';
 import 'package:jmap_dart_client/methods/email/get_email_method.dart';
 import 'package:jmap_dart_client/methods/email/query_email_method.dart';
@@ -207,21 +206,20 @@ void main() {
     );
 
     final resultList = getEmailInvocation.parseResponse(result);
-    resultList.sortEmails(comparator);
     return resultList.list;
   }
 
   group('search email test', () {
     test('Search emails in Inbox which have the string report', () async {
       final listEmailResponse = await searchMailByCondition(
-        EmailComparator(EmailComparatorProperty.sentAt)..setIsAscending(false),
+        EmailComparator(EmailSortProperty.sentAt, isAscending: false),
       );
       expect(listEmailResponse, containsAllInOrder([expectMail1, expectMail2]));
     });
 
     test('Search emails in Inbox which have the string report fail', () async {
       final listEmailResponse = await searchMailByCondition(
-        EmailComparator(EmailComparatorProperty.sentAt)..setIsAscending(false),
+        EmailComparator(EmailSortProperty.sentAt, isAscending: false),
       );
       expect(
         listEmailResponse,
