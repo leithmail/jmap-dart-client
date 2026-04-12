@@ -126,10 +126,10 @@ Future<jmap.GetEmailResponse> fetchInboxEmails(
     final queryEmailMethod = jmap.QueryEmailMethod(accountId: Val(accountId))
       ..position.val(0)
       ..limit.val(20)
-      ..sort.val([
+      ..sort.set([
         jmap.EmailComparator(jmap.EmailSortProperty.sentAt, isAscending: false)
       ])
-      ..filter.val(jmap.EmailFilterCondition(inMailbox: inboxId));
+      ..filter.set(jmap.EmailFilterCondition(inMailbox: inboxId));
 
     final queryInvocation = requestBuilder.addInvocation(queryEmailMethod);
 
