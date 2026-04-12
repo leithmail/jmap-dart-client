@@ -113,14 +113,14 @@ void main() {
     );
 
     final queryEmailMethod = QueryEmailMethod(accountId)
-      ..filter.set(EmailFilterCondition(from: 'manh'));
+      ..filter.val(EmailFilterCondition(from: 'manh'));
     final queryEmailInvocation = jmapRequestBuilder.addInvocation(
       queryEmailMethod,
       methodCallId: MethodCallId('c1'),
     );
 
     final getEmailMethod = GetEmailMethod(accountId)
-      ..properties.set(
+      ..properties.val(
         Properties({
           "id",
           "subject",

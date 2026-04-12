@@ -9,13 +9,15 @@ import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:meta/meta.dart';
 
-abstract class Method<R extends MethodResponse, F extends ResultReference> {
+abstract class Method<R extends MethodResponse, Q extends ResultReference> {
   MethodName get methodName;
 
+  @mustCallSuper
   List<CapabilityIdentifier> get requiredCapabilities => [
     CapabilityIdentifier.jmapCore,
   ];
 
+  @mustCallSuper
   List<ArgumentSlotBase> get slots => [];
 
   @nonVirtual
@@ -24,34 +26,35 @@ abstract class Method<R extends MethodResponse, F extends ResultReference> {
   );
 
   R responseFromJson(Map<String, dynamic> json);
-  F resultReferences(MethodCallId resultOf);
-
-  @protected
-  ResultReference resultReferencesDefault(MethodCallId resultOf) =>
-      ResultReference(
-        name: methodName,
-        resultOf: resultOf,
-        path: ReferencePath.root,
-      );
+  Q resultReferences(MethodCallId resultOf);
 }
 
-abstract class MethodRequiringAccountId<R extends MethodResponse>
-    extends Method<R, ResultReference> {
-  final accountId = ArgumentSlot<AccountId>(
+mixin EmptyResultReferences<R extends MethodResponse>
+    on Method<R, ResultReference> {
+  @override
+  ResultReference resultReferences(MethodCallId resultOf) => ResultReference(
+    name: methodName,
+    resultOf: resultOf,
+    path: ReferencePath.root,
+  );
+}
+
+abstract class MethodWithAccountId<
+  R extends MethodResponse,
+  Q extends ResultReference
+>
+    extends Method<R, Q> {
+  final _accountId = ArgumentSlot<AccountId>(
     'accountId',
     (v) => AccountIdConverter().toJson(v),
   );
 
-  MethodRequiringAccountId(AccountId accountId) {
-    this.accountId.set(accountId);
+  MethodWithAccountId({required Argument<AccountId> accountId}) {
+    _accountId.set(accountId);
   }
 
   @override
-  get slots => [...super.slots, accountId];
-
-  @override
-  ResultReference resultReferences(MethodCallId resultOf) =>
-      resultReferencesDefault(resultOf);
+  get slots => [...super.slots, _accountId];
 }
 
 class MethodName with EquatableMixin {

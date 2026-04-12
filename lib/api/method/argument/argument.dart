@@ -5,16 +5,16 @@ sealed class Argument<T> {
 }
 
 /// A literal argument value set via [ArgumentSlot.set].
-final class ValArgument<T> extends Argument<T> {
+final class Val<T> extends Argument<T> {
   final T value;
-  const ValArgument(this.value);
+  const Val(this.value);
 }
 
 /// A result reference set via [ArgumentSlot.ref], pointing to a value
 /// in a previous method call's response (RFC 8620 §3.7).
-final class RefArgument<T> extends Argument<T> {
+final class Ref<T> extends Argument<T> {
   final ResultReference ref;
-  const RefArgument(this.ref);
+  const Ref(this.ref);
 }
 
 abstract class ArgumentSlotBase {
@@ -48,12 +48,12 @@ abstract class ArgumentSlotBase {
 ///
 /// Example — setting a literal value:
 /// ```dart
-/// method.properties.set({'id', 'subject', 'from'});
+/// method.properties.set(Val({'id', 'subject', 'from'}));
 /// ```
 ///
 /// Example — setting a result reference from a previous invocation:
 /// ```dart
-/// method.ids.ref(queryInvocation.resultReferenceTree.ids);
+/// method.ids.set(Ref(queryInvocation.resultReferenceTree.ids));
 /// ```
 ///
 /// Unset optional slots are omitted from the serialized request, which is
@@ -89,22 +89,16 @@ class ArgumentSlot<T> extends ArgumentSlotBase {
     : _key = key,
       _toJson = toJson;
 
-  /// Sets a literal value for this argument.
-  void set(T value) => _argument = ValArgument(value);
-
-  /// Sets this argument as a reference to a value in a previous method
-  /// call's response, obtained via [Method.resultReference].
-  /// Serializes as a `#`-prefixed key per RFC 8620 §3.7.
-  void ref(ResultReference ref) => _argument = RefArgument(ref);
+  void set(Argument<T>? argument) => _argument = argument;
 
   /// Serializes this slot to a [MapEntry] for inclusion in [Method.toJson],
   /// or `null` if the slot has not been set.
   ///
-  /// Returns a `#`-prefixed key when the slot holds a [RefArgument].
+  /// Returns a `#`-prefixed key when the slot holds a [Ref].
   MapEntry<String, dynamic>? toEntry() => switch (_argument) {
     null => null,
-    ValArgument<T> a => _valueEntry(a.value),
-    RefArgument<T> a => MapEntry('#$_key', a.ref.toJson()),
+    Val<T> a => _valueEntry(a.value),
+    Ref<T> a => MapEntry('#$_key', a.ref.toJson()),
   };
 
   MapEntry<String, dynamic>? _valueEntry(T value) {

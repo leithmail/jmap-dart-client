@@ -207,11 +207,11 @@ void main() {
       );
 
       final queryEmailMethod = QueryEmailMethod(accountId)
-        ..limit.set(UnsignedInt(20))
-        ..sort.set([
+        ..limit.val(UnsignedInt(20))
+        ..sort.val([
           EmailComparator(EmailSortProperty.sentAt, isAscending: false),
         ])
-        ..filter.set(
+        ..filter.val(
           EmailFilterOperator(Operator.OR, [
             EmailFilterCondition(hasKeyword: "music"),
             EmailFilterCondition(hasKeyword: "video"),
@@ -223,7 +223,7 @@ void main() {
       );
 
       final getEmailMethod = GetEmailMethod(accountId)
-        ..properties.set(
+        ..properties.val(
           Properties({
             "id",
             "subject",

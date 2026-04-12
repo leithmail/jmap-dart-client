@@ -212,7 +212,7 @@ void main() {
       );
 
       final getEmailMethodForUpdate = GetEmailMethod(accountId)
-        ..properties.set(Properties({'mailboxIds', 'keywords'}))
+        ..properties.val(Properties({'mailboxIds', 'keywords'}))
         ..ids.ref(changesEmailInvocation.resultReferences().$('updated'));
       final getEmailForUpdateInvocation = jmapRequestBuilder.addInvocation(
         getEmailMethodForUpdate,
@@ -220,7 +220,7 @@ void main() {
       );
 
       final getEmailMethodForCreated = GetEmailMethod(accountId)
-        ..properties.set(
+        ..properties.val(
           Properties({
             'id',
             'subject',

@@ -107,13 +107,13 @@ void main() {
 
       final jmapRequestBuilder = RequestBuilder();
 
-      final emailQueryMethod = QueryEmailMethod(accountId)..filter.set(filter);
+      final emailQueryMethod = QueryEmailMethod(accountId)..filter.val(filter);
       final emailQueryMethodInvocation = jmapRequestBuilder.addInvocation(
         emailQueryMethod,
       );
 
       final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
-        ..filter.set(filter);
+        ..filter.val(filter);
       searchSnippetGetMethod.referenceEmailIds.ref(
         emailQueryMethodInvocation.resultReferences().$('ids'),
       );
@@ -152,13 +152,13 @@ void main() {
 
       final jmapRequestBuilder = RequestBuilder();
 
-      final emailQueryMethod = QueryEmailMethod(accountId)..filter.set(filter);
+      final emailQueryMethod = QueryEmailMethod(accountId)..filter.val(filter);
       final emailQueryMethodInvocation = jmapRequestBuilder.addInvocation(
         emailQueryMethod,
       );
 
       final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
-        ..filter.set(filter);
+        ..filter.val(filter);
       searchSnippetGetMethod.referenceEmailIds.ref(
         emailQueryMethodInvocation.resultReferences().$('ids'),
       );
@@ -215,13 +215,13 @@ void main() {
 
       final jmapRequestBuilder = RequestBuilder();
 
-      final emailQueryMethod = QueryEmailMethod(accountId)..filter.set(filter);
+      final emailQueryMethod = QueryEmailMethod(accountId)..filter.val(filter);
       final emailQueryMethodInvocation = jmapRequestBuilder.addInvocation(
         emailQueryMethod,
       );
 
       final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
-        ..filter.set(filter);
+        ..filter.val(filter);
       searchSnippetGetMethod.referenceEmailIds.ref(
         emailQueryMethodInvocation.resultReferences().$('ids'),
       );

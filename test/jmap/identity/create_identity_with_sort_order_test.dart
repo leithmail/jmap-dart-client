@@ -74,7 +74,7 @@ void main() {
                 ),
               ),
             )
-            ..create.set({
+            ..create.val({
               Id('dab246'): Identity(
                 name: 'User B23',
                 email: 'lol@gmail.com',
@@ -176,7 +176,7 @@ void main() {
                     ),
                   ),
                 )
-                ..create.set({
+                ..create.val({
                   Id('xyz123'): Identity(
                     id: IdentityId(Id("5ccf6d7b-77e8-467a-9064-9f7ccfb19e12")),
                     name: 'User B23',
@@ -184,7 +184,7 @@ void main() {
                     sortOrder: UnsignedInt(1),
                   ),
                 })
-                ..update.set({
+                ..update.val({
                   Id("c6ba359f-94a8-4ee9-b515-6bd2d9698618"): PatchObject({
                     "sortOrder": 8888,
                   }),

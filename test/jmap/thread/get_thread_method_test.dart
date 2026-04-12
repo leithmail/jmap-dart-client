@@ -17,7 +17,7 @@ void main() {
   final foundThread = Thread(id: ThreadId(foundId), emailIds: [emailIdFound]);
   final notFoundId = Id('not-found-thread-id');
   final getThreadMethod = GetThreadMethod(accountId)
-    ..ids.set([foundId, notFoundId]);
+    ..ids.val([foundId, notFoundId]);
   final methodCallId = MethodCallId('c0');
 
   group('get thread method test:', () {

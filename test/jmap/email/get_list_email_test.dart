@@ -201,11 +201,11 @@ void main() {
       );
 
       final queryEmailMethod = QueryEmailMethod(accountId)
-        ..limit.set(UnsignedInt(20))
-        ..sort.set([
+        ..limit.val(UnsignedInt(20))
+        ..sort.val([
           EmailComparator(EmailSortProperty.sentAt, isAscending: false),
         ])
-        ..filter.set(
+        ..filter.val(
           EmailFilterCondition(
             inMailbox: MailboxId((Id('aba7e8d0-18d9-11eb-a677-2990b970028d'))),
           ),
@@ -216,7 +216,7 @@ void main() {
       );
 
       final getEmailMethod = GetEmailMethod(accountId)
-        ..properties.set(
+        ..properties.val(
           Properties({
             "id",
             "subject",

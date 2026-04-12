@@ -1,12 +1,14 @@
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/request/set_method.dart';
+import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/email/public_asset.dart';
 import 'package:jmap_dart_client/methods/email/set_public_asset_response.dart';
 
 class SetPublicAssetMethod
-    extends SetMethod<SetPublicAssetResponse, PublicAsset> {
-  SetPublicAssetMethod(super.accountId);
+    extends SetMethod<SetPublicAssetResponse, ResultReference, PublicAsset>
+    with EmptyResultReferences {
+  SetPublicAssetMethod({required super.accountId});
 
   @override
   MethodName get methodName => MethodName('PublicAsset/set');

@@ -1,24 +1,24 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/method_response.dart';
-import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 
-abstract class ChangesMethod<R extends MethodResponse>
-    extends MethodRequiringAccountId<R> {
-  final sinceState = ArgumentSlot<State>('sinceState', (v) => v.value);
-  final maxChanges = ArgumentSlot<UnsignedInt?>("maxChanges", (v) => v?.value);
+abstract class ChangesMethod<
+  R extends MethodResponse,
+  Q extends ResultReference
+>
+    extends MethodWithAccountId<R, Q> {
+  final _sinceState = ArgumentSlot<State>('sinceState', (v) => v.value);
+  final maxChanges = PrimitiveArgumentSlot<int>("maxChanges");
 
-  ChangesMethod(
-    AccountId accountId,
-    State sinceState, {
-    UnsignedInt? maxChanges,
-  }) : super(accountId) {
-    this.maxChanges.set(maxChanges);
-    this.sinceState.set(sinceState);
+  ChangesMethod({
+    required super.accountId,
+    required Argument<State> sinceState,
+  }) {
+    _sinceState.set(sinceState);
   }
 
   @override
-  get slots => [...super.slots, sinceState, maxChanges];
+  get slots => [...super.slots, _sinceState, maxChanges];
 }

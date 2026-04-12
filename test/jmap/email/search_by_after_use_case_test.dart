@@ -113,7 +113,7 @@ void main() {
     );
 
     final queryEmailMethod = QueryEmailMethod(accountId)
-      ..filter.set(
+      ..filter.val(
         EmailFilterCondition(
           after: UTCDate(DateTime.parse('2022-05-12T06:12:00Z')),
           from: 'manh',
@@ -125,7 +125,7 @@ void main() {
     );
 
     final getEmailMethod = GetEmailMethod(accountId)
-      ..properties.set(
+      ..properties.val(
         Properties({
           "id",
           "subject",

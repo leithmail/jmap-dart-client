@@ -1,4 +1,5 @@
 import 'package:jmap_dart_client/api/method/response/changes_response.dart';
+import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
@@ -34,4 +35,12 @@ class ChangesEmailResponse extends ChangesResponse {
 
   factory ChangesEmailResponse.fromJson(Map<String, dynamic> json) =>
       _$ChangesEmailResponseFromJson(json);
+}
+
+class ChangesEmailResultReferences extends ResultReference {
+  ChangesEmailResultReferences({
+    required super.resultOf,
+    required super.name,
+    required super.path,
+  });
 }

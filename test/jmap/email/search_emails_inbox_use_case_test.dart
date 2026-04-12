@@ -168,8 +168,8 @@ void main() {
     );
 
     final queryEmailMethod = QueryEmailMethod(accountId)
-      ..limit.set(UnsignedInt(3))
-      ..filter.set(
+      ..limit.val(UnsignedInt(3))
+      ..filter.val(
         EmailFilterCondition(
           text: 'report',
           inMailbox: MailboxId(Id('c2543650-32cf-11eb-995c-a3ae66e9f96a')),
@@ -182,7 +182,7 @@ void main() {
     );
 
     final getEmailMethod = GetEmailMethod(accountId)
-      ..properties.set(
+      ..properties.val(
         Properties({
           "id",
           "subject",

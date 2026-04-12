@@ -61,7 +61,8 @@ void main() {
   });
 }
 
-class _FakeErrorMethod extends Method<ErrorMethodResponse, ResultReference> {
+class _FakeErrorMethod extends Method<ErrorMethodResponse, ResultReference>
+    with EmptyResultReferences {
   @override
   MethodName get methodName => MethodName('Email/get');
 
@@ -69,8 +70,4 @@ class _FakeErrorMethod extends Method<ErrorMethodResponse, ResultReference> {
   ErrorMethodResponse responseFromJson(Map<String, dynamic> json) {
     return ServerFailMethodResponse();
   }
-
-  @override
-  ResultReference resultReferences(MethodCallId resultOf) =>
-      resultReferencesDefault(resultOf);
 }

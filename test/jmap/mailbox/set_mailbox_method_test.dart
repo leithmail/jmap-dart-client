@@ -81,7 +81,7 @@ void main() {
                 ),
               ),
             )
-            ..create.set({
+            ..create.val({
               Id('dab246'): Mailbox(
                 name: MailboxName('dab135'),
                 parentId: MailboxId(Id('aba7e8d0-18d9-11eb-a677-2990b970028d')),

@@ -1,24 +1,20 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
-import 'package:jmap_dart_client/api/method/method.dart';
-import 'package:jmap_dart_client/api/method/request/get_method.dart';
-import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/methods/calendar/attendance/get_calendar_event_attendance_response.dart';
-import 'package:jmap_dart_client/src/converters/id_converter.dart';
+import 'package:jmap_dart_client/jmap_dart_client.dart';
 
 class GetCalendarEventAttendanceMethod
-    extends GetMethod<GetCalendarEventAttendanceResponse> {
-  GetCalendarEventAttendanceMethod(super.accountId, List<Id> blobIds) {
-    this.blobIds.set(blobIds);
+    extends GetMethod<GetCalendarEventAttendanceResponse, ResultReference>
+    with EmptyResultReferences {
+  final _blobIds = ListArgumentSlot<Id>('blobIds', (v) => v.value);
+
+  GetCalendarEventAttendanceMethod({
+    required super.accountId,
+    required Argument<List<Id>> blobIds,
+  }) {
+    _blobIds.set(blobIds);
   }
 
-  final blobIds = ArgumentSlot<List<Id>>(
-    'blobIds',
-    (v) => v.map(const IdConverter().toJson).toList(),
-  );
-
   @override
-  get slots => [...super.slots, blobIds];
+  get slots => [...super.slots, _blobIds];
 
   @override
   MethodName get methodName => MethodName('CalendarEventAttendance/get');

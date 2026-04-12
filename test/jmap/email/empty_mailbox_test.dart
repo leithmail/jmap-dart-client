@@ -101,10 +101,10 @@ void main() {
       );
 
       final queryEmailMethod = QueryEmailMethod(accountId)
-        ..sort.set([
+        ..sort.val([
           EmailComparator(EmailSortProperty.receivedAt, isAscending: false),
         ])
-        ..filter.set(
+        ..filter.val(
           EmailFilterCondition(
             inMailbox: MailboxId((Id('025b0580-6422-11ef-a702-5d10e1ebf1c3'))),
           ),

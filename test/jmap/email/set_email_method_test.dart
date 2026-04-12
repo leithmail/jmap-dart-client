@@ -104,7 +104,7 @@ void main() {
                 ),
               ),
             )
-            ..create.set({
+            ..create.val({
               Id('aa1234'): Email(
                 id: EmailId(Id('ea12345')),
                 mailboxIds: {
@@ -224,7 +224,7 @@ void main() {
                 ),
               ),
             )
-            ..create.set({
+            ..create.val({
               Id('aa1234'): Email(
                 id: EmailId(Id('ea12345')),
                 mailboxIds: {
@@ -343,7 +343,7 @@ void main() {
                 ),
               ),
             )
-            ..create.set({
+            ..create.val({
               Id('e01'): Email(
                 id: EmailId(Id('e102')),
                 mailboxIds: {

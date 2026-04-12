@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -110,26 +111,29 @@ void main() {
             '93c56f4408cff66f0a929aea8e3940e753c3275e5622582ae3010e7277b7696c',
           ),
         );
-        final getEmailMethodForCreated = GetEmailMethod(accountId)
-          ..ids.set([Id('54fa3000-2595-11ec-a759-2fef1ee78d9e')])
-          ..properties.set(
-            Properties({
-              'id',
-              'subject',
-              'from',
-              'to',
-              'cc',
-              'bcc',
-              'keywords',
-              'size',
-              'receivedAt',
-              'sentAt',
-              'replyTo',
-              'preview',
-              'hasAttachment',
-              'header:X-MEETING-UID:asText',
-            }),
-          );
+        final getEmailMethodForCreated =
+            GetEmailMethod(accountId: Val(accountId))
+              ..ids.set(Val([Id('54fa3000-2595-11ec-a759-2fef1ee78d9e')]))
+              ..properties.set(
+                Val(
+                  Properties({
+                    'id',
+                    'subject',
+                    'from',
+                    'to',
+                    'cc',
+                    'bcc',
+                    'keywords',
+                    'size',
+                    'receivedAt',
+                    'sentAt',
+                    'replyTo',
+                    'preview',
+                    'hasAttachment',
+                    'header:X-MEETING-UID:asText',
+                  }),
+                ),
+              );
         final getEmailForCreatedInvocation = jmapRequestBuilder.addInvocation(
           getEmailMethodForCreated,
         );

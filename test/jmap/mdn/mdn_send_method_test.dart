@@ -118,7 +118,7 @@ void main() {
               },
               IdentityId(Id('9ba9d77b-fbc8-4495-877d-d1261c25261f')),
             )
-            ..onSuccessUpdateEmail.set({
+            ..onSuccessUpdateEmail.val({
               EmailSubmissionId(
                 ReferenceId(ReferencePrefix.defaultPrefix, Id('k1546')),
               ): PatchObject({

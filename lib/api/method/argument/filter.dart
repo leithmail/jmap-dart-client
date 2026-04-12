@@ -42,12 +42,12 @@ import 'package:jmap_dart_client/api/method/argument/argument.dart';
 ///
 /// Simple condition:
 /// ```dart
-/// method.filter.set(MailboxFilterCondition(role: Role('Spam')));
+/// method.filter.val(MailboxFilterCondition(role: Role('Spam')));
 /// ```
 ///
 /// Compound filter with operator:
 /// ```dart
-/// method.filter.set(
+/// method.filter.val(
 ///   MailboxFilterOperator(Operator.AND, [
 ///     MailboxFilterCondition(role: Role('Inbox')),
 ///     MailboxFilterOperator(Operator.OR, [
@@ -110,7 +110,7 @@ enum Operator { AND, OR, NOT }
 /// ```dart
 /// final slot = FilterSlot<MailboxFilter>('filter');
 ///
-/// slot.set(
+/// slot.val(
 ///   MailboxFilterOperator(Operator.AND, [
 ///     MailboxFilterCondition(role: Role('Inbox')),
 ///     MailboxFilterCondition(isSubscribed: true),

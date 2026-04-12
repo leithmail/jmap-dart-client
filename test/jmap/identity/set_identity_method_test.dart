@@ -70,7 +70,7 @@ void main() {
                 ),
               ),
             )
-            ..create.set({
+            ..create.val({
               Id('dab246'): Identity(
                 name: 'User B1',
                 email: 'userb@qa.open-paas.org',

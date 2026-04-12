@@ -159,7 +159,7 @@ void main() {
                 ),
               ),
             )
-            ..create.set({
+            ..create.val({
               Id('dab1234'): Email(
                 id: EmailId(Id('dab1234')),
                 mailboxIds: {
@@ -194,7 +194,7 @@ void main() {
                 ),
               ),
             )
-            ..create.set({
+            ..create.val({
               Id('a1234'): EmailSubmission(
                 emailId: EmailId(
                   ReferenceId(ReferencePrefix.defaultPrefix, Id('dab1234')),
@@ -204,7 +204,7 @@ void main() {
                 }),
               ),
             })
-            ..onSuccessUpdateEmail.set({
+            ..onSuccessUpdateEmail.val({
               EmailSubmissionId(
                 ReferenceId(ReferencePrefix.defaultPrefix, Id('a1234')),
               ): PatchObject({
@@ -372,7 +372,7 @@ void main() {
                 ),
               ),
             )
-            ..create.set({
+            ..create.val({
               Id('dab1234'): Email(
                 id: EmailId(Id('dab1234')),
                 mailboxIds: {
@@ -411,7 +411,7 @@ void main() {
                 ),
               ),
             )
-            ..create.set({
+            ..create.val({
               Id('a1234'): EmailSubmission(
                 emailId: EmailId(
                   ReferenceId(ReferencePrefix.defaultPrefix, Id('dab1234')),
@@ -421,7 +421,7 @@ void main() {
                 }),
               ),
             })
-            ..onSuccessUpdateEmail.set({
+            ..onSuccessUpdateEmail.val({
               EmailSubmissionId(
                 ReferenceId(ReferencePrefix.defaultPrefix, Id('a1234')),
               ): PatchObject({

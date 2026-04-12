@@ -592,7 +592,7 @@ void main() {
 
         final calendarEventParseMethod = CalendarEventParseMethod(accountId, [
           blobId1,
-        ])..properties.set(Properties({"uid", "title", "description"}));
+        ])..properties.val(Properties({"uid", "title", "description"}));
         final requestBuilder = RequestBuilder();
         final invocation = requestBuilder.addInvocation(
           calendarEventParseMethod,

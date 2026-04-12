@@ -1,10 +1,19 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
+import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/method/method.dart';
-import 'package:jmap_dart_client/api/method/request/get_method.dart';
+import 'package:jmap_dart_client/api/request/result_reference.dart';
+import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/methods/push/get_push_subscription_response.dart';
+import 'package:jmap_dart_client/src/converters/properties_converter.dart';
 
 class GetPushSubscriptionMethod
-    extends GetMethodNoNeedAccountId<GetPushSubscriptionResponse> {
-  GetPushSubscriptionMethod() : super();
+    extends Method<GetPushSubscriptionResponse, ResultReference>
+    with EmptyResultReferences {
+  final ids = ListArgumentSlot<Id>('ids', (v) => v.value);
+  final properties = ArgumentSlot<Properties>(
+    'properties',
+    PropertiesConverter().toJson,
+  );
 
   @override
   MethodName get methodName => MethodName('PushSubscription/get');
@@ -13,4 +22,7 @@ class GetPushSubscriptionMethod
   GetPushSubscriptionResponse responseFromJson(Map<String, dynamic> json) {
     return GetPushSubscriptionResponse.fromJson(json);
   }
+
+  @override
+  get slots => [...super.slots, ids, properties];
 }
