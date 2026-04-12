@@ -182,7 +182,7 @@ void main() {
                 "#ids": {
                   "resultOf": "c2",
                   "name": "Email/query",
-                  "path": "/ids/*",
+                  "path": "/ids",
                 },
                 "properties": [
                   "id",
@@ -234,9 +234,7 @@ void main() {
             "hasAttachment",
           }),
         )
-        ..ids.ref(
-          queryEmailInvocation.createResultReference(ReferencePath.idsPath),
-        );
+        ..ids.ref(queryEmailInvocation.resultReferences().$('ids'));
       final getEmailInvocation = jmapRequestBuilder.addInvocation(
         getEmailMethod,
         methodCallId: MethodCallId('c3'),

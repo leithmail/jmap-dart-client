@@ -1,6 +1,5 @@
 import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/method/argument/sort/comparator.dart';
-import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -96,11 +95,7 @@ void main() {
             {
               "accountId":
                   "0eacc7a5c74b27ab36a823bc5c34da36e16c093705f241d6ed5f48ee73a4ecfb",
-              "#ids": {
-                "resultOf": "c1",
-                "name": "Email/query",
-                "path": "/ids/*",
-              },
+              "#ids": {"resultOf": "c1", "name": "Email/query", "path": "/ids"},
               "properties": [
                 "id",
                 "subject",
@@ -150,9 +145,7 @@ void main() {
           "hasAttachment",
         }),
       )
-      ..ids.ref(
-        queryEmailInvocation.createResultReference(ReferencePath.idsPath),
-      );
+      ..ids.ref(queryEmailInvocation.resultReferences().$('ids'));
     final getEmailInvocation = jmapRequestBuilder.addInvocation(
       getEmailMethod,
       methodCallId: MethodCallId('c2'),

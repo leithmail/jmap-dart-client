@@ -1,5 +1,4 @@
 import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
-import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -214,11 +213,7 @@ void main() {
 
       final getEmailMethodForUpdate = GetEmailMethod(accountId)
         ..properties.set(Properties({'mailboxIds', 'keywords'}))
-        ..ids.ref(
-          changesEmailInvocation.createResultReference(
-            ReferencePath.root.append('updated'),
-          ),
-        );
+        ..ids.ref(changesEmailInvocation.resultReferences().$('updated'));
       final getEmailForUpdateInvocation = jmapRequestBuilder.addInvocation(
         getEmailMethodForUpdate,
         methodCallId: MethodCallId('c2'),
@@ -242,11 +237,7 @@ void main() {
             'hasAttachment',
           }),
         )
-        ..ids.ref(
-          changesEmailInvocation.createResultReference(
-            ReferencePath.root.append('created'),
-          ),
-        );
+        ..ids.ref(changesEmailInvocation.resultReferences().$('created'));
       final getEmailForCreatedInvocation = jmapRequestBuilder.addInvocation(
         getEmailMethodForCreated,
         methodCallId: MethodCallId('c3'),

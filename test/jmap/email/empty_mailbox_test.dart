@@ -1,4 +1,3 @@
-import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -87,7 +86,7 @@ void main() {
                 "#destroy": {
                   "resultOf": "c0",
                   "name": "Email/query",
-                  "path": "/ids/*",
+                  "path": "/ids",
                 },
               },
               "c1",
@@ -118,9 +117,7 @@ void main() {
       );
 
       final setEmailMethod = SetEmailMethod(accountId)
-        ..destroy.ref(
-          queryEmailInvocation.createResultReference(ReferencePath.idsPath),
-        );
+        ..destroy.ref(queryEmailInvocation.resultReferences().$('ids'));
       final setEmailInvocation = jmapRequestBuilder.addInvocation(
         setEmailMethod,
         methodCallId: MethodCallId('c1'),

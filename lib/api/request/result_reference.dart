@@ -50,6 +50,16 @@ class ResultReference {
     'name': const MethodNameConverter().toJson(_name),
     'path': _path.toPointer(),
   };
+
+  /// Appends [segment] to the current path, returning a [ResultReference].
+  @nonVirtual
+  ResultReference $(String segment) {
+    return ResultReference(
+      resultOf: _resultOf,
+      name: _name,
+      path: _path.append(segment),
+    );
+  }
 }
 
 /// Base class for typed navigation over a JMAP method result.
@@ -133,19 +143,6 @@ class ResultReferenceMap extends ResultReference {
         name: resultReference._name,
         path: resultReference._path,
       );
-
-  /// Appends [segment] to the current path, returning a [ResultReference]
-  /// for use as a scalar leaf or as input to a sub-tree constructor.
-  /// For use by subclasses only.
-  @protected
-  @nonVirtual
-  ResultReference $(String segment) {
-    return ResultReference(
-      resultOf: _resultOf,
-      name: _name,
-      path: _path.append(segment),
-    );
-  }
 }
 
 /// A [ResultReferenceMap] node representing an array field.

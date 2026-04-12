@@ -1,7 +1,6 @@
 import 'package:jmap_dart_client/api/errors/error_method_response.dart';
 import 'package:jmap_dart_client/api/errors/exceptions.dart';
 import 'package:jmap_dart_client/api/method/argument/filter/filter.dart';
-import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
@@ -75,7 +74,7 @@ void main() {
           "#emailIds": {
             "resultOf": "c0",
             "name": "Email/query",
-            "path": "/ids/*",
+            "path": "/ids",
           },
         },
         "c1",
@@ -116,7 +115,7 @@ void main() {
       final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
         ..filter.set(filter);
       searchSnippetGetMethod.referenceEmailIds.ref(
-        emailQueryMethodInvocation.createResultReference(ReferencePath.idsPath),
+        emailQueryMethodInvocation.resultReferences().$('ids'),
       );
       final searchSnippetGetMethodInvocation = jmapRequestBuilder.addInvocation(
         searchSnippetGetMethod,
@@ -161,7 +160,7 @@ void main() {
       final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
         ..filter.set(filter);
       searchSnippetGetMethod.referenceEmailIds.ref(
-        emailQueryMethodInvocation.createResultReference(ReferencePath.idsPath),
+        emailQueryMethodInvocation.resultReferences().$('ids'),
       );
       final methodInvocation = jmapRequestBuilder.addInvocation(
         searchSnippetGetMethod,
@@ -224,7 +223,7 @@ void main() {
       final searchSnippetGetMethod = SearchSnippetGetMethod(accountId)
         ..filter.set(filter);
       searchSnippetGetMethod.referenceEmailIds.ref(
-        emailQueryMethodInvocation.createResultReference(ReferencePath.idsPath),
+        emailQueryMethodInvocation.resultReferences().$('ids'),
       );
       final methodInvocation = jmapRequestBuilder.addInvocation(
         searchSnippetGetMethod,
