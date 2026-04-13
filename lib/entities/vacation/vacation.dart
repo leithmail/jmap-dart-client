@@ -5,12 +5,12 @@ import 'package:jmap_dart_client/src/converters/utc_date_nullable_converter.dart
 import 'package:jmap_dart_client/src/converters/vacation/vacation_id_nullable_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'vacation_response.g.dart';
+part 'vacation.g.dart';
 
 @VacationIdNullableConverter()
 @UTCDateNullableConverter()
 @JsonSerializable()
-class VacationResponse with EquatableMixin {
+class Vacation with EquatableMixin {
   @JsonKey(includeIfNull: false)
   final VacationId? id;
 
@@ -27,7 +27,7 @@ class VacationResponse with EquatableMixin {
 
   final String? htmlBody;
 
-  VacationResponse({
+  Vacation({
     this.id,
     this.isEnabled,
     this.fromDate,
@@ -37,10 +37,10 @@ class VacationResponse with EquatableMixin {
     this.htmlBody,
   });
 
-  factory VacationResponse.fromJson(Map<String, dynamic> json) =>
-      _$VacationResponseFromJson(json);
+  factory Vacation.fromJson(Map<String, dynamic> json) =>
+      _$VacationFromJson(json);
 
-  Map<String, dynamic> toJson() => _$VacationResponseToJson(this);
+  Map<String, dynamic> toJson() => _$VacationToJson(this);
 
   @override
   List<Object?> get props => [

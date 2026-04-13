@@ -2,9 +2,12 @@ import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/request/get_method.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
+import 'package:jmap_dart_client/entities/entities.dart';
 import 'package:jmap_dart_client/methods/thread/get_thread_response.dart';
+import 'package:jmap_dart_client/methods/thread/thread_property.dart';
 
-class GetThreadMethod extends GetMethod<GetThreadResponse, ResultReference>
+class GetThreadMethod
+    extends GetMethod<GetThreadResponse, ResultReference, ThreadProperty>
     with EmptyResultReferences {
   GetThreadMethod({required super.accountId});
 

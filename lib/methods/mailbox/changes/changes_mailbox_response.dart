@@ -1,23 +1,21 @@
-import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/method/response/changes_response.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
+import 'package:jmap_dart_client/methods/mailbox/argument/mailbox_property.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
-import 'package:jmap_dart_client/src/converters/properties_converter.dart';
 import 'package:jmap_dart_client/src/converters/state_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'changes_mailbox_response.g.dart';
 
-@PropertiesConverter()
 @IdConverter()
 @StateConverter()
 @AccountIdConverter()
 @JsonSerializable(createToJson: false)
 class ChangesMailboxResponse extends ChangesResponse {
-  final Properties? updatedProperties;
+  final List<MailboxProperty>? updatedProperties;
 
   ChangesMailboxResponse(
     AccountId accountId,

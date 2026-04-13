@@ -117,7 +117,7 @@ void main() {
       final searchSnippetGetMethod = SearchSnippetGetMethod(
         accountId: Val(accountId),
       )..filter.set(filter);
-      searchSnippetGetMethod.referenceEmailIds.set(
+      searchSnippetGetMethod.emailIds.set(
         Ref(emailQueryMethodInvocation.resultReferences.$('ids')),
       );
       final searchSnippetGetMethodInvocation = jmapRequestBuilder.addInvocation(
@@ -164,7 +164,7 @@ void main() {
       final searchSnippetGetMethod = SearchSnippetGetMethod(
         accountId: Val(accountId),
       )..filter.set(filter);
-      searchSnippetGetMethod.referenceEmailIds.set(
+      searchSnippetGetMethod.emailIds.set(
         Ref(emailQueryMethodInvocation.resultReferences.$('ids')),
       );
       final methodInvocation = jmapRequestBuilder.addInvocation(
@@ -229,7 +229,7 @@ void main() {
       final searchSnippetGetMethod = SearchSnippetGetMethod(
         accountId: Val(accountId),
       )..filter.set(filter);
-      searchSnippetGetMethod.referenceEmailIds.set(
+      searchSnippetGetMethod.emailIds.set(
         Ref(emailQueryMethodInvocation.resultReferences.$('ids')),
       );
       final methodInvocation = jmapRequestBuilder.addInvocation(

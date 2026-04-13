@@ -1,6 +1,4 @@
 // Entity models: Calendar
-export '../methods/email/argument/email_filter.dart';
-export '../methods/mailbox/argument/mailbox_filter.dart';
 export 'calendar/calendar_event.dart';
 export 'calendar/calendar_event_attendance.dart';
 export 'calendar/properties/attendee/calendar_attendee.dart';
@@ -56,7 +54,6 @@ export 'email/delivery_status.dart';
 export 'email/email.dart';
 export 'email/email_address.dart';
 export 'email/email_body_part.dart';
-export 'email/email_body_properties.dart';
 export 'email/email_body_value.dart';
 export 'email/email_header.dart';
 export 'email/email_submission.dart';
@@ -85,6 +82,6 @@ export 'quota/data_types.dart';
 export 'quota/quota.dart';
 // Entity models: Thread
 export 'thread/thread.dart';
+export 'vacation/vacation.dart';
 // Entity models: Vacation
 export 'vacation/vacation_id.dart';
-export 'vacation/vacation_response.dart';

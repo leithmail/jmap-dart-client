@@ -3,8 +3,8 @@ import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
+import 'package:jmap_dart_client/entities/vacation/vacation.dart';
 import 'package:jmap_dart_client/entities/vacation/vacation_id.dart';
-import 'package:jmap_dart_client/entities/vacation/vacation_response.dart';
 import 'package:jmap_dart_client/methods/vacation/get_vacation_method.dart';
 import 'package:jmap_dart_client/methods/vacation/set_vacation_method.dart';
 import 'package:test/test.dart';
@@ -13,7 +13,7 @@ import '../../helpers/http_mocks.dart';
 
 void main() {
   group('test to json set vacation method', () {
-    final expectedUpdated = VacationResponse(
+    final expectedUpdated = Vacation(
       id: VacationId.singleton(),
       isEnabled: true,
       fromDate: UTCDate(DateTime.parse('2022-08-16T15:00:00.000Z')),
@@ -98,7 +98,7 @@ void main() {
       final setVacationMethod = SetVacationMethod(accountId: Val(accountId))
         ..updateSingleton.set(
           Val({
-            VacationId.singleton().id: VacationResponse(
+            VacationId.singleton().id: Vacation(
               isEnabled: true,
               fromDate: UTCDate(DateTime.parse('2022-08-16T15:00:00.000Z')),
               textBody: 'Hello dab',

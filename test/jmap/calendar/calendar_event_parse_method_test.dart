@@ -1,5 +1,4 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
-import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/calendar/calendar_event.dart';
 import 'package:jmap_dart_client/entities/calendar/properties/attendee/calendar_attendee.dart';
@@ -25,6 +24,7 @@ import 'package:jmap_dart_client/entities/calendar/properties/recurrence_rule/re
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
+import 'package:jmap_dart_client/methods/calendar/argument/calendar_event_property.dart';
 import 'package:jmap_dart_client/methods/calendar/parse/calendar_event_parse_method.dart';
 import 'package:test/test.dart';
 
@@ -594,10 +594,18 @@ void main() {
           },
         );
 
-        final calendarEventParseMethod = CalendarEventParseMethod(
-          accountId: Val(accountId),
-          blobIds: Val([blobId1]),
-        )..properties.set(Val(Properties({"uid", "title", "description"})));
+        final calendarEventParseMethod =
+            CalendarEventParseMethod(
+                accountId: Val(accountId),
+                blobIds: Val([blobId1]),
+              )
+              ..properties.set(
+                Val([
+                  CalendarEventProperty.uid,
+                  CalendarEventProperty.title,
+                  CalendarEventProperty.description,
+                ]),
+              );
         final requestBuilder = RequestBuilder();
         final invocation = requestBuilder.addInvocation(
           calendarEventParseMethod,

@@ -1,5 +1,4 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
-import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
@@ -8,6 +7,7 @@ import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
 import 'package:jmap_dart_client/entities/email/individual_header_identifier.dart';
+import 'package:jmap_dart_client/methods/email/argument/email_property.dart';
 import 'package:jmap_dart_client/methods/email/get_email_method.dart';
 import 'package:test/test.dart';
 
@@ -115,24 +115,22 @@ void main() {
             GetEmailMethod(accountId: Val(accountId))
               ..ids.set(Val([Id('54fa3000-2595-11ec-a759-2fef1ee78d9e')]))
               ..properties.set(
-                Val(
-                  Properties({
-                    'id',
-                    'subject',
-                    'from',
-                    'to',
-                    'cc',
-                    'bcc',
-                    'keywords',
-                    'size',
-                    'receivedAt',
-                    'sentAt',
-                    'replyTo',
-                    'preview',
-                    'hasAttachment',
-                    'header:X-MEETING-UID:asText',
-                  }),
-                ),
+                Val([
+                  EmailProperty.id,
+                  EmailProperty.subject,
+                  EmailProperty.from,
+                  EmailProperty.to,
+                  EmailProperty.cc,
+                  EmailProperty.bcc,
+                  EmailProperty.keywords,
+                  EmailProperty.size,
+                  EmailProperty.receivedAt,
+                  EmailProperty.sentAt,
+                  EmailProperty.replyTo,
+                  EmailProperty.preview,
+                  EmailProperty.hasAttachment,
+                  EmailProperty('header:X-MEETING-UID:asText'),
+                ]),
               );
         final getEmailForCreatedInvocation = jmapRequestBuilder.addInvocation(
           getEmailMethodForCreated,

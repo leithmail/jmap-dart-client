@@ -1,5 +1,4 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
-import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -11,6 +10,7 @@ import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
 import 'package:jmap_dart_client/entities/email/keyword_identifier.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/methods/email/argument/email_property.dart';
 import 'package:jmap_dart_client/methods/email/changes_email_method.dart';
 import 'package:jmap_dart_client/methods/email/get_email_method.dart';
 import 'package:test/test.dart';
@@ -216,7 +216,9 @@ void main() {
       );
 
       final getEmailMethodForUpdate = GetEmailMethod(accountId: Val(accountId))
-        ..properties.set(Val(Properties({'mailboxIds', 'keywords'})))
+        ..properties.set(
+          Val([EmailProperty.mailboxIds, EmailProperty.keywords]),
+        )
         ..ids.set(Ref(changesEmailInvocation.resultReferences.$('updated')));
       final getEmailForUpdateInvocation = jmapRequestBuilder.addInvocation(
         getEmailMethodForUpdate,
@@ -225,23 +227,21 @@ void main() {
 
       final getEmailMethodForCreated = GetEmailMethod(accountId: Val(accountId))
         ..properties.set(
-          Val(
-            Properties({
-              'id',
-              'subject',
-              'from',
-              'to',
-              'cc',
-              'bcc',
-              'keywords',
-              'size',
-              'receivedAt',
-              'sentAt',
-              'replyTo',
-              'preview',
-              'hasAttachment',
-            }),
-          ),
+          Val([
+            EmailProperty.id,
+            EmailProperty.subject,
+            EmailProperty.from,
+            EmailProperty.to,
+            EmailProperty.cc,
+            EmailProperty.bcc,
+            EmailProperty.keywords,
+            EmailProperty.size,
+            EmailProperty.receivedAt,
+            EmailProperty.sentAt,
+            EmailProperty.replyTo,
+            EmailProperty.preview,
+            EmailProperty.hasAttachment,
+          ]),
         )
         ..ids.set(Ref(changesEmailInvocation.resultReferences.$('created')));
       final getEmailForCreatedInvocation = jmapRequestBuilder.addInvocation(

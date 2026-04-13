@@ -1,16 +1,17 @@
 import 'package:jmap_dart_client/api/api.dart';
-import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
-import 'package:jmap_dart_client/entities/email/email_body_properties.dart';
+import 'package:jmap_dart_client/methods/email/argument/email_body_property.dart';
+import 'package:jmap_dart_client/methods/email/argument/email_property.dart';
 import 'package:jmap_dart_client/methods/email/get_email_response.dart';
 
-class GetEmailMethod extends GetMethod<GetEmailResponse, ResultReference>
+class GetEmailMethod
+    extends GetMethod<GetEmailResponse, ResultReference, EmailProperty>
     with EmptyResultReferences {
   GetEmailMethod({required super.accountId});
 
-  final bodyProperties = ArgumentSlot<EmailBodyProperties>(
+  final bodyProperties = ListArgumentSlot<EmailBodyProperty>(
     "bodyProperties",
-    (v) => v.toJson(),
+    (v) => v.value,
   );
   final fetchTextBodyValues = PrimitiveArgumentSlot<bool>(
     "fetchTextBodyValues",

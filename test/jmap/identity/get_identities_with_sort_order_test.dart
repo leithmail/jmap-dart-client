@@ -1,5 +1,4 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
-import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
@@ -7,6 +6,7 @@ import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
 import 'package:jmap_dart_client/entities/identity/identity.dart';
 import 'package:jmap_dart_client/methods/identity/get_identity_method.dart';
+import 'package:jmap_dart_client/methods/identity/identity_property.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -84,7 +84,13 @@ void main() {
       );
 
       final getIdentityMethod = GetIdentityMethod(accountId: Val(accountId))
-        ..properties.set(Val(Properties({"email", "bcc", "sortOrder"})));
+        ..properties.set(
+          Val([
+            IdentityProperty.email,
+            IdentityProperty.bcc,
+            IdentityProperty.sortOrder,
+          ]),
+        );
       final getIdentityInvocation = requestBuilder.addInvocation(
         getIdentityMethod,
       );

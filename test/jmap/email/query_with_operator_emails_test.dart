@@ -1,6 +1,7 @@
-import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/jmap_dart_client.dart';
 import 'package:jmap_dart_client/methods/email/argument/email_comparator.dart';
+import 'package:jmap_dart_client/methods/email/argument/email_filter.dart';
+import 'package:jmap_dart_client/methods/email/argument/email_property.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -225,17 +226,15 @@ void main() {
 
       final getEmailMethod = GetEmailMethod(accountId: Val(accountId))
         ..properties.set(
-          Val(
-            Properties({
-              "id",
-              "subject",
-              "from",
-              "receivedAt",
-              "sentAt",
-              "preview",
-              "hasAttachment",
-            }),
-          ),
+          Val([
+            EmailProperty.id,
+            EmailProperty.subject,
+            EmailProperty.from,
+            EmailProperty.receivedAt,
+            EmailProperty.sentAt,
+            EmailProperty.preview,
+            EmailProperty.hasAttachment,
+          ]),
         )
         ..ids.set(Ref(queryEmailInvocation.resultReferences.$('ids')));
       final getEmailInvocation = jmapRequestBuilder.addInvocation(

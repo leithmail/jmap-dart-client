@@ -3,18 +3,18 @@ import 'package:jmap_dart_client/api/method/response/set_response.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
-import 'package:jmap_dart_client/entities/vacation/vacation_response.dart';
+import 'package:jmap_dart_client/entities/vacation/vacation.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/state_nullable_converter.dart';
 
-class SetVacationResponse extends SetResponse<VacationResponse> {
+class SetVacationResponse extends SetResponse<Vacation> {
   SetVacationResponse(
     AccountId accountId, {
     State? newState,
     State? oldState,
-    Map<Id, VacationResponse>? created,
-    Map<Id, VacationResponse?>? updated,
+    Map<Id, Vacation>? created,
+    Map<Id, Vacation?>? updated,
     Set<Id>? destroyed,
     Map<Id, SetError>? notCreated,
     Map<Id, SetError>? notUpdated,
@@ -43,14 +43,14 @@ class SetVacationResponse extends SetResponse<VacationResponse> {
       created: (json['created'] as Map<String, dynamic>?)?.map(
         (key, value) => MapEntry(
           const IdConverter().fromJson(key),
-          VacationResponse.fromJson(value as Map<String, dynamic>),
+          Vacation.fromJson(value as Map<String, dynamic>),
         ),
       ),
       updated: (json['updated'] as Map<String, dynamic>?)?.map(
         (key, value) => MapEntry(
           const IdConverter().fromJson(key),
           value != null
-              ? VacationResponse.fromJson(value as Map<String, dynamic>)
+              ? Vacation.fromJson(value as Map<String, dynamic>)
               : null,
         ),
       ),

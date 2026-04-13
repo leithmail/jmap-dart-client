@@ -11,7 +11,7 @@ GetVacationResponse _$GetVacationResponseFromJson(Map<String, dynamic> json) =>
       const AccountIdConverter().fromJson(json['accountId'] as String),
       const StateConverter().fromJson(json['state'] as String),
       (json['list'] as List<dynamic>)
-          .map((e) => VacationResponse.fromJson(e as Map<String, dynamic>))
+          .map((e) => Vacation.fromJson(e as Map<String, dynamic>))
           .toList(),
       (json['notFound'] as List<dynamic>?)
           ?.map((e) => const IdConverter().fromJson(e as String))

@@ -1,12 +1,12 @@
-export '../entities/core/collation_identifier.dart';
 export 'errors/error_method_response.dart';
 export 'errors/error_type.dart';
 export 'errors/exceptions.dart';
 export 'errors/set_error.dart';
 export 'http_client.dart';
+export 'method/argument/argument.dart';
 export 'method/argument/comparator.dart';
 export 'method/argument/filter.dart';
-export 'method/argument/properties/properties.dart';
+export 'method/argument/property.dart';
 export 'method/method.dart';
 export 'method/method_response.dart';
 export 'method/request/calendar_event_reply_method.dart';

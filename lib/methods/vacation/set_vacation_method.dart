@@ -2,11 +2,11 @@ import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/request/set_method.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
-import 'package:jmap_dart_client/entities/vacation/vacation_response.dart';
+import 'package:jmap_dart_client/entities/vacation/vacation.dart';
 import 'package:jmap_dart_client/methods/vacation/set_vacation_response.dart';
 
 class SetVacationMethod
-    extends SetMethod<SetVacationResponse, ResultReference, VacationResponse>
+    extends SetMethod<SetVacationResponse, ResultReference, Vacation>
     with EmptyResultReferences {
   SetVacationMethod({required super.accountId});
 
@@ -20,7 +20,7 @@ class SetVacationMethod
   ];
 
   @override
-  Object? typeToJson(VacationResponse v) => v.toJson();
+  Object? typeToJson(Vacation v) => v.toJson();
 
   @override
   SetVacationResponse responseFromJson(Map<String, dynamic> json) {

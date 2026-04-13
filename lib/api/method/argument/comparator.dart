@@ -1,4 +1,5 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
+import 'package:jmap_dart_client/api/method/argument/property.dart';
 
 abstract class Comparator<T extends SortProperty> {
   final T property;
@@ -12,8 +13,8 @@ abstract class Comparator<T extends SortProperty> {
   };
 }
 
-abstract class SortProperty {
-  String get value;
+abstract class SortProperty extends Property {
+  const SortProperty(super.value);
 }
 
 class SortSlot<T extends Comparator> extends ArgumentSlotBase {

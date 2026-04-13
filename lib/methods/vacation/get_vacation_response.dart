@@ -2,7 +2,7 @@ import 'package:jmap_dart_client/api/method/response/get_response.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
-import 'package:jmap_dart_client/entities/vacation/vacation_response.dart';
+import 'package:jmap_dart_client/entities/vacation/vacation.dart';
 import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/state_converter.dart';
@@ -14,11 +14,11 @@ part 'get_vacation_response.g.dart';
 @AccountIdConverter()
 @IdConverter()
 @JsonSerializable(createToJson: false)
-class GetVacationResponse extends GetResponse<VacationResponse> {
+class GetVacationResponse extends GetResponse<Vacation> {
   GetVacationResponse(
     AccountId accountId,
     State state,
-    List<VacationResponse> list,
+    List<Vacation> list,
     List<Id>? notFound,
   ) : super(accountId, state, list, notFound);
 

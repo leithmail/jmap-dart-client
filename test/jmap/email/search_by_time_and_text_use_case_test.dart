@@ -1,6 +1,5 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/argument/comparator.dart';
-import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
@@ -11,6 +10,7 @@ import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
 import 'package:jmap_dart_client/methods/email/argument/email_comparator.dart';
 import 'package:jmap_dart_client/methods/email/argument/email_filter.dart';
+import 'package:jmap_dart_client/methods/email/argument/email_property.dart';
 import 'package:jmap_dart_client/methods/email/get_email_method.dart';
 import 'package:jmap_dart_client/methods/email/query_email_method.dart';
 import 'package:test/test.dart';
@@ -134,18 +134,16 @@ void main() {
 
     final getEmailMethod = GetEmailMethod(accountId: Val(accountId))
       ..properties.set(
-        Val(
-          Properties({
-            "id",
-            "subject",
-            "size",
-            "from",
-            "receivedAt",
-            "sentAt",
-            "preview",
-            "hasAttachment",
-          }),
-        ),
+        Val([
+          EmailProperty.id,
+          EmailProperty.subject,
+          EmailProperty.size,
+          EmailProperty.from,
+          EmailProperty.receivedAt,
+          EmailProperty.sentAt,
+          EmailProperty.preview,
+          EmailProperty.hasAttachment,
+        ]),
       )
       ..ids.set(Ref(queryEmailInvocation.resultReferences.$('ids')));
     final getEmailInvocation = jmapRequestBuilder.addInvocation(

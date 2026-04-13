@@ -1,8 +1,13 @@
-import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/jmap_dart_client.dart';
+import 'package:jmap_dart_client/methods/calendar/argument/calendar_event_property.dart';
 
 class GetCalendarEventAttendanceMethod
-    extends GetMethod<GetCalendarEventAttendanceResponse, ResultReference>
+    extends
+        GetMethod<
+          GetCalendarEventAttendanceResponse,
+          ResultReference,
+          CalendarEventProperty
+        >
     with EmptyResultReferences {
   final _blobIds = ListArgumentSlot<Id>('blobIds', (v) => v.value);
 

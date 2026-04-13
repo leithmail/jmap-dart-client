@@ -1,11 +1,11 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
-import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
+import 'package:jmap_dart_client/methods/email/argument/email_property.dart';
 import 'package:jmap_dart_client/methods/email/parse_email_method.dart';
 import 'package:test/test.dart';
 
@@ -314,10 +314,15 @@ void main() {
         },
       );
 
-      final parseEmailMethod = ParseEmailMethod(
-        accountId: Val(accountId),
-        blobIds: Val([blobId3]),
-      )..properties.set(Val(Properties({"id", "preview", "subject"})));
+      final parseEmailMethod =
+          ParseEmailMethod(accountId: Val(accountId), blobIds: Val([blobId3]))
+            ..properties.set(
+              Val([
+                EmailProperty.id,
+                EmailProperty.preview,
+                EmailProperty.subject,
+              ]),
+            );
 
       final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.addInvocation(parseEmailMethod);

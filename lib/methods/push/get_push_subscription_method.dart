@@ -1,18 +1,17 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
-import 'package:jmap_dart_client/api/method/argument/properties/properties.dart';
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/methods/push/get_push_subscription_response.dart';
-import 'package:jmap_dart_client/src/converters/properties_converter.dart';
+import 'package:jmap_dart_client/methods/push/push_subscription_property.dart';
 
 class GetPushSubscriptionMethod
     extends Method<GetPushSubscriptionResponse, ResultReference>
     with EmptyResultReferences {
   final ids = ListArgumentSlot<Id>('ids', (v) => v.value);
-  final properties = ArgumentSlot<Properties>(
+  final properties = ArgumentSlot<PushSubscriptionProperty>(
     'properties',
-    PropertiesConverter().toJson,
+    (v) => v.value,
   );
 
   @override

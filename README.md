@@ -92,7 +92,11 @@ Future<jmap.GetMailboxResponse> fetchMailboxes(
     final requestBuilder = jmap.RequestBuilder();
 
     final getMailboxMethod = jmap.GetMailboxMethod(accountId: jmap.Val(accountId))
-      ..properties.set(jmap.Val(jmap.Properties({'id', 'name', 'role', 'totalEmails'})));
+      ..properties.set(jmap.Val(jmap.Properties([
+        EmailProperty.id,
+        EmailProperty.subject,
+        EmailProperty.sentAt,
+      ])));
 
     final getMailboxInvocation = requestBuilder.addInvocation(getMailboxMethod);
 
@@ -130,7 +134,6 @@ Future<jmap.GetEmailResponse> fetchInboxEmails(
     final queryInvocation = requestBuilder.addInvocation(queryEmailMethod);
 
     final getEmailMethod = jmap.GetEmailMethod(accountId: jmap.Val(accountId))
-      ..properties.set(jmap.Val(jmap.Properties({'id', 'subject', 'from', 'sentAt', 'preview'})))
       ..ids.set(jmap.Ref(queryInvocation.resultReferences.$('ids')));
 
     final getEmailInvocation = requestBuilder.addInvocation(getEmailMethod);

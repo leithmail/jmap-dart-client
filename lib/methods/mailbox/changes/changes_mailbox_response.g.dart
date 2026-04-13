@@ -22,7 +22,7 @@ ChangesMailboxResponse _$ChangesMailboxResponseFromJson(
   (json['destroyed'] as List<dynamic>)
       .map((e) => const IdConverter().fromJson(e as String))
       .toSet(),
-  updatedProperties: const PropertiesConverter().fromJson(
-    json['updatedProperties'] as List<String>?,
-  ),
+  updatedProperties: (json['updatedProperties'] as List<dynamic>?)
+      ?.map((e) => MailboxProperty.fromJson(e as String))
+      .toList(),
 );
