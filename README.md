@@ -131,7 +131,7 @@ Future<jmap.GetEmailResponse> fetchInboxEmails(
 
     final getEmailMethod = jmap.GetEmailMethod(accountId: jmap.Val(accountId))
       ..properties.set(jmap.Val(jmap.Properties({'id', 'subject', 'from', 'sentAt', 'preview'})))
-      ..ids.set(Ref(queryInvocation.resultReferences().$('ids')));
+      ..ids.set(jmap.Ref(queryInvocation.resultReferences().$('ids')));
 
     final getEmailInvocation = requestBuilder.addInvocation(getEmailMethod);
 
