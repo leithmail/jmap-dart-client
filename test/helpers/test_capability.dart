@@ -12,7 +12,7 @@ class TestCapability extends CapabilityProperties {
 
   final int testParam1;
   final String testParam2;
-  final Set<String> testParam3;
+  final List<String> testParam3;
 
   TestCapability(this.testParam1, this.testParam2, this.testParam3);
 

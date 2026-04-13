@@ -33,5 +33,5 @@ CoreCapability _$CoreCapabilityFromJson(Map<String, dynamic> json) =>
           ?.map(
             (e) => const CollationIdentifierConverter().fromJson(e as String),
           )
-          .toSet(),
+          .toList(),
     );

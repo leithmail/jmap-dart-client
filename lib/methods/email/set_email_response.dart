@@ -15,7 +15,7 @@ class SetEmailResponse extends SetResponse<Email> {
     State? oldState,
     Map<Id, Email>? created,
     Map<Id, Email?>? updated,
-    Set<Id>? destroyed,
+    List<Id>? destroyed,
     Map<Id, SetError>? notCreated,
     Map<Id, SetError>? notUpdated,
     Map<Id, SetError>? notDestroyed,
@@ -54,7 +54,7 @@ class SetEmailResponse extends SetResponse<Email> {
       ),
       destroyed: (json['destroyed'] as List<dynamic>?)
           ?.map((id) => const IdConverter().fromJson(id))
-          .toSet(),
+          .toList(),
       notCreated: (json['notCreated'] as Map<String, dynamic>?)?.map(
         (key, value) => MapEntry(
           const IdConverter().fromJson(key),

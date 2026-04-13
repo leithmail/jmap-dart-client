@@ -28,7 +28,7 @@ class Email with EquatableMixin {
   final Map<EmailKeyword, bool>? keywords;
   final UnsignedInt? size;
   final UTCDate? receivedAt;
-  final Set<EmailHeader>? headers;
+  final List<EmailHeader>? headers;
   final MessageIdsHeaderValue? messageId;
   final MessageIdsHeaderValue? inReplyTo;
   final MessageIdsHeaderValue? references;
@@ -36,15 +36,15 @@ class Email with EquatableMixin {
   final UTCDate? sentAt;
   final bool? hasAttachment;
   final String? preview;
-  final Set<EmailAddress>? sender;
-  final Set<EmailAddress>? from;
-  final Set<EmailAddress>? to;
-  final Set<EmailAddress>? cc;
-  final Set<EmailAddress>? bcc;
-  final Set<EmailAddress>? replyTo;
-  final Set<EmailBodyPart>? textBody;
-  final Set<EmailBodyPart>? htmlBody;
-  final Set<EmailBodyPart>? attachments;
+  final List<EmailAddress>? sender;
+  final List<EmailAddress>? from;
+  final List<EmailAddress>? to;
+  final List<EmailAddress>? cc;
+  final List<EmailAddress>? bcc;
+  final List<EmailAddress>? replyTo;
+  final List<EmailBodyPart>? textBody;
+  final List<EmailBodyPart>? htmlBody;
+  final List<EmailBodyPart>? attachments;
   final EmailBodyPart? bodyStructure;
   final Map<PartId, EmailBodyValue>? bodyValues;
   final Map<IndividualHeaderIdentifier, String?>? headerUserAgent;
@@ -118,7 +118,7 @@ class Email with EquatableMixin {
       ),
       headers: (json['headers'] as List<dynamic>?)
           ?.map((json) => EmailHeader.fromJson(json))
-          .toSet(),
+          .toList(),
       messageId: const MessageIdsHeaderValueNullableConverter().fromJson(
         (json['messageId'] as List<dynamic>?),
       ),
@@ -136,31 +136,31 @@ class Email with EquatableMixin {
       preview: json['preview'] as String?,
       sender: (json['sender'] as List<dynamic>?)
           ?.map((json) => EmailAddress.fromJson(json))
-          .toSet(),
+          .toList(),
       from: (json['from'] as List<dynamic>?)
           ?.map((json) => EmailAddress.fromJson(json))
-          .toSet(),
+          .toList(),
       to: (json['to'] as List<dynamic>?)
           ?.map((json) => EmailAddress.fromJson(json))
-          .toSet(),
+          .toList(),
       cc: (json['cc'] as List<dynamic>?)
           ?.map((json) => EmailAddress.fromJson(json))
-          .toSet(),
+          .toList(),
       bcc: (json['bcc'] as List<dynamic>?)
           ?.map((json) => EmailAddress.fromJson(json))
-          .toSet(),
+          .toList(),
       replyTo: (json['replyTo'] as List<dynamic>?)
           ?.map((json) => EmailAddress.fromJson(json))
-          .toSet(),
+          .toList(),
       textBody: (json['textBody'] as List<dynamic>?)
           ?.map((json) => EmailBodyPart.fromJson(json))
-          .toSet(),
+          .toList(),
       htmlBody: (json['htmlBody'] as List<dynamic>?)
           ?.map((json) => EmailBodyPart.fromJson(json))
-          .toSet(),
+          .toList(),
       attachments: (json['attachments'] as List<dynamic>?)
           ?.map((json) => EmailBodyPart.fromJson(json))
-          .toSet(),
+          .toList(),
       bodyStructure: json['bodyStructure'] == null
           ? null
           : EmailBodyPart.fromJson(
@@ -469,7 +469,7 @@ class ThreadId with EquatableMixin {
 }
 
 class MessageIdsHeaderValue with EquatableMixin {
-  final Set<String> ids;
+  final List<String> ids;
 
   MessageIdsHeaderValue(this.ids);
 

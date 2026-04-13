@@ -10,10 +10,10 @@ Envelope _$EnvelopeFromJson(Map<String, dynamic> json) => Envelope(
   Address.fromJson(json['mailFrom'] as Map<String, dynamic>),
   (json['rcptTo'] as List<dynamic>)
       .map((e) => Address.fromJson(e as Map<String, dynamic>))
-      .toSet(),
+      .toList(),
 );
 
 Map<String, dynamic> _$EnvelopeToJson(Envelope instance) => <String, dynamic>{
   'mailFrom': instance.mailFrom,
-  'rcptTo': instance.rcptTo.toList(),
+  'rcptTo': instance.rcptTo,
 };

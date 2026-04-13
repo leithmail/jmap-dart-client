@@ -18,7 +18,7 @@ void main() {
       preview: "Preview email 1",
       hasAttachment: false,
       subject: "Subject email 1",
-      from: {EmailAddress("user1", "user1@examaple.com")},
+      from: [EmailAddress("user1", "user1@examaple.com")],
       sentAt: UTCDate(DateTime.parse("2021-08-11T04:25:34Z")),
       receivedAt: UTCDate(DateTime.parse("2021-08-11T04:25:55Z")),
     );
@@ -28,7 +28,7 @@ void main() {
       preview: "Preview email 2",
       hasAttachment: false,
       subject: "Subject email 2",
-      from: {EmailAddress(null, "user2@examaple.com")},
+      from: [EmailAddress(null, "user2@examaple.com")],
       sentAt: UTCDate(DateTime.parse("2021-08-10T09:45:01Z")),
       receivedAt: UTCDate(DateTime.parse("2021-08-11T04:00:59Z")),
     );

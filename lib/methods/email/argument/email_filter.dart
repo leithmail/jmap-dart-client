@@ -18,7 +18,7 @@ class EmailFilterOperator extends FilterOperatorBase<_EmailFilterCondition> {
 class EmailFilterCondition extends FilterConditionBase<_EmailFilterCondition> {
   EmailFilterCondition({
     MailboxId? inMailbox,
-    Set<MailboxId?>? inMailboxOtherThan,
+    List<MailboxId?>? inMailboxOtherThan,
     UTCDate? before,
     UTCDate? after,
     UnsignedInt? minSize,
@@ -36,7 +36,7 @@ class EmailFilterCondition extends FilterConditionBase<_EmailFilterCondition> {
     String? bcc,
     String? subject,
     String? body,
-    Set<String>? header,
+    List<String>? header,
   }) : super(
          _EmailFilterCondition(
            inMailbox: inMailbox,
@@ -69,7 +69,7 @@ class EmailFilterCondition extends FilterConditionBase<_EmailFilterCondition> {
 @JsonSerializable(createFactory: false, includeIfNull: false)
 class _EmailFilterCondition extends FilterCondition {
   final MailboxId? inMailbox;
-  final Set<MailboxId?>? inMailboxOtherThan;
+  final List<MailboxId?>? inMailboxOtherThan;
   final UTCDate? before;
   final UTCDate? after;
   final UnsignedInt? minSize;
@@ -87,7 +87,7 @@ class _EmailFilterCondition extends FilterCondition {
   final String? bcc;
   final String? subject;
   final String? body;
-  final Set<String>? header;
+  final List<String>? header;
 
   _EmailFilterCondition({
     this.inMailbox,

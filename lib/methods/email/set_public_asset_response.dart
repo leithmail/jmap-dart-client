@@ -39,7 +39,7 @@ class SetPublicAssetResponse extends SetResponse<PublicAsset> {
       ),
       destroyed: (json['destroyed'] as List<dynamic>?)
           ?.map((id) => const IdConverter().fromJson(id))
-          .toSet(),
+          .toList(),
       notCreated: (json['notCreated'] as Map<String, dynamic>?)?.map(
         (key, value) => MapEntry(
           const IdConverter().fromJson(key),

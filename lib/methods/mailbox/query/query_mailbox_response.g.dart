@@ -15,7 +15,7 @@ QueryMailboxResponse _$QueryMailboxResponseFromJson(
   const UnsignedIntConverter().fromJson((json['position'] as num).toInt()),
   (json['ids'] as List<dynamic>)
       .map((e) => const IdConverter().fromJson(e as String))
-      .toSet(),
+      .toList(),
   _$JsonConverterFromJson<int, UnsignedInt>(
     json['total'],
     const UnsignedIntConverter().fromJson,

@@ -24,7 +24,7 @@ void main() {
     hasAttachment: false,
     subject: "AAAA",
     size: UnsignedInt(3328),
-    from: {EmailAddress("Manh tuan Manh", "manh199672@gmail.com")},
+    from: [EmailAddress("Manh tuan Manh", "manh199672@gmail.com")],
     sentAt: UTCDate(DateTime.parse("2022-06-10T04:44:03Z")),
     receivedAt: UTCDate(DateTime.parse("2022-06-10T04:51:41Z")),
   );

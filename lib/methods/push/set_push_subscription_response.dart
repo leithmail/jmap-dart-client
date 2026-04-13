@@ -9,7 +9,7 @@ class SetPushSubscriptionResponse
   SetPushSubscriptionResponse({
     Map<Id, PushSubscription>? created,
     Map<Id, PushSubscription?>? updated,
-    Set<Id>? destroyed,
+    List<Id>? destroyed,
     Map<Id, SetError>? notCreated,
     Map<Id, SetError>? notUpdated,
     Map<Id, SetError>? notDestroyed,
@@ -40,7 +40,7 @@ class SetPushSubscriptionResponse
       ),
       destroyed: (json['destroyed'] as List<dynamic>?)
           ?.map((id) => const IdConverter().fromJson(id))
-          .toSet(),
+          .toList(),
       notCreated: (json['notCreated'] as Map<String, dynamic>?)?.map(
         (key, value) => MapEntry(
           const IdConverter().fromJson(key),

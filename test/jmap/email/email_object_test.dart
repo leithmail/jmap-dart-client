@@ -123,16 +123,16 @@ void main() {
           sentAt: UTCDate(DateTime.parse('2023-05-29T01:44:28Z')),
           receivedAt: UTCDate(DateTime.parse('2023-05-29T01:44:51Z')),
           hasAttachment: true,
-          cc: {
+          cc: [
             EmailAddress('The Dat VU', 'tdvu@linagora.com'),
             EmailAddress('Quang Khai DO', 'qkdo@linagora.com'),
-          },
-          from: {EmailAddress('DatPH', 'dphamhoang@linagora.com')},
-          to: {EmailAddress('Benoît TELLIER', 'btellier@linagora.com')},
-          messageId: MessageIdsHeaderValue({
+          ],
+          from: [EmailAddress('DatPH', 'dphamhoang@linagora.com')],
+          to: [EmailAddress('Benoît TELLIER', 'btellier@linagora.com')],
+          messageId: MessageIdsHeaderValue([
             '112E9ACB-17D3-4E9F-8BFA-7C4A93B2E983@linagora.com',
-          }),
-          textBody: {
+          ]),
+          textBody: [
             EmailBodyPart(
               charset: 'us-ascii',
               size: UnsignedInt(64),
@@ -140,8 +140,8 @@ void main() {
               blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
               type: MediaType.parse('text/plain'),
             ),
-          },
-          htmlBody: {
+          ],
+          htmlBody: [
             EmailBodyPart(
               charset: 'us-ascii',
               size: UnsignedInt(64),
@@ -149,7 +149,7 @@ void main() {
               blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
               type: MediaType.parse('text/plain'),
             ),
-          },
+          ],
           keywords: {EmailKeyword.seen: true},
           bodyValues: {
             PartId('2'): EmailBodyValue(
@@ -161,7 +161,7 @@ void main() {
           preview: 'Dear, I update my last week activities. Thanks and BRs',
           subject: '[Weekly report] W21 Dat PHAM',
           size: UnsignedInt(1832921),
-          attachments: {
+          attachments: [
             EmailBodyPart(
               charset: 'us-ascii',
               disposition: 'attachment',
@@ -173,14 +173,14 @@ void main() {
                 'application/vnd.oasis.opendocument.spreadsheet',
               ),
             ),
-          },
+          ],
           bodyStructure: EmailBodyPart(
             charset: 'us-ascii',
             size: UnsignedInt(1831428),
             partId: PartId('1'),
             type: MediaType.parse('multipart/mixed'),
           ),
-          headers: {EmailHeader('Return-Path', '<dphamhoang@linagora.com>')},
+          headers: [EmailHeader('Return-Path', '<dphamhoang@linagora.com>')],
         );
 
         final parsedEmail = Email.fromJson(jsonDecode(emailObjectAsString));
@@ -298,16 +298,16 @@ void main() {
           sentAt: UTCDate(DateTime.parse('2023-05-29T01:44:28Z')),
           receivedAt: UTCDate(DateTime.parse('2023-05-29T01:44:51Z')),
           hasAttachment: true,
-          cc: {
+          cc: [
             EmailAddress('The Dat VU', 'tdvu@linagora.com'),
             EmailAddress('Quang Khai DO', 'qkdo@linagora.com'),
-          },
-          from: {EmailAddress('DatPH', 'dphamhoang@linagora.com')},
-          to: {EmailAddress('Benoît TELLIER', 'btellier@linagora.com')},
-          messageId: MessageIdsHeaderValue({
+          ],
+          from: [EmailAddress('DatPH', 'dphamhoang@linagora.com')],
+          to: [EmailAddress('Benoît TELLIER', 'btellier@linagora.com')],
+          messageId: MessageIdsHeaderValue([
             '112E9ACB-17D3-4E9F-8BFA-7C4A93B2E983@linagora.com',
-          }),
-          textBody: {
+          ]),
+          textBody: [
             EmailBodyPart(
               charset: 'us-ascii',
               size: UnsignedInt(64),
@@ -315,8 +315,8 @@ void main() {
               blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
               type: MediaType.parse('text/plain'),
             ),
-          },
-          htmlBody: {
+          ],
+          htmlBody: [
             EmailBodyPart(
               charset: 'us-ascii',
               size: UnsignedInt(64),
@@ -324,7 +324,7 @@ void main() {
               blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
               type: MediaType.parse('text/plain'),
             ),
-          },
+          ],
           keywords: {EmailKeyword.seen: true},
           bodyValues: {
             PartId('2'): EmailBodyValue(
@@ -336,7 +336,7 @@ void main() {
           preview: 'Dear, I update my last week activities. Thanks and BRs',
           subject: '[Weekly report] W21 Dat PHAM',
           size: UnsignedInt(1832921),
-          attachments: {
+          attachments: [
             EmailBodyPart(
               charset: 'us-ascii',
               disposition: 'attachment',
@@ -348,14 +348,14 @@ void main() {
                 'application/vnd.oasis.opendocument.spreadsheet',
               ),
             ),
-          },
+          ],
           bodyStructure: EmailBodyPart(
             charset: 'us-ascii',
             size: UnsignedInt(1831428),
             partId: PartId('1'),
             type: MediaType.parse('multipart/mixed'),
           ),
-          headers: {EmailHeader('Return-Path', ' <dphamhoang@linagora.com>')},
+          headers: [EmailHeader('Return-Path', ' <dphamhoang@linagora.com>')],
           headerUserAgent: {
             IndividualHeaderIdentifier.headerUserAgent:
                 'Team-Mail/0.7.8 Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36',
@@ -472,16 +472,16 @@ void main() {
         sentAt: UTCDate(DateTime.parse('2023-05-29T01:44:28.000Z')),
         receivedAt: UTCDate(DateTime.parse('2023-05-29T01:44:51.000Z')),
         hasAttachment: true,
-        cc: {
+        cc: [
           EmailAddress('The Dat VU', 'tdvu@linagora.com'),
           EmailAddress('Quang Khai DO', 'qkdo@linagora.com'),
-        },
-        from: {EmailAddress('DatPH', 'dphamhoang@linagora.com')},
-        to: {EmailAddress('Benoît TELLIER', 'btellier@linagora.com')},
-        messageId: MessageIdsHeaderValue({
+        ],
+        from: [EmailAddress('DatPH', 'dphamhoang@linagora.com')],
+        to: [EmailAddress('Benoît TELLIER', 'btellier@linagora.com')],
+        messageId: MessageIdsHeaderValue([
           '112E9ACB-17D3-4E9F-8BFA-7C4A93B2E983@linagora.com',
-        }),
-        textBody: {
+        ]),
+        textBody: [
           EmailBodyPart(
             charset: 'us-ascii',
             size: UnsignedInt(64),
@@ -489,8 +489,8 @@ void main() {
             blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
             type: MediaType.parse('text/plain'),
           ),
-        },
-        htmlBody: {
+        ],
+        htmlBody: [
           EmailBodyPart(
             charset: 'us-ascii',
             size: UnsignedInt(64),
@@ -498,7 +498,7 @@ void main() {
             blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
             type: MediaType.parse('text/plain'),
           ),
-        },
+        ],
         keywords: {EmailKeyword.seen: true},
         bodyValues: {
           PartId('2'): EmailBodyValue(
@@ -510,7 +510,7 @@ void main() {
         preview: 'Dear, I update my last week activities. Thanks and BRs',
         subject: '[Weekly report] W21 Dat PHAM',
         size: UnsignedInt(1832921),
-        attachments: {
+        attachments: [
           EmailBodyPart(
             charset: 'us-ascii',
             disposition: 'attachment',
@@ -522,14 +522,14 @@ void main() {
               'application/vnd.oasis.opendocument.spreadsheet',
             ),
           ),
-        },
+        ],
         bodyStructure: EmailBodyPart(
           charset: 'us-ascii',
           size: UnsignedInt(1831428),
           partId: PartId('1'),
           type: MediaType.parse('multipart/mixed'),
         ),
-        headers: {EmailHeader('Return-Path', ' <dphamhoang@linagora.com>')},
+        headers: [EmailHeader('Return-Path', ' <dphamhoang@linagora.com>')],
       );
 
       final emailJson = email.toJson();

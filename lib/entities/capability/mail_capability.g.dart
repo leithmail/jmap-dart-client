@@ -25,9 +25,9 @@ MailCapability _$MailCapabilityFromJson(Map<String, dynamic> json) =>
       ),
       emailQuerySortOptions: (json['emailQuerySortOptions'] as List<dynamic>?)
           ?.map((e) => e as String)
-          .toSet(),
+          .toList(),
       emailsListSortOptions: (json['emailsListSortOptions'] as List<dynamic>?)
           ?.map((e) => e as String)
-          .toSet(),
+          .toList(),
       mayCreateTopLevelMailbox: json['mayCreateTopLevelMailbox'] as bool?,
     );

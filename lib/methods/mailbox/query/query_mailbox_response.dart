@@ -22,7 +22,7 @@ class QueryMailboxResponse extends QueryResponse {
     State queryState,
     bool canCalculateChanges,
     UnsignedInt position,
-    Set<Id> ids,
+    List<Id> ids,
     UnsignedInt? total,
     UnsignedInt? limit,
   ) : super(

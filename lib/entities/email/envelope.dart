@@ -7,7 +7,7 @@ part 'envelope.g.dart';
 @JsonSerializable()
 class Envelope with EquatableMixin {
   final Address mailFrom;
-  final Set<Address> rcptTo;
+  final List<Address> rcptTo;
 
   Envelope(this.mailFrom, this.rcptTo);
 

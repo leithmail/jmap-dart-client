@@ -27,7 +27,7 @@ class EmailBodyPart with EquatableMixin {
   final UnsignedInt? size;
 
   @JsonKey(includeIfNull: false)
-  final Set<EmailHeader>? headers;
+  final List<EmailHeader>? headers;
 
   @JsonKey(includeIfNull: false)
   final String? name;
@@ -45,13 +45,13 @@ class EmailBodyPart with EquatableMixin {
   final String? cid;
 
   @JsonKey(includeIfNull: false)
-  final Set<String>? language;
+  final List<String>? language;
 
   @JsonKey(includeIfNull: false)
   final String? location;
 
   @JsonKey(includeIfNull: false)
-  final Set<EmailBodyPart>? subParts;
+  final List<EmailBodyPart>? subParts;
 
   EmailBodyPart({
     this.partId,

@@ -9,7 +9,7 @@ abstract class SetResponse<T> extends ResponseRequiringAccountId {
   final State? newState;
   final Map<Id, T>? created;
   final Map<Id, T?>? updated;
-  final Set<Id>? destroyed;
+  final List<Id>? destroyed;
   final Map<Id, SetError>? notCreated;
   final Map<Id, SetError>? notUpdated;
   final Map<Id, SetError>? notDestroyed;
@@ -30,7 +30,7 @@ abstract class SetResponse<T> extends ResponseRequiringAccountId {
 abstract class SetResponseNoAccount<T> extends MethodResponse {
   final Map<Id, T>? created;
   final Map<Id, T?>? updated;
-  final Set<Id>? destroyed;
+  final List<Id>? destroyed;
   final Map<Id, SetError>? notCreated;
   final Map<Id, SetError>? notUpdated;
   final Map<Id, SetError>? notDestroyed;

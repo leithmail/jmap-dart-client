@@ -11,11 +11,11 @@ SetError _$SetErrorFromJson(Map<String, dynamic> json) => SetError(
   description: json['description'] as String?,
   properties: (json['properties'] as List<dynamic>?)
       ?.map((e) => e as String)
-      .toSet(),
+      .toList(),
 );
 
 Map<String, dynamic> _$SetErrorToJson(SetError instance) => <String, dynamic>{
   'type': const ErrorTypeConverter().toJson(instance.type),
   'description': instance.description,
-  'properties': instance.properties?.toList(),
+  'properties': instance.properties,
 };

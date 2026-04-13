@@ -11,7 +11,7 @@ class RequestBuilder {
   static const String _methodCallIdPrefix = 'c';
   final List<RequestInvocation> _invocations = [];
   final Set<CapabilityIdentifier> _capabilities = {};
-  final Set<MethodCallId> _methodCallIds = {};
+  final List<MethodCallId> _methodCallIds = [];
 
   RequestInvocation<R, F>
   addInvocation<R extends MethodResponse, F extends ResultReference>(
@@ -36,7 +36,7 @@ class RequestBuilder {
   }
 
   Request build() {
-    return Request(_capabilities, _invocations);
+    return Request(using: _capabilities.toList(), methodCalls: _invocations);
   }
 
   MethodCallId _generateMethodCallId() {

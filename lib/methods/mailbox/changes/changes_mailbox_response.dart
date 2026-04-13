@@ -22,9 +22,9 @@ class ChangesMailboxResponse extends ChangesResponse {
     State oldState,
     State newState,
     bool hasMoreChanges,
-    Set<Id> created,
-    Set<Id> updated,
-    Set<Id> destroyed, {
+    List<Id> created,
+    List<Id> updated,
+    List<Id> destroyed, {
     this.updatedProperties,
   }) : super(
          accountId,

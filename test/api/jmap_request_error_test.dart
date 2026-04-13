@@ -9,7 +9,7 @@ import '../helpers/http_mocks.dart';
 void main() {
   group('Request.execute() exception behaviour', () {
     Request buildRequest() {
-      return Request({}, []);
+      return Request(using: [], methodCalls: []);
     }
 
     group('401 response', () {

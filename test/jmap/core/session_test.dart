@@ -164,20 +164,20 @@ void main() {
             maxCallsInRequest: UnsignedInt(16),
             maxObjectsInGet: UnsignedInt(500),
             maxObjectsInSet: UnsignedInt(500),
-            collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+            collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
           ),
           CapabilityIdentifier.jmapMail: MailCapability(
             maxMailboxesPerEmail: UnsignedInt(10000000),
             maxSizeMailboxName: UnsignedInt(200),
             maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-            emailQuerySortOptions: {
+            emailQuerySortOptions: [
               "receivedAt",
               "sentAt",
               "size",
               "from",
               "to",
               "subject",
-            },
+            ],
             mayCreateTopLevelMailbox: true,
           ),
           CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
@@ -227,20 +227,20 @@ void main() {
                 maxCallsInRequest: UnsignedInt(16),
                 maxObjectsInGet: UnsignedInt(500),
                 maxObjectsInSet: UnsignedInt(500),
-                collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+                collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
               ),
               CapabilityIdentifier.jmapMail: MailCapability(
                 maxMailboxesPerEmail: UnsignedInt(10000000),
                 maxSizeMailboxName: UnsignedInt(200),
                 maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-                emailQuerySortOptions: {
+                emailQuerySortOptions: [
                   "receivedAt",
                   "sentAt",
                   "size",
                   "from",
                   "to",
                   "subject",
-                },
+                ],
                 mayCreateTopLevelMailbox: true,
               ),
               CapabilityIdentifier(
@@ -436,20 +436,20 @@ void main() {
             maxCallsInRequest: UnsignedInt(16),
             maxObjectsInGet: UnsignedInt(500),
             maxObjectsInSet: UnsignedInt(500),
-            collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+            collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
           ),
           CapabilityIdentifier.jmapMail: MailCapability(
             maxMailboxesPerEmail: UnsignedInt(10000000),
             maxSizeMailboxName: UnsignedInt(200),
             maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-            emailQuerySortOptions: {
+            emailQuerySortOptions: [
               "receivedAt",
               "sentAt",
               "size",
               "from",
               "to",
               "subject",
-            },
+            ],
             mayCreateTopLevelMailbox: true,
           ),
           CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
@@ -476,20 +476,20 @@ void main() {
                 maxCallsInRequest: UnsignedInt(16),
                 maxObjectsInGet: UnsignedInt(500),
                 maxObjectsInSet: UnsignedInt(500),
-                collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+                collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
               ),
               CapabilityIdentifier.jmapMail: MailCapability(
                 maxMailboxesPerEmail: UnsignedInt(10000000),
                 maxSizeMailboxName: UnsignedInt(200),
                 maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-                emailQuerySortOptions: {
+                emailQuerySortOptions: [
                   "receivedAt",
                   "sentAt",
                   "size",
                   "from",
                   "to",
                   "subject",
-                },
+                ],
                 mayCreateTopLevelMailbox: true,
               ),
               CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
@@ -627,7 +627,7 @@ void main() {
               maxCallsInRequest: UnsignedInt(16),
               maxObjectsInGet: UnsignedInt(500),
               maxObjectsInSet: UnsignedInt(500),
-              collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+              collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
             ),
             CapabilityIdentifier.jmapMail: MailCapability(),
             CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
@@ -654,21 +654,21 @@ void main() {
                   maxCallsInRequest: UnsignedInt(16),
                   maxObjectsInGet: UnsignedInt(500),
                   maxObjectsInSet: UnsignedInt(500),
-                  collationAlgorithms: {
+                  collationAlgorithms: [
                     CollationIdentifier("i;unicode-casemap"),
-                  },
+                  ],
                 ),
                 CapabilityIdentifier.jmapMail: MailCapability(
                   maxMailboxesPerEmail: UnsignedInt(10000000),
                   maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-                  emailQuerySortOptions: {
+                  emailQuerySortOptions: [
                     "receivedAt",
                     "sentAt",
                     "size",
                     "from",
                     "to",
                     "subject",
-                  },
+                  ],
                   mayCreateTopLevelMailbox: true,
                 ),
                 CapabilityIdentifier.jmapVacationResponse: VacationCapability(),
@@ -860,20 +860,20 @@ void main() {
             maxCallsInRequest: UnsignedInt(16),
             maxObjectsInGet: UnsignedInt(500),
             maxObjectsInSet: UnsignedInt(500),
-            collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+            collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
           ),
           CapabilityIdentifier.jmapMail: MailCapability(
             maxMailboxesPerEmail: UnsignedInt(10000000),
             maxSizeMailboxName: UnsignedInt(200),
             maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-            emailQuerySortOptions: {
+            emailQuerySortOptions: [
               "receivedAt",
               "sentAt",
               "size",
               "from",
               "to",
               "subject",
-            },
+            ],
             mayCreateTopLevelMailbox: true,
           ),
           CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
@@ -920,20 +920,20 @@ void main() {
                 maxCallsInRequest: UnsignedInt(16),
                 maxObjectsInGet: UnsignedInt(500),
                 maxObjectsInSet: UnsignedInt(500),
-                collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+                collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
               ),
               CapabilityIdentifier.jmapMail: MailCapability(
                 maxMailboxesPerEmail: UnsignedInt(10000000),
                 maxSizeMailboxName: UnsignedInt(200),
                 maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-                emailQuerySortOptions: {
+                emailQuerySortOptions: [
                   "receivedAt",
                   "sentAt",
                   "size",
                   "from",
                   "to",
                   "subject",
-                },
+                ],
                 mayCreateTopLevelMailbox: true,
               ),
               CapabilityIdentifier(
@@ -1170,10 +1170,10 @@ void main() {
         "param3": {"custom", "capability"}.toList(),
       });
 
-      final testCapability = TestCapability(100, 'test', {
+      final testCapability = TestCapability(100, 'test', [
         "test",
         "capability",
-      });
+      ]);
 
       final Session expectedSession = Session(
         capabilities: {
@@ -1191,20 +1191,20 @@ void main() {
             maxCallsInRequest: UnsignedInt(16),
             maxObjectsInGet: UnsignedInt(500),
             maxObjectsInSet: UnsignedInt(500),
-            collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+            collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
           ),
           CapabilityIdentifier.jmapMail: MailCapability(
             maxMailboxesPerEmail: UnsignedInt(10000000),
             maxSizeMailboxName: UnsignedInt(200),
             maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-            emailQuerySortOptions: {
+            emailQuerySortOptions: [
               "receivedAt",
               "sentAt",
               "size",
               "from",
               "to",
               "subject",
-            },
+            ],
             mayCreateTopLevelMailbox: true,
           ),
           CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
@@ -1251,20 +1251,20 @@ void main() {
                 maxCallsInRequest: UnsignedInt(16),
                 maxObjectsInGet: UnsignedInt(500),
                 maxObjectsInSet: UnsignedInt(500),
-                collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+                collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
               ),
               CapabilityIdentifier.jmapMail: MailCapability(
                 maxMailboxesPerEmail: UnsignedInt(10000000),
                 maxSizeMailboxName: UnsignedInt(200),
                 maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-                emailQuerySortOptions: {
+                emailQuerySortOptions: [
                   "receivedAt",
                   "sentAt",
                   "size",
                   "from",
                   "to",
                   "subject",
-                },
+                ],
                 mayCreateTopLevelMailbox: true,
               ),
               CapabilityIdentifier(
@@ -1449,7 +1449,7 @@ void main() {
             maxCallsInRequest: UnsignedInt(16),
             maxObjectsInGet: UnsignedInt(500),
             maxObjectsInSet: UnsignedInt(500),
-            collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+            collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
           ),
           CapabilityIdentifier.jmapMail: MailCapability(),
         },
@@ -1475,20 +1475,20 @@ void main() {
                 maxCallsInRequest: UnsignedInt(16),
                 maxObjectsInGet: UnsignedInt(500),
                 maxObjectsInSet: UnsignedInt(500),
-                collationAlgorithms: {CollationIdentifier("i;unicode-casemap")},
+                collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
               ),
               CapabilityIdentifier.jmapMail: MailCapability(
                 maxMailboxesPerEmail: UnsignedInt(10000000),
                 maxSizeMailboxName: UnsignedInt(200),
                 maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
-                emailQuerySortOptions: {
+                emailQuerySortOptions: [
                   "receivedAt",
                   "sentAt",
                   "size",
                   "from",
                   "to",
                   "subject",
-                },
+                ],
                 mayCreateTopLevelMailbox: true,
               ),
             },
@@ -1668,7 +1668,7 @@ void main() {
             maxCallsInRequest: UnsignedInt(50),
             maxObjectsInGet: UnsignedInt(4096),
             maxObjectsInSet: UnsignedInt(4096),
-            collationAlgorithms: {},
+            collationAlgorithms: [],
           ),
           CapabilityIdentifier.jmapMail: MailCapability(),
           CapabilityIdentifier.jmapSubmission: SubmissionCapability(),
@@ -1691,7 +1691,7 @@ void main() {
                 maxMailboxesPerEmail: UnsignedInt(20),
                 maxKeywordsPerEmail: UnsignedInt(100),
                 maxSizeAttachmentsPerEmail: UnsignedInt(10485760),
-                emailsListSortOptions: {
+                emailsListSortOptions: [
                   "receivedAt",
                   "sentAt",
                   "from",
@@ -1702,7 +1702,7 @@ void main() {
                   "to",
                   "hasKeyword",
                   "someInThreadHaveKeyword",
-                },
+                ],
                 mayCreateTopLevelMailbox: true,
               ),
               CapabilityIdentifier.jmapSubmission: SubmissionCapability(

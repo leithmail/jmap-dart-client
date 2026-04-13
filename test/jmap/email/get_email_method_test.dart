@@ -23,8 +23,8 @@ void main() {
       size: UnsignedInt(24857),
       subject: "Notification: A - show datetime1",
       keywords: {},
-      from: {EmailAddress(null, "noreply@qa.open-paas.org")},
-      to: {EmailAddress(null, "userb@qa.open-paas.org")},
+      from: [EmailAddress(null, "noreply@qa.open-paas.org")],
+      to: [EmailAddress(null, "userb@qa.open-paas.org")],
       sentAt: UTCDate(DateTime.parse("2021-10-05T04:33:01Z")),
       receivedAt: UTCDate(DateTime.parse("2021-10-05T04:33:04Z")),
       headerCalendarEvent: {

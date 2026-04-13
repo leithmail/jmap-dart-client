@@ -15,11 +15,11 @@ ChangesEmailResponse _$ChangesEmailResponseFromJson(
   json['hasMoreChanges'] as bool,
   (json['created'] as List<dynamic>)
       .map((e) => const IdConverter().fromJson(e as String))
-      .toSet(),
+      .toList(),
   (json['updated'] as List<dynamic>)
       .map((e) => const IdConverter().fromJson(e as String))
-      .toSet(),
+      .toList(),
   (json['destroyed'] as List<dynamic>)
       .map((e) => const IdConverter().fromJson(e as String))
-      .toSet(),
+      .toList(),
 );

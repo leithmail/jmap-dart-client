@@ -10,12 +10,12 @@ TestCapability _$TestCapabilityFromJson(Map<String, dynamic> json) =>
     TestCapability(
       (json['testParam1'] as num).toInt(),
       json['testParam2'] as String,
-      (json['testParam3'] as List<dynamic>).map((e) => e as String).toSet(),
+      (json['testParam3'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$TestCapabilityToJson(TestCapability instance) =>
     <String, dynamic>{
       'testParam1': instance.testParam1,
       'testParam2': instance.testParam2,
-      'testParam3': instance.testParam3.toList(),
+      'testParam3': instance.testParam3,
     };

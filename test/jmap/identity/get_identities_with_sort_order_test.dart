@@ -16,7 +16,7 @@ void main() {
     final expectIdentity1 = Identity(
       id: IdentityId(Id('ac8f94d7-c548-4697-aea5-c4821ba07538')),
       email: 'somenamewithpeople@gmail.com',
-      bcc: {},
+      bcc: [],
       sortOrder: UnsignedInt(10000),
     );
 
@@ -24,7 +24,7 @@ void main() {
       id: IdentityId(Id('f1e627f0-e21b-371a-9c03-ac74d06353fd')),
       email: 'somenamewithpeople@gmail.com',
       sortOrder: UnsignedInt(1000),
-      bcc: {EmailAddress(null, "xyz@gmail.com")},
+      bcc: [EmailAddress(null, "xyz@gmail.com")],
     );
 
     test('get identity method and response parsing', () async {

@@ -168,15 +168,15 @@ void main() {
                     MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')): true,
                   },
                   subject: 'test send email',
-                  from: {EmailAddress("userB", 'userb@qa.open-paas.org')},
-                  to: {EmailAddress("userD", 'userd@qa.open-paas.org')},
-                  htmlBody: {
+                  from: [EmailAddress("userB", 'userb@qa.open-paas.org')],
+                  to: [EmailAddress("userD", 'userd@qa.open-paas.org')],
+                  htmlBody: [
                     EmailBodyPart(
                       partId: PartId('mmm'),
                       blobId: Id('aaaa'),
                       type: MediaType.parse('text/html'),
                     ),
-                  },
+                  ],
                   bodyValues: {
                     PartId('mmm'): EmailBodyValue(
                       value:
@@ -205,9 +205,9 @@ void main() {
                   emailId: EmailId(
                     ReferenceId(ReferencePrefix.defaultPrefix, Id('dab1234')),
                   ),
-                  envelope: Envelope(Address('userb@qa.open-paas.org'), {
+                  envelope: Envelope(Address('userb@qa.open-paas.org'), [
                     Address('userd@qa.open-paas.org'),
-                  }),
+                  ]),
                 ),
               }),
             )
@@ -391,15 +391,15 @@ void main() {
                     MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')): true,
                   },
                   subject: 'test send email',
-                  from: {EmailAddress("userB", 'userb@qa.open-paas.org')},
-                  to: {EmailAddress("userD", 'userd@qa.open-paas.org')},
-                  htmlBody: {
+                  from: [EmailAddress("userB", 'userb@qa.open-paas.org')],
+                  to: [EmailAddress("userD", 'userd@qa.open-paas.org')],
+                  htmlBody: [
                     EmailBodyPart(
                       partId: PartId('mmm'),
                       blobId: Id('aaaa'),
                       type: MediaType.parse('text/html'),
                     ),
-                  },
+                  ],
                   bodyValues: {
                     PartId('mmm'): EmailBodyValue(
                       value:
@@ -432,9 +432,9 @@ void main() {
                   emailId: EmailId(
                     ReferenceId(ReferencePrefix.defaultPrefix, Id('dab1234')),
                   ),
-                  envelope: Envelope(Address('userb@qa.open-paas.org'), {
+                  envelope: Envelope(Address('userb@qa.open-paas.org'), [
                     Address('userd@qa.open-paas.org'),
-                  }),
+                  ]),
                 ),
               }),
             )

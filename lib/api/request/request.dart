@@ -16,12 +16,14 @@ part 'request.g.dart';
 @RequestInvocationConverter()
 @JsonSerializable(createFactory: false)
 class Request {
-  final Set<CapabilityIdentifier> using;
+  final List<CapabilityIdentifier> using;
   final List<RequestInvocation> methodCalls;
 
-  Request(Set<CapabilityIdentifier> using, List<RequestInvocation> methodCalls)
-    : using = Set.unmodifiable(using),
-      methodCalls = List.unmodifiable(methodCalls);
+  Request({
+    required List<CapabilityIdentifier> using,
+    required List<RequestInvocation> methodCalls,
+  }) : using = List.unmodifiable(using),
+       methodCalls = List.unmodifiable(methodCalls);
 
   Map<String, dynamic> toJson() => _$RequestToJson(this);
 

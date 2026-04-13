@@ -19,7 +19,7 @@ class CoreCapability extends CapabilityProperties with EquatableMixin {
   final UnsignedInt? maxCallsInRequest;
   final UnsignedInt? maxObjectsInGet;
   final UnsignedInt? maxObjectsInSet;
-  final Set<CollationIdentifier>? collationAlgorithms;
+  final List<CollationIdentifier>? collationAlgorithms;
 
   CoreCapability({
     this.maxSizeUpload,
@@ -29,10 +29,10 @@ class CoreCapability extends CapabilityProperties with EquatableMixin {
     this.maxCallsInRequest,
     this.maxObjectsInGet,
     this.maxObjectsInSet,
-    Set<CollationIdentifier>? collationAlgorithms,
+    List<CollationIdentifier>? collationAlgorithms,
   }) : collationAlgorithms = collationAlgorithms == null
            ? null
-           : Set.unmodifiable(collationAlgorithms);
+           : List.unmodifiable(collationAlgorithms);
 
   factory CoreCapability.fromJson(Map<String, dynamic> json) =>
       _$CoreCapabilityFromJson(json);

@@ -21,7 +21,7 @@ class SetError with EquatableMixin {
 
   final ErrorType type;
   final String? description;
-  final Set<String>? properties;
+  final List<String>? properties;
 
   SetError(this.type, {this.description, this.properties});
 
@@ -32,16 +32,4 @@ class SetError with EquatableMixin {
       _$SetErrorFromJson(json);
 
   Map<String, dynamic> toJson() => _$SetErrorToJson(this);
-
-  static Set<ErrorType> get errorTypesJMAPSupport => {
-    SetError.forbidden,
-    SetError.overQuota,
-    SetError.tooLarge,
-    SetError.notFound,
-    SetError.invalidPatch,
-    SetError.willDestroy,
-    SetError.invalidProperties,
-    SetError.singleton,
-    SetError.serverFail,
-  };
 }

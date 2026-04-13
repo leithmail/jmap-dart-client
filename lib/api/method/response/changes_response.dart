@@ -7,9 +7,9 @@ abstract class ChangesResponse extends ResponseRequiringAccountId {
   final State oldState;
   final State newState;
   final bool hasMoreChanges;
-  final Set<Id> created;
-  final Set<Id> updated;
-  final Set<Id> destroyed;
+  final List<Id> created;
+  final List<Id> updated;
+  final List<Id> destroyed;
 
   ChangesResponse(
     AccountId accountId,

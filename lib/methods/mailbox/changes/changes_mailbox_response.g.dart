@@ -15,13 +15,13 @@ ChangesMailboxResponse _$ChangesMailboxResponseFromJson(
   json['hasMoreChanges'] as bool,
   (json['created'] as List<dynamic>)
       .map((e) => const IdConverter().fromJson(e as String))
-      .toSet(),
+      .toList(),
   (json['updated'] as List<dynamic>)
       .map((e) => const IdConverter().fromJson(e as String))
-      .toSet(),
+      .toList(),
   (json['destroyed'] as List<dynamic>)
       .map((e) => const IdConverter().fromJson(e as String))
-      .toSet(),
+      .toList(),
   updatedProperties: (json['updatedProperties'] as List<dynamic>?)
       ?.map((e) => MailboxProperty.fromJson(e as String))
       .toList(),

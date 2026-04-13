@@ -14,8 +14,8 @@ class MailCapability extends CapabilityProperties with EquatableMixin {
   final UnsignedInt? maxSizeMailboxName;
   final UnsignedInt? maxKeywordsPerEmail;
   final UnsignedInt? maxSizeAttachmentsPerEmail;
-  final Set<String>? emailQuerySortOptions;
-  final Set<String>? emailsListSortOptions;
+  final List<String>? emailQuerySortOptions;
+  final List<String>? emailsListSortOptions;
   final bool? mayCreateTopLevelMailbox;
 
   MailCapability({
@@ -24,15 +24,15 @@ class MailCapability extends CapabilityProperties with EquatableMixin {
     this.maxSizeMailboxName,
     this.maxKeywordsPerEmail,
     this.maxSizeAttachmentsPerEmail,
-    Set<String>? emailQuerySortOptions,
-    Set<String>? emailsListSortOptions,
+    List<String>? emailQuerySortOptions,
+    List<String>? emailsListSortOptions,
     this.mayCreateTopLevelMailbox,
   }) : emailQuerySortOptions = emailQuerySortOptions == null
            ? null
-           : Set.unmodifiable(emailQuerySortOptions),
+           : List.unmodifiable(emailQuerySortOptions),
        emailsListSortOptions = emailsListSortOptions == null
            ? null
-           : Set.unmodifiable(emailsListSortOptions);
+           : List.unmodifiable(emailsListSortOptions);
 
   factory MailCapability.fromJson(Map<String, dynamic> json) =>
       _$MailCapabilityFromJson(json);

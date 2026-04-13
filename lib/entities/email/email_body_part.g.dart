@@ -16,7 +16,7 @@ EmailBodyPart _$EmailBodyPartFromJson(
   ),
   headers: (json['headers'] as List<dynamic>?)
       ?.map((e) => EmailHeader.fromJson(e as Map<String, dynamic>))
-      .toSet(),
+      .toList(),
   name: json['name'] as String?,
   type: const MediaTypeNullableConverter().fromJson(json['type'] as String?),
   charset: json['charset'] as String?,
@@ -24,11 +24,11 @@ EmailBodyPart _$EmailBodyPartFromJson(
   cid: json['cid'] as String?,
   language: (json['language'] as List<dynamic>?)
       ?.map((e) => e as String)
-      .toSet(),
+      .toList(),
   location: json['location'] as String?,
   subParts: (json['subParts'] as List<dynamic>?)
       ?.map((e) => EmailBodyPart.fromJson(e as Map<String, dynamic>))
-      .toSet(),
+      .toList(),
 );
 
 Map<String, dynamic> _$EmailBodyPartToJson(EmailBodyPart instance) =>
@@ -36,13 +36,13 @@ Map<String, dynamic> _$EmailBodyPartToJson(EmailBodyPart instance) =>
       'partId': ?const PartIdNullableConverter().toJson(instance.partId),
       'blobId': ?const IdNullableConverter().toJson(instance.blobId),
       'size': ?const UnsignedIntNullableConverter().toJson(instance.size),
-      'headers': ?instance.headers?.toList(),
+      'headers': ?instance.headers,
       'name': ?instance.name,
       'type': ?const MediaTypeNullableConverter().toJson(instance.type),
       'charset': ?instance.charset,
       'disposition': ?instance.disposition,
       'cid': ?instance.cid,
-      'language': ?instance.language?.toList(),
+      'language': ?instance.language,
       'location': ?instance.location,
-      'subParts': ?instance.subParts?.toList(),
+      'subParts': ?instance.subParts,
     };

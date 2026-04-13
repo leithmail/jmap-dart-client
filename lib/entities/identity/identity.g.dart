@@ -13,10 +13,10 @@ Identity _$IdentityFromJson(Map<String, dynamic> json) => Identity(
   email: json['email'] as String?,
   bcc: (json['bcc'] as List<dynamic>?)
       ?.map((e) => EmailAddress.fromJson(e as Map<String, dynamic>))
-      .toSet(),
+      .toList(),
   replyTo: (json['replyTo'] as List<dynamic>?)
       ?.map((e) => EmailAddress.fromJson(e as Map<String, dynamic>))
-      .toSet(),
+      .toList(),
   textSignature: const SignatureNullableConverter().fromJson(
     json['textSignature'] as String?,
   ),
@@ -34,8 +34,8 @@ Map<String, dynamic> _$IdentityToJson(Identity instance) => <String, dynamic>{
   'description': ?instance.description,
   'name': ?instance.name,
   'email': ?instance.email,
-  'bcc': ?instance.bcc?.toList(),
-  'replyTo': ?instance.replyTo?.toList(),
+  'bcc': ?instance.bcc,
+  'replyTo': ?instance.replyTo,
   'textSignature': ?const SignatureNullableConverter().toJson(
     instance.textSignature,
   ),

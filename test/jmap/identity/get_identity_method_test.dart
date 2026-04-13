@@ -15,7 +15,7 @@ void main() {
       id: IdentityId(Id('6f15f98e-375f-3634-aae6-903e9356c196')),
       name: 'userb@qa.open-paas.org',
       email: 'userb@qa.open-paas.org',
-      bcc: {EmailAddress('user b', 'userb@qa.open-paas.org')},
+      bcc: [EmailAddress('user b', 'userb@qa.open-paas.org')],
       textSignature: Signature(''),
       htmlSignature: Signature(''),
       mayDelete: false,

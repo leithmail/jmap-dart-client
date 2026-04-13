@@ -115,17 +115,17 @@ void main() {
                     MailboxId(Id('fe00a5c0-0584-11ec-b153-2fef1ee78d9e')): true,
                   },
                   keywords: {EmailKeyword.seen: true},
-                  replyTo: {EmailAddress('bob', 'bob@email')},
-                  from: {EmailAddress('alice', 'alice@email')},
-                  sender: {EmailAddress('bob', 'bob@email')},
-                  to: {EmailAddress('dcu', 'dcu@email')},
+                  replyTo: [EmailAddress('bob', 'bob@email')],
+                  from: [EmailAddress('alice', 'alice@email')],
+                  sender: [EmailAddress('bob', 'bob@email')],
+                  to: [EmailAddress('dcu', 'dcu@email')],
                   subject: 'set email 3',
-                  htmlBody: {
+                  htmlBody: [
                     EmailBodyPart(
                       partId: PartId('a49d'),
                       type: MediaType.parse('text/html'),
                     ),
-                  },
+                  ],
                   bodyValues: {
                     PartId('a49d'): EmailBodyValue(
                       value: 'test html html',
@@ -239,17 +239,17 @@ void main() {
                     MailboxId(Id('fe00a5c0-0584-11ec-b153-2fef1ee78d9e')): true,
                   },
                   keywords: {EmailKeyword.seen: true},
-                  replyTo: {EmailAddress('bob', 'bob@email')},
-                  from: {EmailAddress('alice', 'alice@email')},
-                  sender: {EmailAddress('bob', 'bob@email')},
-                  to: {EmailAddress('dcu', 'dcu@email')},
+                  replyTo: [EmailAddress('bob', 'bob@email')],
+                  from: [EmailAddress('alice', 'alice@email')],
+                  sender: [EmailAddress('bob', 'bob@email')],
+                  to: [EmailAddress('dcu', 'dcu@email')],
                   subject: 'set email 3',
-                  htmlBody: {
+                  htmlBody: [
                     EmailBodyPart(
                       partId: PartId('a49d'),
                       type: MediaType.parse('text/html'),
                     ),
-                  },
+                  ],
                   bodyValues: {
                     PartId('a49d'): EmailBodyValue(
                       value: 'test html html',
@@ -361,16 +361,16 @@ void main() {
                   mailboxIds: {
                     MailboxId(Id('a6f488c0-964b-11ec-83d6-c1ded34233a9')): true,
                   },
-                  from: {
+                  from: [
                     EmailAddress('qkdo@linagora.com', 'qkdo@linagora.com'),
-                  },
+                  ],
                   subject: '[POSTMAN] SEND EMAIL WITH MDN MDN MDN',
-                  htmlBody: {
+                  htmlBody: [
                     EmailBodyPart(
                       partId: PartId('abc123'),
                       type: MediaType.parse('text/html'),
                     ),
-                  },
+                  ],
                   bodyValues: {
                     PartId('abc123'): EmailBodyValue(
                       value: '[POSTMAN] SEND EMAIL WITH MDN',

@@ -30,5 +30,5 @@ Map<String, dynamic> _$EmailFilterConditionToJson(
   'bcc': ?instance.bcc,
   'subject': ?instance.subject,
   'body': ?instance.body,
-  'header': ?instance.header?.toList(),
+  'header': ?instance.header,
 };

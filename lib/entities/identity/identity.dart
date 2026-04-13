@@ -27,10 +27,10 @@ class Identity with EquatableMixin {
   final String? email;
 
   @JsonKey(includeIfNull: false)
-  final Set<EmailAddress>? bcc;
+  final List<EmailAddress>? bcc;
 
   @JsonKey(includeIfNull: false)
-  final Set<EmailAddress>? replyTo;
+  final List<EmailAddress>? replyTo;
 
   @JsonKey(includeIfNull: false)
   final Signature? textSignature;

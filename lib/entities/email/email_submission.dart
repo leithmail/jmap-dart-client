@@ -23,8 +23,8 @@ class EmailSubmission with EquatableMixin {
   final UTCDate? sendAt;
   final UndoStatus? undoStatus;
   final Map<String, DeliveryStatus>? deliveryStatus;
-  final Set<Id>? dsnBlobIds;
-  final Set<Id>? mdnBlobIds;
+  final List<Id>? dsnBlobIds;
+  final List<Id>? mdnBlobIds;
 
   EmailSubmission({
     this.id,
@@ -67,10 +67,10 @@ class EmailSubmission with EquatableMixin {
       ),
       dsnBlobIds: (json['dsnBlobIds'] as List<dynamic>?)
           ?.map((json) => const IdConverter().fromJson(json))
-          .toSet(),
+          .toList(),
       mdnBlobIds: (json['mdnBlobIds'] as List<dynamic>?)
           ?.map((json) => const IdConverter().fromJson(json))
-          .toSet(),
+          .toList(),
     );
   }
 

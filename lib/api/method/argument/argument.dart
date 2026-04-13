@@ -34,7 +34,7 @@ abstract class ArgumentSlotBase {
 /// Example — declaring slots on a method:
 /// ```dart
 /// class GetEmailMethod extends GetMethod<GetEmailResponse, GetEmailResultReferenceTree> {
-///   final properties = ArgumentSlot<Set<String>>('properties', (v) => v.toList());
+///   final properties = ArgumentSlot<List<String>>('properties', (v) => v.toList());
 ///   final collapseThreads = ArgumentSlot<bool>('collapseThreads', (v) => v);
 ///
 ///   @override
