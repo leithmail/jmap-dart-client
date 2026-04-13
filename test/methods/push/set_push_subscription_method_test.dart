@@ -10,7 +10,7 @@ import '../../helpers/http_mocks.dart';
 void main() {
   group('test to json set pushSubscription method', () {
     final expectedCreated = PushSubscription(
-      id: PushSubscriptionId(Id('175dbd70-93d1-11ec-984e-e3f8b83572b4')),
+      id: PushSubscriptionId('175dbd70-93d1-11ec-984e-e3f8b83572b4'),
     );
 
     test('set pushSubscription method and response parsing', () async {

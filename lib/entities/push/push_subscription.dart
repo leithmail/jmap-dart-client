@@ -2,35 +2,20 @@ import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/push/encryption_key.dart';
-import 'package:jmap_dart_client/src/converters/push/push_subscription_id_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/utc_date_nullable_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'push_subscription.g.dart';
 
-@PushSubscriptionIdNullableConverter()
 @UTCDateNullableConverter()
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class PushSubscription with EquatableMixin {
-  @JsonKey(includeIfNull: false)
   final PushSubscriptionId? id;
-
-  @JsonKey(includeIfNull: false)
   final String? deviceClientId;
-
-  @JsonKey(includeIfNull: false)
   final String? url;
-
-  @JsonKey(includeIfNull: false)
   final EncryptionKey? keys;
-
-  @JsonKey(includeIfNull: false)
   final String? verificationCode;
-
-  @JsonKey(includeIfNull: false)
   final UTCDate? expires;
-
-  @JsonKey(includeIfNull: false)
   final List<String>? types;
 
   PushSubscription({
@@ -60,11 +45,7 @@ class PushSubscription with EquatableMixin {
   ];
 }
 
-class PushSubscriptionId with EquatableMixin {
-  final Id id;
-
-  PushSubscriptionId(this.id);
-
-  @override
-  List<Object?> get props => [id];
+class PushSubscriptionId extends Id {
+  const PushSubscriptionId(String value) : super(value);
+  factory PushSubscriptionId.fromJson(String json) => PushSubscriptionId(json);
 }

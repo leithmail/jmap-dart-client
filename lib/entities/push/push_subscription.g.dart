@@ -8,9 +8,9 @@ part of 'push_subscription.dart';
 
 PushSubscription _$PushSubscriptionFromJson(Map<String, dynamic> json) =>
     PushSubscription(
-      id: const PushSubscriptionIdNullableConverter().fromJson(
-        json['id'] as String?,
-      ),
+      id: json['id'] == null
+          ? null
+          : PushSubscriptionId.fromJson(json['id'] as String),
       deviceClientId: json['deviceClientId'] as String?,
       url: json['url'] as String?,
       keys: json['keys'] == null
@@ -27,7 +27,7 @@ PushSubscription _$PushSubscriptionFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PushSubscriptionToJson(PushSubscription instance) =>
     <String, dynamic>{
-      'id': ?const PushSubscriptionIdNullableConverter().toJson(instance.id),
+      'id': ?instance.id,
       'deviceClientId': ?instance.deviceClientId,
       'url': ?instance.url,
       'keys': ?instance.keys,
