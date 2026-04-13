@@ -91,10 +91,8 @@ Future<jmap.GetMailboxResponse> fetchMailboxes(
   try {
     final requestBuilder = jmap.RequestBuilder();
 
-    final getMailboxMethod = jmap.GetMailboxMethod(accountId: Val(accountId))
-      ..properties.val(
-        jmap.Properties({'id', 'name', 'role', 'totalEmails'}),
-      );
+    final getMailboxMethod = jmap.GetMailboxMethod(accountId: jmap.Val(accountId))
+      ..properties.set(jmap.Val(jmap.Properties({'id', 'name', 'role', 'totalEmails'})));
 
     final getMailboxInvocation = requestBuilder.addInvocation(getMailboxMethod);
 
@@ -123,21 +121,17 @@ Future<jmap.GetEmailResponse> fetchInboxEmails(
   try {
     final requestBuilder = jmap.RequestBuilder();
 
-    final queryEmailMethod = jmap.QueryEmailMethod(accountId: Val(accountId))
-      ..position.val(0)
-      ..limit.val(20)
-      ..sort.set([
-        jmap.EmailComparator(jmap.EmailSortProperty.sentAt, isAscending: false)
-      ])
+    final queryEmailMethod = jmap.QueryEmailMethod(accountId: jmap.Val(accountId))
+      ..position.set(jmap.Val(0))
+      ..limit.set(jmap.Val(20))
+      ..sort.set([jmap.EmailComparator(jmap.EmailSortProperty.sentAt, isAscending: false)])
       ..filter.set(jmap.EmailFilterCondition(inMailbox: inboxId));
 
     final queryInvocation = requestBuilder.addInvocation(queryEmailMethod);
 
-    final getEmailMethod = jmap.GetEmailMethod(accountId: Val(accountId))
-      ..properties.val(
-        jmap.Properties({'id', 'subject', 'from', 'sentAt', 'preview'}),
-      )
-      ..ids.ref(queryInvocation.resultReferences().$('ids')));
+    final getEmailMethod = jmap.GetEmailMethod(accountId: jmap.Val(accountId))
+      ..properties.set(jmap.Val(jmap.Properties({'id', 'subject', 'from', 'sentAt', 'preview'})))
+      ..ids.set(Ref(queryInvocation.resultReferences().$('ids')));
 
     final getEmailInvocation = requestBuilder.addInvocation(getEmailMethod);
 
@@ -228,7 +222,7 @@ Future<void> runRequest(
 ) async {
   final requestBuilder = jmap.RequestBuilder();
   final getMailboxInvocation = requestBuilder.addInvocation(
-    jmap.GetMailboxMethod(accountId: Val(accountId)),
+    jmap.GetMailboxMethod(accountId: jmap.Val(accountId)),
   );
   final request = requestBuilder.build();
 

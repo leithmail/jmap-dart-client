@@ -123,13 +123,15 @@ void main() {
                 IdentityId(Id('9ba9d77b-fbc8-4495-877d-d1261c25261f')),
               ),
             )
-            ..onSuccessUpdateEmail.val({
-              EmailSubmissionId(
-                ReferenceId(ReferencePrefix.defaultPrefix, Id('k1546')),
-              ): PatchObject({
-                KeyWordIdentifier.mdnSent.toPatchObjectJson(): true,
+            ..onSuccessUpdateEmail.set(
+              Val({
+                EmailSubmissionId(
+                  ReferenceId(ReferencePrefix.defaultPrefix, Id('k1546')),
+                ): PatchObject({
+                  KeyWordIdentifier.mdnSent.toPatchObjectJson(): true,
+                }),
               }),
-            });
+            );
 
       final requestBuilder = RequestBuilder();
       final mdnSendInvocation = requestBuilder.addInvocation(mdnSendMethod);

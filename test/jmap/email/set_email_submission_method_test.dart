@@ -162,32 +162,34 @@ void main() {
                 ),
               ),
             )
-            ..create.val({
-              Id('dab1234'): Email(
-                id: EmailId(Id('dab1234')),
-                mailboxIds: {
-                  MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')): true,
-                },
-                subject: 'test send email',
-                from: {EmailAddress("userB", 'userb@qa.open-paas.org')},
-                to: {EmailAddress("userD", 'userd@qa.open-paas.org')},
-                htmlBody: {
-                  EmailBodyPart(
-                    partId: PartId('mmm'),
-                    blobId: Id('aaaa'),
-                    type: MediaType.parse('text/html'),
-                  ),
-                },
-                bodyValues: {
-                  PartId('mmm'): EmailBodyValue(
-                    value:
-                        '<!DOCTYPE html> <html> <body> <p><b>Hello test send 2</b></p><br><br></body> </html>',
-                    isEncodingProblem: false,
-                    isTruncated: false,
-                  ),
-                },
-              ),
-            });
+            ..create.set(
+              Val({
+                Id('dab1234'): Email(
+                  id: EmailId(Id('dab1234')),
+                  mailboxIds: {
+                    MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')): true,
+                  },
+                  subject: 'test send email',
+                  from: {EmailAddress("userB", 'userb@qa.open-paas.org')},
+                  to: {EmailAddress("userD", 'userd@qa.open-paas.org')},
+                  htmlBody: {
+                    EmailBodyPart(
+                      partId: PartId('mmm'),
+                      blobId: Id('aaaa'),
+                      type: MediaType.parse('text/html'),
+                    ),
+                  },
+                  bodyValues: {
+                    PartId('mmm'): EmailBodyValue(
+                      value:
+                          '<!DOCTYPE html> <html> <body> <p><b>Hello test send 2</b></p><br><br></body> </html>',
+                      isEncodingProblem: false,
+                      isTruncated: false,
+                    ),
+                  },
+                ),
+              }),
+            );
 
       final setEmailSubmissionMethod =
           SetEmailSubmissionMethod(
@@ -199,27 +201,31 @@ void main() {
                 ),
               ),
             )
-            ..create.val({
-              Id('a1234'): EmailSubmission(
-                emailId: EmailId(
-                  ReferenceId(ReferencePrefix.defaultPrefix, Id('dab1234')),
+            ..create.set(
+              Val({
+                Id('a1234'): EmailSubmission(
+                  emailId: EmailId(
+                    ReferenceId(ReferencePrefix.defaultPrefix, Id('dab1234')),
+                  ),
+                  envelope: Envelope(Address('userb@qa.open-paas.org'), {
+                    Address('userd@qa.open-paas.org'),
+                  }),
                 ),
-                envelope: Envelope(Address('userb@qa.open-paas.org'), {
-                  Address('userd@qa.open-paas.org'),
-                }),
-              ),
-            })
-            ..onSuccessUpdateEmail.val({
-              EmailSubmissionId(
-                ReferenceId(ReferencePrefix.defaultPrefix, Id('a1234')),
-              ): PatchObject({
-                PatchObject.mailboxIdsProperty: {
-                  const MailboxIdConverter().toJson(
-                    MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')),
-                  ): true,
-                },
               }),
-            });
+            )
+            ..onSuccessUpdateEmail.set(
+              Val({
+                EmailSubmissionId(
+                  ReferenceId(ReferencePrefix.defaultPrefix, Id('a1234')),
+                ): PatchObject({
+                  PatchObject.mailboxIdsProperty: {
+                    const MailboxIdConverter().toJson(
+                      MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')),
+                    ): true,
+                  },
+                }),
+              }),
+            );
 
       final requestBuilder = RequestBuilder();
 
@@ -379,36 +385,38 @@ void main() {
                 ),
               ),
             )
-            ..create.val({
-              Id('dab1234'): Email(
-                id: EmailId(Id('dab1234')),
-                mailboxIds: {
-                  MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')): true,
-                },
-                subject: 'test send email',
-                from: {EmailAddress("userB", 'userb@qa.open-paas.org')},
-                to: {EmailAddress("userD", 'userd@qa.open-paas.org')},
-                htmlBody: {
-                  EmailBodyPart(
-                    partId: PartId('mmm'),
-                    blobId: Id('aaaa'),
-                    type: MediaType.parse('text/html'),
-                  ),
-                },
-                bodyValues: {
-                  PartId('mmm'): EmailBodyValue(
-                    value:
-                        '<!DOCTYPE html> <html> <body> <p><b>Hello test send 2</b></p><br><br></body> </html>',
-                    isEncodingProblem: false,
-                    isTruncated: false,
-                  ),
-                },
-                headerUserAgent: {
-                  IndividualHeaderIdentifier.headerUserAgent:
-                      'Android/1.0.0 TeamMail/1.0',
-                },
-              ),
-            });
+            ..create.set(
+              Val({
+                Id('dab1234'): Email(
+                  id: EmailId(Id('dab1234')),
+                  mailboxIds: {
+                    MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')): true,
+                  },
+                  subject: 'test send email',
+                  from: {EmailAddress("userB", 'userb@qa.open-paas.org')},
+                  to: {EmailAddress("userD", 'userd@qa.open-paas.org')},
+                  htmlBody: {
+                    EmailBodyPart(
+                      partId: PartId('mmm'),
+                      blobId: Id('aaaa'),
+                      type: MediaType.parse('text/html'),
+                    ),
+                  },
+                  bodyValues: {
+                    PartId('mmm'): EmailBodyValue(
+                      value:
+                          '<!DOCTYPE html> <html> <body> <p><b>Hello test send 2</b></p><br><br></body> </html>',
+                      isEncodingProblem: false,
+                      isTruncated: false,
+                    ),
+                  },
+                  headerUserAgent: {
+                    IndividualHeaderIdentifier.headerUserAgent:
+                        'Android/1.0.0 TeamMail/1.0',
+                  },
+                ),
+              }),
+            );
 
       final setEmailSubmissionMethod =
           SetEmailSubmissionMethod(
@@ -420,27 +428,31 @@ void main() {
                 ),
               ),
             )
-            ..create.val({
-              Id('a1234'): EmailSubmission(
-                emailId: EmailId(
-                  ReferenceId(ReferencePrefix.defaultPrefix, Id('dab1234')),
+            ..create.set(
+              Val({
+                Id('a1234'): EmailSubmission(
+                  emailId: EmailId(
+                    ReferenceId(ReferencePrefix.defaultPrefix, Id('dab1234')),
+                  ),
+                  envelope: Envelope(Address('userb@qa.open-paas.org'), {
+                    Address('userd@qa.open-paas.org'),
+                  }),
                 ),
-                envelope: Envelope(Address('userb@qa.open-paas.org'), {
-                  Address('userd@qa.open-paas.org'),
-                }),
-              ),
-            })
-            ..onSuccessUpdateEmail.val({
-              EmailSubmissionId(
-                ReferenceId(ReferencePrefix.defaultPrefix, Id('a1234')),
-              ): PatchObject({
-                PatchObject.mailboxIdsProperty: {
-                  const MailboxIdConverter().toJson(
-                    MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')),
-                  ): true,
-                },
               }),
-            });
+            )
+            ..onSuccessUpdateEmail.set(
+              Val({
+                EmailSubmissionId(
+                  ReferenceId(ReferencePrefix.defaultPrefix, Id('a1234')),
+                ): PatchObject({
+                  PatchObject.mailboxIdsProperty: {
+                    const MailboxIdConverter().toJson(
+                      MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')),
+                    ): true,
+                  },
+                }),
+              }),
+            );
 
       final requestBuilder = RequestBuilder();
 

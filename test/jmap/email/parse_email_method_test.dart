@@ -317,7 +317,7 @@ void main() {
       final parseEmailMethod = ParseEmailMethod(
         accountId: Val(accountId),
         blobIds: Val([blobId3]),
-      )..properties.val(Properties({"id", "preview", "subject"}));
+      )..properties.set(Val(Properties({"id", "preview", "subject"})));
 
       final requestBuilder = RequestBuilder();
       final invocation = requestBuilder.addInvocation(parseEmailMethod);

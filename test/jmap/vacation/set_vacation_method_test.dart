@@ -96,13 +96,15 @@ void main() {
       );
 
       final setVacationMethod = SetVacationMethod(accountId: Val(accountId))
-        ..updateSingleton.val({
-          VacationId.singleton().id: VacationResponse(
-            isEnabled: true,
-            fromDate: UTCDate(DateTime.parse('2022-08-16T15:00:00.000Z')),
-            textBody: 'Hello dab',
-          ),
-        });
+        ..updateSingleton.set(
+          Val({
+            VacationId.singleton().id: VacationResponse(
+              isEnabled: true,
+              fromDate: UTCDate(DateTime.parse('2022-08-16T15:00:00.000Z')),
+              textBody: 'Hello dab',
+            ),
+          }),
+        );
 
       final requestBuilder = RequestBuilder()..addInvocation(setVacationMethod);
 

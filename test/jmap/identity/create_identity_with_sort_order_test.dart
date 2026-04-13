@@ -77,17 +77,19 @@ void main() {
                 ),
               ),
             )
-            ..create.val({
-              Id('dab246'): Identity(
-                name: 'User B23',
-                email: 'lol@gmail.com',
-                textSignature: Signature(''),
-                htmlSignature: Signature(
-                  '<body><div>Dat T. Vu <br>Mobile Engineer <br>LINAGORA VIETNAM <br>A: 8th Floor (Toong VPBank Tower, No. 5 Dien Bien Phu  Str., Ba Dinh Dist., Ha Noi <br>P: (+84) 366-769-439<br>E: tdvu@linagora.com</div></body>',
+            ..create.set(
+              Val({
+                Id('dab246'): Identity(
+                  name: 'User B23',
+                  email: 'lol@gmail.com',
+                  textSignature: Signature(''),
+                  htmlSignature: Signature(
+                    '<body><div>Dat T. Vu <br>Mobile Engineer <br>LINAGORA VIETNAM <br>A: 8th Floor (Toong VPBank Tower, No. 5 Dien Bien Phu  Str., Ba Dinh Dist., Ha Noi <br>P: (+84) 366-769-439<br>E: tdvu@linagora.com</div></body>',
+                  ),
+                  sortOrder: UnsignedInt(99999),
                 ),
-                sortOrder: UnsignedInt(99999),
-              ),
-            });
+              }),
+            );
 
       final requestBuilder = RequestBuilder();
       final setIdentityInvocation = requestBuilder.addInvocation(
@@ -181,19 +183,25 @@ void main() {
                     ),
                   ),
                 )
-                ..create.val({
-                  Id('xyz123'): Identity(
-                    id: IdentityId(Id("5ccf6d7b-77e8-467a-9064-9f7ccfb19e12")),
-                    name: 'User B23',
-                    email: 'lol@gmail.com',
-                    sortOrder: UnsignedInt(1),
-                  ),
-                })
-                ..update.val({
-                  Id("c6ba359f-94a8-4ee9-b515-6bd2d9698618"): PatchObject({
-                    "sortOrder": 8888,
+                ..create.set(
+                  Val({
+                    Id('xyz123'): Identity(
+                      id: IdentityId(
+                        Id("5ccf6d7b-77e8-467a-9064-9f7ccfb19e12"),
+                      ),
+                      name: 'User B23',
+                      email: 'lol@gmail.com',
+                      sortOrder: UnsignedInt(1),
+                    ),
                   }),
-                });
+                )
+                ..update.set(
+                  Val({
+                    Id("c6ba359f-94a8-4ee9-b515-6bd2d9698618"): PatchObject({
+                      "sortOrder": 8888,
+                    }),
+                  }),
+                );
 
           final requestBuilder = RequestBuilder();
           final setIdentityInvocation = requestBuilder.addInvocation(

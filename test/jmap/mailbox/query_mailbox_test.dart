@@ -137,14 +137,15 @@ void main() {
             final queryMailboxMethod =
                 QueryMailboxMethod(accountId: Val(accountId))
                   ..filter.set(MailboxFilterCondition(role: Role('Spam')))
-                  ..limit.val(1);
+                  ..limit.set(Val(1));
             final queryMailboxInvocation = jmapRequestBuilder.addInvocation(
               queryMailboxMethod,
               methodCallId: MethodCallId('c2'),
             );
 
-            final getMailBoxMethod = GetMailboxMethod(accountId: Val(accountId))
-              ..ids.ref(queryMailboxInvocation.resultReferences().$('ids'));
+            final getMailBoxMethod = GetMailboxMethod(
+              accountId: Val(accountId),
+            )..ids.set(Ref(queryMailboxInvocation.resultReferences().$('ids')));
             final getMailboxInvocation = jmapRequestBuilder.addInvocation(
               getMailBoxMethod,
               methodCallId: MethodCallId('c3'),

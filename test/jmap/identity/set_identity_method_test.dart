@@ -73,16 +73,18 @@ void main() {
                 ),
               ),
             )
-            ..create.val({
-              Id('dab246'): Identity(
-                name: 'User B1',
-                email: 'userb@qa.open-paas.org',
-                textSignature: Signature(''),
-                htmlSignature: Signature(
-                  '<body><div>Dat T. Vu <br>Mobile Engineer <br>LINAGORA VIETNAM <br>A: 8th Floor (Toong VPBank Tower, No. 5 Dien Bien Phu  Str., Ba Dinh Dist., Ha Noi <br>P: (+84) 366-769-439<br>E: tdvu@linagora.com</div></body>',
+            ..create.set(
+              Val({
+                Id('dab246'): Identity(
+                  name: 'User B1',
+                  email: 'userb@qa.open-paas.org',
+                  textSignature: Signature(''),
+                  htmlSignature: Signature(
+                    '<body><div>Dat T. Vu <br>Mobile Engineer <br>LINAGORA VIETNAM <br>A: 8th Floor (Toong VPBank Tower, No. 5 Dien Bien Phu  Str., Ba Dinh Dist., Ha Noi <br>P: (+84) 366-769-439<br>E: tdvu@linagora.com</div></body>',
+                  ),
                 ),
-              ),
-            });
+              }),
+            );
 
       final requestBuilder = RequestBuilder();
       final setIdentityInvocation = requestBuilder.addInvocation(

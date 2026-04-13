@@ -216,32 +216,34 @@ void main() {
       );
 
       final getEmailMethodForUpdate = GetEmailMethod(accountId: Val(accountId))
-        ..properties.val(Properties({'mailboxIds', 'keywords'}))
-        ..ids.ref(changesEmailInvocation.resultReferences().$('updated'));
+        ..properties.set(Val(Properties({'mailboxIds', 'keywords'})))
+        ..ids.set(Ref(changesEmailInvocation.resultReferences().$('updated')));
       final getEmailForUpdateInvocation = jmapRequestBuilder.addInvocation(
         getEmailMethodForUpdate,
         methodCallId: MethodCallId('c2'),
       );
 
       final getEmailMethodForCreated = GetEmailMethod(accountId: Val(accountId))
-        ..properties.val(
-          Properties({
-            'id',
-            'subject',
-            'from',
-            'to',
-            'cc',
-            'bcc',
-            'keywords',
-            'size',
-            'receivedAt',
-            'sentAt',
-            'replyTo',
-            'preview',
-            'hasAttachment',
-          }),
+        ..properties.set(
+          Val(
+            Properties({
+              'id',
+              'subject',
+              'from',
+              'to',
+              'cc',
+              'bcc',
+              'keywords',
+              'size',
+              'receivedAt',
+              'sentAt',
+              'replyTo',
+              'preview',
+              'hasAttachment',
+            }),
+          ),
         )
-        ..ids.ref(changesEmailInvocation.resultReferences().$('created'));
+        ..ids.set(Ref(changesEmailInvocation.resultReferences().$('created')));
       final getEmailForCreatedInvocation = jmapRequestBuilder.addInvocation(
         getEmailMethodForCreated,
         methodCallId: MethodCallId('c3'),

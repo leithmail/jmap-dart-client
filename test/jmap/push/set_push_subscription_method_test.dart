@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/push/push_subscription.dart';
@@ -54,13 +55,15 @@ void main() {
       );
 
       final setPushSubscriptionMethod = SetPushSubscriptionMethod()
-        ..create.val({
-          Id('dab246'): PushSubscription(
-            deviceClientId: 'a123-b123-c123',
-            url: 'https://example.com/push/?device=abc123&client=123abc',
-            types: ['Mailbox', 'Email'],
-          ),
-        });
+        ..create.set(
+          Val({
+            Id('dab246'): PushSubscription(
+              deviceClientId: 'a123-b123-c123',
+              url: 'https://example.com/push/?device=abc123&client=123abc',
+              types: ['Mailbox', 'Email'],
+            ),
+          }),
+        );
 
       final requestBuilder = RequestBuilder();
       final setPushSubscriptionInvocation = requestBuilder.addInvocation(

@@ -1,3 +1,4 @@
+import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/push/push_subscription.dart';
@@ -50,7 +51,7 @@ void main() {
       );
 
       final getPushSubscriptionMethod = GetPushSubscriptionMethod()
-        ..ids.val([Id('e50b2c1d-9553-41a3-b0a7-a7d26b599ee1')]);
+        ..ids.set(Val([Id('e50b2c1d-9553-41a3-b0a7-a7d26b599ee1')]));
 
       final requestBuilder = RequestBuilder();
       final getPushSubscriptionInvocation = requestBuilder.addInvocation(

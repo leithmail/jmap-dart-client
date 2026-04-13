@@ -91,14 +91,6 @@ class ArgumentSlot<T> extends ArgumentSlotBase {
 
   void set(Argument<T>? argument) => _argument = argument;
 
-  /// Sets a literal value for this argument.
-  void val(T value) => _argument = Val(value);
-
-  /// Sets this argument as a reference to a value in a previous method
-  /// call's response, obtained via [Method.resultReference].
-  /// Serializes as a `#`-prefixed key per RFC 8620 §3.7.
-  void ref(ResultReference ref) => _argument = Ref(ref);
-
   /// Serializes this slot to a [MapEntry] for inclusion in [Method.toJson],
   /// or `null` if the slot has not been set.
   ///
