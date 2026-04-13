@@ -8,7 +8,7 @@ import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
-import 'package:jmap_dart_client/entities/email/keyword_identifier.dart';
+import 'package:jmap_dart_client/entities/email/email_keyword.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/methods/email/argument/email_property.dart';
 import 'package:jmap_dart_client/methods/email/changes_email_method.dart';
@@ -22,7 +22,7 @@ void main() {
     final expectMail1 = Email(
       id: EmailId(Id("a59d5ca0-258e-11ec-a759-2fef1ee78d9e")),
       mailboxIds: {MailboxId(Id('aba7e8d0-18d9-11eb-a677-2990b970028d')): true},
-      keywords: {KeyWordIdentifier.emailSeen: true},
+      keywords: {EmailKeyword.seen: true},
     );
 
     final expectMail2 = Email(
@@ -32,7 +32,7 @@ void main() {
       hasAttachment: false,
       size: UnsignedInt(24946),
       subject: "Notification: test",
-      keywords: {KeyWordIdentifier.emailSeen: true},
+      keywords: {EmailKeyword.seen: true},
       from: {EmailAddress(null, "noreply@qa.open-paas.org")},
       to: {EmailAddress(null, "userb@qa.open-paas.org")},
       sentAt: UTCDate(DateTime.parse("2021-10-05T03:45:01Z")),

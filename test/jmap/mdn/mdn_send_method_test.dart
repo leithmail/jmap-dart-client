@@ -6,8 +6,8 @@ import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
+import 'package:jmap_dart_client/entities/email/email_keyword.dart';
 import 'package:jmap_dart_client/entities/email/email_submission_id.dart';
-import 'package:jmap_dart_client/entities/email/keyword_identifier.dart';
 import 'package:jmap_dart_client/entities/identity/identity.dart';
 import 'package:jmap_dart_client/entities/mdn/disposition.dart';
 import 'package:jmap_dart_client/entities/mdn/mdn.dart';
@@ -128,7 +128,7 @@ void main() {
                 EmailSubmissionId(
                   ReferenceId(ReferencePrefix.defaultPrefix, Id('k1546')),
                 ): PatchObject({
-                  KeyWordIdentifier.mdnSent.toPatchObjectJson(): true,
+                  "keywords/${EmailKeyword.mdnSent.value}": true,
                 }),
               }),
             );

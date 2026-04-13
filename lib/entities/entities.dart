@@ -56,11 +56,11 @@ export 'email/email_address.dart';
 export 'email/email_body_part.dart';
 export 'email/email_body_value.dart';
 export 'email/email_header.dart';
+export 'email/email_keyword.dart';
 export 'email/email_submission.dart';
 export 'email/email_submission_id.dart';
 export 'email/envelope.dart';
 export 'email/individual_header_identifier.dart';
-export 'email/keyword_identifier.dart';
 export 'email/public_asset.dart';
 export 'email/search_snippet.dart';
 // Entity models: Identity

@@ -8,8 +8,8 @@ import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
 import 'package:jmap_dart_client/entities/email/email_body_part.dart';
 import 'package:jmap_dart_client/entities/email/email_body_value.dart';
+import 'package:jmap_dart_client/entities/email/email_keyword.dart';
 import 'package:jmap_dart_client/entities/email/individual_header_identifier.dart';
-import 'package:jmap_dart_client/entities/email/keyword_identifier.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/methods/email/set_email_method.dart';
 import 'package:test/test.dart';
@@ -114,7 +114,7 @@ void main() {
                   mailboxIds: {
                     MailboxId(Id('fe00a5c0-0584-11ec-b153-2fef1ee78d9e')): true,
                   },
-                  keywords: {KeyWordIdentifier.emailSeen: true},
+                  keywords: {EmailKeyword.seen: true},
                   replyTo: {EmailAddress('bob', 'bob@email')},
                   from: {EmailAddress('alice', 'alice@email')},
                   sender: {EmailAddress('bob', 'bob@email')},
@@ -238,7 +238,7 @@ void main() {
                   mailboxIds: {
                     MailboxId(Id('fe00a5c0-0584-11ec-b153-2fef1ee78d9e')): true,
                   },
-                  keywords: {KeyWordIdentifier.emailSeen: true},
+                  keywords: {EmailKeyword.seen: true},
                   replyTo: {EmailAddress('bob', 'bob@email')},
                   from: {EmailAddress('alice', 'alice@email')},
                   sender: {EmailAddress('bob', 'bob@email')},

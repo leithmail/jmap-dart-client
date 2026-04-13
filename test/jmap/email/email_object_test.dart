@@ -10,8 +10,8 @@ import 'package:jmap_dart_client/entities/email/email_address.dart';
 import 'package:jmap_dart_client/entities/email/email_body_part.dart';
 import 'package:jmap_dart_client/entities/email/email_body_value.dart';
 import 'package:jmap_dart_client/entities/email/email_header.dart';
+import 'package:jmap_dart_client/entities/email/email_keyword.dart';
 import 'package:jmap_dart_client/entities/email/individual_header_identifier.dart';
-import 'package:jmap_dart_client/entities/email/keyword_identifier.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:test/test.dart';
 
@@ -150,7 +150,7 @@ void main() {
               type: MediaType.parse('text/plain'),
             ),
           },
-          keywords: {KeyWordIdentifier.emailSeen: true},
+          keywords: {EmailKeyword.seen: true},
           bodyValues: {
             PartId('2'): EmailBodyValue(
               value: 'Dear, I update my last week activities. Thanks and BRs',
@@ -325,7 +325,7 @@ void main() {
               type: MediaType.parse('text/plain'),
             ),
           },
-          keywords: {KeyWordIdentifier.emailSeen: true},
+          keywords: {EmailKeyword.seen: true},
           bodyValues: {
             PartId('2'): EmailBodyValue(
               value: 'Dear, I update my last week activities. Thanks and BRs',
@@ -499,7 +499,7 @@ void main() {
             type: MediaType.parse('text/plain'),
           ),
         },
-        keywords: {KeyWordIdentifier.emailSeen: true},
+        keywords: {EmailKeyword.seen: true},
         bodyValues: {
           PartId('2'): EmailBodyValue(
             value: 'Dear, I update my last week activities. Thanks and BRs',

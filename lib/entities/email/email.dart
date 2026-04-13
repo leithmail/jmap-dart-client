@@ -7,11 +7,11 @@ import 'package:jmap_dart_client/entities/email/email_address.dart';
 import 'package:jmap_dart_client/entities/email/email_body_part.dart';
 import 'package:jmap_dart_client/entities/email/email_body_value.dart';
 import 'package:jmap_dart_client/entities/email/email_header.dart';
+import 'package:jmap_dart_client/entities/email/email_keyword.dart';
 import 'package:jmap_dart_client/entities/email/individual_header_identifier.dart';
-import 'package:jmap_dart_client/entities/email/keyword_identifier.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/src/converters/email/email_body_value_converter.dart';
-import 'package:jmap_dart_client/src/converters/email/email_keyword_identifier_converter.dart';
+import 'package:jmap_dart_client/src/converters/email/email_keyword_converter.dart';
 import 'package:jmap_dart_client/src/converters/email/email_mailbox_ids_converter.dart';
 import 'package:jmap_dart_client/src/converters/email_id_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_nullable_converter.dart';
@@ -26,7 +26,7 @@ class Email with EquatableMixin {
   final Id? blobId;
   final ThreadId? threadId;
   final Map<MailboxId, bool>? mailboxIds;
-  final Map<KeyWordIdentifier, bool>? keywords;
+  final Map<EmailKeyword, bool>? keywords;
   final UnsignedInt? size;
   final UTCDate? receivedAt;
   final Set<EmailHeader>? headers;
@@ -111,8 +111,7 @@ class Email with EquatableMixin {
         (key, value) => EmailMailboxIdsConverter().parseEntry(key, value),
       ),
       keywords: (json['keywords'] as Map<String, dynamic>?)?.map(
-        (key, value) =>
-            EmailKeywordIdentifierConverter().parseEntry(key, value),
+        (key, value) => EmailKeywordConverter().parseEntry(key, value),
       ),
       size: const UnsignedIntNullableConverter().fromJson(json['size'] as int?),
       receivedAt: const UTCDateNullableConverter().fromJson(
@@ -248,9 +247,7 @@ class Email with EquatableMixin {
     );
     writeNotNull(
       'keywords',
-      keywords?.map(
-        (key, value) => EmailKeywordIdentifierConverter().toJson(key, value),
-      ),
+      keywords?.map((key, value) => EmailKeywordConverter().toJson(key, value)),
     );
     writeNotNull('size', const UnsignedIntNullableConverter().toJson(size));
     writeNotNull(
