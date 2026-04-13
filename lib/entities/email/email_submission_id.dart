@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:jmap_dart_client/api/request/reference_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
+import 'package:jmap_dart_client/entities/email/email.dart';
 
 class EmailSubmissionId with EquatableMixin {
   final Id id;
@@ -10,7 +10,7 @@ class EmailSubmissionId with EquatableMixin {
   @override
   String toString() {
     if (id is ReferenceId) {
-      return '${(id as ReferenceId).prefix.value}${(id as ReferenceId).id.value}';
+      return id.toString();
     }
     return super.toString();
   }

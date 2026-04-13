@@ -1,4 +1,4 @@
-import 'package:jmap_dart_client/api/request/reference_prefix.dart';
+import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:test/test.dart';
 
 void main() {

@@ -1,5 +1,3 @@
-import 'package:jmap_dart_client/api/request/reference_id.dart';
-import 'package:jmap_dart_client/api/request/reference_prefix.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:json_annotation/json_annotation.dart';

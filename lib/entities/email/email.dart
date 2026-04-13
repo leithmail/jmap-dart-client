@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:jmap_dart_client/api/request/reference_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
@@ -430,6 +429,34 @@ class EmailId with EquatableMixin {
 
   @override
   List<Object?> get props => [id];
+}
+
+class ReferencePrefix with EquatableMixin {
+  static final defaultPrefix = ReferencePrefix('#');
+
+  final String value;
+
+  ReferencePrefix(this.value) {
+    if (value.isEmpty || value.length >= 255) {
+      throw ArgumentError('invalid length');
+    }
+  }
+
+  @override
+  List<Object?> get props => [value];
+}
+
+class ReferenceId extends Id with EquatableMixin {
+  final ReferencePrefix prefix;
+  final Id id;
+
+  ReferenceId(this.prefix, this.id) : super(id.value);
+
+  @override
+  String toString() => '#${id.value}';
+
+  @override
+  List<Object?> get props => [prefix, id];
 }
 
 class ThreadId with EquatableMixin {
