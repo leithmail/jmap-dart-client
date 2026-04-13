@@ -108,7 +108,7 @@ void main() {
               Id('aa1234'): Email(
                 id: EmailId(Id('ea12345')),
                 mailboxIds: {
-                  MailboxId(Id('fe00a5c0-0584-11ec-b153-2fef1ee78d9e')): true,
+                  MailboxId('fe00a5c0-0584-11ec-b153-2fef1ee78d9e'): true,
                 },
                 keywords: {EmailKeyword.seen: true},
                 replyTo: [EmailAddress('bob', 'bob@email')],
@@ -229,7 +229,7 @@ void main() {
               Id('aa1234'): Email(
                 id: EmailId(Id('ea12345')),
                 mailboxIds: {
-                  MailboxId(Id('fe00a5c0-0584-11ec-b153-2fef1ee78d9e')): true,
+                  MailboxId('fe00a5c0-0584-11ec-b153-2fef1ee78d9e'): true,
                 },
                 keywords: {EmailKeyword.seen: true},
                 replyTo: [EmailAddress('bob', 'bob@email')],
@@ -349,7 +349,7 @@ void main() {
               Id('e01'): Email(
                 id: EmailId(Id('e102')),
                 mailboxIds: {
-                  MailboxId(Id('a6f488c0-964b-11ec-83d6-c1ded34233a9')): true,
+                  MailboxId('a6f488c0-964b-11ec-83d6-c1ded34233a9'): true,
                 },
                 from: [EmailAddress('qkdo@linagora.com', 'qkdo@linagora.com')],
                 subject: '[POSTMAN] SEND EMAIL WITH MDN MDN MDN',

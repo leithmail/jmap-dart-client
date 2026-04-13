@@ -9,10 +9,8 @@ part of 'email_filter.dart';
 Map<String, dynamic> _$EmailFilterConditionToJson(
   _EmailFilterCondition instance,
 ) => <String, dynamic>{
-  'inMailbox': ?const MailboxIdNullableConverter().toJson(instance.inMailbox),
-  'inMailboxOtherThan': ?instance.inMailboxOtherThan
-      ?.map(const MailboxIdNullableConverter().toJson)
-      .toList(),
+  'inMailbox': ?instance.inMailbox,
+  'inMailboxOtherThan': ?instance.inMailboxOtherThan,
   'before': ?const UTCDateNullableConverter().toJson(instance.before),
   'after': ?const UTCDateNullableConverter().toJson(instance.after),
   'minSize': ?instance.minSize,

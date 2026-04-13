@@ -7,11 +7,11 @@ part of 'mailbox.dart';
 // **************************************************************************
 
 Mailbox _$MailboxFromJson(Map<String, dynamic> json) => Mailbox(
-  id: const MailboxIdNullableConverter().fromJson(json['id'] as String?),
+  id: json['id'] == null ? null : MailboxId.fromJson(json['id'] as String),
   name: const MailboxNameConverter().fromJson(json['name'] as String?),
-  parentId: const MailboxIdNullableConverter().fromJson(
-    json['parentId'] as String?,
-  ),
+  parentId: json['parentId'] == null
+      ? null
+      : MailboxId.fromJson(json['parentId'] as String),
   role: const RoleConverter().fromJson(json['role'] as String?),
   sortOrder: const SortOrderConverter().fromJson(
     (json['sortOrder'] as num?)?.toInt(),
@@ -44,9 +44,9 @@ Mailbox _$MailboxFromJson(Map<String, dynamic> json) => Mailbox(
 );
 
 Map<String, dynamic> _$MailboxToJson(Mailbox instance) => <String, dynamic>{
-  'id': ?const MailboxIdNullableConverter().toJson(instance.id),
+  'id': ?instance.id,
   'name': ?const MailboxNameConverter().toJson(instance.name),
-  'parentId': ?const MailboxIdNullableConverter().toJson(instance.parentId),
+  'parentId': ?instance.parentId,
   'role': ?const RoleConverter().toJson(instance.role),
   'sortOrder': ?const SortOrderConverter().toJson(instance.sortOrder),
   'totalEmails': ?const TotalEmailConverter().toJson(instance.totalEmails),

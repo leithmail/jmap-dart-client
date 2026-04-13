@@ -20,7 +20,7 @@ void main() {
   group('[Email/changes]', () {
     final expectMail1 = Email(
       id: EmailId(Id("a59d5ca0-258e-11ec-a759-2fef1ee78d9e")),
-      mailboxIds: {MailboxId(Id('aba7e8d0-18d9-11eb-a677-2990b970028d')): true},
+      mailboxIds: {MailboxId('aba7e8d0-18d9-11eb-a677-2990b970028d'): true},
       keywords: {EmailKeyword.seen: true},
     );
 

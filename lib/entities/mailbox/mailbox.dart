@@ -3,7 +3,6 @@ import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox_rights.dart';
 import 'package:jmap_dart_client/entities/mailbox/namespace.dart';
 import 'package:jmap_dart_client/src/converters/is_subscribed_converter.dart';
-import 'package:jmap_dart_client/src/converters/mailbox_id_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/mailbox_name_converter.dart';
 import 'package:jmap_dart_client/src/converters/namespace_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/role_converter.dart';
@@ -24,47 +23,21 @@ part 'mailbox.g.dart';
 @TotalEmailConverter()
 @SortOrderConverter()
 @RoleConverter()
-@MailboxIdNullableConverter()
 @MailboxNameConverter()
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class Mailbox with EquatableMixin {
-  @JsonKey(includeIfNull: false)
   final MailboxId? id;
-
-  @JsonKey(includeIfNull: false)
   final MailboxName? name;
-
-  @JsonKey(includeIfNull: false)
   final MailboxId? parentId;
-
-  @JsonKey(includeIfNull: false)
   final Role? role;
-
-  @JsonKey(includeIfNull: false)
   final SortOrder? sortOrder;
-
-  @JsonKey(includeIfNull: false)
   final TotalEmails? totalEmails;
-
-  @JsonKey(includeIfNull: false)
   final UnreadEmails? unreadEmails;
-
-  @JsonKey(includeIfNull: false)
   final TotalThreads? totalThreads;
-
-  @JsonKey(includeIfNull: false)
   final UnreadThreads? unreadThreads;
-
-  @JsonKey(includeIfNull: false)
   final MailboxRights? myRights;
-
-  @JsonKey(includeIfNull: false)
   final IsSubscribed? isSubscribed;
-
-  @JsonKey(includeIfNull: false)
   final Namespace? namespace;
-
-  @JsonKey(includeIfNull: false)
   final Map<String, List<String>?>? rights;
 
   Mailbox({
@@ -106,13 +79,9 @@ class Mailbox with EquatableMixin {
   ];
 }
 
-class MailboxId with EquatableMixin {
-  final Id id;
-
-  MailboxId(this.id);
-
-  @override
-  List<Object?> get props => [id];
+class MailboxId extends Id {
+  const MailboxId(super.value);
+  factory MailboxId.fromJson(String json) => MailboxId(json);
 }
 
 class MailboxName with EquatableMixin {

@@ -172,7 +172,7 @@ void main() {
       ..filter(
         EmailFilterCondition(
           text: 'report',
-          inMailbox: MailboxId(Id('c2543650-32cf-11eb-995c-a3ae66e9f96a')),
+          inMailbox: MailboxId('c2543650-32cf-11eb-995c-a3ae66e9f96a'),
         ),
       );
 

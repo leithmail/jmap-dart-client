@@ -11,7 +11,7 @@ import '../../helpers/http_mocks.dart';
 void main() {
   group('test to json set mailbox method', () {
     final expectedCreated = Mailbox(
-      id: MailboxId(Id('175dbd70-93d1-11ec-984e-e3f8b83572b4')),
+      id: MailboxId('175dbd70-93d1-11ec-984e-e3f8b83572b4'),
     );
 
     test('set mailbox method and response parsing', () async {
@@ -85,7 +85,7 @@ void main() {
             Val({
               Id('dab246'): Mailbox(
                 name: MailboxName('dab135'),
-                parentId: MailboxId(Id('aba7e8d0-18d9-11eb-a677-2990b970028d')),
+                parentId: MailboxId('aba7e8d0-18d9-11eb-a677-2990b970028d'),
               ),
             }),
           );

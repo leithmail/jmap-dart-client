@@ -6,7 +6,6 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/methods/mailbox/clear/clear_mailbox_method.dart';
@@ -17,7 +16,7 @@ import '../../helpers/http_mocks.dart';
 void main() {
   final methodCallId = MethodCallId('c0');
   final bobAccountId = AccountId('bob');
-  final bobTrashId = MailboxId(Id('trash-bob'));
+  final bobTrashId = MailboxId('trash-bob');
   final sessionState = State('newState');
 
   group('clear mailbox method test:', () {
@@ -50,7 +49,7 @@ void main() {
               clearMailboxMethod.methodName.value,
               {
                 "accountId": unknownAccountId.value,
-                "mailboxId": bobTrashId.id.value,
+                "mailboxId": bobTrashId.value,
               },
               methodCallId.value,
             ],
@@ -116,10 +115,7 @@ void main() {
           "methodCalls": [
             [
               clearMailboxMethod.methodName.value,
-              {
-                "accountId": bobAccountId.value,
-                "mailboxId": bobTrashId.id.value,
-              },
+              {"accountId": bobAccountId.value, "mailboxId": bobTrashId.value},
               methodCallId.value,
             ],
           ],
@@ -178,10 +174,7 @@ void main() {
           "methodCalls": [
             [
               clearMailboxMethod.methodName.value,
-              {
-                "accountId": bobAccountId.value,
-                "mailboxId": bobTrashId.id.value,
-              },
+              {"accountId": bobAccountId.value, "mailboxId": bobTrashId.value},
               methodCallId.value,
             ],
           ],
@@ -207,7 +200,7 @@ void main() {
 
     test('should fail when invalid mailbox id', () async {
       // Arrange
-      final invalidMailboxId = MailboxId(Id('invalidMailboxId'));
+      final invalidMailboxId = MailboxId('invalidMailboxId');
       final clearMailboxMethod = ClearMailboxMethod(
         accountId: Val(bobAccountId),
         mailboxId: Val(invalidMailboxId),
@@ -240,7 +233,7 @@ void main() {
               clearMailboxMethod.methodName.value,
               {
                 "accountId": bobAccountId.value,
-                "mailboxId": invalidMailboxId.id.value,
+                "mailboxId": invalidMailboxId.value,
               },
               methodCallId.value,
             ],
@@ -268,7 +261,7 @@ void main() {
 
     test('should fail when mailbox id not found', () async {
       // Arrange
-      final notFoundMailboxId = MailboxId(Id('notFoundMailboxId'));
+      final notFoundMailboxId = MailboxId('notFoundMailboxId');
       final clearMailboxMethod = ClearMailboxMethod(
         accountId: Val(bobAccountId),
         mailboxId: Val(notFoundMailboxId),
@@ -283,8 +276,7 @@ void main() {
                 "accountId": bobAccountId.value,
                 "notCleared": {
                   "type": "notFound",
-                  "description":
-                      "${notFoundMailboxId.id.value} can not be found",
+                  "description": "${notFoundMailboxId.value} can not be found",
                 },
               },
               methodCallId.value,
@@ -302,7 +294,7 @@ void main() {
               clearMailboxMethod.methodName.value,
               {
                 "accountId": bobAccountId.value,
-                "mailboxId": notFoundMailboxId.id.value,
+                "mailboxId": notFoundMailboxId.value,
               },
               methodCallId.value,
             ],
@@ -328,7 +320,7 @@ void main() {
       expect(clearMailboxResponse.notCleared?.type, SetError.notFound);
       expect(
         clearMailboxResponse.notCleared?.description,
-        '${notFoundMailboxId.id.value} can not be found',
+        '${notFoundMailboxId.value} can not be found',
       );
     });
 
@@ -350,7 +342,7 @@ void main() {
                 "notCleared": {
                   "type": "serverFail",
                   "description":
-                      "exception abcxyz happened while clearing ${bobTrashId.id.value}",
+                      "exception abcxyz happened while clearing ${bobTrashId.value}",
                 },
               },
               methodCallId.value,
@@ -366,10 +358,7 @@ void main() {
           "methodCalls": [
             [
               clearMailboxMethod.methodName.value,
-              {
-                "accountId": bobAccountId.value,
-                "mailboxId": bobTrashId.id.value,
-              },
+              {"accountId": bobAccountId.value, "mailboxId": bobTrashId.value},
               methodCallId.value,
             ],
           ],
@@ -394,14 +383,14 @@ void main() {
       expect(clearMailboxResponse.notCleared?.type, SetError.serverFail);
       expect(
         clearMailboxResponse.notCleared?.description,
-        'exception abcxyz happened while clearing ${bobTrashId.id.value}',
+        'exception abcxyz happened while clearing ${bobTrashId.value}',
       );
     });
 
     test('should succeed to clear team mailbox\n'
         'when request has share capability', () async {
       // Arrange
-      final teamMailboxId = MailboxId(Id('teamMailboxId'));
+      final teamMailboxId = MailboxId('teamMailboxId');
       final clearMailboxMethod = ClearMailboxMethod(
         accountId: Val(bobAccountId),
         mailboxId: Val(teamMailboxId),
@@ -428,7 +417,7 @@ void main() {
               clearMailboxMethod.methodName.value,
               {
                 "accountId": bobAccountId.value,
-                "mailboxId": teamMailboxId.id.value,
+                "mailboxId": teamMailboxId.value,
               },
               methodCallId.value,
             ],
@@ -458,7 +447,7 @@ void main() {
     test('should fail to clear team mailbox\n'
         'when missing share capability', () async {
       // Arrange
-      final teamMailboxId = MailboxId(Id('teamMailboxId'));
+      final teamMailboxId = MailboxId('teamMailboxId');
       final listCapabilitiesUsed = [
         CapabilityIdentifier.jmapCore,
         CapabilityIdentifier.jmapMail,
@@ -478,7 +467,7 @@ void main() {
                 "accountId": bobAccountId.value,
                 "notCleared": {
                   "type": "notFound",
-                  "description": "${teamMailboxId.id.value} can not be found",
+                  "description": "${teamMailboxId.value} can not be found",
                 },
               },
               methodCallId.value,
@@ -496,7 +485,7 @@ void main() {
               clearMailboxMethod.methodName.value,
               {
                 "accountId": bobAccountId.value,
-                "mailboxId": teamMailboxId.id.value,
+                "mailboxId": teamMailboxId.value,
               },
               methodCallId.value,
             ],
@@ -521,7 +510,7 @@ void main() {
       expect(clearMailboxResponse.notCleared?.type, SetError.notFound);
       expect(
         clearMailboxResponse.notCleared?.description,
-        '${teamMailboxId.id.value} can not be found',
+        '${teamMailboxId.value} can not be found',
       );
     });
   });

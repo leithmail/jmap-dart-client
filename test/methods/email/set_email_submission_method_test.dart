@@ -16,7 +16,6 @@ import 'package:jmap_dart_client/entities/email/individual_header_identifier.dar
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/methods/email/set_email_method.dart';
 import 'package:jmap_dart_client/methods/email/set_email_submission_method.dart';
-import 'package:jmap_dart_client/src/converters/mailbox_id_converter.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';
@@ -161,7 +160,7 @@ void main() {
               Id('dab1234'): Email(
                 id: EmailId(Id('dab1234')),
                 mailboxIds: {
-                  MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')): true,
+                  MailboxId('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e'): true,
                 },
                 subject: 'test send email',
                 from: [EmailAddress("userB", 'userb@qa.open-paas.org')],
@@ -211,9 +210,8 @@ void main() {
                   ReferenceId(ReferencePrefix.defaultPrefix, Id('a1234')),
                 ): PatchObject({
                   PatchObject.mailboxIdsProperty: {
-                    const MailboxIdConverter().toJson(
-                      MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')),
-                    ): true,
+                    MailboxId('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e').toJson():
+                        true,
                   },
                 }),
               }),
@@ -379,7 +377,7 @@ void main() {
               Id('dab1234'): Email(
                 id: EmailId(Id('dab1234')),
                 mailboxIds: {
-                  MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')): true,
+                  MailboxId('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e'): true,
                 },
                 subject: 'test send email',
                 from: [EmailAddress("userB", 'userb@qa.open-paas.org')],
@@ -433,9 +431,8 @@ void main() {
                   ReferenceId(ReferencePrefix.defaultPrefix, Id('a1234')),
                 ): PatchObject({
                   PatchObject.mailboxIdsProperty: {
-                    const MailboxIdConverter().toJson(
-                      MailboxId(Id('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e')),
-                    ): true,
+                    MailboxId('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e').toJson():
+                        true,
                   },
                 }),
               }),

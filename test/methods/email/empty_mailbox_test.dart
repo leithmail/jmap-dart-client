@@ -3,7 +3,6 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/methods/email/argument/email_comparator.dart';
 import 'package:jmap_dart_client/methods/email/argument/email_filter.dart';
@@ -107,7 +106,7 @@ void main() {
         ])
         ..filter(
           EmailFilterCondition(
-            inMailbox: MailboxId((Id('025b0580-6422-11ef-a702-5d10e1ebf1c3'))),
+            inMailbox: MailboxId('025b0580-6422-11ef-a702-5d10e1ebf1c3'),
           ),
         );
       final queryEmailInvocation = jmapRequestBuilder.addInvocation(

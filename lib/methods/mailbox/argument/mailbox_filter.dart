@@ -1,6 +1,6 @@
 import 'package:jmap_dart_client/api/method/argument/filter.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
-import 'package:jmap_dart_client/src/converters/mailbox_id_nullable_converter.dart';
+
 import 'package:jmap_dart_client/src/converters/mailbox_name_converter.dart';
 import 'package:jmap_dart_client/src/converters/role_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -35,7 +35,6 @@ class MailboxFilterCondition
 
 @RoleConverter()
 @MailboxNameConverter()
-@MailboxIdNullableConverter()
 @JsonSerializable(createFactory: false, includeIfNull: false)
 class _MailboxFilterCondition extends FilterCondition {
   final Role? role;

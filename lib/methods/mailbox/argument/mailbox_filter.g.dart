@@ -13,5 +13,5 @@ Map<String, dynamic> _$MailboxFilterConditionToJson(
   'name': ?const MailboxNameConverter().toJson(instance.name),
   'hasAnyRole': ?instance.hasAnyRole,
   'isSubscribed': ?instance.isSubscribed,
-  'parentId': ?const MailboxIdNullableConverter().toJson(instance.parentId),
+  'parentId': ?instance.parentId,
 };

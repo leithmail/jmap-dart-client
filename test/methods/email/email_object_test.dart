@@ -116,9 +116,7 @@ void main() {
           id: EmailId(Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4')),
           blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4'),
           threadId: ThreadId(Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4')),
-          mailboxIds: {
-            MailboxId(Id('be410040-8269-11eb-acad-a3d8fb60fff0')): true,
-          },
+          mailboxIds: {MailboxId('be410040-8269-11eb-acad-a3d8fb60fff0'): true},
           sentAt: UTCDate(DateTime.parse('2023-05-29T01:44:28Z')),
           receivedAt: UTCDate(DateTime.parse('2023-05-29T01:44:51Z')),
           hasAttachment: true,
@@ -291,9 +289,7 @@ void main() {
           id: EmailId(Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4')),
           blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4'),
           threadId: ThreadId(Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4')),
-          mailboxIds: {
-            MailboxId(Id('be410040-8269-11eb-acad-a3d8fb60fff0')): true,
-          },
+          mailboxIds: {MailboxId('be410040-8269-11eb-acad-a3d8fb60fff0'): true},
           sentAt: UTCDate(DateTime.parse('2023-05-29T01:44:28Z')),
           receivedAt: UTCDate(DateTime.parse('2023-05-29T01:44:51Z')),
           hasAttachment: true,
@@ -465,9 +461,7 @@ void main() {
         id: EmailId(Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4')),
         blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4'),
         threadId: ThreadId(Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4')),
-        mailboxIds: {
-          MailboxId(Id('be410040-8269-11eb-acad-a3d8fb60fff0')): true,
-        },
+        mailboxIds: {MailboxId('be410040-8269-11eb-acad-a3d8fb60fff0'): true},
         sentAt: UTCDate(DateTime.parse('2023-05-29T01:44:28.000Z')),
         receivedAt: UTCDate(DateTime.parse('2023-05-29T01:44:51.000Z')),
         hasAttachment: true,

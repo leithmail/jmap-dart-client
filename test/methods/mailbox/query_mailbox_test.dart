@@ -2,7 +2,6 @@ import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox_rights.dart';
 import 'package:jmap_dart_client/methods/mailbox/argument/mailbox_filter.dart';
@@ -20,7 +19,7 @@ void main() {
           'Query Mailbox server uses ${serverRole} and client uses ${clientRole} role report',
           () async {
             final expectedReported = Mailbox(
-              id: MailboxId(Id('9bf84410-32cf-11eb-995c-a3ae66e9f96a')),
+              id: MailboxId('9bf84410-32cf-11eb-995c-a3ae66e9f96a'),
               role: Role(clientRole),
               name: MailboxName('Spam'),
               sortOrder: SortOrder(sortValue: 70),

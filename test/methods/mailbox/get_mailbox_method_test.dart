@@ -1,7 +1,6 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox_rights.dart';
 import 'package:jmap_dart_client/entities/mailbox/namespace.dart';
@@ -13,7 +12,7 @@ import '../../helpers/http_mocks.dart';
 void main() {
   group('test to json get mailbox method', () {
     final expectedMailbox1 = Mailbox(
-      id: MailboxId(Id('f1cef2d0-30a9-11eb-9a8d-254ee97830fe')),
+      id: MailboxId('f1cef2d0-30a9-11eb-9a8d-254ee97830fe'),
       role: Role('inbox'),
       name: MailboxName('INBOX'),
       sortOrder: SortOrder(sortValue: 10),
@@ -47,7 +46,7 @@ void main() {
     );
 
     final expectedMailbox2 = Mailbox(
-      id: MailboxId(Id('f1cef2d0-30a9-11eb-9a8d-254ee97830fe')),
+      id: MailboxId('f1cef2d0-30a9-11eb-9a8d-254ee97830fe'),
       role: Role('inbox'),
       name: MailboxName('INBOX'),
       sortOrder: SortOrder(sortValue: 10),

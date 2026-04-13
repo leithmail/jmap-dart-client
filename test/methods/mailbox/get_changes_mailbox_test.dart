@@ -2,7 +2,6 @@ import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox_rights.dart';
@@ -15,7 +14,7 @@ import '../../helpers/http_mocks.dart';
 void main() {
   group('[MailBox/changes]', () {
     final expectedUpdated = Mailbox(
-      id: MailboxId(Id('c2543650-32cf-11eb-995c-a3ae66e9f96a')),
+      id: MailboxId('c2543650-32cf-11eb-995c-a3ae66e9f96a'),
       role: Role('inbox'),
       name: MailboxName('INBOX'),
       sortOrder: SortOrder(sortValue: 10),
