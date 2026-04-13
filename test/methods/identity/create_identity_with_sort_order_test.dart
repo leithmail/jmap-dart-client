@@ -3,7 +3,6 @@ import 'package:jmap_dart_client/api/request/patch_object.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/identity/identity.dart';
 import 'package:jmap_dart_client/methods/identity/set_identity_method.dart';
 import 'package:test/test.dart';
@@ -14,7 +13,7 @@ void main() {
   group('test to json set identity method', () {
     final expectedCreated = Identity(
       id: IdentityId(Id('5ccf6d7b-77e8-467a-9064-9f7ccfb19e86')),
-      sortOrder: UnsignedInt(99999),
+      sortOrder: 99999,
     );
 
     test('create new identity with response parsing', () async {
@@ -85,7 +84,7 @@ void main() {
                 htmlSignature: Signature(
                   '<body><div>Dat T. Vu <br>Mobile Engineer <br>LINAGORA VIETNAM <br>A: 8th Floor (Toong VPBank Tower, No. 5 Dien Bien Phu  Str., Ba Dinh Dist., Ha Noi <br>P: (+84) 366-769-439<br>E: tdvu@linagora.com</div></body>',
                 ),
-                sortOrder: UnsignedInt(99999),
+                sortOrder: 99999,
               ),
             }),
           );
@@ -113,7 +112,7 @@ void main() {
     () {
       final expectedCreated = Identity(
         id: IdentityId(Id('5ccf6d7b-77e8-467a-9064-9f7ccfb19e12')),
-        sortOrder: UnsignedInt(1),
+        sortOrder: 1,
       );
 
       test(
@@ -190,7 +189,7 @@ void main() {
                       ),
                       name: 'User B23',
                       email: 'lol@gmail.com',
-                      sortOrder: UnsignedInt(1),
+                      sortOrder: 1,
                     ),
                   }),
                 )

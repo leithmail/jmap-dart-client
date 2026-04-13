@@ -11,9 +11,7 @@ EmailBodyPart _$EmailBodyPartFromJson(
 ) => EmailBodyPart(
   partId: const PartIdNullableConverter().fromJson(json['partId'] as String?),
   blobId: const IdNullableConverter().fromJson(json['blobId'] as String?),
-  size: const UnsignedIntNullableConverter().fromJson(
-    (json['size'] as num?)?.toInt(),
-  ),
+  size: (json['size'] as num?)?.toInt(),
   headers: (json['headers'] as List<dynamic>?)
       ?.map((e) => EmailHeader.fromJson(e as Map<String, dynamic>))
       .toList(),
@@ -35,7 +33,7 @@ Map<String, dynamic> _$EmailBodyPartToJson(EmailBodyPart instance) =>
     <String, dynamic>{
       'partId': ?const PartIdNullableConverter().toJson(instance.partId),
       'blobId': ?const IdNullableConverter().toJson(instance.blobId),
-      'size': ?const UnsignedIntNullableConverter().toJson(instance.size),
+      'size': ?instance.size,
       'headers': ?instance.headers,
       'name': ?instance.name,
       'type': ?const MediaTypeNullableConverter().toJson(instance.type),

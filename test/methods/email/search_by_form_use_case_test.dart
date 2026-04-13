@@ -4,7 +4,6 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
@@ -23,7 +22,7 @@ void main() {
     preview: "AAAA",
     hasAttachment: false,
     subject: "AAAA",
-    size: UnsignedInt(3328),
+    size: 3328,
     from: [EmailAddress("Manh tuan Manh", "manh199672@gmail.com")],
     sentAt: UTCDate(DateTime.parse("2022-06-10T04:44:03Z")),
     receivedAt: UTCDate(DateTime.parse("2022-06-10T04:51:41Z")),

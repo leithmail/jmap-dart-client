@@ -9,9 +9,7 @@ part of 'submission_capability.dart';
 SubmissionCapability _$SubmissionCapabilityFromJson(
   Map<String, dynamic> json,
 ) => SubmissionCapability(
-  maxDelayedSend: const UnsignedIntNullableConverter().fromJson(
-    (json['maxDelayedSend'] as num?)?.toInt(),
-  ),
+  maxDelayedSend: (json['maxDelayedSend'] as num?)?.toInt(),
   submissionExtensions: (json['submissionExtensions'] as Map<String, dynamic>?)
       ?.map(
         (k, e) =>

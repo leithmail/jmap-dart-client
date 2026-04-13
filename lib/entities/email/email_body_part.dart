@@ -1,19 +1,16 @@
 import 'package:equatable/equatable.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/email/email_header.dart';
 import 'package:jmap_dart_client/src/converters/id_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/media_type_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/part_id_nullable_converter.dart';
-import 'package:jmap_dart_client/src/converters/unsigned_int_nullable_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'email_body_part.g.dart';
 
 @MediaTypeNullableConverter()
 @PartIdNullableConverter()
-@UnsignedIntNullableConverter()
 @IdNullableConverter()
 @JsonSerializable()
 class EmailBodyPart with EquatableMixin {
@@ -24,7 +21,7 @@ class EmailBodyPart with EquatableMixin {
   final Id? blobId;
 
   @JsonKey(includeIfNull: false)
-  final UnsignedInt? size;
+  final int? size;
 
   @JsonKey(includeIfNull: false)
   final List<EmailHeader>? headers;

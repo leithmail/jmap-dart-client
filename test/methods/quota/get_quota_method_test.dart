@@ -2,7 +2,6 @@ import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/quota/data_types.dart';
 import 'package:jmap_dart_client/entities/quota/quota.dart';
 import 'package:jmap_dart_client/methods/quota/get_quota_method.dart';
@@ -19,9 +18,9 @@ void main() {
       'tdvu@example.com',
       dataTypes: [DataType.mail],
       types: [DataType.mail],
-      used: UnsignedInt(20000),
-      limit: UnsignedInt(50000),
-      hardLimit: UnsignedInt(50000),
+      used: 20000,
+      limit: 50000,
+      hardLimit: 50000,
     );
 
     final expectQuota2 = Quota(
@@ -31,12 +30,12 @@ void main() {
       'datvu@example.com',
       dataTypes: [DataType.mail, DataType.calendar, DataType.contact],
       types: [DataType.mail, DataType.calendar, DataType.contact],
-      used: UnsignedInt(10000),
-      limit: UnsignedInt(70000),
-      hardLimit: UnsignedInt(70000),
+      used: 10000,
+      limit: 70000,
+      hardLimit: 70000,
       description: 'Personal account usage',
-      softLimit: UnsignedInt(30000),
-      warnLimit: UnsignedInt(12000),
+      softLimit: 30000,
+      warnLimit: 12000,
     );
 
     test('get quota method and response parsing', () async {

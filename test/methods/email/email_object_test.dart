@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:http_parser/http_parser.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
@@ -135,7 +134,7 @@ void main() {
           textBody: [
             EmailBodyPart(
               charset: 'us-ascii',
-              size: UnsignedInt(64),
+              size: 64,
               partId: PartId('2'),
               blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
               type: MediaType.parse('text/plain'),
@@ -144,7 +143,7 @@ void main() {
           htmlBody: [
             EmailBodyPart(
               charset: 'us-ascii',
-              size: UnsignedInt(64),
+              size: 64,
               partId: PartId('2'),
               blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
               type: MediaType.parse('text/plain'),
@@ -160,12 +159,12 @@ void main() {
           },
           preview: 'Dear, I update my last week activities. Thanks and BRs',
           subject: '[Weekly report] W21 Dat PHAM',
-          size: UnsignedInt(1832921),
+          size: 1832921,
           attachments: [
             EmailBodyPart(
               charset: 'us-ascii',
               disposition: 'attachment',
-              size: UnsignedInt(75835),
+              size: 75835,
               partId: PartId('3'),
               blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_3'),
               name: 'DatPH_2023_w21_Remote_Weekly report.ods',
@@ -176,7 +175,7 @@ void main() {
           ],
           bodyStructure: EmailBodyPart(
             charset: 'us-ascii',
-            size: UnsignedInt(1831428),
+            size: 1831428,
             partId: PartId('1'),
             type: MediaType.parse('multipart/mixed'),
           ),
@@ -310,7 +309,7 @@ void main() {
           textBody: [
             EmailBodyPart(
               charset: 'us-ascii',
-              size: UnsignedInt(64),
+              size: 64,
               partId: PartId('2'),
               blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
               type: MediaType.parse('text/plain'),
@@ -319,7 +318,7 @@ void main() {
           htmlBody: [
             EmailBodyPart(
               charset: 'us-ascii',
-              size: UnsignedInt(64),
+              size: 64,
               partId: PartId('2'),
               blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
               type: MediaType.parse('text/plain'),
@@ -335,12 +334,12 @@ void main() {
           },
           preview: 'Dear, I update my last week activities. Thanks and BRs',
           subject: '[Weekly report] W21 Dat PHAM',
-          size: UnsignedInt(1832921),
+          size: 1832921,
           attachments: [
             EmailBodyPart(
               charset: 'us-ascii',
               disposition: 'attachment',
-              size: UnsignedInt(75835),
+              size: 75835,
               partId: PartId('3'),
               blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_3'),
               name: 'DatPH_2023_w21_Remote_Weekly report.ods',
@@ -351,7 +350,7 @@ void main() {
           ],
           bodyStructure: EmailBodyPart(
             charset: 'us-ascii',
-            size: UnsignedInt(1831428),
+            size: 1831428,
             partId: PartId('1'),
             type: MediaType.parse('multipart/mixed'),
           ),
@@ -484,7 +483,7 @@ void main() {
         textBody: [
           EmailBodyPart(
             charset: 'us-ascii',
-            size: UnsignedInt(64),
+            size: 64,
             partId: PartId('2'),
             blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
             type: MediaType.parse('text/plain'),
@@ -493,7 +492,7 @@ void main() {
         htmlBody: [
           EmailBodyPart(
             charset: 'us-ascii',
-            size: UnsignedInt(64),
+            size: 64,
             partId: PartId('2'),
             blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
             type: MediaType.parse('text/plain'),
@@ -509,12 +508,12 @@ void main() {
         },
         preview: 'Dear, I update my last week activities. Thanks and BRs',
         subject: '[Weekly report] W21 Dat PHAM',
-        size: UnsignedInt(1832921),
+        size: 1832921,
         attachments: [
           EmailBodyPart(
             charset: 'us-ascii',
             disposition: 'attachment',
-            size: UnsignedInt(75835),
+            size: 75835,
             partId: PartId('3'),
             blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_3'),
             name: 'DatPH_2023_w21_Remote_Weekly report.ods',
@@ -525,7 +524,7 @@ void main() {
         ],
         bodyStructure: EmailBodyPart(
           charset: 'us-ascii',
-          size: UnsignedInt(1831428),
+          size: 1831428,
           partId: PartId('1'),
           type: MediaType.parse('multipart/mixed'),
         ),

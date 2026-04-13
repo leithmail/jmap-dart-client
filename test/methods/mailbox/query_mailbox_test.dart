@@ -3,7 +3,6 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox_rights.dart';
 import 'package:jmap_dart_client/methods/mailbox/argument/mailbox_filter.dart';
@@ -25,10 +24,10 @@ void main() {
               role: Role(clientRole),
               name: MailboxName('Spam'),
               sortOrder: SortOrder(sortValue: 70),
-              totalEmails: TotalEmails(UnsignedInt(29)),
-              unreadEmails: UnreadEmails(UnsignedInt(29)),
-              totalThreads: TotalThreads(UnsignedInt(29)),
-              unreadThreads: UnreadThreads(UnsignedInt(29)),
+              totalEmails: TotalEmails(29),
+              unreadEmails: UnreadEmails(29),
+              totalThreads: TotalThreads(29),
+              unreadThreads: UnreadThreads(29),
               myRights: MailboxRights(
                 true,
                 true,

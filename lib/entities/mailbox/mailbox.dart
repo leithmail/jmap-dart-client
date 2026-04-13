@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox_rights.dart';
 import 'package:jmap_dart_client/entities/mailbox/namespace.dart';
 import 'package:jmap_dart_client/src/converters/is_subscribed_converter.dart';
@@ -141,10 +140,10 @@ class Role with EquatableMixin {
 }
 
 class SortOrder with EquatableMixin {
-  late final UnsignedInt value;
+  late final int value;
 
   SortOrder({int sortValue = 0}) {
-    value = UnsignedInt(sortValue);
+    value = sortValue;
   }
 
   @override
@@ -152,7 +151,7 @@ class SortOrder with EquatableMixin {
 }
 
 class TotalEmails with EquatableMixin {
-  final UnsignedInt value;
+  final int value;
 
   TotalEmails(this.value);
 
@@ -161,7 +160,7 @@ class TotalEmails with EquatableMixin {
 }
 
 class UnreadEmails with EquatableMixin {
-  final UnsignedInt value;
+  final int value;
 
   UnreadEmails(this.value);
 
@@ -170,7 +169,7 @@ class UnreadEmails with EquatableMixin {
 }
 
 class TotalThreads with EquatableMixin {
-  final UnsignedInt value;
+  final int value;
 
   TotalThreads(this.value);
 
@@ -179,7 +178,7 @@ class TotalThreads with EquatableMixin {
 }
 
 class UnreadThreads with EquatableMixin {
-  final UnsignedInt value;
+  final int value;
 
   UnreadThreads(this.value);
 

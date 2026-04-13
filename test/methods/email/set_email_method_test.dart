@@ -3,7 +3,6 @@ import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
 import 'package:jmap_dart_client/entities/email/email_body_part.dart';
@@ -22,7 +21,7 @@ void main() {
       id: EmailId(Id('29a7f870-0596-11ec-b153-2fef1ee78d9e')),
       blobId: Id('29a7f870-0596-11ec-b153-2fef1ee78d9e'),
       threadId: ThreadId(Id('29a7f870-0596-11ec-b153-2fef1ee78d9e')),
-      size: UnsignedInt(657),
+      size: 657,
     );
 
     test('set email method and response parsing', () async {
@@ -396,7 +395,7 @@ void main() {
         id: EmailId(Id("77664010-4ab1-11ed-88ee-ffc86e0cde67")),
         blobId: Id("77664010-4ab1-11ed-88ee-ffc86e0cde67"),
         threadId: ThreadId(Id("77664010-4ab1-11ed-88ee-ffc86e0cde67")),
-        size: UnsignedInt(600),
+        size: 600,
       );
 
       expect(setEmailResponse.created![Id('e01')], equals(expectedCreated1));

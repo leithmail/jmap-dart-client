@@ -5,12 +5,10 @@ import 'package:jmap_dart_client/entities/calendar/properties/recurrence_rule/re
 import 'package:jmap_dart_client/entities/calendar/properties/recurrence_rule/recurrence_rule_interval.dart';
 import 'package:jmap_dart_client/entities/calendar/properties/recurrence_rule/recurrence_rule_rscale.dart';
 import 'package:jmap_dart_client/entities/calendar/properties/recurrence_rule/recurrence_rule_skip.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/src/converters/calendar/recurrence_rule_count_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/calendar/recurrence_rule_interval_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/calendar/recurrence_rule_rscale_nullable_converter.dart';
-import 'package:jmap_dart_client/src/converters/unsigned_int_converter.dart';
 import 'package:jmap_dart_client/src/converters/utc_date_nullable_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -18,7 +16,6 @@ part 'recurrence_rule.g.dart';
 
 @RecurrenceRuleCountNullableConverter()
 @RecurrenceRuleIntervalNullableConverter()
-@UnsignedIntConverter()
 @RecurrenceRuleRScaleNullableConverter()
 @UTCDateNullableConverter()
 @JsonSerializable(includeIfNull: false)
@@ -33,9 +30,9 @@ class RecurrenceRule with EquatableMixin {
   final List<String>? byMonth;
   final List<int>? byYearDay;
   final List<int>? byWeekNo;
-  final List<UnsignedInt>? byHour;
-  final List<UnsignedInt>? byMinute;
-  final List<UnsignedInt>? bySecond;
+  final List<int>? byHour;
+  final List<int>? byMinute;
+  final List<int>? bySecond;
   final List<int>? bySetPosition;
   final RecurrenceRuleCount? count;
   final UTCDate? until;

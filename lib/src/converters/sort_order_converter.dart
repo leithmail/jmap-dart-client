@@ -11,6 +11,6 @@ class SortOrderConverter implements JsonConverter<SortOrder?, int?> {
 
   @override
   int? toJson(SortOrder? object) {
-    return object?.value.value.toInt();
+    return object?.value.toInt();
   }
 }

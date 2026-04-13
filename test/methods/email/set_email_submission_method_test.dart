@@ -4,7 +4,6 @@ import 'package:jmap_dart_client/api/request/patch_object.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/email/address.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
@@ -28,7 +27,7 @@ void main() {
       id: EmailId(Id('64469f10-8e15-11ec-984e-e3f8b83572b4')),
       blobId: Id('64469f10-8e15-11ec-984e-e3f8b83572b4'),
       threadId: ThreadId(Id('64469f10-8e15-11ec-984e-e3f8b83572b4')),
-      size: UnsignedInt(742),
+      size: 742,
     );
 
     test('set email submission method and response parsing', () async {

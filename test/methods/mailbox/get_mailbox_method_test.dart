@@ -2,7 +2,6 @@ import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox_rights.dart';
 import 'package:jmap_dart_client/entities/mailbox/namespace.dart';
@@ -18,10 +17,10 @@ void main() {
       role: Role('inbox'),
       name: MailboxName('INBOX'),
       sortOrder: SortOrder(sortValue: 10),
-      totalEmails: TotalEmails(UnsignedInt(1847)),
-      unreadEmails: UnreadEmails(UnsignedInt(1708)),
-      totalThreads: TotalThreads(UnsignedInt(1847)),
-      unreadThreads: UnreadThreads(UnsignedInt(1708)),
+      totalEmails: TotalEmails(1847),
+      unreadEmails: UnreadEmails(1708),
+      totalThreads: TotalThreads(1847),
+      unreadThreads: UnreadThreads(1708),
       myRights: MailboxRights(
         true,
         true,
@@ -52,10 +51,10 @@ void main() {
       role: Role('inbox'),
       name: MailboxName('INBOX'),
       sortOrder: SortOrder(sortValue: 10),
-      totalEmails: TotalEmails(UnsignedInt(1847)),
-      unreadEmails: UnreadEmails(UnsignedInt(1708)),
-      totalThreads: TotalThreads(UnsignedInt(1847)),
-      unreadThreads: UnreadThreads(UnsignedInt(1708)),
+      totalEmails: TotalEmails(1847),
+      unreadEmails: UnreadEmails(1708),
+      totalThreads: TotalThreads(1847),
+      unreadThreads: UnreadThreads(1708),
       myRights: MailboxRights(
         true,
         true,

@@ -1,15 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/entities/core/capability_properties.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
-import 'package:jmap_dart_client/src/converters/unsigned_int_nullable_converter.dart';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'submission_capability.g.dart';
 
-@UnsignedIntNullableConverter()
 @JsonSerializable(createToJson: false)
 class SubmissionCapability extends CapabilityProperties with EquatableMixin {
-  final UnsignedInt? maxDelayedSend;
+  final int? maxDelayedSend;
   final Map<String, List<String>>? submissionExtensions;
 
   SubmissionCapability({

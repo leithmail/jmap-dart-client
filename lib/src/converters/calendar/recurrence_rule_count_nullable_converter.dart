@@ -1,5 +1,4 @@
 import 'package:jmap_dart_client/entities/calendar/properties/recurrence_rule/recurrence_rule_count.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 class RecurrenceRuleCountNullableConverter
@@ -8,8 +7,8 @@ class RecurrenceRuleCountNullableConverter
 
   @override
   RecurrenceRuleCount? fromJson(int? json) =>
-      json != null ? RecurrenceRuleCount(UnsignedInt(json)) : null;
+      json != null ? RecurrenceRuleCount(json) : null;
 
   @override
-  int? toJson(RecurrenceRuleCount? object) => object?.value.value.toInt();
+  int? toJson(RecurrenceRuleCount? object) => object?.value.toInt();
 }

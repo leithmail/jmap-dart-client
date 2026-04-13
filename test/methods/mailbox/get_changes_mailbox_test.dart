@@ -4,7 +4,6 @@ import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox_rights.dart';
 import 'package:jmap_dart_client/methods/mailbox/changes/changes_mailbox_method.dart';
@@ -20,10 +19,10 @@ void main() {
       role: Role('inbox'),
       name: MailboxName('INBOX'),
       sortOrder: SortOrder(sortValue: 10),
-      totalEmails: TotalEmails(UnsignedInt(4079)),
-      unreadEmails: UnreadEmails(UnsignedInt(10)),
-      totalThreads: TotalThreads(UnsignedInt(4079)),
-      unreadThreads: UnreadThreads(UnsignedInt(10)),
+      totalEmails: TotalEmails(4079),
+      unreadEmails: UnreadEmails(10),
+      totalThreads: TotalThreads(4079),
+      unreadThreads: UnreadThreads(10),
       myRights: MailboxRights(
         true,
         true,

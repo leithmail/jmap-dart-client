@@ -4,7 +4,6 @@ import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
@@ -30,7 +29,7 @@ void main() {
       preview:
           "This event is about to begin test TimeTuesday 29 September 2020 06:00 - 06:30 Europe/Paris (See in Calendar)Location1 thai ha (See in Map)Attendees - User A <usera@qa.open-paas.org> (Organizer) -  <userb@qa.open-paas.org> Resourcesnew directoryNotesaaaa *#",
       hasAttachment: false,
-      size: UnsignedInt(24946),
+      size: 24946,
       subject: "Notification: test",
       keywords: {EmailKeyword.seen: true},
       from: [EmailAddress(null, "noreply@qa.open-paas.org")],
@@ -44,7 +43,7 @@ void main() {
       preview:
           "This event is about to begin A - show datetime1 TimeTuesday 15 September 2020 07:03 - 07:33 Europe/Paris (See in Calendar)Location1 thai ha1 (See in Map)Attendees - User A <usera@qa.open-paas.org> (Organizer) - Thanh Loan LE <tlle@linagora.com> - User C <u",
       hasAttachment: false,
-      size: UnsignedInt(24857),
+      size: 24857,
       subject: "Notification: A - show datetime1",
       keywords: {},
       from: [EmailAddress(null, "noreply@qa.open-paas.org")],

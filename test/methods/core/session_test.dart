@@ -16,7 +16,6 @@ import 'package:jmap_dart_client/entities/core/collation_identifier.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/session.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/core/user_name.dart';
 import 'package:test/test.dart';
 
@@ -149,7 +148,7 @@ void main() {
       final Session expectedSession = Session(
         capabilities: {
           CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-            maxDelayedSend: UnsignedInt(0),
+            maxDelayedSend: 0,
             submissionExtensions: {},
           ),
           CapabilityIdentifier.jamesCalendarEvent: CalendarEventCapability(
@@ -157,19 +156,19 @@ void main() {
             counterSupport: true,
           ),
           CapabilityIdentifier.jmapCore: CoreCapability(
-            maxSizeUpload: UnsignedInt(20971520),
-            maxConcurrentUpload: UnsignedInt(4),
-            maxSizeRequest: UnsignedInt(10000000),
-            maxConcurrentRequests: UnsignedInt(4),
-            maxCallsInRequest: UnsignedInt(16),
-            maxObjectsInGet: UnsignedInt(500),
-            maxObjectsInSet: UnsignedInt(500),
+            maxSizeUpload: 20971520,
+            maxConcurrentUpload: 4,
+            maxSizeRequest: 10000000,
+            maxConcurrentRequests: 4,
+            maxCallsInRequest: 16,
+            maxObjectsInGet: 500,
+            maxObjectsInSet: 500,
             collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
           ),
           CapabilityIdentifier.jmapMail: MailCapability(
-            maxMailboxesPerEmail: UnsignedInt(10000000),
-            maxSizeMailboxName: UnsignedInt(200),
-            maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+            maxMailboxesPerEmail: 10000000,
+            maxSizeMailboxName: 200,
+            maxSizeAttachmentsPerEmail: 20000000,
             emailQuerySortOptions: [
               "receivedAt",
               "sentAt",
@@ -212,7 +211,7 @@ void main() {
             isReadOnly: false,
             accountCapabilities: {
               CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                maxDelayedSend: UnsignedInt(0),
+                maxDelayedSend: 0,
                 submissionExtensions: {},
               ),
               CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
@@ -220,19 +219,19 @@ void main() {
                 url: Uri.parse('ws://domain.com/jmap/ws'),
               ),
               CapabilityIdentifier.jmapCore: CoreCapability(
-                maxSizeUpload: UnsignedInt(20971520),
-                maxConcurrentUpload: UnsignedInt(4),
-                maxSizeRequest: UnsignedInt(10000000),
-                maxConcurrentRequests: UnsignedInt(4),
-                maxCallsInRequest: UnsignedInt(16),
-                maxObjectsInGet: UnsignedInt(500),
-                maxObjectsInSet: UnsignedInt(500),
+                maxSizeUpload: 20971520,
+                maxConcurrentUpload: 4,
+                maxSizeRequest: 10000000,
+                maxConcurrentRequests: 4,
+                maxCallsInRequest: 16,
+                maxObjectsInGet: 500,
+                maxObjectsInSet: 500,
                 collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
               ),
               CapabilityIdentifier.jmapMail: MailCapability(
-                maxMailboxesPerEmail: UnsignedInt(10000000),
-                maxSizeMailboxName: UnsignedInt(200),
-                maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+                maxMailboxesPerEmail: 10000000,
+                maxSizeMailboxName: 200,
+                maxSizeAttachmentsPerEmail: 20000000,
                 emailQuerySortOptions: [
                   "receivedAt",
                   "sentAt",
@@ -425,23 +424,23 @@ void main() {
       final Session expectedSession = Session(
         capabilities: {
           CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-            maxDelayedSend: UnsignedInt(0),
+            maxDelayedSend: 0,
             submissionExtensions: {},
           ),
           CapabilityIdentifier.jmapCore: CoreCapability(
-            maxSizeUpload: UnsignedInt(20971520),
-            maxConcurrentUpload: UnsignedInt(4),
-            maxSizeRequest: UnsignedInt(10000000),
-            maxConcurrentRequests: UnsignedInt(4),
-            maxCallsInRequest: UnsignedInt(16),
-            maxObjectsInGet: UnsignedInt(500),
-            maxObjectsInSet: UnsignedInt(500),
+            maxSizeUpload: 20971520,
+            maxConcurrentUpload: 4,
+            maxSizeRequest: 10000000,
+            maxConcurrentRequests: 4,
+            maxCallsInRequest: 16,
+            maxObjectsInGet: 500,
+            maxObjectsInSet: 500,
             collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
           ),
           CapabilityIdentifier.jmapMail: MailCapability(
-            maxMailboxesPerEmail: UnsignedInt(10000000),
-            maxSizeMailboxName: UnsignedInt(200),
-            maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+            maxMailboxesPerEmail: 10000000,
+            maxSizeMailboxName: 200,
+            maxSizeAttachmentsPerEmail: 20000000,
             emailQuerySortOptions: [
               "receivedAt",
               "sentAt",
@@ -465,23 +464,23 @@ void main() {
             isReadOnly: false,
             accountCapabilities: {
               CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                maxDelayedSend: UnsignedInt(0),
+                maxDelayedSend: 0,
                 submissionExtensions: {},
               ),
               CapabilityIdentifier.jmapCore: CoreCapability(
-                maxSizeUpload: UnsignedInt(20971520),
-                maxConcurrentUpload: UnsignedInt(4),
-                maxSizeRequest: UnsignedInt(10000000),
-                maxConcurrentRequests: UnsignedInt(4),
-                maxCallsInRequest: UnsignedInt(16),
-                maxObjectsInGet: UnsignedInt(500),
-                maxObjectsInSet: UnsignedInt(500),
+                maxSizeUpload: 20971520,
+                maxConcurrentUpload: 4,
+                maxSizeRequest: 10000000,
+                maxConcurrentRequests: 4,
+                maxCallsInRequest: 16,
+                maxObjectsInGet: 500,
+                maxObjectsInSet: 500,
                 collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
               ),
               CapabilityIdentifier.jmapMail: MailCapability(
-                maxMailboxesPerEmail: UnsignedInt(10000000),
-                maxSizeMailboxName: UnsignedInt(200),
-                maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+                maxMailboxesPerEmail: 10000000,
+                maxSizeMailboxName: 200,
+                maxSizeAttachmentsPerEmail: 20000000,
                 emailQuerySortOptions: [
                   "receivedAt",
                   "sentAt",
@@ -616,17 +615,17 @@ void main() {
         final Session expectedSession = Session(
           capabilities: {
             CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-              maxDelayedSend: UnsignedInt(0),
+              maxDelayedSend: 0,
               submissionExtensions: {},
             ),
             CapabilityIdentifier.jmapCore: CoreCapability(
-              maxSizeUpload: UnsignedInt(20971520),
-              maxConcurrentUpload: UnsignedInt(4),
-              maxSizeRequest: UnsignedInt(10000000),
-              maxConcurrentRequests: UnsignedInt(4),
-              maxCallsInRequest: UnsignedInt(16),
-              maxObjectsInGet: UnsignedInt(500),
-              maxObjectsInSet: UnsignedInt(500),
+              maxSizeUpload: 20971520,
+              maxConcurrentUpload: 4,
+              maxSizeRequest: 10000000,
+              maxConcurrentRequests: 4,
+              maxCallsInRequest: 16,
+              maxObjectsInGet: 500,
+              maxObjectsInSet: 500,
               collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
             ),
             CapabilityIdentifier.jmapMail: MailCapability(),
@@ -643,24 +642,24 @@ void main() {
               isReadOnly: false,
               accountCapabilities: {
                 CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                  maxDelayedSend: UnsignedInt(0),
+                  maxDelayedSend: 0,
                   submissionExtensions: {},
                 ),
                 CapabilityIdentifier.jmapCore: CoreCapability(
-                  maxSizeUpload: UnsignedInt(20971520),
-                  maxConcurrentUpload: UnsignedInt(4),
-                  maxSizeRequest: UnsignedInt(10000000),
-                  maxConcurrentRequests: UnsignedInt(4),
-                  maxCallsInRequest: UnsignedInt(16),
-                  maxObjectsInGet: UnsignedInt(500),
-                  maxObjectsInSet: UnsignedInt(500),
+                  maxSizeUpload: 20971520,
+                  maxConcurrentUpload: 4,
+                  maxSizeRequest: 10000000,
+                  maxConcurrentRequests: 4,
+                  maxCallsInRequest: 16,
+                  maxObjectsInGet: 500,
+                  maxObjectsInSet: 500,
                   collationAlgorithms: [
                     CollationIdentifier("i;unicode-casemap"),
                   ],
                 ),
                 CapabilityIdentifier.jmapMail: MailCapability(
-                  maxMailboxesPerEmail: UnsignedInt(10000000),
-                  maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+                  maxMailboxesPerEmail: 10000000,
+                  maxSizeAttachmentsPerEmail: 20000000,
                   emailQuerySortOptions: [
                     "receivedAt",
                     "sentAt",
@@ -849,23 +848,23 @@ void main() {
         capabilities: {
           customCapabilityIdentifier: customCapability,
           CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-            maxDelayedSend: UnsignedInt(0),
+            maxDelayedSend: 0,
             submissionExtensions: {},
           ),
           CapabilityIdentifier.jmapCore: CoreCapability(
-            maxSizeUpload: UnsignedInt(20971520),
-            maxConcurrentUpload: UnsignedInt(4),
-            maxSizeRequest: UnsignedInt(10000000),
-            maxConcurrentRequests: UnsignedInt(4),
-            maxCallsInRequest: UnsignedInt(16),
-            maxObjectsInGet: UnsignedInt(500),
-            maxObjectsInSet: UnsignedInt(500),
+            maxSizeUpload: 20971520,
+            maxConcurrentUpload: 4,
+            maxSizeRequest: 10000000,
+            maxConcurrentRequests: 4,
+            maxCallsInRequest: 16,
+            maxObjectsInGet: 500,
+            maxObjectsInSet: 500,
             collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
           ),
           CapabilityIdentifier.jmapMail: MailCapability(
-            maxMailboxesPerEmail: UnsignedInt(10000000),
-            maxSizeMailboxName: UnsignedInt(200),
-            maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+            maxMailboxesPerEmail: 10000000,
+            maxSizeMailboxName: 200,
+            maxSizeAttachmentsPerEmail: 20000000,
             emailQuerySortOptions: [
               "receivedAt",
               "sentAt",
@@ -905,7 +904,7 @@ void main() {
             accountCapabilities: {
               customCapabilityIdentifier: customCapability,
               CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                maxDelayedSend: UnsignedInt(0),
+                maxDelayedSend: 0,
                 submissionExtensions: {},
               ),
               CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
@@ -913,19 +912,19 @@ void main() {
                 url: Uri.parse('ws://domain.com/jmap/ws'),
               ),
               CapabilityIdentifier.jmapCore: CoreCapability(
-                maxSizeUpload: UnsignedInt(20971520),
-                maxConcurrentUpload: UnsignedInt(4),
-                maxSizeRequest: UnsignedInt(10000000),
-                maxConcurrentRequests: UnsignedInt(4),
-                maxCallsInRequest: UnsignedInt(16),
-                maxObjectsInGet: UnsignedInt(500),
-                maxObjectsInSet: UnsignedInt(500),
+                maxSizeUpload: 20971520,
+                maxConcurrentUpload: 4,
+                maxSizeRequest: 10000000,
+                maxConcurrentRequests: 4,
+                maxCallsInRequest: 16,
+                maxObjectsInGet: 500,
+                maxObjectsInSet: 500,
                 collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
               ),
               CapabilityIdentifier.jmapMail: MailCapability(
-                maxMailboxesPerEmail: UnsignedInt(10000000),
-                maxSizeMailboxName: UnsignedInt(200),
-                maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+                maxMailboxesPerEmail: 10000000,
+                maxSizeMailboxName: 200,
+                maxSizeAttachmentsPerEmail: 20000000,
                 emailQuerySortOptions: [
                   "receivedAt",
                   "sentAt",
@@ -1180,23 +1179,23 @@ void main() {
           TestCapability.testCapabilityIdentifier: testCapability,
           customCapabilityIdentifier: customCapability,
           CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-            maxDelayedSend: UnsignedInt(0),
+            maxDelayedSend: 0,
             submissionExtensions: {},
           ),
           CapabilityIdentifier.jmapCore: CoreCapability(
-            maxSizeUpload: UnsignedInt(20971520),
-            maxConcurrentUpload: UnsignedInt(4),
-            maxSizeRequest: UnsignedInt(10000000),
-            maxConcurrentRequests: UnsignedInt(4),
-            maxCallsInRequest: UnsignedInt(16),
-            maxObjectsInGet: UnsignedInt(500),
-            maxObjectsInSet: UnsignedInt(500),
+            maxSizeUpload: 20971520,
+            maxConcurrentUpload: 4,
+            maxSizeRequest: 10000000,
+            maxConcurrentRequests: 4,
+            maxCallsInRequest: 16,
+            maxObjectsInGet: 500,
+            maxObjectsInSet: 500,
             collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
           ),
           CapabilityIdentifier.jmapMail: MailCapability(
-            maxMailboxesPerEmail: UnsignedInt(10000000),
-            maxSizeMailboxName: UnsignedInt(200),
-            maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+            maxMailboxesPerEmail: 10000000,
+            maxSizeMailboxName: 200,
+            maxSizeAttachmentsPerEmail: 20000000,
             emailQuerySortOptions: [
               "receivedAt",
               "sentAt",
@@ -1236,7 +1235,7 @@ void main() {
             accountCapabilities: {
               customCapabilityIdentifier: customCapability,
               CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                maxDelayedSend: UnsignedInt(0),
+                maxDelayedSend: 0,
                 submissionExtensions: {},
               ),
               CapabilityIdentifier.jmapWebSocket: WebSocketCapability(
@@ -1244,19 +1243,19 @@ void main() {
                 url: Uri.parse('ws://domain.com/jmap/ws'),
               ),
               CapabilityIdentifier.jmapCore: CoreCapability(
-                maxSizeUpload: UnsignedInt(20971520),
-                maxConcurrentUpload: UnsignedInt(4),
-                maxSizeRequest: UnsignedInt(10000000),
-                maxConcurrentRequests: UnsignedInt(4),
-                maxCallsInRequest: UnsignedInt(16),
-                maxObjectsInGet: UnsignedInt(500),
-                maxObjectsInSet: UnsignedInt(500),
+                maxSizeUpload: 20971520,
+                maxConcurrentUpload: 4,
+                maxSizeRequest: 10000000,
+                maxConcurrentRequests: 4,
+                maxCallsInRequest: 16,
+                maxObjectsInGet: 500,
+                maxObjectsInSet: 500,
                 collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
               ),
               CapabilityIdentifier.jmapMail: MailCapability(
-                maxMailboxesPerEmail: UnsignedInt(10000000),
-                maxSizeMailboxName: UnsignedInt(200),
-                maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+                maxMailboxesPerEmail: 10000000,
+                maxSizeMailboxName: 200,
+                maxSizeAttachmentsPerEmail: 20000000,
                 emailQuerySortOptions: [
                   "receivedAt",
                   "sentAt",
@@ -1438,17 +1437,17 @@ void main() {
       final Session expectedSession = Session(
         capabilities: {
           CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-            maxDelayedSend: UnsignedInt(0),
+            maxDelayedSend: 0,
             submissionExtensions: {},
           ),
           CapabilityIdentifier.jmapCore: CoreCapability(
-            maxSizeUpload: UnsignedInt(20971520),
-            maxConcurrentUpload: UnsignedInt(4),
-            maxSizeRequest: UnsignedInt(10000000),
-            maxConcurrentRequests: UnsignedInt(4),
-            maxCallsInRequest: UnsignedInt(16),
-            maxObjectsInGet: UnsignedInt(500),
-            maxObjectsInSet: UnsignedInt(500),
+            maxSizeUpload: 20971520,
+            maxConcurrentUpload: 4,
+            maxSizeRequest: 10000000,
+            maxConcurrentRequests: 4,
+            maxCallsInRequest: 16,
+            maxObjectsInGet: 500,
+            maxObjectsInSet: 500,
             collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
           ),
           CapabilityIdentifier.jmapMail: MailCapability(),
@@ -1464,23 +1463,23 @@ void main() {
             isReadOnly: false,
             accountCapabilities: {
               CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                maxDelayedSend: UnsignedInt(0),
+                maxDelayedSend: 0,
                 submissionExtensions: {},
               ),
               CapabilityIdentifier.jmapCore: CoreCapability(
-                maxSizeUpload: UnsignedInt(20971520),
-                maxConcurrentUpload: UnsignedInt(4),
-                maxSizeRequest: UnsignedInt(10000000),
-                maxConcurrentRequests: UnsignedInt(4),
-                maxCallsInRequest: UnsignedInt(16),
-                maxObjectsInGet: UnsignedInt(500),
-                maxObjectsInSet: UnsignedInt(500),
+                maxSizeUpload: 20971520,
+                maxConcurrentUpload: 4,
+                maxSizeRequest: 10000000,
+                maxConcurrentRequests: 4,
+                maxCallsInRequest: 16,
+                maxObjectsInGet: 500,
+                maxObjectsInSet: 500,
                 collationAlgorithms: [CollationIdentifier("i;unicode-casemap")],
               ),
               CapabilityIdentifier.jmapMail: MailCapability(
-                maxMailboxesPerEmail: UnsignedInt(10000000),
-                maxSizeMailboxName: UnsignedInt(200),
-                maxSizeAttachmentsPerEmail: UnsignedInt(20000000),
+                maxMailboxesPerEmail: 10000000,
+                maxSizeMailboxName: 200,
+                maxSizeAttachmentsPerEmail: 20000000,
                 emailQuerySortOptions: [
                   "receivedAt",
                   "sentAt",
@@ -1661,13 +1660,13 @@ void main() {
       final Session expectedSession = Session(
         capabilities: {
           CapabilityIdentifier.jmapCore: CoreCapability(
-            maxSizeUpload: UnsignedInt(1073741824),
-            maxConcurrentUpload: UnsignedInt(5),
-            maxSizeRequest: UnsignedInt(10485760),
-            maxConcurrentRequests: UnsignedInt(5),
-            maxCallsInRequest: UnsignedInt(50),
-            maxObjectsInGet: UnsignedInt(4096),
-            maxObjectsInSet: UnsignedInt(4096),
+            maxSizeUpload: 1073741824,
+            maxConcurrentUpload: 5,
+            maxSizeRequest: 10485760,
+            maxConcurrentRequests: 5,
+            maxCallsInRequest: 50,
+            maxObjectsInGet: 4096,
+            maxObjectsInSet: 4096,
             collationAlgorithms: [],
           ),
           CapabilityIdentifier.jmapMail: MailCapability(),
@@ -1688,9 +1687,9 @@ void main() {
             accountCapabilities: {
               CapabilityIdentifier.jmapCore: CoreCapability(),
               CapabilityIdentifier.jmapMail: MailCapability(
-                maxMailboxesPerEmail: UnsignedInt(20),
-                maxKeywordsPerEmail: UnsignedInt(100),
-                maxSizeAttachmentsPerEmail: UnsignedInt(10485760),
+                maxMailboxesPerEmail: 20,
+                maxKeywordsPerEmail: 100,
+                maxSizeAttachmentsPerEmail: 10485760,
                 emailsListSortOptions: [
                   "receivedAt",
                   "sentAt",
@@ -1706,7 +1705,7 @@ void main() {
                 mayCreateTopLevelMailbox: true,
               ),
               CapabilityIdentifier.jmapSubmission: SubmissionCapability(
-                maxDelayedSend: UnsignedInt(44236800),
+                maxDelayedSend: 44236800,
                 submissionExtensions: {
                   "size": ["10240000"],
                   "dsn": [],

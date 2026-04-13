@@ -1,4 +1,3 @@
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -7,11 +6,11 @@ class TotalEmailConverter implements JsonConverter<TotalEmails?, int?> {
 
   @override
   TotalEmails? fromJson(int? json) {
-    return json != null ? TotalEmails(UnsignedInt(json)) : null;
+    return json != null ? TotalEmails(json) : null;
   }
 
   @override
   int? toJson(TotalEmails? object) {
-    return object?.value.value.toInt();
+    return object?.value.toInt();
   }
 }

@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
 import 'package:jmap_dart_client/entities/email/email_body_part.dart';
@@ -17,7 +16,6 @@ import 'package:jmap_dart_client/src/converters/id_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/individual_header_identifier_converter.dart';
 import 'package:jmap_dart_client/src/converters/message_ids_header_value_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/thread_id_nullable_converter.dart';
-import 'package:jmap_dart_client/src/converters/unsigned_int_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/utc_date_nullable_converter.dart';
 
 class Email with EquatableMixin {
@@ -26,7 +24,7 @@ class Email with EquatableMixin {
   final ThreadId? threadId;
   final Map<MailboxId, bool>? mailboxIds;
   final Map<EmailKeyword, bool>? keywords;
-  final UnsignedInt? size;
+  final int? size;
   final UTCDate? receivedAt;
   final List<EmailHeader>? headers;
   final MessageIdsHeaderValue? messageId;
@@ -112,7 +110,7 @@ class Email with EquatableMixin {
       keywords: (json['keywords'] as Map<String, dynamic>?)?.map(
         (key, value) => EmailKeywordConverter().parseEntry(key, value),
       ),
-      size: const UnsignedIntNullableConverter().fromJson(json['size'] as int?),
+      size: json['size'] as int?,
       receivedAt: const UTCDateNullableConverter().fromJson(
         json['receivedAt'] as String?,
       ),
@@ -248,7 +246,7 @@ class Email with EquatableMixin {
       'keywords',
       keywords?.map((key, value) => EmailKeywordConverter().toJson(key, value)),
     );
-    writeNotNull('size', const UnsignedIntNullableConverter().toJson(size));
+    writeNotNull('size', size);
     writeNotNull(
       'receivedAt',
       const UTCDateNullableConverter().toJson(receivedAt),

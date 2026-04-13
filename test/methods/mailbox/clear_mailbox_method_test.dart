@@ -204,7 +204,7 @@ void main() {
 
       final clearMailboxResponse = invocation.parseResponse(responseObject);
       // Assert
-      expect(clearMailboxResponse.totalDeletedMessagesCount?.value, 2);
+      expect(clearMailboxResponse.totalDeletedMessagesCount, 2);
       expect(clearMailboxResponse.notCleared, isNull);
     });
 
@@ -457,7 +457,7 @@ void main() {
       final clearMailboxResponse = invocation.parseResponse(responseObject);
 
       // Assert
-      expect(clearMailboxResponse.totalDeletedMessagesCount?.value, 1);
+      expect(clearMailboxResponse.totalDeletedMessagesCount, 1);
       expect(clearMailboxResponse.notCleared, isNull);
     });
 

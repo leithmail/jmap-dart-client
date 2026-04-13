@@ -10,9 +10,7 @@ ClearMailboxResponse _$ClearMailboxResponseFromJson(
   Map<String, dynamic> json,
 ) => ClearMailboxResponse(
   const AccountIdConverter().fromJson(json['accountId'] as String),
-  const UnsignedIntNullableConverter().fromJson(
-    (json['totalDeletedMessagesCount'] as num?)?.toInt(),
-  ),
+  (json['totalDeletedMessagesCount'] as num?)?.toInt(),
   json['notCleared'] == null
       ? null
       : SetError.fromJson(json['notCleared'] as Map<String, dynamic>),

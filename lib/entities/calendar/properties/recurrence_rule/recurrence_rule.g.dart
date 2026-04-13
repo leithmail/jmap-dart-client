@@ -6,56 +6,57 @@ part of 'recurrence_rule.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RecurrenceRule _$RecurrenceRuleFromJson(
-  Map<String, dynamic> json,
-) => RecurrenceRule(
-  frequency: $enumDecodeNullable(
-    _$RecurrenceRuleFrequencyEnumMap,
-    json['frequency'],
-  ),
-  interval: const RecurrenceRuleIntervalNullableConverter().fromJson(
-    (json['interval'] as num?)?.toInt(),
-  ),
-  rscale: const RecurrenceRuleRScaleNullableConverter().fromJson(
-    json['rscale'] as String?,
-  ),
-  skip: $enumDecodeNullable(_$RecurrenceRuleSkipEnumMap, json['skip']),
-  firstDayOfWeek: $enumDecodeNullable(
-    _$DayOfWeekEnumMap,
-    json['firstDayOfWeek'],
-  ),
-  byDay: (json['byDay'] as List<dynamic>?)
-      ?.map((e) => $enumDecode(_$DayOfWeekEnumMap, e))
-      .toList(),
-  byMonthDay: (json['byMonthDay'] as List<dynamic>?)
-      ?.map((e) => (e as num).toInt())
-      .toList(),
-  byMonth: (json['byMonth'] as List<dynamic>?)
-      ?.map((e) => e as String)
-      .toList(),
-  byYearDay: (json['byYearDay'] as List<dynamic>?)
-      ?.map((e) => (e as num).toInt())
-      .toList(),
-  byWeekNo: (json['byWeekNo'] as List<dynamic>?)
-      ?.map((e) => (e as num).toInt())
-      .toList(),
-  byHour: (json['byHour'] as List<dynamic>?)
-      ?.map((e) => const UnsignedIntConverter().fromJson((e as num).toInt()))
-      .toList(),
-  byMinute: (json['byMinute'] as List<dynamic>?)
-      ?.map((e) => const UnsignedIntConverter().fromJson((e as num).toInt()))
-      .toList(),
-  bySecond: (json['bySecond'] as List<dynamic>?)
-      ?.map((e) => const UnsignedIntConverter().fromJson((e as num).toInt()))
-      .toList(),
-  bySetPosition: (json['bySetPosition'] as List<dynamic>?)
-      ?.map((e) => (e as num).toInt())
-      .toList(),
-  count: const RecurrenceRuleCountNullableConverter().fromJson(
-    (json['count'] as num?)?.toInt(),
-  ),
-  until: const UTCDateNullableConverter().fromJson(json['until'] as String?),
-);
+RecurrenceRule _$RecurrenceRuleFromJson(Map<String, dynamic> json) =>
+    RecurrenceRule(
+      frequency: $enumDecodeNullable(
+        _$RecurrenceRuleFrequencyEnumMap,
+        json['frequency'],
+      ),
+      interval: const RecurrenceRuleIntervalNullableConverter().fromJson(
+        (json['interval'] as num?)?.toInt(),
+      ),
+      rscale: const RecurrenceRuleRScaleNullableConverter().fromJson(
+        json['rscale'] as String?,
+      ),
+      skip: $enumDecodeNullable(_$RecurrenceRuleSkipEnumMap, json['skip']),
+      firstDayOfWeek: $enumDecodeNullable(
+        _$DayOfWeekEnumMap,
+        json['firstDayOfWeek'],
+      ),
+      byDay: (json['byDay'] as List<dynamic>?)
+          ?.map((e) => $enumDecode(_$DayOfWeekEnumMap, e))
+          .toList(),
+      byMonthDay: (json['byMonthDay'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      byMonth: (json['byMonth'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      byYearDay: (json['byYearDay'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      byWeekNo: (json['byWeekNo'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      byHour: (json['byHour'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      byMinute: (json['byMinute'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      bySecond: (json['bySecond'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      bySetPosition: (json['bySetPosition'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
+      count: const RecurrenceRuleCountNullableConverter().fromJson(
+        (json['count'] as num?)?.toInt(),
+      ),
+      until: const UTCDateNullableConverter().fromJson(
+        json['until'] as String?,
+      ),
+    );
 
 Map<String, dynamic> _$RecurrenceRuleToJson(
   RecurrenceRule instance,
@@ -74,13 +75,9 @@ Map<String, dynamic> _$RecurrenceRuleToJson(
   'byMonth': ?instance.byMonth,
   'byYearDay': ?instance.byYearDay,
   'byWeekNo': ?instance.byWeekNo,
-  'byHour': ?instance.byHour?.map(const UnsignedIntConverter().toJson).toList(),
-  'byMinute': ?instance.byMinute
-      ?.map(const UnsignedIntConverter().toJson)
-      .toList(),
-  'bySecond': ?instance.bySecond
-      ?.map(const UnsignedIntConverter().toJson)
-      .toList(),
+  'byHour': ?instance.byHour,
+  'byMinute': ?instance.byMinute,
+  'bySecond': ?instance.bySecond,
   'bySetPosition': ?instance.bySetPosition,
   'count': ?const RecurrenceRuleCountNullableConverter().toJson(instance.count),
   'until': ?const UTCDateNullableConverter().toJson(instance.until),

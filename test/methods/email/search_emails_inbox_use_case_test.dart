@@ -4,7 +4,6 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
@@ -25,7 +24,7 @@ void main() {
         "DJ REPEAT:Ercot Sees 56,373 MW Summer Peak,2% Below '00 Peak DJ Ercot: New Units Will Boost Supply to 65,064 MW DJ Ercot: 21% Summer Reserve If Normal Weather DJ Ercot Summer -2: New 345-Kv Line To Relieve Congestion By Eileen O'Grady Of DOW JONES NEWSWIRE",
     hasAttachment: false,
     subject: "FYI: Ercot summer assessment",
-    size: UnsignedInt(5306),
+    size: 5306,
     from: [EmailAddress("O'Grady  Eileen", "eileen.ogrady@dowjones.com")],
     sentAt: UTCDate(DateTime.parse("2001-05-01T19:40:00Z")),
     receivedAt: UTCDate(DateTime.parse("2020-12-16T03:18:24Z")),
@@ -37,7 +36,7 @@ void main() {
         "---------------------- Forwarded by Lorna Brennan/ET&S/Enron on 12/18/2000 10:59 AM --------------------------- \"Webmaster@cera.com\" <webmaster on 12/15/2000 06:15:19 PM To: cc: Subject: STRATOSPHERIC LEVELS -- CERA Monthly Briefing Title: Into the Stratos",
     hasAttachment: false,
     subject: "STRATOSPHERIC LEVELS -- CERA Monthly Briefing",
-    size: UnsignedInt(3209),
+    size: 3209,
     sentAt: UTCDate(DateTime.parse("2000-12-18T19:04:00Z")),
     receivedAt: UTCDate(DateTime.parse("2020-12-16T05:11:41Z")),
   );
@@ -48,7 +47,7 @@ void main() {
         "---------------------- Forwarded by Lorna Brennan/ET&S/Enron on 12/18/2000 10:59 AM --------------------------- \"Webmaster@cera.com\" <webmaster on 12/15/2000 06:15:19 PM To: cc: Subject: STRATOSPHERIC LEVELS -- CERA Monthly Briefing Title: Into the Stratos",
     hasAttachment: false,
     subject: "STRATOSPHERIC LEVELS -- CERA Monthly Briefing",
-    size: UnsignedInt(3209),
+    size: 3209,
     sentAt: UTCDate(DateTime.parse("2000-12-18T19:04:00Z")),
     receivedAt: UTCDate(DateTime.parse("2020-12-16T05:11:41Z")),
   );

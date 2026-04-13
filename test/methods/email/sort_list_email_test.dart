@@ -3,7 +3,6 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
@@ -14,7 +13,6 @@ import 'package:jmap_dart_client/methods/email/argument/email_property.dart';
 import 'package:jmap_dart_client/methods/email/get_email_method.dart';
 import 'package:jmap_dart_client/methods/email/query_email_method.dart';
 import 'package:jmap_dart_client/src/extensions/string_extension.dart';
-import 'package:jmap_dart_client/src/extensions/unsigned_int_extension.dart';
 import 'package:jmap_dart_client/src/extensions/utc_date_extension.dart';
 import 'package:test/test.dart';
 
@@ -26,7 +24,7 @@ void main() {
     preview: "Dear QA,I attached image here",
     hasAttachment: false,
     subject: "A",
-    size: UnsignedInt(10001),
+    size: 10001,
     from: [EmailAddress("DatPH", "dphamhoang@linagora.com")],
     sentAt: UTCDate(DateTime.parse("2021-08-11T04:25:34Z")),
     receivedAt: UTCDate(DateTime.parse("2021-08-11T04:25:55Z")),
@@ -38,7 +36,7 @@ void main() {
         "This event is about to begin Noti check TimeFriday 23 October 2020 12:00 - 12:30 Europe/Paris (See in Calendar)Location1 thai ha (See in Map)Attendees - User A <usera@qa.open-paas.org> (Organizer) - Lê Nguyễn <userb@qa.open-paas.org> - User C <userc@qa.ope",
     hasAttachment: false,
     subject: "B",
-    size: UnsignedInt(10002),
+    size: 10002,
     from: [EmailAddress(null, "noreply@qa.open-paas.org")],
     sentAt: UTCDate(DateTime.parse("2021-08-10T09:45:01Z")),
     receivedAt: UTCDate(DateTime.parse("2021-08-11T04:00:59Z")),
@@ -50,7 +48,7 @@ void main() {
         "This event is about to begin Recurrencr TimeWednesday 26 August 2020 05:30 - 06:30 Europe/Paris (See in Calendar)Location1 thai ha (See in Map)Attendees - userb@qa.open-paas.org <userb@qa.open-paas.org> (Organizer) - User A <usera@qa.open-paas.org> Resourc",
     hasAttachment: false,
     subject: "C",
-    size: UnsignedInt(10003),
+    size: 10003,
     from: [EmailAddress(null, "noreply@qa.open-paas.org")],
     sentAt: UTCDate(DateTime.parse("2021-08-11T03:00:00Z")),
     receivedAt: UTCDate(DateTime.parse("2021-08-11T04:00:55Z")),
@@ -61,7 +59,7 @@ void main() {
     preview: "alo -- desktop signature",
     hasAttachment: true,
     subject: "D",
-    size: UnsignedInt(10004),
+    size: 10004,
     from: [EmailAddress("Haaheoo", "userc@qa.open-paas.org")],
     sentAt: UTCDate(DateTime.parse("2021-08-11T06:46:25Z")),
     receivedAt: UTCDate(DateTime.parse("2021-08-11T06:46:26Z")),
@@ -72,7 +70,7 @@ void main() {
     preview: "Dear, test inline Thanks and BRs-- desktop signature",
     hasAttachment: false,
     subject: "E",
-    size: UnsignedInt(10005),
+    size: 10005,
     from: [EmailAddress("Haaheoo", "userc@qa.open-paas.org")],
     sentAt: UTCDate(DateTime.parse("2021-08-11T04:34:13Z")),
     receivedAt: UTCDate(DateTime.parse("2021-08-11T04:34:17Z")),
@@ -411,7 +409,8 @@ void _sortEmails(List<Email> list, EmailComparator comparator) {
         comparator.isAscending,
       );
     } else if (comparator.property == EmailSortProperty.size) {
-      return email1.size.compareToSort(email2.size, comparator.isAscending);
+      return email1.size!.compareTo(email2.size!) *
+          (comparator.isAscending ? 1 : -1);
     } else {
       return 0;
     }

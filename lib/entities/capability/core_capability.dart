@@ -1,24 +1,22 @@
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/entities/core/capability_properties.dart';
 import 'package:jmap_dart_client/entities/core/collation_identifier.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/src/converters/collation_identifier_converter.dart';
-import 'package:jmap_dart_client/src/converters/unsigned_int_nullable_converter.dart';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'core_capability.g.dart';
 
 @CollationIdentifierConverter()
-@UnsignedIntNullableConverter()
 @JsonSerializable(createToJson: false)
 class CoreCapability extends CapabilityProperties with EquatableMixin {
-  final UnsignedInt? maxSizeUpload;
-  final UnsignedInt? maxConcurrentUpload;
-  final UnsignedInt? maxSizeRequest;
-  final UnsignedInt? maxConcurrentRequests;
-  final UnsignedInt? maxCallsInRequest;
-  final UnsignedInt? maxObjectsInGet;
-  final UnsignedInt? maxObjectsInSet;
+  final int? maxSizeUpload;
+  final int? maxConcurrentUpload;
+  final int? maxSizeRequest;
+  final int? maxConcurrentRequests;
+  final int? maxCallsInRequest;
+  final int? maxObjectsInGet;
+  final int? maxObjectsInSet;
   final List<CollationIdentifier>? collationAlgorithms;
 
   CoreCapability({

@@ -2,7 +2,6 @@ import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
 import 'package:jmap_dart_client/entities/identity/identity.dart';
 import 'package:jmap_dart_client/methods/identity/get_identity_method.dart';
@@ -17,13 +16,13 @@ void main() {
       id: IdentityId(Id('ac8f94d7-c548-4697-aea5-c4821ba07538')),
       email: 'somenamewithpeople@gmail.com',
       bcc: [],
-      sortOrder: UnsignedInt(10000),
+      sortOrder: 10000,
     );
 
     final expectIdentity2 = Identity(
       id: IdentityId(Id('f1e627f0-e21b-371a-9c03-ac74d06353fd')),
       email: 'somenamewithpeople@gmail.com',
-      sortOrder: UnsignedInt(1000),
+      sortOrder: 1000,
       bcc: [EmailAddress(null, "xyz@gmail.com")],
     );
 

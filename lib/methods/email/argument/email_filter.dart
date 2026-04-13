@@ -1,9 +1,7 @@
 import 'package:jmap_dart_client/api/method/argument/filter.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/src/converters/mailbox_id_nullable_converter.dart';
-import 'package:jmap_dart_client/src/converters/unsigned_int_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/utc_date_nullable_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -21,8 +19,8 @@ class EmailFilterCondition extends FilterConditionBase<_EmailFilterCondition> {
     List<MailboxId?>? inMailboxOtherThan,
     UTCDate? before,
     UTCDate? after,
-    UnsignedInt? minSize,
-    UnsignedInt? maxSize,
+    int? minSize,
+    int? maxSize,
     String? allInThreadHaveKeyword,
     String? someInThreadHaveKeyword,
     String? noneInThreadHaveKeyword,
@@ -64,7 +62,6 @@ class EmailFilterCondition extends FilterConditionBase<_EmailFilterCondition> {
 }
 
 @UTCDateNullableConverter()
-@UnsignedIntNullableConverter()
 @MailboxIdNullableConverter()
 @JsonSerializable(createFactory: false, includeIfNull: false)
 class _EmailFilterCondition extends FilterCondition {
@@ -72,8 +69,8 @@ class _EmailFilterCondition extends FilterCondition {
   final List<MailboxId?>? inMailboxOtherThan;
   final UTCDate? before;
   final UTCDate? after;
-  final UnsignedInt? minSize;
-  final UnsignedInt? maxSize;
+  final int? minSize;
+  final int? maxSize;
   final String? allInThreadHaveKeyword;
   final String? someInThreadHaveKeyword;
   final String? noneInThreadHaveKeyword;

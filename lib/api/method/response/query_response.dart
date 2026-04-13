@@ -2,15 +2,14 @@ import 'package:jmap_dart_client/api/method/method_response.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
-import 'package:jmap_dart_client/entities/core/unsigned_int.dart';
 
 abstract class QueryResponse extends ResponseRequiringAccountId {
   final State queryState;
   final bool canCalculateChanges;
-  final UnsignedInt position;
+  final int position;
   final List<Id> ids;
-  final UnsignedInt? total;
-  final UnsignedInt? limit;
+  final int? total;
+  final int? limit;
 
   QueryResponse(
     AccountId accountId,

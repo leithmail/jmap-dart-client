@@ -11,21 +11,11 @@ Quota _$QuotaFromJson(Map<String, dynamic> json) => Quota(
   $enumDecode(_$ResourceTypeEnumMap, json['resourceType']),
   $enumDecode(_$ScopeEnumMap, json['scope']),
   json['name'] as String,
-  used: const UnsignedIntNullableConverter().fromJson(
-    (json['used'] as num?)?.toInt(),
-  ),
-  hardLimit: const UnsignedIntNullableConverter().fromJson(
-    (json['hardLimit'] as num?)?.toInt(),
-  ),
-  limit: const UnsignedIntNullableConverter().fromJson(
-    (json['limit'] as num?)?.toInt(),
-  ),
-  warnLimit: const UnsignedIntNullableConverter().fromJson(
-    (json['warnLimit'] as num?)?.toInt(),
-  ),
-  softLimit: const UnsignedIntNullableConverter().fromJson(
-    (json['softLimit'] as num?)?.toInt(),
-  ),
+  used: (json['used'] as num?)?.toInt(),
+  hardLimit: (json['hardLimit'] as num?)?.toInt(),
+  limit: (json['limit'] as num?)?.toInt(),
+  warnLimit: (json['warnLimit'] as num?)?.toInt(),
+  softLimit: (json['softLimit'] as num?)?.toInt(),
   description: json['description'] as String?,
   types: (json['types'] as List<dynamic>?)
       ?.map((e) => const DataTypeConverter().fromJson(e as String))
@@ -38,17 +28,17 @@ Quota _$QuotaFromJson(Map<String, dynamic> json) => Quota(
 Map<String, dynamic> _$QuotaToJson(Quota instance) => <String, dynamic>{
   'id': const IdConverter().toJson(instance.id),
   'resourceType': _$ResourceTypeEnumMap[instance.resourceType]!,
-  'used': ?const UnsignedIntNullableConverter().toJson(instance.used),
-  'hardLimit': ?const UnsignedIntNullableConverter().toJson(instance.hardLimit),
-  'limit': ?const UnsignedIntNullableConverter().toJson(instance.limit),
+  'used': ?instance.used,
+  'hardLimit': ?instance.hardLimit,
+  'limit': ?instance.limit,
   'scope': _$ScopeEnumMap[instance.scope]!,
   'name': instance.name,
   'dataTypes': ?instance.dataTypes
       ?.map(const DataTypeConverter().toJson)
       .toList(),
   'types': ?instance.types?.map(const DataTypeConverter().toJson).toList(),
-  'warnLimit': ?const UnsignedIntNullableConverter().toJson(instance.warnLimit),
-  'softLimit': ?const UnsignedIntNullableConverter().toJson(instance.softLimit),
+  'warnLimit': ?instance.warnLimit,
+  'softLimit': ?instance.softLimit,
   'description': ?instance.description,
 };
 
