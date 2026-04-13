@@ -113,9 +113,7 @@ void main() {
                 ),
               ),
             }),
-            identityId: Val(
-              IdentityId(Id('9ba9d77b-fbc8-4495-877d-d1261c25261f')),
-            ),
+            identityId: Val(IdentityId('9ba9d77b-fbc8-4495-877d-d1261c25261f')),
           )..onSuccessUpdateEmail(
             Val({
               EmailSubmissionId(

@@ -1,45 +1,23 @@
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
-import 'package:jmap_dart_client/src/converters/identities/identity_id_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/identities/signature_nullable_converter.dart';
-
 import 'package:json_annotation/json_annotation.dart';
 
 part 'identity.g.dart';
 
-@IdentityIdNullableConverter()
 @SignatureNullableConverter()
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class Identity with EquatableMixin {
-  @JsonKey(includeIfNull: false)
   final IdentityId? id;
-
-  @JsonKey(includeIfNull: false)
   final String? description;
-
-  @JsonKey(includeIfNull: false)
   final String? name;
-
-  @JsonKey(includeIfNull: false)
   final String? email;
-
-  @JsonKey(includeIfNull: false)
   final List<EmailAddress>? bcc;
-
-  @JsonKey(includeIfNull: false)
   final List<EmailAddress>? replyTo;
-
-  @JsonKey(includeIfNull: false)
   final Signature? textSignature;
-
-  @JsonKey(includeIfNull: false)
   final Signature? htmlSignature;
-
-  @JsonKey(includeIfNull: false)
   final bool? mayDelete;
-
-  @JsonKey(includeIfNull: false)
   final int? sortOrder;
 
   Identity({
@@ -75,13 +53,9 @@ class Identity with EquatableMixin {
   ];
 }
 
-class IdentityId with EquatableMixin {
-  final Id id;
-
-  IdentityId(this.id);
-
-  @override
-  List<Object?> get props => [id];
+class IdentityId extends Id {
+  const IdentityId(String value) : super(value);
+  factory IdentityId.fromJson(String json) => IdentityId(json);
 }
 
 class Signature with EquatableMixin {

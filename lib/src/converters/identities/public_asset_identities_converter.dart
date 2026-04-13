@@ -1,5 +1,4 @@
 import 'package:jmap_dart_client/entities/identity/identity.dart';
-import 'package:jmap_dart_client/src/converters/identities/identity_id_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 class PublicAssetIdentitiesConverter
@@ -10,10 +9,7 @@ class PublicAssetIdentitiesConverter
   Map<IdentityId, bool> fromJson(Map<String, dynamic> json) {
     return Map.fromEntries(
       json.entries.map(
-        (entry) => MapEntry(
-          const IdentityIdConverter().fromJson(entry.key),
-          entry.value,
-        ),
+        (entry) => MapEntry(IdentityId.fromJson(entry.key), entry.value),
       ),
     );
   }
@@ -21,12 +17,7 @@ class PublicAssetIdentitiesConverter
   @override
   Map<String, bool> toJson(Map<IdentityId, bool> object) {
     return Map.fromEntries(
-      object.entries.map(
-        (entry) => MapEntry(
-          const IdentityIdConverter().toJson(entry.key),
-          entry.value,
-        ),
-      ),
+      object.entries.map((entry) => MapEntry(entry.key.value, entry.value)),
     );
   }
 }

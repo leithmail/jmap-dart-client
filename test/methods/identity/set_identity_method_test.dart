@@ -11,7 +11,7 @@ import '../../helpers/http_mocks.dart';
 void main() {
   group('test to json set identity method', () {
     final expectedCreated = Identity(
-      id: IdentityId(Id('bc6d7c78-672a-45e9-b0de-1dfd2699020a')),
+      id: IdentityId('bc6d7c78-672a-45e9-b0de-1dfd2699020a'),
     );
 
     test('set identity method and response parsing', () async {

@@ -7,7 +7,7 @@ part of 'identity.dart';
 // **************************************************************************
 
 Identity _$IdentityFromJson(Map<String, dynamic> json) => Identity(
-  id: const IdentityIdNullableConverter().fromJson(json['id'] as String?),
+  id: json['id'] == null ? null : IdentityId.fromJson(json['id'] as String),
   description: json['description'] as String?,
   name: json['name'] as String?,
   email: json['email'] as String?,
@@ -28,7 +28,7 @@ Identity _$IdentityFromJson(Map<String, dynamic> json) => Identity(
 );
 
 Map<String, dynamic> _$IdentityToJson(Identity instance) => <String, dynamic>{
-  'id': ?const IdentityIdNullableConverter().toJson(instance.id),
+  'id': ?instance.id,
   'description': ?instance.description,
   'name': ?instance.name,
   'email': ?instance.email,

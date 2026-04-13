@@ -15,7 +15,7 @@ import '../../helpers/http_mocks.dart';
 
 void main() {
   final accountId = AccountId('123abc');
-  final identityId = IdentityId(Id('some-identity-id'));
+  final identityId = IdentityId('some-identity-id');
   final methodCallId = MethodCallId('c0');
   final publicAsset = PublicAsset(
     id: Id('abc123'),

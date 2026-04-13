@@ -1,7 +1,6 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
 import 'package:jmap_dart_client/entities/identity/identity.dart';
 import 'package:jmap_dart_client/methods/identity/get_identity_method.dart';
@@ -12,7 +11,7 @@ import '../../helpers/http_mocks.dart';
 void main() {
   group('test to json get identity method', () {
     final expectIdentity1 = Identity(
-      id: IdentityId(Id('6f15f98e-375f-3634-aae6-903e9356c196')),
+      id: IdentityId('6f15f98e-375f-3634-aae6-903e9356c196'),
       name: 'userb@qa.open-paas.org',
       email: 'userb@qa.open-paas.org',
       bcc: [EmailAddress('user b', 'userb@qa.open-paas.org')],
@@ -22,7 +21,7 @@ void main() {
     );
 
     final expectIdentity2 = Identity(
-      id: IdentityId(Id('903e9356c196-6f15f98e-375f-3634-aae6')),
+      id: IdentityId('903e9356c196-6f15f98e-375f-3634-aae6'),
       name: 'usera@qa.open-paas.org',
       email: 'usera@qa.open-paas.org',
       textSignature: Signature('User A'),

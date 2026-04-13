@@ -12,7 +12,7 @@ import '../../helpers/http_mocks.dart';
 void main() {
   group('test to json set identity method', () {
     final expectedCreated = Identity(
-      id: IdentityId(Id('5ccf6d7b-77e8-467a-9064-9f7ccfb19e86')),
+      id: IdentityId('5ccf6d7b-77e8-467a-9064-9f7ccfb19e86'),
       sortOrder: 99999,
     );
 
@@ -109,7 +109,7 @@ void main() {
     'test increase of old default identity request and create new identity request',
     () {
       final expectedCreated = Identity(
-        id: IdentityId(Id('5ccf6d7b-77e8-467a-9064-9f7ccfb19e12')),
+        id: IdentityId('5ccf6d7b-77e8-467a-9064-9f7ccfb19e12'),
         sortOrder: 1,
       );
 
@@ -180,9 +180,7 @@ void main() {
                 ..create(
                   Val({
                     Id('xyz123'): Identity(
-                      id: IdentityId(
-                        Id("5ccf6d7b-77e8-467a-9064-9f7ccfb19e12"),
-                      ),
+                      id: IdentityId("5ccf6d7b-77e8-467a-9064-9f7ccfb19e12"),
                       name: 'User B23',
                       email: 'lol@gmail.com',
                       sortOrder: 1,
