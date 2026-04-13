@@ -21,7 +21,7 @@ abstract class QueryMethod<
   final anchorOffset = PrimitiveSlot<int>('anchorOffset');
   final calculateTotal = PrimitiveSlot<bool>('calculateTotal');
   final filter = FilterSlot<F>('filter');
-  final sort = SortSlot<Comparator>('sort');
+  final sort = SortSlot<S>('sort');
 
   @override
   get slots => [
