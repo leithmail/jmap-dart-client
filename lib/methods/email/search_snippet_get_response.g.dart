@@ -9,7 +9,7 @@ part of 'search_snippet_get_response.dart';
 SearchSnippetGetResponse _$SearchSnippetGetResponseFromJson(
   Map<String, dynamic> json,
 ) => SearchSnippetGetResponse(
-  const AccountIdConverter().fromJson(json['accountId'] as String),
+  AccountId.fromJson(json['accountId'] as String),
   (json['list'] as List<dynamic>?)
       ?.map((e) => SearchSnippet.fromJson(e as Map<String, dynamic>))
       .toList(),

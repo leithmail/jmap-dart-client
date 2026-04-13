@@ -3,7 +3,6 @@ import 'package:jmap_dart_client/entities/calendar/properties/event_id.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
-import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/calendar/event_id_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 
@@ -13,7 +12,7 @@ class JsonParsers {
   static const JsonParsers _instance = JsonParsers._();
 
   AccountId parsingAccountId(Map<String, dynamic> json) {
-    return const AccountIdConverter().fromJson(json['accountId'] as String);
+    return AccountId.fromJson(json['accountId'] as String);
   }
 
   List<Id>? parsingListId(Map<String, dynamic> json, String key) {

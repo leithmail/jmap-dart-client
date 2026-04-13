@@ -18,7 +18,7 @@ import '../../helpers/http_mocks.dart';
 void main() {
   final sessionState = State('some-session-state');
   final state = State('some-state');
-  final accountId = AccountId(Id('some-account-id'));
+  final accountId = AccountId('some-account-id');
 
   Map<String, dynamic> generateResponse({
     required List<SearchSnippet> foundSearchSnippets,
@@ -29,7 +29,7 @@ void main() {
       [
         "Email/query",
         {
-          "accountId": accountId.id.value,
+          "accountId": accountId.value,
           "ids":
               foundSearchSnippets
                   .map((searchSnippet) => searchSnippet.emailId.id.value)
@@ -41,7 +41,7 @@ void main() {
       [
         "SearchSnippet/get",
         {
-          "accountId": accountId.id.value,
+          "accountId": accountId.value,
           "notFound": notFoundEmailIds
               .map((emailId) => emailId.id.value)
               .toList(),
@@ -64,13 +64,13 @@ void main() {
     "methodCalls": [
       [
         "Email/query",
-        {"accountId": accountId.id.value, "filter": filter.toJson()},
+        {"accountId": accountId.value, "filter": filter.toJson()},
         "c0",
       ],
       [
         "SearchSnippet/get",
         {
-          "accountId": accountId.id.value,
+          "accountId": accountId.value,
           "filter": filter.toJson(),
           "#emailIds": {
             "resultOf": "c0",
@@ -197,7 +197,7 @@ void main() {
             [
               "Email/query",
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "ids": notFoundEmailIds
                     .map((emailId) => emailId.id.value)
                     .toList(),

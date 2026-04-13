@@ -79,7 +79,7 @@ void main() {
 
       final requestBuilder = RequestBuilder();
       final accountId = AccountId(
-        Id('4603645929458bf671aca134b890cbb8ac4a0d297640f7eefe9f30ea28daa0b1'),
+        '4603645929458bf671aca134b890cbb8ac4a0d297640f7eefe9f30ea28daa0b1',
       );
 
       final getIdentityMethod = GetIdentityMethod(accountId: Val(accountId))

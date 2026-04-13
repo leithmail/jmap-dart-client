@@ -14,7 +14,7 @@ import 'package:test/test.dart';
 import '../../helpers/http_mocks.dart';
 
 void main() {
-  final accountId = AccountId(Id('123abc'));
+  final accountId = AccountId('123abc');
   final identityId = IdentityId(Id('some-identity-id'));
   final methodCallId = MethodCallId('c0');
   final publicAsset = PublicAsset(
@@ -44,7 +44,7 @@ void main() {
             [
               method.methodName.value,
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "newState": 'some-state',
                 "created": {createId.value: publicAsset.toJson()},
               },
@@ -62,7 +62,7 @@ void main() {
             [
               method.methodName.value,
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "create": {createId.value: createObject.toJson()},
               },
               methodCallId.value,
@@ -106,7 +106,7 @@ void main() {
             [
               method.methodName.value,
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "oldState": 'some-old-state',
                 "newState": 'some-state',
                 "notCreated": {
@@ -130,7 +130,7 @@ void main() {
             [
               method.methodName.value,
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "create": {createId.value: createObject.toJson()},
               },
               methodCallId.value,
@@ -171,7 +171,7 @@ void main() {
             [
               method.methodName.value,
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "newState": 'some-state',
                 "destroyed": [publicAsset.id?.value],
               },
@@ -189,7 +189,7 @@ void main() {
             [
               method.methodName.value,
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "destroy": [publicAsset.id?.value],
               },
               methodCallId.value,
@@ -228,7 +228,7 @@ void main() {
             [
               method.methodName.value,
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "oldState": 'some-old-state',
                 "newState": 'some-state',
                 "notDestroyed": {
@@ -252,7 +252,7 @@ void main() {
             [
               method.methodName.value,
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "destroy": [publicAsset.id?.value],
               },
               methodCallId.value,
@@ -300,7 +300,7 @@ void main() {
             [
               method.methodName.value,
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "newState": 'some-state',
                 "updated": {publicAsset.id?.value: null},
               },
@@ -318,7 +318,7 @@ void main() {
             [
               method.methodName.value,
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "update": {publicAsset.id?.value: updateObject.toJson()},
               },
               methodCallId.value,
@@ -361,7 +361,7 @@ void main() {
             [
               method.methodName.value,
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "oldState": 'some-old-state',
                 "newState": 'some-state',
                 "notUpdated": {
@@ -385,7 +385,7 @@ void main() {
             [
               method.methodName.value,
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "update": {publicAsset.id?.value: updateObject.toJson()},
               },
               methodCallId.value,

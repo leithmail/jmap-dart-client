@@ -3,7 +3,6 @@ import 'package:jmap_dart_client/api/method/response/send_response.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/mdn/mdn.dart';
-import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 
 class MDNSendResponse extends SendResponse<MDN> {
@@ -15,7 +14,7 @@ class MDNSendResponse extends SendResponse<MDN> {
 
   factory MDNSendResponse.fromJson(Map<String, dynamic> json) {
     return MDNSendResponse(
-      const AccountIdConverter().fromJson(json['accountId'] as String),
+      AccountId.fromJson(json['accountId'] as String),
       sent: (json['sent'] as Map<String, dynamic>?)?.map(
         (key, value) => MapEntry(
           const IdConverter().fromJson(key),

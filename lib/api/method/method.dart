@@ -6,7 +6,6 @@ import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
-import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:meta/meta.dart';
 
 abstract class Method<R extends MethodResponse, Q extends ResultReference> {
@@ -44,10 +43,7 @@ abstract class MethodWithAccountId<
   Q extends ResultReference
 >
     extends Method<R, Q> {
-  final _accountId = ArgumentSlot<AccountId>(
-    'accountId',
-    (v) => AccountIdConverter().toJson(v),
-  );
+  final _accountId = ArgumentSlot<AccountId>('accountId', (v) => v.toJson());
 
   MethodWithAccountId({required Argument<AccountId> accountId}) {
     _accountId(accountId);

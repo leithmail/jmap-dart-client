@@ -1,13 +1,12 @@
 import 'package:jmap_dart_client/api/method/response/get_response.dart';
+import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/thread/thread.dart';
-import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/state_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'get_thread_response.g.dart';
 
-@AccountIdConverter()
 @StateConverter()
 @IdConverter()
 @JsonSerializable(createToJson: false)

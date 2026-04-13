@@ -9,7 +9,7 @@ part of 'get_calendar_event_attendance_response.dart';
 GetCalendarEventAttendanceResponse _$GetCalendarEventAttendanceResponseFromJson(
   Map<String, dynamic> json,
 ) => GetCalendarEventAttendanceResponse(
-  const AccountIdConverter().fromJson(json['accountId'] as String),
+  AccountId.fromJson(json['accountId'] as String),
   (json['list'] as List<dynamic>)
       .map((e) => CalendarEventAttendance.fromJson(e as Map<String, dynamic>))
       .toList(),

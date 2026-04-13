@@ -1,7 +1,6 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/vacation/vacation.dart';
 import 'package:jmap_dart_client/entities/vacation/vacation_id.dart';
@@ -92,7 +91,7 @@ void main() {
       );
 
       final accountId = AccountId(
-        Id('0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555'),
+        '0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555',
       );
 
       final setVacationMethod = SetVacationMethod(accountId: Val(accountId))

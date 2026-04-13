@@ -4,7 +4,6 @@ import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
-import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/state_nullable_converter.dart';
 
@@ -33,7 +32,7 @@ class SetEmailResponse extends SetResponse<Email> {
 
   factory SetEmailResponse.fromJson(Map<String, dynamic> json) {
     return SetEmailResponse(
-      const AccountIdConverter().fromJson(json['accountId'] as String),
+      AccountId.fromJson(json['accountId'] as String),
       newState: const StateNullableConverter().fromJson(
         json['newState'] as String?,
       ),

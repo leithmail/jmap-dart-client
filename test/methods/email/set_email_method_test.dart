@@ -100,9 +100,7 @@ void main() {
           SetEmailMethod(
             accountId: Val(
               AccountId(
-                Id(
-                  '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
-                ),
+                '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
               ),
             ),
           )..create(
@@ -223,9 +221,7 @@ void main() {
           SetEmailMethod(
             accountId: Val(
               AccountId(
-                Id(
-                  '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
-                ),
+                '3ce33c876a726662c627746eb9537a1d13c2338193ef27bd051a3ce5c0fe5b12',
               ),
             ),
           )..create(
@@ -345,9 +341,7 @@ void main() {
           SetEmailMethod(
             accountId: Val(
               AccountId(
-                Id(
-                  '587a9c5a4a9c0a4d36243b7417700d5383cbbfa25f0909ab7f6f4baaa5bf4e9b',
-                ),
+                '587a9c5a4a9c0a4d36243b7417700d5383cbbfa25f0909ab7f6f4baaa5bf4e9b',
               ),
             ),
           )..create(

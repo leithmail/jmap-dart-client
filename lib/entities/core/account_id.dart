@@ -1,22 +1,7 @@
-import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/src/converters/id_converter.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'account_id.g.dart';
+class AccountId extends Id {
+  const AccountId(String value) : super(value);
 
-@IdConverter()
-@JsonSerializable()
-class AccountId with EquatableMixin {
-  final Id id;
-
-  AccountId(this.id);
-
-  factory AccountId.fromJson(Map<String, dynamic> json) =>
-      _$AccountIdFromJson(json);
-
-  Map<String, dynamic> toJson() => _$AccountIdToJson(this);
-
-  @override
-  List<Object?> get props => [id];
+  factory AccountId.fromJson(String json) => AccountId(json);
 }

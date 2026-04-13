@@ -12,7 +12,7 @@ import 'package:test/test.dart';
 import '../../helpers/http_mocks.dart';
 
 void main() {
-  final accountId = AccountId(Id('123abc'));
+  final accountId = AccountId('123abc');
   final successBlobId = Id('abc123');
   final failureBlobId = Id('def456');
   final notFoundBlobId = Id('ghi789');
@@ -30,7 +30,7 @@ void main() {
       [
         method.methodName.value,
         {
-          "accountId": accountId.id.value,
+          "accountId": accountId.value,
           "blobIds": blobIds.map((id) => id.value).toList(),
         },
         methodCallId.value,
@@ -44,7 +44,7 @@ void main() {
       [
         method.methodName.value,
         {
-          "accountId": accountId.id.value,
+          "accountId": accountId.value,
           "rejected": [successBlobId.value],
           "notRejected": {failureBlobId.value: setErrorFixture},
           "notFound": [notFoundBlobId.value],

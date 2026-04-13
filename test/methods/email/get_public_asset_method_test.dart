@@ -11,7 +11,7 @@ import 'package:test/test.dart';
 import '../../helpers/http_mocks.dart';
 
 void main() {
-  final accountId = AccountId(Id('123abc'));
+  final accountId = AccountId('123abc');
   final identityId = IdentityId(Id('some-identity-id'));
   final methodCallId = MethodCallId('c0');
   final publicAsset = PublicAsset(
@@ -39,7 +39,7 @@ void main() {
               [
                 getPublicAssetMethod.methodName.value,
                 {
-                  "accountId": accountId.id.value,
+                  "accountId": accountId.value,
                   "state": 'some-state',
                   "list": [publicAsset.toJson()],
                   "notFound": [],
@@ -58,7 +58,7 @@ void main() {
               [
                 getPublicAssetMethod.methodName.value,
                 {
-                  "accountId": accountId.id.value,
+                  "accountId": accountId.value,
                   "ids": [publicAsset.id?.value],
                 },
                 methodCallId.value,
@@ -100,7 +100,7 @@ void main() {
               [
                 getPublicAssetMethod.methodName.value,
                 {
-                  "accountId": accountId.id.value,
+                  "accountId": accountId.value,
                   "state": 'some-state',
                   "list": [],
                   "notFound": [publicAsset.id?.value],
@@ -119,7 +119,7 @@ void main() {
               [
                 getPublicAssetMethod.methodName.value,
                 {
-                  "accountId": accountId.id.value,
+                  "accountId": accountId.value,
                   "ids": [publicAsset.id?.value],
                 },
                 methodCallId.value,

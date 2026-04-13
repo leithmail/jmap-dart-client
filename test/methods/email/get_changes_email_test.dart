@@ -201,7 +201,7 @@ void main() {
 
       final jmapRequestBuilder = RequestBuilder();
       final accountId = AccountId(
-        Id('93c56f4408cff66f0a929aea8e3940e753c3275e5622582ae3010e7277b7696c'),
+        '93c56f4408cff66f0a929aea8e3940e753c3275e5622582ae3010e7277b7696c',
       );
       final state = State('57c15230-2588-11ec-a759-2fef1ee78d9e');
 

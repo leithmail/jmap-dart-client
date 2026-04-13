@@ -9,7 +9,7 @@ part of 'clear_mailbox_response.dart';
 ClearMailboxResponse _$ClearMailboxResponseFromJson(
   Map<String, dynamic> json,
 ) => ClearMailboxResponse(
-  const AccountIdConverter().fromJson(json['accountId'] as String),
+  AccountId.fromJson(json['accountId'] as String),
   (json['totalDeletedMessagesCount'] as num?)?.toInt(),
   json['notCleared'] == null
       ? null

@@ -9,7 +9,7 @@ part of 'query_mailbox_response.dart';
 QueryMailboxResponse _$QueryMailboxResponseFromJson(
   Map<String, dynamic> json,
 ) => QueryMailboxResponse(
-  const AccountIdConverter().fromJson(json['accountId'] as String),
+  AccountId.fromJson(json['accountId'] as String),
   const StateConverter().fromJson(json['queryState'] as String),
   json['canCalculateChanges'] as bool,
   (json['position'] as num).toInt(),

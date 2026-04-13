@@ -12,7 +12,7 @@ import 'package:test/test.dart';
 import '../../helpers/http_mocks.dart';
 
 void main() {
-  final accountId = AccountId(Id('123abc'));
+  final accountId = AccountId('123abc');
   final foundId = Id('found-thread-id');
   final emailIdFound = EmailId(Id('email-id-found'));
   final foundThread = Thread(id: ThreadId(foundId), emailIds: [emailIdFound]);
@@ -37,7 +37,7 @@ void main() {
           [
             getThreadMethod.methodName.value,
             {
-              "accountId": accountId.id.value,
+              "accountId": accountId.value,
               "ids": {foundId.value, notFoundId.value}.toList(),
             },
             methodCallId.value,
@@ -50,7 +50,7 @@ void main() {
           [
             getThreadMethod.methodName.value,
             {
-              "accountId": accountId.id.value,
+              "accountId": accountId.value,
               "state": "state",
               "list": [foundThread.toJson()],
               "notFound": [notFoundId.value],

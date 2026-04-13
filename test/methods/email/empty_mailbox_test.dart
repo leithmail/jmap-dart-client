@@ -98,7 +98,7 @@ void main() {
 
       final jmapRequestBuilder = RequestBuilder();
       final accountId = AccountId(
-        Id('871ae8d53c475bffcd0530c2c673a18862a6ab967b1ac1f78c581fd150eb4120'),
+        '871ae8d53c475bffcd0530c2c673a18862a6ab967b1ac1f78c581fd150eb4120',
       );
 
       final queryEmailMethod = QueryEmailMethod(accountId: Val(accountId))

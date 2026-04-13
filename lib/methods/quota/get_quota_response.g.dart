@@ -8,7 +8,7 @@ part of 'get_quota_response.dart';
 
 GetQuotaResponse _$GetQuotaResponseFromJson(Map<String, dynamic> json) =>
     GetQuotaResponse(
-      const AccountIdConverter().fromJson(json['accountId'] as String),
+      AccountId.fromJson(json['accountId'] as String),
       const StateConverter().fromJson(json['state'] as String),
       (json['list'] as List<dynamic>)
           .map((e) => Quota.fromJson(e as Map<String, dynamic>))

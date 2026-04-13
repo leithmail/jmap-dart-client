@@ -8,7 +8,7 @@ part of 'get_email_response.dart';
 
 GetEmailResponse _$GetEmailResponseFromJson(Map<String, dynamic> json) =>
     GetEmailResponse(
-      const AccountIdConverter().fromJson(json['accountId'] as String),
+      AccountId.fromJson(json['accountId'] as String),
       const StateConverter().fromJson(json['state'] as String),
       (json['list'] as List<dynamic>)
           .map(

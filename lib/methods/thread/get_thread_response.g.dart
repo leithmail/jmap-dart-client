@@ -8,7 +8,7 @@ part of 'get_thread_response.dart';
 
 GetThreadResponse _$GetThreadResponseFromJson(Map<String, dynamic> json) =>
     GetThreadResponse(
-      const AccountIdConverter().fromJson(json['accountId'] as String),
+      AccountId.fromJson(json['accountId'] as String),
       const StateConverter().fromJson(json['state'] as String),
       (json['list'] as List<dynamic>)
           .map((e) => Thread.fromJson(e as Map<String, dynamic>))

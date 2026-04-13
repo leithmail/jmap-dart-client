@@ -16,14 +16,14 @@ import '../../helpers/http_mocks.dart';
 
 void main() {
   final methodCallId = MethodCallId('c0');
-  final bobAccountId = AccountId(Id('bob'));
+  final bobAccountId = AccountId('bob');
   final bobTrashId = MailboxId(Id('trash-bob'));
   final sessionState = State('newState');
 
   group('clear mailbox method test:', () {
     test('should fail when wrong account id', () async {
       // Arrange
-      final unknownAccountId = AccountId(Id('unknownAccountId'));
+      final unknownAccountId = AccountId('unknownAccountId');
       final clearMailboxMethod = ClearMailboxMethod(
         accountId: Val(unknownAccountId),
         mailboxId: Val(bobTrashId),
@@ -49,7 +49,7 @@ void main() {
             [
               clearMailboxMethod.methodName.value,
               {
-                "accountId": unknownAccountId.id.value,
+                "accountId": unknownAccountId.value,
                 "mailboxId": bobTrashId.id.value,
               },
               methodCallId.value,
@@ -117,7 +117,7 @@ void main() {
             [
               clearMailboxMethod.methodName.value,
               {
-                "accountId": bobAccountId.id.value,
+                "accountId": bobAccountId.value,
                 "mailboxId": bobTrashId.id.value,
               },
               methodCallId.value,
@@ -164,10 +164,7 @@ void main() {
           "methodResponses": [
             [
               "Mailbox/clear",
-              {
-                "accountId": bobAccountId.id.value,
-                "totalDeletedMessagesCount": 2,
-              },
+              {"accountId": bobAccountId.value, "totalDeletedMessagesCount": 2},
               methodCallId.value,
             ],
           ],
@@ -182,7 +179,7 @@ void main() {
             [
               clearMailboxMethod.methodName.value,
               {
-                "accountId": bobAccountId.id.value,
+                "accountId": bobAccountId.value,
                 "mailboxId": bobTrashId.id.value,
               },
               methodCallId.value,
@@ -222,7 +219,7 @@ void main() {
             [
               "Mailbox/clear",
               {
-                "accountId": bobAccountId.id.value,
+                "accountId": bobAccountId.value,
                 "notCleared": {
                   "type": "invalidArguments",
                   "description": "invalidMailboxId",
@@ -242,7 +239,7 @@ void main() {
             [
               clearMailboxMethod.methodName.value,
               {
-                "accountId": bobAccountId.id.value,
+                "accountId": bobAccountId.value,
                 "mailboxId": invalidMailboxId.id.value,
               },
               methodCallId.value,
@@ -283,7 +280,7 @@ void main() {
             [
               "Mailbox/clear",
               {
-                "accountId": bobAccountId.id.value,
+                "accountId": bobAccountId.value,
                 "notCleared": {
                   "type": "notFound",
                   "description":
@@ -304,7 +301,7 @@ void main() {
             [
               clearMailboxMethod.methodName.value,
               {
-                "accountId": bobAccountId.id.value,
+                "accountId": bobAccountId.value,
                 "mailboxId": notFoundMailboxId.id.value,
               },
               methodCallId.value,
@@ -349,7 +346,7 @@ void main() {
             [
               "Mailbox/clear",
               {
-                "accountId": bobAccountId.id.value,
+                "accountId": bobAccountId.value,
                 "notCleared": {
                   "type": "serverFail",
                   "description":
@@ -370,7 +367,7 @@ void main() {
             [
               clearMailboxMethod.methodName.value,
               {
-                "accountId": bobAccountId.id.value,
+                "accountId": bobAccountId.value,
                 "mailboxId": bobTrashId.id.value,
               },
               methodCallId.value,
@@ -415,10 +412,7 @@ void main() {
           "methodResponses": [
             [
               "Mailbox/clear",
-              {
-                "accountId": bobAccountId.id.value,
-                "totalDeletedMessagesCount": 1,
-              },
+              {"accountId": bobAccountId.value, "totalDeletedMessagesCount": 1},
               methodCallId.value,
             ],
           ],
@@ -433,7 +427,7 @@ void main() {
             [
               clearMailboxMethod.methodName.value,
               {
-                "accountId": bobAccountId.id.value,
+                "accountId": bobAccountId.value,
                 "mailboxId": teamMailboxId.id.value,
               },
               methodCallId.value,
@@ -481,7 +475,7 @@ void main() {
             [
               "Mailbox/clear",
               {
-                "accountId": bobAccountId.id.value,
+                "accountId": bobAccountId.value,
                 "notCleared": {
                   "type": "notFound",
                   "description": "${teamMailboxId.id.value} can not be found",
@@ -501,7 +495,7 @@ void main() {
             [
               clearMailboxMethod.methodName.value,
               {
-                "accountId": bobAccountId.id.value,
+                "accountId": bobAccountId.value,
                 "mailboxId": teamMailboxId.id.value,
               },
               methodCallId.value,

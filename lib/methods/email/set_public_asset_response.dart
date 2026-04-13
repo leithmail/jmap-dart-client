@@ -1,7 +1,7 @@
 import 'package:jmap_dart_client/api/errors/set_error.dart';
 import 'package:jmap_dart_client/api/method/response/set_response.dart';
+import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/email/public_asset.dart';
-import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 import 'package:jmap_dart_client/src/converters/state_nullable_converter.dart';
 
@@ -19,7 +19,7 @@ class SetPublicAssetResponse extends SetResponse<PublicAsset> {
 
   factory SetPublicAssetResponse.fromJson(Map<String, dynamic> json) {
     return SetPublicAssetResponse(
-      const AccountIdConverter().fromJson(json['accountId'] as String),
+      AccountId.fromJson(json['accountId'] as String),
       newState: const StateNullableConverter().fromJson(
         json['newState'] as String?,
       ),

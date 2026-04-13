@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/push/type_state.dart';
 
 class StateChange with EquatableMixin {
@@ -40,7 +39,7 @@ class _TypeStateConverter {
   }
 
   MapEntry<AccountId, TypeState> convert(String key, dynamic value) {
-    final identifier = AccountId(Id(key));
+    final identifier = AccountId(key);
     final converter = _converters[identifier];
     if (converter != null) {
       return MapEntry(identifier, converter.call(value));

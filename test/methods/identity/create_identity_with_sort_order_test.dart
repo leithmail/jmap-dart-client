@@ -70,9 +70,7 @@ void main() {
           SetIdentityMethod(
             accountId: Val(
               AccountId(
-                Id(
-                  '4603645929458bf671aca134b890cbb8ac4a0d297640fsdefe9230ea28daa0b1',
-                ),
+                '4603645929458bf671aca134b890cbb8ac4a0d297640fsdefe9230ea28daa0b1',
               ),
             ),
           )..create(
@@ -175,9 +173,7 @@ void main() {
               SetIdentityMethod(
                   accountId: Val(
                     AccountId(
-                      Id(
-                        '4603645929458bf671aca134b890cbb8ac4a0d297640fsdefe9230ea28daa0b1',
-                      ),
+                      '4603645929458bf671aca134b890cbb8ac4a0d297640fsdefe9230ea28daa0b1',
                     ),
                   ),
                 )

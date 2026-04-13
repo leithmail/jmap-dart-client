@@ -19,7 +19,7 @@ void main() {
         final accountId = jsonParsers.parsingAccountId(json);
 
         // assert
-        expect(accountId, AccountId(Id(rawAccountId)));
+        expect(accountId, AccountId(rawAccountId));
       });
 
       test(

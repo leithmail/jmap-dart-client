@@ -1,18 +1,16 @@
-import 'package:equatable/equatable.dart';
+class Id {
+  final String _value;
 
-class Id with EquatableMixin {
-  final RegExp _idCharacterConstraint = RegExp(r'^[a-zA-Z0-9]+[a-zA-Z0-9-_]*$');
-  final String value;
-
-  Id(this.value) {
-    if (value.isEmpty || value.length >= 255) {
-      throw ArgumentError('invalid length');
-    }
-    if (!_idCharacterConstraint.hasMatch(value)) {
-      throw ArgumentError('invalid characters');
-    }
-  }
+  const Id(String value) : _value = value;
+  String get value => _value;
+  String toJson() => _value;
+  String toString() => _value;
 
   @override
-  List<Object?> get props => [value];
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Id && runtimeType == other.runtimeType && _value == other._value;
+
+  @override
+  int get hashCode => _value.hashCode;
 }

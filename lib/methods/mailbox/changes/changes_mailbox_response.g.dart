@@ -9,7 +9,7 @@ part of 'changes_mailbox_response.dart';
 ChangesMailboxResponse _$ChangesMailboxResponseFromJson(
   Map<String, dynamic> json,
 ) => ChangesMailboxResponse(
-  const AccountIdConverter().fromJson(json['accountId'] as String),
+  AccountId.fromJson(json['accountId'] as String),
   const StateConverter().fromJson(json['oldState'] as String),
   const StateConverter().fromJson(json['newState'] as String),
   json['hasMoreChanges'] as bool,

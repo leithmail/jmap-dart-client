@@ -2,7 +2,6 @@ import 'package:jmap_dart_client/api/method/response/parse_response.dart';
 import 'package:jmap_dart_client/entities/calendar/calendar_event.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/id_converter.dart';
 
 class CalendarEventParseResponse extends ParseResponse<List<CalendarEvent>> {
@@ -20,7 +19,7 @@ class CalendarEventParseResponse extends ParseResponse<List<CalendarEvent>> {
 
   factory CalendarEventParseResponse.fromJson(Map<String, dynamic> json) {
     return CalendarEventParseResponse(
-      const AccountIdConverter().fromJson(json['accountId'] as String),
+      AccountId.fromJson(json['accountId'] as String),
       parsed: (json['parsed'] as Map<String, dynamic>?)?.map(
         (key, value) => MapEntry(
           const IdConverter().fromJson(key),

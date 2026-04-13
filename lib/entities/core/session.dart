@@ -12,10 +12,8 @@ import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/capability_properties.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:jmap_dart_client/entities/core/user_name.dart';
-import 'package:jmap_dart_client/src/converters/account_id_converter.dart';
 import 'package:jmap_dart_client/src/converters/account_name_converter.dart';
 import 'package:jmap_dart_client/src/converters/state_converter.dart';
 import 'package:jmap_dart_client/src/converters/user_name_converter.dart';
@@ -67,7 +65,7 @@ class Session with EquatableMixin {
       primaryAccounts: (json['primaryAccounts'] as Map<String, dynamic>).map(
         (key, value) => MapEntry(
           CapabilityIdentifier(Uri.parse(key)),
-          const AccountIdConverter().fromJson(value),
+          AccountId.fromJson(value),
         ),
       ),
       username: const UserNameConverter().fromJson(json['username'] as String),
@@ -144,7 +142,7 @@ class _AccountConverter {
     dynamic value,
     _CapabilitiesConverter converter,
   ) {
-    final accountId = AccountId(Id(key));
+    final accountId = AccountId(key);
     final account = accountFromJson(value, converter);
     return MapEntry(accountId, account);
   }

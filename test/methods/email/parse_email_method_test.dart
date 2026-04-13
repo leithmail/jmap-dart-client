@@ -40,7 +40,7 @@ void main() {
     );
 
     final accountId = AccountId(
-      Id('29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6'),
+      '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
     );
     final blobId1 = Id('0f9f65ab-dc7b-4146-850f-6e4881093965');
     final blobId2 = Id('1f9f65ab-dc7b-4146-850f-6e4881093965');
@@ -56,7 +56,7 @@ void main() {
             [
               "Email/parse",
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "parsed": {
                   blobId1.value: {
                     "preview": "Preview email 1",
@@ -81,7 +81,7 @@ void main() {
             [
               "Email/parse",
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "blobIds": [blobId1.value],
               },
               "c0",
@@ -114,7 +114,7 @@ void main() {
             [
               "Email/parse",
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "parsed": {
                   blobId1.value: {
                     "preview": "Preview email 1",
@@ -150,7 +150,7 @@ void main() {
             [
               "Email/parse",
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "blobIds": [blobId1.value, blobId2.value],
               },
               "c0",
@@ -191,7 +191,7 @@ void main() {
               [
                 "Email/parse",
                 {
-                  "accountId": accountId.id.value,
+                  "accountId": accountId.value,
                   "notFound": [blobIdNotFound.value],
                 },
                 "c0",
@@ -204,7 +204,7 @@ void main() {
               [
                 "Email/parse",
                 {
-                  "accountId": accountId.id.value,
+                  "accountId": accountId.value,
                   "blobIds": [blobIdNotFound.value],
                 },
                 "c0",
@@ -238,7 +238,7 @@ void main() {
             [
               "Email/parse",
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "notParsable": [blobIdNotParsable.value],
               },
               "c0",
@@ -251,7 +251,7 @@ void main() {
             [
               "Email/parse",
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "blobIds": [blobIdNotParsable.value],
               },
               "c0",
@@ -285,7 +285,7 @@ void main() {
             [
               "Email/parse",
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "parsed": {
                   blobId3.value: {
                     "id": "182312d0-fa5c-11eb-b647-2fef1ee78d9e",
@@ -304,7 +304,7 @@ void main() {
             [
               "Email/parse",
               {
-                "accountId": accountId.id.value,
+                "accountId": accountId.value,
                 "blobIds": [blobId3.value],
                 "properties": ["id", "preview", "subject"],
               },

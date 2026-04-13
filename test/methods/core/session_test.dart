@@ -13,7 +13,6 @@ import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/collation_identifier.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/session.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:jmap_dart_client/entities/core/user_name.dart';
@@ -202,9 +201,7 @@ void main() {
         },
         accounts: {
           AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ): Account(
             name: AccountName('bob@domain.tld'),
             isPersonal: true,
@@ -259,58 +256,38 @@ void main() {
         },
         primaryAccounts: {
           CapabilityIdentifier.jmapSubmission: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jamesCalendarEvent: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapWebSocket: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapWebSocketTicket: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapCore: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapMail: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier(
             Uri.parse('urn:apache:james:params:jmap:mail:quota'),
           ): AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier(
             Uri.parse('urn:apache:james:params:jmap:mail:shares'),
           ): AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapVacationResponse: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapMdn: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
         },
         username: UserName('bob@domain.tld'),
@@ -455,9 +432,7 @@ void main() {
         },
         accounts: {
           AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ): Account(
             name: AccountName('bob@domain.tld'),
             isPersonal: true,
@@ -497,24 +472,16 @@ void main() {
         },
         primaryAccounts: {
           CapabilityIdentifier.jmapSubmission: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapCore: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapMail: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapVacationResponse: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
         },
         username: UserName('bob@domain.tld'),
@@ -633,9 +600,7 @@ void main() {
           },
           accounts: {
             AccountId(
-              Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-              ),
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
             ): Account(
               name: AccountName('bob@domain.tld'),
               isPersonal: true,
@@ -676,24 +641,16 @@ void main() {
           },
           primaryAccounts: {
             CapabilityIdentifier.jmapSubmission: AccountId(
-              Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-              ),
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
             ),
             CapabilityIdentifier.jmapCore: AccountId(
-              Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-              ),
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
             ),
             CapabilityIdentifier.jmapMail: AccountId(
-              Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-              ),
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
             ),
             CapabilityIdentifier.jmapVacationResponse: AccountId(
-              Id(
-                '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-              ),
+              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
             ),
           },
           username: UserName('bob@domain.tld'),
@@ -894,9 +851,7 @@ void main() {
         },
         accounts: {
           AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ): Account(
             name: AccountName('bob@domain.tld'),
             isPersonal: true,
@@ -952,53 +907,35 @@ void main() {
         },
         primaryAccounts: {
           customCapabilityIdentifier: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapSubmission: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapWebSocket: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapCore: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapMail: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier(
             Uri.parse('urn:apache:james:params:jmap:mail:quota'),
           ): AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier(
             Uri.parse('urn:apache:james:params:jmap:mail:shares'),
           ): AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapVacationResponse: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapMdn: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
         },
         username: UserName('bob@domain.tld'),
@@ -1225,9 +1162,7 @@ void main() {
         },
         accounts: {
           AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ): Account(
             name: AccountName('bob@domain.tld'),
             isPersonal: true,
@@ -1283,53 +1218,35 @@ void main() {
         },
         primaryAccounts: {
           customCapabilityIdentifier: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapSubmission: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapWebSocket: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapCore: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapMail: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier(
             Uri.parse('urn:apache:james:params:jmap:mail:quota'),
           ): AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier(
             Uri.parse('urn:apache:james:params:jmap:mail:shares'),
           ): AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapVacationResponse: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapMdn: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
         },
         username: UserName('bob@domain.tld'),
@@ -1454,9 +1371,7 @@ void main() {
         },
         accounts: {
           AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ): Account(
             name: AccountName('bob@domain.tld'),
             isPersonal: true,
@@ -1495,19 +1410,13 @@ void main() {
         },
         primaryAccounts: {
           CapabilityIdentifier.jmapSubmission: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapCore: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapMail: AccountId(
-            Id(
-              '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-            ),
+            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
         },
         username: UserName('bob@domain.tld'),
@@ -1680,7 +1589,7 @@ void main() {
           ),
         },
         accounts: {
-          AccountId(Id('example')): Account(
+          AccountId('example'): Account(
             name: AccountName('example'),
             isPersonal: true,
             isReadOnly: false,
@@ -1765,28 +1674,28 @@ void main() {
           ),
         },
         primaryAccounts: {
-          CapabilityIdentifier.jmapMail: AccountId(Id('example')),
-          CapabilityIdentifier.jmapSubmission: AccountId(Id('example')),
+          CapabilityIdentifier.jmapMail: AccountId('example'),
+          CapabilityIdentifier.jmapSubmission: AccountId('example'),
           CapabilityIdentifier(
             Uri.parse('https://cyrusimap.org/ns/jmap/contacts'),
           ): AccountId(
-            Id('example'),
+            'example',
           ),
           CapabilityIdentifier(
             Uri.parse('https://cyrusimap.org/ns/jmap/calendars'),
           ): AccountId(
-            Id('example'),
+            'example',
           ),
           CapabilityIdentifier(
             Uri.parse('https://cyrusimap.org/ns/jmap/backup'),
           ): AccountId(
-            Id('example'),
+            'example',
           ),
-          CapabilityIdentifier.jmapVacationResponse: AccountId(Id('example')),
+          CapabilityIdentifier.jmapVacationResponse: AccountId('example'),
           CapabilityIdentifier(
             Uri.parse('https://cyrusimap.org/ns/jmap/sieve'),
           ): AccountId(
-            Id('example'),
+            'example',
           ),
         },
         username: UserName('example'),

@@ -8,7 +8,7 @@ part of 'get_mailbox_response.dart';
 
 GetMailboxResponse _$GetMailboxResponseFromJson(Map<String, dynamic> json) =>
     GetMailboxResponse(
-      const AccountIdConverter().fromJson(json['accountId'] as String),
+      AccountId.fromJson(json['accountId'] as String),
       const StateConverter().fromJson(json['state'] as String),
       (json['list'] as List<dynamic>)
           .map((e) => Mailbox.fromJson(e as Map<String, dynamic>))

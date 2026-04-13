@@ -8,7 +8,7 @@ part of 'query_email_response.dart';
 
 QueryEmailResponse _$QueryEmailResponseFromJson(Map<String, dynamic> json) =>
     QueryEmailResponse(
-      const AccountIdConverter().fromJson(json['accountId'] as String),
+      AccountId.fromJson(json['accountId'] as String),
       const StateConverter().fromJson(json['queryState'] as String),
       json['canCalculateChanges'] as bool,
       (json['position'] as num).toInt(),

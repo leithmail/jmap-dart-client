@@ -8,7 +8,7 @@ part of 'get_vacation_response.dart';
 
 GetVacationResponse _$GetVacationResponseFromJson(Map<String, dynamic> json) =>
     GetVacationResponse(
-      const AccountIdConverter().fromJson(json['accountId'] as String),
+      AccountId.fromJson(json['accountId'] as String),
       const StateConverter().fromJson(json['state'] as String),
       (json['list'] as List<dynamic>)
           .map((e) => Vacation.fromJson(e as Map<String, dynamic>))

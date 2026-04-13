@@ -9,7 +9,7 @@ part of 'get_public_asset_response.dart';
 GetPublicAssetResponse _$GetPublicAssetResponseFromJson(
   Map<String, dynamic> json,
 ) => GetPublicAssetResponse(
-  const AccountIdConverter().fromJson(json['accountId'] as String),
+  AccountId.fromJson(json['accountId'] as String),
   const StateConverter().fromJson(json['state'] as String),
   (json['list'] as List<dynamic>)
       .map((e) => PublicAsset.fromJson(e as Map<String, dynamic>))

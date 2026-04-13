@@ -139,9 +139,7 @@ void main() {
       final getMailboxMethod = GetMailboxMethod(
         accountId: Val(
           AccountId(
-            Id(
-              '0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555',
-            ),
+            '0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555',
           ),
         ),
       );
@@ -162,84 +160,85 @@ void main() {
       expect(getMailboxResponse.list, containsAll([expectedMailbox1]));
     });
 
-    test('get mailbox method and response parsing not have team mailboxes', () async {
-      final httpMockClient = HttpMockResponseClient(
-        responseBody: {
-          "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
-          "methodResponses": [
-            [
-              "Mailbox/get",
-              {
-                "accountId":
-                    "0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555",
-                "notFound": [],
-                "state": "c7b1bb10-80f5-11ed-b960-5773e4d60b2f",
-                "list": [
-                  {
-                    "totalThreads": 1847,
-                    "name": "INBOX",
-                    "isSubscribed": false,
-                    "role": "inbox",
-                    "totalEmails": 1847,
-                    "unreadThreads": 1708,
-                    "unreadEmails": 1708,
-                    "sortOrder": 10,
-                    "myRights": {
-                      "mayReadItems": true,
-                      "mayAddItems": true,
-                      "mayRemoveItems": true,
-                      "maySetSeen": true,
-                      "maySetKeywords": true,
-                      "mayCreateChild": true,
-                      "mayRename": true,
-                      "mayDelete": true,
-                      "maySubmit": true,
+    test(
+      'get mailbox method and response parsing not have team mailboxes',
+      () async {
+        final httpMockClient = HttpMockResponseClient(
+          responseBody: {
+            "sessionState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
+            "methodResponses": [
+              [
+                "Mailbox/get",
+                {
+                  "accountId":
+                      "0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555",
+                  "notFound": [],
+                  "state": "c7b1bb10-80f5-11ed-b960-5773e4d60b2f",
+                  "list": [
+                    {
+                      "totalThreads": 1847,
+                      "name": "INBOX",
+                      "isSubscribed": false,
+                      "role": "inbox",
+                      "totalEmails": 1847,
+                      "unreadThreads": 1708,
+                      "unreadEmails": 1708,
+                      "sortOrder": 10,
+                      "myRights": {
+                        "mayReadItems": true,
+                        "mayAddItems": true,
+                        "mayRemoveItems": true,
+                        "maySetSeen": true,
+                        "maySetKeywords": true,
+                        "mayCreateChild": true,
+                        "mayRename": true,
+                        "mayDelete": true,
+                        "maySubmit": true,
+                      },
+                      "id": "f1cef2d0-30a9-11eb-9a8d-254ee97830fe",
                     },
-                    "id": "f1cef2d0-30a9-11eb-9a8d-254ee97830fe",
-                  },
-                ],
-              },
-              "c0",
+                  ],
+                },
+                "c0",
+              ],
             ],
-          ],
-        },
-        expectedBody: {
-          "using": ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail"],
-          "methodCalls": [
-            [
-              "Mailbox/get",
-              {
-                "accountId":
-                    "0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555",
-              },
-              "c0",
+          },
+          expectedBody: {
+            "using": ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail"],
+            "methodCalls": [
+              [
+                "Mailbox/get",
+                {
+                  "accountId":
+                      "0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555",
+                },
+                "c0",
+              ],
             ],
-          ],
-        },
-      );
+          },
+        );
 
-      final getMailboxMethod = GetMailboxMethod(
-        accountId: Val(
-          AccountId(
-            Id(
+        final getMailboxMethod = GetMailboxMethod(
+          accountId: Val(
+            AccountId(
               '0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555',
             ),
           ),
-        ),
-      );
+        );
 
-      final requestBuilder = RequestBuilder();
-      final getMailboxInvocation = requestBuilder.addInvocation(
-        getMailboxMethod,
-      );
-      final response = await requestBuilder.build().execute(
-        httpMockClient,
-        HttpMockResponseClient.defaultUri,
-      );
+        final requestBuilder = RequestBuilder();
+        final getMailboxInvocation = requestBuilder.addInvocation(
+          getMailboxMethod,
+        );
+        final response = await requestBuilder.build().execute(
+          httpMockClient,
+          HttpMockResponseClient.defaultUri,
+        );
 
-      final getMailboxResponse = getMailboxInvocation.parseResponse(response);
-      expect(getMailboxResponse.list.length, equals(1));
-      expect(getMailboxResponse.list, containsAll([expectedMailbox2]));
-    });
+        final getMailboxResponse = getMailboxInvocation.parseResponse(response);
+        expect(getMailboxResponse.list.length, equals(1));
+        expect(getMailboxResponse.list, containsAll([expectedMailbox2]));
+      },
+    );
   });
 }

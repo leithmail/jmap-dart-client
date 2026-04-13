@@ -13,7 +13,7 @@ import '../../helpers/http_mocks.dart';
 
 void main() {
   group('get calendar event attendance method test', () {
-    final accountId = AccountId(Id('123abc'));
+    final accountId = AccountId('123abc');
     final freeBlobId = Id('abc123');
     final busyBlobId = Id('def456');
     final notFoundBlobId = Id('ghi789');
@@ -48,7 +48,7 @@ void main() {
           [
             getCalendarEventAttendanceMethod.methodName.value,
             {
-              "accountId": accountId.id.value,
+              "accountId": accountId.value,
               "blobIds": blobIds.map((id) => id.value).toList(),
             },
             methodCallId.value,
@@ -61,7 +61,7 @@ void main() {
           [
             "CalendarEventAttendance/get",
             {
-              "accountId": accountId.id.value,
+              "accountId": accountId.value,
               "state": "state",
               "list": [freeAttendance.toJson(), busyAttendance.toJson()],
               "notFound": [notFoundBlobId.value],
@@ -117,7 +117,7 @@ void main() {
           [
             getCalendarEventAttendanceMethod.methodName.value,
             {
-              "accountId": accountId.id.value,
+              "accountId": accountId.value,
               "blobIds": [blobId.value],
             },
             methodCallId.value,
@@ -130,7 +130,7 @@ void main() {
           [
             "CalendarEventAttendance/get",
             {
-              "accountId": accountId.id.value,
+              "accountId": accountId.value,
               "state": "state",
               "list": [],
               "notFound": [],
@@ -190,7 +190,7 @@ void main() {
           [
             getCalendarEventAttendanceMethod.methodName.value,
             {
-              "accountId": accountId.id.value,
+              "accountId": accountId.value,
               "blobIds": [blobId.value],
             },
             methodCallId.value,
