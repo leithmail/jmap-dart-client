@@ -143,9 +143,8 @@ void main() {
               methodCallId: MethodCallId('c2'),
             );
 
-            final getMailBoxMethod = GetMailboxMethod(
-              accountId: Val(accountId),
-            )..ids.set(Ref(queryMailboxInvocation.resultReferences().$('ids')));
+            final getMailBoxMethod = GetMailboxMethod(accountId: Val(accountId))
+              ..ids.set(Ref(queryMailboxInvocation.resultReferences.$('ids')));
             final getMailboxInvocation = jmapRequestBuilder.addInvocation(
               getMailBoxMethod,
               methodCallId: MethodCallId('c3'),

@@ -237,7 +237,7 @@ void main() {
             }),
           ),
         )
-        ..ids.set(Ref(queryEmailInvocation.resultReferences().$('ids')));
+        ..ids.set(Ref(queryEmailInvocation.resultReferences.$('ids')));
       final getEmailInvocation = jmapRequestBuilder.addInvocation(
         getEmailMethod,
         methodCallId: MethodCallId('c3'),

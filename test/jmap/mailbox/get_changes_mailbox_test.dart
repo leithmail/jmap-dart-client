@@ -164,18 +164,16 @@ void main() {
 
       final getMailboxMethodForUpdate = GetMailboxMethod(
         accountId: Val(accountId),
-      )..ids.set(Ref(changesMailboxInvocation.resultReferences().$('updated')));
+      )..ids.set(Ref(changesMailboxInvocation.resultReferences.$('updated')));
 
       final getMailboxForUpdateInvocation = jmapRequestBuilder.addInvocation(
         getMailboxMethodForUpdate,
         methodCallId: MethodCallId('c1'),
       );
 
-      final getMailboxMethodForDestroyed =
-          GetMailboxMethod(accountId: Val(accountId))
-            ..ids.set(
-              Ref(changesMailboxInvocation.resultReferences().$('destroyed')),
-            );
+      final getMailboxMethodForDestroyed = GetMailboxMethod(
+        accountId: Val(accountId),
+      )..ids.set(Ref(changesMailboxInvocation.resultReferences.$('destroyed')));
       final getMailboxForDestroyInvocation = jmapRequestBuilder.addInvocation(
         getMailboxMethodForDestroyed,
         methodCallId: MethodCallId('c2'),
