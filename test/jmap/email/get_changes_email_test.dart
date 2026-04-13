@@ -216,17 +216,15 @@ void main() {
       );
 
       final getEmailMethodForUpdate = GetEmailMethod(accountId: Val(accountId))
-        ..properties.set(
-          Val([EmailProperty.mailboxIds, EmailProperty.keywords]),
-        )
-        ..ids.set(Ref(changesEmailInvocation.resultReferences.$('updated')));
+        ..properties(Val([EmailProperty.mailboxIds, EmailProperty.keywords]))
+        ..ids(Ref(changesEmailInvocation.resultReferences.$('updated')));
       final getEmailForUpdateInvocation = jmapRequestBuilder.addInvocation(
         getEmailMethodForUpdate,
         methodCallId: MethodCallId('c2'),
       );
 
       final getEmailMethodForCreated = GetEmailMethod(accountId: Val(accountId))
-        ..properties.set(
+        ..properties(
           Val([
             EmailProperty.id,
             EmailProperty.subject,
@@ -243,7 +241,7 @@ void main() {
             EmailProperty.hasAttachment,
           ]),
         )
-        ..ids.set(Ref(changesEmailInvocation.resultReferences.$('created')));
+        ..ids(Ref(changesEmailInvocation.resultReferences.$('created')));
       final getEmailForCreatedInvocation = jmapRequestBuilder.addInvocation(
         getEmailMethodForCreated,
         methodCallId: MethodCallId('c3'),

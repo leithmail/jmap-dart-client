@@ -22,7 +22,7 @@ class SetEmailSubmissionMethod
         ),
       );
 
-  final onSuccessDestroyEmail = ListArgumentSlot<EmailSubmissionId>(
+  final onSuccessDestroyEmail = ListSlot<EmailSubmissionId>(
     'onSuccessDestroyEmail',
     (v) => v.id.value,
   );

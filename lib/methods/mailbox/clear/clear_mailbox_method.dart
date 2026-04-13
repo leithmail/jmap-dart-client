@@ -15,7 +15,7 @@ class ClearMailboxMethod
     required super.accountId,
     required Argument<MailboxId> mailboxId,
   }) {
-    _mailboxId.set(mailboxId);
+    _mailboxId(mailboxId);
   }
 
   @override

@@ -84,7 +84,7 @@ void main() {
       );
 
       final getIdentityMethod = GetIdentityMethod(accountId: Val(accountId))
-        ..properties.set(
+        ..properties(
           Val([
             IdentityProperty.email,
             IdentityProperty.bcc,

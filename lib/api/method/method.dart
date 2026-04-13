@@ -50,7 +50,7 @@ abstract class MethodWithAccountId<
   );
 
   MethodWithAccountId({required Argument<AccountId> accountId}) {
-    _accountId.set(accountId);
+    _accountId(accountId);
   }
 
   @override

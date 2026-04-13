@@ -31,7 +31,7 @@ void main() {
         // arrange
         final getPublicAssetMethod = GetPublicAssetMethod(
           accountId: Val(accountId),
-        )..ids.set(Val([publicAsset.id!]));
+        )..ids(Val([publicAsset.id!]));
         final httpMockClient = HttpMockResponseClient(
           responseBody: {
             "sessionState": "abcdefghij",
@@ -92,7 +92,7 @@ void main() {
         // arrange
         final getPublicAssetMethod = GetPublicAssetMethod(
           accountId: Val(accountId),
-        )..ids.set(Val([publicAsset.id!]));
+        )..ids(Val([publicAsset.id!]));
         final httpMockClient = HttpMockResponseClient(
           responseBody: {
             "sessionState": "abcdefghij",

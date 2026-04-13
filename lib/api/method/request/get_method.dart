@@ -12,8 +12,8 @@ abstract class GetMethod<
   P extends Property
 >
     extends MethodWithAccountId<R, Q> {
-  final ids = ListArgumentSlot<Id>('ids', IdConverter().toJson);
-  final properties = ListArgumentSlot<P>('properties', (v) => v.value);
+  final ids = ListSlot<Id>('ids', IdConverter().toJson);
+  final properties = ListSlot<P>('properties', (v) => v.value);
 
   GetMethod({required super.accountId});
 

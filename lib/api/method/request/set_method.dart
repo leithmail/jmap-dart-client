@@ -15,18 +15,18 @@ abstract class SetMethod<R extends MethodResponse, Q extends ResultReference, T>
   Object? typeToJson(T v);
 
   final ifInState = ArgumentSlot<State>('ifInState', (v) => v.value);
-  late final create = MapArgumentSlot<Id, T>(
+  late final create = MapSlot<Id, T>(
     'create',
     (k) => k.value,
     (v) => typeToJson(v),
   );
-  final update = MapArgumentSlot<Id, PatchObject>(
+  final update = MapSlot<Id, PatchObject>(
     'update',
     (k) => k.value,
     (v) => v.toJson(),
   );
-  final destroy = ListArgumentSlot<Id>('destroy', (v) => v.value);
-  late final updateSingleton = MapArgumentSlot<Id, T>(
+  final destroy = ListSlot<Id>('destroy', (v) => v.value);
+  late final updateSingleton = MapSlot<Id, T>(
     'update',
     (k) => k.value,
     (v) => typeToJson(v),

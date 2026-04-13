@@ -203,11 +203,9 @@ void main() {
       );
 
       final queryEmailMethod = QueryEmailMethod(accountId: Val(accountId))
-        ..limit.set(Val(20))
-        ..sort.set([
-          EmailComparator(EmailSortProperty.sentAt, isAscending: false),
-        ])
-        ..filter.set(
+        ..limit(Val(20))
+        ..sort([EmailComparator(EmailSortProperty.sentAt, isAscending: false)])
+        ..filter(
           EmailFilterCondition(
             inMailbox: MailboxId((Id('aba7e8d0-18d9-11eb-a677-2990b970028d'))),
           ),
@@ -218,7 +216,7 @@ void main() {
       );
 
       final getEmailMethod = GetEmailMethod(accountId: Val(accountId))
-        ..properties.set(
+        ..properties(
           Val([
             EmailProperty.id,
             EmailProperty.subject,
@@ -229,7 +227,7 @@ void main() {
             EmailProperty.hasAttachment,
           ]),
         )
-        ..ids.set(Ref(queryEmailInvocation.resultReferences.$('ids')));
+        ..ids(Ref(queryEmailInvocation.resultReferences.$('ids')));
       final getEmailInvocation = jmapRequestBuilder.addInvocation(
         getEmailMethod,
         methodCallId: MethodCallId('c3'),

@@ -11,11 +11,11 @@ abstract class ParseMethod<
   P extends Property
 >
     extends MethodWithAccountId<R, Q> {
-  final _blobIds = ListArgumentSlot<Id>('blobIds', (v) => v.value);
-  final properties = ListArgumentSlot<P>('properties', (v) => v.value);
+  final _blobIds = ListSlot<Id>('blobIds', (v) => v.value);
+  final properties = ListSlot<P>('properties', (v) => v.value);
 
   ParseMethod({required super.accountId, required Argument<List<Id>> blobIds}) {
-    _blobIds.set(blobIds);
+    _blobIds(blobIds);
   }
 
   @override

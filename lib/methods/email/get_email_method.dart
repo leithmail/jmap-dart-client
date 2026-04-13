@@ -9,18 +9,14 @@ class GetEmailMethod
     with EmptyResultReferences {
   GetEmailMethod({required super.accountId});
 
-  final bodyProperties = ListArgumentSlot<EmailBodyProperty>(
+  final bodyProperties = ListSlot<EmailBodyProperty>(
     "bodyProperties",
     (v) => v.value,
   );
-  final fetchTextBodyValues = PrimitiveArgumentSlot<bool>(
-    "fetchTextBodyValues",
-  );
-  final fetchHTMLBodyValues = PrimitiveArgumentSlot<bool>(
-    "fetchHTMLBodyValues",
-  );
-  final fetchAllBodyValues = PrimitiveArgumentSlot<bool>("fetchAllBodyValues");
-  final maxBodyValueBytes = PrimitiveArgumentSlot<int>("maxBodyValueBytes");
+  final fetchTextBodyValues = PrimitiveSlot<bool>("fetchTextBodyValues");
+  final fetchHTMLBodyValues = PrimitiveSlot<bool>("fetchHTMLBodyValues");
+  final fetchAllBodyValues = PrimitiveSlot<bool>("fetchAllBodyValues");
+  final maxBodyValueBytes = PrimitiveSlot<int>("maxBodyValueBytes");
 
   @override
   get slots => [

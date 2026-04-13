@@ -69,27 +69,26 @@ void main() {
 
       final setIdentityMethod =
           SetIdentityMethod(
-              accountId: Val(
-                AccountId(
-                  Id(
-                    '4603645929458bf671aca134b890cbb8ac4a0d297640fsdefe9230ea28daa0b1',
-                  ),
+            accountId: Val(
+              AccountId(
+                Id(
+                  '4603645929458bf671aca134b890cbb8ac4a0d297640fsdefe9230ea28daa0b1',
                 ),
               ),
-            )
-            ..create.set(
-              Val({
-                Id('dab246'): Identity(
-                  name: 'User B23',
-                  email: 'lol@gmail.com',
-                  textSignature: Signature(''),
-                  htmlSignature: Signature(
-                    '<body><div>Dat T. Vu <br>Mobile Engineer <br>LINAGORA VIETNAM <br>A: 8th Floor (Toong VPBank Tower, No. 5 Dien Bien Phu  Str., Ba Dinh Dist., Ha Noi <br>P: (+84) 366-769-439<br>E: tdvu@linagora.com</div></body>',
-                  ),
-                  sortOrder: UnsignedInt(99999),
+            ),
+          )..create(
+            Val({
+              Id('dab246'): Identity(
+                name: 'User B23',
+                email: 'lol@gmail.com',
+                textSignature: Signature(''),
+                htmlSignature: Signature(
+                  '<body><div>Dat T. Vu <br>Mobile Engineer <br>LINAGORA VIETNAM <br>A: 8th Floor (Toong VPBank Tower, No. 5 Dien Bien Phu  Str., Ba Dinh Dist., Ha Noi <br>P: (+84) 366-769-439<br>E: tdvu@linagora.com</div></body>',
                 ),
-              }),
-            );
+                sortOrder: UnsignedInt(99999),
+              ),
+            }),
+          );
 
       final requestBuilder = RequestBuilder();
       final setIdentityInvocation = requestBuilder.addInvocation(
@@ -183,7 +182,7 @@ void main() {
                     ),
                   ),
                 )
-                ..create.set(
+                ..create(
                   Val({
                     Id('xyz123'): Identity(
                       id: IdentityId(
@@ -195,7 +194,7 @@ void main() {
                     ),
                   }),
                 )
-                ..update.set(
+                ..update(
                   Val({
                     Id("c6ba359f-94a8-4ee9-b515-6bd2d9698618"): PatchObject({
                       "sortOrder": 8888,

@@ -23,18 +23,18 @@ class SetPushSubscriptionMethod
   Object? typeToJson(PushSubscription v) => v.toJson();
 
   final ifInState = ArgumentSlot<State>('ifInState', (v) => v.value);
-  late final create = MapArgumentSlot<Id, PushSubscription>(
+  late final create = MapSlot<Id, PushSubscription>(
     'create',
     (k) => k.value,
     (v) => typeToJson(v),
   );
-  final update = MapArgumentSlot<Id, PatchObject>(
+  final update = MapSlot<Id, PatchObject>(
     'update',
     (k) => k.value,
     (v) => v.toJson(),
   );
-  final destroy = ListArgumentSlot<Id>('destroy', (v) => v.value);
-  late final updateSingleton = MapArgumentSlot<Id, PushSubscription>(
+  final destroy = ListSlot<Id>('destroy', (v) => v.value);
+  late final updateSingleton = MapSlot<Id, PushSubscription>(
     'update',
     (k) => k.value,
     (v) => typeToJson(v),

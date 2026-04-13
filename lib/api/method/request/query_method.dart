@@ -15,11 +15,11 @@ abstract class QueryMethod<
     extends MethodWithAccountId<R, Q> {
   QueryMethod({required super.accountId});
 
-  final position = PrimitiveArgumentSlot<int>('position');
-  final limit = PrimitiveArgumentSlot<int>('limit');
+  final position = PrimitiveSlot<int>('position');
+  final limit = PrimitiveSlot<int>('limit');
   final anchor = ArgumentSlot<Id>('anchor', (v) => v.value);
-  final anchorOffset = PrimitiveArgumentSlot<int>('anchorOffset');
-  final calculateTotal = PrimitiveArgumentSlot<bool>('calculateTotal');
+  final anchorOffset = PrimitiveSlot<int>('anchorOffset');
+  final calculateTotal = PrimitiveSlot<bool>('calculateTotal');
   final filter = FilterSlot<F>('filter');
   final sort = SortSlot<Comparator>('sort');
 

@@ -42,12 +42,12 @@ import 'package:jmap_dart_client/api/method/argument/argument.dart';
 ///
 /// Simple condition:
 /// ```dart
-/// method.filter.set(Val(MailboxFilterCondition(role: Role('Spam')));
+/// method.filter(Val(MailboxFilterCondition(role: Role('Spam')));
 /// ```
 ///
 /// Compound filter with operator:
 /// ```dart
-/// method.filter.set(Val(
+/// method.filter(Val(
 ///   MailboxFilterOperator(Operator.AND, [
 ///     MailboxFilterCondition(role: Role('Inbox')),
 ///     MailboxFilterOperator(Operator.OR, [
@@ -110,7 +110,7 @@ enum Operator { AND, OR, NOT }
 /// ```dart
 /// final slot = FilterSlot<MailboxFilter>('filter');
 ///
-/// slot.set(Val(
+/// slot(Val(
 ///   MailboxFilterOperator(Operator.AND, [
 ///     MailboxFilterCondition(role: Role('Inbox')),
 ///     MailboxFilterCondition(isSubscribed: true),
@@ -127,7 +127,7 @@ class FilterSlot<T extends Filter> extends ArgumentSlotBase {
   FilterSlot(this._key);
 
   /// Stores the filter that will be serialized by [toEntry].
-  void set(T filter) => _filter = filter;
+  void call(T filter) => _filter = filter;
 
   /// Returns a map entry with the configured key and serialized filter.
   ///

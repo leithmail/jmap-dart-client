@@ -9,13 +9,13 @@ class GetCalendarEventAttendanceMethod
           CalendarEventProperty
         >
     with EmptyResultReferences {
-  final _blobIds = ListArgumentSlot<Id>('blobIds', (v) => v.value);
+  final _blobIds = ListSlot<Id>('blobIds', (v) => v.value);
 
   GetCalendarEventAttendanceMethod({
     required super.accountId,
     required Argument<List<Id>> blobIds,
   }) {
-    _blobIds.set(blobIds);
+    _blobIds(blobIds);
   }
 
   @override

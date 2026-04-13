@@ -10,13 +10,13 @@ abstract class ChangesMethod<
 >
     extends MethodWithAccountId<R, Q> {
   final _sinceState = ArgumentSlot<State>('sinceState', (v) => v.value);
-  final maxChanges = PrimitiveArgumentSlot<int>("maxChanges");
+  final maxChanges = PrimitiveSlot<int>("maxChanges");
 
   ChangesMethod({
     required super.accountId,
     required Argument<State> sinceState,
   }) {
-    _sinceState.set(sinceState);
+    _sinceState(sinceState);
   }
 
   @override

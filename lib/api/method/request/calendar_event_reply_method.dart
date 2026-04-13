@@ -13,11 +13,11 @@ abstract class CalendarEventReplyMethod<
     required super.accountId,
     required Argument<List<Id>> blobIds,
   }) {
-    _blobIds.set(blobIds);
+    _blobIds(blobIds);
   }
 
-  final _blobIds = ListArgumentSlot<Id>('blobIds', (v) => v.value);
-  final language = PrimitiveArgumentSlot<String>('language');
+  final _blobIds = ListSlot<Id>('blobIds', (v) => v.value);
+  final language = PrimitiveSlot<String>('language');
 
   @override
   get slots => [...super.slots, _blobIds, language];

@@ -316,7 +316,7 @@ void main() {
 
       final parseEmailMethod =
           ParseEmailMethod(accountId: Val(accountId), blobIds: Val([blobId3]))
-            ..properties.set(
+            ..properties(
               Val([
                 EmailProperty.id,
                 EmailProperty.preview,

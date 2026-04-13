@@ -55,7 +55,7 @@ void main() {
       );
 
       final setPushSubscriptionMethod = SetPushSubscriptionMethod()
-        ..create.set(
+        ..create(
           Val({
             Id('dab246'): PushSubscription(
               deviceClientId: 'a123-b123-c123',

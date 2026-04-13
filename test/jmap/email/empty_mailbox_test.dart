@@ -102,10 +102,10 @@ void main() {
       );
 
       final queryEmailMethod = QueryEmailMethod(accountId: Val(accountId))
-        ..sort.set([
+        ..sort([
           EmailComparator(EmailSortProperty.receivedAt, isAscending: false),
         ])
-        ..filter.set(
+        ..filter(
           EmailFilterCondition(
             inMailbox: MailboxId((Id('025b0580-6422-11ef-a702-5d10e1ebf1c3'))),
           ),
@@ -116,7 +116,7 @@ void main() {
       );
 
       final setEmailMethod = SetEmailMethod(accountId: Val(accountId))
-        ..destroy.set(Ref(queryEmailInvocation.resultReferences.$('ids')));
+        ..destroy(Ref(queryEmailInvocation.resultReferences.$('ids')));
       final setEmailInvocation = jmapRequestBuilder.addInvocation(
         setEmailMethod,
         methodCallId: MethodCallId('c1'),

@@ -48,12 +48,12 @@ abstract class ArgumentSlotBase {
 ///
 /// Example — setting a literal value:
 /// ```dart
-/// method.properties.set(Val({'id', 'subject', 'from'}));
+/// method.properties(Val({'id', 'subject', 'from'}));
 /// ```
 ///
 /// Example — setting a result reference from a previous invocation:
 /// ```dart
-/// method.ids.set(Ref(queryInvocation.resultReferenceTree.ids));
+/// method.ids(Ref(queryInvocation.resultReferenceTree.ids));
 /// ```
 ///
 /// Unset optional slots are omitted from the serialized request, which is
@@ -89,7 +89,7 @@ class ArgumentSlot<T> extends ArgumentSlotBase {
     : _key = key,
       _toJson = toJson;
 
-  void set(Argument<T>? argument) => _argument = argument;
+  void call(Argument<T>? argument) => _argument = argument;
 
   /// Serializes this slot to a [MapEntry] for inclusion in [Method.toJson],
   /// or `null` if the slot has not been set.
@@ -107,17 +107,17 @@ class ArgumentSlot<T> extends ArgumentSlotBase {
   }
 }
 
-class ListArgumentSlot<T> extends ArgumentSlot<List<T>?> {
-  ListArgumentSlot(String key, Object? Function(T) toJson)
+class ListSlot<T> extends ArgumentSlot<List<T>?> {
+  ListSlot(String key, Object? Function(T) toJson)
     : super(key, (v) => v?.map(toJson).toList());
 }
 
-class PrimitiveArgumentSlot<T> extends ArgumentSlot<T> {
-  PrimitiveArgumentSlot(String key) : super(key, (v) => v);
+class PrimitiveSlot<T> extends ArgumentSlot<T> {
+  PrimitiveSlot(String key) : super(key, (v) => v);
 }
 
-class MapArgumentSlot<K, V> extends ArgumentSlot<Map<K, V>?> {
-  MapArgumentSlot(
+class MapSlot<K, V> extends ArgumentSlot<Map<K, V>?> {
+  MapSlot(
     String key,
     Object? Function(K) keyToJson,
     Object? Function(V) valueToJson,

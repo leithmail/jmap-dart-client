@@ -16,8 +16,8 @@ class QueryMailboxMethod
           MailboxComparator
         >
     with EmptyResultReferences {
-  final filterAsTree = PrimitiveArgumentSlot<bool>('filterAsTree');
-  final sortAsTree = PrimitiveArgumentSlot<bool>('sortAsTree');
+  final filterAsTree = PrimitiveSlot<bool>('filterAsTree');
+  final sortAsTree = PrimitiveSlot<bool>('sortAsTree');
 
   QueryMailboxMethod({required super.accountId});
 

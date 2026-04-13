@@ -31,7 +31,7 @@ class MDNSendMethod extends SendMethod<MDNSendResponse, ResultReference, MDN>
     required super.send,
     required Argument<IdentityId> identityId,
   }) {
-    _identityId.set(identityId);
+    _identityId(identityId);
   }
 
   @override

@@ -8,7 +8,7 @@ import 'package:jmap_dart_client/methods/email/get_public_asset_response.dart';
 class GetPublicAssetMethod
     extends MethodWithAccountId<GetPublicAssetResponse, ResultReference>
     with EmptyResultReferences {
-  final ids = ListArgumentSlot<Id>('ids', (v) => v.value);
+  final ids = ListSlot<Id>('ids', (v) => v.value);
 
   GetPublicAssetMethod({required super.accountId});
 

@@ -8,7 +8,7 @@ import 'package:jmap_dart_client/methods/push/push_subscription_property.dart';
 class GetPushSubscriptionMethod
     extends Method<GetPushSubscriptionResponse, ResultReference>
     with EmptyResultReferences {
-  final ids = ListArgumentSlot<Id>('ids', (v) => v.value);
+  final ids = ListSlot<Id>('ids', (v) => v.value);
   final properties = ArgumentSlot<PushSubscriptionProperty>(
     'properties',
     (v) => v.value,

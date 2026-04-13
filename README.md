@@ -16,7 +16,6 @@ A Dart client library for [JMAP](https://jmap.io/), focused on building requests
     - [Fetch JMAP Session](#fetch-jmap-session)
     - [Query Mailboxes](#query-mailboxes)
     - [Query Emails And Resolve IDs By Reference](#query-emails-and-resolve-ids-by-reference)
-    - [Use A Custom `http.Client` (Example: Dio)](#use-a-custom-httpclient-example-dio)
   - [Error Handling](#error-handling)
   - [Contributing](#contributing)
 
@@ -92,7 +91,7 @@ Future<jmap.GetMailboxResponse> fetchMailboxes(
     final requestBuilder = jmap.RequestBuilder();
 
     final getMailboxMethod = jmap.GetMailboxMethod(accountId: jmap.Val(accountId))
-      ..properties.set(jmap.Val(jmap.Properties([
+      ..properties(jmap.Val(jmap.Properties([
         EmailProperty.id,
         EmailProperty.subject,
         EmailProperty.sentAt,
@@ -126,15 +125,15 @@ Future<jmap.GetEmailResponse> fetchInboxEmails(
     final requestBuilder = jmap.RequestBuilder();
 
     final queryEmailMethod = jmap.QueryEmailMethod(accountId: jmap.Val(accountId))
-      ..position.set(jmap.Val(0))
-      ..limit.set(jmap.Val(20))
-      ..sort.set([jmap.EmailComparator(jmap.EmailSortProperty.sentAt, isAscending: false)])
-      ..filter.set(jmap.EmailFilterCondition(inMailbox: inboxId));
+      ..position(jmap.Val(0))
+      ..limit(jmap.Val(20))
+      ..sort([jmap.EmailComparator(jmap.EmailSortProperty.sentAt, isAscending: false)])
+      ..filter(jmap.EmailFilterCondition(inMailbox: inboxId));
 
     final queryInvocation = requestBuilder.addInvocation(queryEmailMethod);
 
     final getEmailMethod = jmap.GetEmailMethod(accountId: jmap.Val(accountId))
-      ..ids.set(jmap.Ref(queryInvocation.resultReferences.$('ids')));
+      ..ids(jmap.Ref(queryInvocation.resultReferences.$('ids')));
 
     final getEmailInvocation = requestBuilder.addInvocation(getEmailMethod);
 
@@ -143,62 +142,6 @@ Future<jmap.GetEmailResponse> fetchInboxEmails(
     return getEmailInvocation.parseResponse(response);
   } finally {
     client.close();
-  }
-}
-```
-
-### Use A Custom `http.Client` (Example: Dio)
-
-You can inject any transport as long as it implements the `http.Client` interface.
-
-```dart
-import 'dart:typed_data';
-
-import 'package:dio/dio.dart';
-import 'package:http/http.dart' as http;
-import 'package:jmap_dart_client/jmap_dart_client.dart' as jmap;
-
-class DioHttpClient extends http.BaseClient {
-  final Dio _dio;
-
-  DioHttpClient(this._dio);
-
-  @override
-  Future<http.StreamedResponse> send(http.BaseRequest request) async {
-    final streamedRequest = request as http.Request;
-
-    final response = await _dio.request<List<int>>(
-      streamedRequest.url.toString(),
-      data: streamedRequest.bodyBytes,
-      options: Options(
-        method: streamedRequest.method,
-        headers: streamedRequest.headers,
-        responseType: ResponseType.bytes,
-        validateStatus: (_) => true,
-      ),
-    );
-
-    final bodyBytes = Uint8List.fromList(response.data ?? <int>[]);
-
-    return http.StreamedResponse(
-      Stream<List<int>>.fromIterable([bodyBytes]),
-      response.statusCode ?? 500,
-      headers: response.headers.map.map(
-        (key, values) => MapEntry(key, values.join(',')),
-      ),
-      reasonPhrase: response.statusMessage,
-      request: request,
-    );
-  }
-}
-
-Future<jmap.Session> loadSessionWithDio(Uri sessionEndpoint) async {
-  final dioClient = DioHttpClient(Dio());
-
-  try {
-    return await jmap.fetchSession(dioClient, sessionEndpoint);
-  } finally {
-    dioClient.close();
   }
 }
 ```

@@ -11,14 +11,10 @@ abstract class SendMethod<
   T
 >
     extends MethodWithAccountId<R, Q> {
-  final _send = MapArgumentSlot<Id, MDN>(
-    'send',
-    (k) => k.value,
-    (v) => v.toJson(),
-  );
+  final _send = MapSlot<Id, MDN>('send', (k) => k.value, (v) => v.toJson());
 
   SendMethod({required super.accountId, required Argument<Map<Id, MDN>> send}) {
-    _send.set(send);
+    _send(send);
   }
 
   @override

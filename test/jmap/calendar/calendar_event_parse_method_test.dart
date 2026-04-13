@@ -596,16 +596,15 @@ void main() {
 
         final calendarEventParseMethod =
             CalendarEventParseMethod(
-                accountId: Val(accountId),
-                blobIds: Val([blobId1]),
-              )
-              ..properties.set(
-                Val([
-                  CalendarEventProperty.uid,
-                  CalendarEventProperty.title,
-                  CalendarEventProperty.description,
-                ]),
-              );
+              accountId: Val(accountId),
+              blobIds: Val([blobId1]),
+            )..properties(
+              Val([
+                CalendarEventProperty.uid,
+                CalendarEventProperty.title,
+                CalendarEventProperty.description,
+              ]),
+            );
         final requestBuilder = RequestBuilder();
         final invocation = requestBuilder.addInvocation(
           calendarEventParseMethod,

@@ -16,7 +16,7 @@ class QueryEmailMethod
           EmailComparator
         >
     with EmptyResultReferences {
-  final collapseThreads = PrimitiveArgumentSlot<bool>('collapseThreads');
+  final collapseThreads = PrimitiveSlot<bool>('collapseThreads');
 
   QueryEmailMethod({required super.accountId});
 

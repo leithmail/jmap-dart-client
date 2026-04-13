@@ -9,9 +9,7 @@ import 'package:jmap_dart_client/methods/mailbox/set/set_mailbox_response.dart';
 class SetMailboxMethod
     extends SetMethod<SetMailboxResponse, ResultReference, Mailbox>
     with EmptyResultReferences {
-  final onDestroyRemoveEmails = PrimitiveArgumentSlot<bool>(
-    'onDestroyRemoveEmails',
-  );
+  final onDestroyRemoveEmails = PrimitiveSlot<bool>('onDestroyRemoveEmails');
 
   SetMailboxMethod({required super.accountId});
 

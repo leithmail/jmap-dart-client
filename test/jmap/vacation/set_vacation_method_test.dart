@@ -96,7 +96,7 @@ void main() {
       );
 
       final setVacationMethod = SetVacationMethod(accountId: Val(accountId))
-        ..updateSingleton.set(
+        ..updateSingleton(
           Val({
             VacationId.singleton().id: Vacation(
               isEnabled: true,

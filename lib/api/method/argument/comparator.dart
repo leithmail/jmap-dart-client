@@ -23,7 +23,7 @@ class SortSlot<T extends Comparator> extends ArgumentSlotBase {
 
   SortSlot(this._key);
 
-  void set(List<T> sort) => _sort = sort;
+  void call(List<T> sort) => _sort = sort;
 
   @override
   MapEntry<String, dynamic>? toEntry() {
