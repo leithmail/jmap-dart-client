@@ -11,6 +11,7 @@ dependencies:
   http: ^1.6.0
   http_parser: ^4.1.0
   json_annotation: ^4.11.0
+  json_serializable_lints_annotation: ^0.1.0
   meta: ^1.18.2
 
 dev_dependencies:
