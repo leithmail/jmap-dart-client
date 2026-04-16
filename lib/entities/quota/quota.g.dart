@@ -7,7 +7,7 @@ part of 'quota.dart';
 // **************************************************************************
 
 Quota _$QuotaFromJson(Map<String, dynamic> json) => Quota(
-  const IdConverter().fromJson(json['id'] as String),
+  Id<dynamic>.fromJson(json['id'] as String),
   $enumDecode(_$ResourceTypeEnumMap, json['resourceType']),
   $enumDecode(_$ScopeEnumMap, json['scope']),
   json['name'] as String,
@@ -18,25 +18,23 @@ Quota _$QuotaFromJson(Map<String, dynamic> json) => Quota(
   softLimit: (json['softLimit'] as num?)?.toInt(),
   description: json['description'] as String?,
   types: (json['types'] as List<dynamic>?)
-      ?.map((e) => const DataTypeConverter().fromJson(e as String))
+      ?.map((e) => DataType.fromJson(e as String))
       .toList(),
   dataTypes: (json['dataTypes'] as List<dynamic>?)
-      ?.map((e) => const DataTypeConverter().fromJson(e as String))
+      ?.map((e) => DataType.fromJson(e as String))
       .toList(),
 );
 
 Map<String, dynamic> _$QuotaToJson(Quota instance) => <String, dynamic>{
-  'id': const IdConverter().toJson(instance.id),
+  'id': instance.id,
   'resourceType': _$ResourceTypeEnumMap[instance.resourceType]!,
   'used': ?instance.used,
   'hardLimit': ?instance.hardLimit,
   'limit': ?instance.limit,
   'scope': _$ScopeEnumMap[instance.scope]!,
   'name': instance.name,
-  'dataTypes': ?instance.dataTypes
-      ?.map(const DataTypeConverter().toJson)
-      .toList(),
-  'types': ?instance.types?.map(const DataTypeConverter().toJson).toList(),
+  'dataTypes': ?instance.dataTypes,
+  'types': ?instance.types,
   'warnLimit': ?instance.warnLimit,
   'softLimit': ?instance.softLimit,
   'description': ?instance.description,

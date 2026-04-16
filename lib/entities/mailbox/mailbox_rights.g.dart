@@ -8,15 +8,15 @@ part of 'mailbox_rights.dart';
 
 MailboxRights _$MailboxRightsFromJson(Map<String, dynamic> json) =>
     MailboxRights(
-      json['mayReadItems'] as bool,
-      json['mayAddItems'] as bool,
-      json['mayRemoveItems'] as bool,
-      json['maySetSeen'] as bool,
-      json['maySetKeywords'] as bool,
-      json['mayCreateChild'] as bool,
-      json['mayRename'] as bool,
-      json['mayDelete'] as bool,
-      json['maySubmit'] as bool,
+      mayReadItems: json['mayReadItems'] as bool,
+      mayAddItems: json['mayAddItems'] as bool,
+      mayRemoveItems: json['mayRemoveItems'] as bool,
+      maySetSeen: json['maySetSeen'] as bool,
+      maySetKeywords: json['maySetKeywords'] as bool,
+      mayCreateChild: json['mayCreateChild'] as bool,
+      mayRename: json['mayRename'] as bool,
+      mayDelete: json['mayDelete'] as bool,
+      maySubmit: json['maySubmit'] as bool,
     );
 
 Map<String, dynamic> _$MailboxRightsToJson(MailboxRights instance) =>

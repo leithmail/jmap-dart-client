@@ -1,13 +1,9 @@
 import 'package:equatable/equatable.dart';
-import 'package:jmap_dart_client/entities/email/email.dart';
-import 'package:jmap_dart_client/src/converters/email_id_converter.dart';
-import 'package:jmap_dart_client/src/converters/thread_id_converter.dart';
+import 'package:jmap_dart_client/entities/entities.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'thread.g.dart';
 
-@ThreadIdConverter()
-@EmailIdConverter()
 @JsonSerializable(includeIfNull: false)
 class Thread with EquatableMixin {
   final ThreadId id;
@@ -22,3 +18,5 @@ class Thread with EquatableMixin {
   @override
   List<Object?> get props => [id, emailIds];
 }
+
+typedef ThreadId = Id<Thread>;

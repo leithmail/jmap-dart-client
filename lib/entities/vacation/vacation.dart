@@ -1,30 +1,18 @@
 import 'package:equatable/equatable.dart';
+import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
-import 'package:jmap_dart_client/entities/vacation/vacation_id.dart';
-import 'package:jmap_dart_client/src/converters/utc_date_nullable_converter.dart';
-import 'package:jmap_dart_client/src/converters/vacation/vacation_id_nullable_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'vacation.g.dart';
 
-@VacationIdNullableConverter()
-@UTCDateNullableConverter()
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class Vacation with EquatableMixin {
-  @JsonKey(includeIfNull: false)
   final VacationId? id;
-
-  @JsonKey(includeIfNull: false)
   final bool? isEnabled;
-
   final UTCDate? fromDate;
-
   final UTCDate? toDate;
-
   final String? subject;
-
   final String? textBody;
-
   final String? htmlBody;
 
   Vacation({
@@ -53,3 +41,5 @@ class Vacation with EquatableMixin {
     htmlBody,
   ];
 }
+
+typedef VacationId = Id<Vacation>;

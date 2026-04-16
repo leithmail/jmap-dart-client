@@ -8,24 +8,22 @@ import 'package:jmap_dart_client/entities/email/email_header.dart';
 import 'package:jmap_dart_client/entities/email/email_keyword.dart';
 import 'package:jmap_dart_client/entities/email/individual_header_identifier.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/entities/thread/thread.dart';
 import 'package:jmap_dart_client/src/converters/email/email_body_value_converter.dart';
 import 'package:jmap_dart_client/src/converters/email/email_keyword_converter.dart';
 import 'package:jmap_dart_client/src/converters/email/email_mailbox_ids_converter.dart';
-import 'package:jmap_dart_client/src/converters/email_id_nullable_converter.dart';
-import 'package:jmap_dart_client/src/converters/id_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/individual_header_identifier_converter.dart';
 import 'package:jmap_dart_client/src/converters/message_ids_header_value_nullable_converter.dart';
-import 'package:jmap_dart_client/src/converters/thread_id_nullable_converter.dart';
-import 'package:jmap_dart_client/src/converters/utc_date_nullable_converter.dart';
 
 class Email with EquatableMixin {
   final EmailId? id;
-  final Id? blobId;
+  final BlobId? blobId;
   final ThreadId? threadId;
   final Map<MailboxId, bool>? mailboxIds;
   final Map<EmailKeyword, bool>? keywords;
   final int? size;
   final UTCDate? receivedAt;
+
   final List<EmailHeader>? headers;
   final MessageIdsHeaderValue? messageId;
   final MessageIdsHeaderValue? inReplyTo;
@@ -44,7 +42,7 @@ class Email with EquatableMixin {
   final List<EmailBodyPart>? htmlBody;
   final List<EmailBodyPart>? attachments;
   final EmailBodyPart? bodyStructure;
-  final Map<PartId, EmailBodyValue>? bodyValues;
+  final Map<EmailBodyPartId, EmailBodyValue>? bodyValues;
   final Map<IndividualHeaderIdentifier, String?>? headerUserAgent;
   final Map<IndividualHeaderIdentifier, String?>? headerMdn;
   final Map<IndividualHeaderIdentifier, String?>? headerReturnPath;
@@ -99,11 +97,13 @@ class Email with EquatableMixin {
 
   factory Email.fromJson(Map<String, dynamic> json) {
     return Email(
-      id: const EmailIdNullableConverter().fromJson(json['id'] as String?),
-      blobId: const IdNullableConverter().fromJson(json['blobId'] as String?),
-      threadId: const ThreadIdNullableConverter().fromJson(
-        json['threadId'] as String?,
-      ),
+      id: json['id'] != null ? EmailId.fromJson(json['id'] as String) : null,
+      blobId: json['blobId'] != null
+          ? BlobId.fromJson(json['blobId'] as String)
+          : null,
+      threadId: json['threadId'] != null
+          ? ThreadId.fromJson(json['threadId'] as String)
+          : null,
       mailboxIds: (json['mailboxIds'] as Map<String, dynamic>?)?.map(
         (key, value) => EmailMailboxIdsConverter().parseEntry(key, value),
       ),
@@ -111,9 +111,9 @@ class Email with EquatableMixin {
         (key, value) => EmailKeywordConverter().parseEntry(key, value),
       ),
       size: json['size'] as int?,
-      receivedAt: const UTCDateNullableConverter().fromJson(
-        json['receivedAt'] as String?,
-      ),
+      receivedAt: json['receivedAt'] != null
+          ? UTCDate.fromJson(json['receivedAt'] as String)
+          : null,
       headers: (json['headers'] as List<dynamic>?)
           ?.map((json) => EmailHeader.fromJson(json))
           .toList(),
@@ -127,9 +127,9 @@ class Email with EquatableMixin {
         (json['references'] as List<dynamic>?),
       ),
       subject: json['subject'] as String?,
-      sentAt: const UTCDateNullableConverter().fromJson(
-        json['sentAt'] as String?,
-      ),
+      sentAt: json['sentAt'] != null
+          ? UTCDate.fromJson(json['sentAt'] as String)
+          : null,
       hasAttachment: json['hasAttachment'] as bool?,
       preview: json['preview'] as String?,
       sender: (json['sender'] as List<dynamic>?)
@@ -230,12 +230,9 @@ class Email with EquatableMixin {
       }
     }
 
-    writeNotNull('id', const EmailIdNullableConverter().toJson(id));
-    writeNotNull('blobId', const IdNullableConverter().toJson(blobId));
-    writeNotNull(
-      'threadId',
-      const ThreadIdNullableConverter().toJson(threadId),
-    );
+    writeNotNull('id', id?.toJson());
+    writeNotNull('blobId', blobId?.toJson());
+    writeNotNull('threadId', threadId?.toJson());
     writeNotNull(
       'mailboxIds',
       mailboxIds?.map(
@@ -247,10 +244,7 @@ class Email with EquatableMixin {
       keywords?.map((key, value) => EmailKeywordConverter().toJson(key, value)),
     );
     writeNotNull('size', size);
-    writeNotNull(
-      'receivedAt',
-      const UTCDateNullableConverter().toJson(receivedAt),
-    );
+    writeNotNull('receivedAt', receivedAt?.toJson());
     writeNotNull('headers', headers?.map((header) => header.toJson()).toList());
     writeNotNull(
       'messageId',
@@ -265,7 +259,7 @@ class Email with EquatableMixin {
       const MessageIdsHeaderValueNullableConverter().toJson(references),
     );
     writeNotNull('subject', subject);
-    writeNotNull('sentAt', const UTCDateNullableConverter().toJson(sentAt));
+    writeNotNull('sentAt', sentAt?.toJson());
     writeNotNull('hasAttachment', hasAttachment);
     writeNotNull('preview', preview);
     writeNotNull('sender', sender?.map((sender) => sender.toJson()).toList());
@@ -412,59 +406,8 @@ class Email with EquatableMixin {
   ];
 }
 
-class EmailId with EquatableMixin {
-  final Id id;
-
-  EmailId(this.id);
-
-  @override
-  String toString() {
-    if (id is ReferenceId) {
-      return '${(id as ReferenceId).prefix.value}${(id as ReferenceId).id.value}';
-    }
-    return super.toString();
-  }
-
-  @override
-  List<Object?> get props => [id];
-}
-
-class ReferencePrefix with EquatableMixin {
-  static final defaultPrefix = ReferencePrefix('#');
-
-  final String value;
-
-  ReferencePrefix(this.value) {
-    if (value.isEmpty || value.length >= 255) {
-      throw ArgumentError('invalid length');
-    }
-  }
-
-  @override
-  List<Object?> get props => [value];
-}
-
-class ReferenceId extends Id with EquatableMixin {
-  final ReferencePrefix prefix;
-  final Id id;
-
-  ReferenceId(this.prefix, this.id) : super(id.value);
-
-  @override
-  String toString() => '#${id.value}';
-
-  @override
-  List<Object?> get props => [prefix, id];
-}
-
-class ThreadId with EquatableMixin {
-  final Id id;
-
-  ThreadId(this.id);
-
-  @override
-  List<Object?> get props => [id];
-}
+typedef EmailId = Id<Email>;
+typedef EmailCreationId = CreationId<Email>;
 
 class MessageIdsHeaderValue with EquatableMixin {
   final List<String> ids;

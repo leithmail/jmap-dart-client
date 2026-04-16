@@ -3,118 +3,43 @@ import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/delivery_status.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
-import 'package:jmap_dart_client/entities/email/email_submission_id.dart';
 import 'package:jmap_dart_client/entities/email/envelope.dart';
-import 'package:jmap_dart_client/src/converters/delivery_status_converter.dart';
-import 'package:jmap_dart_client/src/converters/email_submission_id_nullable_converter.dart';
-import 'package:jmap_dart_client/src/converters/id_converter.dart';
-import 'package:jmap_dart_client/src/converters/id_nullable_converter.dart';
-import 'package:jmap_dart_client/src/converters/reference_email_id_nullable_converter.dart';
-import 'package:jmap_dart_client/src/converters/thread_id_nullable_converter.dart';
-import 'package:jmap_dart_client/src/converters/undo_status_nullable_converter.dart';
-import 'package:jmap_dart_client/src/converters/utc_date_nullable_converter.dart';
+import 'package:jmap_dart_client/entities/identity/identity.dart';
+import 'package:jmap_dart_client/entities/thread/thread.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'email_submission.g.dart';
+
+@JsonSerializable(includeIfNull: false)
 class EmailSubmission with EquatableMixin {
   final EmailSubmissionId? id;
-  final Id? identityId;
+  final IdentityId? identityId;
   final EmailId? emailId;
   final ThreadId? threadId;
   final Envelope? envelope;
   final UTCDate? sendAt;
   final UndoStatus? undoStatus;
   final Map<String, DeliveryStatus>? deliveryStatus;
-  final List<Id>? dsnBlobIds;
-  final List<Id>? mdnBlobIds;
+  final List<BlobId>? dsnBlobIds;
+  final List<BlobId>? mdnBlobIds;
 
   EmailSubmission({
-    this.id,
-    this.identityId,
-    this.emailId,
-    this.threadId,
-    this.envelope,
-    this.sendAt,
-    this.undoStatus,
-    this.deliveryStatus,
-    this.dsnBlobIds,
-    this.mdnBlobIds,
+    required this.id,
+    required this.identityId,
+    required this.emailId,
+    required this.threadId,
+    required this.envelope,
+    required this.sendAt,
+    required this.undoStatus,
+    required this.deliveryStatus,
+    required this.dsnBlobIds,
+    required this.mdnBlobIds,
   });
 
-  factory EmailSubmission.fromJson(Map<String, dynamic> json) {
-    return EmailSubmission(
-      id: const EmailSubmissionIdNullableConverter().fromJson(
-        json['id'] as String?,
-      ),
-      identityId: const IdNullableConverter().fromJson(
-        json['identityId'] as String?,
-      ),
-      emailId: const ReferenceEmailIdNullableConverter().fromJson(
-        json['emailId'] as String?,
-      ),
-      threadId: const ThreadIdNullableConverter().fromJson(
-        json['threadId'] as String?,
-      ),
-      envelope: json['envelope'] == null
-          ? null
-          : Envelope.fromJson(json['envelope'] as Map<String, dynamic>),
-      sendAt: const UTCDateNullableConverter().fromJson(
-        json['sendAt'] as String?,
-      ),
-      undoStatus: const UndoStatusNullableConverter().fromJson(
-        json['undoStatus'] as String?,
-      ),
-      deliveryStatus: (json['deliveryStatus'] as Map<String, dynamic>?)?.map(
-        (key, value) => DeliveryStatusConverter().parseEntry(key, value),
-      ),
-      dsnBlobIds: (json['dsnBlobIds'] as List<dynamic>?)
-          ?.map((json) => const IdConverter().fromJson(json))
-          .toList(),
-      mdnBlobIds: (json['mdnBlobIds'] as List<dynamic>?)
-          ?.map((json) => const IdConverter().fromJson(json))
-          .toList(),
-    );
-  }
+  factory EmailSubmission.fromJson(Map<String, dynamic> json) =>
+      _$EmailSubmissionFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    final val = <String, dynamic>{};
-
-    void writeNotNull(String key, dynamic value) {
-      if (value != null) {
-        val[key] = value;
-      }
-    }
-
-    writeNotNull('id', const EmailSubmissionIdNullableConverter().toJson(id));
-    writeNotNull('identityId', const IdNullableConverter().toJson(identityId));
-    writeNotNull(
-      'emailId',
-      const ReferenceEmailIdNullableConverter().toJson(emailId),
-    );
-    writeNotNull(
-      'threadId',
-      const ThreadIdNullableConverter().toJson(threadId),
-    );
-    writeNotNull('envelope', envelope?.toJson());
-    writeNotNull('sendAt', const UTCDateNullableConverter().toJson(sendAt));
-    writeNotNull(
-      'undoStatus',
-      const UndoStatusNullableConverter().toJson(undoStatus),
-    );
-    writeNotNull(
-      'deliveryStatus',
-      deliveryStatus?.map(
-        (key, value) => DeliveryStatusConverter().toJson(key, value),
-      ),
-    );
-    writeNotNull(
-      'dsnBlobIds',
-      dsnBlobIds?.map((id) => const IdConverter().toJson(id)).toList(),
-    );
-    writeNotNull(
-      'mdnBlobIds',
-      mdnBlobIds?.map((id) => const IdConverter().toJson(id)).toList(),
-    );
-    return val;
-  }
+  Map<String, dynamic> toJson() => _$EmailSubmissionToJson(this);
 
   @override
   List<Object?> get props => [
@@ -131,6 +56,8 @@ class EmailSubmission with EquatableMixin {
   ];
 }
 
+typedef EmailSubmissionId = Id<EmailSubmission>;
+
 class UndoStatus with EquatableMixin {
   static final UndoStatus pendingStatus = UndoStatus('pending');
   static final UndoStatus finalStatus = UndoStatus('final');
@@ -139,6 +66,9 @@ class UndoStatus with EquatableMixin {
   final String value;
 
   UndoStatus(this.value);
+
+  String toJson() => value;
+  factory UndoStatus.fromJson(String value) => UndoStatus(value);
 
   @override
   List<Object?> get props => [value];

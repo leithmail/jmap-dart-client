@@ -7,39 +7,27 @@ part of 'identity.dart';
 // **************************************************************************
 
 Identity _$IdentityFromJson(Map<String, dynamic> json) => Identity(
-  id: json['id'] == null ? null : IdentityId.fromJson(json['id'] as String),
-  description: json['description'] as String?,
-  name: json['name'] as String?,
-  email: json['email'] as String?,
-  bcc: (json['bcc'] as List<dynamic>?)
-      ?.map((e) => EmailAddress.fromJson(e as Map<String, dynamic>))
-      .toList(),
+  id: json['id'] == null ? null : Id<Identity>.fromJson(json['id'] as String),
+  name: json['name'] as String,
+  email: json['email'] as String,
   replyTo: (json['replyTo'] as List<dynamic>?)
       ?.map((e) => EmailAddress.fromJson(e as Map<String, dynamic>))
       .toList(),
-  textSignature: const SignatureNullableConverter().fromJson(
-    json['textSignature'] as String?,
-  ),
-  htmlSignature: const SignatureNullableConverter().fromJson(
-    json['htmlSignature'] as String?,
-  ),
+  bcc: (json['bcc'] as List<dynamic>?)
+      ?.map((e) => EmailAddress.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  textSignature: json['textSignature'] as String,
+  htmlSignature: json['htmlSignature'] as String,
   mayDelete: json['mayDelete'] as bool?,
-  sortOrder: (json['sortOrder'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$IdentityToJson(Identity instance) => <String, dynamic>{
   'id': ?instance.id,
-  'description': ?instance.description,
-  'name': ?instance.name,
-  'email': ?instance.email,
-  'bcc': ?instance.bcc,
+  'name': instance.name,
+  'email': instance.email,
   'replyTo': ?instance.replyTo,
-  'textSignature': ?const SignatureNullableConverter().toJson(
-    instance.textSignature,
-  ),
-  'htmlSignature': ?const SignatureNullableConverter().toJson(
-    instance.htmlSignature,
-  ),
+  'bcc': ?instance.bcc,
+  'textSignature': instance.textSignature,
+  'htmlSignature': instance.htmlSignature,
   'mayDelete': ?instance.mayDelete,
-  'sortOrder': ?instance.sortOrder,
 };

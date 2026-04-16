@@ -9,4 +9,7 @@ class UTCDate with EquatableMixin {
 
   @override
   List<Object?> get props => [value];
+
+  String toJson() => value.toUtc().toIso8601String();
+  factory UTCDate.fromJson(String value) => UTCDate(DateTime.parse(value));
 }

@@ -10,10 +10,7 @@ import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/capability_properties.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
-import 'package:jmap_dart_client/entities/core/user_name.dart';
 import 'package:jmap_dart_client/src/converters/account_name_converter.dart';
-import 'package:jmap_dart_client/src/converters/state_converter.dart';
-import 'package:jmap_dart_client/src/converters/user_name_converter.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -21,12 +18,12 @@ class Session with EquatableMixin {
   final Map<CapabilityIdentifier, CapabilityProperties> capabilities;
   final Map<AccountId, Account> accounts;
   final Map<CapabilityIdentifier, AccountId> primaryAccounts;
-  final UserName username;
+  final String username;
   final Uri apiUrl;
   final Uri downloadUrl;
   final Uri uploadUrl;
   final Uri eventSourceUrl;
-  final State state;
+  final SessionState state;
 
   Session({
     required Map<CapabilityIdentifier, CapabilityProperties> capabilities,
@@ -65,12 +62,12 @@ class Session with EquatableMixin {
           AccountId.fromJson(value),
         ),
       ),
-      username: const UserNameConverter().fromJson(json['username'] as String),
+      username: json['username'] as String,
       apiUrl: Uri.parse(json['apiUrl'] as String),
       downloadUrl: Uri.parse(json['downloadUrl'] as String),
       uploadUrl: Uri.parse(json['uploadUrl'] as String),
       eventSourceUrl: Uri.parse(json['eventSourceUrl'] as String),
-      state: const StateConverter().fromJson(json['state'] as String),
+      state: SessionState.fromJson(json['state'] as String),
     );
   }
 
@@ -87,6 +84,8 @@ class Session with EquatableMixin {
     state,
   ];
 }
+
+typedef SessionState = State<Session>;
 
 class _CapabilitiesConverter {
   final Map<

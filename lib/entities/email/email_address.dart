@@ -6,9 +6,9 @@ part 'email_address.g.dart';
 @JsonSerializable()
 class EmailAddress with EquatableMixin {
   final String? name;
-  final String? email;
+  final String email;
 
-  EmailAddress(this.name, this.email);
+  EmailAddress({this.name, required this.email});
 
   factory EmailAddress.fromJson(Map<String, dynamic> json) =>
       _$EmailAddressFromJson(json);

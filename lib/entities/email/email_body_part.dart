@@ -2,52 +2,25 @@ import 'package:equatable/equatable.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/email/email_header.dart';
-import 'package:jmap_dart_client/src/converters/id_nullable_converter.dart';
 import 'package:jmap_dart_client/src/converters/media_type_nullable_converter.dart';
-import 'package:jmap_dart_client/src/converters/part_id_nullable_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'email_body_part.g.dart';
 
 @MediaTypeNullableConverter()
-@PartIdNullableConverter()
-@IdNullableConverter()
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class EmailBodyPart with EquatableMixin {
-  @JsonKey(includeIfNull: false)
-  final PartId? partId;
-
-  @JsonKey(includeIfNull: false)
-  final Id? blobId;
-
-  @JsonKey(includeIfNull: false)
+  final EmailBodyPartId? partId;
+  final BlobId? blobId;
   final int? size;
-
-  @JsonKey(includeIfNull: false)
   final List<EmailHeader>? headers;
-
-  @JsonKey(includeIfNull: false)
   final String? name;
-
-  @JsonKey(includeIfNull: false)
   final MediaType? type;
-
-  @JsonKey(includeIfNull: false)
   final String? charset;
-
-  @JsonKey(includeIfNull: false)
   final String? disposition;
-
-  @JsonKey(includeIfNull: false)
   final String? cid;
-
-  @JsonKey(includeIfNull: false)
   final List<String>? language;
-
-  @JsonKey(includeIfNull: false)
   final String? location;
-
-  @JsonKey(includeIfNull: false)
   final List<EmailBodyPart>? subParts;
 
   EmailBodyPart({
@@ -87,11 +60,4 @@ class EmailBodyPart with EquatableMixin {
   ];
 }
 
-class PartId with EquatableMixin {
-  final String value;
-
-  PartId(this.value);
-
-  @override
-  List<Object?> get props => [value];
-}
+typedef EmailBodyPartId = Id<EmailBodyPart>;

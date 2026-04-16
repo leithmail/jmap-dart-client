@@ -1,15 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/quota/data_types.dart';
-import 'package:jmap_dart_client/src/converters/id_converter.dart';
-import 'package:jmap_dart_client/src/converters/quotas/data_type_converter.dart';
-
 import 'package:json_annotation/json_annotation.dart';
 
 part 'quota.g.dart';
 
-@DataTypeConverter()
-@IdConverter()
 @JsonSerializable(includeIfNull: false)
 class Quota with EquatableMixin {
   final Id id;

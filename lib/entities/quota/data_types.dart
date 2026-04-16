@@ -11,6 +11,9 @@ class DataType with EquatableMixin {
 
   @override
   List<Object?> get props => [value];
+
+  String toJson() => value;
+  factory DataType.fromJson(String value) => DataType(value);
 }
 
 enum Scope { account, domain, global }

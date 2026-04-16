@@ -1,11 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
-import 'package:jmap_dart_client/src/converters/email_id_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'search_snippet.g.dart';
 
-@EmailIdConverter()
 @JsonSerializable(includeIfNull: false)
 class SearchSnippet with EquatableMixin {
   final EmailId emailId;

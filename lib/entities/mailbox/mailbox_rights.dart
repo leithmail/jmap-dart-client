@@ -15,17 +15,17 @@ class MailboxRights with EquatableMixin {
   final bool mayDelete;
   final bool maySubmit;
 
-  MailboxRights(
-    this.mayReadItems,
-    this.mayAddItems,
-    this.mayRemoveItems,
-    this.maySetSeen,
-    this.maySetKeywords,
-    this.mayCreateChild,
-    this.mayRename,
-    this.mayDelete,
-    this.maySubmit,
-  );
+  MailboxRights({
+    required this.mayReadItems,
+    required this.mayAddItems,
+    required this.mayRemoveItems,
+    required this.maySetSeen,
+    required this.maySetKeywords,
+    required this.mayCreateChild,
+    required this.mayRename,
+    required this.mayDelete,
+    required this.maySubmit,
+  });
 
   factory MailboxRights.fromJson(Map<String, dynamic> json) {
     return _$MailboxRightsFromJson(json);
