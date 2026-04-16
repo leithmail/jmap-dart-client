@@ -1,1 +1,0 @@
-enum CalendarFreeBusyStatus { free, busy }
