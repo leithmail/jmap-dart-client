@@ -1,15 +1,12 @@
 import 'package:equatable/equatable.dart';
-import 'package:jmap_dart_client/entities/capability/calendar_event_capability.dart';
 import 'package:jmap_dart_client/entities/capability/core_capability.dart';
 import 'package:jmap_dart_client/entities/capability/custom_capability.dart';
 import 'package:jmap_dart_client/entities/capability/mail_capability.dart';
 import 'package:jmap_dart_client/entities/capability/mdn_capability.dart';
 import 'package:jmap_dart_client/entities/capability/submission_capability.dart';
 import 'package:jmap_dart_client/entities/capability/vacation_capability.dart';
-import 'package:jmap_dart_client/entities/capability/web_socket_ticket_capability.dart';
 import 'package:jmap_dart_client/entities/capability/websocket_capability.dart';
 import 'package:jmap_dart_client/entities/core/account.dart';
-import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/capability_properties.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
@@ -100,11 +97,8 @@ class _CapabilitiesConverter {
     CapabilityIdentifier.jmapMail: MailCapability.fromJson,
     CapabilityIdentifier.jmapCore: CoreCapability.fromJson,
     CapabilityIdentifier.jmapSubmission: SubmissionCapability.fromJson,
-    CapabilityIdentifier.jamesCalendarEvent: CalendarEventCapability.fromJson,
     CapabilityIdentifier.jmapVacationResponse: VacationCapability.fromJson,
     CapabilityIdentifier.jmapWebSocket: WebSocketCapability.fromJson,
-    CapabilityIdentifier.jmapWebSocketTicket:
-        WebSocketTicketCapability.fromJson,
     CapabilityIdentifier.jmapMdn: MdnCapability.fromJson,
   };
 

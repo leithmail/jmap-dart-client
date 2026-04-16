@@ -4,7 +4,7 @@ import 'package:jmap_dart_client/api/method/method_response.dart';
 import 'package:jmap_dart_client/api/request/reference_path.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
-import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:meta/meta.dart';
 
@@ -28,7 +28,7 @@ abstract class Method<R extends MethodResponse, Q extends ResultReference> {
   Q resultReferences(MethodCallId resultOf);
 }
 
-mixin EmptyResultReferences<R extends MethodResponse>
+mixin EmptyResultReferences<T, R extends MethodResponse>
     on Method<R, ResultReference> {
   @override
   ResultReference resultReferences(MethodCallId resultOf) => ResultReference(

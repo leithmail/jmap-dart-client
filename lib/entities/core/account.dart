@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/capability_properties.dart';
+import 'package:jmap_dart_client/entities/core/id.dart';
 
 class Account with EquatableMixin {
   final AccountName name;
@@ -27,3 +28,5 @@ class AccountName with EquatableMixin {
   @override
   List<Object> get props => [value];
 }
+
+typedef AccountId = Id<Account>;

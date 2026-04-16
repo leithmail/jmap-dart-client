@@ -1,12 +1,11 @@
-import 'package:equatable/equatable.dart';
+import 'package:jmap_dart_client/entities/core/typed_string.dart';
+import 'package:json_serializable_lints_annotation/json_serializable_lints_annotation.dart';
 import 'package:meta/meta.dart';
 
 @immutable
-class State with EquatableMixin {
-  final String value;
+@RequireFromJson()
+class State<T> extends TypedString {
+  State(String value) : super(value);
 
-  State(this.value);
-
-  @override
-  List<Object?> get props => [value];
+  factory State.fromJson(String json) => State(json);
 }

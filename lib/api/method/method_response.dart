@@ -1,9 +1,6 @@
-import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:json_serializable_lints_annotation/json_serializable_lints_annotation.dart';
+import 'package:meta/meta.dart';
 
+@RequireFromJson()
+@immutable
 abstract class MethodResponse {}
-
-abstract class ResponseRequiringAccountId extends MethodResponse {
-  final AccountId accountId;
-
-  ResponseRequiringAccountId(this.accountId);
-}

@@ -13,16 +13,16 @@ class RequestBuilder {
   final Set<CapabilityIdentifier> _capabilities = {};
   final List<MethodCallId> _methodCallIds = [];
 
-  RequestInvocation<R, F>
-  addInvocation<R extends MethodResponse, F extends ResultReference>(
-    Method<R, F> method, {
+  RequestInvocation<R, Q>
+  addInvocation<R extends MethodResponse, Q extends ResultReference>(
+    Method<R, Q> method, {
     MethodCallId? methodCallId,
     bool withRequiredCapabilities = true,
   }) {
     final callId = methodCallId ?? _generateMethodCallId();
-    final RequestInvocation<R, F> invocation = RequestInvocation<R, F>(
-      method,
-      callId,
+    final RequestInvocation<R, Q> invocation = RequestInvocation<R, Q>(
+      method: method,
+      methodCallId: callId,
     );
     _addMethod(callId, invocation);
     if (withRequiredCapabilities) {

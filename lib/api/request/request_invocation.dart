@@ -10,11 +10,17 @@ import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/api/response/response.dart';
 import 'package:jmap_dart_client/api/response/response_invocation.dart';
 
-class RequestInvocation<R extends MethodResponse, F extends ResultReference> {
-  final Method<R, F> method;
+class RequestInvocation<R extends MethodResponse, Q extends ResultReference> {
+  final Method<R, Q> method;
   final MethodCallId methodCallId;
 
-  RequestInvocation(this.method, this.methodCallId);
+  RequestInvocation({required this.method, required this.methodCallId});
+
+  Map<String, dynamic> toJson() => {
+    'methodName': method.methodName.value,
+    'arguments': method.toJson(),
+    'id': methodCallId.value,
+  };
 
   R parseResponse(Response response) {
     final matchedResponse = response.methodResponses.firstWhere(
@@ -35,7 +41,7 @@ class RequestInvocation<R extends MethodResponse, F extends ResultReference> {
     return method.responseFromJson(matchedResponse.arguments.value);
   }
 
-  F get resultReferences => method.resultReferences(methodCallId);
+  Q get resultReferences => method.resultReferences(methodCallId);
 
   static bool _validMethodResponseName(
     ResponseInvocation responseInvocation,

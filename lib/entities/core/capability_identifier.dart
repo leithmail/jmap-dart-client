@@ -18,28 +18,18 @@ class CapabilityIdentifier with EquatableMixin {
   static final jmapWebSocket = CapabilityIdentifier(
     Uri.parse('urn:ietf:params:jmap:websocket'),
   );
-  static final jmapWebSocketTicket = CapabilityIdentifier(
-    Uri.parse('com:linagora:params:jmap:ws:ticket'),
-  );
   static final jmapMdn = CapabilityIdentifier(
     Uri.parse('urn:ietf:params:jmap:mdn'),
   );
   static final jmapQuota = CapabilityIdentifier(
     Uri.parse('urn:ietf:params:jmap:quota'),
   );
-  static final jamesCalendarEvent = CapabilityIdentifier(
-    Uri.parse('com:linagora:params:calendar:event'),
-  );
-  static final jmapPublicAsset = CapabilityIdentifier(
-    Uri.parse('com:linagora:params:jmap:public:assets'),
-  );
-  static final jmapMailboxClear = CapabilityIdentifier(
-    Uri.parse('com:linagora:params:jmap:mailbox:clear'),
-  );
 
   final Uri value;
 
   CapabilityIdentifier(this.value);
+
+  String toJson() => value.toString();
 
   @override
   List<Object> get props => [value];
