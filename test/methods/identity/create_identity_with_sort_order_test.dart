@@ -12,8 +12,9 @@ import '../../helpers/http_mocks.dart';
 void main() {
   group('test to json set identity method', () {
     final expectedCreated = Identity(
+      name: "Test",
       id: IdentityId('5ccf6d7b-77e8-467a-9064-9f7ccfb19e86'),
-      sortOrder: 99999,
+      email: 'test@test.com',
     );
 
     test('create new identity with response parsing', () async {
@@ -29,6 +30,8 @@ void main() {
                 "newState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
                 "created": {
                   "dab246": {
+                    "name": "Test",
+                    "email": "test@test.com",
                     "id": "5ccf6d7b-77e8-467a-9064-9f7ccfb19e86",
                     "mayDelete": true,
                   },
@@ -56,7 +59,6 @@ void main() {
                     "textSignature": "",
                     "htmlSignature":
                         "<body><div>Dat T. Vu <br>Mobile Engineer <br>LINAGORA VIETNAM <br>A: 8th Floor (Toong VPBank Tower, No. 5 Dien Bien Phu  Str., Ba Dinh Dist., Ha Noi <br>P: (+84) 366-769-439<br>E: tdvu@linagora.com</div></body>",
-                    "sortOrder": 99999,
                   },
                 },
               },
@@ -75,14 +77,12 @@ void main() {
             ),
           )..create(
             Val({
-              Id('dab246'): Identity(
+              IdentityCreationId('dab246'): Identity(
                 name: 'User B23',
                 email: 'lol@gmail.com',
-                textSignature: Signature(''),
-                htmlSignature: Signature(
-                  '<body><div>Dat T. Vu <br>Mobile Engineer <br>LINAGORA VIETNAM <br>A: 8th Floor (Toong VPBank Tower, No. 5 Dien Bien Phu  Str., Ba Dinh Dist., Ha Noi <br>P: (+84) 366-769-439<br>E: tdvu@linagora.com</div></body>',
-                ),
-                sortOrder: 99999,
+                textSignature: '',
+                htmlSignature:
+                    '<body><div>Dat T. Vu <br>Mobile Engineer <br>LINAGORA VIETNAM <br>A: 8th Floor (Toong VPBank Tower, No. 5 Dien Bien Phu  Str., Ba Dinh Dist., Ha Noi <br>P: (+84) 366-769-439<br>E: tdvu@linagora.com</div></body>',
               ),
             }),
           );
@@ -99,7 +99,7 @@ void main() {
 
       final setIdentityResponse = setIdentityInvocation.parseResponse(response);
       expect(
-        setIdentityResponse.created![Id('dab246')]!.id,
+        setIdentityResponse.created![IdentityCreationId('dab246')]!.id,
         equals(expectedCreated.id),
       );
     });
@@ -110,7 +110,8 @@ void main() {
     () {
       final expectedCreated = Identity(
         id: IdentityId('5ccf6d7b-77e8-467a-9064-9f7ccfb19e12'),
-        sortOrder: 1,
+        name: 'User B23',
+        email: 'userb23@test.com',
       );
 
       test(
@@ -128,6 +129,8 @@ void main() {
                     "newState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
                     "created": {
                       "xyz123": {
+                        "name": "User B23",
+                        "email": "userb23@test.com",
                         "id": "5ccf6d7b-77e8-467a-9064-9f7ccfb19e12",
                         "mayDelete": true,
                       },
@@ -154,12 +157,11 @@ void main() {
                         "id": "5ccf6d7b-77e8-467a-9064-9f7ccfb19e12",
                         "name": "User B23",
                         "email": "lol@gmail.com",
-                        "sortOrder": 1,
                       },
                     },
                     "update": {
                       "c6ba359f-94a8-4ee9-b515-6bd2d9698618": {
-                        "sortOrder": 8888,
+                        "name": "New Name",
                       },
                     },
                   },
@@ -179,18 +181,17 @@ void main() {
                 )
                 ..create(
                   Val({
-                    Id('xyz123'): Identity(
+                    IdentityCreationId('xyz123'): Identity(
                       id: IdentityId("5ccf6d7b-77e8-467a-9064-9f7ccfb19e12"),
                       name: 'User B23',
                       email: 'lol@gmail.com',
-                      sortOrder: 1,
                     ),
                   }),
                 )
                 ..update(
                   Val({
                     Id("c6ba359f-94a8-4ee9-b515-6bd2d9698618"): PatchObject({
-                      "sortOrder": 8888,
+                      "name": "New Name",
                     }),
                   }),
                 );
@@ -210,11 +211,11 @@ void main() {
           );
 
           expect(
-            setIdentityResponse.created![Id('xyz123')]!.id,
+            setIdentityResponse.created![IdentityCreationId('xyz123')]!.id,
             equals(expectedCreated.id),
           );
           expect(
-            setIdentityResponse.updated![Id(
+            setIdentityResponse.updated![IdentityId(
               '5ccf6d7b-77e8-467a-9064-9f7cc1234512',
             )],
             equals(Identity()),

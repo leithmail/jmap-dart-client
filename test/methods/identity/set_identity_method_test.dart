@@ -1,7 +1,6 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/identity/identity.dart';
 import 'package:jmap_dart_client/methods/identity/set_identity_method.dart';
 import 'package:test/test.dart';
@@ -11,6 +10,8 @@ import '../../helpers/http_mocks.dart';
 void main() {
   group('test to json set identity method', () {
     final expectedCreated = Identity(
+      name: 'User B1',
+      email: 'userB1@test.com',
       id: IdentityId('bc6d7c78-672a-45e9-b0de-1dfd2699020a'),
     );
 
@@ -27,6 +28,8 @@ void main() {
                 "newState": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
                 "created": {
                   "dab246": {
+                    "name": "User B1",
+                    "email": "userB1@test.com",
                     "id": "bc6d7c78-672a-45e9-b0de-1dfd2699020a",
                     "mayDelete": true,
                   },
@@ -72,13 +75,12 @@ void main() {
             ),
           )..create(
             Val({
-              Id('dab246'): Identity(
+              IdentityCreationId('dab246'): Identity(
                 name: 'User B1',
                 email: 'userb@qa.open-paas.org',
-                textSignature: Signature(''),
-                htmlSignature: Signature(
-                  '<body><div>Dat T. Vu <br>Mobile Engineer <br>LINAGORA VIETNAM <br>A: 8th Floor (Toong VPBank Tower, No. 5 Dien Bien Phu  Str., Ba Dinh Dist., Ha Noi <br>P: (+84) 366-769-439<br>E: tdvu@linagora.com</div></body>',
-                ),
+                textSignature: '',
+                htmlSignature:
+                    '<body><div>Dat T. Vu <br>Mobile Engineer <br>LINAGORA VIETNAM <br>A: 8th Floor (Toong VPBank Tower, No. 5 Dien Bien Phu  Str., Ba Dinh Dist., Ha Noi <br>P: (+84) 366-769-439<br>E: tdvu@linagora.com</div></body>',
               ),
             }),
           );
@@ -94,7 +96,7 @@ void main() {
 
       final setIdentityResponse = setIdentityInvocation.parseResponse(response);
       expect(
-        setIdentityResponse.created![Id('dab246')]!.id,
+        setIdentityResponse.created![IdentityCreationId('dab246')]!.id,
         equals(expectedCreated.id),
       );
     });

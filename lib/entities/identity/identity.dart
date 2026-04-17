@@ -8,12 +8,12 @@ part 'identity.g.dart';
 @JsonSerializable(includeIfNull: false)
 class Identity with EquatableMixin {
   final IdentityId? id;
-  final String name;
-  final String email;
+  final String? name;
+  final String? email;
   final List<EmailAddress>? replyTo;
   final List<EmailAddress>? bcc;
-  final String textSignature;
-  final String htmlSignature;
+  final String? textSignature;
+  final String? htmlSignature;
   final bool? mayDelete;
 
   factory Identity.fromJson(Map<String, dynamic> json) =>
@@ -21,12 +21,12 @@ class Identity with EquatableMixin {
 
   Identity({
     this.id,
-    required this.name,
-    required this.email,
-    required this.replyTo,
-    required this.bcc,
-    required this.textSignature,
-    required this.htmlSignature,
+    this.name,
+    this.email,
+    this.replyTo,
+    this.bcc,
+    this.textSignature,
+    this.htmlSignature,
     this.mayDelete,
   });
 
@@ -46,3 +46,4 @@ class Identity with EquatableMixin {
 }
 
 typedef IdentityId = Id<Identity>;
+typedef IdentityCreationId = CreationId<Identity>;

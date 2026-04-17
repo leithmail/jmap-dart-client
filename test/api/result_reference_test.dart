@@ -1,7 +1,12 @@
 import 'package:jmap_dart_client/api/api.dart';
 import 'package:test/test.dart';
 
-class _TestMethodResponse extends MethodResponse {}
+class _TestMethodResponse extends MethodResponse {
+  _TestMethodResponse();
+  factory _TestMethodResponse.fromJson(Map<String, dynamic> json) {
+    return _TestMethodResponse();
+  }
+}
 
 class _ExampleReference extends ResultReferenceMap {
   late final ResultReference first;
@@ -33,7 +38,7 @@ class _TestMethod extends Method<_TestMethodResponse, _TestResultReferenceMap> {
 
   @override
   _TestMethodResponse responseFromJson(Map<String, dynamic> json) {
-    return _TestMethodResponse();
+    return _TestMethodResponse.fromJson(json);
   }
 
   @override

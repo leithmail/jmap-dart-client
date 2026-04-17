@@ -14,9 +14,9 @@ void main() {
       id: IdentityId('6f15f98e-375f-3634-aae6-903e9356c196'),
       name: 'userb@qa.open-paas.org',
       email: 'userb@qa.open-paas.org',
-      bcc: [EmailAddress('user b', 'userb@qa.open-paas.org')],
-      textSignature: Signature(''),
-      htmlSignature: Signature(''),
+      bcc: [EmailAddress(name: 'user b', email: 'userb@qa.open-paas.org')],
+      textSignature: '',
+      htmlSignature: '',
       mayDelete: false,
     );
 
@@ -24,8 +24,8 @@ void main() {
       id: IdentityId('903e9356c196-6f15f98e-375f-3634-aae6'),
       name: 'usera@qa.open-paas.org',
       email: 'usera@qa.open-paas.org',
-      textSignature: Signature('User A'),
-      htmlSignature: Signature('<p>User A</p>'),
+      textSignature: 'User A',
+      htmlSignature: '<p>User A</p>',
       mayDelete: true,
     );
 

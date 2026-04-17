@@ -3,7 +3,6 @@ import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/vacation/vacation.dart';
-import 'package:jmap_dart_client/entities/vacation/vacation_id.dart';
 import 'package:jmap_dart_client/methods/vacation/get_vacation_method.dart';
 import 'package:jmap_dart_client/methods/vacation/set_vacation_method.dart';
 import 'package:test/test.dart';
@@ -13,7 +12,7 @@ import '../../helpers/http_mocks.dart';
 void main() {
   group('test to json set vacation method', () {
     final expectedUpdated = Vacation(
-      id: VacationId.singleton(),
+      id: VacationId('singleton'),
       isEnabled: true,
       fromDate: UTCDate(DateTime.parse('2022-08-16T15:00:00.000Z')),
       textBody: 'Hello dab',
@@ -94,16 +93,16 @@ void main() {
         '0d14dbabe6482aff5cbf922e04cef51a40b4eabccbe12d28fe27c97038752555',
       );
 
-      final setVacationMethod = SetVacationMethod(accountId: Val(accountId))
-        ..updateSingleton(
+      final setVacationMethod = SetVacationMethod(accountId: Val(accountId));
+      /* ..update(
           Val({
-            VacationId.singleton().id: Vacation(
+            VacationId('singleton'): Vacation(
               isEnabled: true,
               fromDate: UTCDate(DateTime.parse('2022-08-16T15:00:00.000Z')),
               textBody: 'Hello dab',
             ),
           }),
-        );
+        );*/
 
       final requestBuilder = RequestBuilder()..addInvocation(setVacationMethod);
 

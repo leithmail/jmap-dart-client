@@ -12,17 +12,17 @@ import '../../helpers/http_mocks.dart';
 void main() {
   group('test to json get identity method', () {
     final expectIdentity1 = Identity(
+      name: 'Test',
       id: IdentityId('ac8f94d7-c548-4697-aea5-c4821ba07538'),
       email: 'somenamewithpeople@gmail.com',
       bcc: [],
-      sortOrder: 10000,
     );
 
     final expectIdentity2 = Identity(
+      name: 'Test',
       id: IdentityId('f1e627f0-e21b-371a-9c03-ac74d06353fd'),
       email: 'somenamewithpeople@gmail.com',
-      sortOrder: 1000,
-      bcc: [EmailAddress(null, "xyz@gmail.com")],
+      bcc: [EmailAddress(email: "xyz@gmail.com")],
     );
 
     test('get identity method and response parsing', () async {
@@ -38,15 +38,15 @@ void main() {
                 "state": "2c9f1b12-b35a-43e6-9af2-0106fb53a943",
                 "list": [
                   {
+                    "name": "Test",
                     "email": "somenamewithpeople@gmail.com",
                     "id": "ac8f94d7-c548-4697-aea5-c4821ba07538",
-                    "sortOrder": 10000,
                     "bcc": [],
                   },
                   {
+                    "name": "Test",
                     "email": "somenamewithpeople@gmail.com",
                     "id": "f1e627f0-e21b-371a-9c03-ac74d06353fd",
-                    "sortOrder": 1000,
                     "bcc": [
                       {"email": "xyz@gmail.com"},
                     ],
