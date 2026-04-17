@@ -15,25 +15,25 @@ void main() {
   group('[MailBox/changes]', () {
     final expectedUpdated = Mailbox(
       id: MailboxId('c2543650-32cf-11eb-995c-a3ae66e9f96a'),
-      role: Role('inbox'),
-      name: MailboxName('INBOX'),
-      sortOrder: SortOrder(sortValue: 10),
-      totalEmails: TotalEmails(4079),
-      unreadEmails: UnreadEmails(10),
-      totalThreads: TotalThreads(4079),
-      unreadThreads: UnreadThreads(10),
+      role: MailboxRole('inbox'),
+      name: 'INBOX',
+      sortOrder: 10,
+      totalEmails: 4079,
+      unreadEmails: 10,
+      totalThreads: 4079,
+      unreadThreads: 10,
       myRights: MailboxRights(
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
+        mayReadItems: true,
+        mayAddItems: true,
+        mayRemoveItems: true,
+        maySetSeen: true,
+        maySetKeywords: true,
+        mayCreateChild: true,
+        mayRename: true,
+        mayDelete: true,
+        maySubmit: true,
       ),
-      isSubscribed: IsSubscribed(true),
+      isSubscribed: true,
     );
 
     test('get changes email', () async {
@@ -149,7 +149,7 @@ void main() {
       final accountId = AccountId(
         '0eacc7a5c74b27ab36a823bc5c34da36e16c093705f241d6ed5f48ee73a4ecfb',
       );
-      final state = State('94bbff21-e87c-11ec-aae4-43ebf0340ebd');
+      final state = State<Mailbox>('94bbff21-e87c-11ec-aae4-43ebf0340ebd');
 
       final changesMailboxMethod = ChangesMailboxMethod(
         accountId: Val(accountId),

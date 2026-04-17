@@ -24,7 +24,7 @@ void main() {
     hasAttachment: false,
     subject: "A",
     size: 10001,
-    from: [EmailAddress("DatPH", "dphamhoang@linagora.com")],
+    from: [EmailAddress(name: "DatPH", email: "dphamhoang@linagora.com")],
     sentAt: UTCDate(DateTime.parse("2021-08-11T04:25:34Z")),
     receivedAt: UTCDate(DateTime.parse("2021-08-11T04:25:55Z")),
   );
@@ -36,7 +36,7 @@ void main() {
     hasAttachment: false,
     subject: "B",
     size: 10002,
-    from: [EmailAddress(null, "noreply@qa.open-paas.org")],
+    from: [EmailAddress(email: "noreply@qa.open-paas.org")],
     sentAt: UTCDate(DateTime.parse("2021-08-10T09:45:01Z")),
     receivedAt: UTCDate(DateTime.parse("2021-08-11T04:00:59Z")),
   );
@@ -48,7 +48,7 @@ void main() {
     hasAttachment: false,
     subject: "C",
     size: 10003,
-    from: [EmailAddress(null, "noreply@qa.open-paas.org")],
+    from: [EmailAddress(email: "noreply@qa.open-paas.org")],
     sentAt: UTCDate(DateTime.parse("2021-08-11T03:00:00Z")),
     receivedAt: UTCDate(DateTime.parse("2021-08-11T04:00:55Z")),
   );
@@ -59,7 +59,7 @@ void main() {
     hasAttachment: true,
     subject: "D",
     size: 10004,
-    from: [EmailAddress("Haaheoo", "userc@qa.open-paas.org")],
+    from: [EmailAddress(name: "Haaheoo", email: "userc@qa.open-paas.org")],
     sentAt: UTCDate(DateTime.parse("2021-08-11T06:46:25Z")),
     receivedAt: UTCDate(DateTime.parse("2021-08-11T06:46:26Z")),
   );
@@ -70,7 +70,7 @@ void main() {
     hasAttachment: false,
     subject: "E",
     size: 10005,
-    from: [EmailAddress("Haaheoo", "userc@qa.open-paas.org")],
+    from: [EmailAddress(name: "Haaheoo", email: "userc@qa.open-paas.org")],
     sentAt: UTCDate(DateTime.parse("2021-08-11T04:34:13Z")),
     receivedAt: UTCDate(DateTime.parse("2021-08-11T04:34:17Z")),
   );

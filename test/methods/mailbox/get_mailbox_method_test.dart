@@ -3,7 +3,6 @@ import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox_rights.dart';
-import 'package:jmap_dart_client/entities/mailbox/namespace.dart';
 import 'package:jmap_dart_client/methods/mailbox/get_mailbox_method.dart';
 import 'package:test/test.dart';
 
@@ -13,59 +12,48 @@ void main() {
   group('test to json get mailbox method', () {
     final expectedMailbox1 = Mailbox(
       id: MailboxId('f1cef2d0-30a9-11eb-9a8d-254ee97830fe'),
-      role: Role('inbox'),
-      name: MailboxName('INBOX'),
-      sortOrder: SortOrder(sortValue: 10),
-      totalEmails: TotalEmails(1847),
-      unreadEmails: UnreadEmails(1708),
-      totalThreads: TotalThreads(1847),
-      unreadThreads: UnreadThreads(1708),
+      role: MailboxRole('inbox'),
+      name: 'INBOX',
+      sortOrder: 10,
+      totalEmails: 1847,
+      unreadEmails: 1708,
+      totalThreads: 1847,
+      unreadThreads: 1708,
       myRights: MailboxRights(
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
+        mayReadItems: true,
+        mayAddItems: true,
+        mayRemoveItems: true,
+        maySetSeen: true,
+        maySetKeywords: true,
+        mayCreateChild: true,
+        mayRename: true,
+        mayDelete: true,
+        maySubmit: true,
       ),
-      isSubscribed: IsSubscribed(false),
-      rights: {
-        "firstname23.surname23@upn.integration-open-paas.org": [
-          "i",
-          "l",
-          "r",
-          "s",
-          "t",
-          "w",
-        ],
-      },
-      namespace: Namespace('Personal'),
+      isSubscribed: false,
     );
 
     final expectedMailbox2 = Mailbox(
       id: MailboxId('f1cef2d0-30a9-11eb-9a8d-254ee97830fe'),
-      role: Role('inbox'),
-      name: MailboxName('INBOX'),
-      sortOrder: SortOrder(sortValue: 10),
-      totalEmails: TotalEmails(1847),
-      unreadEmails: UnreadEmails(1708),
-      totalThreads: TotalThreads(1847),
-      unreadThreads: UnreadThreads(1708),
+      role: MailboxRole('inbox'),
+      name: 'INBOX',
+      sortOrder: 10,
+      totalEmails: 1847,
+      unreadEmails: 1708,
+      totalThreads: 1847,
+      unreadThreads: 1708,
       myRights: MailboxRights(
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
-        true,
+        mayReadItems: true,
+        mayAddItems: true,
+        mayRemoveItems: true,
+        maySetSeen: true,
+        maySetKeywords: true,
+        mayCreateChild: true,
+        mayRename: true,
+        mayDelete: true,
+        maySubmit: true,
       ),
-      isSubscribed: IsSubscribed(false),
+      isSubscribed: false,
     );
 
     test('get mailbox method and response parsing', () async {

@@ -10,10 +10,10 @@ import 'package:jmap_dart_client/entities/email/email_address.dart';
 import 'package:jmap_dart_client/entities/email/email_body_part.dart';
 import 'package:jmap_dart_client/entities/email/email_body_value.dart';
 import 'package:jmap_dart_client/entities/email/email_submission.dart';
-import 'package:jmap_dart_client/entities/email/email_submission_id.dart';
 import 'package:jmap_dart_client/entities/email/envelope.dart';
 import 'package:jmap_dart_client/entities/email/individual_header_identifier.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/entities/thread/thread.dart';
 import 'package:jmap_dart_client/methods/email/set_email_method.dart';
 import 'package:jmap_dart_client/methods/email/set_email_submission_method.dart';
 import 'package:test/test.dart';
@@ -148,6 +148,8 @@ void main() {
         },
       );
 
+      final emailCreationId = EmailCreationId('dab1234');
+
       final setEmailMethod =
           SetEmailMethod(
             accountId: Val(
@@ -157,14 +159,18 @@ void main() {
             ),
           )..create(
             Val({
-              Id('dab1234'): Email(
+              emailCreationId: Email(
                 id: EmailId('dab1234'),
                 mailboxIds: {
                   MailboxId('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e'): true,
                 },
                 subject: 'test send email',
-                from: [EmailAddress("userB", 'userb@qa.open-paas.org')],
-                to: [EmailAddress("userD", 'userd@qa.open-paas.org')],
+                from: [
+                  EmailAddress(name: "userB", email: 'userb@qa.open-paas.org'),
+                ],
+                to: [
+                  EmailAddress(name: "userD", email: 'userd@qa.open-paas.org'),
+                ],
                 htmlBody: [
                   EmailBodyPart(
                     partId: EmailBodyPartId('mmm'),
@@ -184,6 +190,8 @@ void main() {
             }),
           );
 
+      final emailSubmissionCreationId = EmailSubmissionCreationId('a1234');
+
       final setEmailSubmissionMethod =
           SetEmailSubmissionMethod(
               accountId: Val(
@@ -194,10 +202,8 @@ void main() {
             )
             ..create(
               Val({
-                Id('a1234'): EmailSubmission(
-                  emailId: EmailId(
-                    ReferenceId(ReferencePrefix.defaultPrefix, Id('dab1234')),
-                  ),
+                emailSubmissionCreationId: EmailSubmission(
+                  emailId: emailCreationId.toId(),
                   envelope: Envelope(Address('userb@qa.open-paas.org'), [
                     Address('userd@qa.open-paas.org'),
                   ]),
@@ -206,9 +212,7 @@ void main() {
             )
             ..onSuccessUpdateEmail(
               Val({
-                EmailSubmissionId(
-                  ReferenceId(ReferencePrefix.defaultPrefix, Id('a1234')),
-                ): PatchObject({
+                emailSubmissionCreationId.toId(): PatchObject({
                   PatchObject.mailboxIdsProperty: {
                     MailboxId('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e').toJson():
                         true,
@@ -235,10 +239,13 @@ void main() {
         response,
       );
 
-      expect(setEmailResponse.created?[Id('dab1234')], equals(expectedCreated));
+      expect(
+        setEmailResponse.created?[EmailCreationId('dab1234')],
+        equals(expectedCreated),
+      );
 
       expect(
-        setEmailUpdateResponse.updated?[Id(
+        setEmailUpdateResponse.updated?[EmailId(
           '64469f10-8e15-11ec-984e-e3f8b83572b4',
         )],
         equals(null),
@@ -374,14 +381,18 @@ void main() {
             ),
           )..create(
             Val({
-              Id('dab1234'): Email(
+              EmailCreationId('dab1234'): Email(
                 id: EmailId('dab1234'),
                 mailboxIds: {
                   MailboxId('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e'): true,
                 },
                 subject: 'test send email',
-                from: [EmailAddress("userB", 'userb@qa.open-paas.org')],
-                to: [EmailAddress("userD", 'userd@qa.open-paas.org')],
+                from: [
+                  EmailAddress(name: "userB", email: 'userb@qa.open-paas.org'),
+                ],
+                to: [
+                  EmailAddress(name: "userD", email: 'userd@qa.open-paas.org'),
+                ],
                 htmlBody: [
                   EmailBodyPart(
                     partId: EmailBodyPartId('mmm'),
@@ -405,6 +416,8 @@ void main() {
             }),
           );
 
+      final emailSubmissionCreationId = EmailSubmissionCreationId('a1234');
+
       final setEmailSubmissionMethod =
           SetEmailSubmissionMethod(
               accountId: Val(
@@ -415,10 +428,8 @@ void main() {
             )
             ..create(
               Val({
-                Id('a1234'): EmailSubmission(
-                  emailId: EmailId(
-                    ReferenceId(ReferencePrefix.defaultPrefix, Id('dab1234')),
-                  ),
+                emailSubmissionCreationId: EmailSubmission(
+                  emailId: EmailCreationId('dab1234').toId(),
                   envelope: Envelope(Address('userb@qa.open-paas.org'), [
                     Address('userd@qa.open-paas.org'),
                   ]),
@@ -427,9 +438,7 @@ void main() {
             )
             ..onSuccessUpdateEmail(
               Val({
-                EmailSubmissionId(
-                  ReferenceId(ReferencePrefix.defaultPrefix, Id('a1234')),
-                ): PatchObject({
+                emailSubmissionCreationId.toId(): PatchObject({
                   PatchObject.mailboxIdsProperty: {
                     MailboxId('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e').toJson():
                         true,
@@ -456,10 +465,13 @@ void main() {
         response,
       );
 
-      expect(setEmailResponse.created?[Id('dab1234')], equals(expectedCreated));
+      expect(
+        setEmailResponse.created?[EmailCreationId('dab1234')],
+        equals(expectedCreated),
+      );
 
       expect(
-        setEmailUpdateResponse.updated?[Id(
+        setEmailUpdateResponse.updated?[EmailId(
           '64469f10-8e15-11ec-984e-e3f8b83572b4',
         )],
         equals(null),

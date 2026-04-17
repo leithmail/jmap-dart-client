@@ -31,9 +31,9 @@ void main() {
           "accountId": accountId.value,
           "ids":
               foundSearchSnippets
-                  .map((searchSnippet) => searchSnippet.emailId.id.value)
+                  .map((searchSnippet) => searchSnippet.emailId.value)
                   .toList()
-                ..addAll(notFoundEmailIds.map((emailId) => emailId.id.value)),
+                ..addAll(notFoundEmailIds.map((emailId) => emailId.value)),
         },
         "c0",
       ],
@@ -41,9 +41,7 @@ void main() {
         "SearchSnippet/get",
         {
           "accountId": accountId.value,
-          "notFound": notFoundEmailIds
-              .map((emailId) => emailId.id.value)
-              .toList(),
+          "notFound": notFoundEmailIds.map((emailId) => emailId.value).toList(),
           "state": state.value,
           "list": foundSearchSnippets
               .map((searchSnippet) => searchSnippet.toJson())
@@ -179,10 +177,7 @@ void main() {
       final searchSnippetGetResponse = methodInvocation.parseResponse(result);
       // assert
       expect(searchSnippetGetResponse.list, isEmpty);
-      expect(
-        searchSnippetGetResponse.notFound,
-        equals(notFoundEmailIds.map((emailId) => emailId.id)),
-      );
+      expect(searchSnippetGetResponse.notFound, equals(notFoundEmailIds));
     });
 
     test('should return error if server returns error', () async {
@@ -198,7 +193,7 @@ void main() {
               {
                 "accountId": accountId.value,
                 "ids": notFoundEmailIds
-                    .map((emailId) => emailId.id.value)
+                    .map((emailId) => emailId.value)
                     .toList(),
               },
               "c0",

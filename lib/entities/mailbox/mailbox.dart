@@ -55,6 +55,7 @@ class Mailbox with EquatableMixin {
 }
 
 typedef MailboxId = Id<Mailbox>;
+typedef MailboxCreationId = CreationId<Mailbox>;
 
 class MailboxRole with EquatableMixin {
   final String value;

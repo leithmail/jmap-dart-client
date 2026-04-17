@@ -24,7 +24,12 @@ void main() {
     hasAttachment: false,
     subject: "FYI: Ercot summer assessment",
     size: 5306,
-    from: [EmailAddress("O'Grady  Eileen", "eileen.ogrady@dowjones.com")],
+    from: [
+      EmailAddress(
+        name: "O'Grady  Eileen",
+        email: "eileen.ogrady@dowjones.com",
+      ),
+    ],
     sentAt: UTCDate(DateTime.parse("2001-05-01T19:40:00Z")),
     receivedAt: UTCDate(DateTime.parse("2020-12-16T03:18:24Z")),
   );

@@ -18,7 +18,7 @@ void main() {
       preview: "Preview email 1",
       hasAttachment: false,
       subject: "Subject email 1",
-      from: [EmailAddress("user1", "user1@examaple.com")],
+      from: [EmailAddress(name: "user1", email: "user1@examaple.com")],
       sentAt: UTCDate(DateTime.parse("2021-08-11T04:25:34Z")),
       receivedAt: UTCDate(DateTime.parse("2021-08-11T04:25:55Z")),
     );
@@ -28,7 +28,7 @@ void main() {
       preview: "Preview email 2",
       hasAttachment: false,
       subject: "Subject email 2",
-      from: [EmailAddress(null, "user2@examaple.com")],
+      from: [EmailAddress(email: "user2@examaple.com")],
       sentAt: UTCDate(DateTime.parse("2021-08-10T09:45:01Z")),
       receivedAt: UTCDate(DateTime.parse("2021-08-11T04:00:59Z")),
     );
@@ -42,11 +42,11 @@ void main() {
     final accountId = AccountId(
       '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
     );
-    final blobId1 = Id('0f9f65ab-dc7b-4146-850f-6e4881093965');
-    final blobId2 = Id('1f9f65ab-dc7b-4146-850f-6e4881093965');
-    final blobId3 = Id('2f9f65ab-dc7b-4146-850f-6e4881093965');
-    final blobIdNotFound = Id('3f9f65ab-dc7b-4146-850f-6e4881093965');
-    final blobIdNotParsable = Id('4f9f65ab-dc7b-4146-850f-6e4881093965');
+    final blobId1 = BlobId('0f9f65ab-dc7b-4146-850f-6e4881093965');
+    final blobId2 = BlobId('1f9f65ab-dc7b-4146-850f-6e4881093965');
+    final blobId3 = BlobId('2f9f65ab-dc7b-4146-850f-6e4881093965');
+    final blobIdNotFound = BlobId('3f9f65ab-dc7b-4146-850f-6e4881093965');
+    final blobIdNotParsable = BlobId('4f9f65ab-dc7b-4146-850f-6e4881093965');
 
     test('ParseEmailMethod parse should succeed', () async {
       final httpMockClient = HttpMockResponseClient(

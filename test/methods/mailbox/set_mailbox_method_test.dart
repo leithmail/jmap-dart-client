@@ -1,7 +1,6 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
 import 'package:jmap_dart_client/entities/core/account.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/methods/mailbox/set_mailbox_method.dart';
 import 'package:test/test.dart';
@@ -83,8 +82,8 @@ void main() {
             ),
           )..create(
             Val({
-              Id('dab246'): Mailbox(
-                name: MailboxName('dab135'),
+              MailboxCreationId('dab246'): Mailbox(
+                name: 'dab135',
                 parentId: MailboxId('aba7e8d0-18d9-11eb-a677-2990b970028d'),
               ),
             }),
@@ -102,7 +101,7 @@ void main() {
       final setMailboxResponse = setMailboxInvocation.parseResponse(response);
 
       expect(
-        setMailboxResponse.created![Id('dab246')]!.id,
+        setMailboxResponse.created![MailboxCreationId('dab246')]!.id,
         equals(expectedCreated.id),
       );
     });

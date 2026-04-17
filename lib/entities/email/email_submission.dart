@@ -24,16 +24,16 @@ class EmailSubmission with EquatableMixin {
   final List<BlobId>? mdnBlobIds;
 
   EmailSubmission({
-    required this.id,
-    required this.identityId,
-    required this.emailId,
-    required this.threadId,
-    required this.envelope,
-    required this.sendAt,
-    required this.undoStatus,
-    required this.deliveryStatus,
-    required this.dsnBlobIds,
-    required this.mdnBlobIds,
+    this.id,
+    this.identityId,
+    this.emailId,
+    this.threadId,
+    this.envelope,
+    this.sendAt,
+    this.undoStatus,
+    this.deliveryStatus,
+    this.dsnBlobIds,
+    this.mdnBlobIds,
   });
 
   factory EmailSubmission.fromJson(Map<String, dynamic> json) =>
@@ -57,6 +57,7 @@ class EmailSubmission with EquatableMixin {
 }
 
 typedef EmailSubmissionId = Id<EmailSubmission>;
+typedef EmailSubmissionCreationId = CreationId<EmailSubmission>;
 
 class UndoStatus with EquatableMixin {
   static final UndoStatus pendingStatus = UndoStatus('pending');

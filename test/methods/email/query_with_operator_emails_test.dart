@@ -13,7 +13,7 @@ void main() {
       preview: "Dear QA,I attached image here",
       hasAttachment: false,
       subject: "test inline image",
-      from: [EmailAddress("DatPH", "dphamhoang@linagora.com")],
+      from: [EmailAddress(name: "DatPH", email: "dphamhoang@linagora.com")],
       sentAt: UTCDate(DateTime.parse("2021-08-11T04:25:34Z")),
       receivedAt: UTCDate(DateTime.parse("2021-08-11T04:25:55Z")),
     );
@@ -24,7 +24,7 @@ void main() {
           "This event is about to begin Noti check TimeFriday 23 October 2020 12:00 - 12:30 Europe/Paris (See in Calendar)Location1 thai ha (See in Map)Attendees - User A <usera@qa.open-paas.org> (Organizer) - Lê Nguyễn <userb@qa.open-paas.org> - User C <userc@qa.ope",
       hasAttachment: false,
       subject: "Notification: Noti check",
-      from: [EmailAddress(null, "noreply@qa.open-paas.org")],
+      from: [EmailAddress(email: "noreply@qa.open-paas.org")],
       sentAt: UTCDate(DateTime.parse("2021-08-10T09:45:01Z")),
       receivedAt: UTCDate(DateTime.parse("2021-08-11T04:00:59Z")),
     );
@@ -35,7 +35,7 @@ void main() {
           "This event is about to begin Recurrencr TimeWednesday 26 August 2020 05:30 - 06:30 Europe/Paris (See in Calendar)Location1 thai ha (See in Map)Attendees - userb@qa.open-paas.org <userb@qa.open-paas.org> (Organizer) - User A <usera@qa.open-paas.org> Resourc",
       hasAttachment: false,
       subject: "Notification: Recurrencr",
-      from: [EmailAddress(null, "noreply@qa.open-paas.org")],
+      from: [EmailAddress(email: "noreply@qa.open-paas.org")],
       sentAt: UTCDate(DateTime.parse("2021-08-11T03:00:00Z")),
       receivedAt: UTCDate(DateTime.parse("2021-08-11T04:00:55Z")),
     );
@@ -45,7 +45,7 @@ void main() {
       preview: "alo -- desktop signature",
       hasAttachment: true,
       subject: "test attachment",
-      from: [EmailAddress("Haaheoo", "userc@qa.open-paas.org")],
+      from: [EmailAddress(name: "Haaheoo", email: "userc@qa.open-paas.org")],
       sentAt: UTCDate(DateTime.parse("2021-08-11T06:46:25Z")),
       receivedAt: UTCDate(DateTime.parse("2021-08-11T06:46:26Z")),
     );
@@ -55,7 +55,7 @@ void main() {
       preview: "Dear, test inline Thanks and BRs-- desktop signature",
       hasAttachment: false,
       subject: "test inline image",
-      from: [EmailAddress("Haaheoo", "userc@qa.open-paas.org")],
+      from: [EmailAddress(name: "Haaheoo", email: "userc@qa.open-paas.org")],
       sentAt: UTCDate(DateTime.parse("2021-08-11T04:34:13Z")),
       receivedAt: UTCDate(DateTime.parse("2021-08-11T04:34:17Z")),
     );

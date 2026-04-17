@@ -20,25 +20,25 @@ void main() {
           () async {
             final expectedReported = Mailbox(
               id: MailboxId('9bf84410-32cf-11eb-995c-a3ae66e9f96a'),
-              role: Role(clientRole),
-              name: MailboxName('Spam'),
-              sortOrder: SortOrder(sortValue: 70),
-              totalEmails: TotalEmails(29),
-              unreadEmails: UnreadEmails(29),
-              totalThreads: TotalThreads(29),
-              unreadThreads: UnreadThreads(29),
+              role: MailboxRole(clientRole),
+              name: 'Spam',
+              sortOrder: 70,
+              totalEmails: 29,
+              unreadEmails: 29,
+              totalThreads: 29,
+              unreadThreads: 29,
               myRights: MailboxRights(
-                true,
-                true,
-                true,
-                true,
-                true,
-                true,
-                true,
-                true,
-                true,
+                mayReadItems: true,
+                mayAddItems: true,
+                mayRemoveItems: true,
+                maySetSeen: true,
+                maySetKeywords: true,
+                mayCreateChild: true,
+                mayRename: true,
+                mayDelete: true,
+                maySubmit: true,
               ),
-              isSubscribed: IsSubscribed(true),
+              isSubscribed: true,
             );
             final httpMockClient = HttpMockResponseClient(
               responseBody: {
@@ -132,7 +132,7 @@ void main() {
             );
             final queryMailboxMethod =
                 QueryMailboxMethod(accountId: Val(accountId))
-                  ..filter(MailboxFilterCondition(role: Role('Spam')))
+                  ..filter(MailboxFilterCondition(role: MailboxRole('Spam')))
                   ..limit(Val(1));
             final queryMailboxInvocation = jmapRequestBuilder.addInvocation(
               queryMailboxMethod,
@@ -152,7 +152,7 @@ void main() {
 
             final resultList = getMailboxInvocation.parseResponse(result);
 
-            expect(resultList.list.first.name?.name, 'Spam');
+            expect(resultList.list.first.name, 'Spam');
             expect(resultList.list.first.role?.value, 'junk');
             expect(resultList.list.first, equals(expectedReported));
           },

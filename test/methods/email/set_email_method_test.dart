@@ -10,6 +10,7 @@ import 'package:jmap_dart_client/entities/email/email_body_value.dart';
 import 'package:jmap_dart_client/entities/email/email_keyword.dart';
 import 'package:jmap_dart_client/entities/email/individual_header_identifier.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/entities/thread/thread.dart';
 import 'package:jmap_dart_client/methods/email/set_email_method.dart';
 import 'package:test/test.dart';
 
@@ -105,16 +106,16 @@ void main() {
             ),
           )..create(
             Val({
-              Id('aa1234'): Email(
+              EmailCreationId('aa1234'): Email(
                 id: EmailId('ea12345'),
                 mailboxIds: {
                   MailboxId('fe00a5c0-0584-11ec-b153-2fef1ee78d9e'): true,
                 },
                 keywords: {EmailKeyword.seen: true},
-                replyTo: [EmailAddress('bob', 'bob@email')],
-                from: [EmailAddress('alice', 'alice@email')],
-                sender: [EmailAddress('bob', 'bob@email')],
-                to: [EmailAddress('dcu', 'dcu@email')],
+                replyTo: [EmailAddress(name: 'bob', email: 'bob@email')],
+                from: [EmailAddress(name: 'alice', email: 'alice@email')],
+                sender: [EmailAddress(name: 'bob', email: 'bob@email')],
+                to: [EmailAddress(name: 'dcu', email: 'dcu@email')],
                 subject: 'set email 3',
                 htmlBody: [
                   EmailBodyPart(
@@ -141,7 +142,10 @@ void main() {
       );
 
       final setEmailResponse = setEmailInvocation.parseResponse(response);
-      expect(setEmailResponse.created![Id('aa1234')], equals(expectedCreated));
+      expect(
+        setEmailResponse.created![EmailCreationId('aa1234')],
+        equals(expectedCreated),
+      );
     });
 
     test('set email method and response parsing with header User-Agent', () async {
@@ -226,16 +230,16 @@ void main() {
             ),
           )..create(
             Val({
-              Id('aa1234'): Email(
+              EmailCreationId('aa1234'): Email(
                 id: EmailId('ea12345'),
                 mailboxIds: {
                   MailboxId('fe00a5c0-0584-11ec-b153-2fef1ee78d9e'): true,
                 },
                 keywords: {EmailKeyword.seen: true},
-                replyTo: [EmailAddress('bob', 'bob@email')],
-                from: [EmailAddress('alice', 'alice@email')],
-                sender: [EmailAddress('bob', 'bob@email')],
-                to: [EmailAddress('dcu', 'dcu@email')],
+                replyTo: [EmailAddress(name: 'bob', email: 'bob@email')],
+                from: [EmailAddress(name: 'alice', email: 'alice@email')],
+                sender: [EmailAddress(name: 'bob', email: 'bob@email')],
+                to: [EmailAddress(name: 'dcu', email: 'dcu@email')],
                 subject: 'set email 3',
                 htmlBody: [
                   EmailBodyPart(
@@ -266,7 +270,10 @@ void main() {
       );
 
       final setEmailResponse = setEmailInvocation.parseResponse(response);
-      expect(setEmailResponse.created![Id('aa1234')], equals(expectedCreated));
+      expect(
+        setEmailResponse.created![EmailCreationId('aa1234')],
+        equals(expectedCreated),
+      );
     });
 
     test('set email method and response parsing with header Mdn', () async {
@@ -346,12 +353,17 @@ void main() {
             ),
           )..create(
             Val({
-              Id('e01'): Email(
+              EmailCreationId('e01'): Email(
                 id: EmailId('e102'),
                 mailboxIds: {
                   MailboxId('a6f488c0-964b-11ec-83d6-c1ded34233a9'): true,
                 },
-                from: [EmailAddress('qkdo@linagora.com', 'qkdo@linagora.com')],
+                from: [
+                  EmailAddress(
+                    name: 'qkdo@linagora.com',
+                    email: 'qkdo@linagora.com',
+                  ),
+                ],
                 subject: '[POSTMAN] SEND EMAIL WITH MDN MDN MDN',
                 htmlBody: [
                   EmailBodyPart(
@@ -392,7 +404,10 @@ void main() {
         size: 600,
       );
 
-      expect(setEmailResponse.created![Id('e01')], equals(expectedCreated1));
+      expect(
+        setEmailResponse.created![EmailCreationId('e01')],
+        equals(expectedCreated1),
+      );
     });
   });
 }
