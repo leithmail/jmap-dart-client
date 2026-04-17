@@ -1,9 +1,9 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
-import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
-import 'package:jmap_dart_client/methods/mailbox/set/set_mailbox_method.dart';
+import 'package:jmap_dart_client/methods/mailbox/set_mailbox_method.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';

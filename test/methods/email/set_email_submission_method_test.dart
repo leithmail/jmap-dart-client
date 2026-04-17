@@ -2,7 +2,7 @@ import 'package:http_parser/http_parser.dart';
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request/patch_object.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
-import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/email/address.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
@@ -23,9 +23,9 @@ import '../../helpers/http_mocks.dart';
 void main() {
   group('test to json set email submission method', () {
     final expectedCreated = Email(
-      id: EmailId(Id('64469f10-8e15-11ec-984e-e3f8b83572b4')),
-      blobId: Id('64469f10-8e15-11ec-984e-e3f8b83572b4'),
-      threadId: ThreadId(Id('64469f10-8e15-11ec-984e-e3f8b83572b4')),
+      id: EmailId('64469f10-8e15-11ec-984e-e3f8b83572b4'),
+      blobId: BlobId('64469f10-8e15-11ec-984e-e3f8b83572b4'),
+      threadId: ThreadId('64469f10-8e15-11ec-984e-e3f8b83572b4'),
       size: 742,
     );
 
@@ -158,7 +158,7 @@ void main() {
           )..create(
             Val({
               Id('dab1234'): Email(
-                id: EmailId(Id('dab1234')),
+                id: EmailId('dab1234'),
                 mailboxIds: {
                   MailboxId('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e'): true,
                 },
@@ -167,13 +167,13 @@ void main() {
                 to: [EmailAddress("userD", 'userd@qa.open-paas.org')],
                 htmlBody: [
                   EmailBodyPart(
-                    partId: PartId('mmm'),
-                    blobId: Id('aaaa'),
+                    partId: EmailBodyPartId('mmm'),
+                    blobId: BlobId('aaaa'),
                     type: MediaType.parse('text/html'),
                   ),
                 ],
                 bodyValues: {
-                  PartId('mmm'): EmailBodyValue(
+                  EmailBodyPartId('mmm'): EmailBodyValue(
                     value:
                         '<!DOCTYPE html> <html> <body> <p><b>Hello test send 2</b></p><br><br></body> </html>',
                     isEncodingProblem: false,
@@ -375,7 +375,7 @@ void main() {
           )..create(
             Val({
               Id('dab1234'): Email(
-                id: EmailId(Id('dab1234')),
+                id: EmailId('dab1234'),
                 mailboxIds: {
                   MailboxId('5dfb3290-0a14-11ec-b57c-2fef1ee78d9e'): true,
                 },
@@ -384,13 +384,13 @@ void main() {
                 to: [EmailAddress("userD", 'userd@qa.open-paas.org')],
                 htmlBody: [
                   EmailBodyPart(
-                    partId: PartId('mmm'),
-                    blobId: Id('aaaa'),
+                    partId: EmailBodyPartId('mmm'),
+                    blobId: BlobId('aaaa'),
                     type: MediaType.parse('text/html'),
                   ),
                 ],
                 bodyValues: {
-                  PartId('mmm'): EmailBodyValue(
+                  EmailBodyPartId('mmm'): EmailBodyValue(
                     value:
                         '<!DOCTYPE html> <html> <body> <p><b>Hello test send 2</b></p><br><br></body> </html>',
                     isEncodingProblem: false,

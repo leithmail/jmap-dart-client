@@ -1,8 +1,7 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
-import 'package:jmap_dart_client/entities/core/account_id.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
+import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/thread/thread.dart';
@@ -13,10 +12,10 @@ import '../../helpers/http_mocks.dart';
 
 void main() {
   final accountId = AccountId('123abc');
-  final foundId = Id('found-thread-id');
-  final emailIdFound = EmailId(Id('email-id-found'));
-  final foundThread = Thread(id: ThreadId(foundId), emailIds: [emailIdFound]);
-  final notFoundId = Id('not-found-thread-id');
+  final foundId = ThreadId('found-thread-id');
+  final emailIdFound = EmailId('email-id-found');
+  final foundThread = Thread(id: foundId, emailIds: [emailIdFound]);
+  final notFoundId = ThreadId('not-found-thread-id');
   final getThreadMethod = GetThreadMethod(accountId: Val(accountId))
     ..ids(Val([foundId, notFoundId]));
   final methodCallId = MethodCallId('c0');
@@ -80,7 +79,7 @@ void main() {
 
       // assert
       expect(response.accountId, accountId);
-      expect(response.state, State('state'));
+      expect(response.state, State<Thread>('state'));
       expect(response.list, [foundThread]);
       expect(response.notFound, [notFoundId]);
     });

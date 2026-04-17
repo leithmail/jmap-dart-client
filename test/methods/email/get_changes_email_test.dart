@@ -1,8 +1,7 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
-import 'package:jmap_dart_client/entities/core/account_id.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
+import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
@@ -19,35 +18,35 @@ import '../../helpers/http_mocks.dart';
 void main() {
   group('[Email/changes]', () {
     final expectMail1 = Email(
-      id: EmailId(Id("a59d5ca0-258e-11ec-a759-2fef1ee78d9e")),
+      id: EmailId("a59d5ca0-258e-11ec-a759-2fef1ee78d9e"),
       mailboxIds: {MailboxId('aba7e8d0-18d9-11eb-a677-2990b970028d'): true},
       keywords: {EmailKeyword.seen: true},
     );
 
     final expectMail2 = Email(
-      id: EmailId(Id("a59d5ca0-258e-11ec-a759-2fef1ee78d9e")),
+      id: EmailId("a59d5ca0-258e-11ec-a759-2fef1ee78d9e"),
       preview:
           "This event is about to begin test TimeTuesday 29 September 2020 06:00 - 06:30 Europe/Paris (See in Calendar)Location1 thai ha (See in Map)Attendees - User A <usera@qa.open-paas.org> (Organizer) -  <userb@qa.open-paas.org> Resourcesnew directoryNotesaaaa *#",
       hasAttachment: false,
       size: 24946,
       subject: "Notification: test",
       keywords: {EmailKeyword.seen: true},
-      from: [EmailAddress(null, "noreply@qa.open-paas.org")],
-      to: [EmailAddress(null, "userb@qa.open-paas.org")],
+      from: [EmailAddress(email: "noreply@qa.open-paas.org")],
+      to: [EmailAddress(email: "userb@qa.open-paas.org")],
       sentAt: UTCDate(DateTime.parse("2021-10-05T03:45:01Z")),
       receivedAt: UTCDate(DateTime.parse("2021-10-05T03:45:13Z")),
     );
 
     final expectMail3 = Email(
-      id: EmailId(Id("54fa3000-2595-11ec-a759-2fef1ee78d9e")),
+      id: EmailId("54fa3000-2595-11ec-a759-2fef1ee78d9e"),
       preview:
           "This event is about to begin A - show datetime1 TimeTuesday 15 September 2020 07:03 - 07:33 Europe/Paris (See in Calendar)Location1 thai ha1 (See in Map)Attendees - User A <usera@qa.open-paas.org> (Organizer) - Thanh Loan LE <tlle@linagora.com> - User C <u",
       hasAttachment: false,
       size: 24857,
       subject: "Notification: A - show datetime1",
       keywords: {},
-      from: [EmailAddress(null, "noreply@qa.open-paas.org")],
-      to: [EmailAddress(null, "userb@qa.open-paas.org")],
+      from: [EmailAddress(email: "noreply@qa.open-paas.org")],
+      to: [EmailAddress(email: "userb@qa.open-paas.org")],
       sentAt: UTCDate(DateTime.parse("2021-10-05T04:33:01Z")),
       receivedAt: UTCDate(DateTime.parse("2021-10-05T04:33:04Z")),
     );
@@ -203,7 +202,7 @@ void main() {
       final accountId = AccountId(
         '93c56f4408cff66f0a929aea8e3940e753c3275e5622582ae3010e7277b7696c',
       );
-      final state = State('57c15230-2588-11ec-a759-2fef1ee78d9e');
+      final state = State<Email>('57c15230-2588-11ec-a759-2fef1ee78d9e');
 
       final changesEmailMethod = ChangesEmailMethod(
         accountId: Val(accountId),

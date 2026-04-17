@@ -1,7 +1,7 @@
 import 'package:http_parser/http_parser.dart';
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
-import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
@@ -18,9 +18,9 @@ import '../../helpers/http_mocks.dart';
 void main() {
   group('test to json set email method', () {
     final expectedCreated = Email(
-      id: EmailId(Id('29a7f870-0596-11ec-b153-2fef1ee78d9e')),
-      blobId: Id('29a7f870-0596-11ec-b153-2fef1ee78d9e'),
-      threadId: ThreadId(Id('29a7f870-0596-11ec-b153-2fef1ee78d9e')),
+      id: EmailId('29a7f870-0596-11ec-b153-2fef1ee78d9e'),
+      blobId: BlobId('29a7f870-0596-11ec-b153-2fef1ee78d9e'),
+      threadId: ThreadId('29a7f870-0596-11ec-b153-2fef1ee78d9e'),
       size: 657,
     );
 
@@ -106,7 +106,7 @@ void main() {
           )..create(
             Val({
               Id('aa1234'): Email(
-                id: EmailId(Id('ea12345')),
+                id: EmailId('ea12345'),
                 mailboxIds: {
                   MailboxId('fe00a5c0-0584-11ec-b153-2fef1ee78d9e'): true,
                 },
@@ -118,12 +118,12 @@ void main() {
                 subject: 'set email 3',
                 htmlBody: [
                   EmailBodyPart(
-                    partId: PartId('a49d'),
+                    partId: EmailBodyPartId('a49d'),
                     type: MediaType.parse('text/html'),
                   ),
                 ],
                 bodyValues: {
-                  PartId('a49d'): EmailBodyValue(
+                  EmailBodyPartId('a49d'): EmailBodyValue(
                     value: 'test html html',
                     isEncodingProblem: false,
                     isTruncated: false,
@@ -227,7 +227,7 @@ void main() {
           )..create(
             Val({
               Id('aa1234'): Email(
-                id: EmailId(Id('ea12345')),
+                id: EmailId('ea12345'),
                 mailboxIds: {
                   MailboxId('fe00a5c0-0584-11ec-b153-2fef1ee78d9e'): true,
                 },
@@ -239,12 +239,12 @@ void main() {
                 subject: 'set email 3',
                 htmlBody: [
                   EmailBodyPart(
-                    partId: PartId('a49d'),
+                    partId: EmailBodyPartId('a49d'),
                     type: MediaType.parse('text/html'),
                   ),
                 ],
                 bodyValues: {
-                  PartId('a49d'): EmailBodyValue(
+                  EmailBodyPartId('a49d'): EmailBodyValue(
                     value: 'test html html',
                     isEncodingProblem: false,
                     isTruncated: false,
@@ -347,7 +347,7 @@ void main() {
           )..create(
             Val({
               Id('e01'): Email(
-                id: EmailId(Id('e102')),
+                id: EmailId('e102'),
                 mailboxIds: {
                   MailboxId('a6f488c0-964b-11ec-83d6-c1ded34233a9'): true,
                 },
@@ -355,12 +355,12 @@ void main() {
                 subject: '[POSTMAN] SEND EMAIL WITH MDN MDN MDN',
                 htmlBody: [
                   EmailBodyPart(
-                    partId: PartId('abc123'),
+                    partId: EmailBodyPartId('abc123'),
                     type: MediaType.parse('text/html'),
                   ),
                 ],
                 bodyValues: {
-                  PartId('abc123'): EmailBodyValue(
+                  EmailBodyPartId('abc123'): EmailBodyValue(
                     value: '[POSTMAN] SEND EMAIL WITH MDN',
                     isEncodingProblem: false,
                     isTruncated: false,
@@ -386,9 +386,9 @@ void main() {
 
       final setEmailResponse = setEmailInvocation.parseResponse(response);
       final expectedCreated1 = Email(
-        id: EmailId(Id("77664010-4ab1-11ed-88ee-ffc86e0cde67")),
-        blobId: Id("77664010-4ab1-11ed-88ee-ffc86e0cde67"),
-        threadId: ThreadId(Id("77664010-4ab1-11ed-88ee-ffc86e0cde67")),
+        id: EmailId("77664010-4ab1-11ed-88ee-ffc86e0cde67"),
+        blobId: BlobId("77664010-4ab1-11ed-88ee-ffc86e0cde67"),
+        threadId: ThreadId("77664010-4ab1-11ed-88ee-ffc86e0cde67"),
         size: 600,
       );
 

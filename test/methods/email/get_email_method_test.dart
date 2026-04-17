@@ -1,6 +1,6 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
-import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
@@ -15,15 +15,15 @@ import '../../helpers/http_mocks.dart';
 void main() {
   group('[Email/get] test', () {
     final expectMail = Email(
-      id: EmailId(Id("54fa3000-2595-11ec-a759-2fef1ee78d9e")),
+      id: EmailId("54fa3000-2595-11ec-a759-2fef1ee78d9e"),
       preview:
           "This event is about to begin A - show datetime1 TimeTuesday 15 September 2020 07:03 - 07:33 Europe/Paris (See in Calendar)Location1 thai ha1 (See in Map)Attendees - User A <usera@qa.open-paas.org> (Organizer) - Thanh Loan LE <tlle@linagora.com> - User C <u",
       hasAttachment: false,
       size: 24857,
       subject: "Notification: A - show datetime1",
       keywords: {},
-      from: [EmailAddress(null, "noreply@qa.open-paas.org")],
-      to: [EmailAddress(null, "userb@qa.open-paas.org")],
+      from: [EmailAddress(email: "noreply@qa.open-paas.org")],
+      to: [EmailAddress(email: "userb@qa.open-paas.org")],
       sentAt: UTCDate(DateTime.parse("2021-10-05T04:33:01Z")),
       receivedAt: UTCDate(DateTime.parse("2021-10-05T04:33:04Z")),
       headerCalendarEvent: {

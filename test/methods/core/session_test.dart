@@ -1,21 +1,17 @@
 import 'dart:convert';
 
-import 'package:jmap_dart_client/entities/capability/calendar_event_capability.dart';
 import 'package:jmap_dart_client/entities/capability/core_capability.dart';
 import 'package:jmap_dart_client/entities/capability/custom_capability.dart';
 import 'package:jmap_dart_client/entities/capability/mail_capability.dart';
 import 'package:jmap_dart_client/entities/capability/mdn_capability.dart';
 import 'package:jmap_dart_client/entities/capability/submission_capability.dart';
 import 'package:jmap_dart_client/entities/capability/vacation_capability.dart';
-import 'package:jmap_dart_client/entities/capability/web_socket_ticket_capability.dart';
 import 'package:jmap_dart_client/entities/capability/websocket_capability.dart';
 import 'package:jmap_dart_client/entities/core/account.dart';
-import 'package:jmap_dart_client/entities/core/account_id.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/collation_identifier.dart';
 import 'package:jmap_dart_client/entities/core/session.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
-import 'package:jmap_dart_client/entities/core/user_name.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/test_capability.dart';
@@ -29,13 +25,7 @@ void main() {
             "maxDelayedSend": 0,
             "submissionExtensions": {}
           },
-          "com:linagora:params:calendar:event": {
-            "replySupportedLanguage": [
-                "en",
-                "fr"
-            ],
-            "counterSupport": true
-          },
+          
           "urn:ietf:params:jmap:core": {
             "maxSizeUpload": 20971520,
             "maxConcurrentUpload": 4,
@@ -66,10 +56,6 @@ void main() {
           "urn:ietf:params:jmap:websocket": {
             "supportsPush": true,
             "url": "ws://domain.com/jmap/ws"
-          },
-          "com:linagora:params:jmap:ws:ticket": {
-            "generationEndpoint": "http://localhost/jmap/ws/ticket",
-            "revocationEndpoint": "http://localhost/jmap/ws/ticket"
           },
           "urn:apache:james:params:jmap:mail:quota": {},
           "urn:apache:james:params:jmap:mail:shares": {},
@@ -126,9 +112,7 @@ void main() {
         },
         "primaryAccounts": {
           "urn:ietf:params:jmap:submission": "29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6",
-          "com:linagora:params:calendar:event": "29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6",
           "urn:ietf:params:jmap:websocket": "29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6",
-          "com:linagora:params:jmap:ws:ticket": "29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6",
           "urn:ietf:params:jmap:core": "29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6",
           "urn:ietf:params:jmap:mail": "29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6",
           "urn:apache:james:params:jmap:mail:quota": "29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6",
@@ -150,10 +134,7 @@ void main() {
             maxDelayedSend: 0,
             submissionExtensions: {},
           ),
-          CapabilityIdentifier.jamesCalendarEvent: CalendarEventCapability(
-            replySupportedLanguage: ["en", "fr"],
-            counterSupport: true,
-          ),
+
           CapabilityIdentifier.jmapCore: CoreCapability(
             maxSizeUpload: 20971520,
             maxConcurrentUpload: 4,
@@ -182,10 +163,6 @@ void main() {
             supportsPush: true,
             url: Uri.parse('ws://domain.com/jmap/ws'),
           ),
-          CapabilityIdentifier.jmapWebSocketTicket: WebSocketTicketCapability(
-            generationEndpoint: Uri.parse('http://localhost/jmap/ws/ticket'),
-            revocationEndpoint: Uri.parse('http://localhost/jmap/ws/ticket'),
-          ),
           CapabilityIdentifier(
             Uri.parse('urn:apache:james:params:jmap:mail:quota'),
           ): CustomCapability(
@@ -203,7 +180,7 @@ void main() {
           AccountId(
             '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ): Account(
-            name: AccountName('bob@domain.tld'),
+            name: 'bob@domain.tld',
             isPersonal: true,
             isReadOnly: false,
             accountCapabilities: {
@@ -258,13 +235,7 @@ void main() {
           CapabilityIdentifier.jmapSubmission: AccountId(
             '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
-          CapabilityIdentifier.jamesCalendarEvent: AccountId(
-            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-          ),
           CapabilityIdentifier.jmapWebSocket: AccountId(
-            '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
-          ),
-          CapabilityIdentifier.jmapWebSocketTicket: AccountId(
             '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
           CapabilityIdentifier.jmapCore: AccountId(
@@ -290,7 +261,7 @@ void main() {
             '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
         },
-        username: UserName('bob@domain.tld'),
+        username: 'bob@domain.tld',
         apiUrl: Uri.parse('http://domain.com/jmap'),
         downloadUrl: Uri.parse(
           'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
@@ -434,7 +405,7 @@ void main() {
           AccountId(
             '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ): Account(
-            name: AccountName('bob@domain.tld'),
+            name: 'bob@domain.tld',
             isPersonal: true,
             isReadOnly: false,
             accountCapabilities: {
@@ -484,7 +455,7 @@ void main() {
             '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
         },
-        username: UserName('bob@domain.tld'),
+        username: 'bob@domain.tld',
         apiUrl: Uri.parse('http://domain.com/jmap'),
         downloadUrl: Uri.parse(
           'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
@@ -602,7 +573,7 @@ void main() {
             AccountId(
               '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
             ): Account(
-              name: AccountName('bob@domain.tld'),
+              name: 'bob@domain.tld',
               isPersonal: true,
               isReadOnly: false,
               accountCapabilities: {
@@ -653,7 +624,7 @@ void main() {
               '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
             ),
           },
-          username: UserName('bob@domain.tld'),
+          username: 'bob@domain.tld',
           apiUrl: Uri.parse('http://domain.com/jmap'),
           downloadUrl: Uri.parse(
             'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
@@ -853,7 +824,7 @@ void main() {
           AccountId(
             '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ): Account(
-            name: AccountName('bob@domain.tld'),
+            name: 'bob@domain.tld',
             isPersonal: true,
             isReadOnly: false,
             accountCapabilities: {
@@ -938,7 +909,7 @@ void main() {
             '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
         },
-        username: UserName('bob@domain.tld'),
+        username: 'bob@domain.tld',
         apiUrl: Uri.parse('http://domain.com/jmap'),
         downloadUrl: Uri.parse(
           'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
@@ -1164,7 +1135,7 @@ void main() {
           AccountId(
             '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ): Account(
-            name: AccountName('bob@domain.tld'),
+            name: 'bob@domain.tld',
             isPersonal: true,
             isReadOnly: false,
             accountCapabilities: {
@@ -1249,7 +1220,7 @@ void main() {
             '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
         },
-        username: UserName('bob@domain.tld'),
+        username: 'bob@domain.tld',
         apiUrl: Uri.parse('http://domain.com/jmap'),
         downloadUrl: Uri.parse(
           'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
@@ -1373,7 +1344,7 @@ void main() {
           AccountId(
             '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ): Account(
-            name: AccountName('bob@domain.tld'),
+            name: 'bob@domain.tld',
             isPersonal: true,
             isReadOnly: false,
             accountCapabilities: {
@@ -1419,7 +1390,7 @@ void main() {
             '29883977c13473ae7cb7678ef767cbfbaffc8a44a6e463d971d23a65c1dc4af6',
           ),
         },
-        username: UserName('bob@domain.tld'),
+        username: 'bob@domain.tld',
         apiUrl: Uri.parse('http://domain.com/jmap'),
         downloadUrl: Uri.parse(
           'http://domain.com/download/{accountId}/{blobId}/?type={type}&name={name}',
@@ -1590,7 +1561,7 @@ void main() {
         },
         accounts: {
           AccountId('example'): Account(
-            name: AccountName('example'),
+            name: 'example',
             isPersonal: true,
             isReadOnly: false,
             accountCapabilities: {
@@ -1698,7 +1669,7 @@ void main() {
             'example',
           ),
         },
-        username: UserName('example'),
+        username: 'example',
         apiUrl: Uri.parse('/jmap/'),
         downloadUrl: Uri.parse(
           '/jmap/download/{accountId}/{blobId}/{name}?accept={type}',

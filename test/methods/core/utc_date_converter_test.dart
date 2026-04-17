@@ -1,6 +1,4 @@
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
-import 'package:jmap_dart_client/src/converters/utc_date_converter.dart';
-import 'package:jmap_dart_client/src/converters/utc_date_nullable_converter.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -15,30 +13,21 @@ void main() {
 
   group('UTCDateConverter', () {
     test('should return UTCDate when receive a properly formatted json', () {
-      expect(
-        expectUTCDate,
-        const UTCDateConverter().fromJson(utcDateStringTest),
-      );
+      expect(expectUTCDate, UTCDate.fromJson(utcDateStringTest));
     });
 
     test('should return utc date string valid when receive a utc date', () {
-      expect(expectUTCDateString, const UTCDateConverter().toJson(testUTCDate));
+      expect(expectUTCDateString, testUTCDate.toJson());
     });
   });
 
   group('UTCDateNullableConverter', () {
     test('should return UTCDate when receive a properly formatted json', () {
-      expect(
-        expectUTCDate,
-        const UTCDateNullableConverter().fromJson(utcDateStringTest),
-      );
+      expect(expectUTCDate, UTCDate.fromJson(utcDateStringTest));
     });
 
     test('should return utc date string valid when receive a utc date', () {
-      expect(
-        expectUTCDateString,
-        const UTCDateNullableConverter().toJson(testUTCDate),
-      );
+      expect(expectUTCDateString, testUTCDate.toJson());
     });
   });
 }

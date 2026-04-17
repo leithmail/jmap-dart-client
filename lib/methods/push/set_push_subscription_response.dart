@@ -4,8 +4,7 @@ import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/push/push_subscription.dart';
 
 class SetPushSubscriptionResponse extends MethodResponse {
-  final Map<CreationId<PushSubscription>, PushSubscription>?
-  creaPushSubscriptioned;
+  final Map<CreationId<PushSubscription>, PushSubscription>? created;
   final Map<Id<PushSubscription>, PushSubscription?>? updated;
   final List<Id<PushSubscription>>? destroyed;
   final Map<CreationId<PushSubscription>, SetError>? notCreated;
@@ -13,7 +12,7 @@ class SetPushSubscriptionResponse extends MethodResponse {
   final Map<Id<PushSubscription>, SetError>? notDestroyed;
 
   SetPushSubscriptionResponse({
-    required this.creaPushSubscriptioned,
+    required this.created,
     required this.updated,
     required this.destroyed,
     required this.notCreated,
@@ -23,13 +22,12 @@ class SetPushSubscriptionResponse extends MethodResponse {
 
   factory SetPushSubscriptionResponse.fromJson(Map<String, dynamic> json) {
     return SetPushSubscriptionResponse(
-      creaPushSubscriptioned:
-          (json['creaPushSubscriptioned'] as Map<String, dynamic>?)?.map(
-            (key, value) => MapEntry(
-              CreationId<PushSubscription>(key),
-              PushSubscription.fromJson(value),
-            ),
-          ),
+      created: (json['created'] as Map<String, dynamic>?)?.map(
+        (key, value) => MapEntry(
+          CreationId<PushSubscription>(key),
+          PushSubscription.fromJson(value),
+        ),
+      ),
       updated: (json['updated'] as Map<String, dynamic>?)?.map(
         (key, value) => MapEntry(
           Id<PushSubscription>(key),

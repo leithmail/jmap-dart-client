@@ -11,8 +11,8 @@ void main() {
           // arrange
           final requestInvocation =
               RequestInvocation<ErrorMethodResponse, ResultReference>(
-                _FakeErrorMethod(),
-                MethodCallId('c99'),
+                method: _FakeErrorMethod(),
+                methodCallId: MethodCallId('c99'),
               );
           final responseInvocation = ResponseInvocation(
             MethodName('Email/get'),
@@ -41,8 +41,8 @@ void main() {
         // arrange
         final requestInvocation =
             RequestInvocation<ErrorMethodResponse, ResultReference>(
-              _FakeErrorMethod(),
-              MethodCallId('c1'),
+              method: _FakeErrorMethod(),
+              methodCallId: MethodCallId('c1'),
             );
         final errorInvocation = ResponseInvocation(
           ErrorMethodResponse.errorMethodName,

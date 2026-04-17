@@ -1,8 +1,4 @@
-import 'package:jmap_dart_client/api/method/argument/argument.dart';
-import 'package:jmap_dart_client/api/request_builder.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
-import 'package:jmap_dart_client/entities/push/push_subscription.dart';
-import 'package:jmap_dart_client/methods/push/get_push_subscription_method.dart';
+import 'package:jmap_dart_client/jmap_dart_client.dart';
 import 'package:test/test.dart';
 
 import '../../helpers/http_mocks.dart';

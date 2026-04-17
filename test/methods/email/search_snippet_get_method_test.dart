@@ -3,8 +3,7 @@ import 'package:jmap_dart_client/api/errors/exceptions.dart';
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/argument/filter.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
-import 'package:jmap_dart_client/entities/core/account_id.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
+import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/search_snippet.dart';
@@ -88,7 +87,7 @@ void main() {
       // arrange
       final foundSearchSnippets = [
         SearchSnippet(
-          emailId: EmailId(Id('some-email-id')),
+          emailId: EmailId('some-email-id'),
           subject: "some-subject",
           preview: "some-preview",
         ),
@@ -139,7 +138,7 @@ void main() {
 
     test('should return null if email not found', () async {
       // arrange
-      final notFoundEmailIds = [EmailId(Id('some-email-id'))];
+      final notFoundEmailIds = [EmailId('some-email-id')];
       final filter = EmailFilterCondition(text: 'some-text');
       final httpMockClient = HttpMockResponseClient(
         responseBody: generateResponse(
@@ -188,7 +187,7 @@ void main() {
 
     test('should return error if server returns error', () async {
       // arrange
-      final notFoundEmailIds = [EmailId(Id('some-email-id'))];
+      final notFoundEmailIds = [EmailId('some-email-id')];
       final filter = EmailFilterCondition(text: 'some-text');
       final httpMockClient = HttpMockResponseClient(
         responseBody: {

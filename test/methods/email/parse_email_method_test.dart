@@ -1,6 +1,6 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
-import 'package:jmap_dart_client/entities/core/account_id.dart';
+import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
@@ -14,7 +14,7 @@ import '../../helpers/http_mocks.dart';
 void main() {
   group('Test to json parse email method', () {
     final expectMail1 = Email(
-      id: EmailId(Id("382312d0-fa5c-11eb-b647-2fef1ee78d9e")),
+      id: EmailId("382312d0-fa5c-11eb-b647-2fef1ee78d9e"),
       preview: "Preview email 1",
       hasAttachment: false,
       subject: "Subject email 1",
@@ -24,7 +24,7 @@ void main() {
     );
 
     final expectMail2 = Email(
-      id: EmailId(Id("bc8a5320-fa58-11eb-b647-2fef1ee78d9e")),
+      id: EmailId("bc8a5320-fa58-11eb-b647-2fef1ee78d9e"),
       preview: "Preview email 2",
       hasAttachment: false,
       subject: "Subject email 2",
@@ -34,7 +34,7 @@ void main() {
     );
 
     final expectMail3 = Email(
-      id: EmailId(Id("182312d0-fa5c-11eb-b647-2fef1ee78d9e")),
+      id: EmailId("182312d0-fa5c-11eb-b647-2fef1ee78d9e"),
       preview: "Preview email 3",
       subject: "Subject email 3",
     );

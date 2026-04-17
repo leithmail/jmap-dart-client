@@ -9,7 +9,7 @@ part of 'get_push_subscription_response.dart';
 GetPushSubscriptionResponse _$GetPushSubscriptionResponseFromJson(
   Map<String, dynamic> json,
 ) => GetPushSubscriptionResponse(
-  lisPushSubscription: (json['lisPushSubscription'] as List<dynamic>)
+  list: (json['list'] as List<dynamic>)
       .map((e) => PushSubscription.fromJson(e as Map<String, dynamic>))
       .toList(),
   notFound: (json['notFound'] as List<dynamic>?)

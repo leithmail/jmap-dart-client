@@ -6,13 +6,10 @@ part 'get_push_subscription_response.g.dart';
 
 @JsonSerializable(createToJson: false)
 class GetPushSubscriptionResponse extends MethodResponse {
-  final List<PushSubscription> lisPushSubscription;
+  final List<PushSubscription> list;
   final List<Id<PushSubscription>>? notFound;
 
-  GetPushSubscriptionResponse({
-    required this.lisPushSubscription,
-    required this.notFound,
-  });
+  GetPushSubscriptionResponse({required this.list, required this.notFound});
 
   factory GetPushSubscriptionResponse.fromJson(Map<String, dynamic> json) =>
       _$GetPushSubscriptionResponseFromJson(json);

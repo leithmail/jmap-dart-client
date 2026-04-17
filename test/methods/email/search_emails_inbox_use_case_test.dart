@@ -2,8 +2,7 @@ import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/argument/comparator.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
-import 'package:jmap_dart_client/entities/core/account_id.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
+import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
@@ -19,7 +18,7 @@ import '../../helpers/http_mocks.dart';
 
 void main() {
   final expectMail1 = Email(
-    id: EmailId(Id("5baf2a10-3f4d-11eb-b3ca-69d8f333e2f2")),
+    id: EmailId("5baf2a10-3f4d-11eb-b3ca-69d8f333e2f2"),
     preview:
         "DJ REPEAT:Ercot Sees 56,373 MW Summer Peak,2% Below '00 Peak DJ Ercot: New Units Will Boost Supply to 65,064 MW DJ Ercot: 21% Summer Reserve If Normal Weather DJ Ercot Summer -2: New 345-Kv Line To Relieve Congestion By Eileen O'Grady Of DOW JONES NEWSWIRE",
     hasAttachment: false,
@@ -31,7 +30,7 @@ void main() {
   );
 
   final expectMail2 = Email(
-    id: EmailId(Id("2ef049e0-3f5d-11eb-bf20-f1a8da6866c8")),
+    id: EmailId("2ef049e0-3f5d-11eb-bf20-f1a8da6866c8"),
     preview:
         "---------------------- Forwarded by Lorna Brennan/ET&S/Enron on 12/18/2000 10:59 AM --------------------------- \"Webmaster@cera.com\" <webmaster on 12/15/2000 06:15:19 PM To: cc: Subject: STRATOSPHERIC LEVELS -- CERA Monthly Briefing Title: Into the Stratos",
     hasAttachment: false,
@@ -42,7 +41,7 @@ void main() {
   );
 
   final expectMail3 = Email(
-    id: EmailId(Id("2ef049e0-3f5d-11eb-bf20-f1a8da6866c8")),
+    id: EmailId("2ef049e0-3f5d-11eb-bf20-f1a8da6866c8"),
     preview:
         "---------------------- Forwarded by Lorna Brennan/ET&S/Enron on 12/18/2000 10:59 AM --------------------------- \"Webmaster@cera.com\" <webmaster on 12/15/2000 06:15:19 PM To: cc: Subject: STRATOSPHERIC LEVELS -- CERA Monthly Briefing Title: Into the Stratos",
     hasAttachment: false,

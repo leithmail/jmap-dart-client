@@ -2,8 +2,7 @@ import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/argument/comparator.dart';
 import 'package:jmap_dart_client/api/request/request_invocation.dart';
 import 'package:jmap_dart_client/api/request_builder.dart';
-import 'package:jmap_dart_client/entities/core/account_id.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
+import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/entities/email/email_address.dart';
@@ -18,7 +17,7 @@ import '../../helpers/http_mocks.dart';
 
 void main() {
   final expectMail = Email(
-    id: EmailId(Id("04f27c50-e879-11ec-aae4-43ebf0340ebd")),
+    id: EmailId("04f27c50-e879-11ec-aae4-43ebf0340ebd"),
     preview: "AAAA",
     hasAttachment: false,
     subject: "AAAA",

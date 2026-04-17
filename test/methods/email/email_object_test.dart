@@ -12,6 +12,7 @@ import 'package:jmap_dart_client/entities/email/email_header.dart';
 import 'package:jmap_dart_client/entities/email/email_keyword.dart';
 import 'package:jmap_dart_client/entities/email/individual_header_identifier.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
+import 'package:jmap_dart_client/entities/thread/thread.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -113,19 +114,24 @@ void main() {
       }''';
 
         final Email expectedEmail = Email(
-          id: EmailId(Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4')),
-          blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4'),
-          threadId: ThreadId(Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4')),
+          id: EmailId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4'),
+          blobId: BlobId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4'),
+          threadId: ThreadId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4'),
           mailboxIds: {MailboxId('be410040-8269-11eb-acad-a3d8fb60fff0'): true},
           sentAt: UTCDate(DateTime.parse('2023-05-29T01:44:28Z')),
           receivedAt: UTCDate(DateTime.parse('2023-05-29T01:44:51Z')),
           hasAttachment: true,
           cc: [
-            EmailAddress('The Dat VU', 'tdvu@linagora.com'),
-            EmailAddress('Quang Khai DO', 'qkdo@linagora.com'),
+            EmailAddress(name: 'The Dat VU', email: 'tdvu@linagora.com'),
+            EmailAddress(name: 'Quang Khai DO', email: 'qkdo@linagora.com'),
           ],
-          from: [EmailAddress('DatPH', 'dphamhoang@linagora.com')],
-          to: [EmailAddress('Benoît TELLIER', 'btellier@linagora.com')],
+          from: [EmailAddress(name: 'DatPH', email: 'dphamhoang@linagora.com')],
+          to: [
+            EmailAddress(
+              name: 'Benoît TELLIER',
+              email: 'btellier@linagora.com',
+            ),
+          ],
           messageId: MessageIdsHeaderValue([
             '112E9ACB-17D3-4E9F-8BFA-7C4A93B2E983@linagora.com',
           ]),
@@ -133,8 +139,8 @@ void main() {
             EmailBodyPart(
               charset: 'us-ascii',
               size: 64,
-              partId: PartId('2'),
-              blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
+              partId: EmailBodyPartId('2'),
+              blobId: BlobId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
               type: MediaType.parse('text/plain'),
             ),
           ],
@@ -142,14 +148,14 @@ void main() {
             EmailBodyPart(
               charset: 'us-ascii',
               size: 64,
-              partId: PartId('2'),
-              blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
+              partId: EmailBodyPartId('2'),
+              blobId: BlobId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
               type: MediaType.parse('text/plain'),
             ),
           ],
           keywords: {EmailKeyword.seen: true},
           bodyValues: {
-            PartId('2'): EmailBodyValue(
+            EmailBodyPartId('2'): EmailBodyValue(
               value: 'Dear, I update my last week activities. Thanks and BRs',
               isEncodingProblem: false,
               isTruncated: false,
@@ -163,8 +169,8 @@ void main() {
               charset: 'us-ascii',
               disposition: 'attachment',
               size: 75835,
-              partId: PartId('3'),
-              blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_3'),
+              partId: EmailBodyPartId('3'),
+              blobId: BlobId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_3'),
               name: 'DatPH_2023_w21_Remote_Weekly report.ods',
               type: MediaType.parse(
                 'application/vnd.oasis.opendocument.spreadsheet',
@@ -174,7 +180,7 @@ void main() {
           bodyStructure: EmailBodyPart(
             charset: 'us-ascii',
             size: 1831428,
-            partId: PartId('1'),
+            partId: EmailBodyPartId('1'),
             type: MediaType.parse('multipart/mixed'),
           ),
           headers: [EmailHeader('Return-Path', '<dphamhoang@linagora.com>')],
@@ -286,19 +292,24 @@ void main() {
       }''';
 
         final Email expectedEmail = Email(
-          id: EmailId(Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4')),
-          blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4'),
-          threadId: ThreadId(Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4')),
+          id: EmailId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4'),
+          blobId: BlobId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4'),
+          threadId: ThreadId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4'),
           mailboxIds: {MailboxId('be410040-8269-11eb-acad-a3d8fb60fff0'): true},
           sentAt: UTCDate(DateTime.parse('2023-05-29T01:44:28Z')),
           receivedAt: UTCDate(DateTime.parse('2023-05-29T01:44:51Z')),
           hasAttachment: true,
           cc: [
-            EmailAddress('The Dat VU', 'tdvu@linagora.com'),
-            EmailAddress('Quang Khai DO', 'qkdo@linagora.com'),
+            EmailAddress(name: 'The Dat VU', email: 'tdvu@linagora.com'),
+            EmailAddress(name: 'Quang Khai DO', email: 'qkdo@linagora.com'),
           ],
-          from: [EmailAddress('DatPH', 'dphamhoang@linagora.com')],
-          to: [EmailAddress('Benoît TELLIER', 'btellier@linagora.com')],
+          from: [EmailAddress(name: 'DatPH', email: 'dphamhoang@linagora.com')],
+          to: [
+            EmailAddress(
+              name: 'Benoît TELLIER',
+              email: 'btellier@linagora.com',
+            ),
+          ],
           messageId: MessageIdsHeaderValue([
             '112E9ACB-17D3-4E9F-8BFA-7C4A93B2E983@linagora.com',
           ]),
@@ -306,8 +317,8 @@ void main() {
             EmailBodyPart(
               charset: 'us-ascii',
               size: 64,
-              partId: PartId('2'),
-              blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
+              partId: EmailBodyPartId('2'),
+              blobId: BlobId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
               type: MediaType.parse('text/plain'),
             ),
           ],
@@ -315,14 +326,14 @@ void main() {
             EmailBodyPart(
               charset: 'us-ascii',
               size: 64,
-              partId: PartId('2'),
-              blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
+              partId: EmailBodyPartId('2'),
+              blobId: BlobId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
               type: MediaType.parse('text/plain'),
             ),
           ],
           keywords: {EmailKeyword.seen: true},
           bodyValues: {
-            PartId('2'): EmailBodyValue(
+            EmailBodyPartId('2'): EmailBodyValue(
               value: 'Dear, I update my last week activities. Thanks and BRs',
               isEncodingProblem: false,
               isTruncated: false,
@@ -336,8 +347,8 @@ void main() {
               charset: 'us-ascii',
               disposition: 'attachment',
               size: 75835,
-              partId: PartId('3'),
-              blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_3'),
+              partId: EmailBodyPartId('3'),
+              blobId: BlobId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_3'),
               name: 'DatPH_2023_w21_Remote_Weekly report.ods',
               type: MediaType.parse(
                 'application/vnd.oasis.opendocument.spreadsheet',
@@ -347,7 +358,7 @@ void main() {
           bodyStructure: EmailBodyPart(
             charset: 'us-ascii',
             size: 1831428,
-            partId: PartId('1'),
+            partId: EmailBodyPartId('1'),
             type: MediaType.parse('multipart/mixed'),
           ),
           headers: [EmailHeader('Return-Path', ' <dphamhoang@linagora.com>')],
@@ -458,19 +469,21 @@ void main() {
       }''';
 
       final Email email = Email(
-        id: EmailId(Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4')),
-        blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4'),
-        threadId: ThreadId(Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4')),
+        id: EmailId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4'),
+        blobId: BlobId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4'),
+        threadId: ThreadId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4'),
         mailboxIds: {MailboxId('be410040-8269-11eb-acad-a3d8fb60fff0'): true},
         sentAt: UTCDate(DateTime.parse('2023-05-29T01:44:28.000Z')),
         receivedAt: UTCDate(DateTime.parse('2023-05-29T01:44:51.000Z')),
         hasAttachment: true,
         cc: [
-          EmailAddress('The Dat VU', 'tdvu@linagora.com'),
-          EmailAddress('Quang Khai DO', 'qkdo@linagora.com'),
+          EmailAddress(name: 'The Dat VU', email: 'tdvu@linagora.com'),
+          EmailAddress(name: 'Quang Khai DO', email: 'qkdo@linagora.com'),
         ],
-        from: [EmailAddress('DatPH', 'dphamhoang@linagora.com')],
-        to: [EmailAddress('Benoît TELLIER', 'btellier@linagora.com')],
+        from: [EmailAddress(name: 'DatPH', email: 'dphamhoang@linagora.com')],
+        to: [
+          EmailAddress(name: 'Benoît TELLIER', email: 'btellier@linagora.com'),
+        ],
         messageId: MessageIdsHeaderValue([
           '112E9ACB-17D3-4E9F-8BFA-7C4A93B2E983@linagora.com',
         ]),
@@ -478,8 +491,8 @@ void main() {
           EmailBodyPart(
             charset: 'us-ascii',
             size: 64,
-            partId: PartId('2'),
-            blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
+            partId: EmailBodyPartId('2'),
+            blobId: BlobId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
             type: MediaType.parse('text/plain'),
           ),
         ],
@@ -487,14 +500,14 @@ void main() {
           EmailBodyPart(
             charset: 'us-ascii',
             size: 64,
-            partId: PartId('2'),
-            blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
+            partId: EmailBodyPartId('2'),
+            blobId: BlobId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_2'),
             type: MediaType.parse('text/plain'),
           ),
         ],
         keywords: {EmailKeyword.seen: true},
         bodyValues: {
-          PartId('2'): EmailBodyValue(
+          EmailBodyPartId('2'): EmailBodyValue(
             value: 'Dear, I update my last week activities. Thanks and BRs',
             isEncodingProblem: false,
             isTruncated: false,
@@ -508,8 +521,8 @@ void main() {
             charset: 'us-ascii',
             disposition: 'attachment',
             size: 75835,
-            partId: PartId('3'),
-            blobId: Id('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_3'),
+            partId: EmailBodyPartId('3'),
+            blobId: BlobId('6722f3a0-fdc2-11ed-9e42-3f61c2e789b4_3'),
             name: 'DatPH_2023_w21_Remote_Weekly report.ods',
             type: MediaType.parse(
               'application/vnd.oasis.opendocument.spreadsheet',
@@ -519,7 +532,7 @@ void main() {
         bodyStructure: EmailBodyPart(
           charset: 'us-ascii',
           size: 1831428,
-          partId: PartId('1'),
+          partId: EmailBodyPartId('1'),
           type: MediaType.parse('multipart/mixed'),
         ),
         headers: [EmailHeader('Return-Path', ' <dphamhoang@linagora.com>')],
