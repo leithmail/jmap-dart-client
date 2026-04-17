@@ -10,5 +10,5 @@ Response _$ResponseFromJson(Map<String, dynamic> json) => Response(
   (json['methodResponses'] as List<dynamic>)
       .map((e) => const ResponseInvocationConverter().fromJson(e as List))
       .toList(),
-  Session.fromJson(json['sessionState'] as Map<String, dynamic>),
+  State<Session>.fromJson(json['sessionState'] as String),
 );

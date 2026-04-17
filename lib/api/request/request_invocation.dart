@@ -16,11 +16,11 @@ class RequestInvocation<R extends MethodResponse, Q extends ResultReference> {
 
   RequestInvocation({required this.method, required this.methodCallId});
 
-  Map<String, dynamic> toJson() => {
-    'methodName': method.methodName.value,
-    'arguments': method.toJson(),
-    'id': methodCallId.value,
-  };
+  List<dynamic> toJson() => [
+    method.methodName.value,
+    method.toJson(),
+    methodCallId.value,
+  ];
 
   R parseResponse(Response response) {
     final matchedResponse = response.methodResponses.firstWhere(

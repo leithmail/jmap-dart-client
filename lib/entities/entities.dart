@@ -15,7 +15,6 @@ export 'core/capability_properties.dart';
 export 'core/id.dart';
 export 'core/session.dart';
 export 'core/state.dart';
-export 'core/user_name.dart';
 export 'core/utc_date.dart';
 // Entity models: Email
 export 'email/address.dart';

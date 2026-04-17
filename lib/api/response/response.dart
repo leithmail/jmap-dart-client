@@ -9,7 +9,7 @@ part 'response.g.dart';
 @JsonSerializable(createToJson: false)
 class Response {
   final List<ResponseInvocation> methodResponses;
-  final Session sessionState;
+  final SessionState sessionState;
 
   Response(this.methodResponses, this.sessionState);
 
