@@ -1,19 +1,20 @@
 import 'package:jmap_dart_client/api/method/response/get_response.dart';
-import 'package:jmap_dart_client/entities/identity/identity.dart';
+import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 
-class GetIdentityResponse extends GetResponse<Identity> {
-  GetIdentityResponse({
+class GetMailboxResponse extends GetResponse<Mailbox> {
+  GetMailboxResponse({
     required super.accountId,
     required super.state,
     required super.list,
     required super.notFound,
   });
-  factory GetIdentityResponse.fromJson(Map<String, dynamic> json) {
+
+  factory GetMailboxResponse.fromJson(Map<String, dynamic> json) {
     final parsed = GetResponse.parseJson(
       json,
-      (item) => Identity.fromJson(item),
+      (item) => Mailbox.fromJson(item as Map<String, dynamic>),
     );
-    return GetIdentityResponse(
+    return GetMailboxResponse(
       accountId: parsed.accountId,
       state: parsed.state,
       list: parsed.list,

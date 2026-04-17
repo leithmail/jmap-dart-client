@@ -9,9 +9,6 @@ import 'package:jmap_dart_client/entities/email/email_keyword.dart';
 import 'package:jmap_dart_client/entities/email/individual_header_identifier.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 import 'package:jmap_dart_client/entities/thread/thread.dart';
-import 'package:jmap_dart_client/src/converters/email/email_body_value_converter.dart';
-import 'package:jmap_dart_client/src/converters/email/email_keyword_converter.dart';
-import 'package:jmap_dart_client/src/converters/email/email_mailbox_ids_converter.dart';
 import 'package:jmap_dart_client/src/converters/individual_header_identifier_converter.dart';
 import 'package:jmap_dart_client/src/converters/message_ids_header_value_nullable_converter.dart';
 
@@ -105,10 +102,10 @@ class Email with EquatableMixin {
           ? ThreadId.fromJson(json['threadId'] as String)
           : null,
       mailboxIds: (json['mailboxIds'] as Map<String, dynamic>?)?.map(
-        (key, value) => EmailMailboxIdsConverter().parseEntry(key, value),
+        (key, value) => MapEntry(MailboxId(key), value as bool),
       ),
       keywords: (json['keywords'] as Map<String, dynamic>?)?.map(
-        (key, value) => EmailKeywordConverter().parseEntry(key, value),
+        (key, value) => MapEntry(EmailKeyword(key), value as bool),
       ),
       size: json['size'] as int?,
       receivedAt: json['receivedAt'] != null
@@ -165,7 +162,8 @@ class Email with EquatableMixin {
               json['bodyStructure'] as Map<String, dynamic>,
             ),
       bodyValues: (json['bodyValues'] as Map<String, dynamic>?)?.map(
-        (key, value) => EmailBodyValueConverter().parseEntry(key, value),
+        (key, value) =>
+            MapEntry(EmailBodyPartId(key), EmailBodyValue.fromJson(value)),
       ),
       headerUserAgent: IndividualHeaderIdentifierNullableConverter().parseEntry(
         IndividualHeaderIdentifier.headerUserAgent.value,
@@ -235,13 +233,11 @@ class Email with EquatableMixin {
     writeNotNull('threadId', threadId?.toJson());
     writeNotNull(
       'mailboxIds',
-      mailboxIds?.map(
-        (key, value) => EmailMailboxIdsConverter().toJson(key, value),
-      ),
+      mailboxIds?.map((key, value) => MapEntry(key.value, value)),
     );
     writeNotNull(
       'keywords',
-      keywords?.map((key, value) => EmailKeywordConverter().toJson(key, value)),
+      keywords?.map((key, value) => MapEntry(key.value, value)),
     );
     writeNotNull('size', size);
     writeNotNull('receivedAt', receivedAt?.toJson());
@@ -280,9 +276,7 @@ class Email with EquatableMixin {
     writeNotNull('bodyStructure', bodyStructure?.toJson());
     writeNotNull(
       'bodyValues',
-      bodyValues?.map(
-        (key, value) => EmailBodyValueConverter().toJson(key, value),
-      ),
+      bodyValues?.map((key, value) => MapEntry(key.value, value.toJson())),
     );
     writeNotNull(
       IndividualHeaderIdentifier.headerUserAgent.value,

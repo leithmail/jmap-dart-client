@@ -6,7 +6,7 @@ import 'package:jmap_dart_client/entities/vacation/vacation.dart';
 import 'package:jmap_dart_client/methods/vacation/set_vacation_response.dart';
 
 class SetVacationMethod
-    extends SetMethod<SetVacationResponse, ResultReference, Vacation>
+    extends SetMethod<Vacation, SetVacationResponse, ResultReference>
     with EmptyResultReferences {
   SetVacationMethod({required super.accountId});
 

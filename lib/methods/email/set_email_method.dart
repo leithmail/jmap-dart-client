@@ -5,7 +5,7 @@ import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/methods/email/set_email_response.dart';
 
-class SetEmailMethod extends SetMethod<SetEmailResponse, ResultReference, Email>
+class SetEmailMethod extends SetMethod<Email, SetEmailResponse, ResultReference>
     with EmptyResultReferences {
   SetEmailMethod({required super.accountId});
 

@@ -4,7 +4,7 @@ import 'package:jmap_dart_client/entities/core/capability_properties.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 
 class Account with EquatableMixin {
-  final AccountName name;
+  final String name;
   final bool isPersonal;
   final bool isReadOnly;
   final Map<CapabilityIdentifier, CapabilityProperties> accountCapabilities;
@@ -18,15 +18,6 @@ class Account with EquatableMixin {
 
   @override
   List<Object> get props => [name, isPersonal, isReadOnly, accountCapabilities];
-}
-
-class AccountName with EquatableMixin {
-  final String value;
-
-  AccountName(this.value);
-
-  @override
-  List<Object> get props => [value];
 }
 
 typedef AccountId = Id<Account>;

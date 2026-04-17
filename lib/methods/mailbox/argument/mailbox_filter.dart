@@ -1,8 +1,5 @@
 import 'package:jmap_dart_client/api/method/argument/filter.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
-
-import 'package:jmap_dart_client/src/converters/mailbox_name_converter.dart';
-import 'package:jmap_dart_client/src/converters/role_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'mailbox_filter.g.dart';
@@ -17,8 +14,8 @@ class MailboxFilterOperator
 class MailboxFilterCondition
     extends FilterConditionBase<_MailboxFilterCondition> {
   MailboxFilterCondition({
-    Role? role,
-    MailboxName? name,
+    MailboxRole? role,
+    String? name,
     bool? hasAnyRole,
     bool? isSubscribed,
     MailboxId? parentId,
@@ -33,12 +30,10 @@ class MailboxFilterCondition
        );
 }
 
-@RoleConverter()
-@MailboxNameConverter()
 @JsonSerializable(createFactory: false, includeIfNull: false)
 class _MailboxFilterCondition extends FilterCondition {
-  final Role? role;
-  final MailboxName? name;
+  final MailboxRole? role;
+  final String? name;
   final bool? hasAnyRole;
   final bool? isSubscribed;
   final MailboxId? parentId;

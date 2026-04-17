@@ -8,14 +8,12 @@ part of 'get_email_response.dart';
 
 GetEmailResponse _$GetEmailResponseFromJson(Map<String, dynamic> json) =>
     GetEmailResponse(
-      AccountId.fromJson(json['accountId'] as String),
-      const StateConverter().fromJson(json['state'] as String),
-      (json['list'] as List<dynamic>)
-          .map(
-            (e) => const EmailConverter().fromJson(e as Map<String, dynamic>),
-          )
+      accountId: Id<Account>.fromJson(json['accountId'] as String),
+      state: State<Email>.fromJson(json['state'] as String),
+      list: (json['list'] as List<dynamic>)
+          .map((e) => Email.fromJson(e as Map<String, dynamic>))
           .toList(),
-      (json['notFound'] as List<dynamic>?)
-          ?.map((e) => const IdConverter().fromJson(e as String))
+      notFound: (json['notFound'] as List<dynamic>?)
+          ?.map((e) => Id<Email>.fromJson(e as String))
           .toList(),
     );

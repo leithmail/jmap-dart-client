@@ -1,63 +1,57 @@
 import 'package:jmap_dart_client/api/errors/set_error.dart';
-import 'package:jmap_dart_client/api/method/response/set_response.dart';
+import 'package:jmap_dart_client/api/method/method_response.dart';
 import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/push/push_subscription.dart';
-import 'package:jmap_dart_client/src/converters/id_converter.dart';
 
-class SetPushSubscriptionResponse
-    extends SetResponseNoAccount<PushSubscription> {
+class SetPushSubscriptionResponse extends MethodResponse {
+  final Map<CreationId<PushSubscription>, PushSubscription>?
+  creaPushSubscriptioned;
+  final Map<Id<PushSubscription>, PushSubscription?>? updated;
+  final List<Id<PushSubscription>>? destroyed;
+  final Map<CreationId<PushSubscription>, SetError>? notCreated;
+  final Map<Id<PushSubscription>, SetError>? notUpdated;
+  final Map<Id<PushSubscription>, SetError>? notDestroyed;
+
   SetPushSubscriptionResponse({
-    Map<Id, PushSubscription>? created,
-    Map<Id, PushSubscription?>? updated,
-    List<Id>? destroyed,
-    Map<Id, SetError>? notCreated,
-    Map<Id, SetError>? notUpdated,
-    Map<Id, SetError>? notDestroyed,
-  }) : super(
-         created: created,
-         updated: updated,
-         destroyed: destroyed,
-         notCreated: notCreated,
-         notUpdated: notUpdated,
-         notDestroyed: notDestroyed,
-       );
+    required this.creaPushSubscriptioned,
+    required this.updated,
+    required this.destroyed,
+    required this.notCreated,
+    required this.notUpdated,
+    required this.notDestroyed,
+  });
 
   factory SetPushSubscriptionResponse.fromJson(Map<String, dynamic> json) {
     return SetPushSubscriptionResponse(
-      created: (json['created'] as Map<String, dynamic>?)?.map(
-        (key, value) => MapEntry(
-          const IdConverter().fromJson(key),
-          PushSubscription.fromJson(value as Map<String, dynamic>),
-        ),
-      ),
+      creaPushSubscriptioned:
+          (json['creaPushSubscriptioned'] as Map<String, dynamic>?)?.map(
+            (key, value) => MapEntry(
+              CreationId<PushSubscription>(key),
+              PushSubscription.fromJson(value),
+            ),
+          ),
       updated: (json['updated'] as Map<String, dynamic>?)?.map(
         (key, value) => MapEntry(
-          const IdConverter().fromJson(key),
-          value != null
-              ? PushSubscription.fromJson(value as Map<String, dynamic>)
-              : null,
+          Id<PushSubscription>(key),
+          value != null ? PushSubscription.fromJson(value) : null,
         ),
       ),
       destroyed: (json['destroyed'] as List<dynamic>?)
-          ?.map((id) => const IdConverter().fromJson(id))
+          ?.map((e) => Id<PushSubscription>(e as String))
           .toList(),
       notCreated: (json['notCreated'] as Map<String, dynamic>?)?.map(
         (key, value) => MapEntry(
-          const IdConverter().fromJson(key),
+          CreationId<PushSubscription>(key),
           SetError.fromJson(value),
         ),
       ),
       notUpdated: (json['notUpdated'] as Map<String, dynamic>?)?.map(
-        (key, value) => MapEntry(
-          const IdConverter().fromJson(key),
-          SetError.fromJson(value),
-        ),
+        (key, value) =>
+            MapEntry(Id<PushSubscription>(key), SetError.fromJson(value)),
       ),
       notDestroyed: (json['notDestroyed'] as Map<String, dynamic>?)?.map(
-        (key, value) => MapEntry(
-          const IdConverter().fromJson(key),
-          SetError.fromJson(value),
-        ),
+        (key, value) =>
+            MapEntry(Id<PushSubscription>(key), SetError.fromJson(value)),
       ),
     );
   }

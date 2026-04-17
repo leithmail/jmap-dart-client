@@ -9,11 +9,11 @@ part of 'search_snippet_get_response.dart';
 SearchSnippetGetResponse _$SearchSnippetGetResponseFromJson(
   Map<String, dynamic> json,
 ) => SearchSnippetGetResponse(
-  AccountId.fromJson(json['accountId'] as String),
-  (json['list'] as List<dynamic>?)
+  accountId: Id<Account>.fromJson(json['accountId'] as String),
+  list: (json['list'] as List<dynamic>?)
       ?.map((e) => SearchSnippet.fromJson(e as Map<String, dynamic>))
       .toList(),
-  (json['notFound'] as List<dynamic>?)
-      ?.map((e) => const IdConverter().fromJson(e as String))
+  notFound: (json['notFound'] as List<dynamic>?)
+      ?.map((e) => Id<Email>.fromJson(e as String))
       .toList(),
 );

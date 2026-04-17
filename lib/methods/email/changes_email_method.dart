@@ -1,9 +1,11 @@
 import 'package:jmap_dart_client/api/api.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
+import 'package:jmap_dart_client/entities/email/email.dart';
 import 'package:jmap_dart_client/methods/email/changes_email_response.dart';
 
 class ChangesEmailMethod
-    extends ChangesMethod<ChangesEmailResponse, ChangesEmailResultReferences> {
+    extends ChangesMethod<Email, ChangesEmailResponse, ResultReference>
+    with EmptyResultReferences {
   ChangesEmailMethod({required super.accountId, required super.sinceState});
 
   @override
@@ -19,12 +21,4 @@ class ChangesEmailMethod
   ChangesEmailResponse responseFromJson(Map<String, dynamic> json) {
     return ChangesEmailResponse.fromJson(json);
   }
-
-  @override
-  ChangesEmailResultReferences resultReferences(MethodCallId resultOf) =>
-      ChangesEmailResultReferences(
-        name: methodName,
-        resultOf: resultOf,
-        path: ReferencePath.root,
-      );
 }

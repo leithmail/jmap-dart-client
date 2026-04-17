@@ -1,21 +1,36 @@
-import 'package:jmap_dart_client/api/method/response/parse_response.dart';
+import 'package:jmap_dart_client/api/method/method_response.dart';
+import 'package:jmap_dart_client/entities/core/account.dart';
+import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/email/email.dart';
-import 'package:jmap_dart_client/src/utils/json_parsers.dart';
 
-class ParseEmailResponse extends ParseResponse<Email> {
-  ParseEmailResponse(
-    super.accountId, {
-    super.parsed,
-    super.notParsable,
-    super.notFound,
-  });
+class ParseEmailResponse extends MethodResponse {
+  final AccountId accountId;
+  final Map<Id<Email>, Email>? parsed;
+  final List<Id<Email>>? notParsable;
+  final List<Id<Email>>? notFound;
 
   factory ParseEmailResponse.fromJson(Map<String, dynamic> json) {
     return ParseEmailResponse(
-      JsonParsers().parsingAccountId(json),
-      parsed: JsonParsers().parsingMapEmail(json, 'parsed'),
-      notParsable: JsonParsers().parsingListId(json, 'notParsable'),
-      notFound: JsonParsers().parsingListId(json, 'notFound'),
+      accountId: AccountId(json['accountId'] as String),
+      parsed: (json['parsed'] as Map<String, dynamic>?)?.map(
+        (key, value) => MapEntry(
+          Id<Email>.fromJson(key),
+          Email.fromJson(value as Map<String, dynamic>),
+        ),
+      ),
+      notParsable: (json['notParsable'] as List<String>?)
+          ?.map((value) => Id<Email>.fromJson(value))
+          .toList(),
+      notFound: (json['notFound'] as List<String>?)
+          ?.map((value) => Id<Email>.fromJson(value))
+          .toList(),
     );
   }
+
+  ParseEmailResponse({
+    required this.accountId,
+    required this.parsed,
+    required this.notParsable,
+    required this.notFound,
+  });
 }

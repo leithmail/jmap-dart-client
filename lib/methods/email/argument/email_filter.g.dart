@@ -11,8 +11,8 @@ Map<String, dynamic> _$EmailFilterConditionToJson(
 ) => <String, dynamic>{
   'inMailbox': ?instance.inMailbox,
   'inMailboxOtherThan': ?instance.inMailboxOtherThan,
-  'before': ?const UTCDateNullableConverter().toJson(instance.before),
-  'after': ?const UTCDateNullableConverter().toJson(instance.after),
+  'before': ?instance.before,
+  'after': ?instance.after,
   'minSize': ?instance.minSize,
   'maxSize': ?instance.maxSize,
   'allInThreadHaveKeyword': ?instance.allInThreadHaveKeyword,

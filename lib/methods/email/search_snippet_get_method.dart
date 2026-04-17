@@ -11,7 +11,7 @@ class SearchSnippetGetMethod
     extends MethodWithAccountId<SearchSnippetGetResponse, ResultReference>
     with EmptyResultReferences {
   final filter = FilterSlot<EmailFilter>('filter');
-  final emailIds = ListSlot<EmailId>('emailIds', (v) => v.id.value);
+  final emailIds = ListSlot<EmailId>('emailIds', (v) => v.value);
 
   SearchSnippetGetMethod({required super.accountId});
 

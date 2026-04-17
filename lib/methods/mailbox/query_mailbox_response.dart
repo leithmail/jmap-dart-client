@@ -1,25 +1,25 @@
 import 'package:jmap_dart_client/api/method/response/query_response.dart';
-import 'package:jmap_dart_client/entities/email/email.dart';
+import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
 
-class QueryEmailResponse extends QueryResponse<Email> {
-  QueryEmailResponse({
+class QueryMailboxResponse extends QueryResponse<Mailbox> {
+  QueryMailboxResponse({
     required super.accountId,
     required super.queryState,
+    required super.ids,
     required super.canCalculateChanges,
     required super.position,
-    required super.ids,
     required super.total,
     required super.limit,
   });
 
-  factory QueryEmailResponse.fromJson(Map<String, dynamic> json) {
-    final parsed = QueryResponse.parseJson<Email>(json);
-    return QueryEmailResponse(
+  factory QueryMailboxResponse.fromJson(Map<String, dynamic> json) {
+    final parsed = QueryResponse.parseJson<Mailbox>(json);
+    return QueryMailboxResponse(
       accountId: parsed.accountId,
       queryState: parsed.queryState,
+      ids: parsed.ids,
       canCalculateChanges: parsed.canCalculateChanges,
       position: parsed.position,
-      ids: parsed.ids,
       total: parsed.total,
       limit: parsed.limit,
     );

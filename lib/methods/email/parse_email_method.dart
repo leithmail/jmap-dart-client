@@ -1,17 +1,23 @@
 import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/method.dart';
-import 'package:jmap_dart_client/api/method/request/parse_method.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
-import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
+import 'package:jmap_dart_client/entities/entities.dart';
 import 'package:jmap_dart_client/methods/email/argument/email_body_property.dart';
 import 'package:jmap_dart_client/methods/email/argument/email_property.dart';
 import 'package:jmap_dart_client/methods/email/parse_email_response.dart';
 
 class ParseEmailMethod
-    extends ParseMethod<ParseEmailResponse, ResultReference, EmailProperty>
+    extends MethodWithAccountId<ParseEmailResponse, ResultReference>
     with EmptyResultReferences {
-  ParseEmailMethod({required super.accountId, required super.blobIds});
+  ParseEmailMethod({
+    required super.accountId,
+    required Argument<List<BlobId>> blobIds,
+  }) {
+    _blobIds(blobIds);
+  }
 
+  final _blobIds = ListSlot<BlobId>('blobIds', (v) => v.value);
+  final properties = ListSlot<EmailProperty>('properties', (v) => v.value);
   final bodyProperties = ListSlot<EmailBodyProperty>(
     "bodyProperties",
     (v) => v.value,
@@ -24,6 +30,8 @@ class ParseEmailMethod
   @override
   get slots => [
     ...super.slots,
+    _blobIds,
+    properties,
     bodyProperties,
     fetchTextBodyValues,
     fetchHTMLBodyValues,

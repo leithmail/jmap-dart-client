@@ -10,7 +10,6 @@ import 'package:jmap_dart_client/entities/core/account.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/core/capability_properties.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
-import 'package:jmap_dart_client/src/converters/account_name_converter.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -145,7 +144,7 @@ class _AccountConverter {
     _CapabilitiesConverter converter,
   ) {
     return Account(
-      name: const AccountNameConverter().fromJson(json['name'] as String),
+      name: json['name'] as String,
       isPersonal: json['isPersonal'] as bool,
       isReadOnly: json['isReadOnly'] as bool,
       accountCapabilities: (json['accountCapabilities'] as Map<String, dynamic>)

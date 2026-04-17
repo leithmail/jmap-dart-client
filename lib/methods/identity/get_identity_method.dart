@@ -1,13 +1,18 @@
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/method/request/get_method.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
-import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/entities.dart';
 import 'package:jmap_dart_client/methods/identity/get_identity_response.dart';
 import 'package:jmap_dart_client/methods/identity/identity_property.dart';
 
 class GetIdentityMethod
-    extends GetMethod<GetIdentityResponse, ResultReference, IdentityProperty>
+    extends
+        GetMethod<
+          Identity,
+          GetIdentityResponse,
+          ResultReference,
+          IdentityProperty
+        >
     with EmptyResultReferences {
   GetIdentityMethod({required super.accountId});
 

@@ -9,8 +9,8 @@ part of 'mailbox_filter.dart';
 Map<String, dynamic> _$MailboxFilterConditionToJson(
   _MailboxFilterCondition instance,
 ) => <String, dynamic>{
-  'role': ?const RoleConverter().toJson(instance.role),
-  'name': ?const MailboxNameConverter().toJson(instance.name),
+  'role': ?instance.role,
+  'name': ?instance.name,
   'hasAnyRole': ?instance.hasAnyRole,
   'isSubscribed': ?instance.isSubscribed,
   'parentId': ?instance.parentId,

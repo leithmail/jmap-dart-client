@@ -44,3 +44,4 @@ class PushSubscription with EquatableMixin {
 }
 
 typedef PushSubscriptionId = Id<PushSubscription>;
+typedef PushSubscriptionCreationId = CreationId<PushSubscription>;

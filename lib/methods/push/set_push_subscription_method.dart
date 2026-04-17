@@ -2,7 +2,6 @@ import 'package:jmap_dart_client/api/method/argument/argument.dart';
 import 'package:jmap_dart_client/api/method/method.dart';
 import 'package:jmap_dart_client/api/request/patch_object.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
-import 'package:jmap_dart_client/entities/core/id.dart';
 import 'package:jmap_dart_client/entities/core/state.dart';
 import 'package:jmap_dart_client/entities/push/push_subscription.dart';
 import 'package:jmap_dart_client/methods/push/set_push_subscription_response.dart';
@@ -23,18 +22,18 @@ class SetPushSubscriptionMethod
   Object? typeToJson(PushSubscription v) => v.toJson();
 
   final ifInState = ArgumentSlot<State>('ifInState', (v) => v.value);
-  late final create = MapSlot<Id, PushSubscription>(
+  late final create = MapSlot<PushSubscriptionCreationId, PushSubscription>(
     'create',
     (k) => k.value,
     (v) => typeToJson(v),
   );
-  final update = MapSlot<Id, PatchObject>(
+  final update = MapSlot<PushSubscriptionId, PatchObject>(
     'update',
     (k) => k.value,
     (v) => v.toJson(),
   );
-  final destroy = ListSlot<Id>('destroy', (v) => v.value);
-  late final updateSingleton = MapSlot<Id, PushSubscription>(
+  final destroy = ListSlot<PushSubscriptionId>('destroy', (v) => v.value);
+  late final updateSingleton = MapSlot<PushSubscriptionId, PushSubscription>(
     'update',
     (k) => k.value,
     (v) => typeToJson(v),

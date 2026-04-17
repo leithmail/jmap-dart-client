@@ -4,10 +4,10 @@ import 'package:jmap_dart_client/api/method/request/set_method.dart';
 import 'package:jmap_dart_client/api/request/result_reference.dart';
 import 'package:jmap_dart_client/entities/core/capability_identifier.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
-import 'package:jmap_dart_client/methods/mailbox/set/set_mailbox_response.dart';
+import 'package:jmap_dart_client/methods/mailbox/set_mailbox_response.dart';
 
 class SetMailboxMethod
-    extends SetMethod<SetMailboxResponse, ResultReference, Mailbox>
+    extends SetMethod<Mailbox, SetMailboxResponse, ResultReference>
     with EmptyResultReferences {
   final onDestroyRemoveEmails = PrimitiveSlot<bool>('onDestroyRemoveEmails');
 

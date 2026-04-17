@@ -1,17 +1,15 @@
 import 'package:jmap_dart_client/api/response/response_invocation.dart';
-import 'package:jmap_dart_client/entities/core/state.dart';
+import 'package:jmap_dart_client/entities/entities.dart';
 import 'package:jmap_dart_client/src/converters/response_invocation_converter.dart';
-import 'package:jmap_dart_client/src/converters/state_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'response.g.dart';
 
-@StateConverter()
 @ResponseInvocationConverter()
 @JsonSerializable(createToJson: false)
 class Response {
   final List<ResponseInvocation> methodResponses;
-  final State sessionState;
+  final Session sessionState;
 
   Response(this.methodResponses, this.sessionState);
 

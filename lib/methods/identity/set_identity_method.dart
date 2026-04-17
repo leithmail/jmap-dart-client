@@ -6,7 +6,7 @@ import 'package:jmap_dart_client/entities/identity/identity.dart';
 import 'package:jmap_dart_client/methods/identity/set_identity_response.dart';
 
 class SetIdentityMethod
-    extends SetMethod<SetIdentityResponse, ResultReference, Identity>
+    extends SetMethod<Identity, SetIdentityResponse, ResultReference>
     with EmptyResultReferences {
   SetIdentityMethod({required super.accountId});
 

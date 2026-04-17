@@ -1,8 +1,6 @@
 import 'package:jmap_dart_client/api/method/argument/filter.dart';
 import 'package:jmap_dart_client/entities/core/utc_date.dart';
 import 'package:jmap_dart_client/entities/mailbox/mailbox.dart';
-
-import 'package:jmap_dart_client/src/converters/utc_date_nullable_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'email_filter.g.dart';
@@ -61,7 +59,6 @@ class EmailFilterCondition extends FilterConditionBase<_EmailFilterCondition> {
        );
 }
 
-@UTCDateNullableConverter()
 @JsonSerializable(createFactory: false, includeIfNull: false)
 class _EmailFilterCondition extends FilterCondition {
   final MailboxId? inMailbox;
